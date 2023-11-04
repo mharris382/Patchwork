@@ -1,0 +1,44 @@
+[+] Containers:
+ |- [+] Container: /Game/Patchwork/Levels/Prototype/desert
+ |   |- [+] ActorDescs:
+ |   |   |- Guid:B4BAC22C45B3AE9A7F1718A4CBECE1DC BaseClass: NativeClass:/Script/Engine.WorldDataLayers Name:WorldDataLayers Label:None SpatiallyLoaded:0 Bounds:Invalid RuntimeGrid:None EditorOnly:0 RuntimeOnly:0 HLODRelevant:0 ListedInSceneOutliner:1 IsMainWorldOnly:1
+ |   |- [+] Clusters:
+ |   |   |- [+] [  0]
+ |   |   |   |- Guid:B4BAC22C45B3AE9A7F1718A4CBECE1DC BaseClass: NativeClass:/Script/Engine.WorldDataLayers Name:WorldDataLayers Label:None SpatiallyLoaded:0 Bounds:Invalid RuntimeGrid:None EditorOnly:0 RuntimeOnly:0 HLODRelevant:0 ListedInSceneOutliner:1 IsMainWorldOnly:1
+ |- ContainerInstances:
+ |- [+] MainContainer:
+ |   |-        ID: 00000000000000000000000000000000
+ |   |-  ParentID: 00000000000000000000000000000000
+ |   |-    Bounds: IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000)
+ |   |- Transform: 0.000000,0.000000,0.000000|0.000000,0.000000,-0.000000|1.000000,1.000000,1.000000
+ |   |- Container: /Game/Patchwork/Levels/Prototype/desert
+----------------------------------------------------------------------------------------------------------------
+desert - Persistent Level
+----------------------------------------------------------------------------------------------------------------
+[+] Content of desert Persistent Level
+ |- Always loaded Actor Count: 4 
+ |- Actor Path: /Game/Patchwork/Levels/Prototype/desert.desert:PersistentLevel.Brush_0
+ |- Actor Package: /Game/Patchwork/Levels/Prototype/desert
+ |- Actor Path: /Game/Patchwork/Levels/Prototype/desert.desert:PersistentLevel.DefaultPhysicsVolume_0
+ |- Actor Package: /Game/Patchwork/Levels/Prototype/desert
+ |- Actor Path: /Game/Patchwork/Levels/Prototype/desert.desert:PersistentLevel.WorldDataLayers
+ |- Actor Package: /Game/__ExternalActors__/Patchwork/Levels/Prototype/desert/E/I4/9JLCP4RNC7G2IPP2OA7LFF
+ |- Actor Path: /Game/Patchwork/Levels/Prototype/desert.desert:PersistentLevel.WorldSettings
+ |- Actor Package: /Game/Patchwork/Levels/Prototype/desert
+
+----------------------------------------------------------------------------------------------------------------
+desert - Runtime Spatial Hash - Streaming Grid - MainGrid
+----------------------------------------------------------------------------------------------------------------
+            Origin: X=0.000 Y=0.000 Z=0.000
+         Cell Size: 25600
+      World Bounds: IsValid=false, Min=(X=0.000 Y=0.000 Z=0.000), Max=(X=0.000 Y=0.000 Z=0.000)
+     Loading Range: 76800.00
+Block Slow Loading: No
+ ClientOnlyVisible: No
+            Origin: X=0.000 Y=0.000 Z=0.000
+
+[+] Grid Levels: 1
+ |- Level  0: Cell Count    0 | Cell Size   25600 | Actor Count    0 (0.0%)
+
+[+] Content of Grid Level 0
+
