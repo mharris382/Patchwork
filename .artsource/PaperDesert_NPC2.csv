@@ -1,0 +1,5 @@
+---,Participant,Text,JumpTo,EventName,ContinueFrom,Branchs,DialogueSound
+[Start],,What a lovely morning,2,,,,None
+2,,What are you up to?,3,,,,None
+3,,"Nothing much. Just enjoying life, you know?",[Finish],,4,,
+4,,Isn't the sky beautiful?,[Finish],,,,
