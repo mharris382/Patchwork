@@ -1,0 +1,10 @@
+---,Participant,Text,JumpTo,EventName,ContinueFrom,Branchs,DialogueSound
+[Start],"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")",Can you help me solve this riddle? Can't seem to make sense of it.,1,,,,
+1,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")",Sure. What is it?,2,,,,
+2,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")","The more you take, the more you leave behind. What am I?",3,,,,
+3,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")",Footprints.,4,,,,
+4,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")","Oh, you're right! Thanks a lot.",5,,,,
+5,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")",What's the riddle for?,6,,,,
+6,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")",Don't know. Don't remember. It's been a while.,7,,,,
+7,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")",A while since what?,8,,,,
+8,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")",...,[Finish],,8,,

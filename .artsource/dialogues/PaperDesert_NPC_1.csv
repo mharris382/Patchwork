@@ -1,0 +1,4 @@
+---,Participant,Text,JumpTo,EventName,ContinueFrom,Branchs,DialogueSound
+[Start],"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")","Hey. You're new here, aren't you?",1,,,,
+1,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")",Yes. Where am I?,2,,,,
+2,"(DataTable=""""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"""",RowName=""""Player"""")","You're near town, of course.  Just keep going and you'll reach it.",[Finish],,1,,
