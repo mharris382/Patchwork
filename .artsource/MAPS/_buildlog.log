@@ -1,0 +1,2 @@
+{ "time": "16:15:35.3608", "level": "INFO", "site": "<no type>.A.LGS.C_Encrypted$::0", "data": "\"C:\\Program Files\\QuadSpinner\\Gaea\\Gaea.Build.exe\" \"C:\\Users\\mharr\\OneDrive\\Documents\\Gaea\\test78.tor\" --open    --buildlog" }
+{ "time": "16:15:35.3998", "level": "INFO", "site": "<no type>.A.EYS.U_Encrypted$::0", "data": "Version 1.3.2.7" }
