@@ -4685,3 +4685,579 @@ Any materials which use this function will lose their connections to these funct
 [2023.12.20-03.16.00:716][504]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/L0ORMJXWO98KDND1J8X9HA_Auto30460F00448DA5A87828098957CCCACAD.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Autosaves/Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/0/CR/L0ORMJXWO98KDND1J8X9HA_Auto3.uasset'
 [2023.12.20-03.16.00:716][504]LogFileHelpers: Editor autosave (incl. external actors) for '/Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest' took 0.029
 [2023.12.20-03.16.00:716][504]LogFileHelpers: Editor autosave (incl. sublevels & external actors) for all levels took 0.029
+[2023.12.20-03.24.38:220][789]LogViewport: Scene viewport resized to 1680x940, mode Windowed.
+[2023.12.20-03.24.38:279][790]LogViewport: Scene viewport resized to 1595x940, mode Windowed.
+[2023.12.20-03.24.38:325][791]LogViewport: Scene viewport resized to 1443x940, mode Windowed.
+[2023.12.20-03.24.38:370][792]LogViewport: Scene viewport resized to 1384x940, mode Windowed.
+[2023.12.20-03.24.38:416][793]LogViewport: Scene viewport resized to 1363x940, mode Windowed.
+[2023.12.20-03.24.38:493][796]LogViewport: Scene viewport resized to 1364x940, mode Windowed.
+[2023.12.20-03.24.38:598][800]LogViewport: Scene viewport resized to 1360x940, mode Windowed.
+[2023.12.20-03.24.38:652][801]LogViewport: Scene viewport resized to 1346x940, mode Windowed.
+[2023.12.20-03.24.48:962][215]Cmd: CAMERA ALIGN ACTIVEVIEWPORTONLY
+[2023.12.20-03.25.03:540][870]Cmd: CAMERA ALIGN ACTIVEVIEWPORTONLY
+[2023.12.20-03.25.04:720][919]Cmd: SELECT NONE
+[2023.12.20-03.25.13:683][327]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.25.13:733][327]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/8/N4/4BZ9209I1FU997E6C2AR5Q
+[2023.12.20-03.25.13:733][327]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/4BZ9209I1FU997E6C2AR5Q986D26EC41EEF3EA398328867D70E7E6.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/8/N4/4BZ9209I1FU997E6C2AR5Q.uasset'
+[2023.12.20-03.25.13:734][327]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/0/CR/L0ORMJXWO98KDND1J8X9HA
+[2023.12.20-03.25.13:734][327]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/L0ORMJXWO98KDND1J8X9HA740EB6644CF3AD68DC5DC9AE4018884D.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/0/CR/L0ORMJXWO98KDND1J8X9HA.uasset'
+[2023.12.20-03.25.13:737][327]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/7/R7/KQWD4SZYRLYKPT4U0ZA1ZG
+[2023.12.20-03.25.13:737][327]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/KQWD4SZYRLYKPT4U0ZA1ZG2F848D704BD898B2B14452A4F995D7C0.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/7/R7/KQWD4SZYRLYKPT4U0ZA1ZG.uasset'
+[2023.12.20-03.25.13:742][327]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/B/CW/FZSO61OHTC74T5K20K6CV3
+[2023.12.20-03.25.13:742][327]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/FZSO61OHTC74T5K20K6CV3CF7C35CA4FB206A55DA95EA843F51A16.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/B/CW/FZSO61OHTC74T5K20K6CV3.uasset'
+[2023.12.20-03.25.13:743][327]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/5/73/E1X7EUJM3PIP643Z36Y5ZK
+[2023.12.20-03.25.13:743][327]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/E1X7EUJM3PIP643Z36Y5ZK1F5B878D442AA508C6884BB20736511F.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/5/73/E1X7EUJM3PIP643Z36Y5ZK.uasset'
+[2023.12.20-03.25.13:752][327]LogFileHelpers: InternalPromptForCheckoutAndSave took 67 ms (total: 28.2 sec)
+[2023.12.20-03.25.13:753][327]AssetCheck: New page: Asset Save: multiple assets
+[2023.12.20-03.25.13:753][327]LogContentValidation: Display: Validating /Script/Engine.DecalActor /Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest:PersistentLevel.DecalActor_UAID_50EBF6CFEC666BC701_2143883142
+[2023.12.20-03.25.13:753][327]LogContentValidation: Display: Validating /Script/Engine.DecalActor /Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest:PersistentLevel.DecalActor_UAID_50EBF6CFEC666CC701_2059367319
+[2023.12.20-03.25.13:753][327]LogContentValidation: Display: Validating /Script/Engine.DecalActor /Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest:PersistentLevel.DecalActor_UAID_50EBF6CFEC666EC701_1409890672
+[2023.12.20-03.25.13:753][327]LogContentValidation: Display: Validating /Script/Engine.DecalActor /Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest:PersistentLevel.DecalActor_UAID_50EBF6CFEC666EC701_1413134673
+[2023.12.20-03.25.13:753][327]LogContentValidation: Display: Validating /Script/Engine.DecalActor /Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest:PersistentLevel.DecalActor_UAID_50EBF6CFEC666EC701_1417336674
+[2023.12.20-03.25.38:964][365]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.25.38:964][365]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.38:964][365]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.38:964][365]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: ================================================
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Total job queries 4,538, among them cache hits 2,406 (53.02%)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Tracking 2,110 distinct input hashes that result in 1,190 distinct outputs (56.40%)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: RAM used: 52.22 MiB of 1.60 GiB budget. Usage: 3.19%
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Shaders Compiled: 1,376
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Jobs assigned 1,376, completed 1,376 (100%)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Average time worker was idle: 20.03 s
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Time job spent in pending queue: average 3.78 s, longest 15.60 s
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Job execution time: average 0.65 s, max 4.96 s
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Job life time (pending + execution): average 4.42 s, max 15.80
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Shader code size: average 42.618 KiB, min 2.719 KiB, max 82.578 KiB
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 77.74 s
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Jobs were issued in 1,244 batches (only local compilation was used), average 1.11 jobs/batch
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Average processing rate: 17.70 jobs/sec
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Total thread time: 388.712 s
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Total thread preprocess time: 28.996 s
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Percentage time preprocessing: 7.46%
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Effective parallelization: 5.00 (times faster than compiling all shaders on one thread). Compare with number of workers: 10
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylightForceVelocity (compiled    2 times, average 1.03 sec, max 1.10 sec, min 0.95 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: TBasePassPSFCachedPointIndirectLightingPolicySkylightForceVelocity (compiled    2 times, average 1.01 sec, max 1.05 sec, min 0.97 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicyForceVelocity (compiled    2 times, average 0.97 sec, max 1.08 sec, min 0.85 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display:  TBasePassPSFCachedVolumeIndirectLightingPolicyForceVelocity (compiled    2 times, average 0.96 sec, max 1.06 sec, min 0.85 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: TBasePassPSFCachedVolumeIndirectLightingPolicySkylightForceVelocity (compiled    2 times, average 0.96 sec, max 1.01 sec, min 0.90 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display:                                        FMicropolyRasterizeCS - 6.00% of total time (compiled   26 times, average 0.90 sec, max 1.57 sec, min 0.45 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display:                                               FHWRasterizePS - 5.49% of total time (compiled   54 times, average 0.39 sec, max 0.69 sec, min 0.02 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display:                   TMaterialCHSFNoLightMapPolicyFAnyHitShader - 4.57% of total time (compiled   40 times, average 0.44 sec, max 1.06 sec, min 0.25 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 4.45% of total time (compiled   65 times, average 0.27 sec, max 1.10 sec, min 0.11 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: TMaterialCHSFPrecomputedVolumetricLightmapLightingPolicyFAnyHitShader - 3.59% of total time (compiled   25 times, average 0.56 sec, max 1.09 sec, min 0.24 sec)
+[2023.12.20-03.25.39:040][366]LogShaderCompilers: Display: ================================================
+[2023.12.20-03.25.39:066][367]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.25.39:066][367]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.39:066][367]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.39:066][367]MaterialEditorStats: Shader Count: 3
+[2023.12.20-03.25.41:765][479]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.25.41:765][479]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.41:765][479]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.41:765][479]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.25.41:868][481]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.25.41:868][481]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.41:868][481]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.41:868][481]MaterialEditorStats: Shader Count: 3
+[2023.12.20-03.25.45:433][626]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.25.45:433][626]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.45:433][626]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.45:433][626]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.25.45:509][627]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.25.45:509][627]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.45:509][627]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.45:509][627]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.25.47:238][697]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.25.47:238][697]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.47:238][697]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.47:238][697]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.25.47:260][698]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.25.47:260][698]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.47:260][698]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.47:260][698]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.25.52:367][910]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.25.52:367][910]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.52:367][910]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.52:367][910]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.25.52:445][911]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.25.52:445][911]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.52:445][911]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.52:445][911]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.25.56:205][ 63]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.25.56:205][ 63]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.56:205][ 63]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.56:205][ 63]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.25.56:294][ 64]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.25.56:294][ 64]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.56:294][ 64]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.56:294][ 64]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.25.58:822][163]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.25.58:822][163]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.58:822][163]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.58:822][163]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.25.58:860][164]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.25.58:860][164]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.25.58:860][164]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.25.58:860][164]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.01:377][262]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.01:377][262]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.01:377][262]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.01:377][262]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.01:431][264]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.01:431][264]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.01:431][264]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.01:431][264]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.03:069][327]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.03:069][327]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.03:069][327]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.03:069][327]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.03:124][329]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.03:124][329]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.03:124][329]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.03:124][329]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.04:313][375]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.04:313][375]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.04:313][375]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.04:313][375]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.04:396][377]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.04:396][377]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.04:396][377]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.04:396][377]MaterialEditorStats: Shader Count: 3
+[2023.12.20-03.26.04:930][395]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.04:930][395]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.04:931][395]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.04:931][395]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.04:982][396]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.04:983][396]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.04:983][396]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.04:983][396]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.06:261][445]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.06:261][445]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.06:261][445]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.06:261][445]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.06:318][447]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.06:318][447]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.06:318][447]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.06:318][447]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.07:806][507]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.26.08:136][507]LogUObjectHash: Compacting FUObjectHashTables data took   1.03ms
+[2023.12.20-03.26.08:215][507]LogUObjectHash: Compacting FUObjectHashTables data took   0.44ms
+[2023.12.20-03.26.08:225][507]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.26.08:316][507]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.26.08:316][507]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols6FD17034405619E9D34872B73AEE585C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.26.08:323][507]LogFileHelpers: InternalPromptForCheckoutAndSave took 97 ms (total: 28.3 sec)
+[2023.12.20-03.26.08:327][507]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.26.08:327][507]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.26.08:334][507]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.26.08:334][507]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.26.08:334][507]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.26.08:334][507]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.08:334][507]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.08:334][507]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.26.10:988][601]Cmd: SELECT NONE
+[2023.12.20-03.26.23:581][163]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.23:581][163]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.23:581][163]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.23:581][163]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.23:637][165]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.23:637][165]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.23:637][165]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.23:637][165]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.24:129][184]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.26.24:432][184]LogUObjectHash: Compacting FUObjectHashTables data took   1.10ms
+[2023.12.20-03.26.24:502][184]LogUObjectHash: Compacting FUObjectHashTables data took   0.46ms
+[2023.12.20-03.26.24:510][184]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.26.24:590][184]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.26.24:590][184]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_SymbolsF462A1CE43B2C740D0C580B30EDF462D.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.26.24:596][184]LogFileHelpers: InternalPromptForCheckoutAndSave took 85 ms (total: 28.4 sec)
+[2023.12.20-03.26.24:600][184]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.26.24:600][184]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.26.24:607][184]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.26.24:607][184]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.26.24:607][184]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.26.24:607][184]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.24:607][184]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.24:607][184]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.26.38:307][784]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.38:307][784]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.38:307][784]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.38:307][784]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.38:359][786]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.38:359][786]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.38:359][786]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.38:359][786]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.38:926][809]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.26.39:242][809]LogUObjectHash: Compacting FUObjectHashTables data took   0.86ms
+[2023.12.20-03.26.39:316][809]LogUObjectHash: Compacting FUObjectHashTables data took   0.44ms
+[2023.12.20-03.26.39:325][809]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.26.39:428][809]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.26.39:429][809]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols54D32D2D4912121F0F842A9FA508B5F4.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.26.39:434][809]LogFileHelpers: InternalPromptForCheckoutAndSave took 109 ms (total: 28.5 sec)
+[2023.12.20-03.26.39:439][809]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.26.39:439][809]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.26.39:446][809]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.26.39:446][809]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.26.39:446][809]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.26.39:446][809]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.39:446][809]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.39:446][809]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.26.45:685][ 83]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.45:686][ 83]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.45:686][ 83]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.45:686][ 83]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.45:741][ 85]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.45:741][ 85]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.45:741][ 85]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.45:741][ 85]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.47:902][176]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.47:902][176]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.47:902][176]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.47:902][176]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.47:977][177]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.47:977][177]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.47:977][177]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.47:977][177]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.50:386][283]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.50:386][283]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.50:386][283]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.50:386][283]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.50:486][285]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.50:486][285]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.50:486][285]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.50:486][285]MaterialEditorStats: Shader Count: 3
+[2023.12.20-03.26.52:193][359]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.52:193][359]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.52:193][359]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.52:193][359]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.52:277][361]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.52:277][361]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.52:277][361]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.52:277][361]MaterialEditorStats: Shader Count: 3
+[2023.12.20-03.26.52:397][364]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.52:397][364]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.52:397][364]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.52:397][364]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.52:449][366]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.52:449][366]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.52:449][366]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.52:449][366]MaterialEditorStats: Shader Count: 3
+[2023.12.20-03.26.53:289][401]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.26.53:289][401]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.53:289][401]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.53:289][401]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.26.53:342][403]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.26.53:342][403]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.53:342][403]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.53:342][403]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.26.54:092][434]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.26.54:405][434]LogUObjectHash: Compacting FUObjectHashTables data took   0.92ms
+[2023.12.20-03.26.54:467][434]LogUObjectHash: Compacting FUObjectHashTables data took   0.46ms
+[2023.12.20-03.26.54:475][434]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.26.54:583][434]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.26.54:583][434]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols23BE788748C4A7397F84338BA9A079B5.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.26.54:589][434]LogFileHelpers: InternalPromptForCheckoutAndSave took 114 ms (total: 28.6 sec)
+[2023.12.20-03.26.54:593][434]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.26.54:593][434]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.26.54:601][434]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.26.54:601][434]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.26.54:601][434]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.26.54:601][434]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.26.54:601][434]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.26.54:601][434]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.27.00:639][691]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.27.00:639][691]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.00:639][691]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.00:639][691]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.27.00:717][692]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.27.00:717][692]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.00:717][692]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.00:717][692]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.27.02:768][780]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.27.02:768][780]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.02:768][780]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.02:768][780]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.27.02:822][782]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.27.02:822][782]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.02:822][782]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.02:822][782]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.27.05:215][884]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.27.05:215][884]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.05:215][884]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.05:215][884]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.27.05:296][886]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.27.05:296][886]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.05:296][886]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.05:296][886]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.27.05:911][909]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.27.05:911][909]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.05:911][909]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.05:911][909]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.27.05:963][911]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.27.05:963][911]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.05:963][911]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.05:963][911]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.27.08:405][ 17]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.27.08:714][ 17]LogUObjectHash: Compacting FUObjectHashTables data took   1.16ms
+[2023.12.20-03.27.08:788][ 17]LogUObjectHash: Compacting FUObjectHashTables data took   0.55ms
+[2023.12.20-03.27.08:803][ 17]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.27.08:902][ 17]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.27.08:903][ 17]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols630A046941FF7BD881D6D794AFDAB3EC.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.27.08:909][ 17]LogFileHelpers: InternalPromptForCheckoutAndSave took 105 ms (total: 28.7 sec)
+[2023.12.20-03.27.08:913][ 17]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.27.08:913][ 17]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.27.08:920][ 17]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.27.08:920][ 17]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.27.08:920][ 17]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.27.08:920][ 17]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.08:920][ 17]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.08:920][ 17]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.27.23:545][663]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.27.23:545][663]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.23:545][663]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.23:545][663]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.27.23:600][665]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.27.23:600][665]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.23:600][665]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.23:600][665]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.27.24:076][684]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.27.24:396][684]LogUObjectHash: Compacting FUObjectHashTables data took   0.90ms
+[2023.12.20-03.27.24:452][684]LogUObjectHash: Compacting FUObjectHashTables data took   0.44ms
+[2023.12.20-03.27.24:461][684]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.27.24:569][684]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.27.24:569][684]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols0F2B4DCA44CFAECFED0113A5AF69425C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.27.24:575][684]LogFileHelpers: InternalPromptForCheckoutAndSave took 113 ms (total: 28.8 sec)
+[2023.12.20-03.27.24:580][684]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.27.24:580][684]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.27.24:586][684]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.27.24:586][684]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.27.24:586][684]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.27.24:586][684]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.24:586][684]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.24:586][684]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.27.25:828][731]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.27.25:828][731]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.25:828][731]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.25:828][731]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.27.25:883][733]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.27.25:883][733]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.25:883][733]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.25:883][733]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.27.26:665][765]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.27.26:983][765]LogUObjectHash: Compacting FUObjectHashTables data took   0.97ms
+[2023.12.20-03.27.27:053][765]LogUObjectHash: Compacting FUObjectHashTables data took   0.46ms
+[2023.12.20-03.27.27:062][765]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.27.27:168][765]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.27.27:169][765]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols20AA64084241F3DCFFE4FA8CCBC9BE0A.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.27.27:173][765]LogFileHelpers: InternalPromptForCheckoutAndSave took 110 ms (total: 28.9 sec)
+[2023.12.20-03.27.27:176][765]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.27.27:176][765]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.27.27:184][765]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.27.27:184][765]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.27.27:184][765]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.27.27:184][765]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.27.27:184][765]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.27.27:184][765]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.27.34:491][ 83]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.27.34:805][ 83]LogUObjectHash: Compacting FUObjectHashTables data took   1.00ms
+[2023.12.20-03.27.34:887][ 83]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2023.12.20-03.27.34:894][ 83]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.27.35:002][ 83]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.27.35:002][ 83]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols34EA3737419C7BFAB5844286A186301B.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.27.35:007][ 83]LogFileHelpers: InternalPromptForCheckoutAndSave took 112 ms (total: 29.0 sec)
+[2023.12.20-03.27.35:012][ 83]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.27.35:012][ 83]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.28.09:086][591]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.28.09:086][591]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.09:086][591]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.09:086][591]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.28.09:197][593]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.28.09:197][593]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.09:197][593]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.09:197][593]MaterialEditorStats: Shader Count: 3
+[2023.12.20-03.28.16:618][916]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.28.16:618][916]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.16:618][916]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.16:618][916]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.28.16:723][918]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.28.16:723][918]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.16:723][918]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.16:723][918]MaterialEditorStats: Shader Count: 3
+[2023.12.20-03.28.19:484][ 37]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.28.19:484][ 37]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.19:484][ 37]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.19:484][ 37]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.28.19:540][ 39]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.28.19:540][ 39]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.19:540][ 39]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.19:540][ 39]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.28.21:897][141]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.28.21:897][141]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.21:897][141]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.21:897][141]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.28.21:952][143]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.28.21:952][143]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.21:952][143]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.21:952][143]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.28.26:027][324]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.28.26:027][324]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.26:027][324]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.26:027][324]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.28.26:080][326]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.28.26:080][326]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.26:080][326]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.26:080][326]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.28.27:418][383]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.28.27:733][383]LogUObjectHash: Compacting FUObjectHashTables data took   1.21ms
+[2023.12.20-03.28.27:807][383]LogUObjectHash: Compacting FUObjectHashTables data took   0.66ms
+[2023.12.20-03.28.27:817][383]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.28.27:926][383]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.28.27:926][383]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols2077A95845FB980DB479C7AB11DF796E.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.28.27:953][383]LogFileHelpers: InternalPromptForCheckoutAndSave took 136 ms (total: 29.2 sec)
+[2023.12.20-03.28.27:958][383]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.28.27:958][383]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.28.27:966][383]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.28.27:966][383]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.28.27:966][383]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.28.27:966][383]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.27:966][383]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.27:966][383]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.28.36:943][781]LogDerivedDataCache: C:/Users/mharr/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:05:46.944 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 218735 files in 134665 folders with total size 11825 MiB.
+[2023.12.20-03.28.44:485][127]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.28.44:485][127]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.44:485][127]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.44:485][127]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: ================================================
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Total job queries 5,026, among them cache hits 2,865 (57.00%)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Tracking 2,139 distinct input hashes that result in 1,211 distinct outputs (56.62%)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: RAM used: 52.86 MiB of 1.60 GiB budget. Usage: 3.23%
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Shaders Compiled: 1,405
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Jobs assigned 1,405, completed 1,405 (100%)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Average time worker was idle: 23.08 s
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Time job spent in pending queue: average 3.70 s, longest 15.60 s
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Job execution time: average 0.64 s, max 4.96 s
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Job life time (pending + execution): average 4.34 s, max 15.80
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Shader code size: average 42.524 KiB, min 2.719 KiB, max 82.578 KiB
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 83.98 s
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Jobs were issued in 1,273 batches (only local compilation was used), average 1.10 jobs/batch
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Average processing rate: 16.73 jobs/sec
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Total thread time: 393.428 s
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Total thread preprocess time: 29.459 s
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Percentage time preprocessing: 7.49%
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Effective parallelization: 4.68 (times faster than compiling all shaders on one thread). Compare with number of workers: 10
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylightForceVelocity (compiled    2 times, average 1.03 sec, max 1.10 sec, min 0.95 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: TBasePassPSFCachedPointIndirectLightingPolicySkylightForceVelocity (compiled    2 times, average 1.01 sec, max 1.05 sec, min 0.97 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicyForceVelocity (compiled    2 times, average 0.97 sec, max 1.08 sec, min 0.85 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display:  TBasePassPSFCachedVolumeIndirectLightingPolicyForceVelocity (compiled    2 times, average 0.96 sec, max 1.06 sec, min 0.85 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: TBasePassPSFCachedVolumeIndirectLightingPolicySkylightForceVelocity (compiled    2 times, average 0.96 sec, max 1.01 sec, min 0.90 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display:                                        FMicropolyRasterizeCS - 5.93% of total time (compiled   26 times, average 0.90 sec, max 1.57 sec, min 0.45 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display:                                               FHWRasterizePS - 5.42% of total time (compiled   54 times, average 0.39 sec, max 0.69 sec, min 0.02 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display:                   TMaterialCHSFNoLightMapPolicyFAnyHitShader - 4.93% of total time (compiled   46 times, average 0.42 sec, max 1.06 sec, min 0.25 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 4.45% of total time (compiled   66 times, average 0.27 sec, max 1.10 sec, min 0.11 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: TMaterialCHSFPrecomputedVolumetricLightmapLightingPolicyFAnyHitShader - 3.54% of total time (compiled   25 times, average 0.56 sec, max 1.09 sec, min 0.24 sec)
+[2023.12.20-03.28.44:511][128]LogShaderCompilers: Display: ================================================
+[2023.12.20-03.28.44:540][129]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.28.44:540][129]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.44:540][129]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.44:540][129]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.28.45:108][152]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.28.45:421][152]LogUObjectHash: Compacting FUObjectHashTables data took   0.87ms
+[2023.12.20-03.28.45:492][152]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2023.12.20-03.28.45:500][152]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.28.45:604][152]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.28.45:604][152]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_SymbolsF59D1E0B4BD8A144B3E81AB4433A9E40.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.28.45:610][152]LogFileHelpers: InternalPromptForCheckoutAndSave took 109 ms (total: 29.3 sec)
+[2023.12.20-03.28.45:615][152]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.28.45:615][152]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.28.45:623][152]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.28.45:623][152]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.28.45:623][152]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.28.45:623][152]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.28.45:623][152]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.28.45:623][152]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.29.00:476][816]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.29.00:476][816]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.29.00:476][816]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.29.00:476][816]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.29.00:529][818]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.29.00:529][818]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.29.00:529][818]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.29.00:529][818]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.29.02:110][887]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.29.02:425][887]LogUObjectHash: Compacting FUObjectHashTables data took   1.08ms
+[2023.12.20-03.29.02:510][887]LogUObjectHash: Compacting FUObjectHashTables data took   0.58ms
+[2023.12.20-03.29.02:521][887]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.29.02:622][887]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.29.02:623][887]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_SymbolsA2BCF2DE49887E6821CDC394FC07E8F2.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.29.02:649][887]LogFileHelpers: InternalPromptForCheckoutAndSave took 128 ms (total: 29.4 sec)
+[2023.12.20-03.29.02:654][887]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.29.02:654][887]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.29.02:662][887]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.29.02:662][887]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.29.02:662][887]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.29.02:662][887]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.29.02:662][887]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.29.02:662][887]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.29.27:120][988]MaterialEditorStats: Texture samplers: 0/16
+[2023.12.20-03.29.27:120][988]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.29.27:120][988]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.29.27:120][988]MaterialEditorStats: Shader Count: 0
+[2023.12.20-03.29.27:174][990]MaterialEditorStats: Texture samplers: 2/16
+[2023.12.20-03.29.27:174][990]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.29.27:174][990]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.29.27:174][990]MaterialEditorStats: Shader Count: 1
+[2023.12.20-03.29.27:568][  5]LogMaterialEditor: Saving and Compiling material M_Forest_Symbols
+[2023.12.20-03.29.27:864][  5]LogUObjectHash: Compacting FUObjectHashTables data took   0.87ms
+[2023.12.20-03.29.27:922][  5]LogUObjectHash: Compacting FUObjectHashTables data took   0.46ms
+[2023.12.20-03.29.27:932][  5]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2023.12.20-03.29.28:017][  5]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Decals/M_Forest_Symbols
+[2023.12.20-03.29.28:017][  5]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Forest_Symbols6B692CF544BDD813BDA8BF91DC0753DB.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Decals/M_Forest_Symbols.uasset'
+[2023.12.20-03.29.28:023][  5]LogFileHelpers: InternalPromptForCheckoutAndSave took 91 ms (total: 29.5 sec)
+[2023.12.20-03.29.28:027][  5]AssetCheck: New page: Asset Save: M_Forest_Symbols
+[2023.12.20-03.29.28:027][  5]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Decals/M_Forest_Symbols.M_Forest_Symbols
+[2023.12.20-03.29.28:036][  5]MaterialEditorStats: Base pass shader: 227 instructions
+[2023.12.20-03.29.28:036][  5]MaterialEditorStats: Base pass vertex shader: 287 instructions
+[2023.12.20-03.29.28:036][  5]MaterialEditorStats: Texture samplers: 4/16
+[2023.12.20-03.29.28:036][  5]MaterialEditorStats: Texture Lookups (Est.): VS(3), PS(2)
+[2023.12.20-03.29.28:036][  5]MaterialEditorStats: User interpolators: 2/4 Scalars (1/4 Vectors) (TexCoords: 2, Custom: 0)
+[2023.12.20-03.29.28:036][  5]MaterialEditorStats: Shader Count: 28
+[2023.12.20-03.29.46:408][743]LogSlate: Window 'Message' being destroyed
+[2023.12.20-03.29.46:413][743]Message dialog closed, result: Yes, title: Message, text: Would you like to apply the changes of the modified material to the original material?
+/Game/Patchwork/Materials/PostProcessing/PPM_Glitch.PPM_Glitch
+(Selecting 'No' will cause all changes to be lost!)
+[2023.12.20-03.29.46:496][743]LogUObjectHash: Compacting FUObjectHashTables data took   1.01ms
+[2023.12.20-03.29.46:575][743]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2023.12.20-03.29.48:711][743]LogSlate: Window 'Message' being destroyed
+[2023.12.20-03.29.48:749][743]Message dialog closed, result: Yes, title: Message, text: Would you like to apply the changes of the modified material to the original material?
+/Game/Patchwork/Materials/MF_Glitch.MF_Glitch
+(Selecting 'No' will cause all changes to be lost!)
+[2023.12.20-03.29.48:772][743]LogMaterial: Warning: [AssetLog] /Engine/Transient.PreviewMaterial_1: Failed to compile Material for platform PCD3D_SM6, Default Material will be used in game.
+	Missing Preview connection for function input 'texture'
+
+[2023.12.20-03.29.49:921][743]LogSlate: Window 'Message' being destroyed
+[2023.12.20-03.29.49:929][743]Message dialog closed, result: Yes, title: Message, text: Would you like to apply the changes of the modified material to the original material?
+/Game/Patchwork/Materials/MF_Pixelate_UV.MF_Pixelate_UV
+(Selecting 'No' will cause all changes to be lost!)
+[2023.12.20-03.29.50:363][743]LogSlate: Window 'M_Forest_Symbols_Trip' being destroyed
+[2023.12.20-03.29.50:366][743]LogSlate: Window 'M_Forest_Symbols_Trip' being destroyed
+[2023.12.20-03.29.50:435][743]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2023.12.20-03.29.50:435][743]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.20-03.29.50:542][743]LogWorld: UWorld::CleanupWorld for World_4, bSessionEnded=true, bCleanupResources=true
+[2023.12.20-03.29.50:542][743]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.20-03.29.50:602][743]LogWorld: UWorld::CleanupWorld for World_5, bSessionEnded=true, bCleanupResources=true
+[2023.12.20-03.29.50:602][743]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.20-03.29.50:652][743]LogWorld: UWorld::CleanupWorld for World_6, bSessionEnded=true, bCleanupResources=true
+[2023.12.20-03.29.50:652][743]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.20-03.29.50:685][743]LogWorld: UWorld::CleanupWorld for World_7, bSessionEnded=true, bCleanupResources=true
+[2023.12.20-03.29.50:685][743]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2023.12.20-03.29.50:721][743]LogUObjectHash: Compacting FUObjectHashTables data took   0.99ms
+[2023.12.20-03.29.50:797][743]LogUObjectHash: Compacting FUObjectHashTables data took   0.99ms
+[2023.12.20-03.29.50:818][743]LogWorld: UWorld::CleanupWorld for World_15, bSessionEnded=true, bCleanupResources=true
+[2023.12.20-03.29.50:818][743]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
