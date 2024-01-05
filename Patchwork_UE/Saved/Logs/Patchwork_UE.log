@@ -10447,3 +10447,1478 @@ BP_GlitchPortal4
 [2024.01.05-02.35.57:994][897]LogSlate: Window 'Message Log' being destroyed
 [2024.01.05-02.36.00:661][952]LogWorld: UWorld::CleanupWorld for World_23, bSessionEnded=true, bCleanupResources=true
 [2024.01.05-02.36.00:661][952]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.36.40:826][490]Cmd: SELECT NONE
+[2024.01.05-02.37.15:619][170]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.05-02.37.15:629][170]LogWorldPartition: Display: GenerateStreaming for 'PA_Hero_Rock_1' started...
+[2024.01.05-02.37.15:630][170]LogWorldPartition: Display: GenerateStreaming for 'PA_Hero_Rock_1' took 1 ms (total: 128 ms)
+[2024.01.05-02.37.15:630][170]LogContentBundle: [Pink_Forest(Standalone)] Generating Streaming for 0 Content Bundles.
+[2024.01.05-02.37.15:630][170]LogWorldPartition: Display: GenerateStreaming for 'Pink_Forest' started...
+[2024.01.05-02.37.15:643][170]LogWorldPartition: Display: GenerateStreaming for 'Pink_Forest' took 13 ms (total: 141 ms)
+[2024.01.05-02.37.15:643][170]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.05-02.37.15:643][170]PIE: New page: PIE session: Pink_Forest (Jan 4, 2024, 4:37:15 PM)
+[2024.01.05-02.37.15:644][170]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/Pink_Forest/UEDPIE_0_Pink_Forest
+[2024.01.05-02.37.15:681][170]LogPlayLevel: PIE: StaticDuplicateObject took: (0.037447s)
+[2024.01.05-02.37.15:682][170]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest to /Game/Patchwork/Levels/Maps/Pink_Forest/UEDPIE_0_Pink_Forest.Pink_Forest (0.037525s)
+[2024.01.05-02.37.15:699][170]LogUObjectHash: Compacting FUObjectHashTables data took   1.11ms
+[2024.01.05-02.37.15:705][170]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.05-02.37.15:705][170]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.05-02.37.15:705][170]LogAIModule: Creating AISystem for world Pink_Forest
+[2024.01.05-02.37.15:706][170]LogWorldPartition: ULevel::OnLevelLoaded(Pink_Forest)(bIsOwningWorldGameWorld=1, bIsOwningWorldPartitioned=1, InitializeForMainWorld=1, InitializeForEditor=0, InitializeForGame=1)
+[2024.01.05-02.37.15:706][170]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.01.05-02.37.15:706][170]LogWorldPartition: UWorldPartition::Initialize : World = Pink_Forest, World Type = PIE, IsMainWorldPartition = 1, Location = V(0), Rotation = R(0), IsEditor = 0, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.01.05-02.37.15:706][170]LogWorldPartition: UWorldPartition::Initialize Context : World NetMode = Standalone, IsServer = 0, IsDedicatedServer = 0, IsServerStreamingEnabled = 0, IsServerStreamingOutEnabled = 0, IsUsingMakingVisibleTransaction = 0, IsUsingMakingInvisibleTransaction = 0
+[2024.01.05-02.37.15:712][170]LogContentBundle: [Pink_Forest(Standalone)] Creating new contrainer.
+[2024.01.05-02.37.15:712][170]LogWorldPartition: Display: WorldPartition initialize took 6 ms (total: 4.91 sec)
+[2024.01.05-02.37.15:712][170]LogPlayLevel: PIE: World Init took: (0.008065s)
+[2024.01.05-02.37.15:712][170]LogAudio: Display: Creating Audio Device:                 Id: 9, Scope: Unique, Realtime: True
+[2024.01.05-02.37.15:712][170]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.05-02.37.15:712][170]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.05-02.37.15:712][170]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.05-02.37.15:712][170]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.05-02.37.15:712][170]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.05-02.37.15:712][170]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.05-02.37.15:712][170]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.05-02.37.15:712][170]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.05-02.37.15:714][170]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.05-02.37.15:714][170]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.05-02.37.15:714][170]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.05-02.37.15:716][170]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.05-02.37.15:740][170]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.05-02.37.15:741][170]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.05-02.37.15:741][170]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.05-02.37.15:741][170]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.05-02.37.15:741][170]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=9
+[2024.01.05-02.37.15:741][170]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=9
+[2024.01.05-02.37.15:742][170]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=9
+[2024.01.05-02.37.15:742][170]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=9
+[2024.01.05-02.37.15:742][170]LogInit: FAudioDevice initialized with ID 9.
+[2024.01.05-02.37.15:742][170]LogAudio: Display: Audio Device (ID: 9) registered with world 'Pink_Forest'.
+[2024.01.05-02.37.15:742][170]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 9
+[2024.01.05-02.37.15:742][170]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.05-02.37.15:744][170]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.05-02.37.15:843][170]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/Pink_Forest/UEDPIE_0_Pink_Forest.Pink_Forest up for play (max tick rate 0) at 2024.01.04-21.37.15
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.15:843][170]LogWorld: Bringing up level for play took: 0.098290
+[2024.01.05-02.37.15:846][170]LogOnline: OSS: Created online subsystem instance for: :Context_33
+[2024.01.05-02.37.15:847][170]LogWorldPartition: UWorldPartitionStreamingPolicy: CellsToActivate(27), CellsToLoad(0), CellsToUnload(0)
+[2024.01.05-02.37.15:847][170]LogWorldPartition: UWorldPartitionStreamingPolicy: Sources[0] = X=18183.709 Y=-8989.847 Z=1616.342,P=0.000000 Y=96.225017 R=-0.000000
+[2024.01.05-02.37.15:851][170]LogStreaming: Display: FlushAsyncLoading(): 371 QueuedPackages, 0 AsyncPackages
+[2024.01.05-02.37.16:672][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:673][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:745][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:745][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:747][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:747][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:749][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:749][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:752][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:752][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:753][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:753][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:753][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:753][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:758][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:758][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:759][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:759][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:759][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:759][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:759][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:759][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:763][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:763][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:764][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:765][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:768][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:769][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:769][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:769][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:769][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:769][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:804][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogStreaming: Warning: Failed to read file '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/SaveGames/LoadGameOnBeginPlay.sav' error.
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:911][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.16:912][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:171][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:171][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:171][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:171][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:172][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:176][170]LogBlueprintUserMessages: [NPC_Forest_Dreamer_C_UAID_50EBF6CFEC66C7C601_1585428545] NPC_Forest_Dreamer
+[2024.01.05-02.37.17:177][170]PIE: Server logged in
+[2024.01.05-02.37.17:177][170]PIE: Play in editor total start time 1.549 seconds.
+[2024.01.05-02.37.17:806][170]LogBlueprintUserMessages: [PatchworkGameInstance_C_7] Hello
+[2024.01.05-02.37.17:831][170]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - CopyPoints_68]: Invalid number of inputs. Expected one source, got 1; Expected one target, got 0.
+[2024.01.05-02.37.17:832][170]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - CopyPoints_97]: Invalid number of inputs. Expected one source, got 1; Expected one target, got 0.
+[2024.01.05-02.37.17:833][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:833][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:834][170]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:853][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:858][170]LogStaticMesh: Warning: Invalid material [Glass_Inst] used on Nanite static mesh [placeholder_machine]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:858][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:858][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:858][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:859][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:859][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:859][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:859][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:859][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:859][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:859][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:859][170]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [glass_jar]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.05-02.37.17:910][171]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - StaticMeshSpawner_52]: Trivially invalid mesh path used: 'None'
+[2024.01.05-02.37.17:913][171]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - CopyPoints_2]: Invalid number of inputs. Expected one source, got 1; Expected one target, got 0.
+[2024.01.05-02.37.17:914][171]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - CopyPoints_166]: Invalid number of inputs. Expected one source, got 1; Expected one target, got 0.
+[2024.01.05-02.37.17:914][171]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - CopyPoints_174]: Invalid number of inputs. Expected one source, got 1; Expected one target, got 0.
+[2024.01.05-02.37.17:914][171]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - CopyPoints_162]: Invalid number of inputs. Expected one source, got 1; Expected one target, got 0.
+[2024.01.05-02.37.19:244][174]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - CopyPoints_48]: Invalid number of inputs. Expected one source, got 1; Expected one target, got 0.
+[2024.01.05-02.37.19:244][174]LogPCG: Warning: [PCGPartitionActor_25600_1_-2_0 - CopyPoints_24]: Invalid number of inputs. Expected one source, got 1; Expected one target, got 0.
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:289][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:290][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:291][175]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:316][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:317][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:318][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:319][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:320][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:320][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:320][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:320][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:320][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:320][176]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:431][178]LogPCG: Warning: [PCGPartitionActor_25600_1_-1_0 - StaticMeshSpawner_52]: Trivially invalid mesh path used: 'None'
+[2024.01.05-02.37.19:564][181]LogBlueprintUserMessages: [BP_BeachBall_C_UAID_50EBF6CFEC66B7C701_1383515866] Entered Water
+[2024.01.05-02.37.19:659][183]LogBlueprintUserMessages: [boat_C_UAID_50EBF6CFEC66B7C701_1458042867] Entered Water
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:677][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:678][183]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.19:744][185]LogPCG: Warning: [PCGPartitionActor_25600_0_0_0 - StaticMeshSpawner_52]: Trivially invalid mesh path used: 'None'
+[2024.01.05-02.37.20:006][190]LogPCG: Warning: [PCGPartitionActor_25600_0_0_0 - StaticMeshSpawner_11]: Trivially invalid mesh path used: 'None'
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:043][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:044][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:046][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:046][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:046][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:046][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:046][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:046][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:046][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:046][191]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.20:118][193]LogPCG: Warning: [PCGPartitionActor_25600_0_-1_0 - StaticMeshSpawner_52]: Trivially invalid mesh path used: 'None'
+[2024.01.05-02.37.20:280][196]LogBlueprintUserMessages: [BP_BeachBall_C_UAID_50EBF6CFEC6600C301_2059970091] Entered Water
+[2024.01.05-02.37.20:329][197]LogBlueprintUserMessages: [BP_BeachBall_C_UAID_50EBF6CFEC6601C301_1948629256] Entered Water
+[2024.01.05-02.37.20:329][197]LogBlueprintUserMessages: [BP_BeachBall_C_UAID_50EBF6CFEC6601C301_1981056257] Entered Water
+[2024.01.05-02.37.21:380][211]LogPCG: Warning: [PCGPartitionActor_25600_0_-1_0 - StaticMeshSpawner_11]: Trivially invalid mesh path used: 'None'
+[2024.01.05-02.37.21:943][220]LogPCG: Warning: [PCGPartitionActor_25600_1_-1_0 - StaticMeshSpawner_11]: Trivially invalid mesh path used: 'None'
+[2024.01.05-02.37.23:845][275]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.05-02.37.23:845][275]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/Pink_Forest/UEDPIE_0_Pink_Forest
+[2024.01.05-02.37.24:074][275]LogWorld: UWorld::CleanupWorld for Pink_Forest, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.37.24:095][275]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.37.24:095][275]LogContentBundle: [Pink_Forest(Standalone)] Deleting container.
+[2024.01.05-02.37.24:100][275]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.05-02.37.24:110][275]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.37.24:139][275]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2024.01.05-02.37.24:153][275]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 9
+[2024.01.05-02.37.24:153][275]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=9
+[2024.01.05-02.37.24:155][275]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=9
+[2024.01.05-02.37.24:158][275]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.05-02.37.24:500][275]LogUObjectHash: Compacting FUObjectHashTables data took   4.55ms
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:514][275]LogAudio: Warning: 'Can Play Multiple Instances' disabled: Sound 'SC_RiverAudio' set to looping
+[2024.01.05-02.37.24:573][276]LogPlayLevel: Display: Destroying online subsystem :Context_33
+[2024.01.05-02.37.33:344][438]Cmd: CAMERA ALIGN ACTIVEVIEWPORTONLY
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: ================================================
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Total job queries 261, among them cache hits 83 (31.80%)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Tracking 178 distinct input hashes that result in 154 distinct outputs (86.52%)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: RAM used: 4.70 MiB of 1.60 GiB budget. Usage: 0.29%
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Shaders Compiled: 20
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Jobs assigned 20, completed 20 (100%)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Average time worker was idle: 0.00 s
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Time job spent in pending queue: average 0.25 s, longest 0.80 s
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Job execution time: average 1.13 s, max 2.13 s
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Job life time (pending + execution): average 1.39 s, max 2.13
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Shader code size: average 51.123 KiB, min 32.918 KiB, max 74.48 KiB
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 2.23 s
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Jobs were issued in 17 batches (only local compilation was used), average 1.18 jobs/batch
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Average processing rate: 8.95 jobs/sec
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Total thread time: 12.921 s
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Total thread preprocess time: 0.648 s
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Percentage time preprocessing: 5.01%
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Effective parallelization: 5.78 (times faster than compiling all shaders on one thread). Compare with number of workers: 10
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display:        TBasePassPSFCachedPointIndirectLightingPolicySkylight (compiled    1 times, average 1.09 sec, max 1.09 sec, min 1.09 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display:               TBasePassPSFCachedVolumeIndirectLightingPolicy (compiled    1 times, average 1.07 sec, max 1.07 sec, min 1.07 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display:                TBasePassPSFCachedPointIndirectLightingPolicy (compiled    1 times, average 1.05 sec, max 1.05 sec, min 1.05 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight (compiled    1 times, average 1.03 sec, max 1.03 sec, min 1.03 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display:       TBasePassPSFCachedVolumeIndirectLightingPolicySkylight (compiled    1 times, average 1.02 sec, max 1.02 sec, min 1.02 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 10.79% of total time (compiled    2 times, average 0.70 sec, max 1.05 sec, min 0.35 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display:        TBasePassPSFCachedPointIndirectLightingPolicySkylight - 8.45% of total time (compiled    1 times, average 1.09 sec, max 1.09 sec, min 1.09 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display:               TBasePassPSFCachedVolumeIndirectLightingPolicy - 8.29% of total time (compiled    1 times, average 1.07 sec, max 1.07 sec, min 1.07 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display:                TBasePassPSFCachedPointIndirectLightingPolicy - 8.12% of total time (compiled    1 times, average 1.05 sec, max 1.05 sec, min 1.05 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight - 8.00% of total time (compiled    1 times, average 1.03 sec, max 1.03 sec, min 1.03 sec)
+[2024.01.05-02.37.39:571][551]LogShaderCompilers: Display: ================================================
+[2024.01.05-02.37.46:758][677]Cmd: ACTOR HIDE SELECTED
+[2024.01.05-02.37.47:407][690]Cmd: TRANSACTION UNDO
+[2024.01.05-02.37.47:407][690]LogEditorTransaction: Undo Hide Selected
+[2024.01.05-02.37.47:408][690]LogActorComponent: RegisterComponentWithWorld: (/Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest:PersistentLevel.BPP_PLA_Flase_House_V2_C_UAID_50EBF6CFEC663ECA01_1854316718.BillboardComponent_0) Already registered. Aborting.
+[2024.01.05-02.37.55:151][824]Cmd: SELECT NONE
+[2024.01.05-02.38.00:157][920]Cmd: SELECT NONE
+[2024.01.05-02.38.03:365][983]Cmd: MODE GRID=0
+[2024.01.05-02.38.06:574][ 40]Cmd: SELECT NONE
+[2024.01.05-02.38.10:346][111]Cmd: SELECT NONE
+[2024.01.05-02.38.20:527][310]Cmd: SELECT NONE
+[2024.01.05-02.40.19:396][737]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.05-02.40.19:484][737]LogUObjectHash: Compacting FUObjectHashTables data took   1.30ms
+[2024.01.05-02.40.19:513][737]LogUObjectHash: Compacting FUObjectHashTables data took   1.11ms
+[2024.01.05-02.40.19:535][737]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2024.01.05-02.40.19:541][737]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/3/BV/BCTMOH3H9F76M70VHU60ZM
+[2024.01.05-02.40.19:541][737]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BCTMOH3H9F76M70VHU60ZM8D0CAA1D4B2D7FEC5ADF6E8348609C06.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/3/BV/BCTMOH3H9F76M70VHU60ZM.uasset'
+[2024.01.05-02.40.19:544][737]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/C/F5/9MW53DDLVEL20G384XFWWP
+[2024.01.05-02.40.19:544][737]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/9MW53DDLVEL20G384XFWWP734F93DC47A4F52369B45F9E528E7822.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/C/F5/9MW53DDLVEL20G384XFWWP.uasset'
+[2024.01.05-02.40.19:553][737]LogFileHelpers: InternalPromptForCheckoutAndSave took 156 ms (total: 7.59 sec)
+[2024.01.05-02.40.19:555][737]AssetCheck: New page: Asset Save: multiple assets
+[2024.01.05-02.40.19:555][737]LogContentValidation: Display: Validating /Game/Patchwork/PCG/Pink_Forest/BP_VineGrowth.BP_VineGrowth_C /Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest:PersistentLevel.BP_VineGrowth_C_UAID_50EBF6CFEC663ECA01_2036217722
+[2024.01.05-02.40.19:555][737]LogContentValidation: Display: Validating /Game/Patchwork/Levels/Maps/Pink_Forest/Assemblies/Wooden_Structures/BPP_PLA_Flase_House_V2.BPP_PLA_Flase_House_V2_C /Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest.Pink_Forest:PersistentLevel.BPP_PLA_Flase_House_V2_C_UAID_50EBF6CFEC663ECA01_1854316718
+[2024.01.05-02.40.21:826][785]LogUObjectHash: Compacting FUObjectHashTables data took   0.56ms
+[2024.01.05-02.40.22:993][785]LogSlate: Window 'Save Content' being destroyed
+[2024.01.05-02.40.23:020][785]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.05-02.40.23:081][785]LogSavePackage: Moving output files for package: /Game/MSPresets/M_MS_Default_Material/M_MS_Default_Material
+[2024.01.05-02.40.23:081][785]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_MS_Default_Material05EF177D41B82977D66CE58CA0F6A9B0.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/MSPresets/M_MS_Default_Material/M_MS_Default_Material.uasset'
+[2024.01.05-02.40.23:091][785]LogFileHelpers: InternalPromptForCheckoutAndSave took 71 ms (total: 7.66 sec)
+[2024.01.05-02.40.23:098][785]LogStall: Shutdown...
+[2024.01.05-02.40.23:100][785]LogStall: Shutdown complete.
+[2024.01.05-02.40.23:175][785]LogWorld: UWorld::CleanupWorld for World_14, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:175][785]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:220][785]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2024.01.05-02.40.23:220][785]LogWorld: UWorld::CleanupWorld for World_9, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:220][785]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:286][785]LogWorld: UWorld::CleanupWorld for World_13, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:286][785]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:318][785]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2024.01.05-02.40.23:318][785]LogWorld: UWorld::CleanupWorld for World_20, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:318][785]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:350][785]LogSlate: Window 'paperperson' being destroyed
+[2024.01.05-02.40.23:370][785]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2024.01.05-02.40.23:370][785]LogWorld: UWorld::CleanupWorld for World_21, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:370][785]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:428][785]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2024.01.05-02.40.23:428][785]LogWorld: UWorld::CleanupWorld for World_22, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:428][785]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:481][785]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2024.01.05-02.40.23:481][785]LogWorld: UWorld::CleanupWorld for World_24, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:481][785]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:534][785]LogSlate: Window 'Content Browser' being destroyed
+[2024.01.05-02.40.23:544][785]LogSlate: Window 'Patchwork_UE - Unreal Editor' being destroyed
+[2024.01.05-02.40.23:624][785]AssetCheck: New page: Asset Save: M_MS_Default_Material
+[2024.01.05-02.40.23:624][785]LogContentValidation: Display: Validating /Script/Engine.Material /Game/MSPresets/M_MS_Default_Material/M_MS_Default_Material.M_MS_Default_Material
+[2024.01.05-02.40.23:632][786]Cmd: QUIT_EDITOR
+[2024.01.05-02.40.23:633][786]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2024.01.05-02.40.23:642][786]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2024.01.05-02.40.23:643][786]LogStaticMesh: Abandoning remaining async distance field tasks for shutdown
+[2024.01.05-02.40.23:643][786]LogStaticMesh: Abandoning remaining async card representation tasks for shutdown
+[2024.01.05-02.40.23:880][786]LogWorld: UWorld::CleanupWorld for Pink_Forest, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:881][786]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:888][786]LogContentBundle: [Pink_Forest(Standalone)] Deleting container.
+[2024.01.05-02.40.23:893][786]LogWorld: UWorld::CleanupWorld for PA_Hero_Rock_1, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.23:893][786]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.05-02.40.23:894][786]LogContentBundle: [PA_Hero_Rock_1(Standalone)] Deleting container.
+[2024.01.05-02.40.23:914][786]LogLevelSequenceEditor: LevelSequenceEditor subsystem deinitialized.
+[2024.01.05-02.40.24:606][786]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2024.01.05-02.40.24:606][786]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2024.01.05-02.40.24:607][786]LogAudio: Display: Audio Device unregistered from world 'Pink_Forest'.
+[2024.01.05-02.40.24:607][786]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 1
+[2024.01.05-02.40.24:607][786]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2024.01.05-02.40.24:608][786]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2024.01.05-02.40.24:613][786]LogAudio: Display: Audio Device Manager Shutdown
+[2024.01.05-02.40.24:614][786]LogWindowsTextInputMethodSystem: Activated input method: English (United States) - (Keyboard).
+[2024.01.05-02.40.24:620][786]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2024.01.05-02.40.24:626][786]LogExit: Preparing to exit.
+[2024.01.05-02.40.24:911][786]LogUObjectHash: Compacting FUObjectHashTables data took   2.15ms
+[2024.01.05-02.40.24:937][786]LogPython: Display: Object '/Engine/PythonTypes.add_controls_for_selected_options' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:937][786]LogPython: Display: Object '/Engine/PythonTypes.add_controls_for_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.add_null_above_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.align_translation_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.align_translation_all' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.align_translation_x' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.align_translation_y' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.align_translation_z' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.align_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.align_scale' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.search_replace_name_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:939][786]LogPython: Display: Object '/Engine/PythonTypes.search_replace_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:940][786]LogPython: Display: Object '/Engine/PythonTypes.add_prefix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:940][786]LogPython: Display: Object '/Engine/PythonTypes.add_prefix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:940][786]LogPython: Display: Object '/Engine/PythonTypes.add_suffix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:940][786]LogPython: Display: Object '/Engine/PythonTypes.add_suffix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:940][786]LogPython: Display: Object '/Engine/PythonTypes.do_rename_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:940][786]LogPython: Display: Object '/Engine/PythonTypes.do_rename_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:940][786]LogPython: Display: Object '/Engine/PythonTypes.set_bone_reference_pose' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.24:940][786]LogPython: Display: Object '/Engine/PythonTypes.ControlOutputFormat' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.05-02.40.25:962][786]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:965][786]LogWorld: UWorld::CleanupWorld for World_2, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:969][786]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:972][786]LogWorld: UWorld::CleanupWorld for World_4, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:975][786]LogWorld: UWorld::CleanupWorld for World_5, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:979][786]LogWorld: UWorld::CleanupWorld for World_10, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:982][786]LogWorld: UWorld::CleanupWorld for World_11, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:990][786]LogWorld: UWorld::CleanupWorld for World_12, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:993][786]LogWorld: UWorld::CleanupWorld for World_15, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:996][786]LogWorld: UWorld::CleanupWorld for World_16, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.25:998][786]LogWorld: UWorld::CleanupWorld for World_17, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.26:001][786]LogWorld: UWorld::CleanupWorld for World_18, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.26:005][786]LogWorld: UWorld::CleanupWorld for World_19, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.26:008][786]LogWorld: UWorld::CleanupWorld for World_6, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.26:011][786]LogWorld: UWorld::CleanupWorld for World_7, bSessionEnded=true, bCleanupResources=true
+[2024.01.05-02.40.26:043][786]LogDirectoryWatcher: Display: Refresh of ReadDirectoryChangesW failed. GetLastError code [6] Handle [FFFFFFFFFFFFFFFF], Path [B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/]. Aborting watch request...
+[2024.01.05-02.40.26:271][786]LogExit: Editor shut down
+[2024.01.05-02.40.26:280][786]LogExit: Transaction tracking system shut down
+[2024.01.05-02.40.26:299][786]LogDemo: Cleaned up 0 splitscreen connections, owner deletion: enabled
+[2024.01.05-02.40.27:196][786]LogExit: Object subsystem successfully closed.
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: ================================================
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Total job queries 269, among them cache hits 87 (32.34%)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Tracking 182 distinct input hashes that result in 158 distinct outputs (86.81%)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: RAM used: 4.78 MiB of 1.60 GiB budget. Usage: 0.29%
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Shaders Compiled: 20
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Jobs assigned 20, completed 20 (100%)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Average time worker was idle: 0.00 s
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Time job spent in pending queue: average 0.25 s, longest 0.80 s
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Job execution time: average 1.13 s, max 2.13 s
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Job life time (pending + execution): average 1.39 s, max 2.13
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Shader code size: average 51.123 KiB, min 32.918 KiB, max 74.48 KiB
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 2.23 s
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Jobs were issued in 17 batches (only local compilation was used), average 1.18 jobs/batch
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Average processing rate: 8.95 jobs/sec
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Total thread time: 12.921 s
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Total thread preprocess time: 0.648 s
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Percentage time preprocessing: 5.01%
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Effective parallelization: 5.78 (times faster than compiling all shaders on one thread). Compare with number of workers: 10
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display:        TBasePassPSFCachedPointIndirectLightingPolicySkylight (compiled    1 times, average 1.09 sec, max 1.09 sec, min 1.09 sec)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display:               TBasePassPSFCachedVolumeIndirectLightingPolicy (compiled    1 times, average 1.07 sec, max 1.07 sec, min 1.07 sec)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display:                TBasePassPSFCachedPointIndirectLightingPolicy (compiled    1 times, average 1.05 sec, max 1.05 sec, min 1.05 sec)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight (compiled    1 times, average 1.03 sec, max 1.03 sec, min 1.03 sec)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display:       TBasePassPSFCachedVolumeIndirectLightingPolicySkylight (compiled    1 times, average 1.02 sec, max 1.02 sec, min 1.02 sec)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 10.79% of total time (compiled    2 times, average 0.70 sec, max 1.05 sec, min 0.35 sec)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display:        TBasePassPSFCachedPointIndirectLightingPolicySkylight - 8.45% of total time (compiled    1 times, average 1.09 sec, max 1.09 sec, min 1.09 sec)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display:               TBasePassPSFCachedVolumeIndirectLightingPolicy - 8.29% of total time (compiled    1 times, average 1.07 sec, max 1.07 sec, min 1.07 sec)
+[2024.01.05-02.40.27:201][786]LogShaderCompilers: Display:                TBasePassPSFCachedPointIndirectLightingPolicy - 8.12% of total time (compiled    1 times, average 1.05 sec, max 1.05 sec, min 1.05 sec)
+[2024.01.05-02.40.27:202][786]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight - 8.00% of total time (compiled    1 times, average 1.03 sec, max 1.03 sec, min 1.03 sec)
+[2024.01.05-02.40.27:202][786]LogShaderCompilers: Display: ================================================
+[2024.01.05-02.40.27:238][786]LogShaderCompilers: Display: Shaders left to compile 0
+[2024.01.05-02.40.27:304][786]LogVirtualization: UE::Virtualization was shutdown
+[2024.01.05-02.40.27:408][786]LogModuleManager: Shutting down and abandoning module MovieSceneCapture (1084)
+[2024.01.05-02.40.27:408][786]LogModuleManager: Shutting down and abandoning module Voice (1082)
+[2024.01.05-02.40.27:408][786]LogModuleManager: Shutting down and abandoning module HierarchicalLODUtilities (1080)
+[2024.01.05-02.40.27:409][786]LogModuleManager: Shutting down and abandoning module HierarchicalLODOutliner (1078)
+[2024.01.05-02.40.27:409][786]LogModuleManager: Shutting down and abandoning module AddContentDialog (1076)
+[2024.01.05-02.40.27:414][786]LogModuleManager: Shutting down and abandoning module WidgetCarousel (1075)
+[2024.01.05-02.40.27:414][786]LogModuleManager: Shutting down and abandoning module SubobjectEditor (1070)
+[2024.01.05-02.40.27:414][786]LogModuleManager: Shutting down and abandoning module SceneOutliner (1068)
+[2024.01.05-02.40.27:414][786]LogModuleManager: Shutting down and abandoning module StatusBar (1066)
+[2024.01.05-02.40.27:414][786]LogModuleManager: Shutting down and abandoning module UnsavedAssetsTracker (1064)
+[2024.01.05-02.40.27:414][786]LogModuleManager: Shutting down and abandoning module GameProjectGeneration (1062)
+[2024.01.05-02.40.27:414][786]LogModuleManager: Shutting down and abandoning module DataLayerEditor (1060)
+[2024.01.05-02.40.27:414][786]LogModuleManager: Shutting down and abandoning module StatsViewer (1058)
+[2024.01.05-02.40.27:415][786]LogModuleManager: Shutting down and abandoning module SequenceRecorderSections (1056)
+[2024.01.05-02.40.27:415][786]LogModuleManager: Shutting down and abandoning module AutomationWorker (1054)
+[2024.01.05-02.40.27:416][786]LogModuleManager: Shutting down and abandoning module IKRigEditor (1052)
+[2024.01.05-02.40.27:418][786]LogModuleManager: Shutting down and abandoning module ControlRigEditor (1050)
+[2024.01.05-02.40.27:423][786]LogModuleManager: Shutting down and abandoning module WmfMediaFactory (1048)
+[2024.01.05-02.40.27:423][786]LogModuleManager: Shutting down and abandoning module WmfMediaEditor (1046)
+[2024.01.05-02.40.27:423][786]LogModuleManager: Shutting down and abandoning module WebMMediaFactory (1044)
+[2024.01.05-02.40.27:424][786]LogModuleManager: Shutting down and abandoning module WebMMediaEditor (1042)
+[2024.01.05-02.40.27:424][786]LogModuleManager: Shutting down and abandoning module WebMMedia (1040)
+[2024.01.05-02.40.27:424][786]LogModuleManager: Shutting down and abandoning module AvfMediaFactory (1038)
+[2024.01.05-02.40.27:424][786]LogModuleManager: Shutting down and abandoning module AvfMediaEditor (1036)
+[2024.01.05-02.40.27:424][786]LogModuleManager: Shutting down and abandoning module MediaPlayerEditor (1034)
+[2024.01.05-02.40.27:424][786]LogModuleManager: Shutting down and abandoning module MediaCompositingEditor (1032)
+[2024.01.05-02.40.27:426][786]LogModuleManager: Shutting down and abandoning module SequenceRecorder (1031)
+[2024.01.05-02.40.27:426][786]LogModuleManager: Shutting down and abandoning module OpenExrWrapper (1028)
+[2024.01.05-02.40.27:427][786]LogModuleManager: Shutting down and abandoning module ImgMediaFactory (1026)
+[2024.01.05-02.40.27:427][786]LogModuleManager: Shutting down and abandoning module ImgMediaEditor (1024)
+[2024.01.05-02.40.27:428][786]LogModuleManager: Shutting down and abandoning module WaveTableEditor (1022)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module AndroidMediaFactory (1020)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module AndroidMediaEditor (1018)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module RigVMEditor (1016)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module ResonanceAudioEditor (1014)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module GooglePADEditor (1012)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module AudioCaptureEditor (1010)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module AndroidFileServerEditor (1008)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module WaterEditor (1006)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module PlanarCut (1004)
+[2024.01.05-02.40.27:429][786]LogModuleManager: Shutting down and abandoning module FractureEngine (1002)
+[2024.01.05-02.40.27:430][786]LogModuleManager: Shutting down and abandoning module CharacterAI (1000)
+[2024.01.05-02.40.27:430][786]LogModuleManager: Shutting down and abandoning module CameraShakePreviewer (998)
+[2024.01.05-02.40.27:432][786]LogModuleManager: Shutting down and abandoning module TextureAlignMode (996)
+[2024.01.05-02.40.27:432][786]LogModuleManager: Shutting down and abandoning module BspMode (994)
+[2024.01.05-02.40.27:433][786]LogModuleManager: Shutting down and abandoning module GeometryMode (992)
+[2024.01.05-02.40.27:433][786]LogModuleManager: Shutting down and abandoning module EngineAssetDefinitions (990)
+[2024.01.05-02.40.27:433][786]LogModuleManager: Shutting down and abandoning module TemplateSequenceEditor (988)
+[2024.01.05-02.40.27:434][786]LogModuleManager: Shutting down and abandoning module LevelSequenceEditor (986)
+[2024.01.05-02.40.27:436][786]LogModuleManager: Shutting down and abandoning module ActorSequenceEditor (984)
+[2024.01.05-02.40.27:436][786]LogModuleManager: Shutting down and abandoning module SmartSnapping (982)
+[2024.01.05-02.40.27:436][786]LogModuleManager: Shutting down and abandoning module SessionServices (980)
+[2024.01.05-02.40.27:438][786]LogModuleManager: Shutting down and abandoning module MeshPaint (978)
+[2024.01.05-02.40.27:438][786]LogModuleManager: Shutting down and abandoning module VirtualTexturingEditor (976)
+[2024.01.05-02.40.27:439][786]LogModuleManager: Shutting down and abandoning module PlacementMode (975)
+[2024.01.05-02.40.27:440][786]LogModuleManager: Shutting down and abandoning module FoliageEdit (972)
+[2024.01.05-02.40.27:441][786]LogModuleManager: Shutting down and abandoning module LandscapeEditor (970)
+[2024.01.05-02.40.27:444][786]LogModuleManager: Shutting down and abandoning module SceneDepthPickerMode (968)
+[2024.01.05-02.40.27:444][786]LogModuleManager: Shutting down and abandoning module ActorPickerMode (966)
+[2024.01.05-02.40.27:444][786]LogModuleManager: Shutting down and abandoning module ViewportSnapping (964)
+[2024.01.05-02.40.27:444][786]LogModuleManager: Shutting down and abandoning module EditorWidgets (962)
+[2024.01.05-02.40.27:444][786]LogModuleManager: Shutting down and abandoning module ViewportInteraction (960)
+[2024.01.05-02.40.27:444][786]LogModuleManager: Shutting down and abandoning module ClothPainter (958)
+[2024.01.05-02.40.27:446][786]LogModuleManager: Shutting down and abandoning module SkeletalMeshEditor (957)
+[2024.01.05-02.40.27:447][786]LogModuleManager: Shutting down and abandoning module WidgetRegistration (954)
+[2024.01.05-02.40.27:448][786]LogModuleManager: Shutting down and abandoning module LogVisualizer (952)
+[2024.01.05-02.40.27:450][786]LogModuleManager: Shutting down and abandoning module IOSPlatformEditor (950)
+[2024.01.05-02.40.27:450][786]LogModuleManager: Shutting down and abandoning module AndroidPlatformEditor (948)
+[2024.01.05-02.40.27:450][786]LogModuleManager: Shutting down and abandoning module PIEPreviewDeviceProfileSelector (947)
+[2024.01.05-02.40.27:452][786]LogModuleManager: Shutting down and abandoning module AndroidDeviceDetection (945)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module WindowsPlatformEditor (942)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module MacPlatformEditor (940)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module IOSRuntimeSettings (938)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module AndroidRuntimeSettings (936)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module RenderResourceViewer (934)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module GameplayDebuggerEditor (932)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module AnimationSettings (930)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module VirtualizationEditor (928)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module CSVtoSVG (926)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module DerivedDataEditor (924)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module EditorConfig (922)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module EditorFramework (920)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module StaticMeshEditor (918)
+[2024.01.05-02.40.28:149][786]LogModuleManager: Shutting down and abandoning module TraceInsights (916)
+[2024.01.05-02.40.28:154][786]MemoryProfiler: Shutdown
+[2024.01.05-02.40.28:155][786]NetworkingProfiler: Shutdown
+[2024.01.05-02.40.28:155][786]LoadingProfiler: Shutdown
+[2024.01.05-02.40.28:157][786]TimingProfiler: Shutdown
+[2024.01.05-02.40.28:160][786]LogModuleManager: Shutting down and abandoning module TraceServices (915)
+[2024.01.05-02.40.28:161][786]LogModuleManager: Shutting down and abandoning module TraceAnalysis (914)
+[2024.01.05-02.40.28:161][786]LogModuleManager: Shutting down and abandoning module EditorInteractiveToolsFramework (910)
+[2024.01.05-02.40.28:161][786]LogModuleManager: Shutting down and abandoning module InteractiveToolsFramework (909)
+[2024.01.05-02.40.28:161][786]LogModuleManager: Shutting down and abandoning module InputBindingEditor (906)
+[2024.01.05-02.40.28:161][786]LogModuleManager: Shutting down and abandoning module MergeActors (904)
+[2024.01.05-02.40.28:162][786]LogModuleManager: Shutting down and abandoning module LocalizationDashboard (902)
+[2024.01.05-02.40.28:162][786]LogModuleManager: Shutting down and abandoning module LocalizationService (901)
+[2024.01.05-02.40.28:163][786]LogModuleManager: Shutting down and abandoning module HardwareTargeting (898)
+[2024.01.05-02.40.28:163][786]LogModuleManager: Shutting down and abandoning module DeviceProfileEditor (896)
+[2024.01.05-02.40.28:163][786]LogModuleManager: Shutting down and abandoning module UndoHistory (894)
+[2024.01.05-02.40.28:163][786]LogModuleManager: Shutting down and abandoning module XmlParser (892)
+[2024.01.05-02.40.28:164][786]LogModuleManager: Shutting down and abandoning module Blutility (890)
+[2024.01.05-02.40.28:164][786]LogModuleManager: Shutting down and abandoning module ProjectSettingsViewer (888)
+[2024.01.05-02.40.28:164][786]LogModuleManager: Shutting down and abandoning module ProjectTargetPlatformEditor (887)
+[2024.01.05-02.40.28:165][786]LogModuleManager: Shutting down and abandoning module EditorSettingsViewer (884)
+[2024.01.05-02.40.28:165][786]LogModuleManager: Shutting down and abandoning module InternationalizationSettings (883)
+[2024.01.05-02.40.28:165][786]LogModuleManager: Shutting down and abandoning module SettingsEditor (880)
+[2024.01.05-02.40.28:166][786]LogModuleManager: Shutting down and abandoning module ProjectLauncher (878)
+[2024.01.05-02.40.28:166][786]LogModuleManager: Shutting down and abandoning module SessionFrontend (876)
+[2024.01.05-02.40.28:166][786]LogModuleManager: Shutting down and abandoning module ProfilerClient (874)
+[2024.01.05-02.40.28:167][786]LogModuleManager: Shutting down and abandoning module DeviceManager (872)
+[2024.01.05-02.40.28:167][786]LogModuleManager: Shutting down and abandoning module AutomationController (870)
+[2024.01.05-02.40.28:168][786]LogModuleManager: Shutting down and abandoning module AutomationWindow (868)
+[2024.01.05-02.40.28:171][786]LogModuleManager: Shutting down and abandoning module Layers (866)
+[2024.01.05-02.40.28:172][786]LogModuleManager: Shutting down and abandoning module ComponentVisualizers (864)
+[2024.01.05-02.40.28:172][786]LogModuleManager: Shutting down and abandoning module DetailCustomizations (862)
+[2024.01.05-02.40.28:172][786]LogModuleManager: Shutting down and abandoning module PackagesDialog (860)
+[2024.01.05-02.40.28:172][786]LogModuleManager: Shutting down and abandoning module AnimationBlueprintEditor (858)
+[2024.01.05-02.40.28:174][786]LogModuleManager: Shutting down and abandoning module Persona (856)
+[2024.01.05-02.40.28:175][786]LogModuleManager: Shutting down and abandoning module AdvancedPreviewScene (855)
+[2024.01.05-02.40.28:175][786]LogModuleManager: Shutting down and abandoning module Kismet (852)
+[2024.01.05-02.40.28:187][786]LogModuleManager: Shutting down and abandoning module KismetWidgets (851)
+[2024.01.05-02.40.28:187][786]LogModuleManager: Shutting down and abandoning module GraphEditor (848)
+[2024.01.05-02.40.28:188][786]LogModuleManager: Shutting down and abandoning module StructViewer (846)
+[2024.01.05-02.40.28:188][786]LogModuleManager: Shutting down and abandoning module ClassViewer (844)
+[2024.01.05-02.40.28:188][786]LogModuleManager: Shutting down and abandoning module UncontrolledChangelists (842)
+[2024.01.05-02.40.28:188][786]LogModuleManager: Shutting down and abandoning module SourceControlWindowExtender (840)
+[2024.01.05-02.40.28:188][786]LogModuleManager: Shutting down and abandoning module SourceControlWindows (838)
+[2024.01.05-02.40.28:188][786]LogModuleManager: Shutting down and abandoning module OutputLog (836)
+[2024.01.05-02.40.28:189][786]LogModuleManager: Shutting down and abandoning module Documentation (834)
+[2024.01.05-02.40.28:189][786]LogModuleManager: Shutting down and abandoning module SparseVolumeTexture (832)
+[2024.01.05-02.40.28:189][786]LogModuleManager: Shutting down and abandoning module MovieSceneTracks (830)
+[2024.01.05-02.40.28:189][786]LogModuleManager: Shutting down and abandoning module MovieScene (828)
+[2024.01.05-02.40.28:190][786]LogModuleManager: Shutting down and abandoning module StreamingPauseRendering (826)
+[2024.01.05-02.40.28:190][786]LogModuleManager: Shutting down and abandoning module BinkAudioDecoder (824)
+[2024.01.05-02.40.28:190][786]LogModuleManager: Shutting down and abandoning module AudioMixerXAudio2 (822)
+[2024.01.05-02.40.28:190][786]LogModuleManager: Shutting down and abandoning module AudioMixer (821)
+[2024.01.05-02.40.28:190][786]LogModuleManager: Shutting down and abandoning module AudioMixerCore (820)
+[2024.01.05-02.40.28:190][786]LogModuleManager: Shutting down and abandoning module LauncherPlatform (816)
+[2024.01.05-02.40.28:191][786]LogModuleManager: Shutting down and abandoning module AnalyticsET (814)
+[2024.01.05-02.40.28:191][786]LogModuleManager: Shutting down and abandoning module PortalServices (812)
+[2024.01.05-02.40.28:191][786]LogModuleManager: Shutting down and abandoning module PortalRpc (810)
+[2024.01.05-02.40.28:191][786]LogModuleManager: Shutting down and abandoning module MessagingRpc (808)
+[2024.01.05-02.40.28:191][786]LogModuleManager: Shutting down and abandoning module AIModule (806)
+[2024.01.05-02.40.28:191][786]LogModuleManager: Shutting down and abandoning module GameplayDebugger (805)
+[2024.01.05-02.40.28:192][786]LogModuleManager: Shutting down and abandoning module AITestSuite (803)
+[2024.01.05-02.40.28:192][786]LogModuleManager: Shutting down and abandoning module NavigationSystem (801)
+[2024.01.05-02.40.28:192][786]LogModuleManager: Shutting down and abandoning module LevelInstanceEditor (798)
+[2024.01.05-02.40.28:192][786]LogModuleManager: Shutting down and abandoning module TypedElementRuntime (796)
+[2024.01.05-02.40.28:192][786]LogModuleManager: Shutting down and abandoning module TypedElementFramework (794)
+[2024.01.05-02.40.28:192][786]LogModuleManager: Shutting down and abandoning module ImageWriteQueue (792)
+[2024.01.05-02.40.28:192][786]LogModuleManager: Shutting down and abandoning module ProfilerService (790)
+[2024.01.05-02.40.28:426][786]LogModuleManager: Shutting down and abandoning module ProfileVisualizer (788)
+[2024.01.05-02.40.28:428][786]LogModuleManager: Shutting down and abandoning module CacheTrackRecorder (786)
+[2024.01.05-02.40.28:428][786]LogModuleManager: Shutting down and abandoning module TakeRecorderSources (784)
+[2024.01.05-02.40.28:430][786]LogModuleManager: Shutting down and abandoning module TakeTrackRecorders (782)
+[2024.01.05-02.40.28:430][786]LogModuleManager: Shutting down and abandoning module TakesCore (780)
+[2024.01.05-02.40.28:431][786]LogModuleManager: Shutting down and abandoning module AudioSynesthesiaEditor (778)
+[2024.01.05-02.40.28:431][786]LogModuleManager: Shutting down and abandoning module MegascansPlugin (776)
+[2024.01.05-02.40.28:431][786]LogModuleManager: Shutting down and abandoning module Bridge (774)
+[2024.01.05-02.40.28:432][786]LogModuleManager: Shutting down and abandoning module ContentBrowserFileDataSource (772)
+[2024.01.05-02.40.28:432][786]LogModuleManager: Shutting down and abandoning module ContentBrowserAssetDataSource (770)
+[2024.01.05-02.40.28:432][786]LogModuleManager: Shutting down and abandoning module ContentBrowserClassDataSource (768)
+[2024.01.05-02.40.28:432][786]LogModuleManager: Shutting down and abandoning module CollectionManager (767)
+[2024.01.05-02.40.28:432][786]LogModuleManager: Shutting down and abandoning module ObjectMixerEditor (764)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module LightMixer (762)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module PortableObjectFileDataSource (760)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module TakeSequencer (758)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module TakeMovieScene (756)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module ControlRigSpline (754)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module BlendSpaceMotionAnalysis (752)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module AnimationModifierLibrary (750)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module MediaCompositing (748)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module ACLPluginEditor (746)
+[2024.01.05-02.40.28:433][786]LogModuleManager: Shutting down and abandoning module ImgMedia (744)
+[2024.01.05-02.40.28:434][786]LogModuleManager: Shutting down and abandoning module MediaPlateEditor (742)
+[2024.01.05-02.40.28:434][786]LogModuleManager: Shutting down and abandoning module MediaPlate (740)
+[2024.01.05-02.40.28:434][786]LogModuleManager: Shutting down and abandoning module SynthesisEditor (738)
+[2024.01.05-02.40.28:434][786]LogModuleManager: Shutting down and abandoning module ResonanceAudio (736)
+[2024.01.05-02.40.28:434][786]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponentEditor (734)
+[2024.01.05-02.40.28:434][786]LogModuleManager: Shutting down and abandoning module MobilePatchingUtils (732)
+[2024.01.05-02.40.28:434][786]LogModuleManager: Shutting down and abandoning module ModelingOperatorsEditorOnly (730)
+[2024.01.05-02.40.28:434][786]LogModuleManager: Shutting down and abandoning module ModelingOperators (728)
+[2024.01.05-02.40.28:435][786]LogModuleManager: Shutting down and abandoning module ModelingComponentsEditorOnly (726)
+[2024.01.05-02.40.28:435][786]LogModuleManager: Shutting down and abandoning module ModelingComponents (724)
+[2024.01.05-02.40.28:435][786]LogModuleManager: Shutting down and abandoning module GeometryFramework (723)
+[2024.01.05-02.40.28:436][786]LogModuleManager: Shutting down and abandoning module MeshModelingToolsEditorOnly (720)
+[2024.01.05-02.40.28:436][786]LogModuleManager: Shutting down and abandoning module MeshModelingTools (718)
+[2024.01.05-02.40.28:437][786]LogModuleManager: Shutting down and abandoning module InputDebuggingEditor (716)
+[2024.01.05-02.40.28:437][786]LogModuleManager: Shutting down and abandoning module InputDebugging (714)
+[2024.01.05-02.40.28:437][786]LogModuleManager: Shutting down and abandoning module DynamicMesh (712)
+[2024.01.05-02.40.28:437][786]LogModuleManager: Shutting down and abandoning module GeometryAlgorithms (710)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module GooglePAD (708)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module GeometryCacheTracks (706)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module GeometryCacheStreamer (704)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module GeometryCacheSequencer (702)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module CommonInput (700)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module CommonUIEditor (698)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module CommonUI (696)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module AssetTags (694)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module AudioCapture (692)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module AudioCaptureWasapi (691)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module ArchVisCharacter (688)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module AppleImageUtilsBlueprintSupport (686)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module AppleImageUtils (684)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module AndroidPermission (682)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module ActorLayerUtilitiesEditor (680)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module ActorLayerUtilities (678)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module AlembicImporter (676)
+[2024.01.05-02.40.28:438][786]LogModuleManager: Shutting down and abandoning module AlembicLibrary (675)
+[2024.01.05-02.40.28:440][786]LogModuleManager: Shutting down and abandoning module GeometryCache (674)
+[2024.01.05-02.40.28:440][786]LogModuleManager: Shutting down and abandoning module GeometryCacheEd (673)
+[2024.01.05-02.40.28:440][786]LogModuleManager: Shutting down and abandoning module NiagaraFluids (668)
+[2024.01.05-02.40.28:440][786]LogModuleManager: Shutting down and abandoning module NiagaraEditorWidgets (666)
+[2024.01.05-02.40.28:442][786]LogModuleManager: Shutting down and abandoning module ToolPresetEditor (664)
+[2024.01.05-02.40.28:442][786]LogModuleManager: Shutting down and abandoning module ToolPresetAsset (662)
+[2024.01.05-02.40.28:442][786]LogModuleManager: Shutting down and abandoning module StructUtilsTestSuite (660)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module StructUtilsNodes (658)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module StructUtilsEditor (656)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module StructUtilsEngine (654)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module PCGEditor (652)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module PCG (650)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module OpenImageDenoise (648)
+[2024.01.05-02.40.28:443][786]LogOpenImageDenoise: OIDN shutting down
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module LocalizableMessageBlueprint (646)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module LocalizableMessage (644)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module SkeletalMeshModifiers (642)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module ModelingEditorUI (640)
+[2024.01.05-02.40.28:443][786]LogModuleManager: Shutting down and abandoning module GeometryProcessingAdapters (638)
+[2024.01.05-02.40.28:445][786]LogModuleManager: Shutting down and abandoning module MeshModelingToolsEditorOnlyExp (636)
+[2024.01.05-02.40.28:445][786]LogModuleManager: Shutting down and abandoning module MeshModelingToolsExp (634)
+[2024.01.05-02.40.28:446][786]LogModuleManager: Shutting down and abandoning module MeshLODToolset (632)
+[2024.01.05-02.40.28:446][786]LogModuleManager: Shutting down and abandoning module LandmassEditor (630)
+[2024.01.05-02.40.28:446][786]LogModuleManager: Shutting down and abandoning module Landmass (628)
+[2024.01.05-02.40.28:446][786]LogModuleManager: Shutting down and abandoning module GeometryScriptingEditor (626)
+[2024.01.05-02.40.28:446][786]LogModuleManager: Shutting down and abandoning module GeometryFlowMeshProcessingEditor (624)
+[2024.01.05-02.40.28:446][786]LogModuleManager: Shutting down and abandoning module GeometryFlowMeshProcessing (622)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module GeometryFlowCore (620)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module GeometryCollectionNodes (618)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module GeometryCollectionTracks (616)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module GeometryCollectionEngine (615)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module GeometryCollectionSequencer (613)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module GeometryCollectionEditor (610)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module DataflowNodes (608)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module DataflowEnginePlugin (606)
+[2024.01.05-02.40.28:447][786]LogModuleManager: Shutting down and abandoning module DataflowEditor (604)
+[2024.01.05-02.40.28:448][786]LogModuleManager: Shutting down and abandoning module ChaosUserDataPT (602)
+[2024.01.05-02.40.28:448][786]LogModuleManager: Shutting down and abandoning module ChaosNiagara (600)
+[2024.01.05-02.40.28:448][786]LogModuleManager: Shutting down and abandoning module ChaosSolverEditor (598)
+[2024.01.05-02.40.28:448][786]LogModuleManager: Shutting down and abandoning module FractureEditor (596)
+[2024.01.05-02.40.28:449][786]LogModuleManager: Shutting down and abandoning module ChaosClothEditor (594)
+[2024.01.05-02.40.28:449][786]LogModuleManager: Shutting down and abandoning module BackChannel (592)
+[2024.01.05-02.40.28:449][786]LogModuleManager: Shutting down and abandoning module AutomationUtilsEditor (590)
+[2024.01.05-02.40.28:449][786]LogModuleManager: Shutting down and abandoning module AutomationUtils (588)
+[2024.01.05-02.40.28:449][786]LogModuleManager: Shutting down and abandoning module VariantManager (586)
+[2024.01.05-02.40.28:453][786]LogModuleManager: Shutting down and abandoning module VariantManagerContentEditor (585)
+[2024.01.05-02.40.28:453][786]LogModuleManager: Shutting down and abandoning module VisualStudioCodeSourceCodeAccess (582)
+[2024.01.05-02.40.28:453][786]LogModuleManager: Shutting down and abandoning module DatasmithContentEditor (580)
+[2024.01.05-02.40.28:453][786]LogModuleManager: Shutting down and abandoning module VisualStudioSourceCodeAccess (578)
+[2024.01.05-02.40.28:453][786]LogModuleManager: Shutting down and abandoning module UObjectPlugin (576)
+[2024.01.05-02.40.28:453][786]LogModuleManager: Shutting down and abandoning module SubversionSourceControl (574)
+[2024.01.05-02.40.28:454][786]LogModuleManager: Shutting down and abandoning module RiderSourceCodeAccess (572)
+[2024.01.05-02.40.28:454][786]LogModuleManager: Shutting down and abandoning module PluginUtils (570)
+[2024.01.05-02.40.28:454][786]LogModuleManager: Shutting down and abandoning module N10XSourceCodeAccess (568)
+[2024.01.05-02.40.28:454][786]LogModuleManager: Shutting down and abandoning module GitSourceControl (566)
+[2024.01.05-02.40.28:455][786]LogModuleManager: Shutting down and abandoning module DumpGPUServices (564)
+[2024.01.05-02.40.28:455][786]LogModuleManager: Shutting down and abandoning module CLionSourceCodeAccess (562)
+[2024.01.05-02.40.28:455][786]LogModuleManager: Shutting down and abandoning module AnimationSharingEd (560)
+[2024.01.05-02.40.28:455][786]LogModuleManager: Shutting down and abandoning module WorldPartitionHLODUtilities (558)
+[2024.01.05-02.40.28:455][786]LogModuleManager: Shutting down and abandoning module UVEditorToolsEditorOnly (556)
+[2024.01.05-02.40.28:455][786]LogModuleManager: Shutting down and abandoning module UVEditorTools (554)
+[2024.01.05-02.40.28:456][786]LogModuleManager: Shutting down and abandoning module UVEditor (552)
+[2024.01.05-02.40.28:457][786]LogModuleManager: Shutting down and abandoning module PluginBrowser (550)
+[2024.01.05-02.40.28:459][786]LogModuleManager: Shutting down and abandoning module SequencerAnimTools (548)
+[2024.01.05-02.40.28:459][786]LogModuleManager: Shutting down and abandoning module SpeedTreeImporter (546)
+[2024.01.05-02.40.28:459][786]LogModuleManager: Shutting down and abandoning module ModelingToolsEditorMode (544)
+[2024.01.05-02.40.28:461][786]LogModuleManager: Shutting down and abandoning module MaterialAnalyzer (542)
+[2024.01.05-02.40.28:461][786]LogModuleManager: Shutting down and abandoning module MobileLauncherProfileWizard (540)
+[2024.01.05-02.40.28:462][786]LogModuleManager: Shutting down and abandoning module EditorScriptingUtilities (536)
+[2024.01.05-02.40.28:462][786]LogModuleManager: Shutting down and abandoning module EditorDebugTools (534)
+[2024.01.05-02.40.28:462][786]LogModuleManager: Shutting down and abandoning module CurveEditorTools (532)
+[2024.01.05-02.40.28:463][786]LogModuleManager: Shutting down and abandoning module CryptoKeysOpenSSL (530)
+[2024.01.05-02.40.28:463][786]LogModuleManager: Shutting down and abandoning module CryptoKeys (528)
+[2024.01.05-02.40.28:463][786]LogModuleManager: Shutting down and abandoning module ChangelistReview (526)
+[2024.01.05-02.40.28:463][786]LogModuleManager: Shutting down and abandoning module BlueprintHeaderView (524)
+[2024.01.05-02.40.28:463][786]LogModuleManager: Shutting down and abandoning module InterchangeTestEditor (522)
+[2024.01.05-02.40.28:464][786]LogModuleManager: Shutting down and abandoning module InterchangeTests (520)
+[2024.01.05-02.40.28:464][786]LogModuleManager: Shutting down and abandoning module TemplateSequence (518)
+[2024.01.05-02.40.28:464][786]LogModuleManager: Shutting down and abandoning module SequencerScriptingEditor (516)
+[2024.01.05-02.40.28:464][786]LogModuleManager: Shutting down and abandoning module SequencerScripting (514)
+[2024.01.05-02.40.28:464][786]LogModuleManager: Shutting down and abandoning module OodleNetworkHandlerComponent (512)
+[2024.01.05-02.40.28:464][786]LogModuleManager: Shutting down and abandoning module InterchangeEditorUtilities (510)
+[2024.01.05-02.40.28:464][786]LogModuleManager: Shutting down and abandoning module InterchangeEditorPipelines (508)
+[2024.01.05-02.40.28:465][786]LogModuleManager: Shutting down and abandoning module InterchangeEditor (506)
+[2024.01.05-02.40.28:465][786]LogModuleManager: Shutting down and abandoning module InterchangeFbxParser (504)
+[2024.01.05-02.40.28:465][786]LogModuleManager: Shutting down and abandoning module InterchangeCommonParser (502)
+[2024.01.05-02.40.28:465][786]LogModuleManager: Shutting down and abandoning module InterchangeDispatcher (500)
+[2024.01.05-02.40.28:466][786]LogModuleManager: Shutting down and abandoning module InterchangeExport (498)
+[2024.01.05-02.40.28:466][786]LogModuleManager: Shutting down and abandoning module InterchangeMessages (496)
+[2024.01.05-02.40.28:466][786]LogModuleManager: Shutting down and abandoning module GLTFCore (494)
+[2024.01.05-02.40.28:466][786]LogModuleManager: Shutting down and abandoning module PaperTiledImporter (492)
+[2024.01.05-02.40.28:466][786]LogModuleManager: Shutting down and abandoning module PaperSpriteSheetImporter (490)
+[2024.01.05-02.40.28:466][786]LogModuleManager: Shutting down and abandoning module Paper2DEditor (488)
+[2024.01.05-02.40.28:467][786]LogModuleManager: Shutting down and abandoning module EditorTraceUtilities (486)
+[2024.01.05-02.40.28:467][786]LogModuleManager: Shutting down and abandoning module TraceUtilities (484)
+[2024.01.05-02.40.28:467][786]LogModuleManager: Shutting down and abandoning module MeshPaintingToolset (482)
+[2024.01.05-02.40.28:467][786]LogModuleManager: Shutting down and abandoning module MeshPaintEditorMode (480)
+[2024.01.05-02.40.28:467][786]LogModuleManager: Shutting down and abandoning module InputEditor (478)
+[2024.01.05-02.40.28:468][786]LogModuleManager: Shutting down and abandoning module IKRigDeveloper (476)
+[2024.01.05-02.40.28:468][786]LogModuleManager: Shutting down and abandoning module IKRig (474)
+[2024.01.05-02.40.28:468][786]LogModuleManager: Shutting down and abandoning module ControlRigDeveloper (472)
+[2024.01.05-02.40.28:468][786]LogModuleManager: Shutting down and abandoning module ControlRig (470)
+[2024.01.05-02.40.28:468][786]LogModuleManager: Shutting down and abandoning module Constraints (469)
+[2024.01.05-02.40.28:468][786]LogModuleManager: Shutting down and abandoning module TcpMessaging (466)
+[2024.01.05-02.40.28:570][786]LogModuleManager: Shutting down and abandoning module UdpMessaging (464)
+[2024.01.05-02.40.28:671][786]LogModuleManager: Shutting down and abandoning module AnimationData (462)
+[2024.01.05-02.40.28:671][786]LogModuleManager: Shutting down and abandoning module ImgMediaEngine (460)
+[2024.01.05-02.40.28:671][786]LogModuleManager: Shutting down and abandoning module Synthesis (458)
+[2024.01.05-02.40.28:672][786]LogModuleManager: Shutting down and abandoning module SoundFields (456)
+[2024.01.05-02.40.28:672][786]LogModuleManager: Shutting down and abandoning module SignificanceManager (454)
+[2024.01.05-02.40.28:672][786]LogModuleManager: Shutting down and abandoning module RigVMDeveloper (452)
+[2024.01.05-02.40.28:672][786]LogModuleManager: Shutting down and abandoning module RigVM (450)
+[2024.01.05-02.40.28:672][786]LogModuleManager: Shutting down and abandoning module PropertyAccessEditor (448)
+[2024.01.05-02.40.28:672][786]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponent (446)
+[2024.01.05-02.40.28:672][786]LogModuleManager: Shutting down and abandoning module MsQuicRuntime (444)
+[2024.01.05-02.40.28:672][786]LogModuleManager: Shutting down and abandoning module MetasoundEditor (442)
+[2024.01.05-02.40.28:675][786]LogModuleManager: Shutting down and abandoning module AudioWidgets (441)
+[2024.01.05-02.40.28:675][786]LogModuleManager: Shutting down and abandoning module AdvancedWidgets (440)
+[2024.01.05-02.40.28:677][786]LogModuleManager: Shutting down and abandoning module MetasoundEngineTest (436)
+[2024.01.05-02.40.28:677][786]LogModuleManager: Shutting down and abandoning module MetasoundEngine (434)
+[2024.01.05-02.40.28:677][786]LogModuleManager: Shutting down and abandoning module WaveTable (433)
+[2024.01.05-02.40.28:677][786]LogModuleManager: Shutting down and abandoning module AudioCodecEngine (431)
+[2024.01.05-02.40.28:677][786]LogModuleManager: Shutting down and abandoning module MetasoundStandardNodes (428)
+[2024.01.05-02.40.28:678][786]LogModuleManager: Shutting down and abandoning module MetasoundFrontend (426)
+[2024.01.05-02.40.28:683][786]LogModuleManager: Shutting down and abandoning module MetasoundGenerator (424)
+[2024.01.05-02.40.28:683][786]LogModuleManager: Shutting down and abandoning module MetasoundGraphCore (422)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module LocationServicesBPLibrary (420)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module CustomMeshComponent (418)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module CableComponent (416)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module AudioSynesthesia (414)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module AudioAnalyzer (413)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module AudioSynesthesiaCore (410)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module NiagaraAnimNotifies (408)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module Niagara (406)
+[2024.01.05-02.40.28:684][786]LogModuleManager: Shutting down and abandoning module SignalProcessing (405)
+[2024.01.05-02.40.28:685][786]LogModuleManager: Shutting down and abandoning module NiagaraEditor (403)
+[2024.01.05-02.40.28:687][786]LogModuleManager: Shutting down and abandoning module NiagaraCore (400)
+[2024.01.05-02.40.28:687][786]LogModuleManager: Shutting down and abandoning module StructUtils (398)
+[2024.01.05-02.40.28:687][786]LogModuleManager: Shutting down and abandoning module PythonScriptPlugin (396)
+[2024.01.05-02.40.28:688][786]LogModuleManager: Shutting down and abandoning module GeometryScriptingCore (394)
+[2024.01.05-02.40.28:688][786]LogModuleManager: Shutting down and abandoning module PBIK (392)
+[2024.01.05-02.40.28:689][786]LogModuleManager: Shutting down and abandoning module FullBodyIK (390)
+[2024.01.05-02.40.28:689][786]LogModuleManager: Shutting down and abandoning module ChaosCachingEditor (388)
+[2024.01.05-02.40.28:689][786]LogModuleManager: Shutting down and abandoning module TakeRecorder (387)
+[2024.01.05-02.40.28:690][786]LogModuleManager: Shutting down and abandoning module ChaosCaching (384)
+[2024.01.05-02.40.28:690][786]LogModuleManager: Shutting down and abandoning module LevelSequence (383)
+[2024.01.05-02.40.28:690][786]LogModuleManager: Shutting down and abandoning module TraceDataFiltering (380)
+[2024.01.05-02.40.28:692][786]LogModuleManager: Shutting down and abandoning module PropertyAccessNode (378)
+[2024.01.05-02.40.28:692][786]LogModuleManager: Shutting down and abandoning module GameplayCameras (376)
+[2024.01.05-02.40.28:693][786]LogModuleManager: Shutting down and abandoning module AnimationSharing (374)
+[2024.01.05-02.40.28:693][786]LogModuleManager: Shutting down and abandoning module FacialAnimationEditor (372)
+[2024.01.05-02.40.28:693][786]LogModuleManager: Shutting down and abandoning module FacialAnimation (370)
+[2024.01.05-02.40.28:693][786]LogModuleManager: Shutting down and abandoning module GameplayTagsEditor (368)
+[2024.01.05-02.40.28:694][786]LogModuleManager: Shutting down and abandoning module DataValidation (366)
+[2024.01.05-02.40.28:694][786]LogModuleManager: Shutting down and abandoning module AssetManagerEditor (364)
+[2024.01.05-02.40.28:695][786]LogModuleManager: Shutting down and abandoning module LevelEditor (363)
+[2024.01.05-02.40.28:700][786]LogModuleManager: Shutting down and abandoning module PixelInspectorModule (362)
+[2024.01.05-02.40.28:700][786]LogModuleManager: Shutting down and abandoning module CommonMenuExtensions (360)
+[2024.01.05-02.40.28:701][786]LogModuleManager: Shutting down and abandoning module MainFrame (358)
+[2024.01.05-02.40.28:701][786]LogModuleManager: Shutting down and abandoning module HotReload (357)
+[2024.01.05-02.40.28:702][786]LogModuleManager: Shutting down and abandoning module ContentBrowser (353)
+[2024.01.05-02.40.28:702][786]LogModuleManager: Shutting down and abandoning module ToolMenus (352)
+[2024.01.05-02.40.28:702][786]LogModuleManager: Shutting down and abandoning module ContentBrowserData (350)
+[2024.01.05-02.40.28:702][786]LogModuleManager: Shutting down and abandoning module TreeMap (347)
+[2024.01.05-02.40.28:703][786]LogModuleManager: Shutting down and abandoning module EnvironmentQueryEditor (344)
+[2024.01.05-02.40.28:703][786]LogModuleManager: Shutting down and abandoning module ActorSequence (342)
+[2024.01.05-02.40.28:703][786]LogModuleManager: Shutting down and abandoning module InterchangePipelines (340)
+[2024.01.05-02.40.28:703][786]LogModuleManager: Shutting down and abandoning module InterchangeImport (338)
+[2024.01.05-02.40.28:704][786]LogModuleManager: Shutting down and abandoning module InterchangeFactoryNodes (336)
+[2024.01.05-02.40.28:704][786]LogModuleManager: Shutting down and abandoning module InterchangeNodes (334)
+[2024.01.05-02.40.28:704][786]LogModuleManager: Shutting down and abandoning module Paper2D (332)
+[2024.01.05-02.40.28:704][786]LogModuleManager: Shutting down and abandoning module InputBlueprintNodes (330)
+[2024.01.05-02.40.28:704][786]LogModuleManager: Shutting down and abandoning module BlueprintGraph (329)
+[2024.01.05-02.40.28:704][786]LogModuleManager: Shutting down and abandoning module EnhancedInput (326)
+[2024.01.05-02.40.28:704][786]LogModuleManager: Shutting down and abandoning module WindowsMoviePlayer (324)
+[2024.01.05-02.40.28:727][786]LogModuleManager: Shutting down and abandoning module WebMMoviePlayer (322)
+[2024.01.05-02.40.28:728][786]LogModuleManager: Shutting down and abandoning module AndroidFileServer (320)
+[2024.01.05-02.40.28:728][786]LogModuleManager: Shutting down and abandoning module BlueprintMaterialTextureNodes (318)
+[2024.01.05-02.40.28:728][786]LogModuleManager: Shutting down and abandoning module NetworkReplayStreaming (316)
+[2024.01.05-02.40.28:728][786]LogModuleManager: Shutting down and abandoning module PacketHandler (314)
+[2024.01.05-02.40.28:728][786]LogModuleManager: Shutting down and abandoning module WorldPartitionEditor (312)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module AnimGraph (310)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module TimeManagement (308)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module AnimationDataController (306)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module ClothingSystemEditor (304)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module ClothingSystemRuntimeNv (302)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module MediaAssets (300)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module Overlay (298)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module OverlayEditor (297)
+[2024.01.05-02.40.28:729][786]LogModuleManager: Shutting down and abandoning module VREditor (294)
+[2024.01.05-02.40.28:731][786]LogModuleManager: Shutting down and abandoning module StringTableEditor (292)
+[2024.01.05-02.40.28:732][786]LogModuleManager: Shutting down and abandoning module GameplayTasksEditor (290)
+[2024.01.05-02.40.28:732][786]LogModuleManager: Shutting down and abandoning module BehaviorTreeEditor (288)
+[2024.01.05-02.40.28:734][786]LogModuleManager: Shutting down and abandoning module FunctionalTesting (286)
+[2024.01.05-02.40.28:734][786]LogModuleManager: Shutting down and abandoning module CollisionAnalyzer (284)
+[2024.01.05-02.40.28:735][786]LogModuleManager: Shutting down and abandoning module WorkspaceMenuStructure (283)
+[2024.01.05-02.40.28:736][786]LogModuleManager: Shutting down and abandoning module ScriptableEditorWidgets (280)
+[2024.01.05-02.40.28:736][786]LogModuleManager: Shutting down and abandoning module UMG (278)
+[2024.01.05-02.40.28:736][786]LogModuleManager: Shutting down and abandoning module UMGEditor (277)
+[2024.01.05-02.40.28:737][786]LogModuleManager: Shutting down and abandoning module EditorStyle (272)
+[2024.01.05-02.40.28:738][786]LogModuleManager: Shutting down and abandoning module SlateReflector (270)
+[2024.01.05-02.40.28:741][786]LogModuleManager: Shutting down and abandoning module Slate (268)
+[2024.01.05-02.40.28:741][786]LogModuleManager: Shutting down and abandoning module SlateCore (266)
+[2024.01.05-02.40.28:742][786]LogModuleManager: Shutting down and abandoning module SubobjectDataInterface (264)
+[2024.01.05-02.40.28:742][786]LogModuleManager: Shutting down and abandoning module LandscapeEditorUtilities (262)
+[2024.01.05-02.40.28:742][786]LogModuleManager: Shutting down and abandoning module UnrealEd (260)
+[2024.01.05-02.40.28:742][786]LogModuleManager: Shutting down and abandoning module MRMesh (258)
+[2024.01.05-02.40.28:742][786]LogModuleManager: Shutting down and abandoning module Messaging (256)
+[2024.01.05-02.40.28:742][786]LogModuleManager: Shutting down and abandoning module SourceCodeAccess (254)
+[2024.01.05-02.40.28:742][786]LogModuleManager: Shutting down and abandoning module HeadMountedDisplay (252)
+[2024.01.05-02.40.28:742][786]LogModuleManager: Shutting down and abandoning module LiveCoding (250)
+[2024.01.05-02.40.28:749][786]LogModuleManager: Shutting down and abandoning module Networking (248)
+[2024.01.05-02.40.28:749][786]LogModuleManager: Shutting down and abandoning module Core (246)
+[2024.01.05-02.40.28:749][786]LogModuleManager: Shutting down and abandoning module AssetDefinition (244)
+[2024.01.05-02.40.28:749][786]LogModuleManager: Shutting down and abandoning module MovieSceneTools (242)
+[2024.01.05-02.40.28:752][786]LogModuleManager: Shutting down and abandoning module CurveEditor (241)
+[2024.01.05-02.40.28:754][786]LogModuleManager: Shutting down and abandoning module Sequencer (239)
+[2024.01.05-02.40.28:757][786]LogModuleManager: Shutting down and abandoning module KismetCompiler (236)
+[2024.01.05-02.40.28:757][786]LogModuleManager: Shutting down and abandoning module MeshBuilder (234)
+[2024.01.05-02.40.28:757][786]LogModuleManager: Shutting down and abandoning module NaniteBuilder (232)
+[2024.01.05-02.40.28:758][786]LogModuleManager: Shutting down and abandoning module MeshUtilities (230)
+[2024.01.05-02.40.28:758][786]LogModuleManager: Shutting down and abandoning module MeshMergeUtilities (229)
+[2024.01.05-02.40.28:758][786]LogModuleManager: Shutting down and abandoning module StaticMeshDescription (228)
+[2024.01.05-02.40.28:759][786]LogModuleManager: Shutting down and abandoning module GeometryProcessingInterfaces (227)
+[2024.01.05-02.40.28:759][786]LogModuleManager: Shutting down and abandoning module MeshReductionInterface (224)
+[2024.01.05-02.40.28:759][786]LogModuleManager: Shutting down and abandoning module MeshBoneReduction (223)
+[2024.01.05-02.40.28:759][786]LogModuleManager: Shutting down and abandoning module SkeletalMeshReduction (221)
+[2024.01.05-02.40.28:760][786]LogModuleManager: Shutting down and abandoning module ProxyLODMeshReduction (219)
+[2024.01.05-02.40.28:765][786]LogModuleManager: Shutting down and abandoning module QuadricMeshReduction (217)
+[2024.01.05-02.40.28:766][786]LogModuleManager: Shutting down and abandoning module MaterialBaking (213)
+[2024.01.05-02.40.28:767][786]LogModuleManager: Shutting down and abandoning module TargetDeviceServices (210)
+[2024.01.05-02.40.28:777][786]LogModuleManager: Shutting down and abandoning module TelemetryUtils (207)
+[2024.01.05-02.40.28:777][786]LogModuleManager: Shutting down and abandoning module NullInstallBundleManager (204)
+[2024.01.05-02.40.28:777][786]LogModuleManager: Shutting down and abandoning module ShaderPreprocessor (202)
+[2024.01.05-02.40.28:777][786]LogModuleManager: Shutting down and abandoning module DerivedDataCache (200)
+[2024.01.05-02.40.28:785][786]LogModuleManager: Shutting down and abandoning module TargetPlatform (198)
+[2024.01.05-02.40.28:786][786]LogModuleManager: Shutting down and abandoning module MetalShaderFormat (197)
+[2024.01.05-02.40.28:786][786]LogModuleManager: Shutting down and abandoning module VulkanShaderFormat (195)
+[2024.01.05-02.40.28:790][786]LogModuleManager: Shutting down and abandoning module ShaderFormatOpenGL (193)
+[2024.01.05-02.40.28:790][786]LogModuleManager: Shutting down and abandoning module ShaderFormatD3D (191)
+[2024.01.05-02.40.28:790][786]LogModuleManager: Shutting down and abandoning module ShaderFormatVectorVM (189)
+[2024.01.05-02.40.28:790][786]LogModuleManager: Shutting down and abandoning module AudioFormatBINK (187)
+[2024.01.05-02.40.28:790][786]LogModuleManager: Shutting down and abandoning module AudioFormatADPCM (185)
+[2024.01.05-02.40.28:791][786]LogModuleManager: Shutting down and abandoning module AudioFormatOGG (183)
+[2024.01.05-02.40.28:791][786]LogModuleManager: Shutting down and abandoning module AudioFormatOPUS (181)
+[2024.01.05-02.40.28:791][786]LogModuleManager: Shutting down and abandoning module WindowsTargetPlatform (179)
+[2024.01.05-02.40.28:791][786]LogModuleManager: Shutting down and abandoning module TVOSTargetPlatform (177)
+[2024.01.05-02.40.28:792][786]LogModuleManager: Shutting down and abandoning module MacTargetPlatform (175)
+[2024.01.05-02.40.28:793][786]LogModuleManager: Shutting down and abandoning module LinuxArm64TargetPlatform (173)
+[2024.01.05-02.40.28:793][786]LogModuleManager: Shutting down and abandoning module LinuxTargetPlatform (171)
+[2024.01.05-02.40.28:794][786]LogModuleManager: Shutting down and abandoning module IOSTargetPlatform (169)
+[2024.01.05-02.40.28:794][786]LogModuleManager: Shutting down and abandoning module AndroidTargetPlatform (167)
+[2024.01.05-02.40.28:794][786]LogModuleManager: Shutting down and abandoning module TextureFormat (165)
+[2024.01.05-02.40.28:794][786]LogModuleManager: Shutting down and abandoning module ImageWrapper (164)
+[2024.01.05-02.40.28:794][786]LogModuleManager: Shutting down and abandoning module TextureFormatOodle (162)
+[2024.01.05-02.40.28:799][786]LogModuleManager: Shutting down and abandoning module TextureFormatUncompressed (160)
+[2024.01.05-02.40.28:799][786]LogModuleManager: Shutting down and abandoning module TextureFormatIntelISPCTexComp (158)
+[2024.01.05-02.40.28:799][786]LogModuleManager: Shutting down and abandoning module TextureFormatETC2 (156)
+[2024.01.05-02.40.28:800][786]LogModuleManager: Shutting down and abandoning module TextureFormatDXT (154)
+[2024.01.05-02.40.28:800][786]LogModuleManager: Shutting down and abandoning module TextureFormatASTC (152)
+[2024.01.05-02.40.28:800][786]LogModuleManager: Shutting down and abandoning module TurnkeySupport (149)
+[2024.01.05-02.40.28:801][786]LogModuleManager: Shutting down and abandoning module InputCore (146)
+[2024.01.05-02.40.28:801][786]LogModuleManager: Shutting down and abandoning module Settings (144)
+[2024.01.05-02.40.28:801][786]LogModuleManager: Shutting down and abandoning module DirectoryWatcher (142)
+[2024.01.05-02.40.28:802][786]LogModuleManager: Shutting down and abandoning module ChaosSolverEngine (140)
+[2024.01.05-02.40.28:802][786]LogModuleManager: Shutting down and abandoning module FieldSystemEngine (139)
+[2024.01.05-02.40.28:802][786]LogModuleManager: Shutting down and abandoning module Chaos (136)
+[2024.01.05-02.40.28:802][786]LogModuleManager: Shutting down and abandoning module GeometryCore (135)
+[2024.01.05-02.40.28:803][786]LogModuleManager: Shutting down and abandoning module WindowsPlatformFeatures (132)
+[2024.01.05-02.40.28:803][786]LogModuleManager: Shutting down and abandoning module GameplayMediaEncoder (131)
+[2024.01.05-02.40.28:803][786]LogModuleManager: Shutting down and abandoning module AVEncoder (130)
+[2024.01.05-02.40.28:804][786]LogModuleManager: Shutting down and abandoning module D3D12RHI (126)
+[2024.01.05-02.40.28:804][786]LogModuleManager: Shutting down and abandoning module LauncherChunkInstaller (124)
+[2024.01.05-02.40.28:804][786]LogModuleManager: Shutting down and abandoning module WmfMedia (122)
+[2024.01.05-02.40.28:808][786]LogModuleManager: Shutting down and abandoning module Media (121)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module ACLPlugin (118)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module ExrReaderGpu (116)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module WindowsDeviceProfileSelector (114)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module ExampleDeviceProfileSelector (112)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module ChunkDownloader (110)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module Water (108)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module NiagaraVertexFactories (106)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module NiagaraShader (104)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module ChaosCloth (102)
+[2024.01.05-02.40.28:809][786]LogModuleManager: Shutting down and abandoning module VariantManagerContent (100)
+[2024.01.05-02.40.28:810][786]LogModuleManager: Shutting down and abandoning module GLTFExporter (98)
+[2024.01.05-02.40.28:810][786]LogModuleManager: Shutting down and abandoning module DatasmithContent (96)
+[2024.01.05-02.40.28:810][786]LogModuleManager: Shutting down and abandoning module RenderDocPlugin (94)
+[2024.01.05-02.40.28:811][786]RenderDocPlugin: plugin has been unloaded.
+[2024.01.05-02.40.28:811][786]LogModuleManager: Shutting down and abandoning module PixWinPlugin (92)
+[2024.01.05-02.40.28:811][786]LogModuleManager: Shutting down and abandoning module OnlineBlueprintSupport (90)
+[2024.01.05-02.40.28:811][786]LogModuleManager: Shutting down and abandoning module OnlineSubsystemUtils (88)
+[2024.01.05-02.40.28:811][786]LogModuleManager: Shutting down and abandoning module OnlineSubsystem (86)
+[2024.01.05-02.40.28:813][786]LogModuleManager: Shutting down and abandoning module XMPP (81)
+[2024.01.05-02.40.28:814][786]LogModuleManager: Shutting down and abandoning module WebSockets (80)
+[2024.01.05-02.40.28:844][786]LogModuleManager: Shutting down and abandoning module HTTP (77)
+[2024.01.05-02.40.28:844][786]LogHttp: Warning: [FHttpManager::Shutdown] Unbinding delegates for 1 outstanding Http Requests:
+[2024.01.05-02.40.28:844][786]LogHttp: Warning: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B72F77A18-406A-BF17-A3FA-6C9C03B8CBF4%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.3.2-29314046%2B%2B%2BUE5%2BRelease-5.3&UserID=d8f0dcb0452256c84552d083468ae762%7C4611ab85e9a046b08ea9e506519f0ae6%7C299d33dc-8710-426d-bf57-92755e67e23e&AppEnvironment=datacollector-binary&UploadType=eteventstream] refs=[1] status=Processing
+[2024.01.05-02.40.28:876][786]LogModuleManager: Shutting down and abandoning module SSL (76)
+[2024.01.05-02.40.28:883][786]LogModuleManager: Shutting down and abandoning module OnlineServicesCommonEngineUtils (72)
+[2024.01.05-02.40.28:883][786]LogModuleManager: Shutting down and abandoning module OnlineServicesCommon (70)
+[2024.01.05-02.40.28:884][786]LogModuleManager: Shutting down and abandoning module OnlineServicesInterface (68)
+[2024.01.05-02.40.28:884][786]LogModuleManager: Shutting down and abandoning module AISupportModule (66)
+[2024.01.05-02.40.28:884][786]LogModuleManager: Shutting down and abandoning module DesktopPlatform (64)
+[2024.01.05-02.40.28:884][786]LogModuleManager: Shutting down and abandoning module PythonScriptPluginPreload (62)
+[2024.01.05-02.40.28:885][786]LogModuleManager: Shutting down and abandoning module PlatformCryptoOpenSSL (60)
+[2024.01.05-02.40.28:885][786]LogModuleManager: Shutting down and abandoning module PlatformCryptoTypes (58)
+[2024.01.05-02.40.28:885][786]LogModuleManager: Shutting down and abandoning module PlatformCrypto (56)
+[2024.01.05-02.40.28:885][786]LogModuleManager: Shutting down and abandoning module PlasticSourceControl (54)
+[2024.01.05-02.40.28:886][786]LogModuleManager: Shutting down and abandoning module PerforceSourceControl (52)
+[2024.01.05-02.40.28:888][786]LogModuleManager: Shutting down and abandoning module SourceControl (51)
+[2024.01.05-02.40.28:888][786]LogModuleManager: Shutting down and abandoning module XGEController (48)
+[2024.01.05-02.40.28:889][786]LogModuleManager: Shutting down and abandoning module FastBuildController (46)
+[2024.01.05-02.40.28:890][786]LogModuleManager: Shutting down and abandoning module IoStoreOnDemand (44)
+[2024.01.05-02.40.28:890][786]LogModuleManager: Shutting down and abandoning module AnimationModifiers (42)
+[2024.01.05-02.40.28:891][786]LogModuleManager: Shutting down and abandoning module AudioEditor (40)
+[2024.01.05-02.40.28:894][786]LogModuleManager: Shutting down and abandoning module PropertyEditor (39)
+[2024.01.05-02.40.28:895][786]LogModuleManager: Shutting down and abandoning module Virtualization (36)
+[2024.01.05-02.40.28:895][786]LogModuleManager: Shutting down and abandoning module MessageLog (35)
+[2024.01.05-02.40.28:895][786]LogModuleManager: Shutting down and abandoning module TextureCompressor (32)
+[2024.01.05-02.40.28:895][786]LogModuleManager: Shutting down and abandoning module OpenColorIOWrapper (31)
+[2024.01.05-02.40.28:895][786]LogModuleManager: Shutting down and abandoning module RenderCore (28)
+[2024.01.05-02.40.28:895][786]LogModuleManager: Shutting down and abandoning module Landscape (26)
+[2024.01.05-02.40.28:895][786]LogModuleManager: Shutting down and abandoning module SlateRHIRenderer (24)
+[2024.01.05-02.40.28:898][786]LogModuleManager: Shutting down and abandoning module AnimGraphRuntime (22)
+[2024.01.05-02.40.28:898][786]LogModuleManager: Shutting down and abandoning module Renderer (20)
+[2024.01.05-02.40.28:899][786]LogModuleManager: Shutting down and abandoning module Engine (18)
+[2024.01.05-02.40.28:899][786]LogModuleManager: Shutting down and abandoning module CoreUObject (16)
+[2024.01.05-02.40.28:899][786]LogModuleManager: Shutting down and abandoning module SandboxFile (14)
+[2024.01.05-02.40.28:899][786]LogModuleManager: Shutting down and abandoning module PakFile (12)
+[2024.01.05-02.40.28:901][786]LogPakFile: Destroying PakPlatformFile
+[2024.01.05-02.40.28:901][786]LogModuleManager: Shutting down and abandoning module RSA (11)
+[2024.01.05-02.40.28:901][786]LogModuleManager: Shutting down and abandoning module NetworkFile (8)
+[2024.01.05-02.40.28:901][786]LogModuleManager: Shutting down and abandoning module StreamingFile (6)
+[2024.01.05-02.40.28:901][786]LogModuleManager: Shutting down and abandoning module CookOnTheFly (4)
+[2024.01.05-02.40.28:902][786]LogModuleManager: Shutting down and abandoning module StorageServerClient (2)
+[2024.01.05-02.40.29:989][786]LogD3D12RHI: ~FD3D12DynamicRHI
+[2024.01.05-02.40.30:070][786]LogExit: Exiting.
+[2024.01.05-02.40.30:089][786]Log file closed, 01/04/24 21:40:30
