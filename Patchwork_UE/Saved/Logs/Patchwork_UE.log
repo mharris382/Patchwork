@@ -4182,3 +4182,1673 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2024.01.13-03.46.02:829][888]LogFileHelpers: InternalPromptForCheckoutAndSave took 140 ms (total: 12.4 sec)
 [2024.01.13-03.46.02:830][888]AssetCheck: New page: Asset Save: Poolrooms
 [2024.01.13-03.46.02:830][888]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-03.50.42:331][365]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.50.42:437][365]LogUObjectHash: Compacting FUObjectHashTables data took   1.11ms
+[2024.01.13-03.50.42:454][365]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-03.50.42:454][365]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/PoolroomsE21F30D54F8CCE45EDAA239646ED6048.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-03.50.42:464][365]LogFileHelpers: Saving map 'Poolrooms' took 0.079
+[2024.01.13-03.50.42:475][365]LogFileHelpers: InternalPromptForCheckoutAndSave took 144 ms (total: 12.6 sec)
+[2024.01.13-03.50.42:477][365]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-03.50.42:477][365]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-03.50.50:591][994]LogContentBrowser: Deferred new asset file creation: MI_Solid_Dirt_2
+[2024.01.13-03.50.50:604][994]LogContentBrowser: Creating deferred item: MI_Solid_Dirt_2
+[2024.01.13-03.50.50:621][995]LogContentBrowser: Renaming the item being created (Deferred Item: MI_Solid_Dirt_2).
+[2024.01.13-03.50.54:005][273]LogContentBrowser: Attempting asset rename: MI_Solid_Dirt_2 -> MI_Solid_Dirt_2
+[2024.01.13-03.50.54:007][273]LogContentBrowser: End creating deferred item MI_Solid_Dirt_2
+[2024.01.13-03.50.54:564][306]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.50.54:665][306]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Levels/Poolrooms/MI_Solid_Dirt_2
+[2024.01.13-03.50.54:665][306]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/MI_Solid_Dirt_25051784C4B2BF55A003BE0AEC2DD2B11.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Levels/Poolrooms/MI_Solid_Dirt_2.uasset'
+[2024.01.13-03.50.54:671][306]LogFileHelpers: InternalPromptForCheckoutAndSave took 106 ms (total: 12.7 sec)
+[2024.01.13-03.50.54:671][306]AssetCheck: New page: Asset Save: MI_Solid_Dirt_2
+[2024.01.13-03.50.54:671][306]LogContentValidation: Display: Validating /Script/Engine.MaterialInstanceConstant /Game/Patchwork/Materials/Levels/Poolrooms/MI_Solid_Dirt_2.MI_Solid_Dirt_2
+[2024.01.13-03.50.59:081][620]LogContentBrowser: Deferred new asset file creation: M_Solid_Inst
+[2024.01.13-03.50.59:097][620]LogContentBrowser: Creating deferred item: M_Solid_Inst
+[2024.01.13-03.50.59:105][621]LogContentBrowser: Renaming the item being created (Deferred Item: M_Solid_Inst).
+[2024.01.13-03.51.01:524][795]LogContentBrowser: Attempting asset rename: M_Solid_Inst -> M_Solid_White4
+[2024.01.13-03.51.01:524][795]LogContentBrowser: End creating deferred item M_Solid_Inst
+[2024.01.13-03.51.03:189][900]LogContentBrowser: Attempting asset rename: M_Solid_White4 -> M_Solid_White
+[2024.01.13-03.51.03:211][900]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.51.03:260][900]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Levels/Poolrooms/M_Solid_White
+[2024.01.13-03.51.03:260][900]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Solid_White579934CB40BACB960E6DB4BFE4441835.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Levels/Poolrooms/M_Solid_White.uasset'
+[2024.01.13-03.51.03:266][900]LogFileHelpers: InternalPromptForCheckoutAndSave took 55 ms (total: 12.8 sec)
+[2024.01.13-03.51.03:284][900]LogUObjectHash: Compacting FUObjectHashTables data took   0.90ms
+[2024.01.13-03.51.03:297][900]LogUObjectHash: Compacting FUObjectHashTables data took   1.00ms
+[2024.01.13-03.51.03:308][900]LogUObjectHash: Compacting FUObjectHashTables data took   0.47ms
+[2024.01.13-03.51.03:309][900]AssetCheck: New page: Asset Save: M_Solid_White
+[2024.01.13-03.51.03:309][900]LogContentValidation: Display: Validating /Script/Engine.MaterialInstanceConstant /Game/Patchwork/Materials/Levels/Poolrooms/M_Solid_White.M_Solid_White
+[2024.01.13-03.51.03:560][912]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.51.03:601][912]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Levels/Poolrooms/M_Solid_White
+[2024.01.13-03.51.03:601][912]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Solid_WhiteBBEB3C72427B2AA16C1C1DBE08717B57.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Levels/Poolrooms/M_Solid_White.uasset'
+[2024.01.13-03.51.03:606][912]LogFileHelpers: InternalPromptForCheckoutAndSave took 46 ms (total: 12.8 sec)
+[2024.01.13-03.51.03:607][912]AssetCheck: New page: Asset Save: M_Solid_White
+[2024.01.13-03.51.03:607][912]LogContentValidation: Display: Validating /Script/Engine.MaterialInstanceConstant /Game/Patchwork/Materials/Levels/Poolrooms/M_Solid_White.M_Solid_White
+[2024.01.13-03.51.06:292][119]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Plant_Pot.Plant_Pot
+[2024.01.13-03.51.06:336][119]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-03.51.06:336][119]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-03.51.06:656][119]LogViewport: Scene viewport resized to 447x187, mode Windowed.
+[2024.01.13-03.51.07:630][175]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: ================================================
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Total job queries 815, among them cache hits 423 (51.90%)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Tracking 392 distinct input hashes that result in 296 distinct outputs (75.51%)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: RAM used: 10.21 MiB of 1.60 GiB budget. Usage: 0.62%
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Shaders Compiled: 68
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Jobs assigned 68, completed 68 (100%)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Average time worker was idle: 736.46 s
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Time job spent in pending queue: average 1.08 s, longest 3.70 s
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Job execution time: average 1.81 s, max 4.78 s
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Job life time (pending + execution): average 2.89 s, max 4.82
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Shader code size: average 45.471 KiB, min 29.812 KiB, max 70.723 KiB
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 8.15 s
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Jobs were issued in 42 batches (only local compilation was used), average 1.62 jobs/batch
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Average processing rate: 8.34 jobs/sec
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Total thread time: 34.819 s
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Total thread preprocess time: 8.416 s
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Percentage time preprocessing: 24.17%
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Effective parallelization: 4.27 (times faster than compiling all shaders on one thread). Compare with number of workers: 10
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display:                                           FLumenCardPS<true> (compiled    1 times, average 0.94 sec, max 0.94 sec, min 0.94 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight (compiled    2 times, average 0.81 sec, max 0.91 sec, min 0.72 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display:                         TBasePassPSTLightMapPolicyLQSkylight (compiled    2 times, average 0.79 sec, max 0.90 sec, min 0.69 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy (compiled    7 times, average 0.71 sec, max 1.42 sec, min 0.19 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display:                                TMaterialCHSTLightMapPolicyHQ (compiled    2 times, average 0.70 sec, max 0.86 sec, min 0.53 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 14.19% of total time (compiled    7 times, average 0.71 sec, max 1.42 sec, min 0.19 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display:                                 TBasePassVSFNoLightMapPolicy - 7.69% of total time (compiled    6 times, average 0.45 sec, max 0.50 sec, min 0.19 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display:                                TMaterialCHSFNoLightMapPolicy - 5.18% of total time (compiled    3 times, average 0.60 sec, max 0.81 sec, min 0.30 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight - 4.68% of total time (compiled    2 times, average 0.81 sec, max 0.91 sec, min 0.72 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display:                         TBasePassPSTLightMapPolicyLQSkylight - 4.54% of total time (compiled    2 times, average 0.79 sec, max 0.90 sec, min 0.69 sec)
+[2024.01.13-03.51.09:412][274]LogShaderCompilers: Display: ================================================
+[2024.01.13-03.51.32:534][531]LogContentBrowser: Attempting asset rename: M_Solid_White -> MI_Solid_White
+[2024.01.13-03.51.32:553][531]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.51.32:586][531]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Levels/Poolrooms/MI_Solid_White
+[2024.01.13-03.51.32:586][531]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/MI_Solid_White6331574D49E71F3024F5A4BB1067038B.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Levels/Poolrooms/MI_Solid_White.uasset'
+[2024.01.13-03.51.32:593][531]LogFileHelpers: InternalPromptForCheckoutAndSave took 39 ms (total: 12.8 sec)
+[2024.01.13-03.51.32:612][531]LogUObjectHash: Compacting FUObjectHashTables data took   0.94ms
+[2024.01.13-03.51.32:629][531]LogUObjectHash: Compacting FUObjectHashTables data took   1.14ms
+[2024.01.13-03.51.32:642][531]LogUObjectHash: Compacting FUObjectHashTables data took   0.52ms
+[2024.01.13-03.51.32:643][531]AssetCheck: New page: Asset Save: MI_Solid_White
+[2024.01.13-03.51.32:643][531]LogContentValidation: Display: Validating /Script/Engine.MaterialInstanceConstant /Game/Patchwork/Materials/Levels/Poolrooms/MI_Solid_White.MI_Solid_White
+[2024.01.13-03.51.35:268][677]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.51.35:362][677]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Plant_Pot
+[2024.01.13-03.51.35:362][677]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Plant_Pot568820834328C3F9FA52A9BFAC9101CF.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Plant_Pot.uasset'
+[2024.01.13-03.51.35:369][677]LogFileHelpers: InternalPromptForCheckoutAndSave took 101 ms (total: 12.9 sec)
+[2024.01.13-03.51.35:369][677]AssetCheck: New page: Asset Save: Plant_Pot
+[2024.01.13-03.51.35:369][677]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Plant_Pot.Plant_Pot
+[2024.01.13-03.51.42:873][109]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.51.42:911][109]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Plant_Pot
+[2024.01.13-03.51.42:912][109]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Plant_PotDF0475524B6960D1861BB49F2BC9131E.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Plant_Pot.uasset'
+[2024.01.13-03.51.42:917][109]LogFileHelpers: InternalPromptForCheckoutAndSave took 44 ms (total: 13.0 sec)
+[2024.01.13-03.51.42:919][109]AssetCheck: New page: Asset Save: Plant_Pot
+[2024.01.13-03.51.42:919][109]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Plant_Pot.Plant_Pot
+[2024.01.13-03.51.44:389][189]LogSlate: Window 'Plant_Pot' being destroyed
+[2024.01.13-03.51.44:461][189]LogWorld: UWorld::CleanupWorld for World_34, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-03.51.44:461][189]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-03.51.51:028][684]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench.Pool_Bench
+[2024.01.13-03.51.51:099][684]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-03.51.51:100][684]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-03.51.51:424][684]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-03.52.06:730][492]LogEditorTransaction: Undo StaticMesh: Material changed
+[2024.01.13-03.52.11:347][732]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.52.11:416][732]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench
+[2024.01.13-03.52.11:416][732]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_BenchDA82ED4541B9491FED6A979852027D11.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Pool_Bench.uasset'
+[2024.01.13-03.52.11:423][732]LogFileHelpers: InternalPromptForCheckoutAndSave took 76 ms (total: 13.1 sec)
+[2024.01.13-03.52.11:423][732]AssetCheck: New page: Asset Save: Pool_Bench
+[2024.01.13-03.52.11:423][732]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench.Pool_Bench
+[2024.01.13-03.52.15:479][962]LogSlate: Window 'Pool_Bench' being destroyed
+[2024.01.13-03.52.15:526][962]LogWorld: UWorld::CleanupWorld for World_35, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-03.52.15:526][962]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-03.52.20:112][295]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Light_4.Pool_Light_4
+[2024.01.13-03.52.20:201][295]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-03.52.20:201][295]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-03.52.20:522][295]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-03.52.24:189][501]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-03.52.24:265][501]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Pool_Light_4
+[2024.01.13-03.52.24:265][501]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_Light_4B9BACE604938992AB729CA8217564066.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Pool_Light_4.uasset'
+[2024.01.13-03.52.24:271][501]LogFileHelpers: InternalPromptForCheckoutAndSave took 81 ms (total: 13.1 sec)
+[2024.01.13-03.52.24:272][501]AssetCheck: New page: Asset Save: Pool_Light_4
+[2024.01.13-03.52.24:272][501]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Light_4.Pool_Light_4
+[2024.01.13-03.52.25:162][557]LogSlate: Window 'Pool_Light_4' being destroyed
+[2024.01.13-03.52.25:210][557]LogWorld: UWorld::CleanupWorld for World_36, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-03.52.25:210][557]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-03.54.44:460][ 96]LogViewport: Scene viewport resized to 1494x940, mode Windowed.
+[2024.01.13-04.00.42:898][802]LogUObjectHash: Compacting FUObjectHashTables data took   1.18ms
+[2024.01.13-04.00.42:917][802]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_Auto3
+[2024.01.13-04.00.42:917][802]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms_Auto3AE011E444B80C8EB81F443B0B248BE33.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_Auto3.umap'
+[2024.01.13-04.00.42:918][802]LogAssetRegistry: Warning: ScanPathsSynchronous: ../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_Auto3.umap is in the /Temp path, will not scan.
+[2024.01.13-04.00.42:918][802]LogAssetRegistry: Warning: ScanPathsSynchronous: /Temp/__ExternalActors__/Autosaves/Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_Auto3 is in the /Temp path, will not scan.
+[2024.01.13-04.00.42:918][802]LogAssetRegistry: Warning: ScanPathsSynchronous: /Temp/__ExternalObjects__/Autosaves/Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_Auto3 is in the /Temp path, will not scan.
+[2024.01.13-04.00.42:918][802]LogFileHelpers: Editor autosave (incl. external actors) for '/Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms' took 0.036
+[2024.01.13-04.00.42:918][802]LogFileHelpers: Editor autosave (incl. sublevels & external actors) for all levels took 0.036
+[2024.01.13-04.01.32:983][177]Cmd: TRANSACTION UNDO
+[2024.01.13-04.01.32:983][177]LogEditorTransaction: Undo Replace component used material
+[2024.01.13-04.01.43:452][ 19]Cmd: SELECT NONE
+[2024.01.13-04.01.45:058][139]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.01.45:182][139]LogUObjectHash: Compacting FUObjectHashTables data took   1.05ms
+[2024.01.13-04.01.45:201][139]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.01.45:201][139]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/PoolroomsCD54F27045581E5D0411A0B598D91AB3.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.01.45:211][139]LogFileHelpers: Saving map 'Poolrooms' took 0.079
+[2024.01.13-04.01.45:222][139]LogFileHelpers: InternalPromptForCheckoutAndSave took 164 ms (total: 13.3 sec)
+[2024.01.13-04.01.45:223][139]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.01.45:223][139]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.02.23:136][712]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.02.23:248][712]LogUObjectHash: Compacting FUObjectHashTables data took   1.31ms
+[2024.01.13-04.02.23:268][712]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.02.23:269][712]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms6BBB24CE4EFBA4C1047F6697A603E06C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.02.23:278][712]LogFileHelpers: Saving map 'Poolrooms' took 0.081
+[2024.01.13-04.02.23:290][712]LogFileHelpers: InternalPromptForCheckoutAndSave took 154 ms (total: 13.5 sec)
+[2024.01.13-04.02.23:292][712]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.02.23:292][712]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.02.39:531][381]Cmd: MAP CHECK
+[2024.01.13-04.02.39:531][381]MapCheck: New page: Poolrooms - Jan 12, 2024, 6:02:39 PM
+[2024.01.13-04.02.39:532][381]MapCheck: Error: WorldSettings Maps need lighting rebuilt 
+[2024.01.13-04.02.39:534][381]MapCheck: Map check complete: 1 Error(s), 0 Warning(s), took 3.113ms to complete.
+[2024.01.13-04.02.52:290][658]MapCheck: New page: Map Check
+[2024.01.13-04.02.52:319][658]LightingResults: New page: Lighting Build - Jan 12, 2024, 6:02:52 PM
+[2024.01.13-04.02.52:441][658]LogSwarmInterface: [OpenConnection] Registering TCP channel ...
+[2024.01.13-04.02.52:815][658]LogSwarmInterface: [OpenConnection] Connecting to agent ...
+[2024.01.13-04.02.52:836][658]LogSwarmInterface: [TryOpenConnection] Testing the Agent
+[2024.01.13-04.02.53:897][658]LogSwarmInterface: [TryOpenConnection] Opening Connection to Agent
+[2024.01.13-04.02.53:897][658]LogSwarmInterface: [TryOpenConnection] Local Process ID is 5444
+[2024.01.13-04.03.01:290][658]LightingResults: Warning: No importance volume found and the scene is so large that the automatically synthesized volume will not yield good results.  Please add a tightly bounding lightmass importance volume to optimize your scene's quality and lighting build times.
+[2024.01.13-04.03.01:291][658]LogStaticLightingSystem: Running Lightmass w/ ImmediateImport mode ENABLED
+[2024.01.13-04.03.01:291][658]LogStaticLightingSystem: Running Lightmass w/ ImmediateProcess mode ENABLED
+[2024.01.13-04.03.01:291][658]LogStaticLightingSystem: Running Lightmass w/ Sorting mode ENABLED
+[2024.01.13-04.03.01:291][658]LogStaticLightingSystem: Running Lightmass w/ Mapping paddings ENABLED
+[2024.01.13-04.03.01:291][658]LogStaticLightingSystem: Running Lightmass w/ Mapping debug paddings DISABLED
+[2024.01.13-04.03.01:627][658]LogEditorBuildUtils: Build time 0:09
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: ================================================
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Total job queries 855, among them cache hits 434 (50.76%)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Tracking 419 distinct input hashes that result in 316 distinct outputs (75.42%)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: RAM used: 10.94 MiB of 1.60 GiB budget. Usage: 0.67%
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Shaders Compiled: 69
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Jobs assigned 69, completed 69 (100%)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Average time worker was idle: 730.57 s
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Time job spent in pending queue: average 1.06 s, longest 3.70 s
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Job execution time: average 1.79 s, max 4.78 s
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Job life time (pending + execution): average 2.86 s, max 4.82
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Shader code size: average 45.644 KiB, min 29.812 KiB, max 70.723 KiB
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 8.79 s
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Jobs were issued in 43 batches (only local compilation was used), average 1.60 jobs/batch
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Average processing rate: 7.85 jobs/sec
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Total thread time: 35.317 s
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Total thread preprocess time: 8.438 s
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Percentage time preprocessing: 23.89%
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Effective parallelization: 4.02 (times faster than compiling all shaders on one thread). Compare with number of workers: 10
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display:                                           FLumenCardPS<true> (compiled    1 times, average 0.94 sec, max 0.94 sec, min 0.94 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight (compiled    2 times, average 0.81 sec, max 0.91 sec, min 0.72 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display:                         TBasePassPSTLightMapPolicyLQSkylight (compiled    2 times, average 0.79 sec, max 0.90 sec, min 0.69 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy (compiled    7 times, average 0.71 sec, max 1.42 sec, min 0.19 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display:                                TMaterialCHSTLightMapPolicyHQ (compiled    2 times, average 0.70 sec, max 0.86 sec, min 0.53 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 13.99% of total time (compiled    7 times, average 0.71 sec, max 1.42 sec, min 0.19 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display:                                 TBasePassVSFNoLightMapPolicy - 7.58% of total time (compiled    6 times, average 0.45 sec, max 0.50 sec, min 0.19 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display:                                TMaterialCHSFNoLightMapPolicy - 5.11% of total time (compiled    3 times, average 0.60 sec, max 0.81 sec, min 0.30 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight - 4.61% of total time (compiled    2 times, average 0.81 sec, max 0.91 sec, min 0.72 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display:                         TBasePassPSTLightMapPolicyLQSkylight - 4.48% of total time (compiled    2 times, average 0.79 sec, max 0.90 sec, min 0.69 sec)
+[2024.01.13-04.03.01:655][658]LogShaderCompilers: Display: ================================================
+[2024.01.13-04.03.02:932][673]LogUObjectHash: Compacting FUObjectHashTables data took   1.02ms
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Reception_Shelf Object has wrapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Reception_Shelf Object has overlapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Reception_Shelf Lightmap UV are overlapping by 2.3%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Plant_Pot Object has wrapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Plant_Pot Object has overlapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Plant_Pot Lightmap UV are overlapping by 11.8%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Pool_Bench Object has overlapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Pool_Bench Lightmap UV are overlapping by 4.6%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Plant_Pot Object has wrapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Plant_Pot Object has overlapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Plant_Pot Lightmap UV are overlapping by 11.8%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Reception_Desk Object has wrapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Warning: Reception_Desk Object has overlapping UVs.
+[2024.01.13-04.03.04:794][677]LightingResults: Reception_Desk Lightmap UV are overlapping by 4.8%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:130][678]LightingResults: Warning: Plant_Pot Object has wrapping UVs.
+[2024.01.13-04.03.05:130][678]LightingResults: Warning: Plant_Pot Object has overlapping UVs.
+[2024.01.13-04.03.05:130][678]LightingResults: Plant_Pot Lightmap UV are overlapping by 11.8%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:130][678]LightingResults: Warning: Pool_Light_4 Object has overlapping UVs.
+[2024.01.13-04.03.05:130][678]LightingResults: Pool_Light_4 Lightmap UV are overlapping by 7.1%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:130][678]LightingResults: Warning: Pool_Light_4 Object has overlapping UVs.
+[2024.01.13-04.03.05:130][678]LightingResults: Pool_Light_4 Lightmap UV are overlapping by 7.1%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:130][678]LightingResults: Warning: Pool_Light_4 Object has overlapping UVs.
+[2024.01.13-04.03.05:130][678]LightingResults: Pool_Light_4 Lightmap UV are overlapping by 7.1%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:130][678]LightingResults: Warning: Pool_Light_4 Object has overlapping UVs.
+[2024.01.13-04.03.05:130][678]LightingResults: Pool_Light_4 Lightmap UV are overlapping by 7.1%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:130][678]LightingResults: Warning: Pool_World_Final_room Object has overlapping UVs.
+[2024.01.13-04.03.05:130][678]LightingResults: Pool_World_Final_room Lightmap UV are overlapping by 1.1%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Pool_Bench Object has overlapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Pool_Bench Lightmap UV are overlapping by 4.6%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Glass_Door Object has overlapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Glass_Door Lightmap UV are overlapping by 22.5%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Plant_Pot Object has wrapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Plant_Pot Object has overlapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Plant_Pot Lightmap UV are overlapping by 11.8%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Pool_Bench Object has overlapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Pool_Bench Lightmap UV are overlapping by 4.6%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Plant_Pot Object has wrapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Plant_Pot Object has overlapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Plant_Pot Lightmap UV are overlapping by 11.8%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Plant_Pot Object has wrapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Plant_Pot Object has overlapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Plant_Pot Lightmap UV are overlapping by 11.8%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:466][679]LightingResults: Warning: Pool_Bench Object has overlapping UVs.
+[2024.01.13-04.03.05:466][679]LightingResults: Pool_Bench Lightmap UV are overlapping by 4.6%. Please adjust content - Enable Error Coloring to visualize.
+[2024.01.13-04.03.05:796][680]Job is a success!
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport: Imported Volumetric Lightmap in 0.063s
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport:      Indirection Texture 32x32x32 = 0.1Mb
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport:      BrickData (all levels) 3.5Mb (trimmed 2.6Mb due to 0.010000 MinBrickError)
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport:      Bricks at depth
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport:          0: 1.0% covering 100.0% of volume
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport:          1: 9.2% covering 13.9% of volume
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport:          2: 89.7% covering 2.1% of volume
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport:      Bricks in each level
+[2024.01.13-04.03.06:813][682]LogVolumetricLightmapImport:          Poolrooms 			 770 bricks 	 100.0% (Persistent Level)
+[2024.01.13-04.03.06:840][682]LightingResults: Warning: PointLight_6 Severe performance loss: Failed to allocate shadowmap channel for stationary light due to overlap - light will fall back to dynamic shadows!
+[2024.01.13-04.03.06:840][682]LightingResults: Warning: RectLight_1 Severe performance loss: Failed to allocate shadowmap channel for stationary light due to overlap - light will fall back to dynamic shadows!
+[2024.01.13-04.03.06:840][682]LightingResults: Warning: RectLight_2 Severe performance loss: Failed to allocate shadowmap channel for stationary light due to overlap - light will fall back to dynamic shadows!
+[2024.01.13-04.03.06:840][682]LightingResults: Warning: PointLight_5 Severe performance loss: Failed to allocate shadowmap channel for stationary light due to overlap - light will fall back to dynamic shadows!
+[2024.01.13-04.03.06:877][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:HQ_Lightmap0_1 (TFO_AutoDXT, 1024x1024 x1x1x1) (Required Memory Estimate: 147.979156 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:884][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:LQ_Lightmap_0_1 (TFO_DXT1, 1024x1024 x1x1x1) (Required Memory Estimate: 123.104155 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:889][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:HQ_Lightmap0_2 (TFO_AutoDXT, 512x512 x1x1x1) (Required Memory Estimate: 45.479156 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:896][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:LQ_Lightmap_0_2 (TFO_DXT1, 512x512 x1x1x1) (Required Memory Estimate: 30.229082 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:901][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:HQ_Lightmap0_3 (TFO_AutoDXT, 256x256 x1x1x1) (Required Memory Estimate: 10.479041 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:903][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:LQ_Lightmap_0_3 (TFO_DXT1, 256x256 x1x1x1) (Required Memory Estimate: 7.604136 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:903][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:HQ_Lightmap0_4 (TFO_AutoDXT, 128x128 x1x1x1) (Required Memory Estimate: 2.666627 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:905][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:LQ_Lightmap_0_4 (TFO_DXT1, 128x128 x1x1x1) (Required Memory Estimate: 1.947886 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:906][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:HQ_Lightmap0_5 (TFO_AutoDXT, 128x128 x1x1x1) (Required Memory Estimate: 2.666627 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:907][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:LQ_Lightmap_0_5 (TFO_DXT1, 128x128 x1x1x1) (Required Memory Estimate: 1.947886 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:915][682]LogTexture: Display: Building textures: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData:ShadowMapTexture2D_0 (BGRA8, 1024x64 x1x1x1) (Required Memory Estimate: 2.062531 MB), EncodeSpeed: Fast
+[2024.01.13-04.03.06:929][682]Lightmass on DESKTOP-CBJUP4H: 2.92 sec total, 160 ms importing, 19 ms setup, 287 ms photons, 2.45 sec processing, 0 us extra exporting [101/101 mappings]. Threads: 46.6 sec total, 4.37 sec processing.
+[2024.01.13-04.03.06:956][682]LogStaticLightingSystem: Poolrooms_BuiltData storing lightmap data for 101 meshes in 7 LightmapResourceClusters (14.4 Meshes per cluster).
+[2024.01.13-04.03.06:968][682]LogMaterial: Display: Material /Game/Patchwork/Materials/Levels/Poolrooms/MI_Solid_Dirt_1.MI_Solid_Dirt_1 needed to have new flag set bUsedWithStaticLighting !
+[2024.01.13-04.03.06:991][682]LogMaterial: Display: Material /Game/Patchwork/Models/Levels/poolrooms/Beige.Beige needed to have new flag set bUsedWithStaticLighting !
+[2024.01.13-04.03.07:014][682]LogMaterial: Display: Material /Game/Patchwork/Models/Levels/poolrooms/White.White needed to have new flag set bUsedWithStaticLighting !
+[2024.01.13-04.03.07:037][682]LogMaterial: Display: Material /Game/Patchwork/Models/Levels/poolrooms/White_2.White_2 needed to have new flag set bUsedWithStaticLighting !
+[2024.01.13-04.03.07:061][682]LogMaterial: Display: Material /Game/Patchwork/Models/Levels/poolrooms/Metal.Metal needed to have new flag set bUsedWithStaticLighting !
+[2024.01.13-04.03.07:085][682]LogMaterial: Display: Material /Game/Patchwork/Materials/M_Lights.M_Lights needed to have new flag set bUsedWithStaticLighting !
+[2024.01.13-04.03.07:164][682]LogMaterial: Display: Material /Game/Patchwork/Materials/Levels/Poolrooms/MI_Tiles_White.MI_Tiles_White needed to have new flag set bUsedWithStaticLighting !
+[2024.01.13-04.03.07:220][682]LogUObjectHash: Compacting FUObjectHashTables data took   1.45ms
+[2024.01.13-04.03.07:256][682]LogStaticLightingSystem: Illumination: 14.5 sec (66 ms encoding lightmaps, 9 ms encoding shadowmaps)
+[2024.01.13-04.03.07:256][682]LogStaticLightingSystem: Lightmap texture memory:  2.8 MB (2.8 MB streaming, 0.0 MB non-streaming), 10 textures
+[2024.01.13-04.03.07:256][682]LogStaticLightingSystem: Shadowmap texture memory: 0.4 MB (0.4 MB streaming, 0.0 MB non-streaming), 1 textures
+[2024.01.13-04.03.13:276][682]DumpUnbuiltLightIteractions
+[2024.01.13-04.03.13:276][682]Lights with unbuilt interactions: 0
+[2024.01.13-04.03.13:276][682]
+[2024.01.13-04.03.13:276][682]Primitives with unbuilt interactions: 0
+[2024.01.13-04.03.14:178][683]Cmd: MAP CHECK NOTIFYRESULTS
+[2024.01.13-04.03.14:178][683]MapCheck: New page: Poolrooms - Jan 12, 2024, 6:03:14 PM
+[2024.01.13-04.03.14:178][683]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.501ms to complete.
+[2024.01.13-04.03.31:188][229]Cmd: TRANSACTION UNDO
+[2024.01.13-04.03.31:188][229]LogEditorTransaction: Undo Move Elements
+[2024.01.13-04.03.33:221][358]Cmd: TRANSACTION UNDO
+[2024.01.13-04.03.33:221][358]LogEditorTransaction: Undo Rotate Elements
+[2024.01.13-04.03.36:984][703]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.03.37:063][703]LogUObjectHash: Compacting FUObjectHashTables data took   1.06ms
+[2024.01.13-04.03.37:085][703]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.03.37:085][703]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms3338C32A4F0EFC2B4F10F09BF829E754.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.03.37:095][703]Message dialog closed, result: Ok, title: Unable to Check Out From Revision Control!, text: The following assets could not be successfully checked out from revision control:
+/Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData
+[2024.01.13-04.03.37:095][703]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.03.37:115][703]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData
+[2024.01.13-04.03.37:115][703]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms_BuiltData1A93B2F04F434789F309E8B294813244.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.uasset'
+[2024.01.13-04.03.37:117][703]LogFileHelpers: InternalPromptForCheckoutAndSave took 20 ms (total: 13.5 sec)
+[2024.01.13-04.03.37:117][703]Message dialog closed, result: Ok, title: Unable to Check Out From Revision Control!, text: The following assets could not be successfully checked out from revision control:
+/Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData
+[2024.01.13-04.03.37:117][703]LogFileHelpers: Saving map 'Poolrooms' took 0.104
+[2024.01.13-04.03.37:128][703]LogFileHelpers: InternalPromptForCheckoutAndSave took 144 ms (total: 13.6 sec)
+[2024.01.13-04.03.37:130][703]AssetCheck: New page: Asset Save: multiple assets
+[2024.01.13-04.03.37:130][703]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.03.37:130][703]LogContentValidation: Display: Validating /Script/Engine.MapBuildDataRegistry /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms_BuiltData.Poolrooms_BuiltData
+[2024.01.13-04.03.38:680][834]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.03.38:762][834]LogUObjectHash: Compacting FUObjectHashTables data took   0.44ms
+[2024.01.13-04.03.38:779][834]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.03.38:779][834]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/PoolroomsB16F784A40BF18D6BFEDBA9820BE63D1.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.03.38:789][834]LogFileHelpers: All files are already saved.
+[2024.01.13-04.03.38:789][834]LogFileHelpers: Saving map 'Poolrooms' took 0.076
+[2024.01.13-04.03.38:800][834]LogFileHelpers: InternalPromptForCheckoutAndSave took 119 ms (total: 13.7 sec)
+[2024.01.13-04.03.38:801][834]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.03.38:801][834]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.03.41:470][ 45]Cmd: TRANSACTION UNDO
+[2024.01.13-04.03.41:471][ 45]LogEditorTransaction: Undo Clicking on Elements
+[2024.01.13-04.03.42:267][ 77]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.03.42:380][ 77]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2024.01.13-04.03.42:399][ 77]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.03.42:399][ 77]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms667A67B149738FC9A4F5C88F5A5D69E6.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.03.42:409][ 77]LogFileHelpers: All files are already saved.
+[2024.01.13-04.03.42:409][ 77]LogFileHelpers: Saving map 'Poolrooms' took 0.079
+[2024.01.13-04.03.42:421][ 77]LogFileHelpers: InternalPromptForCheckoutAndSave took 155 ms (total: 13.9 sec)
+[2024.01.13-04.03.42:423][ 77]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.03.42:423][ 77]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.03.43:984][220]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.03.44:079][220]LogUObjectHash: Compacting FUObjectHashTables data took   0.46ms
+[2024.01.13-04.03.44:096][220]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.03.44:096][220]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms67CB9A824AAE7A9977AD41A5EE6F395C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.03.44:106][220]LogFileHelpers: All files are already saved.
+[2024.01.13-04.03.44:106][220]LogFileHelpers: Saving map 'Poolrooms' took 0.075
+[2024.01.13-04.03.44:118][220]LogFileHelpers: InternalPromptForCheckoutAndSave took 133 ms (total: 14.0 sec)
+[2024.01.13-04.03.44:119][220]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.03.44:119][220]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.03.47:692][545]LogSlate: Window 'Message Log' being destroyed
+[2024.01.13-04.03.47:706][545]LogSlate: Window 'Message Log' being destroyed
+[2024.01.13-04.04.51:434][240]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.04.51:534][241]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.04.51:602][242]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.04.51:670][243]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.04.55:095][578]LogAssetEditorSubsystem: Opening Asset editor for DataTable /Game/Patchwork/Data/Datatables/DT_WorldSettings.DT_WorldSettings
+[2024.01.13-04.05.32:396][165]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.05.32:467][165]LogSavePackage: Moving output files for package: /Game/Patchwork/Data/Datatables/DT_WorldSettings
+[2024.01.13-04.05.32:467][165]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/DT_WorldSettingsDA9D433E449043ACD25A5BA760EAFB8C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Data/Datatables/DT_WorldSettings.uasset'
+[2024.01.13-04.05.32:473][165]LogFileHelpers: InternalPromptForCheckoutAndSave took 76 ms (total: 14.1 sec)
+[2024.01.13-04.05.32:474][165]AssetCheck: New page: Asset Save: DT_WorldSettings
+[2024.01.13-04.05.32:474][165]LogContentValidation: Display: Validating /Script/Engine.DataTable /Game/Patchwork/Data/Datatables/DT_WorldSettings.DT_WorldSettings
+[2024.01.13-04.05.36:600][570]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.05.36:662][570]LogSavePackage: Moving output files for package: /Game/Patchwork/Data/Datatables/DT_WorldSettings
+[2024.01.13-04.05.36:662][570]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/DT_WorldSettingsAA634E5C4943E60502DCB59534EDEE9E.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Data/Datatables/DT_WorldSettings.uasset'
+[2024.01.13-04.05.36:666][570]LogFileHelpers: InternalPromptForCheckoutAndSave took 66 ms (total: 14.2 sec)
+[2024.01.13-04.05.36:668][570]AssetCheck: New page: Asset Save: DT_WorldSettings
+[2024.01.13-04.05.36:668][570]LogContentValidation: Display: Validating /Script/Engine.DataTable /Game/Patchwork/Data/Datatables/DT_WorldSettings.DT_WorldSettings
+[2024.01.13-04.05.37:614][660]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.05.37:680][660]LogSavePackage: Moving output files for package: /Game/Patchwork/Data/Datatables/DT_WorldSettings
+[2024.01.13-04.05.37:680][660]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/DT_WorldSettingsC2A4307B4850734400333AB617376FA2.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Data/Datatables/DT_WorldSettings.uasset'
+[2024.01.13-04.05.37:685][660]LogFileHelpers: InternalPromptForCheckoutAndSave took 70 ms (total: 14.2 sec)
+[2024.01.13-04.05.37:686][660]AssetCheck: New page: Asset Save: DT_WorldSettings
+[2024.01.13-04.05.37:686][660]LogContentValidation: Display: Validating /Script/Engine.DataTable /Game/Patchwork/Data/Datatables/DT_WorldSettings.DT_WorldSettings
+[2024.01.13-04.05.37:893][681]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.05.37:997][681]LogUObjectHash: Compacting FUObjectHashTables data took   0.89ms
+[2024.01.13-04.05.38:022][681]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.05.38:022][681]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms958206A3442738A7E4BD8D95993C4ACE.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.05.38:031][681]LogFileHelpers: All files are already saved.
+[2024.01.13-04.05.38:031][681]LogFileHelpers: Saving map 'Poolrooms' took 0.085
+[2024.01.13-04.05.38:036][681]LogFileHelpers: InternalPromptForCheckoutAndSave took 143 ms (total: 14.4 sec)
+[2024.01.13-04.05.38:037][681]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.05.38:037][681]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.05.39:156][790]LogSlate: Window 'DT_WorldSettings' being destroyed
+[2024.01.13-04.05.48:282][636]LogActorFactory: Actor Factory attempting to spawn Class /Script/Engine.PlayerStart
+[2024.01.13-04.05.48:282][636]LogActorFactory: Actor Factory attempting to spawn Class /Script/Engine.PlayerStart
+[2024.01.13-04.05.48:283][636]LogActorFactory: Actor Factory spawned Class /Script/Engine.PlayerStart as actor: PlayerStart /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms:PersistentLevel.PlayerStart_0
+[2024.01.13-04.05.48:283][636]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.05.48:283][636]LogActorFactory: Actor Factory spawned Class /Script/Engine.PlayerStart as actor: PlayerStart /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms:PersistentLevel.PlayerStart_0
+[2024.01.13-04.05.48:283][636]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.05.48:783][684]LogActorFactory: Actor Factory attempting to spawn Class /Script/Engine.PlayerStart
+[2024.01.13-04.05.48:783][684]LogActorFactory: Actor Factory attempting to spawn Class /Script/Engine.PlayerStart
+[2024.01.13-04.05.48:785][684]LogActorFactory: Actor Factory spawned Class /Script/Engine.PlayerStart as actor: PlayerStart /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms:PersistentLevel.PlayerStart_1
+[2024.01.13-04.05.48:785][684]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.05.48:785][684]LogActorFactory: Actor Factory spawned Class /Script/Engine.PlayerStart as actor: PlayerStart /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms:PersistentLevel.PlayerStart_1
+[2024.01.13-04.05.48:785][684]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.05.51:413][926]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.05.52:957][ 74]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.05.53:063][ 74]LogUObjectHash: Compacting FUObjectHashTables data took   0.96ms
+[2024.01.13-04.05.53:084][ 74]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.05.53:084][ 74]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms3B8E11824587CE43C58CC7BED8F4B90A.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.05.53:093][ 74]LogFileHelpers: All files are already saved.
+[2024.01.13-04.05.53:093][ 74]LogFileHelpers: Saving map 'Poolrooms' took 0.081
+[2024.01.13-04.05.53:098][ 74]LogFileHelpers: InternalPromptForCheckoutAndSave took 140 ms (total: 14.5 sec)
+[2024.01.13-04.05.53:098][ 74]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.05.53:098][ 74]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.05.53:788][147]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.13-04.05.53:798][147]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.13-04.05.53:798][147]PIE: New page: PIE session: Poolrooms (Jan 12, 2024, 6:05:53 PM)
+[2024.01.13-04.05.53:821][147]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.05.53:826][147]LogPlayLevel: PIE: StaticDuplicateObject took: (0.005730s)
+[2024.01.13-04.05.53:826][147]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms to /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms (0.005769s)
+[2024.01.13-04.05.53:839][147]LogUObjectHash: Compacting FUObjectHashTables data took   1.02ms
+[2024.01.13-04.05.53:842][147]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.05.53:842][147]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.05.53:843][147]LogAIModule: Creating AISystem for world Poolrooms
+[2024.01.13-04.05.53:843][147]LogPlayLevel: PIE: World Init took: (0.001071s)
+[2024.01.13-04.05.53:843][147]LogAudio: Display: Creating Audio Device:                 Id: 4, Scope: Unique, Realtime: True
+[2024.01.13-04.05.53:843][147]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.13-04.05.53:843][147]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.13-04.05.53:843][147]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.13-04.05.53:843][147]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.13-04.05.53:843][147]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.13-04.05.53:843][147]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.13-04.05.53:843][147]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.13-04.05.53:843][147]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.13-04.05.53:844][147]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.13-04.05.53:844][147]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.13-04.05.53:844][147]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.13-04.05.53:845][147]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.13-04.05.53:870][147]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.13-04.05.53:870][147]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.13-04.05.53:870][147]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.13-04.05.53:870][147]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.13-04.05.53:872][147]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=4
+[2024.01.13-04.05.53:872][147]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=4
+[2024.01.13-04.05.53:873][147]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=4
+[2024.01.13-04.05.53:873][147]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=4
+[2024.01.13-04.05.53:873][147]LogInit: FAudioDevice initialized with ID 4.
+[2024.01.13-04.05.53:873][147]LogAudio: Display: Audio Device (ID: 4) registered with world 'Poolrooms'.
+[2024.01.13-04.05.53:873][147]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 4
+[2024.01.13-04.05.53:874][147]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.13-04.05.53:879][147]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.13-04.05.53:881][147]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms up for play (max tick rate 0) at 2024.01.12-23.05.53
+[2024.01.13-04.05.53:881][147]LogWorld: Bringing up level for play took: 0.002382
+[2024.01.13-04.05.53:882][147]LogOnline: OSS: Created online subsystem instance for: :Context_44
+[2024.01.13-04.05.53:885][147]PIE: Server logged in
+[2024.01.13-04.05.53:886][147]PIE: Play in editor total start time 0.088 seconds.
+[2024.01.13-04.05.53:903][148]LogBlueprintUserMessages: [PatchworkGameInstance_C_2] Hello
+[2024.01.13-04.05.55:711][288]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.05.55:711][288]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.05.55:711][288]LogWorld: UWorld::CleanupWorld for Poolrooms, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.05.55:712][288]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.05.55:715][288]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.13-04.05.55:720][288]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.05.55:728][288]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.05.55:730][288]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 4
+[2024.01.13-04.05.55:730][288]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=4
+[2024.01.13-04.05.55:731][288]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=4
+[2024.01.13-04.05.55:736][288]LogUObjectHash: Compacting FUObjectHashTables data took   1.10ms
+[2024.01.13-04.05.55:784][289]LogPlayLevel: Display: Destroying online subsystem :Context_44
+[2024.01.13-04.05.59:917][730]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.06.00:013][730]LogUObjectHash: Compacting FUObjectHashTables data took   1.01ms
+[2024.01.13-04.06.00:032][730]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.06.00:033][730]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/PoolroomsB8DC56A041F1E11124AACDAF12E814B4.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.06.00:043][730]LogFileHelpers: All files are already saved.
+[2024.01.13-04.06.00:043][730]LogFileHelpers: Saving map 'Poolrooms' took 0.079
+[2024.01.13-04.06.00:048][730]LogFileHelpers: InternalPromptForCheckoutAndSave took 130 ms (total: 14.7 sec)
+[2024.01.13-04.06.00:049][730]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.06.00:049][730]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.06.38:897][703]Cmd: SELECT NONE
+[2024.01.13-04.06.50:755][772]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.06.50:862][772]LogUObjectHash: Compacting FUObjectHashTables data took   0.76ms
+[2024.01.13-04.06.50:882][772]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.06.50:882][772]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/PoolroomsA615A32B4883F2701E5DA397851A3CD4.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.06.50:891][772]LogFileHelpers: All files are already saved.
+[2024.01.13-04.06.50:891][772]LogFileHelpers: Saving map 'Poolrooms' took 0.079
+[2024.01.13-04.06.50:896][772]LogFileHelpers: InternalPromptForCheckoutAndSave took 142 ms (total: 14.8 sec)
+[2024.01.13-04.06.50:897][772]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.06.50:897][772]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.07.10:728][720]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.10:729][720]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.11:143][725]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.11:143][725]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.11:360][733]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.11:360][733]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.11:521][740]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.11:521][740]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.11:696][753]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.11:696][753]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.11:883][760]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.11:883][760]LogEditorTransaction: Undo Move World Outliner Items
+[2024.01.13-04.07.12:026][773]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.12:026][773]LogEditorTransaction: Undo Move World Outliner Items
+[2024.01.13-04.07.12:222][791]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.12:222][791]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.12:393][807]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.12:393][807]LogEditorTransaction: Undo Select None
+[2024.01.13-04.07.12:566][820]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.12:566][820]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.12:698][829]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.12:698][829]LogEditorTransaction: Undo Clicking on Elements
+[2024.01.13-04.07.12:827][840]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.12:827][840]LogEditorTransaction: Undo Rotate Elements
+[2024.01.13-04.07.12:961][853]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.12:961][853]LogEditorTransaction: Undo Create Actors
+[2024.01.13-04.07.13:106][860]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.13:106][860]LogEditorTransaction: Undo Clicking on Elements
+[2024.01.13-04.07.13:275][870]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.13:275][870]LogEditorTransaction: Undo Rename Data Table Row
+[2024.01.13-04.07.13:441][887]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.13:441][887]LogEditorTransaction: Undo Edit Default Footstep
+[2024.01.13-04.07.13:756][918]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.13:756][918]LogEditorTransaction: Undo Edit Subtitle
+[2024.01.13-04.07.14:112][952]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.14:112][952]LogEditorTransaction: Undo Edit Display Name
+[2024.01.13-04.07.14:283][964]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.14:283][964]LogEditorTransaction: Undo Edit Perspective Mode
+[2024.01.13-04.07.14:424][966]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.14:424][966]LogEditorTransaction: Undo Add Data Table Row
+[2024.01.13-04.07.14:593][968]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.14:593][968]LogEditorTransaction: Undo Clicking on Elements
+[2024.01.13-04.07.22:530][714]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.22:530][714]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.22:707][717]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.22:707][717]LogEditorTransaction: Undo Clicking on Actors
+[2024.01.13-04.07.53:217][606]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.53:217][606]LogEditorTransaction: Undo Move Elements
+[2024.01.13-04.07.58:363][ 18]Cmd: TRANSACTION UNDO
+[2024.01.13-04.07.58:363][ 18]LogEditorTransaction: Undo Move Elements
+[2024.01.13-04.08.07:891][813]Cmd: TRANSACTION UNDO
+[2024.01.13-04.08.07:892][813]LogEditorTransaction: Undo Move Elements
+[2024.01.13-04.08.29:558][571]LogMaterial: Warning: [AssetLog] B:\UnrealEngine\UE\UE_5.3\Engine\Content\EngineMaterials\HighResolutionScreenshotMaskFunction.uasset: Failed to compile Material for platform PCD3D_SM6, Default Material will be used in game.
+	SceneTexture expressions cannot be used in opaque materials except if used with the Single Layer Water shading model.
+
+[2024.01.13-04.08.41:785][522]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.08.41:895][522]LogUObjectHash: Compacting FUObjectHashTables data took   0.87ms
+[2024.01.13-04.08.41:918][522]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.08.41:918][522]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms243231CC4D4A65F4ED8E70B78261BD24.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.08.41:927][522]LogFileHelpers: All files are already saved.
+[2024.01.13-04.08.41:928][522]LogFileHelpers: Saving map 'Poolrooms' took 0.081
+[2024.01.13-04.08.41:940][522]LogFileHelpers: InternalPromptForCheckoutAndSave took 154 ms (total: 15.0 sec)
+[2024.01.13-04.08.41:941][522]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.08.41:941][522]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.08.49:201][ 68]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.08.49:310][ 68]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2024.01.13-04.08.49:329][ 68]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.08.49:330][ 68]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms9C7C717F4CA715037C5D75BCA3AF897D.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.08.49:339][ 68]LogFileHelpers: All files are already saved.
+[2024.01.13-04.08.49:339][ 68]LogFileHelpers: Saving map 'Poolrooms' took 0.077
+[2024.01.13-04.08.49:360][ 68]LogFileHelpers: InternalPromptForCheckoutAndSave took 158 ms (total: 15.1 sec)
+[2024.01.13-04.08.49:361][ 68]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.08.49:361][ 68]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.09.12:905][608]Cmd: SELECT NONE
+[2024.01.13-04.09.18:003][997]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.13-04.09.18:013][997]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.13-04.09.18:014][997]PIE: New page: PIE session: Poolrooms (Jan 12, 2024, 6:09:18 PM)
+[2024.01.13-04.09.18:014][997]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.09.18:021][997]LogPlayLevel: PIE: StaticDuplicateObject took: (0.007684s)
+[2024.01.13-04.09.18:021][997]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms to /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms (0.007745s)
+[2024.01.13-04.09.18:036][997]LogUObjectHash: Compacting FUObjectHashTables data took   0.90ms
+[2024.01.13-04.09.18:040][997]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.09.18:040][997]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.09.18:041][997]LogAIModule: Creating AISystem for world Poolrooms
+[2024.01.13-04.09.18:041][997]LogPlayLevel: PIE: World Init took: (0.001017s)
+[2024.01.13-04.09.18:041][997]LogAudio: Display: Creating Audio Device:                 Id: 5, Scope: Unique, Realtime: True
+[2024.01.13-04.09.18:041][997]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.13-04.09.18:041][997]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.13-04.09.18:041][997]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.13-04.09.18:041][997]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.13-04.09.18:041][997]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.13-04.09.18:041][997]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.13-04.09.18:041][997]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.13-04.09.18:041][997]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.13-04.09.18:042][997]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.13-04.09.18:042][997]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.13-04.09.18:042][997]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.13-04.09.18:043][997]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.13-04.09.18:068][997]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.13-04.09.18:069][997]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.13-04.09.18:069][997]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.13-04.09.18:069][997]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.13-04.09.18:069][997]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=5
+[2024.01.13-04.09.18:069][997]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=5
+[2024.01.13-04.09.18:071][997]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=5
+[2024.01.13-04.09.18:071][997]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=5
+[2024.01.13-04.09.18:071][997]LogInit: FAudioDevice initialized with ID 5.
+[2024.01.13-04.09.18:071][997]LogAudio: Display: Audio Device (ID: 5) registered with world 'Poolrooms'.
+[2024.01.13-04.09.18:071][997]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 5
+[2024.01.13-04.09.18:071][997]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.13-04.09.18:073][997]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.13-04.09.18:076][997]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms up for play (max tick rate 0) at 2024.01.12-23.09.18
+[2024.01.13-04.09.18:076][997]LogWorld: Bringing up level for play took: 0.002318
+[2024.01.13-04.09.18:078][997]LogOnline: OSS: Created online subsystem instance for: :Context_45
+[2024.01.13-04.09.18:079][997]PIE: Server logged in
+[2024.01.13-04.09.18:080][997]PIE: Play in editor total start time 0.067 seconds.
+[2024.01.13-04.09.18:095][998]LogBlueprintUserMessages: [PatchworkGameInstance_C_3] Hello
+[2024.01.13-04.09.19:632][ 20]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.09.19:632][ 20]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.09.19:632][ 20]LogWorld: UWorld::CleanupWorld for Poolrooms, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.09.19:632][ 20]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.09.19:639][ 20]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.13-04.09.19:644][ 20]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.09.19:655][ 20]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.09.19:656][ 20]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 5
+[2024.01.13-04.09.19:656][ 20]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=5
+[2024.01.13-04.09.19:657][ 20]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=5
+[2024.01.13-04.09.19:664][ 20]LogUObjectHash: Compacting FUObjectHashTables data took   1.01ms
+[2024.01.13-04.09.19:696][ 21]LogPlayLevel: Display: Destroying online subsystem :Context_45
+[2024.01.13-04.09.31:530][ 91]LogActorFactory: Actor Factory attempting to spawn Class /Script/Engine.PlayerStart
+[2024.01.13-04.09.31:530][ 91]LogActorFactory: Actor Factory attempting to spawn Class /Script/Engine.PlayerStart
+[2024.01.13-04.09.31:531][ 91]LogActorFactory: Actor Factory spawned Class /Script/Engine.PlayerStart as actor: PlayerStart /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms:PersistentLevel.PlayerStart_2
+[2024.01.13-04.09.31:531][ 91]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.09.31:531][ 91]LogActorFactory: Actor Factory spawned Class /Script/Engine.PlayerStart as actor: PlayerStart /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms:PersistentLevel.PlayerStart_2
+[2024.01.13-04.09.31:531][ 91]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.09.32:083][125]LogActorFactory: Actor Factory attempting to spawn Class /Script/Engine.PlayerStart
+[2024.01.13-04.09.32:083][125]LogActorFactory: Actor Factory attempting to spawn Class /Script/Engine.PlayerStart
+[2024.01.13-04.09.32:085][125]LogActorFactory: Actor Factory spawned Class /Script/Engine.PlayerStart as actor: PlayerStart /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms:PersistentLevel.PlayerStart_3
+[2024.01.13-04.09.32:085][125]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.09.32:085][125]LogActorFactory: Actor Factory spawned Class /Script/Engine.PlayerStart as actor: PlayerStart /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms:PersistentLevel.PlayerStart_3
+[2024.01.13-04.09.32:085][125]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.09.35:431][347]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.09.36:213][406]LogNavigationPoint: PostEditMove Clear paths rebuilt
+[2024.01.13-04.09.46:286][271]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.13-04.09.46:295][271]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.13-04.09.46:295][271]PIE: New page: PIE session: Poolrooms (Jan 12, 2024, 6:09:46 PM)
+[2024.01.13-04.09.46:295][271]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.09.46:302][271]LogPlayLevel: PIE: StaticDuplicateObject took: (0.005183s)
+[2024.01.13-04.09.46:302][271]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms to /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms (0.005212s)
+[2024.01.13-04.09.46:316][271]LogUObjectHash: Compacting FUObjectHashTables data took   0.90ms
+[2024.01.13-04.09.46:320][271]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.09.46:320][271]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.09.46:320][271]LogAIModule: Creating AISystem for world Poolrooms
+[2024.01.13-04.09.46:320][271]LogPlayLevel: PIE: World Init took: (0.001013s)
+[2024.01.13-04.09.46:320][271]LogAudio: Display: Creating Audio Device:                 Id: 6, Scope: Unique, Realtime: True
+[2024.01.13-04.09.46:320][271]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.13-04.09.46:320][271]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.13-04.09.46:320][271]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.13-04.09.46:321][271]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.13-04.09.46:321][271]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.13-04.09.46:321][271]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.13-04.09.46:321][271]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.13-04.09.46:321][271]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.13-04.09.46:321][271]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.13-04.09.46:321][271]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.13-04.09.46:321][271]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.13-04.09.46:323][271]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.13-04.09.46:346][271]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.13-04.09.46:346][271]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.13-04.09.46:346][271]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.13-04.09.46:346][271]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.13-04.09.46:347][271]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=6
+[2024.01.13-04.09.46:347][271]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=6
+[2024.01.13-04.09.46:349][271]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=6
+[2024.01.13-04.09.46:349][271]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=6
+[2024.01.13-04.09.46:349][271]LogInit: FAudioDevice initialized with ID 6.
+[2024.01.13-04.09.46:349][271]LogAudio: Display: Audio Device (ID: 6) registered with world 'Poolrooms'.
+[2024.01.13-04.09.46:349][271]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 6
+[2024.01.13-04.09.46:349][271]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.13-04.09.46:352][271]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.13-04.09.46:355][271]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms up for play (max tick rate 0) at 2024.01.12-23.09.46
+[2024.01.13-04.09.46:355][271]LogWorld: Bringing up level for play took: 0.002399
+[2024.01.13-04.09.46:356][271]LogOnline: OSS: Created online subsystem instance for: :Context_46
+[2024.01.13-04.09.46:358][271]PIE: Server logged in
+[2024.01.13-04.09.46:358][271]PIE: Play in editor total start time 0.062 seconds.
+[2024.01.13-04.09.46:458][273]LogBlueprintUserMessages: [PatchworkGameInstance_C_4] Hello
+[2024.01.13-04.09.47:481][349]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.09.47:481][349]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.09.47:481][349]LogWorld: UWorld::CleanupWorld for Poolrooms, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.09.47:482][349]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.09.47:485][349]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.13-04.09.47:490][349]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.09.47:503][349]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2024.01.13-04.09.47:503][349]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 6
+[2024.01.13-04.09.47:503][349]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=6
+[2024.01.13-04.09.47:504][349]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=6
+[2024.01.13-04.09.47:507][349]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.09.47:510][349]LogUObjectHash: Compacting FUObjectHashTables data took   1.06ms
+[2024.01.13-04.09.47:561][350]LogPlayLevel: Display: Destroying online subsystem :Context_46
+[2024.01.13-04.09.58:660][163]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Plane.Pool_World_Plane
+[2024.01.13-04.09.58:744][163]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.09.58:744][163]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.09.59:069][163]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-04.10.09:372][713]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.10.09:461][713]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Plane
+[2024.01.13-04.10.09:461][713]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_World_Plane520C40244F8B02C2583DA185DEB0A5D0.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Plane.uasset'
+[2024.01.13-04.10.09:467][713]LogFileHelpers: InternalPromptForCheckoutAndSave took 94 ms (total: 15.2 sec)
+[2024.01.13-04.10.09:468][713]AssetCheck: New page: Asset Save: Pool_World_Plane
+[2024.01.13-04.10.09:468][713]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Plane.Pool_World_Plane
+[2024.01.13-04.10.09:766][731]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.10.09:877][731]LogUObjectHash: Compacting FUObjectHashTables data took   1.05ms
+[2024.01.13-04.10.09:895][731]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.10.09:895][731]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms48BB8ABF432043640B6D6495C1B5175C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.10.09:906][731]LogFileHelpers: All files are already saved.
+[2024.01.13-04.10.09:906][731]LogFileHelpers: Saving map 'Poolrooms' took 0.078
+[2024.01.13-04.10.09:917][731]LogFileHelpers: InternalPromptForCheckoutAndSave took 150 ms (total: 15.4 sec)
+[2024.01.13-04.10.09:918][731]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.10.09:918][731]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.10.10:689][775]LogSlate: Window 'Pool_World_Plane' being destroyed
+[2024.01.13-04.10.10:738][775]LogWorld: UWorld::CleanupWorld for World_41, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.10.10:738][775]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.10.13:127][957]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.13-04.10.13:138][957]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.13-04.10.13:138][957]PIE: New page: PIE session: Poolrooms (Jan 12, 2024, 6:10:13 PM)
+[2024.01.13-04.10.13:138][957]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.10.13:143][957]LogPlayLevel: PIE: StaticDuplicateObject took: (0.005346s)
+[2024.01.13-04.10.13:143][957]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms to /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms (0.005386s)
+[2024.01.13-04.10.13:157][957]LogUObjectHash: Compacting FUObjectHashTables data took   1.01ms
+[2024.01.13-04.10.13:162][957]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.10.13:162][957]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.10.13:162][957]LogAIModule: Creating AISystem for world Poolrooms
+[2024.01.13-04.10.13:163][957]LogPlayLevel: PIE: World Init took: (0.000958s)
+[2024.01.13-04.10.13:163][957]LogAudio: Display: Creating Audio Device:                 Id: 7, Scope: Unique, Realtime: True
+[2024.01.13-04.10.13:163][957]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.13-04.10.13:163][957]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.13-04.10.13:163][957]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.13-04.10.13:163][957]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.13-04.10.13:163][957]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.13-04.10.13:163][957]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.13-04.10.13:163][957]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.13-04.10.13:163][957]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.13-04.10.13:163][957]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.13-04.10.13:163][957]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.13-04.10.13:163][957]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.13-04.10.13:165][957]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.13-04.10.13:189][957]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.13-04.10.13:189][957]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.13-04.10.13:189][957]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.13-04.10.13:189][957]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.13-04.10.13:190][957]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=7
+[2024.01.13-04.10.13:190][957]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=7
+[2024.01.13-04.10.13:191][957]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=7
+[2024.01.13-04.10.13:191][957]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=7
+[2024.01.13-04.10.13:191][957]LogInit: FAudioDevice initialized with ID 7.
+[2024.01.13-04.10.13:191][957]LogAudio: Display: Audio Device (ID: 7) registered with world 'Poolrooms'.
+[2024.01.13-04.10.13:192][957]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 7
+[2024.01.13-04.10.13:192][957]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.13-04.10.13:194][957]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.13-04.10.13:196][957]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms up for play (max tick rate 0) at 2024.01.12-23.10.13
+[2024.01.13-04.10.13:196][957]LogWorld: Bringing up level for play took: 0.002212
+[2024.01.13-04.10.13:198][957]LogOnline: OSS: Created online subsystem instance for: :Context_48
+[2024.01.13-04.10.13:203][957]PIE: Server logged in
+[2024.01.13-04.10.13:204][957]PIE: Play in editor total start time 0.066 seconds.
+[2024.01.13-04.10.13:221][958]LogBlueprintUserMessages: [PatchworkGameInstance_C_5] Hello
+[2024.01.13-04.10.20:622][587]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.10.20:622][587]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.10.20:622][587]LogWorld: UWorld::CleanupWorld for Poolrooms, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.10.20:622][587]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.10.20:625][587]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.13-04.10.20:630][587]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.10.20:643][587]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.10.20:643][587]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 7
+[2024.01.13-04.10.20:643][587]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=7
+[2024.01.13-04.10.20:645][587]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=7
+[2024.01.13-04.10.20:650][587]LogUObjectHash: Compacting FUObjectHashTables data took   0.93ms
+[2024.01.13-04.10.20:709][588]LogPlayLevel: Display: Destroying online subsystem :Context_48
+[2024.01.13-04.10.26:708][ 75]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_BezierCurve_001.Pool_World_BezierCurve_001
+[2024.01.13-04.10.26:793][ 75]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.10.26:793][ 75]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.10.27:118][ 75]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-04.10.32:261][372]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.10.32:348][372]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_BezierCurve_001
+[2024.01.13-04.10.32:348][372]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_World_BezierCurve_0012EAF64104C3FCFCCD79486B518A1217E.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_BezierCurve_001.uasset'
+[2024.01.13-04.10.32:354][372]LogFileHelpers: InternalPromptForCheckoutAndSave took 93 ms (total: 15.5 sec)
+[2024.01.13-04.10.32:355][372]AssetCheck: New page: Asset Save: Pool_World_BezierCurve_001
+[2024.01.13-04.10.32:356][372]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_BezierCurve_001.Pool_World_BezierCurve_001
+[2024.01.13-04.10.33:604][449]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.10.33:679][449]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_BezierCurve_001
+[2024.01.13-04.10.33:680][449]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_World_BezierCurve_001E80FB0574F7EB2E6AC022CB8342C4C6C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_BezierCurve_001.uasset'
+[2024.01.13-04.10.33:684][449]LogFileHelpers: InternalPromptForCheckoutAndSave took 80 ms (total: 15.5 sec)
+[2024.01.13-04.10.33:685][449]AssetCheck: New page: Asset Save: Pool_World_BezierCurve_001
+[2024.01.13-04.10.33:685][449]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_BezierCurve_001.Pool_World_BezierCurve_001
+[2024.01.13-04.10.34:244][484]LogSlate: Window 'Pool_World_BezierCurve_001' being destroyed
+[2024.01.13-04.10.34:293][484]LogWorld: UWorld::CleanupWorld for World_42, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.10.34:293][484]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.10.37:676][736]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Cylinder_001.Pool_World_Cylinder_001
+[2024.01.13-04.10.37:761][736]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.10.37:761][736]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.10.38:084][736]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-04.10.41:618][943]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.10.41:702][943]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Cylinder_001
+[2024.01.13-04.10.41:703][943]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_World_Cylinder_0015E4F8F3C455605EB811CE78A9278DB77.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Cylinder_001.uasset'
+[2024.01.13-04.10.41:709][943]LogFileHelpers: InternalPromptForCheckoutAndSave took 90 ms (total: 15.6 sec)
+[2024.01.13-04.10.41:710][943]AssetCheck: New page: Asset Save: Pool_World_Cylinder_001
+[2024.01.13-04.10.41:710][943]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Cylinder_001.Pool_World_Cylinder_001
+[2024.01.13-04.10.41:753][947]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.10.41:871][947]LogUObjectHash: Compacting FUObjectHashTables data took   1.00ms
+[2024.01.13-04.10.41:889][947]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.10.41:889][947]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms4EF2DE294AA8C4631ABD2784F399861B.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.10.41:900][947]LogFileHelpers: All files are already saved.
+[2024.01.13-04.10.41:900][947]LogFileHelpers: Saving map 'Poolrooms' took 0.079
+[2024.01.13-04.10.41:905][947]LogFileHelpers: InternalPromptForCheckoutAndSave took 150 ms (total: 15.8 sec)
+[2024.01.13-04.10.41:906][947]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.10.41:906][947]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.10.42:162][964]LogSlate: Window 'Pool_World_Cylinder_001' being destroyed
+[2024.01.13-04.10.42:209][964]LogWorld: UWorld::CleanupWorld for World_43, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.10.42:209][964]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.10.47:817][421]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.13-04.10.47:827][421]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.13-04.10.47:827][421]PIE: New page: PIE session: Poolrooms (Jan 12, 2024, 6:10:47 PM)
+[2024.01.13-04.10.47:827][421]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.10.47:832][421]LogPlayLevel: PIE: StaticDuplicateObject took: (0.005343s)
+[2024.01.13-04.10.47:832][421]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms to /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms (0.005373s)
+[2024.01.13-04.10.47:847][421]LogUObjectHash: Compacting FUObjectHashTables data took   1.06ms
+[2024.01.13-04.10.47:851][421]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.10.47:851][421]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.10.47:851][421]LogAIModule: Creating AISystem for world Poolrooms
+[2024.01.13-04.10.47:852][421]LogPlayLevel: PIE: World Init took: (0.000938s)
+[2024.01.13-04.10.47:852][421]LogAudio: Display: Creating Audio Device:                 Id: 8, Scope: Unique, Realtime: True
+[2024.01.13-04.10.47:852][421]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.13-04.10.47:852][421]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.13-04.10.47:852][421]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.13-04.10.47:852][421]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.13-04.10.47:852][421]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.13-04.10.47:852][421]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.13-04.10.47:852][421]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.13-04.10.47:852][421]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.13-04.10.47:852][421]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.13-04.10.47:852][421]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.13-04.10.47:852][421]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.13-04.10.47:854][421]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.13-04.10.47:877][421]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.13-04.10.47:877][421]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.13-04.10.47:877][421]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.13-04.10.47:877][421]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.13-04.10.47:878][421]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=8
+[2024.01.13-04.10.47:878][421]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=8
+[2024.01.13-04.10.47:880][421]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=8
+[2024.01.13-04.10.47:880][421]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=8
+[2024.01.13-04.10.47:880][421]LogInit: FAudioDevice initialized with ID 8.
+[2024.01.13-04.10.47:880][421]LogAudio: Display: Audio Device (ID: 8) registered with world 'Poolrooms'.
+[2024.01.13-04.10.47:880][421]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 8
+[2024.01.13-04.10.47:880][421]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.13-04.10.47:882][421]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.13-04.10.47:886][421]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms up for play (max tick rate 0) at 2024.01.12-23.10.47
+[2024.01.13-04.10.47:886][421]LogWorld: Bringing up level for play took: 0.002381
+[2024.01.13-04.10.47:888][421]LogOnline: OSS: Created online subsystem instance for: :Context_51
+[2024.01.13-04.10.47:889][421]PIE: Server logged in
+[2024.01.13-04.10.47:890][421]PIE: Play in editor total start time 0.062 seconds.
+[2024.01.13-04.10.47:975][423]LogBlueprintUserMessages: [PatchworkGameInstance_C_6] Hello
+[2024.01.13-04.11.00:802][574]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.11.00:802][574]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.11.00:802][574]LogWorld: UWorld::CleanupWorld for Poolrooms, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.11.00:802][574]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.11.00:805][574]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.13-04.11.00:810][574]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.11.00:821][574]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.11.00:822][574]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 8
+[2024.01.13-04.11.00:822][574]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=8
+[2024.01.13-04.11.00:824][574]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=8
+[2024.01.13-04.11.00:829][574]LogUObjectHash: Compacting FUObjectHashTables data took   1.01ms
+[2024.01.13-04.11.00:887][575]LogPlayLevel: Display: Destroying online subsystem :Context_51
+[2024.01.13-04.11.10:836][376]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench.Pool_Bench
+[2024.01.13-04.11.10:910][376]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.11.10:910][376]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.11.11:232][376]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-04.11.24:357][ 96]LogEditorTransaction: Undo Clicking on Elements
+[2024.01.13-04.11.33:045][547]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.11.33:113][547]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench
+[2024.01.13-04.11.33:114][547]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_Bench7AA724C44BD3D2B144F08081F56C1B7B.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Pool_Bench.uasset'
+[2024.01.13-04.11.33:123][547]LogFileHelpers: InternalPromptForCheckoutAndSave took 79 ms (total: 15.9 sec)
+[2024.01.13-04.11.33:124][547]AssetCheck: New page: Asset Save: Pool_Bench
+[2024.01.13-04.11.33:124][547]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench.Pool_Bench
+[2024.01.13-04.11.34:060][591]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.11.34:137][591]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench
+[2024.01.13-04.11.34:137][591]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_Bench67A814B3420702357FC108AA63F7E853.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Pool_Bench.uasset'
+[2024.01.13-04.11.34:142][591]LogFileHelpers: InternalPromptForCheckoutAndSave took 81 ms (total: 15.9 sec)
+[2024.01.13-04.11.34:144][591]AssetCheck: New page: Asset Save: Pool_Bench
+[2024.01.13-04.11.34:144][591]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench.Pool_Bench
+[2024.01.13-04.11.34:223][597]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.11.34:349][597]LogUObjectHash: Compacting FUObjectHashTables data took   0.92ms
+[2024.01.13-04.11.34:368][597]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.11.34:368][597]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms28290FF84C6A9831865D6284D66CE074.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.11.34:378][597]LogFileHelpers: All files are already saved.
+[2024.01.13-04.11.34:378][597]LogFileHelpers: Saving map 'Poolrooms' took 0.082
+[2024.01.13-04.11.34:384][597]LogFileHelpers: InternalPromptForCheckoutAndSave took 160 ms (total: 16.1 sec)
+[2024.01.13-04.11.34:386][597]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.11.34:386][597]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.11.34:842][624]LogSlate: Window 'Pool_Bench' being destroyed
+[2024.01.13-04.11.34:894][624]LogWorld: UWorld::CleanupWorld for World_44, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.11.34:894][624]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.11.36:891][775]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.13-04.11.36:901][775]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.13-04.11.36:901][775]PIE: New page: PIE session: Poolrooms (Jan 12, 2024, 6:11:36 PM)
+[2024.01.13-04.11.36:931][775]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.11.36:936][775]LogPlayLevel: PIE: StaticDuplicateObject took: (0.005127s)
+[2024.01.13-04.11.36:936][775]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms to /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms (0.005163s)
+[2024.01.13-04.11.36:950][775]LogUObjectHash: Compacting FUObjectHashTables data took   1.08ms
+[2024.01.13-04.11.36:956][775]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.11.36:957][775]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.11.36:957][775]LogAIModule: Creating AISystem for world Poolrooms
+[2024.01.13-04.11.36:957][775]LogPlayLevel: PIE: World Init took: (0.000990s)
+[2024.01.13-04.11.36:957][775]LogAudio: Display: Creating Audio Device:                 Id: 9, Scope: Unique, Realtime: True
+[2024.01.13-04.11.36:957][775]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.13-04.11.36:957][775]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.13-04.11.36:957][775]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.13-04.11.36:957][775]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.13-04.11.36:957][775]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.13-04.11.36:957][775]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.13-04.11.36:957][775]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.13-04.11.36:958][775]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.13-04.11.36:958][775]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.13-04.11.36:958][775]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.13-04.11.36:958][775]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.13-04.11.36:960][775]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.13-04.11.36:983][775]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.13-04.11.36:984][775]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.13-04.11.36:984][775]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.13-04.11.36:984][775]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.13-04.11.36:984][775]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=9
+[2024.01.13-04.11.36:984][775]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=9
+[2024.01.13-04.11.36:986][775]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=9
+[2024.01.13-04.11.36:986][775]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=9
+[2024.01.13-04.11.36:986][775]LogInit: FAudioDevice initialized with ID 9.
+[2024.01.13-04.11.36:986][775]LogAudio: Display: Audio Device (ID: 9) registered with world 'Poolrooms'.
+[2024.01.13-04.11.36:986][775]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 9
+[2024.01.13-04.11.36:986][775]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.13-04.11.36:988][775]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.13-04.11.36:991][775]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms.Poolrooms up for play (max tick rate 0) at 2024.01.12-23.11.36
+[2024.01.13-04.11.36:991][775]LogWorld: Bringing up level for play took: 0.002460
+[2024.01.13-04.11.36:992][775]LogOnline: OSS: Created online subsystem instance for: :Context_53
+[2024.01.13-04.11.36:994][775]PIE: Server logged in
+[2024.01.13-04.11.36:994][775]PIE: Play in editor total start time 0.093 seconds.
+[2024.01.13-04.11.37:010][776]LogBlueprintUserMessages: [PatchworkGameInstance_C_7] Hello
+[2024.01.13-04.11.45:991][477]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.11.45:991][477]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/Poolrooms/UEDPIE_0_Poolrooms
+[2024.01.13-04.11.45:991][477]LogWorld: UWorld::CleanupWorld for Poolrooms, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.11.45:992][477]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.11.45:995][477]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.13-04.11.45:999][477]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.11.46:010][477]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.13-04.11.46:011][477]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 9
+[2024.01.13-04.11.46:011][477]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=9
+[2024.01.13-04.11.46:012][477]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=9
+[2024.01.13-04.11.46:018][477]LogUObjectHash: Compacting FUObjectHashTables data took   1.00ms
+[2024.01.13-04.11.46:077][478]LogPlayLevel: Display: Destroying online subsystem :Context_53
+[2024.01.13-04.12.58:612][ 28]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench.Pool_Bench
+[2024.01.13-04.12.58:693][ 28]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.12.58:693][ 28]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.12.59:019][ 28]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-04.13.32:122][328]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.13.32:201][328]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench
+[2024.01.13-04.13.32:201][328]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Pool_Bench0F8EB970443C4D7C61DC278C1E8D6FD2.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Pool_Bench.uasset'
+[2024.01.13-04.13.32:207][328]LogFileHelpers: InternalPromptForCheckoutAndSave took 84 ms (total: 16.2 sec)
+[2024.01.13-04.13.32:208][328]AssetCheck: New page: Asset Save: Pool_Bench
+[2024.01.13-04.13.32:208][328]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/poolrooms/Pool_Bench.Pool_Bench
+[2024.01.13-04.13.32:537][348]LogSlate: Window 'Pool_Bench' being destroyed
+[2024.01.13-04.13.32:597][348]LogWorld: UWorld::CleanupWorld for World_45, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.13.32:597][348]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.13.34:678][495]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/poolrooms/LevelBase/Pool_World_Plane.Pool_World_Plane
+[2024.01.13-04.13.34:760][495]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.13-04.13.34:760][495]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.13-04.13.35:081][495]LogViewport: Scene viewport resized to 1153x942, mode Windowed.
+[2024.01.13-04.17.39:897][646]LogSlate: Window 'Pool_World_Plane' being destroyed
+[2024.01.13-04.17.39:944][646]LogWorld: UWorld::CleanupWorld for World_46, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.39:944][646]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.17.44:994][ 37]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.17.45:094][ 37]LogUObjectHash: Compacting FUObjectHashTables data took   1.27ms
+[2024.01.13-04.17.45:113][ 37]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.17.45:114][ 37]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/PoolroomsE497212F4735F71A55820E9BAF97194A.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.17.45:123][ 37]LogFileHelpers: All files are already saved.
+[2024.01.13-04.17.45:123][ 37]LogFileHelpers: Saving map 'Poolrooms' took 0.081
+[2024.01.13-04.17.45:135][ 37]LogFileHelpers: InternalPromptForCheckoutAndSave took 140 ms (total: 16.3 sec)
+[2024.01.13-04.17.45:136][ 37]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.17.45:136][ 37]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.17.48:259][294]Cmd: DELETE
+[2024.01.13-04.17.48:259][294]Cmd: ACTOR DELETE
+[2024.01.13-04.17.48:261][294]LogEditorActor: Deleted Actor: PlayerStart
+[2024.01.13-04.17.48:277][294]LogUObjectHash: Compacting FUObjectHashTables data took   1.09ms
+[2024.01.13-04.17.48:281][294]LogEditorActor: Deleted 1 Actors (0.023 secs)
+[2024.01.13-04.17.48:470][313]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.17.48:590][313]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2024.01.13-04.17.48:608][313]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms
+[2024.01.13-04.17.48:608][313]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Poolrooms983C95DB42D9B468E8440E85404C1BE4.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Poolrooms/Poolrooms.umap'
+[2024.01.13-04.17.48:619][313]LogFileHelpers: All files are already saved.
+[2024.01.13-04.17.48:619][313]LogFileHelpers: Saving map 'Poolrooms' took 0.077
+[2024.01.13-04.17.48:623][313]LogFileHelpers: InternalPromptForCheckoutAndSave took 153 ms (total: 16.5 sec)
+[2024.01.13-04.17.48:624][313]AssetCheck: New page: Asset Save: Poolrooms
+[2024.01.13-04.17.48:624][313]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/Poolrooms/Poolrooms.Poolrooms
+[2024.01.13-04.17.50:834][499]LogUObjectHash: Compacting FUObjectHashTables data took   0.86ms
+[2024.01.13-04.17.52:105][499]LogSlate: Window 'Save Content' being destroyed
+[2024.01.13-04.17.52:112][499]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.13-04.17.52:209][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Beige
+[2024.01.13-04.17.52:210][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Beige4608B23E44E9411C7E445E9507CFD999.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Beige.uasset'
+[2024.01.13-04.17.52:211][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Data/Datatables/DT_WorldSettings
+[2024.01.13-04.17.52:212][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/DT_WorldSettingsDB6F6EAB427F6221452EEEBBB990C467.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Data/Datatables/DT_WorldSettings.uasset'
+[2024.01.13-04.17.52:219][499]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Patchwork/Materials/M_Emissive" FILE="../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/M_Emissive.uasset" SILENT=true
+[2024.01.13-04.17.52:224][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/M_Emissive
+[2024.01.13-04.17.52:224][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Emissive8E400ADB46084236FB6AB4836CAECD50.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/M_Emissive.uasset'
+[2024.01.13-04.17.52:231][499]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Patchwork/Materials/M_Lights" FILE="../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/M_Lights.uasset" SILENT=true
+[2024.01.13-04.17.52:233][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/M_Lights
+[2024.01.13-04.17.52:234][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_LightsF67243B9460E3F0097F0528FAD93F789.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/M_Lights.uasset'
+[2024.01.13-04.17.52:238][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/M_MS_Surface_Triplanar
+[2024.01.13-04.17.52:238][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_MS_Surface_TriplanarCFC7715343E977CB957165825BE7AEFB.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/M_MS_Surface_Triplanar.uasset'
+[2024.01.13-04.17.52:240][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Levels/Poolrooms/M_Solid
+[2024.01.13-04.17.52:240][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Solid646B19264702422AEA0BAD840612E62C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Levels/Poolrooms/M_Solid.uasset'
+[2024.01.13-04.17.52:249][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/Metal
+[2024.01.13-04.17.52:249][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Metal291B4845445957F489D05E895BB9E0A8.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/Metal.uasset'
+[2024.01.13-04.17.52:250][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Levels/Poolrooms/MI_Solid_Dirt_1
+[2024.01.13-04.17.52:250][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/MI_Solid_Dirt_14C18DD7340B6623CE2C57B9266C034A1.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Levels/Poolrooms/MI_Solid_Dirt_1.uasset'
+[2024.01.13-04.17.52:252][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/Levels/Poolrooms/MI_Tiles_White
+[2024.01.13-04.17.52:252][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/MI_Tiles_WhiteB8E0497B4F936D92A2A61BB18E8F4EF9.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/Levels/Poolrooms/MI_Tiles_White.uasset'
+[2024.01.13-04.17.52:261][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/forest/machine/white
+[2024.01.13-04.17.52:262][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/whiteFF01E48348553CC1BD3E34A039D8C123.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/forest/machine/white.uasset'
+[2024.01.13-04.17.52:270][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/White
+[2024.01.13-04.17.52:270][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/White8582813F4C8F7E080ADFC19B072669DB.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/White.uasset'
+[2024.01.13-04.17.52:278][499]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/poolrooms/White_2
+[2024.01.13-04.17.52:279][499]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/White_29833408F479B1F6E82E9D8974EC8407E.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/poolrooms/White_2.uasset'
+[2024.01.13-04.17.52:294][499]LogFileHelpers: InternalPromptForCheckoutAndSave took 182 ms (total: 16.7 sec)
+[2024.01.13-04.17.52:294][499]LogStall: Shutdown...
+[2024.01.13-04.17.52:297][499]LogStall: Shutdown complete.
+[2024.01.13-04.17.52:361][499]LogSlate: Window 'Patchwork_UE - Unreal Editor' being destroyed
+[2024.01.13-04.17.52:463][499]AssetCheck: New page: Asset Save: multiple assets
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.MaterialInstanceConstant /Game/Patchwork/Models/Levels/poolrooms/Beige.Beige
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.DataTable /Game/Patchwork/Data/Datatables/DT_WorldSettings.DT_WorldSettings
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/M_Emissive.M_Emissive
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.MaterialInstanceConstant /Game/Patchwork/Materials/M_Lights.M_Lights
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/M_MS_Surface_Triplanar.M_MS_Surface_Triplanar
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/Levels/Poolrooms/M_Solid.M_Solid
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/poolrooms/Metal.Metal
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.MaterialInstanceConstant /Game/Patchwork/Materials/Levels/Poolrooms/MI_Solid_Dirt_1.MI_Solid_Dirt_1
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.MaterialInstanceConstant /Game/Patchwork/Materials/Levels/Poolrooms/MI_Tiles_White.MI_Tiles_White
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/forest/machine/white.white
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/poolrooms/White.White
+[2024.01.13-04.17.52:463][499]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/poolrooms/White_2.White_2
+[2024.01.13-04.17.52:466][500]Cmd: QUIT_EDITOR
+[2024.01.13-04.17.52:466][500]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2024.01.13-04.17.52:481][500]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2024.01.13-04.17.52:481][500]LogStaticMesh: Abandoning remaining async distance field tasks for shutdown
+[2024.01.13-04.17.52:481][500]LogStaticMesh: Abandoning remaining async card representation tasks for shutdown
+[2024.01.13-04.17.52:484][500]LogWorld: UWorld::CleanupWorld for Poolrooms, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.52:484][500]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.13-04.17.52:505][500]LogLevelSequenceEditor: LevelSequenceEditor subsystem deinitialized.
+[2024.01.13-04.17.52:962][500]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2024.01.13-04.17.52:962][500]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2024.01.13-04.17.52:962][500]LogAudio: Display: Audio Device unregistered from world 'Poolrooms'.
+[2024.01.13-04.17.52:962][500]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 1
+[2024.01.13-04.17.52:962][500]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2024.01.13-04.17.52:964][500]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2024.01.13-04.17.52:969][500]LogAudio: Display: Audio Device Manager Shutdown
+[2024.01.13-04.17.52:970][500]LogWindowsTextInputMethodSystem: Activated input method: English (United States) - (Keyboard).
+[2024.01.13-04.17.52:974][500]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2024.01.13-04.17.52:980][500]LogExit: Preparing to exit.
+[2024.01.13-04.17.53:014][500]LogUObjectHash: Compacting FUObjectHashTables data took   1.22ms
+[2024.01.13-04.17.53:024][500]LogPython: Display: Object '/Engine/PythonTypes.add_controls_for_selected_options' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:025][500]LogPython: Display: Object '/Engine/PythonTypes.add_controls_for_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:027][500]LogPython: Display: Object '/Engine/PythonTypes.add_null_above_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:027][500]LogPython: Display: Object '/Engine/PythonTypes.align_translation_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:027][500]LogPython: Display: Object '/Engine/PythonTypes.align_translation_all' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:027][500]LogPython: Display: Object '/Engine/PythonTypes.align_translation_x' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:027][500]LogPython: Display: Object '/Engine/PythonTypes.align_translation_y' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:027][500]LogPython: Display: Object '/Engine/PythonTypes.align_translation_z' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.align_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.align_scale' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.search_replace_name_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.search_replace_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.add_prefix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.add_prefix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.add_suffix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.add_suffix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.do_rename_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.do_rename_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.set_bone_reference_pose' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.53:028][500]LogPython: Display: Object '/Engine/PythonTypes.ControlOutputFormat' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.13-04.17.54:235][500]LogWorld: UWorld::CleanupWorld for World_0, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:237][500]LogWorld: UWorld::CleanupWorld for World_9, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:240][500]LogWorld: UWorld::CleanupWorld for World_10, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:242][500]LogWorld: UWorld::CleanupWorld for World_11, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:244][500]LogWorld: UWorld::CleanupWorld for World_12, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:245][500]LogWorld: UWorld::CleanupWorld for World_13, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:247][500]LogWorld: UWorld::CleanupWorld for World_15, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:248][500]LogWorld: UWorld::CleanupWorld for World_21, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:250][500]LogWorld: UWorld::CleanupWorld for World_37, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:251][500]LogWorld: UWorld::CleanupWorld for World_38, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:253][500]LogWorld: UWorld::CleanupWorld for World_39, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:255][500]LogWorld: UWorld::CleanupWorld for World_40, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:256][500]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:258][500]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:259][500]LogWorld: UWorld::CleanupWorld for World_2, bSessionEnded=true, bCleanupResources=true
+[2024.01.13-04.17.54:460][500]LogDemo: Cleaned up 0 splitscreen connections, owner deletion: enabled
+[2024.01.13-04.17.54:481][500]LogExit: Editor shut down
+[2024.01.13-04.17.54:484][500]LogExit: Transaction tracking system shut down
+[2024.01.13-04.17.55:097][500]LogExit: Object subsystem successfully closed.
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: ================================================
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Total job queries 1,278, among them cache hits 695 (54.38%)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Tracking 520 distinct input hashes that result in 383 distinct outputs (73.65%)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: RAM used: 13.85 MiB of 1.60 GiB budget. Usage: 0.85%
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Shaders Compiled: 151
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Jobs assigned 151, completed 151 (100%)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Average time worker was idle: 620.45 s
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Time job spent in pending queue: average 0.75 s, longest 3.70 s
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Job execution time: average 1.30 s, max 4.78 s
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Job life time (pending + execution): average 2.05 s, max 4.82
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Shader code size: average 50.219 KiB, min 29.812 KiB, max 75.172 KiB
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 13.22 s
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Jobs were issued in 96 batches (only local compilation was used), average 1.57 jobs/batch
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Average processing rate: 11.43 jobs/sec
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Total thread time: 62.798 s
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Total thread preprocess time: 10.163 s
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Percentage time preprocessing: 16.18%
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Effective parallelization: 4.75 (times faster than compiling all shaders on one thread). Compare with number of workers: 10
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:                                           FLumenCardPS<true> (compiled    1 times, average 0.94 sec, max 0.94 sec, min 0.94 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight (compiled    3 times, average 0.61 sec, max 0.91 sec, min 0.20 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:                                TMaterialCHSFNoLightMapPolicy (compiled    3 times, average 0.60 sec, max 0.81 sec, min 0.30 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:                         TBasePassPSTLightMapPolicyLQSkylight (compiled    7 times, average 0.55 sec, max 0.90 sec, min 0.22 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:     TMaterialCHSFPrecomputedVolumetricLightmapLightingPolicy (compiled    2 times, average 0.55 sec, max 0.59 sec, min 0.51 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 8.57% of total time (compiled   10 times, average 0.54 sec, max 1.42 sec, min 0.11 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:                         TBasePassPSTLightMapPolicyLQSkylight - 6.17% of total time (compiled    7 times, average 0.55 sec, max 0.90 sec, min 0.22 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:         TMaterialCHSTDistanceFieldShadowsAndLightMapPolicyHQ - 6.03% of total time (compiled    7 times, average 0.54 sec, max 0.66 sec, min 0.41 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:                                TMaterialCHSTLightMapPolicyHQ - 5.83% of total time (compiled    7 times, average 0.52 sec, max 0.86 sec, min 0.35 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display:  TBasePassPSTDistanceFieldShadowsAndLightMapPolicyHQSkylight - 5.67% of total time (compiled    7 times, average 0.51 sec, max 0.97 sec, min 0.19 sec)
+[2024.01.13-04.17.55:103][500]LogShaderCompilers: Display: ================================================
+[2024.01.13-04.17.55:163][500]LogShaderCompilers: Display: Shaders left to compile 0
+[2024.01.13-04.17.55:239][500]LogVirtualization: UE::Virtualization was shutdown
+[2024.01.13-04.17.55:305][500]LogModuleManager: Shutting down and abandoning module DataTableEditor (1090)
+[2024.01.13-04.17.55:305][500]LogModuleManager: Shutting down and abandoning module MovieSceneCapture (1088)
+[2024.01.13-04.17.55:305][500]LogModuleManager: Shutting down and abandoning module Voice (1086)
+[2024.01.13-04.17.55:305][500]LogModuleManager: Shutting down and abandoning module EnvironmentLightingViewer (1084)
+[2024.01.13-04.17.55:305][500]LogModuleManager: Shutting down and abandoning module MaterialEditor (1082)
+[2024.01.13-04.17.55:305][500]LogModuleManager: Shutting down and abandoning module HierarchicalLODUtilities (1080)
+[2024.01.13-04.17.55:306][500]LogModuleManager: Shutting down and abandoning module HierarchicalLODOutliner (1078)
+[2024.01.13-04.17.55:306][500]LogModuleManager: Shutting down and abandoning module AddContentDialog (1076)
+[2024.01.13-04.17.55:307][500]LogModuleManager: Shutting down and abandoning module WidgetCarousel (1075)
+[2024.01.13-04.17.55:307][500]LogModuleManager: Shutting down and abandoning module SubobjectEditor (1070)
+[2024.01.13-04.17.55:307][500]LogModuleManager: Shutting down and abandoning module SceneOutliner (1068)
+[2024.01.13-04.17.55:307][500]LogModuleManager: Shutting down and abandoning module StatusBar (1066)
+[2024.01.13-04.17.55:307][500]LogModuleManager: Shutting down and abandoning module UnsavedAssetsTracker (1064)
+[2024.01.13-04.17.55:307][500]LogModuleManager: Shutting down and abandoning module GameProjectGeneration (1062)
+[2024.01.13-04.17.55:307][500]LogModuleManager: Shutting down and abandoning module DataLayerEditor (1060)
+[2024.01.13-04.17.55:307][500]LogModuleManager: Shutting down and abandoning module StatsViewer (1058)
+[2024.01.13-04.17.55:308][500]LogModuleManager: Shutting down and abandoning module SequenceRecorderSections (1056)
+[2024.01.13-04.17.55:308][500]LogModuleManager: Shutting down and abandoning module AutomationWorker (1054)
+[2024.01.13-04.17.55:308][500]LogModuleManager: Shutting down and abandoning module WaterEditor (1052)
+[2024.01.13-04.17.55:308][500]LogModuleManager: Shutting down and abandoning module PlanarCut (1050)
+[2024.01.13-04.17.55:308][500]LogModuleManager: Shutting down and abandoning module FractureEngine (1048)
+[2024.01.13-04.17.55:309][500]LogModuleManager: Shutting down and abandoning module CharacterAI (1046)
+[2024.01.13-04.17.55:309][500]LogModuleManager: Shutting down and abandoning module TemplateSequenceEditor (1044)
+[2024.01.13-04.17.55:310][500]LogModuleManager: Shutting down and abandoning module LevelSequenceEditor (1042)
+[2024.01.13-04.17.55:311][500]LogModuleManager: Shutting down and abandoning module ActorSequenceEditor (1040)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module TextureAlignMode (1038)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module BspMode (1036)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module GeometryMode (1034)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module EngineAssetDefinitions (1032)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module WmfMediaFactory (1030)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module WmfMediaEditor (1028)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module WebMMediaFactory (1026)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module WebMMediaEditor (1024)
+[2024.01.13-04.17.55:312][500]LogModuleManager: Shutting down and abandoning module WebMMedia (1022)
+[2024.01.13-04.17.55:313][500]LogModuleManager: Shutting down and abandoning module MediaPlayerEditor (1020)
+[2024.01.13-04.17.55:313][500]LogModuleManager: Shutting down and abandoning module MediaCompositingEditor (1018)
+[2024.01.13-04.17.55:314][500]LogModuleManager: Shutting down and abandoning module SequenceRecorder (1017)
+[2024.01.13-04.17.55:314][500]LogModuleManager: Shutting down and abandoning module OpenExrWrapper (1014)
+[2024.01.13-04.17.55:315][500]LogModuleManager: Shutting down and abandoning module ImgMediaFactory (1012)
+[2024.01.13-04.17.55:315][500]LogModuleManager: Shutting down and abandoning module ImgMediaEditor (1010)
+[2024.01.13-04.17.55:316][500]LogModuleManager: Shutting down and abandoning module CameraShakePreviewer (1008)
+[2024.01.13-04.17.55:317][500]LogModuleManager: Shutting down and abandoning module AvfMediaFactory (1006)
+[2024.01.13-04.17.55:317][500]LogModuleManager: Shutting down and abandoning module AvfMediaEditor (1004)
+[2024.01.13-04.17.55:317][500]LogModuleManager: Shutting down and abandoning module WaveTableEditor (1002)
+[2024.01.13-04.17.55:318][500]LogModuleManager: Shutting down and abandoning module AndroidMediaFactory (1000)
+[2024.01.13-04.17.55:318][500]LogModuleManager: Shutting down and abandoning module AndroidMediaEditor (998)
+[2024.01.13-04.17.55:318][500]LogModuleManager: Shutting down and abandoning module ResonanceAudioEditor (996)
+[2024.01.13-04.17.55:318][500]LogModuleManager: Shutting down and abandoning module RigVMEditor (994)
+[2024.01.13-04.17.55:319][500]LogModuleManager: Shutting down and abandoning module GooglePADEditor (992)
+[2024.01.13-04.17.55:319][500]LogModuleManager: Shutting down and abandoning module AudioCaptureEditor (990)
+[2024.01.13-04.17.55:319][500]LogModuleManager: Shutting down and abandoning module AndroidFileServerEditor (988)
+[2024.01.13-04.17.55:319][500]LogModuleManager: Shutting down and abandoning module IKRigEditor (986)
+[2024.01.13-04.17.55:321][500]LogModuleManager: Shutting down and abandoning module ControlRigEditor (984)
+[2024.01.13-04.17.55:322][500]LogModuleManager: Shutting down and abandoning module SmartSnapping (982)
+[2024.01.13-04.17.55:322][500]LogModuleManager: Shutting down and abandoning module SessionServices (980)
+[2024.01.13-04.17.55:323][500]LogModuleManager: Shutting down and abandoning module MeshPaint (978)
+[2024.01.13-04.17.55:324][500]LogModuleManager: Shutting down and abandoning module VirtualTexturingEditor (976)
+[2024.01.13-04.17.55:324][500]LogModuleManager: Shutting down and abandoning module PlacementMode (975)
+[2024.01.13-04.17.55:325][500]LogModuleManager: Shutting down and abandoning module FoliageEdit (972)
+[2024.01.13-04.17.55:326][500]LogModuleManager: Shutting down and abandoning module LandscapeEditor (970)
+[2024.01.13-04.17.55:329][500]LogModuleManager: Shutting down and abandoning module SceneDepthPickerMode (968)
+[2024.01.13-04.17.55:329][500]LogModuleManager: Shutting down and abandoning module ActorPickerMode (966)
+[2024.01.13-04.17.55:329][500]LogModuleManager: Shutting down and abandoning module ViewportSnapping (964)
+[2024.01.13-04.17.55:329][500]LogModuleManager: Shutting down and abandoning module EditorWidgets (962)
+[2024.01.13-04.17.55:329][500]LogModuleManager: Shutting down and abandoning module ViewportInteraction (960)
+[2024.01.13-04.17.55:329][500]LogModuleManager: Shutting down and abandoning module ClothPainter (958)
+[2024.01.13-04.17.55:330][500]LogModuleManager: Shutting down and abandoning module SkeletalMeshEditor (957)
+[2024.01.13-04.17.55:331][500]LogModuleManager: Shutting down and abandoning module WidgetRegistration (954)
+[2024.01.13-04.17.55:332][500]LogModuleManager: Shutting down and abandoning module LogVisualizer (952)
+[2024.01.13-04.17.55:333][500]LogModuleManager: Shutting down and abandoning module IOSPlatformEditor (950)
+[2024.01.13-04.17.55:333][500]LogModuleManager: Shutting down and abandoning module AndroidPlatformEditor (948)
+[2024.01.13-04.17.55:334][500]LogModuleManager: Shutting down and abandoning module PIEPreviewDeviceProfileSelector (947)
+[2024.01.13-04.17.55:336][500]LogModuleManager: Shutting down and abandoning module AndroidDeviceDetection (945)
+[2024.01.13-04.17.56:270][500]LogModuleManager: Shutting down and abandoning module WindowsPlatformEditor (942)
+[2024.01.13-04.17.56:270][500]LogModuleManager: Shutting down and abandoning module MacPlatformEditor (940)
+[2024.01.13-04.17.56:270][500]LogModuleManager: Shutting down and abandoning module IOSRuntimeSettings (938)
+[2024.01.13-04.17.56:270][500]LogModuleManager: Shutting down and abandoning module AndroidRuntimeSettings (936)
+[2024.01.13-04.17.56:270][500]LogModuleManager: Shutting down and abandoning module RenderResourceViewer (934)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module GameplayDebuggerEditor (932)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module AnimationSettings (930)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module VirtualizationEditor (928)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module CSVtoSVG (926)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module DerivedDataEditor (924)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module EditorConfig (922)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module EditorFramework (920)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module StaticMeshEditor (918)
+[2024.01.13-04.17.56:271][500]LogModuleManager: Shutting down and abandoning module TraceInsights (916)
+[2024.01.13-04.17.56:275][500]MemoryProfiler: Shutdown
+[2024.01.13-04.17.56:276][500]NetworkingProfiler: Shutdown
+[2024.01.13-04.17.56:277][500]LoadingProfiler: Shutdown
+[2024.01.13-04.17.56:277][500]TimingProfiler: Shutdown
+[2024.01.13-04.17.56:281][500]LogModuleManager: Shutting down and abandoning module TraceServices (915)
+[2024.01.13-04.17.56:282][500]LogModuleManager: Shutting down and abandoning module TraceAnalysis (914)
+[2024.01.13-04.17.56:282][500]LogModuleManager: Shutting down and abandoning module EditorInteractiveToolsFramework (910)
+[2024.01.13-04.17.56:282][500]LogModuleManager: Shutting down and abandoning module InteractiveToolsFramework (909)
+[2024.01.13-04.17.56:282][500]LogModuleManager: Shutting down and abandoning module InputBindingEditor (906)
+[2024.01.13-04.17.56:282][500]LogModuleManager: Shutting down and abandoning module MergeActors (904)
+[2024.01.13-04.17.56:283][500]LogModuleManager: Shutting down and abandoning module LocalizationDashboard (902)
+[2024.01.13-04.17.56:283][500]LogModuleManager: Shutting down and abandoning module LocalizationService (901)
+[2024.01.13-04.17.56:284][500]LogModuleManager: Shutting down and abandoning module HardwareTargeting (898)
+[2024.01.13-04.17.56:284][500]LogModuleManager: Shutting down and abandoning module DeviceProfileEditor (896)
+[2024.01.13-04.17.56:284][500]LogModuleManager: Shutting down and abandoning module UndoHistory (894)
+[2024.01.13-04.17.56:284][500]LogModuleManager: Shutting down and abandoning module XmlParser (892)
+[2024.01.13-04.17.56:284][500]LogModuleManager: Shutting down and abandoning module Blutility (890)
+[2024.01.13-04.17.56:285][500]LogModuleManager: Shutting down and abandoning module ProjectSettingsViewer (888)
+[2024.01.13-04.17.56:285][500]LogModuleManager: Shutting down and abandoning module ProjectTargetPlatformEditor (887)
+[2024.01.13-04.17.56:285][500]LogModuleManager: Shutting down and abandoning module EditorSettingsViewer (884)
+[2024.01.13-04.17.56:285][500]LogModuleManager: Shutting down and abandoning module InternationalizationSettings (883)
+[2024.01.13-04.17.56:285][500]LogModuleManager: Shutting down and abandoning module SettingsEditor (880)
+[2024.01.13-04.17.56:285][500]LogModuleManager: Shutting down and abandoning module ProjectLauncher (878)
+[2024.01.13-04.17.56:285][500]LogModuleManager: Shutting down and abandoning module SessionFrontend (876)
+[2024.01.13-04.17.56:286][500]LogModuleManager: Shutting down and abandoning module ProfilerClient (874)
+[2024.01.13-04.17.56:286][500]LogModuleManager: Shutting down and abandoning module DeviceManager (872)
+[2024.01.13-04.17.56:287][500]LogModuleManager: Shutting down and abandoning module AutomationController (870)
+[2024.01.13-04.17.56:287][500]LogModuleManager: Shutting down and abandoning module AutomationWindow (868)
+[2024.01.13-04.17.56:289][500]LogModuleManager: Shutting down and abandoning module Layers (866)
+[2024.01.13-04.17.56:290][500]LogModuleManager: Shutting down and abandoning module ComponentVisualizers (864)
+[2024.01.13-04.17.56:290][500]LogModuleManager: Shutting down and abandoning module DetailCustomizations (862)
+[2024.01.13-04.17.56:291][500]LogModuleManager: Shutting down and abandoning module PackagesDialog (860)
+[2024.01.13-04.17.56:291][500]LogModuleManager: Shutting down and abandoning module AnimationBlueprintEditor (858)
+[2024.01.13-04.17.56:292][500]LogModuleManager: Shutting down and abandoning module Persona (856)
+[2024.01.13-04.17.56:293][500]LogModuleManager: Shutting down and abandoning module AdvancedPreviewScene (855)
+[2024.01.13-04.17.56:293][500]LogModuleManager: Shutting down and abandoning module Kismet (852)
+[2024.01.13-04.17.56:302][500]LogModuleManager: Shutting down and abandoning module KismetWidgets (851)
+[2024.01.13-04.17.56:302][500]LogModuleManager: Shutting down and abandoning module GraphEditor (848)
+[2024.01.13-04.17.56:302][500]LogModuleManager: Shutting down and abandoning module StructViewer (846)
+[2024.01.13-04.17.56:302][500]LogModuleManager: Shutting down and abandoning module ClassViewer (844)
+[2024.01.13-04.17.56:305][500]LogModuleManager: Shutting down and abandoning module UncontrolledChangelists (842)
+[2024.01.13-04.17.56:305][500]LogModuleManager: Shutting down and abandoning module SourceControlWindowExtender (840)
+[2024.01.13-04.17.56:305][500]LogModuleManager: Shutting down and abandoning module SourceControlWindows (838)
+[2024.01.13-04.17.56:305][500]LogModuleManager: Shutting down and abandoning module OutputLog (836)
+[2024.01.13-04.17.56:307][500]LogModuleManager: Shutting down and abandoning module Documentation (834)
+[2024.01.13-04.17.56:307][500]LogModuleManager: Shutting down and abandoning module SparseVolumeTexture (832)
+[2024.01.13-04.17.56:307][500]LogModuleManager: Shutting down and abandoning module MovieSceneTracks (830)
+[2024.01.13-04.17.56:307][500]LogModuleManager: Shutting down and abandoning module MovieScene (828)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module StreamingPauseRendering (826)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module BinkAudioDecoder (824)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module AudioMixerXAudio2 (822)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module AudioMixer (821)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module AudioMixerCore (820)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module LauncherPlatform (816)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module AnalyticsET (814)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module PortalServices (812)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module PortalRpc (810)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module MessagingRpc (808)
+[2024.01.13-04.17.56:308][500]LogModuleManager: Shutting down and abandoning module AIModule (806)
+[2024.01.13-04.17.56:309][500]LogModuleManager: Shutting down and abandoning module GameplayDebugger (805)
+[2024.01.13-04.17.56:309][500]LogModuleManager: Shutting down and abandoning module AITestSuite (803)
+[2024.01.13-04.17.56:309][500]LogModuleManager: Shutting down and abandoning module NavigationSystem (801)
+[2024.01.13-04.17.56:309][500]LogModuleManager: Shutting down and abandoning module LevelInstanceEditor (798)
+[2024.01.13-04.17.56:309][500]LogModuleManager: Shutting down and abandoning module TypedElementRuntime (796)
+[2024.01.13-04.17.56:309][500]LogModuleManager: Shutting down and abandoning module TypedElementFramework (794)
+[2024.01.13-04.17.56:309][500]LogModuleManager: Shutting down and abandoning module ImageWriteQueue (792)
+[2024.01.13-04.17.56:309][500]LogModuleManager: Shutting down and abandoning module ProfilerService (790)
+[2024.01.13-04.17.56:427][500]LogModuleManager: Shutting down and abandoning module ProfileVisualizer (788)
+[2024.01.13-04.17.56:429][500]LogModuleManager: Shutting down and abandoning module CacheTrackRecorder (786)
+[2024.01.13-04.17.56:429][500]LogModuleManager: Shutting down and abandoning module TakeRecorderSources (784)
+[2024.01.13-04.17.56:430][500]LogModuleManager: Shutting down and abandoning module TakeTrackRecorders (782)
+[2024.01.13-04.17.56:430][500]LogModuleManager: Shutting down and abandoning module TakesCore (780)
+[2024.01.13-04.17.56:431][500]LogModuleManager: Shutting down and abandoning module AudioSynesthesiaEditor (778)
+[2024.01.13-04.17.56:431][500]LogModuleManager: Shutting down and abandoning module MegascansPlugin (776)
+[2024.01.13-04.17.56:431][500]LogModuleManager: Shutting down and abandoning module Bridge (774)
+[2024.01.13-04.17.56:432][500]LogModuleManager: Shutting down and abandoning module ContentBrowserFileDataSource (772)
+[2024.01.13-04.17.56:432][500]LogModuleManager: Shutting down and abandoning module ContentBrowserClassDataSource (770)
+[2024.01.13-04.17.56:432][500]LogModuleManager: Shutting down and abandoning module ContentBrowserAssetDataSource (768)
+[2024.01.13-04.17.56:432][500]LogModuleManager: Shutting down and abandoning module CollectionManager (767)
+[2024.01.13-04.17.56:432][500]LogModuleManager: Shutting down and abandoning module PortableObjectFileDataSource (764)
+[2024.01.13-04.17.56:432][500]LogModuleManager: Shutting down and abandoning module ObjectMixerEditor (762)
+[2024.01.13-04.17.56:433][500]LogModuleManager: Shutting down and abandoning module LightMixer (760)
+[2024.01.13-04.17.56:433][500]LogModuleManager: Shutting down and abandoning module VariantManager (758)
+[2024.01.13-04.17.56:436][500]LogModuleManager: Shutting down and abandoning module VariantManagerContentEditor (757)
+[2024.01.13-04.17.56:436][500]LogModuleManager: Shutting down and abandoning module TakeSequencer (754)
+[2024.01.13-04.17.56:436][500]LogModuleManager: Shutting down and abandoning module TakeMovieScene (752)
+[2024.01.13-04.17.56:436][500]LogModuleManager: Shutting down and abandoning module DatasmithContentEditor (750)
+[2024.01.13-04.17.56:436][500]LogModuleManager: Shutting down and abandoning module NiagaraFluids (748)
+[2024.01.13-04.17.56:436][500]LogModuleManager: Shutting down and abandoning module NiagaraEditorWidgets (746)
+[2024.01.13-04.17.56:440][500]LogModuleManager: Shutting down and abandoning module ToolPresetEditor (744)
+[2024.01.13-04.17.56:440][500]LogModuleManager: Shutting down and abandoning module ToolPresetAsset (742)
+[2024.01.13-04.17.56:440][500]LogModuleManager: Shutting down and abandoning module StructUtilsTestSuite (740)
+[2024.01.13-04.17.56:441][500]LogModuleManager: Shutting down and abandoning module StructUtilsNodes (738)
+[2024.01.13-04.17.56:441][500]LogModuleManager: Shutting down and abandoning module StructUtilsEditor (736)
+[2024.01.13-04.17.56:441][500]LogModuleManager: Shutting down and abandoning module StructUtilsEngine (734)
+[2024.01.13-04.17.56:441][500]LogModuleManager: Shutting down and abandoning module PCGEditor (732)
+[2024.01.13-04.17.56:443][500]LogModuleManager: Shutting down and abandoning module PCG (730)
+[2024.01.13-04.17.56:443][500]LogModuleManager: Shutting down and abandoning module OpenImageDenoise (728)
+[2024.01.13-04.17.56:443][500]LogOpenImageDenoise: OIDN shutting down
+[2024.01.13-04.17.56:443][500]LogModuleManager: Shutting down and abandoning module SkeletalMeshModifiers (726)
+[2024.01.13-04.17.56:443][500]LogModuleManager: Shutting down and abandoning module ModelingEditorUI (724)
+[2024.01.13-04.17.56:443][500]LogModuleManager: Shutting down and abandoning module GeometryProcessingAdapters (722)
+[2024.01.13-04.17.56:445][500]LogModuleManager: Shutting down and abandoning module MeshModelingToolsEditorOnlyExp (720)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module MeshModelingToolsExp (718)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module MeshLODToolset (716)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module LocalizableMessageBlueprint (714)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module LocalizableMessage (712)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module LandmassEditor (710)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module Landmass (708)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module GeometryScriptingEditor (706)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module GeometryCollectionNodes (704)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module GeometryCollectionTracks (702)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module GeometryCollectionEngine (701)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module GeometryCollectionSequencer (699)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module GeometryCollectionEditor (696)
+[2024.01.13-04.17.56:446][500]LogModuleManager: Shutting down and abandoning module GeometryFlowMeshProcessingEditor (694)
+[2024.01.13-04.17.56:447][500]LogModuleManager: Shutting down and abandoning module GeometryFlowMeshProcessing (692)
+[2024.01.13-04.17.56:447][500]LogModuleManager: Shutting down and abandoning module GeometryFlowCore (690)
+[2024.01.13-04.17.56:448][500]LogModuleManager: Shutting down and abandoning module DataflowNodes (688)
+[2024.01.13-04.17.56:448][500]LogModuleManager: Shutting down and abandoning module DataflowEnginePlugin (686)
+[2024.01.13-04.17.56:448][500]LogModuleManager: Shutting down and abandoning module DataflowEditor (684)
+[2024.01.13-04.17.56:448][500]LogModuleManager: Shutting down and abandoning module ChaosUserDataPT (682)
+[2024.01.13-04.17.56:448][500]LogModuleManager: Shutting down and abandoning module ChaosNiagara (680)
+[2024.01.13-04.17.56:448][500]LogModuleManager: Shutting down and abandoning module ChaosSolverEditor (678)
+[2024.01.13-04.17.56:448][500]LogModuleManager: Shutting down and abandoning module ChaosClothEditor (676)
+[2024.01.13-04.17.56:448][500]LogModuleManager: Shutting down and abandoning module FractureEditor (674)
+[2024.01.13-04.17.56:449][500]LogModuleManager: Shutting down and abandoning module BackChannel (672)
+[2024.01.13-04.17.56:450][500]LogModuleManager: Shutting down and abandoning module VisualStudioSourceCodeAccess (670)
+[2024.01.13-04.17.56:450][500]LogModuleManager: Shutting down and abandoning module UObjectPlugin (668)
+[2024.01.13-04.17.56:450][500]LogModuleManager: Shutting down and abandoning module VisualStudioCodeSourceCodeAccess (666)
+[2024.01.13-04.17.56:450][500]LogModuleManager: Shutting down and abandoning module SubversionSourceControl (664)
+[2024.01.13-04.17.56:451][500]LogModuleManager: Shutting down and abandoning module AutomationUtilsEditor (662)
+[2024.01.13-04.17.56:451][500]LogModuleManager: Shutting down and abandoning module AutomationUtils (660)
+[2024.01.13-04.17.56:451][500]LogModuleManager: Shutting down and abandoning module RiderSourceCodeAccess (658)
+[2024.01.13-04.17.56:451][500]LogModuleManager: Shutting down and abandoning module PluginUtils (656)
+[2024.01.13-04.17.56:451][500]LogModuleManager: Shutting down and abandoning module N10XSourceCodeAccess (654)
+[2024.01.13-04.17.56:451][500]LogModuleManager: Shutting down and abandoning module GitSourceControl (652)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module DumpGPUServices (650)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module TemplateSequence (648)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module SequencerScriptingEditor (646)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module SequencerScripting (644)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module CLionSourceCodeAccess (642)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module AnimationSharingEd (640)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module WorldPartitionHLODUtilities (638)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module OodleNetworkHandlerComponent (636)
+[2024.01.13-04.17.56:452][500]LogModuleManager: Shutting down and abandoning module UVEditorToolsEditorOnly (634)
+[2024.01.13-04.17.56:453][500]LogModuleManager: Shutting down and abandoning module UVEditorTools (632)
+[2024.01.13-04.17.56:453][500]LogModuleManager: Shutting down and abandoning module UVEditor (630)
+[2024.01.13-04.17.56:454][500]LogModuleManager: Shutting down and abandoning module SpeedTreeImporter (628)
+[2024.01.13-04.17.56:454][500]LogModuleManager: Shutting down and abandoning module SequencerAnimTools (626)
+[2024.01.13-04.17.56:454][500]LogModuleManager: Shutting down and abandoning module PluginBrowser (624)
+[2024.01.13-04.17.56:455][500]LogModuleManager: Shutting down and abandoning module ModelingToolsEditorMode (622)
+[2024.01.13-04.17.56:457][500]LogModuleManager: Shutting down and abandoning module MobileLauncherProfileWizard (620)
+[2024.01.13-04.17.56:458][500]LogModuleManager: Shutting down and abandoning module MaterialAnalyzer (618)
+[2024.01.13-04.17.56:458][500]LogModuleManager: Shutting down and abandoning module EditorScriptingUtilities (614)
+[2024.01.13-04.17.56:458][500]LogModuleManager: Shutting down and abandoning module EditorDebugTools (612)
+[2024.01.13-04.17.56:459][500]LogModuleManager: Shutting down and abandoning module CurveEditorTools (610)
+[2024.01.13-04.17.56:460][500]LogModuleManager: Shutting down and abandoning module CryptoKeysOpenSSL (608)
+[2024.01.13-04.17.56:460][500]LogModuleManager: Shutting down and abandoning module CryptoKeys (606)
+[2024.01.13-04.17.56:460][500]LogModuleManager: Shutting down and abandoning module MediaPlateEditor (604)
+[2024.01.13-04.17.56:460][500]LogModuleManager: Shutting down and abandoning module MediaPlate (602)
+[2024.01.13-04.17.56:460][500]LogModuleManager: Shutting down and abandoning module ChangelistReview (600)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module BlueprintHeaderView (598)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module MediaCompositing (596)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module ImgMedia (594)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module SynthesisEditor (592)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module ResonanceAudio (590)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponentEditor (588)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module MobilePatchingUtils (586)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module ModelingOperatorsEditorOnly (584)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module ModelingOperators (582)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module ModelingComponentsEditorOnly (580)
+[2024.01.13-04.17.56:461][500]LogModuleManager: Shutting down and abandoning module ModelingComponents (578)
+[2024.01.13-04.17.56:462][500]LogModuleManager: Shutting down and abandoning module GeometryFramework (577)
+[2024.01.13-04.17.56:462][500]LogModuleManager: Shutting down and abandoning module MeshModelingToolsEditorOnly (574)
+[2024.01.13-04.17.56:463][500]LogModuleManager: Shutting down and abandoning module MeshModelingTools (572)
+[2024.01.13-04.17.56:463][500]LogModuleManager: Shutting down and abandoning module InputDebuggingEditor (570)
+[2024.01.13-04.17.56:463][500]LogModuleManager: Shutting down and abandoning module InputDebugging (568)
+[2024.01.13-04.17.56:463][500]LogModuleManager: Shutting down and abandoning module GooglePAD (566)
+[2024.01.13-04.17.56:463][500]LogModuleManager: Shutting down and abandoning module DynamicMesh (564)
+[2024.01.13-04.17.56:463][500]LogModuleManager: Shutting down and abandoning module GeometryAlgorithms (562)
+[2024.01.13-04.17.56:464][500]LogModuleManager: Shutting down and abandoning module GeometryCacheTracks (560)
+[2024.01.13-04.17.56:464][500]LogModuleManager: Shutting down and abandoning module GeometryCacheStreamer (558)
+[2024.01.13-04.17.56:464][500]LogModuleManager: Shutting down and abandoning module GeometryCacheSequencer (556)
+[2024.01.13-04.17.56:464][500]LogModuleManager: Shutting down and abandoning module CommonInput (554)
+[2024.01.13-04.17.56:464][500]LogModuleManager: Shutting down and abandoning module CommonUIEditor (552)
+[2024.01.13-04.17.56:464][500]LogModuleManager: Shutting down and abandoning module CommonUI (550)
+[2024.01.13-04.17.56:464][500]LogModuleManager: Shutting down and abandoning module AudioCapture (548)
+[2024.01.13-04.17.56:464][500]LogModuleManager: Shutting down and abandoning module AudioCaptureWasapi (547)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module ArchVisCharacter (544)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module AssetTags (542)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module AppleImageUtilsBlueprintSupport (540)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module AppleImageUtils (538)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module AndroidPermission (536)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module ACLPluginEditor (534)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module ControlRigSpline (532)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module ActorLayerUtilitiesEditor (530)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module ActorLayerUtilities (528)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module AlembicImporter (526)
+[2024.01.13-04.17.56:465][500]LogModuleManager: Shutting down and abandoning module AlembicLibrary (525)
+[2024.01.13-04.17.56:466][500]LogModuleManager: Shutting down and abandoning module GeometryCache (524)
+[2024.01.13-04.17.56:466][500]LogModuleManager: Shutting down and abandoning module GeometryCacheEd (523)
+[2024.01.13-04.17.56:466][500]LogModuleManager: Shutting down and abandoning module InterchangeTestEditor (518)
+[2024.01.13-04.17.56:466][500]LogModuleManager: Shutting down and abandoning module InterchangeTests (516)
+[2024.01.13-04.17.56:467][500]LogModuleManager: Shutting down and abandoning module AnimationModifierLibrary (514)
+[2024.01.13-04.17.56:467][500]LogModuleManager: Shutting down and abandoning module BlendSpaceMotionAnalysis (512)
+[2024.01.13-04.17.56:467][500]LogModuleManager: Shutting down and abandoning module PaperTiledImporter (510)
+[2024.01.13-04.17.56:467][500]LogModuleManager: Shutting down and abandoning module PaperSpriteSheetImporter (508)
+[2024.01.13-04.17.56:467][500]LogModuleManager: Shutting down and abandoning module Paper2DEditor (506)
+[2024.01.13-04.17.56:468][500]LogModuleManager: Shutting down and abandoning module InterchangeFbxParser (504)
+[2024.01.13-04.17.56:468][500]LogModuleManager: Shutting down and abandoning module InterchangeCommonParser (502)
+[2024.01.13-04.17.56:468][500]LogModuleManager: Shutting down and abandoning module InterchangeDispatcher (500)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module InterchangeExport (498)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module InterchangeMessages (496)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module GLTFCore (494)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module InterchangeEditorUtilities (492)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module InterchangeEditorPipelines (490)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module InterchangeEditor (488)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module EditorTraceUtilities (486)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module TraceUtilities (484)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module MeshPaintingToolset (482)
+[2024.01.13-04.17.56:469][500]LogModuleManager: Shutting down and abandoning module MeshPaintEditorMode (480)
+[2024.01.13-04.17.56:470][500]LogModuleManager: Shutting down and abandoning module InputEditor (478)
+[2024.01.13-04.17.56:470][500]LogModuleManager: Shutting down and abandoning module NiagaraAnimNotifies (476)
+[2024.01.13-04.17.56:470][500]LogModuleManager: Shutting down and abandoning module Niagara (474)
+[2024.01.13-04.17.56:471][500]LogModuleManager: Shutting down and abandoning module NiagaraEditor (473)
+[2024.01.13-04.17.56:471][500]LogModuleManager: Shutting down and abandoning module NiagaraCore (470)
+[2024.01.13-04.17.56:471][500]LogModuleManager: Shutting down and abandoning module EnvironmentQueryEditor (468)
+[2024.01.13-04.17.56:472][500]LogModuleManager: Shutting down and abandoning module StructUtils (466)
+[2024.01.13-04.17.56:472][500]LogModuleManager: Shutting down and abandoning module PythonScriptPlugin (464)
+[2024.01.13-04.17.56:502][500]LogModuleManager: Shutting down and abandoning module GeometryScriptingCore (462)
+[2024.01.13-04.17.56:503][500]LogModuleManager: Shutting down and abandoning module PBIK (460)
+[2024.01.13-04.17.56:503][500]LogModuleManager: Shutting down and abandoning module FullBodyIK (458)
+[2024.01.13-04.17.56:503][500]LogModuleManager: Shutting down and abandoning module ChaosCachingEditor (456)
+[2024.01.13-04.17.56:503][500]LogModuleManager: Shutting down and abandoning module TakeRecorder (455)
+[2024.01.13-04.17.56:506][500]LogModuleManager: Shutting down and abandoning module ChaosCaching (452)
+[2024.01.13-04.17.56:506][500]LogModuleManager: Shutting down and abandoning module TraceDataFiltering (450)
+[2024.01.13-04.17.56:506][500]LogModuleManager: Shutting down and abandoning module PropertyAccessNode (448)
+[2024.01.13-04.17.56:506][500]LogModuleManager: Shutting down and abandoning module AnimationSharing (446)
+[2024.01.13-04.17.56:506][500]LogModuleManager: Shutting down and abandoning module ActorSequence (444)
+[2024.01.13-04.17.56:506][500]LogModuleManager: Shutting down and abandoning module GameplayTagsEditor (442)
+[2024.01.13-04.17.56:507][500]LogModuleManager: Shutting down and abandoning module FacialAnimationEditor (440)
+[2024.01.13-04.17.56:507][500]LogModuleManager: Shutting down and abandoning module FacialAnimation (438)
+[2024.01.13-04.17.56:507][500]LogModuleManager: Shutting down and abandoning module DataValidation (436)
+[2024.01.13-04.17.56:507][500]LogModuleManager: Shutting down and abandoning module GameplayCameras (434)
+[2024.01.13-04.17.56:507][500]LogModuleManager: Shutting down and abandoning module ImgMediaEngine (432)
+[2024.01.13-04.17.56:507][500]LogModuleManager: Shutting down and abandoning module AssetManagerEditor (430)
+[2024.01.13-04.17.56:507][500]LogModuleManager: Shutting down and abandoning module LevelEditor (429)
+[2024.01.13-04.17.56:517][500]LogModuleManager: Shutting down and abandoning module PixelInspectorModule (428)
+[2024.01.13-04.17.56:518][500]LogModuleManager: Shutting down and abandoning module CommonMenuExtensions (426)
+[2024.01.13-04.17.56:518][500]LogModuleManager: Shutting down and abandoning module MainFrame (424)
+[2024.01.13-04.17.56:518][500]LogModuleManager: Shutting down and abandoning module HotReload (423)
+[2024.01.13-04.17.56:518][500]LogModuleManager: Shutting down and abandoning module ContentBrowser (419)
+[2024.01.13-04.17.56:518][500]LogModuleManager: Shutting down and abandoning module ContentBrowserData (418)
+[2024.01.13-04.17.56:518][500]LogModuleManager: Shutting down and abandoning module TreeMap (415)
+[2024.01.13-04.17.56:519][500]LogModuleManager: Shutting down and abandoning module UdpMessaging (412)
+[2024.01.13-04.17.56:620][500]LogModuleManager: Shutting down and abandoning module TcpMessaging (410)
+[2024.01.13-04.17.56:721][500]LogModuleManager: Shutting down and abandoning module Synthesis (408)
+[2024.01.13-04.17.56:721][500]LogModuleManager: Shutting down and abandoning module SoundFields (406)
+[2024.01.13-04.17.56:721][500]LogModuleManager: Shutting down and abandoning module SignificanceManager (404)
+[2024.01.13-04.17.56:721][500]LogModuleManager: Shutting down and abandoning module RigVMDeveloper (402)
+[2024.01.13-04.17.56:721][500]LogModuleManager: Shutting down and abandoning module RigVM (400)
+[2024.01.13-04.17.56:721][500]LogModuleManager: Shutting down and abandoning module PropertyAccessEditor (398)
+[2024.01.13-04.17.56:721][500]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponent (396)
+[2024.01.13-04.17.56:722][500]LogModuleManager: Shutting down and abandoning module MsQuicRuntime (394)
+[2024.01.13-04.17.56:722][500]LogModuleManager: Shutting down and abandoning module MetasoundEditor (392)
+[2024.01.13-04.17.56:723][500]LogModuleManager: Shutting down and abandoning module ToolMenus (391)
+[2024.01.13-04.17.56:723][500]LogModuleManager: Shutting down and abandoning module AudioWidgets (389)
+[2024.01.13-04.17.56:724][500]LogModuleManager: Shutting down and abandoning module AdvancedWidgets (388)
+[2024.01.13-04.17.56:724][500]LogModuleManager: Shutting down and abandoning module MetasoundEngineTest (384)
+[2024.01.13-04.17.56:725][500]LogModuleManager: Shutting down and abandoning module MetasoundEngine (382)
+[2024.01.13-04.17.56:725][500]LogModuleManager: Shutting down and abandoning module WaveTable (381)
+[2024.01.13-04.17.56:725][500]LogModuleManager: Shutting down and abandoning module AudioCodecEngine (379)
+[2024.01.13-04.17.56:725][500]LogModuleManager: Shutting down and abandoning module MetasoundStandardNodes (376)
+[2024.01.13-04.17.56:725][500]LogModuleManager: Shutting down and abandoning module MetasoundFrontend (374)
+[2024.01.13-04.17.56:726][500]LogModuleManager: Shutting down and abandoning module MetasoundGenerator (372)
+[2024.01.13-04.17.56:726][500]LogModuleManager: Shutting down and abandoning module MetasoundGraphCore (370)
+[2024.01.13-04.17.56:726][500]LogModuleManager: Shutting down and abandoning module LocationServicesBPLibrary (368)
+[2024.01.13-04.17.56:726][500]LogModuleManager: Shutting down and abandoning module CustomMeshComponent (366)
+[2024.01.13-04.17.56:726][500]LogModuleManager: Shutting down and abandoning module CableComponent (364)
+[2024.01.13-04.17.56:726][500]LogModuleManager: Shutting down and abandoning module AudioSynesthesia (362)
+[2024.01.13-04.17.56:726][500]LogModuleManager: Shutting down and abandoning module AudioAnalyzer (361)
+[2024.01.13-04.17.56:726][500]LogModuleManager: Shutting down and abandoning module AudioSynesthesiaCore (358)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module SignalProcessing (357)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module IKRigDeveloper (354)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module IKRig (352)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module ControlRigDeveloper (350)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module ControlRig (348)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module Constraints (347)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module LevelSequence (345)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module Paper2D (342)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module AnimationData (340)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module InterchangePipelines (338)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module InterchangeImport (336)
+[2024.01.13-04.17.56:727][500]LogModuleManager: Shutting down and abandoning module InterchangeFactoryNodes (334)
+[2024.01.13-04.17.56:728][500]LogModuleManager: Shutting down and abandoning module InterchangeNodes (332)
+[2024.01.13-04.17.56:728][500]LogModuleManager: Shutting down and abandoning module InputBlueprintNodes (330)
+[2024.01.13-04.17.56:728][500]LogModuleManager: Shutting down and abandoning module BlueprintGraph (329)
+[2024.01.13-04.17.56:728][500]LogModuleManager: Shutting down and abandoning module EnhancedInput (326)
+[2024.01.13-04.17.56:728][500]LogModuleManager: Shutting down and abandoning module BlueprintMaterialTextureNodes (324)
+[2024.01.13-04.17.56:728][500]LogModuleManager: Shutting down and abandoning module WebMMoviePlayer (322)
+[2024.01.13-04.17.56:728][500]LogModuleManager: Shutting down and abandoning module WindowsMoviePlayer (320)
+[2024.01.13-04.17.56:778][500]LogModuleManager: Shutting down and abandoning module AndroidFileServer (318)
+[2024.01.13-04.17.56:778][500]LogModuleManager: Shutting down and abandoning module NetworkReplayStreaming (316)
+[2024.01.13-04.17.56:778][500]LogModuleManager: Shutting down and abandoning module PacketHandler (314)
+[2024.01.13-04.17.56:778][500]LogModuleManager: Shutting down and abandoning module WorldPartitionEditor (312)
+[2024.01.13-04.17.56:779][500]LogModuleManager: Shutting down and abandoning module AnimGraph (310)
+[2024.01.13-04.17.56:779][500]LogModuleManager: Shutting down and abandoning module TimeManagement (308)
+[2024.01.13-04.17.56:780][500]LogModuleManager: Shutting down and abandoning module AnimationDataController (306)
+[2024.01.13-04.17.56:780][500]LogModuleManager: Shutting down and abandoning module ClothingSystemEditor (304)
+[2024.01.13-04.17.56:780][500]LogModuleManager: Shutting down and abandoning module ClothingSystemRuntimeNv (302)
+[2024.01.13-04.17.56:780][500]LogModuleManager: Shutting down and abandoning module MediaAssets (300)
+[2024.01.13-04.17.56:780][500]LogModuleManager: Shutting down and abandoning module Overlay (298)
+[2024.01.13-04.17.56:780][500]LogModuleManager: Shutting down and abandoning module OverlayEditor (297)
+[2024.01.13-04.17.56:780][500]LogModuleManager: Shutting down and abandoning module VREditor (294)
+[2024.01.13-04.17.56:780][500]LogModuleManager: Shutting down and abandoning module StringTableEditor (292)
+[2024.01.13-04.17.56:781][500]LogModuleManager: Shutting down and abandoning module GameplayTasksEditor (290)
+[2024.01.13-04.17.56:781][500]LogModuleManager: Shutting down and abandoning module BehaviorTreeEditor (288)
+[2024.01.13-04.17.56:782][500]LogModuleManager: Shutting down and abandoning module FunctionalTesting (286)
+[2024.01.13-04.17.56:782][500]LogModuleManager: Shutting down and abandoning module CollisionAnalyzer (284)
+[2024.01.13-04.17.56:783][500]LogModuleManager: Shutting down and abandoning module WorkspaceMenuStructure (283)
+[2024.01.13-04.17.56:783][500]LogModuleManager: Shutting down and abandoning module ScriptableEditorWidgets (280)
+[2024.01.13-04.17.56:783][500]LogModuleManager: Shutting down and abandoning module UMG (278)
+[2024.01.13-04.17.56:783][500]LogModuleManager: Shutting down and abandoning module UMGEditor (277)
+[2024.01.13-04.17.56:784][500]LogModuleManager: Shutting down and abandoning module EditorStyle (272)
+[2024.01.13-04.17.56:784][500]LogModuleManager: Shutting down and abandoning module SlateReflector (270)
+[2024.01.13-04.17.56:787][500]LogModuleManager: Shutting down and abandoning module Slate (268)
+[2024.01.13-04.17.56:787][500]LogModuleManager: Shutting down and abandoning module SlateCore (266)
+[2024.01.13-04.17.56:788][500]LogModuleManager: Shutting down and abandoning module SubobjectDataInterface (264)
+[2024.01.13-04.17.56:788][500]LogModuleManager: Shutting down and abandoning module LandscapeEditorUtilities (262)
+[2024.01.13-04.17.56:788][500]LogModuleManager: Shutting down and abandoning module UnrealEd (260)
+[2024.01.13-04.17.56:788][500]LogModuleManager: Shutting down and abandoning module MRMesh (258)
+[2024.01.13-04.17.56:788][500]LogModuleManager: Shutting down and abandoning module Messaging (256)
+[2024.01.13-04.17.56:788][500]LogModuleManager: Shutting down and abandoning module SourceCodeAccess (254)
+[2024.01.13-04.17.56:788][500]LogModuleManager: Shutting down and abandoning module HeadMountedDisplay (252)
+[2024.01.13-04.17.56:788][500]LogModuleManager: Shutting down and abandoning module LiveCoding (250)
+[2024.01.13-04.17.56:794][500]LogModuleManager: Shutting down and abandoning module Networking (248)
+[2024.01.13-04.17.56:794][500]LogModuleManager: Shutting down and abandoning module Core (246)
+[2024.01.13-04.17.56:794][500]LogModuleManager: Shutting down and abandoning module AssetDefinition (244)
+[2024.01.13-04.17.56:794][500]LogModuleManager: Shutting down and abandoning module MovieSceneTools (242)
+[2024.01.13-04.17.56:795][500]LogModuleManager: Shutting down and abandoning module CurveEditor (241)
+[2024.01.13-04.17.56:796][500]LogModuleManager: Shutting down and abandoning module Sequencer (239)
+[2024.01.13-04.17.56:799][500]LogModuleManager: Shutting down and abandoning module KismetCompiler (236)
+[2024.01.13-04.17.56:799][500]LogModuleManager: Shutting down and abandoning module MeshBuilder (234)
+[2024.01.13-04.17.56:799][500]LogModuleManager: Shutting down and abandoning module NaniteBuilder (232)
+[2024.01.13-04.17.56:799][500]LogModuleManager: Shutting down and abandoning module MeshUtilities (230)
+[2024.01.13-04.17.56:799][500]LogModuleManager: Shutting down and abandoning module MeshMergeUtilities (229)
+[2024.01.13-04.17.56:800][500]LogModuleManager: Shutting down and abandoning module StaticMeshDescription (228)
+[2024.01.13-04.17.56:800][500]LogModuleManager: Shutting down and abandoning module GeometryProcessingInterfaces (227)
+[2024.01.13-04.17.56:800][500]LogModuleManager: Shutting down and abandoning module MeshReductionInterface (224)
+[2024.01.13-04.17.56:800][500]LogModuleManager: Shutting down and abandoning module MeshBoneReduction (223)
+[2024.01.13-04.17.56:800][500]LogModuleManager: Shutting down and abandoning module SkeletalMeshReduction (221)
+[2024.01.13-04.17.56:801][500]LogModuleManager: Shutting down and abandoning module ProxyLODMeshReduction (219)
+[2024.01.13-04.17.56:803][500]LogModuleManager: Shutting down and abandoning module QuadricMeshReduction (217)
+[2024.01.13-04.17.56:803][500]LogModuleManager: Shutting down and abandoning module MaterialBaking (213)
+[2024.01.13-04.17.56:804][500]LogModuleManager: Shutting down and abandoning module TargetDeviceServices (210)
+[2024.01.13-04.17.56:815][500]LogModuleManager: Shutting down and abandoning module TelemetryUtils (207)
+[2024.01.13-04.17.56:815][500]LogModuleManager: Shutting down and abandoning module NullInstallBundleManager (204)
+[2024.01.13-04.17.56:815][500]LogModuleManager: Shutting down and abandoning module ShaderPreprocessor (202)
+[2024.01.13-04.17.56:815][500]LogModuleManager: Shutting down and abandoning module DerivedDataCache (200)
+[2024.01.13-04.17.56:827][500]LogModuleManager: Shutting down and abandoning module TargetPlatform (198)
+[2024.01.13-04.17.56:827][500]LogModuleManager: Shutting down and abandoning module MetalShaderFormat (197)
+[2024.01.13-04.17.56:828][500]LogModuleManager: Shutting down and abandoning module VulkanShaderFormat (195)
+[2024.01.13-04.17.56:829][500]LogModuleManager: Shutting down and abandoning module ShaderFormatOpenGL (193)
+[2024.01.13-04.17.56:829][500]LogModuleManager: Shutting down and abandoning module ShaderFormatD3D (191)
+[2024.01.13-04.17.56:829][500]LogModuleManager: Shutting down and abandoning module ShaderFormatVectorVM (189)
+[2024.01.13-04.17.56:829][500]LogModuleManager: Shutting down and abandoning module AudioFormatBINK (187)
+[2024.01.13-04.17.56:829][500]LogModuleManager: Shutting down and abandoning module AudioFormatADPCM (185)
+[2024.01.13-04.17.56:829][500]LogModuleManager: Shutting down and abandoning module AudioFormatOGG (183)
+[2024.01.13-04.17.56:830][500]LogModuleManager: Shutting down and abandoning module AudioFormatOPUS (181)
+[2024.01.13-04.17.56:830][500]LogModuleManager: Shutting down and abandoning module WindowsTargetPlatform (179)
+[2024.01.13-04.17.56:830][500]LogModuleManager: Shutting down and abandoning module TVOSTargetPlatform (177)
+[2024.01.13-04.17.56:830][500]LogModuleManager: Shutting down and abandoning module MacTargetPlatform (175)
+[2024.01.13-04.17.56:830][500]LogModuleManager: Shutting down and abandoning module LinuxArm64TargetPlatform (173)
+[2024.01.13-04.17.56:830][500]LogModuleManager: Shutting down and abandoning module LinuxTargetPlatform (171)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module IOSTargetPlatform (169)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module AndroidTargetPlatform (167)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module TextureFormat (165)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module ImageWrapper (164)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module TextureFormatOodle (162)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module TextureFormatUncompressed (160)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module TextureFormatIntelISPCTexComp (158)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module TextureFormatETC2 (156)
+[2024.01.13-04.17.56:831][500]LogModuleManager: Shutting down and abandoning module TextureFormatDXT (154)
+[2024.01.13-04.17.56:832][500]LogModuleManager: Shutting down and abandoning module TextureFormatASTC (152)
+[2024.01.13-04.17.56:832][500]LogModuleManager: Shutting down and abandoning module TurnkeySupport (149)
+[2024.01.13-04.17.56:832][500]LogModuleManager: Shutting down and abandoning module InputCore (146)
+[2024.01.13-04.17.56:832][500]LogModuleManager: Shutting down and abandoning module Settings (144)
+[2024.01.13-04.17.56:832][500]LogModuleManager: Shutting down and abandoning module DirectoryWatcher (142)
+[2024.01.13-04.17.56:834][500]LogModuleManager: Shutting down and abandoning module ChaosSolverEngine (140)
+[2024.01.13-04.17.56:834][500]LogModuleManager: Shutting down and abandoning module FieldSystemEngine (139)
+[2024.01.13-04.17.56:834][500]LogModuleManager: Shutting down and abandoning module Chaos (136)
+[2024.01.13-04.17.56:834][500]LogModuleManager: Shutting down and abandoning module GeometryCore (135)
+[2024.01.13-04.17.56:834][500]LogModuleManager: Shutting down and abandoning module WindowsPlatformFeatures (132)
+[2024.01.13-04.17.56:834][500]LogModuleManager: Shutting down and abandoning module GameplayMediaEncoder (131)
+[2024.01.13-04.17.56:834][500]LogModuleManager: Shutting down and abandoning module AVEncoder (130)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module D3D12RHI (126)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module VariantManagerContent (124)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module GLTFExporter (122)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module DatasmithContent (120)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module NiagaraVertexFactories (118)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module NiagaraShader (116)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module AISupportModule (114)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module Water (112)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module ChaosCloth (110)
+[2024.01.13-04.17.56:835][500]LogModuleManager: Shutting down and abandoning module RenderDocPlugin (108)
+[2024.01.13-04.17.56:836][500]RenderDocPlugin: plugin has been unloaded.
+[2024.01.13-04.17.56:836][500]LogModuleManager: Shutting down and abandoning module PixWinPlugin (106)
+[2024.01.13-04.17.56:836][500]LogModuleManager: Shutting down and abandoning module OnlineBlueprintSupport (104)
+[2024.01.13-04.17.56:836][500]LogModuleManager: Shutting down and abandoning module OnlineSubsystemUtils (102)
+[2024.01.13-04.17.56:837][500]LogModuleManager: Shutting down and abandoning module LauncherChunkInstaller (100)
+[2024.01.13-04.17.56:837][500]LogModuleManager: Shutting down and abandoning module OnlineSubsystem (98)
+[2024.01.13-04.17.56:840][500]LogModuleManager: Shutting down and abandoning module XMPP (93)
+[2024.01.13-04.17.56:841][500]LogModuleManager: Shutting down and abandoning module WebSockets (92)
+[2024.01.13-04.17.56:869][500]LogModuleManager: Shutting down and abandoning module HTTP (89)
+[2024.01.13-04.17.56:869][500]LogHttp: Warning: [FHttpManager::Shutdown] Unbinding delegates for 1 outstanding Http Requests:
+[2024.01.13-04.17.56:869][500]LogHttp: Warning: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B70466E4C-4B67-88A3-B94F-C6B10EF81DFD%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.3.2-29314046%2B%2B%2BUE5%2BRelease-5.3&UserID=d8f0dcb0452256c84552d083468ae762%7C4611ab85e9a046b08ea9e506519f0ae6%7C299d33dc-8710-426d-bf57-92755e67e23e&AppEnvironment=datacollector-binary&UploadType=eteventstream] refs=[1] status=Processing
+[2024.01.13-04.17.56:900][500]LogModuleManager: Shutting down and abandoning module SSL (88)
+[2024.01.13-04.17.56:901][500]LogModuleManager: Shutting down and abandoning module OnlineServicesCommonEngineUtils (84)
+[2024.01.13-04.17.56:902][500]LogModuleManager: Shutting down and abandoning module OnlineServicesCommon (82)
+[2024.01.13-04.17.56:902][500]LogModuleManager: Shutting down and abandoning module OnlineServicesInterface (80)
+[2024.01.13-04.17.56:902][500]LogModuleManager: Shutting down and abandoning module WmfMedia (78)
+[2024.01.13-04.17.56:906][500]LogModuleManager: Shutting down and abandoning module Media (77)
+[2024.01.13-04.17.56:907][500]LogModuleManager: Shutting down and abandoning module ExrReaderGpu (74)
+[2024.01.13-04.17.56:907][500]LogModuleManager: Shutting down and abandoning module WindowsDeviceProfileSelector (72)
+[2024.01.13-04.17.56:907][500]LogModuleManager: Shutting down and abandoning module ExampleDeviceProfileSelector (70)
+[2024.01.13-04.17.56:907][500]LogModuleManager: Shutting down and abandoning module ChunkDownloader (68)
+[2024.01.13-04.17.56:908][500]LogModuleManager: Shutting down and abandoning module ACLPlugin (66)
+[2024.01.13-04.17.56:908][500]LogModuleManager: Shutting down and abandoning module DesktopPlatform (64)
+[2024.01.13-04.17.56:908][500]LogModuleManager: Shutting down and abandoning module PythonScriptPluginPreload (62)
+[2024.01.13-04.17.56:908][500]LogModuleManager: Shutting down and abandoning module PlatformCryptoOpenSSL (60)
+[2024.01.13-04.17.56:908][500]LogModuleManager: Shutting down and abandoning module PlatformCryptoTypes (58)
+[2024.01.13-04.17.56:908][500]LogModuleManager: Shutting down and abandoning module PlatformCrypto (56)
+[2024.01.13-04.17.56:908][500]LogModuleManager: Shutting down and abandoning module PlasticSourceControl (54)
+[2024.01.13-04.17.56:909][500]LogModuleManager: Shutting down and abandoning module PerforceSourceControl (52)
+[2024.01.13-04.17.56:910][500]LogModuleManager: Shutting down and abandoning module SourceControl (51)
+[2024.01.13-04.17.56:911][500]LogModuleManager: Shutting down and abandoning module XGEController (48)
+[2024.01.13-04.17.56:911][500]LogXGEController: Cleaning working directory: C:/Users/mharr/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2024.01.13-04.17.56:912][500]LogModuleManager: Shutting down and abandoning module FastBuildController (46)
+[2024.01.13-04.17.56:912][500]LogModuleManager: Shutting down and abandoning module IoStoreOnDemand (44)
+[2024.01.13-04.17.56:912][500]LogModuleManager: Shutting down and abandoning module AnimationModifiers (42)
+[2024.01.13-04.17.56:913][500]LogModuleManager: Shutting down and abandoning module AudioEditor (40)
+[2024.01.13-04.17.56:914][500]LogModuleManager: Shutting down and abandoning module PropertyEditor (39)
+[2024.01.13-04.17.56:915][500]LogModuleManager: Shutting down and abandoning module Virtualization (36)
+[2024.01.13-04.17.56:915][500]LogModuleManager: Shutting down and abandoning module MessageLog (35)
+[2024.01.13-04.17.56:915][500]LogModuleManager: Shutting down and abandoning module TextureCompressor (32)
+[2024.01.13-04.17.56:915][500]LogModuleManager: Shutting down and abandoning module OpenColorIOWrapper (31)
+[2024.01.13-04.17.56:915][500]LogModuleManager: Shutting down and abandoning module RenderCore (28)
+[2024.01.13-04.17.56:915][500]LogModuleManager: Shutting down and abandoning module Landscape (26)
+[2024.01.13-04.17.56:915][500]LogModuleManager: Shutting down and abandoning module SlateRHIRenderer (24)
+[2024.01.13-04.17.56:917][500]LogModuleManager: Shutting down and abandoning module AnimGraphRuntime (22)
+[2024.01.13-04.17.56:917][500]LogModuleManager: Shutting down and abandoning module Renderer (20)
+[2024.01.13-04.17.56:918][500]LogModuleManager: Shutting down and abandoning module Engine (18)
+[2024.01.13-04.17.56:918][500]LogModuleManager: Shutting down and abandoning module CoreUObject (16)
+[2024.01.13-04.17.56:918][500]LogModuleManager: Shutting down and abandoning module SandboxFile (14)
+[2024.01.13-04.17.56:918][500]LogModuleManager: Shutting down and abandoning module PakFile (12)
+[2024.01.13-04.17.56:918][500]LogPakFile: Destroying PakPlatformFile
+[2024.01.13-04.17.56:918][500]LogModuleManager: Shutting down and abandoning module RSA (11)
+[2024.01.13-04.17.56:918][500]LogModuleManager: Shutting down and abandoning module NetworkFile (8)
+[2024.01.13-04.17.56:919][500]LogModuleManager: Shutting down and abandoning module StreamingFile (6)
+[2024.01.13-04.17.56:919][500]LogModuleManager: Shutting down and abandoning module CookOnTheFly (4)
+[2024.01.13-04.17.56:919][500]LogModuleManager: Shutting down and abandoning module StorageServerClient (2)
+[2024.01.13-04.17.58:027][500]LogD3D12RHI: ~FD3D12DynamicRHI
+[2024.01.13-04.17.58:109][500]LogExit: Exiting.
+[2024.01.13-04.17.58:120][500]Log file closed, 01/12/24 23:17:58
