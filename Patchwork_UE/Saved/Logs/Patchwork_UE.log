@@ -1,4 +1,4 @@
-﻿Log file open, 01/12/24 16:48:11
+Log file open, 01/12/24 16:48:11
 LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
 LogWindows: File 'aqProf.dll' does not exist
 LogProfilingDebugging: Loading WinPixEventRuntime.dll for PIX profiling (from ../../../Engine/Binaries/ThirdParty/Windows/WinPixEventRuntime/x64).
@@ -18,14 +18,14 @@ LogCsvProfiler: Display: Metadata set : platform="Windows"
 LogCsvProfiler: Display: Metadata set : config="Development"
 LogCsvProfiler: Display: Metadata set : buildversion="++UE5+Release-5.3-CL-29314046"
 LogCsvProfiler: Display: Metadata set : engineversion="5.3.2-29314046+++UE5+Release-5.3"
-LogCsvProfiler: Display: Metadata set : os="Windows 11 (22H2) [10.0.22621.2861] "
-LogCsvProfiler: Display: Metadata set : cpu="GenuineIntel|12th Gen Intel(R) Core(TM) i7-12700K"
+LogCsvProfiler: Display: Metadata set : os="Windows 11 (23H2) [10.0.22631.3007] "
+LogCsvProfiler: Display: Metadata set : cpu="AuthenticAMD|AMD Ryzen 7 5800X 8-Core Processor"
 LogCsvProfiler: Display: Metadata set : pgoenabled="0"
 LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
 LogCsvProfiler: Display: Metadata set : ltoenabled="0"
 LogCsvProfiler: Display: Metadata set : asan="0"
-LogCsvProfiler: Display: Metadata set : commandline="" B:\UnrealEngine5_Projects\_repos2\Patchwork\Patchwork_UE\Patchwork_UE.uproject""
-LogCsvProfiler: Display: Metadata set : loginid="d8f0dcb0452256c84552d083468ae762"
+LogCsvProfiler: Display: Metadata set : commandline="" D:/Programs/Github/Patchwork/Patchwork_UE/Patchwork_UE.uproject -AUTH_LOGIN=unused -AUTH_PASSWORD=f40ea0ae2f6a4c0190d6dc3c00451c76 -AUTH_TYPE=exchangecode -epicapp=UE_5.3 -epicenv=Prod -EpicPortal -epicusername=RikoandTako -epicuserid=f60019dadba24155ad1e192ef4b3a199 -epiclocale=en -epicsandboxid=ue""
+LogCsvProfiler: Display: Metadata set : loginid="15033ca34b075f6eb206d8a3fe938029"
 LogCsvProfiler: Display: Metadata set : llm="0"
 LogStats: Stats thread started at 0.318056
 LogICUInternationalization: ICU TimeZone Detection - Raw Offset: -5:00, Platform Override: ''
@@ -51,6 +51,21 @@ LogPluginManager: Mounting Engine plugin XGEController
 LogPluginManager: Mounting Engine plugin AndroidMedia
 LogPluginManager: Mounting Engine plugin AvfMedia
 LogPluginManager: Mounting Engine plugin Paper2D
+LogPluginManager: Mounting Engine plugin OodleNetwork
+LogPluginManager: Mounting Engine plugin NiagaraFluids
+LogPluginManager: Mounting Engine plugin Niagara
+LogPluginManager: Mounting Engine plugin AndroidMedia
+LogPluginManager: Mounting Engine plugin AvfMedia
+LogPluginManager: Mounting Engine plugin ImgMedia
+LogPluginManager: Mounting Engine plugin MediaCompositing
+LogPluginManager: Mounting Engine plugin MediaPlayerEditor
+LogPluginManager: Mounting Engine plugin MediaPlate
+LogPluginManager: Mounting Engine plugin WebMMedia
+LogPluginManager: Mounting Engine plugin InterchangeTests
+LogPluginManager: Mounting Engine plugin WmfMedia
+LogPluginManager: Mounting Engine plugin ACLPlugin
+LogPluginManager: Mounting Engine plugin AnimationData
+LogPluginManager: Mounting Engine plugin AnimationModifierLibrary
 LogPluginManager: Mounting Engine plugin InterchangeEditor
 LogPluginManager: Mounting Engine plugin Interchange
 LogPluginManager: Mounting Engine plugin ImgMedia
@@ -81,8 +96,8 @@ LogPluginManager: Mounting Engine plugin GeometryFlow
 LogPluginManager: Mounting Engine plugin GeometryScripting
 LogPluginManager: Mounting Engine plugin Landmass
 LogPluginManager: Mounting Engine plugin LocalizableMessage
-LogPluginManager: Mounting Engine plugin MeshLODToolset
 LogPluginManager: Mounting Engine plugin MeshModelingToolsetExp
+LogPluginManager: Mounting Engine plugin MeshLODToolset
 LogPluginManager: Mounting Engine plugin OpenImageDenoise
 LogPluginManager: Mounting Engine plugin PCG
 LogPluginManager: Mounting Engine plugin PlanarCut
@@ -219,6 +234,11 @@ LogPluginManager: Mounting Engine plugin OnlineSubsystemIOS
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Bridge/Content/' mounted to '/Bridge/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/TraceUtilities/Content/' mounted to '/TraceUtilities/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/2D/Paper2D/Content/' mounted to '/Paper2D/'
+LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/FX/NiagaraFluids/Content/' mounted to '/NiagaraFluids/'
+LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/FX/Niagara/Content/' mounted to '/Niagara/'
+LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Media/MediaCompositing/Content/' mounted to '/MediaCompositing/'
+LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Media/MediaPlate/Content/' mounted to '/MediaPlate/'
+LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Animation/ACLPlugin/Content/' mounted to '/ACLPlugin/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Interchange/Runtime/Content/' mounted to '/Interchange/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Media/MediaCompositing/Content/' mounted to '/MediaCompositing/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Media/MediaPlate/Content/' mounted to '/MediaPlate/'
@@ -232,8 +252,8 @@ LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experim
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/GeometryFlow/Content/' mounted to '/GeometryFlow/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/GeometryScripting/Content/' mounted to '/GeometryScripting/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/Landmass/Content/' mounted to '/Landmass/'
-LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/MeshLODToolset/Content/' mounted to '/MeshLODToolset/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/MeshModelingToolsetExp/Content/' mounted to '/MeshModelingToolsetExp/'
+LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/MeshLODToolset/Content/' mounted to '/MeshLODToolset/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/PCG/Content/' mounted to '/PCG/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/PythonScriptPlugin/Content/' mounted to '/PythonScriptPlugin/'
 LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Experimental/ToolPresets/Content/' mounted to '/ToolPresets/'
@@ -269,6 +289,11 @@ LogPackageName: Display: FPackageName: Mount point added: '../../Plugins/Editor/
 SourceControl: Revision control is disabled
 SourceControl: Revision control is disabled
 SourceControl: Revision control is disabled
+LogWindows: Failed to load 'WinPixGpuCapturer.dll' (GetLastError=126)
+LogWindows: File 'WinPixGpuCapturer.dll' does not exist
+PixWinPlugin: PIX capture plugin failed to initialize! Check that the process is launched from PIX.
+LogConfig: Applying CVar settings from Section [/Script/RenderDocPlugin.RenderDocPluginSettings] File [Engine]
+RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
 LogInit: Using libcurl 8.4.0
 LogInit:  - built for Windows
 LogInit:  - supports SSL with OpenSSL/1.1.1t
@@ -289,24 +314,19 @@ LogInit:  - BufferSize = 65536
 LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
 LogOnline: OSS: Created online subsystem instance for: NULL
 LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for type [NULL]
-LogWindows: Failed to load 'WinPixGpuCapturer.dll' (GetLastError=126)
-LogWindows: File 'WinPixGpuCapturer.dll' does not exist
-PixWinPlugin: PIX capture plugin failed to initialize! Check that the process is launched from PIX.
-LogConfig: Applying CVar settings from Section [/Script/RenderDocPlugin.RenderDocPluginSettings] File [Engine]
-RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
 LogInit: ExecutableName: UnrealEditor.exe
 LogInit: Build: ++UE5+Release-5.3-CL-29314046
 LogInit: Engine Version: 5.3.2-29314046+++UE5+Release-5.3
 LogInit: Compatible Engine Version: 5.3.0-27405482+++UE5+Release-5.3
 LogInit: Net CL: 27405482
-LogInit: OS: Windows 11 (22H2) [10.0.22621.2861] (), CPU: 12th Gen Intel(R) Core(TM) i7-12700K, GPU: NVIDIA GeForce RTX 3080
+LogInit: OS: Windows 11 (23H2) [10.0.22631.3007] (), CPU: AMD Ryzen 7 5800X 8-Core Processor             , GPU: NVIDIA GeForce RTX 3070 Ti
 LogInit: Compiled (64-bit): Nov  3 2023 16:09:16
 LogInit: Architecture: x64
 LogInit: Compiled with Visual C++: 19.36.32537.00
 LogInit: Build Configuration: Development
 LogInit: Branch Name: ++UE5+Release-5.3
-LogInit: Command Line: 
-LogInit: Base Directory: B:/UnrealEngine/UE/UE_5.3/Engine/Binaries/Win64/
+LogInit: Command Line: -AUTH_LOGIN=unused -AUTH_PASSWORD=f40ea0ae2f6a4c0190d6dc3c00451c76 -AUTH_TYPE=exchangecode -epicapp=UE_5.3 -epicenv=Prod -EpicPortal -epicusername=RikoandTako -epicuserid=f60019dadba24155ad1e192ef4b3a199 -epiclocale=en -epicsandboxid=ue
+LogInit: Base Directory: D:/Epic Games/UE_5.3/Engine/Binaries/Win64/
 LogInit: Allocator: Mimalloc
 LogInit: Installed Engine Build: 1
 LogInit: This binary is optimized with LTO: no, PGO: no, instrumented for PGO data collection: no
@@ -347,7 +367,7 @@ LogDevObjectVersion:   UE5-PrivateFrosty (59DA5D52-1232-4948-B878-597870B8E98B):
 LogDevObjectVersion:   UE5-Dev-Cooker (26075A32-730F-4708-88E9-8C32F1599D05): 0
 LogDevObjectVersion:   Dev-MediaFramework (6F0ED827-A609-4895-9C91-998D90180EA4): 2
 LogDevObjectVersion:   UE5-Dev-LWCRendering (30D58BE3-95EA-4282-A6E3-B159D8EBB06A): 1
-LogCoreRedirects: AddRedirect(B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Config/WindowsEditor/NiagaraFluids.ini) has substring redirect /NiagaraSimulationStages/, these are very slow and should be resolved as soon as possible!
+LogCoreRedirects: AddRedirect(D:/Programs/Github/Patchwork/Patchwork_UE/Saved/Config/WindowsEditor/NiagaraFluids.ini) has substring redirect /NiagaraSimulationStages/, these are very slow and should be resolved as soon as possible!
 LogInit: Presizing for max 25165824 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
 LogInit: Object subsystem initialized
 LogConfig: Set CVar [[con.DebugEarlyDefault:1]]
