@@ -8510,3 +8510,1047 @@ Reference List:
 [2024.01.16-23.41.35:112][662]LogFileHelpers: InternalPromptForCheckoutAndSave took 201 ms (total: 8.32 sec)
 [2024.01.16-23.41.35:115][662]AssetCheck: New page: Asset Save: TechnoReverie
 [2024.01.16-23.41.35:115][662]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.42.04:711][197]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.43.11:025][955]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Megascans/3D_Assets/Modular_Wooden_Ladder_xb4jcgtdw/S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1.S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1
+[2024.01.16-23.43.11:035][955]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.16-23.43.11:035][955]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.16-23.43.11:516][955]LogViewport: Scene viewport resized to 2307x1835, mode Windowed.
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: ================================================
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: Total job queries 199, among them cache hits 22 (11.06%)
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: Tracking 177 distinct input hashes that result in 156 distinct outputs (88.14%)
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: RAM used: 4.44 MiB of 1.60 GiB budget. Usage: 0.27%
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: Shaders Compiled: 0
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: Jobs assigned 0, completed 0 (0%)
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 0.00 s
+[2024.01.16-23.43.11:580][956]LogShaderCompilers: Display: ================================================
+[2024.01.16-23.43.16:996][321]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Megascans/3D_Assets/Modular_Wooden_Ladder_xb4jcgtdw/S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var2.S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var2
+[2024.01.16-23.43.17:003][321]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.16-23.43.17:003][321]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.16-23.43.17:394][321]LogViewport: Scene viewport resized to 2307x1835, mode Windowed.
+[2024.01.16-23.43.31:105][216]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.43.31:229][216]LogUObjectHash: Compacting FUObjectHashTables data took   1.10ms
+[2024.01.16-23.43.31:302][216]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.16-23.43.31:302][216]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverieB6B94FBF4C8E68F226876D8DA9661CB0.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.16-23.43.31:313][216]LogFileHelpers: Saving map 'TechnoReverie' took 0.146
+[2024.01.16-23.43.31:332][216]LogFileHelpers: InternalPromptForCheckoutAndSave took 227 ms (total: 8.55 sec)
+[2024.01.16-23.43.31:335][216]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.16-23.43.31:335][216]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.16-23.43.32:462][287]LogWorld: UWorld::CleanupWorld for World_23, bSessionEnded=true, bCleanupResources=true
+[2024.01.16-23.43.32:462][287]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.16-23.43.33:203][311]LogWorld: UWorld::CleanupWorld for World_22, bSessionEnded=true, bCleanupResources=true
+[2024.01.16-23.43.33:203][311]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.16-23.43.34:287][380]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.43.34:340][380]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC
+[2024.01.16-23.43.34:341][380]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_RandomNPC65068543473C830FE4098185F77B6637.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC.uasset'
+[2024.01.16-23.43.34:347][380]LogFileHelpers: InternalPromptForCheckoutAndSave took 59 ms (total: 8.61 sec)
+[2024.01.16-23.43.34:348][380]AssetCheck: New page: Asset Save: BP_RandomNPC
+[2024.01.16-23.43.34:348][380]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC.BP_RandomNPC
+[2024.01.16-23.43.36:138][514]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.43.36:189][514]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC
+[2024.01.16-23.43.36:189][514]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_RandomNPC4B72940C4530037F298DCEAF84BFC2CD.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC.uasset'
+[2024.01.16-23.43.36:195][514]LogFileHelpers: InternalPromptForCheckoutAndSave took 57 ms (total: 8.67 sec)
+[2024.01.16-23.43.36:196][514]AssetCheck: New page: Asset Save: BP_RandomNPC
+[2024.01.16-23.43.36:196][514]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC.BP_RandomNPC
+[2024.01.16-23.43.37:682][621]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.43.37:739][621]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC
+[2024.01.16-23.43.37:741][621]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_RandomNPCA23671F343B05941AB6BCA980FDA2A09.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC.uasset'
+[2024.01.16-23.43.37:746][621]LogFileHelpers: InternalPromptForCheckoutAndSave took 64 ms (total: 8.73 sec)
+[2024.01.16-23.43.37:747][621]AssetCheck: New page: Asset Save: BP_RandomNPC
+[2024.01.16-23.43.37:747][621]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC.BP_RandomNPC
+[2024.01.16-23.43.38:346][659]BlueprintLog: New page: Compile BP_RandomNPC
+[2024.01.16-23.43.38:496][659]LogUObjectHash: Compacting FUObjectHashTables data took   1.45ms
+[2024.01.16-23.43.38:687][659]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.43.38:740][659]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC
+[2024.01.16-23.43.38:741][659]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_RandomNPCE7261B534C6D6FC82E6B4988E79C24CC.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC.uasset'
+[2024.01.16-23.43.38:761][659]LogFileHelpers: InternalPromptForCheckoutAndSave took 73 ms (total: 8.80 sec)
+[2024.01.16-23.43.38:762][659]AssetCheck: New page: Asset Save: BP_RandomNPC
+[2024.01.16-23.43.38:762][659]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Levels/technoreverie/BP_RandomNPC.BP_RandomNPC
+[2024.01.16-23.43.41:544][849]LogWorld: UWorld::CleanupWorld for World_21, bSessionEnded=true, bCleanupResources=true
+[2024.01.16-23.43.41:545][849]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.16-23.43.44:421][ 81]LogSlate: Window 'BP_Random_Peeps' being destroyed
+[2024.01.16-23.43.44:472][ 81]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2024.01.16-23.43.44:472][ 81]LogWorld: UWorld::CleanupWorld for World_19, bSessionEnded=true, bCleanupResources=true
+[2024.01.16-23.43.44:472][ 81]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.16-23.44.28:670][709]Cmd: CAMERA ALIGN ACTIVEVIEWPORTONLY
+[2024.01.16-23.45.16:849][133]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Megascans/3D_Assets/Modular_Wooden_Ladder_xb4jcgtdw/S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1.S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1
+[2024.01.16-23.45.16:849][133]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Megascans/3D_Assets/Modular_Wooden_Ladder_xb4jcgtdw/S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1.S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1
+[2024.01.16-23.45.16:849][133]LogActorFactory: Actor Factory spawned StaticMesh /Game/Megascans/3D_Assets/Modular_Wooden_Ladder_xb4jcgtdw/S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1.S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1 as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie:PersistentLevel.StaticMeshActor_46
+[2024.01.16-23.45.18:556][289]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Megascans/3D_Assets/Modular_Wooden_Ladder_xb4jcgtdw/S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1.S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1
+[2024.01.16-23.45.18:556][289]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Megascans/3D_Assets/Modular_Wooden_Ladder_xb4jcgtdw/S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1.S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1
+[2024.01.16-23.45.18:557][289]LogActorFactory: Actor Factory spawned StaticMesh /Game/Megascans/3D_Assets/Modular_Wooden_Ladder_xb4jcgtdw/S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1.S_Modular_Wooden_Ladder_xb4jcgtdw_lod5_Var1 as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie:PersistentLevel.StaticMeshActor_47
+[2024.01.16-23.45.21:152][576]Cmd: CAMERA ALIGN ACTIVEVIEWPORTONLY
+[2024.01.16-23.45.23:054][777]Cmd: TRANSACTION UNDO
+[2024.01.16-23.45.23:054][777]LogEditorTransaction: Undo Move Elements
+[2024.01.16-23.49.55:553][290]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder.BP_Ladder
+[2024.01.16-23.49.55:554][290]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.16-23.49.55:554][290]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.16-23.49.56:912][362]LogViewport: Scene viewport resized to 2405x1610, mode Windowed.
+[2024.01.16-23.49.59:532][522]LogContentBrowser: Deferred new asset file creation: BP_Ladder_Child
+[2024.01.16-23.49.59:577][522]LogContentBrowser: Creating deferred item: BP_Ladder_Child
+[2024.01.16-23.49.59:596][523]LogContentBrowser: Renaming the item being created (Deferred Item: BP_Ladder_Child).
+[2024.01.16-23.50.03:005][779]LogContentBrowser: Attempting asset rename: BP_Ladder_Child -> BP_Ladder_Modern
+[2024.01.16-23.50.03:012][779]LogContentBrowser: End creating deferred item BP_Ladder_Child
+[2024.01.16-23.50.03:015][779]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.16-23.50.03:171][786]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.16-23.50.03:171][786]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.16-23.50.03:171][786]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.16-23.50.03:333][786]LogViewport: Scene viewport resized to 2405x1610, mode Windowed.
+[2024.01.16-23.50.18:249][837]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2024.01.16-23.50.18:264][837]LogContentBrowser: Creating deferred item: NewFolder
+[2024.01.16-23.50.18:277][838]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2024.01.16-23.50.22:690][169]LogContentBrowser: Attempting asset rename: NewFolder -> TechnoReverie
+[2024.01.16-23.50.22:691][169]LogContentBrowser: End creating deferred item NewFolder
+[2024.01.16-23.50.37:474][534]LogFactory: FactoryCreateFile: StaticMesh with FbxFactory (0 0 C:\Users\mharr\OneDrive\Desktop\ladder_segment.fbx)
+[2024.01.16-23.50.37:504][534]LogFbx: Loading FBX Scene from C:\Users\mharr\OneDrive\Desktop\ladder_segment.fbx
+[2024.01.16-23.50.37:511][534]LogFbx: FBX Scene Loaded Succesfully
+[2024.01.16-23.50.38:986][534]LogSlate: Window 'FBX Import Options' being destroyed
+[2024.01.16-23.50.39:086][534]LogFbx: Display: Triangulating static mesh Cube
+[2024.01.16-23.50.39:110][534]LogStaticMesh: Display: Building static mesh ladder_segment...
+[2024.01.16-23.50.39:122][534]LogStaticMesh: Adjacency [0.00s], tris: 1128, UVs 2
+[2024.01.16-23.50.39:126][534]LogStaticMesh: Clustering [0.00s]. Ratio: 1.000000
+[2024.01.16-23.50.39:126][534]LogStaticMesh: Leaves [0.00s]
+[2024.01.16-23.50.39:162][534]LogStaticMesh: Reduce [0.04s]
+[2024.01.16-23.50.39:177][534]LogStaticMesh: Fallback 0/1 [0.02s], num tris: 596
+[2024.01.16-23.50.39:178][534]LogStaticMesh: ConstrainClusters:
+[2024.01.16-23.50.39:178][534]LogStaticMesh:   Input: 20 Clusters, 2509 Triangles and 3111 Vertices
+[2024.01.16-23.50.39:178][534]LogStaticMesh:   Output without splits: 20 Clusters, 2509 Triangles and 3115 Vertices
+[2024.01.16-23.50.39:178][534]LogStaticMesh:   Output with splits: 20 Clusters, 2509 Triangles and 3115 Vertices
+[2024.01.16-23.50.39:178][534]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 20, Slow Path Clusters: 0, 1 Material: 20, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
+[2024.01.16-23.50.39:179][534]LogStaticMesh: WritePages:
+[2024.01.16-23.50.39:179][534]LogStaticMesh:   Root: GPU size: 32744 bytes. 1 Pages. 32744.000 bytes per page (99.927% utilization).
+[2024.01.16-23.50.39:179][534]LogStaticMesh:   Streaming: GPU size: 12824 bytes. 1 Pages (1 with relative encoding). 12824.000 bytes per page (9.784% utilization).
+[2024.01.16-23.50.39:179][534]LogStaticMesh:   Page data disk size: 33232 bytes. Fixup data size: 224 bytes.
+[2024.01.16-23.50.39:179][534]LogStaticMesh:   Total GPU size: 45568 bytes, Total disk size: 33456 bytes.
+[2024.01.16-23.50.39:179][534]LogStaticMesh: Encode [0.00s]
+[2024.01.16-23.50.39:179][534]LogStaticMesh: Nanite build [0.05s]
+
+[2024.01.16-23.50.39:181][534]LogStaticMesh: Built static mesh [0.07s] /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.16-23.50.39:198][534]FBXImport: Warning: No smoothing group information was found in this FBX scene.  Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter plug-in before exporting the file.  Even for tools that don't support smoothing groups, the FBX Exporter will generate appropriate smoothing data at export-time so that correct vertex normals can be inferred while importing. 
+[2024.01.16-23.50.40:980][590]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.50.41:043][590]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment
+[2024.01.16-23.50.41:043][590]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segmentC0C906DA48E8BE63374CD48A4B6C5F54.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment.uasset'
+[2024.01.16-23.50.41:053][590]LogFileHelpers: InternalPromptForCheckoutAndSave took 72 ms (total: 8.88 sec)
+[2024.01.16-23.50.41:053][590]AssetCheck: New page: Asset Save: ladder_segment
+[2024.01.16-23.50.41:053][590]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.50.44:336][783]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.52.08:405][862]BlueprintLog: New page: Compile BP_Ladder
+[2024.01.16-23.52.08:505][862]LogUObjectHash: Compacting FUObjectHashTables data took   1.44ms
+[2024.01.16-23.52.16:096][387]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.52.16:201][387]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder
+[2024.01.16-23.52.16:202][387]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder7B8DF68E4C0A7F96EB2216A366F2BA1B.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder.uasset'
+[2024.01.16-23.52.16:211][387]LogFileHelpers: InternalPromptForCheckoutAndSave took 114 ms (total: 8.99 sec)
+[2024.01.16-23.52.16:213][387]AssetCheck: New page: Asset Save: BP_Ladder
+[2024.01.16-23.52.16:213][387]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder.BP_Ladder
+[2024.01.16-23.52.26:563][  2]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.52.26:726][  2]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.16-23.52.26:726][  2]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_Modern974D4E9140949C9E171C878AD3F896FE.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.16-23.52.26:736][  2]LogFileHelpers: InternalPromptForCheckoutAndSave took 173 ms (total: 9.17 sec)
+[2024.01.16-23.52.26:737][  2]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.16-23.52.26:737][  2]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.16-23.52.28:613][131]LogEditorTransaction: Undo Edit Static Mesh
+[2024.01.16-23.52.29:100][136]LogEditorTransaction: Undo Edit Static Mesh
+[2024.01.16-23.52.29:719][167]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.52.29:785][167]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.16-23.52.29:785][167]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_Modern064291ED4CE9E677697CA89A83EEAC2E.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.16-23.52.29:794][167]LogFileHelpers: InternalPromptForCheckoutAndSave took 75 ms (total: 9.24 sec)
+[2024.01.16-23.52.29:794][167]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.16-23.52.29:794][167]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.16-23.53.22:461][339]LogSlate: Vector cache flush requested. Reason: Large atlases out of space; 2/1 Textures; frames since last flush: 18414092503957677736
+[2024.01.16-23.53.22:461][339]LogSlate: Warning: Setting the threshold to trigger a flush to 2 non-atlased textures as there is a lot of font data being cached.
+[2024.01.16-23.53.31:441][366]LogUObjectHash: Compacting FUObjectHashTables data took   1.02ms
+[2024.01.16-23.53.31:519][366]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie_Auto1
+[2024.01.16-23.53.31:519][366]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie_Auto1F4BDA9BB45584F026EC0608E4F0319CD.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie_Auto1.umap'
+[2024.01.16-23.53.31:521][366]LogAssetRegistry: Warning: ScanPathsSynchronous: ../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie_Auto1.umap is in the /Temp path, will not scan.
+[2024.01.16-23.53.31:521][366]LogAssetRegistry: Warning: ScanPathsSynchronous: /Temp/__ExternalActors__/Autosaves/Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie_Auto1 is in the /Temp path, will not scan.
+[2024.01.16-23.53.31:521][366]LogAssetRegistry: Warning: ScanPathsSynchronous: /Temp/__ExternalObjects__/Autosaves/Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie_Auto1 is in the /Temp path, will not scan.
+[2024.01.16-23.53.31:521][366]LogFileHelpers: Editor autosave (incl. external actors) for '/Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie' took 0.105
+[2024.01.16-23.53.31:521][366]LogFileHelpers: Editor autosave (incl. sublevels & external actors) for all levels took 0.105
+[2024.01.16-23.53.52:304][577]LogEditorFactories: Performing atomic reimport of [C:/Users/mharr/OneDrive/Desktop/ladder_segment.fbx]
+[2024.01.16-23.53.52:307][577]LogFbx: Loading FBX Scene from C:/Users/mharr/OneDrive/Desktop/ladder_segment.fbx
+[2024.01.16-23.53.52:311][577]LogFbx: FBX Scene Loaded Succesfully
+[2024.01.16-23.53.52:362][577]LogFbx: Display: Triangulating static mesh Cube
+[2024.01.16-23.53.52:395][577]LogStaticMesh: Display: Building static mesh ladder_segment...
+[2024.01.16-23.53.52:479][577]LogStaticMesh: Adjacency [0.00s], tris: 2256, UVs 2
+[2024.01.16-23.53.52:483][577]LogStaticMesh: Clustering [0.00s]. Ratio: 1.000000
+[2024.01.16-23.53.52:483][577]LogStaticMesh: Leaves [0.00s]
+[2024.01.16-23.53.52:571][577]LogStaticMesh: Reduce [0.09s]
+[2024.01.16-23.53.52:606][577]LogStaticMesh: Fallback 0/1 [0.04s], num tris: 1164
+[2024.01.16-23.53.52:608][577]LogStaticMesh: ConstrainClusters:
+[2024.01.16-23.53.52:608][577]LogStaticMesh:   Input: 38 Clusters, 4772 Triangles and 6603 Vertices
+[2024.01.16-23.53.52:608][577]LogStaticMesh:   Output without splits: 38 Clusters, 4772 Triangles and 6605 Vertices
+[2024.01.16-23.53.52:608][577]LogStaticMesh:   Output with splits: 39 Clusters, 4772 Triangles and 6607 Vertices
+[2024.01.16-23.53.52:608][577]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 39, Slow Path Clusters: 0, 1 Material: 39, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
+[2024.01.16-23.53.52:609][577]LogStaticMesh: WritePages:
+[2024.01.16-23.53.52:609][577]LogStaticMesh:   Root: GPU size: 30892 bytes. 1 Pages. 30892.000 bytes per page (94.275% utilization).
+[2024.01.16-23.53.52:609][577]LogStaticMesh:   Streaming: GPU size: 60868 bytes. 1 Pages (1 with relative encoding). 60868.000 bytes per page (46.439% utilization).
+[2024.01.16-23.53.52:609][577]LogStaticMesh:   Page data disk size: 69852 bytes. Fixup data size: 240 bytes.
+[2024.01.16-23.53.52:609][577]LogStaticMesh:   Total GPU size: 91760 bytes, Total disk size: 70092 bytes.
+[2024.01.16-23.53.52:609][577]LogStaticMesh: Encode [0.00s]
+[2024.01.16-23.53.52:609][577]LogStaticMesh: Nanite build [0.12s]
+
+[2024.01.16-23.53.52:612][577]LogStaticMesh: Built static mesh [0.22s] /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.16-23.53.52:623][577]LogEditorFactories: -- imported successfully
+[2024.01.16-23.53.52:623][577]FBXImport: Warning: No smoothing group information was found in this FBX scene.  Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter plug-in before exporting the file.  Even for tools that don't support smoothing groups, the FBX Exporter will generate appropriate smoothing data at export-time so that correct vertex normals can be inferred while importing. 
+[2024.01.16-23.53.52:654][577]LogFactory: FactoryCreateFile: StaticMesh with FbxFactory (0 0 C:\Users\mharr\OneDrive\Desktop\ladder_segment_top.fbx)
+[2024.01.16-23.53.52:657][577]LogFbx: Loading FBX Scene from C:\Users\mharr\OneDrive\Desktop\ladder_segment_top.fbx
+[2024.01.16-23.53.52:661][577]LogFbx: FBX Scene Loaded Succesfully
+[2024.01.16-23.53.53:903][577]LogSlate: Window 'FBX Import Options' being destroyed
+[2024.01.16-23.53.53:983][577]LogFbx: Display: Triangulating static mesh Cube
+[2024.01.16-23.53.54:018][577]LogFbx: Display: Triangulating static mesh Cube.001
+[2024.01.16-23.53.54:033][577]LogStaticMesh: Display: Building static mesh ladder_segment_top_Cube_001...
+[2024.01.16-23.53.54:039][577]LogStaticMesh: Adjacency [0.00s], tris: 1144, UVs 2
+[2024.01.16-23.53.54:041][577]LogStaticMesh: Clustering [0.00s]. Ratio: 1.000000
+[2024.01.16-23.53.54:041][577]LogStaticMesh: Leaves [0.00s]
+[2024.01.16-23.53.54:069][577]LogStaticMesh: Reduce [0.03s]
+[2024.01.16-23.53.54:085][577]LogStaticMesh: Fallback 0/1 [0.02s], num tris: 514
+[2024.01.16-23.53.54:085][577]LogStaticMesh: ConstrainClusters:
+[2024.01.16-23.53.54:085][577]LogStaticMesh:   Input: 20 Clusters, 2529 Triangles and 2049 Vertices
+[2024.01.16-23.53.54:085][577]LogStaticMesh:   Output without splits: 20 Clusters, 2529 Triangles and 2091 Vertices
+[2024.01.16-23.53.54:085][577]LogStaticMesh:   Output with splits: 20 Clusters, 2529 Triangles and 2091 Vertices
+[2024.01.16-23.53.54:085][577]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 20, Slow Path Clusters: 0, 1 Material: 20, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
+[2024.01.16-23.53.54:086][577]LogStaticMesh: WritePages:
+[2024.01.16-23.53.54:086][577]LogStaticMesh:   Root: GPU size: 31564 bytes. 1 Pages. 31564.000 bytes per page (96.326% utilization).
+[2024.01.16-23.53.54:086][577]LogStaticMesh:   Streaming: GPU size: 1448 bytes. 1 Pages (1 with relative encoding). 1448.000 bytes per page (1.105% utilization).
+[2024.01.16-23.53.54:086][577]LogStaticMesh:   Page data disk size: 24948 bytes. Fixup data size: 224 bytes.
+[2024.01.16-23.53.54:086][577]LogStaticMesh:   Total GPU size: 33012 bytes, Total disk size: 25172 bytes.
+[2024.01.16-23.53.54:086][577]LogStaticMesh: Encode [0.00s]
+[2024.01.16-23.53.54:086][577]LogStaticMesh: Nanite build [0.05s]
+
+[2024.01.16-23.53.54:088][577]LogStaticMesh: Built static mesh [0.05s] /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top_Cube_001.ladder_segment_top_Cube_001
+[2024.01.16-23.53.54:104][577]FBXImport: Warning: No smoothing group information was found in this FBX scene.  Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter plug-in before exporting the file.  Even for tools that don't support smoothing groups, the FBX Exporter will generate appropriate smoothing data at export-time so that correct vertex normals can be inferred while importing. 
+[2024.01.16-23.53.54:162][578]LogDerivedDataCache: C:/Users/mharr/AppData/Local/UnrealEngine/Common/DerivedDataCache: Move collision when writing file C:/Users/mharr/AppData/Local/UnrealEngine/Common/DerivedDataCache/Buckets/LegacyDIST/6a/77/3f25388350a2ea39b4223f22ab56153edd6d.udd from '/Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment'.
+[2024.01.16-23.53.54:178][579]LogDerivedDataCache: C:/Users/mharr/AppData/Local/UnrealEngine/Common/DerivedDataCache: Move collision when writing file C:/Users/mharr/AppData/Local/UnrealEngine/Common/DerivedDataCache/Buckets/LegacyCARD/ad/77/75abe1557bd0d18dbe4905d8a0e61d53d17a.udd from '/Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment'.
+[2024.01.16-23.53.55:386][654]LogSlate: Window 'Message Log' being destroyed
+[2024.01.16-23.53.55:406][654]LogSlate: Window 'Message Log' being destroyed
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.53.59:176][911]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.54.08:418][518]LogEditorTransaction: Undo Modify Component(s)
+[2024.01.16-23.54.11:730][712]LogEditorTransaction: Undo Set Scale
+[2024.01.16-23.54.15:635][959]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.54.15:801][959]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.16-23.54.15:801][959]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_Modern370863A74C737ED378B2D5A2F085241D.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.16-23.54.15:809][959]LogFileHelpers: InternalPromptForCheckoutAndSave took 173 ms (total: 9.41 sec)
+[2024.01.16-23.54.15:810][959]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.16-23.54.15:810][959]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.16-23.55.42:796][630]BlueprintLog: New page: Compile BP_Ladder
+[2024.01.16-23.55.42:896][630]LogUObjectHash: Compacting FUObjectHashTables data took   1.23ms
+[2024.01.16-23.55.52:778][227]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.55.52:975][227]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder
+[2024.01.16-23.55.52:975][227]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder6F2F7AD040CA9D290554E5B376172FD8.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder.uasset'
+[2024.01.16-23.55.52:986][227]LogFileHelpers: InternalPromptForCheckoutAndSave took 207 ms (total: 9.62 sec)
+[2024.01.16-23.55.52:988][227]AssetCheck: New page: Asset Save: BP_Ladder
+[2024.01.16-23.55.52:988][227]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder.BP_Ladder
+[2024.01.16-23.55.59:162][600]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.55.59:209][600]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.16-23.55.59:209][600]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_Modern53873CDD4E45599612317CBCFEA7C722.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.16-23.55.59:218][600]LogFileHelpers: InternalPromptForCheckoutAndSave took 55 ms (total: 9.68 sec)
+[2024.01.16-23.55.59:219][600]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.16-23.55.59:219][600]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.16-23.56.13:463][437]BlueprintLog: New page: Compile BP_Ladder
+[2024.01.16-23.56.13:554][437]LogUObjectHash: Compacting FUObjectHashTables data took   1.44ms
+[2024.01.16-23.56.13:714][438]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.56.13:791][438]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder
+[2024.01.16-23.56.13:791][438]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder6BDB516947D5C5DA74E9529E572BE3EC.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder.uasset'
+[2024.01.16-23.56.13:799][438]LogFileHelpers: InternalPromptForCheckoutAndSave took 86 ms (total: 9.76 sec)
+[2024.01.16-23.56.13:802][438]AssetCheck: New page: Asset Save: BP_Ladder
+[2024.01.16-23.56.13:802][438]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder.BP_Ladder
+[2024.01.16-23.57.21:784][ 75]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.57.21:940][ 75]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.16-23.57.21:941][ 75]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_ModernF9B3C5DC4AD1F19CE673B98248395F41.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.16-23.57.21:949][ 75]LogFileHelpers: InternalPromptForCheckoutAndSave took 164 ms (total: 9.93 sec)
+[2024.01.16-23.57.21:949][ 75]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.16-23.57.21:949][ 75]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.16-23.57.22:914][122]BlueprintLog: New page: Compile BP_Ladder_Modern
+[2024.01.16-23.57.22:986][122]LogUObjectHash: Compacting FUObjectHashTables data took   1.21ms
+[2024.01.16-23.57.40:892][ 89]LogUObjectHash: Compacting FUObjectHashTables data took   1.36ms
+[2024.01.16-23.57.42:919][ 89]LogSlate: Window 'Delete Assets' being destroyed
+[2024.01.16-23.57.42:945][ 89]LogUObjectHash: Compacting FUObjectHashTables data took   1.16ms
+[2024.01.16-23.57.42:967][ 89]LogUObjectHash: Compacting FUObjectHashTables data took   1.87ms
+[2024.01.16-23.57.42:987][ 89]LogUObjectHash: Compacting FUObjectHashTables data took   0.65ms
+[2024.01.16-23.57.44:554][166]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top_Cube_001.ladder_segment_top_Cube_001
+[2024.01.16-23.57.44:560][166]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.16-23.57.44:560][166]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.16-23.57.44:959][166]LogViewport: Scene viewport resized to 2307x1835, mode Windowed.
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: ================================================
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: Total job queries 200, among them cache hits 22 (11.00%)
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: Tracking 178 distinct input hashes that result in 157 distinct outputs (88.20%)
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: RAM used: 4.46 MiB of 1.60 GiB budget. Usage: 0.27%
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: Shaders Compiled: 0
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: Jobs assigned 0, completed 0 (0%)
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 0.00 s
+[2024.01.16-23.57.46:297][227]LogShaderCompilers: Display: ================================================
+[2024.01.16-23.57.57:058][718]LogMaterial: Display: Material /Game/Patchwork/Materials/M_Reflective.M_Reflective needed to have new flag set bUsedWithNanite !
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.57.57:299][718]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:187][968]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.58.02:268][968]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top_Cube_001
+[2024.01.16-23.58.02:268][968]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segment_top_Cube_001FD5A9A284DCC5DE32B55B9A280D8F969.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top_Cube_001.uasset'
+[2024.01.16-23.58.02:276][968]LogFileHelpers: InternalPromptForCheckoutAndSave took 88 ms (total: 10.0 sec)
+[2024.01.16-23.58.02:276][968]AssetCheck: New page: Asset Save: ladder_segment_top_Cube_001
+[2024.01.16-23.58.02:276][968]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top_Cube_001.ladder_segment_top_Cube_001
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.02:349][970]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.09:034][298]LogDerivedDataCache: C:/Users/mharr/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:02:20.099 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 75002 files in 70224 folders with total size 4685 MiB.
+[2024.01.16-23.58.14:166][574]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.16-23.58.14:172][574]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.16-23.58.14:172][574]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.16-23.58.14:567][574]LogViewport: Scene viewport resized to 2307x1835, mode Windowed.
+[2024.01.16-23.58.24:601][ 73]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.58.24:674][ 73]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment
+[2024.01.16-23.58.24:675][ 73]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segmentD2F591B9413170FF3485468295ECD68A.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment.uasset'
+[2024.01.16-23.58.24:682][ 73]LogFileHelpers: InternalPromptForCheckoutAndSave took 81 ms (total: 10.1 sec)
+[2024.01.16-23.58.24:684][ 73]AssetCheck: New page: Asset Save: ladder_segment
+[2024.01.16-23.58.24:684][ 73]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.16-23.58.28:379][264]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.58.28:430][264]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment
+[2024.01.16-23.58.28:431][264]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segment9D6D59E94FBE5C5BA37EE7A24E2151E5.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment.uasset'
+[2024.01.16-23.58.28:436][264]LogFileHelpers: InternalPromptForCheckoutAndSave took 57 ms (total: 10.1 sec)
+[2024.01.16-23.58.28:437][264]AssetCheck: New page: Asset Save: ladder_segment
+[2024.01.16-23.58.28:437][264]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.28:542][267]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.16-23.58.30:853][381]LogWorld: UWorld::CleanupWorld for World_27, bSessionEnded=true, bCleanupResources=true
+[2024.01.16-23.58.30:853][381]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.16-23.58.32:866][464]LogWorld: UWorld::CleanupWorld for World_28, bSessionEnded=true, bCleanupResources=true
+[2024.01.16-23.58.32:866][464]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.16-23.59.31:105][398]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.59.31:241][398]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.16-23.59.31:241][398]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_Modern7B7AB77349FF00AA86863EBCA4E39E09.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.16-23.59.31:249][398]LogFileHelpers: InternalPromptForCheckoutAndSave took 143 ms (total: 10.3 sec)
+[2024.01.16-23.59.31:251][398]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.16-23.59.31:251][398]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.16-23.59.31:774][428]BlueprintLog: New page: Compile BP_Ladder_Modern
+[2024.01.16-23.59.31:841][428]LogUObjectHash: Compacting FUObjectHashTables data took   1.06ms
+[2024.01.16-23.59.32:086][435]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.16-23.59.32:146][435]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.16-23.59.32:146][435]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_ModernC8B92C8247B077E25D3C6D97AD8B7F5B.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.16-23.59.32:154][435]LogFileHelpers: InternalPromptForCheckoutAndSave took 68 ms (total: 10.3 sec)
+[2024.01.16-23.59.32:155][435]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.16-23.59.32:155][435]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.17-00.00.21:495][917]LogAssetEditorSubsystem: Opening Asset editor for StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.17-00.00.21:503][917]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.17-00.00.21:503][917]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.17-00.00.21:883][917]LogViewport: Scene viewport resized to 2307x1835, mode Windowed.
+[2024.01.17-00.01.09:278][726]LogEditorFactories: Performing atomic reimport of [C:/Users/mharr/OneDrive/Desktop/ladder_segment.fbx]
+[2024.01.17-00.01.09:281][726]LogFbx: Loading FBX Scene from C:/Users/mharr/OneDrive/Desktop/ladder_segment.fbx
+[2024.01.17-00.01.09:285][726]LogFbx: FBX Scene Loaded Succesfully
+[2024.01.17-00.01.09:341][726]LogFbx: Display: Triangulating static mesh Cube
+[2024.01.17-00.01.09:392][726]LogStaticMesh: Display: Building static mesh ladder_segment...
+[2024.01.17-00.01.09:457][726]LogStaticMesh: Adjacency [0.00s], tris: 3456, UVs 2
+[2024.01.17-00.01.09:466][726]LogStaticMesh: Clustering [0.01s]. Ratio: 1.222222
+[2024.01.17-00.01.09:466][726]LogStaticMesh: Leaves [0.00s]
+[2024.01.17-00.01.09:543][726]LogStaticMesh: Reduce [0.08s]
+[2024.01.17-00.01.09:587][726]LogStaticMesh: Fallback 0/1 [0.04s], num tris: 953
+[2024.01.17-00.01.09:588][726]LogStaticMesh: ConstrainClusters:
+[2024.01.17-00.01.09:588][726]LogStaticMesh:   Input: 61 Clusters, 6977 Triangles and 7951 Vertices
+[2024.01.17-00.01.09:588][726]LogStaticMesh:   Output without splits: 61 Clusters, 6977 Triangles and 7956 Vertices
+[2024.01.17-00.01.09:588][726]LogStaticMesh:   Output with splits: 62 Clusters, 6977 Triangles and 7958 Vertices
+[2024.01.17-00.01.09:588][726]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 62, Slow Path Clusters: 0, 1 Material: 62, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
+[2024.01.17-00.01.09:590][726]LogStaticMesh: WritePages:
+[2024.01.17-00.01.09:590][726]LogStaticMesh:   Root: GPU size: 30732 bytes. 1 Pages. 30732.000 bytes per page (93.787% utilization).
+[2024.01.17-00.01.09:590][726]LogStaticMesh:   Streaming: GPU size: 88404 bytes. 1 Pages (1 with relative encoding). 88404.000 bytes per page (67.447% utilization).
+[2024.01.17-00.01.09:590][726]LogStaticMesh:   Page data disk size: 93228 bytes. Fixup data size: 272 bytes.
+[2024.01.17-00.01.09:590][726]LogStaticMesh:   Total GPU size: 119136 bytes, Total disk size: 93500 bytes.
+[2024.01.17-00.01.09:590][726]LogStaticMesh: Encode [0.00s]
+[2024.01.17-00.01.09:590][726]LogStaticMesh: Nanite build [0.12s]
+
+[2024.01.17-00.01.09:592][726]LogStaticMesh: Built static mesh [0.20s] /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.17-00.01.09:603][726]LogEditorFactories: -- imported successfully
+[2024.01.17-00.01.14:206][938]LogUObjectHash: Compacting FUObjectHashTables data took   1.30ms
+[2024.01.17-00.01.14:211][938]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.01.14:319][938]LogUObjectHash: Compacting FUObjectHashTables data took   0.66ms
+[2024.01.17-00.01.14:391][938]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.17-00.01.14:392][938]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverieE5462A68467E9DD0311AE3A51F1EEC07.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.17-00.01.14:402][938]LogFileHelpers: Saving map 'TechnoReverie' took 0.141
+[2024.01.17-00.01.14:412][938]LogSavePackage: Moving output files for package: /Game/Patchwork/Materials/M_Reflective
+[2024.01.17-00.01.14:412][938]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/M_Reflective0F8928F947C5AC09A9D52EBF98C7A331.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Materials/M_Reflective.uasset'
+[2024.01.17-00.01.14:429][938]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment
+[2024.01.17-00.01.14:429][938]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segmentD1F11EE148DEAAD52AA2C3B47E7DA975.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment.uasset'
+[2024.01.17-00.01.14:438][938]LogFileHelpers: InternalPromptForCheckoutAndSave took 227 ms (total: 10.6 sec)
+[2024.01.17-00.01.14:441][938]AssetCheck: New page: Asset Save: multiple assets
+[2024.01.17-00.01.14:441][938]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.17-00.01.14:441][938]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Materials/M_Reflective.M_Reflective
+[2024.01.17-00.01.14:441][938]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment.ladder_segment
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.14:640][948]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.01.23:831][441]LogEditorTransaction: Undo Set Vector Property
+[2024.01.17-00.02.31:832][965]LogFactory: FactoryCreateFile: StaticMesh with FbxFactory (0 0 C:\Users\mharr\OneDrive\Desktop\ladder_segment_top.fbx)
+[2024.01.17-00.02.31:835][965]LogFbx: Loading FBX Scene from C:\Users\mharr\OneDrive\Desktop\ladder_segment_top.fbx
+[2024.01.17-00.02.31:838][965]LogFbx: FBX Scene Loaded Succesfully
+[2024.01.17-00.02.33:862][965]LogSlate: Window 'FBX Import Options' being destroyed
+[2024.01.17-00.02.33:946][965]LogFbx: Display: Triangulating static mesh Cube.001
+[2024.01.17-00.02.33:971][965]LogStaticMesh: Display: Building static mesh ladder_segment_top...
+[2024.01.17-00.02.33:979][965]LogStaticMesh: Adjacency [0.00s], tris: 1912, UVs 2
+[2024.01.17-00.02.33:983][965]LogStaticMesh: Clustering [0.00s]. Ratio: 1.000000
+[2024.01.17-00.02.33:983][965]LogStaticMesh: Leaves [0.00s]
+[2024.01.17-00.02.34:033][965]LogStaticMesh: Reduce [0.05s]
+[2024.01.17-00.02.34:066][965]LogStaticMesh: Fallback 0/1 [0.03s], num tris: 590
+[2024.01.17-00.02.34:066][965]LogStaticMesh: ConstrainClusters:
+[2024.01.17-00.02.34:066][965]LogStaticMesh:   Input: 30 Clusters, 3802 Triangles and 2950 Vertices
+[2024.01.17-00.02.34:066][965]LogStaticMesh:   Output without splits: 30 Clusters, 3802 Triangles and 2999 Vertices
+[2024.01.17-00.02.34:066][965]LogStaticMesh:   Output with splits: 30 Clusters, 3802 Triangles and 2999 Vertices
+[2024.01.17-00.02.34:066][965]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 30, Slow Path Clusters: 0, 1 Material: 30, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
+[2024.01.17-00.02.34:067][965]LogStaticMesh: WritePages:
+[2024.01.17-00.02.34:067][965]LogStaticMesh:   Root: GPU size: 31584 bytes. 1 Pages. 31584.000 bytes per page (96.387% utilization).
+[2024.01.17-00.02.34:067][965]LogStaticMesh:   Streaming: GPU size: 16984 bytes. 1 Pages (1 with relative encoding). 16984.000 bytes per page (12.958% utilization).
+[2024.01.17-00.02.34:067][965]LogStaticMesh:   Page data disk size: 36008 bytes. Fixup data size: 272 bytes.
+[2024.01.17-00.02.34:067][965]LogStaticMesh:   Total GPU size: 48568 bytes, Total disk size: 36280 bytes.
+[2024.01.17-00.02.34:067][965]LogStaticMesh: Encode [0.00s]
+[2024.01.17-00.02.34:067][965]LogStaticMesh: Nanite build [0.08s]
+
+[2024.01.17-00.02.34:069][965]LogStaticMesh: Built static mesh [0.10s] /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.ladder_segment_top
+[2024.01.17-00.02.37:563][132]LogUObjectHash: Compacting FUObjectHashTables data took   1.32ms
+[2024.01.17-00.02.39:269][132]LogSlate: Window 'Delete Assets' being destroyed
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.39:276][132]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.41:948][269]LogUObjectHash: Compacting FUObjectHashTables data took   0.64ms
+[2024.01.17-00.02.43:412][269]LogSlate: Window 'Delete Assets' being destroyed
+[2024.01.17-00.02.43:437][269]LogUObjectHash: Compacting FUObjectHashTables data took   0.73ms
+[2024.01.17-00.02.43:457][269]LogUObjectHash: Compacting FUObjectHashTables data took   0.94ms
+[2024.01.17-00.02.43:476][269]LogUObjectHash: Compacting FUObjectHashTables data took   0.48ms
+[2024.01.17-00.02.47:037][459]LogContentBrowser: Attempting asset rename: ladder_segment_top_Cube_001 -> ladder_segment_top
+[2024.01.17-00.02.47:078][459]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.02.47:142][459]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.17-00.02.47:143][459]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_ModernAF0B9243473F5E12E07157A38A28B6F0.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.17-00.02.47:146][459]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top
+[2024.01.17-00.02.47:146][459]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segment_top468107854F161CD30F89F4BC54251CE4.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.uasset'
+[2024.01.17-00.02.47:155][459]LogFileHelpers: InternalPromptForCheckoutAndSave took 76 ms (total: 10.6 sec)
+[2024.01.17-00.02.47:355][459]LogUObjectHash: Compacting FUObjectHashTables data took   1.20ms
+[2024.01.17-00.02.47:375][459]LogUObjectHash: Compacting FUObjectHashTables data took   1.42ms
+[2024.01.17-00.02.47:391][459]LogUObjectHash: Compacting FUObjectHashTables data took   0.48ms
+[2024.01.17-00.02.47:393][459]AssetCheck: New page: Asset Save: multiple assets
+[2024.01.17-00.02.47:393][459]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.17-00.02.47:393][459]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.ladder_segment_top
+[2024.01.17-00.02.48:265][502]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.02.48:323][502]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top
+[2024.01.17-00.02.48:323][502]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segment_topE7F9552340D7E385EDC83A974030A05B.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.uasset'
+[2024.01.17-00.02.48:329][502]LogFileHelpers: InternalPromptForCheckoutAndSave took 64 ms (total: 10.7 sec)
+[2024.01.17-00.02.48:330][502]AssetCheck: New page: Asset Save: ladder_segment_top
+[2024.01.17-00.02.48:330][502]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.ladder_segment_top
+[2024.01.17-00.02.50:510][538]LogEditorFactories: Performing atomic reimport of [C:/Users/mharr/OneDrive/Desktop/ladder_segment_top.fbx]
+[2024.01.17-00.02.50:514][538]LogFbx: Loading FBX Scene from C:/Users/mharr/OneDrive/Desktop/ladder_segment_top.fbx
+[2024.01.17-00.02.50:518][538]LogFbx: FBX Scene Loaded Succesfully
+[2024.01.17-00.02.50:558][538]LogFbx: Display: Triangulating static mesh Cube.001
+[2024.01.17-00.02.50:614][538]LogEditorFactories: -- imported successfully
+[2024.01.17-00.02.51:902][574]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.02.51:971][574]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top
+[2024.01.17-00.02.51:971][574]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segment_top8E26C99A4D8425FC6E0269B6509A37D1.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.uasset'
+[2024.01.17-00.02.51:979][574]LogFileHelpers: InternalPromptForCheckoutAndSave took 77 ms (total: 10.8 sec)
+[2024.01.17-00.02.51:981][574]AssetCheck: New page: Asset Save: ladder_segment_top
+[2024.01.17-00.02.51:981][574]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.ladder_segment_top
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.02.55:651][762]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.22:307][115]LogEditorFactories: Performing atomic reimport of [C:/Users/mharr/OneDrive/Desktop/ladder_segment_top.fbx]
+[2024.01.17-00.03.22:311][115]LogFbx: Loading FBX Scene from C:/Users/mharr/OneDrive/Desktop/ladder_segment_top.fbx
+[2024.01.17-00.03.22:314][115]LogFbx: FBX Scene Loaded Succesfully
+[2024.01.17-00.03.22:374][115]LogFbx: Display: Triangulating static mesh Cube.001
+[2024.01.17-00.03.22:405][115]LogStaticMesh: Display: Building static mesh ladder_segment_top...
+[2024.01.17-00.03.22:465][115]LogStaticMesh: Adjacency [0.00s], tris: 1948, UVs 2
+[2024.01.17-00.03.22:469][115]LogStaticMesh: Clustering [0.00s]. Ratio: 1.875000
+[2024.01.17-00.03.22:469][115]LogStaticMesh: Leaves [0.00s]
+[2024.01.17-00.03.22:518][115]LogStaticMesh: Reduce [0.05s]
+[2024.01.17-00.03.22:551][115]LogStaticMesh: Fallback 0/1 [0.03s], num tris: 530
+[2024.01.17-00.03.22:552][115]LogStaticMesh: ConstrainClusters:
+[2024.01.17-00.03.22:552][115]LogStaticMesh:   Input: 45 Clusters, 3838 Triangles and 3078 Vertices
+[2024.01.17-00.03.22:552][115]LogStaticMesh:   Output without splits: 45 Clusters, 3838 Triangles and 3111 Vertices
+[2024.01.17-00.03.22:552][115]LogStaticMesh:   Output with splits: 45 Clusters, 3838 Triangles and 3111 Vertices
+[2024.01.17-00.03.22:552][115]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 45, Slow Path Clusters: 0, 1 Material: 45, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
+[2024.01.17-00.03.22:553][115]LogStaticMesh: WritePages:
+[2024.01.17-00.03.22:553][115]LogStaticMesh:   Root: GPU size: 32136 bytes. 1 Pages. 32136.000 bytes per page (98.071% utilization).
+[2024.01.17-00.03.22:553][115]LogStaticMesh:   Streaming: GPU size: 18832 bytes. 1 Pages (1 with relative encoding). 18832.000 bytes per page (14.368% utilization).
+[2024.01.17-00.03.22:553][115]LogStaticMesh:   Page data disk size: 39884 bytes. Fixup data size: 272 bytes.
+[2024.01.17-00.03.22:553][115]LogStaticMesh:   Total GPU size: 50968 bytes, Total disk size: 40156 bytes.
+[2024.01.17-00.03.22:553][115]LogStaticMesh: Encode [0.00s]
+[2024.01.17-00.03.22:553][115]LogStaticMesh: Nanite build [0.08s]
+
+[2024.01.17-00.03.22:555][115]LogStaticMesh: Built static mesh [0.15s] /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.ladder_segment_top
+[2024.01.17-00.03.22:564][115]LogEditorFactories: -- imported successfully
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.03.27:606][336]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.00:914][119]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.04.00:975][119]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.17-00.04.00:976][119]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_Modern759D2B0D41D83080D5EB92AE6F389C32.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.17-00.04.00:982][119]LogFileHelpers: InternalPromptForCheckoutAndSave took 67 ms (total: 10.8 sec)
+[2024.01.17-00.04.00:983][119]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.17-00.04.00:983][119]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.17-00.04.01:819][155]BlueprintLog: New page: Compile BP_Ladder_Modern
+[2024.01.17-00.04.01:859][155]LogUObjectHash: Compacting FUObjectHashTables data took   1.25ms
+[2024.01.17-00.04.02:168][168]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.04.02:228][168]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.17-00.04.02:228][168]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_Modern7EEDEE3B45DA34BCC77C799D6E5BB408.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.17-00.04.02:235][168]LogFileHelpers: InternalPromptForCheckoutAndSave took 67 ms (total: 10.9 sec)
+[2024.01.17-00.04.02:237][168]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.17-00.04.02:237][168]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.17-00.04.12:203][698]Cmd: DELETE
+[2024.01.17-00.04.12:203][698]Cmd: ACTOR DELETE
+[2024.01.17-00.04.12:209][698]LogEditorActor: Deleted Actor: BP_Ladder_C
+[2024.01.17-00.04.12:228][698]LogUObjectHash: Compacting FUObjectHashTables data took   2.01ms
+[2024.01.17-00.04.12:235][698]LogEditorActor: Deleted 1 Actors (0.031 secs)
+[2024.01.17-00.04.14:001][809]Cmd: DELETE
+[2024.01.17-00.04.14:001][809]Cmd: ACTOR DELETE
+[2024.01.17-00.04.14:007][809]LogEditorActor: Deleted Actor: StaticMeshActor
+[2024.01.17-00.04.14:022][809]LogUObjectHash: Compacting FUObjectHashTables data took   0.61ms
+[2024.01.17-00.04.14:025][809]LogEditorActor: Deleted 1 Actors (0.025 secs)
+[2024.01.17-00.04.14:385][835]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.04.14:514][835]LogUObjectHash: Compacting FUObjectHashTables data took   0.62ms
+[2024.01.17-00.04.14:584][835]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.17-00.04.14:585][835]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie94AD9F15435631E187F1F38B5D82C46C.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.17-00.04.14:596][835]LogFileHelpers: Saving map 'TechnoReverie' took 0.134
+[2024.01.17-00.04.14:602][835]LogFileHelpers: InternalPromptForCheckoutAndSave took 217 ms (total: 11.1 sec)
+[2024.01.17-00.04.14:605][835]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.17-00.04.14:605][835]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.17-00.04.16:265][915]LogActorFactory: Actor Factory attempting to spawn BlueprintGeneratedClass /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern_C
+[2024.01.17-00.04.16:265][915]LogActorFactory: Actor Factory attempting to spawn BlueprintGeneratedClass /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern_C
+[2024.01.17-00.04.16:267][915]LogActorFactory: Actor Factory spawned Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern as actor: BP_Ladder_Modern_C /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie:PersistentLevel.BP_Ladder_Modern_C_0
+[2024.01.17-00.04.16:269][915]LogActorFactory: Actor Factory spawned Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern as actor: BP_Ladder_Modern_C /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie:PersistentLevel.BP_Ladder_Modern_C_0
+[2024.01.17-00.04.17:608][972]LogActorFactory: Actor Factory attempting to spawn BlueprintGeneratedClass /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern_C
+[2024.01.17-00.04.17:608][972]LogActorFactory: Actor Factory attempting to spawn BlueprintGeneratedClass /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern_C
+[2024.01.17-00.04.17:611][972]LogActorFactory: Actor Factory spawned Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern as actor: BP_Ladder_Modern_C /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie:PersistentLevel.BP_Ladder_Modern_C_1
+[2024.01.17-00.04.17:613][972]LogActorFactory: Actor Factory spawned Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern as actor: BP_Ladder_Modern_C /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie:PersistentLevel.BP_Ladder_Modern_C_1
+[2024.01.17-00.04.34:291][876]Cmd: CAMERA ALIGN ACTIVEVIEWPORTONLY
+[2024.01.17-00.04.39:351][139]Cmd: SELECT NONE
+[2024.01.17-00.04.43:347][390]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.04.43:453][390]LogUObjectHash: Compacting FUObjectHashTables data took   1.33ms
+[2024.01.17-00.04.43:533][390]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.17-00.04.43:533][390]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie29BBC281409447B92B466B9D3ECF26E6.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.17-00.04.43:543][390]LogFileHelpers: Saving map 'TechnoReverie' took 0.150
+[2024.01.17-00.04.43:551][390]LogFileHelpers: InternalPromptForCheckoutAndSave took 204 ms (total: 11.3 sec)
+[2024.01.17-00.04.43:553][390]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.17-00.04.43:553][390]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.17-00.04.44:901][458]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.17-00.04.44:914][458]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.17-00.04.44:914][458]PIE: New page: PIE session: TechnoReverie (Jan 16, 2024, 2:04:44 PM)
+[2024.01.17-00.04.44:914][458]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:932][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:936][458]LogPlayLevel: PIE: StaticDuplicateObject took: (0.022349s)
+[2024.01.17-00.04.44:936][458]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie to /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie.TechnoReverie (0.022382s)
+[2024.01.17-00.04.44:952][458]LogUObjectHash: Compacting FUObjectHashTables data took   1.20ms
+[2024.01.17-00.04.44:955][458]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.17-00.04.44:956][458]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.17-00.04.44:956][458]LogAIModule: Creating AISystem for world TechnoReverie
+[2024.01.17-00.04.44:956][458]LogPlayLevel: PIE: World Init took: (0.000969s)
+[2024.01.17-00.04.44:956][458]LogAudio: Display: Creating Audio Device:                 Id: 4, Scope: Unique, Realtime: True
+[2024.01.17-00.04.44:956][458]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.17-00.04.44:956][458]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.17-00.04.44:956][458]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.17-00.04.44:956][458]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.17-00.04.44:956][458]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.17-00.04.44:956][458]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.17-00.04.44:957][458]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.17-00.04.44:957][458]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.17-00.04.44:957][458]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.17-00.04.44:957][458]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.17-00.04.44:957][458]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.17-00.04.44:959][458]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.17-00.04.44:985][458]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.17-00.04.44:986][458]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.17-00.04.44:986][458]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.17-00.04.44:986][458]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.17-00.04.44:987][458]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=4
+[2024.01.17-00.04.44:987][458]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=4
+[2024.01.17-00.04.44:988][458]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=4
+[2024.01.17-00.04.44:988][458]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=4
+[2024.01.17-00.04.44:988][458]LogInit: FAudioDevice initialized with ID 4.
+[2024.01.17-00.04.44:988][458]LogAudio: Display: Audio Device (ID: 4) registered with world 'TechnoReverie'.
+[2024.01.17-00.04.44:988][458]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 4
+[2024.01.17-00.04.44:988][458]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.17-00.04.44:991][458]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:992][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:993][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:994][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:994][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:994][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:994][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:994][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.44:999][458]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie.TechnoReverie up for play (max tick rate 0) at 2024.01.16-19.04.44
+[2024.01.17-00.04.44:999][458]LogWorld: Bringing up level for play took: 0.008096
+[2024.01.17-00.04.45:000][458]LogOnline: OSS: Created online subsystem instance for: :Context_33
+[2024.01.17-00.04.45:003][458]LogBlueprintUserMessages: Warning: SetTimer passed a bad function (None) or object (None)
+[2024.01.17-00.04.45:006][458]PIE: Server logged in
+[2024.01.17-00.04.45:006][458]PIE: Play in editor total start time 0.093 seconds.
+[2024.01.17-00.04.45:008][458]LogScript: Warning: Accessed None trying to read property hud
+	paperperson_C /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie.TechnoReverie:PersistentLevel.paperperson_C_0
+	Function /Game/Patchwork/Blueprints/Pawns/paperperson.paperperson_C:Check For Interactables:05CB
+[2024.01.17-00.04.45:008][458]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property hud". Node:  Update HUD Graph:  Check For Interactables Function:  Check for Interactables Blueprint:  paperperson
+[2024.01.17-00.04.45:012][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:012][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:012][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:012][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:012][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:012][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:013][458]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.04.45:037][459]LogScript: Warning: Accessed None trying to read property hud
+	paperperson_C /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie.TechnoReverie:PersistentLevel.paperperson_C_0
+	Function /Game/Patchwork/Blueprints/Pawns/paperperson.paperperson_C:Check For Interactables:05CB
+[2024.01.17-00.04.45:037][459]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property hud". Node:  Update HUD Graph:  Check For Interactables Function:  Check for Interactables Blueprint:  paperperson
+[2024.01.17-00.04.45:038][459]LogBlueprintUserMessages: [PatchworkGameInstance_C_2] Hello
+[2024.01.17-00.04.45:325][460]LogScript: Warning: Accessed None trying to read property hud
+	paperperson_C /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie.TechnoReverie:PersistentLevel.paperperson_C_0
+	Function /Game/Patchwork/Blueprints/Pawns/paperperson.paperperson_C:Check For Interactables:05CB
+[2024.01.17-00.04.45:325][460]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property hud". Node:  Update HUD Graph:  Check For Interactables Function:  Check for Interactables Blueprint:  paperperson
+[2024.01.17-00.04.45:977][461]LogScript: Warning: Accessed None trying to read property hud
+	paperperson_C /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie.TechnoReverie:PersistentLevel.paperperson_C_0
+	Function /Game/Patchwork/Blueprints/Pawns/paperperson.paperperson_C:Check For Interactables:05CB
+[2024.01.17-00.04.45:977][461]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property hud". Node:  Update HUD Graph:  Check For Interactables Function:  Check for Interactables Blueprint:  paperperson
+[2024.01.17-00.05.39:489][910]LogUIActionRouter: Cleaned out [0] inactive UI action bindings
+[2024.01.17-00.05.48:469][655]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.05.48:525][655]LogUObjectHash: Compacting FUObjectHashTables data took   1.14ms
+[2024.01.17-00.05.48:526][655]LogUIActionRouter: Cleaned out [0] inactive UI action bindings
+[2024.01.17-00.05.48:596][655]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.17-00.05.48:597][655]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie68DF30514A422589C6A5038367A4CA65.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.17-00.05.48:609][655]LogFileHelpers: Saving map 'TechnoReverie' took 0.139
+[2024.01.17-00.05.48:609][655]LogFileHelpers: InternalPromptForCheckoutAndSave took 139 ms (total: 11.5 sec)
+[2024.01.17-00.05.48:611][655]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.17-00.05.48:611][655]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.17-00.05.51:312][817]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.17-00.05.51:312][817]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie
+[2024.01.17-00.05.51:312][817]LogWorld: UWorld::CleanupWorld for TechnoReverie, bSessionEnded=true, bCleanupResources=true
+[2024.01.17-00.05.51:314][817]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.17-00.05.51:318][817]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.17-00.05.51:326][817]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.17-00.05.51:340][817]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.17-00.05.51:342][817]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 4
+[2024.01.17-00.05.51:342][817]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=4
+[2024.01.17-00.05.51:344][817]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=4
+[2024.01.17-00.05.51:355][817]LogUObjectHash: Compacting FUObjectHashTables data took   1.42ms
+[2024.01.17-00.05.51:605][818]LogPlayLevel: Display: Destroying online subsystem :Context_33
+[2024.01.17-00.06.33:585][174]LogDebuggerCommands: Repeating last play command: Selected Viewport
+[2024.01.17-00.06.33:599][174]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.01.17-00.06.33:599][174]PIE: New page: PIE session: TechnoReverie (Jan 16, 2024, 2:06:33 PM)
+[2024.01.17-00.06.33:599][174]LogPlayLevel: Creating play world package: /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:619][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:623][174]LogPlayLevel: PIE: StaticDuplicateObject took: (0.024293s)
+[2024.01.17-00.06.33:623][174]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie to /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie.TechnoReverie (0.024334s)
+[2024.01.17-00.06.33:643][174]LogUObjectHash: Compacting FUObjectHashTables data took   1.32ms
+[2024.01.17-00.06.33:651][174]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.17-00.06.33:651][174]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.17-00.06.33:651][174]LogAIModule: Creating AISystem for world TechnoReverie
+[2024.01.17-00.06.33:652][174]LogPlayLevel: PIE: World Init took: (0.001561s)
+[2024.01.17-00.06.33:652][174]LogAudio: Display: Creating Audio Device:                 Id: 5, Scope: Unique, Realtime: True
+[2024.01.17-00.06.33:652][174]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.01.17-00.06.33:652][174]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.01.17-00.06.33:652][174]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.01.17-00.06.33:652][174]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.01.17-00.06.33:652][174]LogAudioMixer: Display: 	Number of buffers to queue:			  1
+[2024.01.17-00.06.33:652][174]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.01.17-00.06.33:652][174]LogAudioMixer: Display: 	Number of Async Source Workers:		  4
+[2024.01.17-00.06.33:652][174]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.01.17-00.06.33:652][174]LogAudio: Display: Audio Spatialization Plugin: None (built-in).
+[2024.01.17-00.06.33:652][174]LogAudio: Display: Audio Reverb Plugin: None (built-in).
+[2024.01.17-00.06.33:652][174]LogAudio: Display: Audio Occlusion Plugin: None (built-in).
+[2024.01.17-00.06.33:654][174]LogAudioMixer: Display: Initializing audio mixer using platform API: 'XAudio2'
+[2024.01.17-00.06.33:679][174]LogAudioMixer: Display: Using Audio Hardware Device Speakers (High Definition Audio Device)
+[2024.01.17-00.06.33:679][174]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.01.17-00.06.33:679][174]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.01.17-00.06.33:679][174]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.01.17-00.06.33:680][174]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called. InstanceID=5
+[2024.01.17-00.06.33:680][174]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048, InstanceID=5
+[2024.01.17-00.06.33:681][174]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal(), InstanceID=5
+[2024.01.17-00.06.33:681][174]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time. InstanceID=5
+[2024.01.17-00.06.33:681][174]LogInit: FAudioDevice initialized with ID 5.
+[2024.01.17-00.06.33:681][174]LogAudio: Display: Audio Device (ID: 5) registered with world 'TechnoReverie'.
+[2024.01.17-00.06.33:681][174]LogAudioMixer: Initializing Audio Bus Subsystem for audio device with ID 5
+[2024.01.17-00.06.33:681][174]LogUIActionRouter: Display: Found 0 derived classes when attemping to create action router (CommonUIActionRouterBase)
+[2024.01.17-00.06.33:683][174]LogLoad: Game class is 'GM_BaseGameMode_C'
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:685][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:686][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:692][174]LogWorld: Bringing World /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie.TechnoReverie up for play (max tick rate 0) at 2024.01.16-19.06.33
+[2024.01.17-00.06.33:692][174]LogWorld: Bringing up level for play took: 0.008385
+[2024.01.17-00.06.33:694][174]LogOnline: OSS: Created online subsystem instance for: :Context_34
+[2024.01.17-00.06.33:696][174]LogBlueprintUserMessages: Warning: SetTimer passed a bad function (None) or object (None)
+[2024.01.17-00.06.33:698][174]PIE: Server logged in
+[2024.01.17-00.06.33:699][174]PIE: Play in editor total start time 0.101 seconds.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:705][174]LogStaticMesh: Warning: Invalid material [Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.17-00.06.33:745][175]LogBlueprintUserMessages: [PatchworkGameInstance_C_3] Hello
+[2024.01.17-00.06.52:384][166]LogBlueprintUserMessages: [dancepad_C_2] center
+[2024.01.17-00.06.54:357][290]LogBlueprintUserMessages: [dancepad_C_2] Hello
+[2024.01.17-00.06.54:991][328]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.17-00.06.54:991][328]LogWorld: BeginTearingDown for /Game/Patchwork/Levels/Maps/TechnoReverie/UEDPIE_0_TechnoReverie
+[2024.01.17-00.06.54:991][328]LogWorld: UWorld::CleanupWorld for TechnoReverie, bSessionEnded=true, bCleanupResources=true
+[2024.01.17-00.06.54:994][328]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.17-00.06.54:998][328]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.01.17-00.06.55:006][328]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.17-00.06.55:023][328]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2024.01.17-00.06.55:024][328]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 5
+[2024.01.17-00.06.55:024][328]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=5
+[2024.01.17-00.06.55:025][328]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=5
+[2024.01.17-00.06.55:030][328]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.01.17-00.06.55:036][328]LogUObjectHash: Compacting FUObjectHashTables data took   1.13ms
+[2024.01.17-00.06.55:123][329]LogPlayLevel: Display: Destroying online subsystem :Context_34
+[2024.01.17-00.06.56:878][405]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.06.57:014][405]LogUObjectHash: Compacting FUObjectHashTables data took   1.31ms
+[2024.01.17-00.06.57:088][405]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.17-00.06.57:088][405]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie39BC3EE24D8A8B2CEBE1A4A89ECE45CE.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.17-00.06.57:100][405]LogFileHelpers: Saving map 'TechnoReverie' took 0.141
+[2024.01.17-00.06.57:107][405]LogFileHelpers: InternalPromptForCheckoutAndSave took 229 ms (total: 11.7 sec)
+[2024.01.17-00.06.57:109][405]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.17-00.06.57:109][405]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.17-00.06.58:504][463]LogSlate: Window 'Message Log' being destroyed
+[2024.01.17-00.06.59:463][515]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.06.59:531][515]LogSavePackage: Moving output files for package: /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern
+[2024.01.17-00.06.59:531][515]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/BP_Ladder_Modern4E24DEB8496691C854E0628B5B36FF96.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Blueprints/Environment/BP_Ladder_Modern.uasset'
+[2024.01.17-00.06.59:538][515]LogFileHelpers: InternalPromptForCheckoutAndSave took 75 ms (total: 11.8 sec)
+[2024.01.17-00.06.59:539][515]AssetCheck: New page: Asset Save: BP_Ladder_Modern
+[2024.01.17-00.06.59:539][515]LogContentValidation: Display: Validating /Script/Engine.Blueprint /Game/Patchwork/Blueprints/Environment/BP_Ladder_Modern.BP_Ladder_Modern
+[2024.01.17-00.07.01:581][630]LogSlate: Window 'ladder_segment' being destroyed
+[2024.01.17-00.07.01:586][630]LogSlate: Window 'ladder_segment' being destroyed
+[2024.01.17-00.07.01:595][630]LogWorld: UWorld::CleanupWorld for World_24, bSessionEnded=true, bCleanupResources=true
+[2024.01.17-00.07.01:595][630]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.17-00.07.01:655][630]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2024.01.17-00.07.01:655][630]LogWorld: UWorld::CleanupWorld for World_26, bSessionEnded=true, bCleanupResources=true
+[2024.01.17-00.07.01:655][630]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.17-00.07.01:733][630]LogWorld: UWorld::CleanupWorld for World_29, bSessionEnded=true, bCleanupResources=true
+[2024.01.17-00.07.01:733][630]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.17-00.07.02:745][703]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.17-00.07.02:807][703]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top
+[2024.01.17-00.07.02:807][703]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/ladder_segment_topCE8F0BBF40DDB4F8D9CE8E922125AAF5.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.uasset'
+[2024.01.17-00.07.02:813][703]LogFileHelpers: InternalPromptForCheckoutAndSave took 67 ms (total: 11.8 sec)
+[2024.01.17-00.07.02:814][703]AssetCheck: New page: Asset Save: ladder_segment_top
+[2024.01.17-00.07.02:814][703]LogContentValidation: Display: Validating /Script/Engine.StaticMesh /Game/Patchwork/Models/Levels/TechnoReverie/ladder_segment_top.ladder_segment_top
+[2024.01.17-00.07.04:303][841]LogSlate: Window 'Content Browser' being destroyed
+[2024.01.17-00.07.04:310][841]LogSlate: Window 'Content Browser' being destroyed
