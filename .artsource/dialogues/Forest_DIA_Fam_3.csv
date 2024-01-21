@@ -1,0 +1,22 @@
+---,Participant,Text,JumpTo,EventName,ContinueFrom,Branchs,DialogueSound
+[Start],"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")",Hey! I've lost someone. Can you help me find him?,2,,,,None
+2,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""Player"")",Who?,3,,,,None
+3,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")",I don't remember his name.,4,,,,
+4,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""Player"")",Is there anything you do remember?,5,,,,
+5,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")",I think he was wearing a teddy bearsuit or something...,[Finish],,,,
+6,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")",How are you doing?,7,,,,
+7,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Dreamer_Image"")",Good.,8,,,,
+8,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")",I have something I wanted to tell you.,9,,,,
+9,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Dreamer_Image"")",...,10,,,,
+10,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")","I don't know what it means anymore, but perhaps you do.",11,,,,
+11,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Dreamer_Image"")",...,12,,,,
+12,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")","I think it was something like ""Wake up. You're dreaming.""",13,,,,
+13,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""Player"")",Oh?,14,,,,
+14,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")","No... That can't be right.  Maybe it was ""Wake up.  This is a dream?""",15,,,,
+15,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""Player"")",What's the difference between those two?,16,,,,
+16,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")","""Wake up.  This is a nightmare.""  Yes. that's it.",17,,,,
+17,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""Player"")",Okay?,18,,,,
+18,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")", Wake up. The sky is weeping,19,,,,
+19,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")",Wake up. The blind are following the blind.,20,,,,
+20,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")",Wake up. You cannot stay here forever.,[Finish],SpawnMemoryShard,21,,
+21,"(DataTable=""/Script/Engine.DataTable'/Game/Patchwork/Data/Datatables/DT_DialogueParticipants.DT_DialogueParticipants'"",RowName=""CF_Family_3"")",The sky is so pink today.,[Finish],,21,,
