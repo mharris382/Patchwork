@@ -7578,3 +7578,26 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2024.01.21-02.00.11:617][933]LogSlate: Took 0.007955 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
 [2024.01.21-02.00.11:791][934]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
 [2024.01.21-02.00.11:912][935]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.01.00:918][321]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.01.01:035][322]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.01.01:132][323]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.01.01:236][324]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.01.01:386][325]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.01.01:533][326]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.06.16:770][418]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.06.16:930][419]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.06.21:370][520]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.06.21:486][521]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.06.39:348][625]LogLinker: Warning: [AssetLog] B:\UnrealEngine5_Projects\_repos2\Patchwork\Patchwork_UE\Content\Patchwork\Audio\DynamicAudio_Spawn.uasset: Failed to load '/Game/Patchwork/Audio/DynamicAudio_Desert': Can't find file.
+[2024.01.21-02.06.39:348][625]LogLinker: Warning: [AssetLog] B:\UnrealEngine5_Projects\_repos2\Patchwork\Patchwork_UE\Content\Patchwork\Audio\DynamicAudio_Spawn.uasset: VerifyImport: Failed to load package for import object 'Package /Game/Patchwork/Audio/DynamicAudio_Desert'
+[2024.01.21-02.06.39:354][625]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Patchwork/Audio/DynamicAudio_Spawn.DynamicAudio_Spawn
+[2024.01.21-02.06.39:354][625]LogWorldSubsystemInput: UEnhancedInputDeveloperSettings::bEnableWorldSubsystem is false, the world subsystem will not be created!
+[2024.01.21-02.06.39:355][625]LogChaos: FPhysicsSolverBase::AsyncDt:-1.000000
+[2024.01.21-02.07.24:003][956]LogAssetEditorSubsystem: Opening Asset editor for MetaSoundSource /Game/Patchwork/Audio/DynamicAudio_Desert.DynamicAudio_Desert
+[2024.01.21-02.07.24:254][956]LogSlate: Vector cache flush requested. Reason: Large atlases out of space; 2/1 Textures; frames since last flush: 18446732735389460348
+[2024.01.21-02.07.24:254][956]LogSlate: Warning: Setting the threshold to trigger a flush to 2 non-atlased textures as there is a lot of font data being cached.
+[2024.01.21-02.08.06:395][507]LogUObjectHash: Compacting FUObjectHashTables data took   1.66ms
+[2024.01.21-02.08.06:408][507]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/E/3D/3UKHB740YB3V300RBSU0R9_Auto1
+[2024.01.21-02.08.06:408][507]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/3UKHB740YB3V300RBSU0R9_Auto15F0CA32F45E87B579FE6B8971299D1C6.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Autosaves/Game/__ExternalActors__/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest/E/3D/3UKHB740YB3V300RBSU0R9_Auto1.uasset'
+[2024.01.21-02.08.06:455][507]LogFileHelpers: Editor autosave (incl. external actors) for '/Game/Patchwork/Levels/Maps/Pink_Forest/Pink_Forest' took 0.094
+[2024.01.21-02.08.06:455][507]LogFileHelpers: Editor autosave (incl. sublevels & external actors) for all levels took 0.094
