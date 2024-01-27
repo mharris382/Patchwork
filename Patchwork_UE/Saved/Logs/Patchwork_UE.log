@@ -14405,3 +14405,1126 @@ Script call stack:
 [2024.01.27-21.28.24:503][143]LogFileHelpers: InternalPromptForCheckoutAndSave took 278 ms (total: 6.17 sec)
 [2024.01.27-21.28.24:506][143]AssetCheck: New page: Asset Save: TechnoReverie
 [2024.01.27-21.28.24:506][143]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.30.31:428][282]LogViewport: Scene viewport resized to 1182x717, mode Windowed.
+[2024.01.27-21.30.31:529][282]LogViewport: Scene viewport resized to 2068x1255, mode Windowed.
+[2024.01.27-21.30.32:195][282]LogViewport: Scene viewport resized to 3134x1831, mode Windowed.
+[2024.01.27-21.35.54:511][539]Cmd: SELECT NONE
+[2024.01.27-21.36.16:835][225]Cmd: SELECT NONE
+[2024.01.27-21.36.18:441][344]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.36.18:544][344]LogUObjectHash: Compacting FUObjectHashTables data took   0.86ms
+[2024.01.27-21.36.18:684][344]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.27-21.36.18:684][344]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie0E97FF5A4D31E6598A31D7AA2F31E452.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.27-21.36.18:697][344]LogFileHelpers: Saving map 'TechnoReverie' took 0.214
+[2024.01.27-21.36.18:703][344]LogFileHelpers: InternalPromptForCheckoutAndSave took 262 ms (total: 6.44 sec)
+[2024.01.27-21.36.18:707][344]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.27-21.36.18:707][344]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.37.15:936][286]Cmd: SELECT NONE
+[2024.01.27-21.37.36:105][ 54]Cmd: SELECT NONE
+[2024.01.27-21.39.48:953][146]Cmd: SELECT NONE
+[2024.01.27-21.40.18:123][400]Cmd: SELECT NONE
+[2024.01.27-21.40.27:800][990]Cmd: SELECT NONE
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:694][514]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:704][515]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:728][517]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:889][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:890][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:890][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.25:890][533]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:528][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:529][598]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:620][599]LogPCG: Warning: [PCGVolume_1 - StaticMeshSpawner_1]: Trivially invalid mesh path used: 'None'
+[2024.01.27-21.41.26:620][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:620][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:620][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:620][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:622][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:623][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:623][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.26:623][599]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:613][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:614][630]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:697][631]LogPCG: Warning: [PCGVolume_1 - StaticMeshSpawner_1]: Trivially invalid mesh path used: 'None'
+[2024.01.27-21.41.37:699][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:699][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.37:699][631]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.41.49:460][693]Cmd: SELECT NONE
+[2024.01.27-21.41.51:160][846]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.41.51:301][846]LogUObjectHash: Compacting FUObjectHashTables data took   1.56ms
+[2024.01.27-21.41.51:442][846]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.27-21.41.51:442][846]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie1999CF774FB36F6146574AAD4F79B560.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.27-21.41.51:455][846]LogFileHelpers: Saving map 'TechnoReverie' took 0.219
+[2024.01.27-21.41.51:482][846]LogFileHelpers: InternalPromptForCheckoutAndSave took 322 ms (total: 6.76 sec)
+[2024.01.27-21.41.51:486][846]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.27-21.41.51:486][846]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.42.05:562][144]Cmd: SELECT NONE
+[2024.01.27-21.42.06:896][266]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.42.06:988][266]LogUObjectHash: Compacting FUObjectHashTables data took   0.52ms
+[2024.01.27-21.42.07:126][266]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.27-21.42.07:127][266]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie788D2540439A7210F6FDEF8211CE6948.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.27-21.42.07:141][266]LogFileHelpers: Saving map 'TechnoReverie' took 0.213
+[2024.01.27-21.42.07:164][266]LogFileHelpers: InternalPromptForCheckoutAndSave took 268 ms (total: 7.03 sec)
+[2024.01.27-21.42.07:168][266]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.27-21.42.07:168][266]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.42.14:315][943]Cmd: MODE GRID=0
+[2024.01.27-21.42.43:631][922]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.42.43:757][922]LogUObjectHash: Compacting FUObjectHashTables data took   1.27ms
+[2024.01.27-21.42.43:907][922]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.27-21.42.43:907][922]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverieB4307A6E4677A17720B984B2FF1C0892.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.27-21.42.43:920][922]LogFileHelpers: Saving map 'TechnoReverie' took 0.224
+[2024.01.27-21.42.43:947][922]LogFileHelpers: InternalPromptForCheckoutAndSave took 316 ms (total: 7.34 sec)
+[2024.01.27-21.42.43:951][922]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.27-21.42.43:951][922]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.43.10:544][269]LogDerivedDataCache: C:/Users/mharr/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:02:05.140 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 66919 files in 63977 folders with total size 4556 MiB.
+[2024.01.27-21.44.14:565][119]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.44.14:670][119]LogUObjectHash: Compacting FUObjectHashTables data took   0.57ms
+[2024.01.27-21.44.14:809][119]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.27-21.44.14:809][119]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie9E2E87E440BBCB832E06E2938D1C1F18.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.27-21.44.14:825][119]LogFileHelpers: Saving map 'TechnoReverie' took 0.212
+[2024.01.27-21.44.14:851][119]LogFileHelpers: InternalPromptForCheckoutAndSave took 286 ms (total: 7.63 sec)
+[2024.01.27-21.44.14:855][119]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.27-21.44.14:855][119]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.44.22:217][727]Cmd: TRANSACTION UNDO
+[2024.01.27-21.44.22:217][727]LogEditorTransaction: Undo Move Elements
+[2024.01.27-21.44.22:680][731]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.44.22:848][731]LogUObjectHash: Compacting FUObjectHashTables data took   1.67ms
+[2024.01.27-21.44.23:043][731]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.27-21.44.23:043][731]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverieF713C56543B7280AA1F84C9D388415F4.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.27-21.44.23:057][731]LogFileHelpers: Saving map 'TechnoReverie' took 0.279
+[2024.01.27-21.44.23:085][731]LogFileHelpers: InternalPromptForCheckoutAndSave took 404 ms (total: 8.03 sec)
+[2024.01.27-21.44.23:089][731]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.27-21.44.23:089][731]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.44.29:889][203]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.44.30:011][203]LogUObjectHash: Compacting FUObjectHashTables data took   1.10ms
+[2024.01.27-21.44.30:204][203]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.27-21.44.30:204][203]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverie450E5AEF40F0443EE82175B2F989F7BB.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.27-21.44.30:219][203]LogFileHelpers: Saving map 'TechnoReverie' took 0.273
+[2024.01.27-21.44.30:247][203]LogFileHelpers: InternalPromptForCheckoutAndSave took 357 ms (total: 8.39 sec)
+[2024.01.27-21.44.30:251][203]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.27-21.44.30:251][203]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.44.48:202][284]Cmd: DELETE
+[2024.01.27-21.44.48:202][284]Cmd: ACTOR DELETE
+[2024.01.27-21.44.51:058][284]LogSlate: Window 'Message' being destroyed
+[2024.01.27-21.44.51:102][284]Message dialog closed, result: YesAll, title: Message, text: Actor BP_RandomNPC1141 is referenced by other Actors/Objects.
+Do you really want to delete it? This will break references.
+
+Reference List:
+
+(Soft) Object /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie:PersistentLevel.BP_Random_Peeps_C_7.TRASH_PCGComponent_26.PCGManagedActors_1
+[2024.01.27-21.44.51:102][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:104][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:105][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:105][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:106][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:107][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:108][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:108][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:109][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:109][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:110][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:110][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:111][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:111][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:112][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:112][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:113][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:113][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:114][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:114][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:115][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:116][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:116][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:117][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:117][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:118][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:118][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:119][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:120][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:120][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:121][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:121][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:122][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:122][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:122][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:124][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:125][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:125][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:126][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:126][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:127][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:127][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:128][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:129][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:129][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:130][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:130][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:131][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:131][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:131][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:132][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:133][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:133][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:134][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:134][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:135][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:135][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:136][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:136][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:137][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:138][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:138][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:139][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:139][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:140][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:140][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:141][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:141][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:143][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:143][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:144][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:144][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:145][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:145][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:146][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:146][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:147][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:148][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:148][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:149][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:149][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:150][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:150][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:151][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:151][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:152][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:152][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:153][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:153][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:154][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:154][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:155][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:156][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:156][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:157][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:157][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:158][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:158][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:159][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:159][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:160][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:161][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:161][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:162][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:163][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:163][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:164][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:164][284]LogEditorActor: Deleted Actor: BP_RandomNPC_C
+[2024.01.27-21.44.51:186][284]LogUObjectHash: Compacting FUObjectHashTables data took   0.99ms
+[2024.01.27-21.44.51:191][284]LogEditorActor: Deleted 108 Actors (0.109 secs)
+[2024.01.27-21.45.29:258][673]Cmd: TRANSACTION UNDO
+[2024.01.27-21.45.29:258][673]LogEditorTransaction: Undo Move Elements
+[2024.01.27-21.45.37:499][291]Cmd: SELECT NONE
+[2024.01.27-21.45.38:820][390]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.45.38:987][390]LogUObjectHash: Compacting FUObjectHashTables data took   1.23ms
+[2024.01.27-21.45.39:125][390]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie
+[2024.01.27-21.45.39:126][390]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/TechnoReverieD3BBD4E94DB1B2077973BFA559D6F7D0.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.umap'
+[2024.01.27-21.45.39:139][390]LogFileHelpers: Saving map 'TechnoReverie' took 0.261
+[2024.01.27-21.45.39:144][390]LogFileHelpers: InternalPromptForCheckoutAndSave took 322 ms (total: 8.72 sec)
+[2024.01.27-21.45.39:147][390]AssetCheck: New page: Asset Save: TechnoReverie
+[2024.01.27-21.45.39:147][390]LogContentValidation: Display: Validating /Script/Engine.World /Game/Patchwork/Levels/Maps/TechnoReverie/TechnoReverie.TechnoReverie
+[2024.01.27-21.45.41:197][604]Cmd: MODE GRID=1
+[2024.01.27-21.45.52:694][817]LogSlate: Window 'Message' being destroyed
+[2024.01.27-21.45.52:697][817]Message dialog closed, result: Yes, title: Message, text: Would you like to apply the changes of the modified material to the original material?
+/Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_010.Material_010
+(Selecting 'No' will cause all changes to be lost!)
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:744][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:772][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.52:788][817]LogUObjectHash: Compacting FUObjectHashTables data took   0.72ms
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: ================================================
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: Total job queries 465, among them cache hits 238 (51.18%)
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: Tracking 227 distinct input hashes that result in 188 distinct outputs (82.82%)
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: RAM used: 5.67 MiB of 1.60 GiB budget. Usage: 0.35%
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: Shaders Compiled: 0
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: Jobs assigned 0, completed 0 (0%)
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 0.00 s
+[2024.01.27-21.45.52:982][817]LogShaderCompilers: Display: ================================================
+[2024.01.27-21.45.52:997][817]LogUObjectHash: Compacting FUObjectHashTables data took   0.54ms
+[2024.01.27-21.45.53:018][817]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2024.01.27-21.45.53:954][817]LogSlate: Window 'Save Content' being destroyed
+[2024.01.27-21.45.53:998][817]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.01.27-21.45.54:045][817]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/interior
+[2024.01.27-21.45.54:045][817]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/interior6136D25C4A41C065A185558C6F7478A6.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/Placeholders/interior.uasset'
+[2024.01.27-21.45.54:047][817]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_002
+[2024.01.27-21.45.54:047][817]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Material_002FCEA8F884D37340995594B8AB596DCAA.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_002.uasset'
+[2024.01.27-21.45.54:049][817]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_003
+[2024.01.27-21.45.54:049][817]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Material_0039B8DDE534AB3B688071FC29740428E56.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_003.uasset'
+[2024.01.27-21.45.54:099][817]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_010
+[2024.01.27-21.45.54:099][817]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Material_010E2010C1644268EF48344839A15C7686D.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_010.uasset'
+[2024.01.27-21.45.54:101][817]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/window
+[2024.01.27-21.45.54:101][817]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/windowD9843217409BD131E5A567B662D0CF45.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/Placeholders/window.uasset'
+[2024.01.27-21.45.54:102][817]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/window_frame
+[2024.01.27-21.45.54:102][817]LogSavePackage: Moving '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/window_frame170483C34BAB5283AFDE4C8D595B7728.tmp' to '../../../../../../UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Models/Levels/TechnoReverie/Placeholders/window_frame.uasset'
+[2024.01.27-21.45.54:107][817]LogFileHelpers: InternalPromptForCheckoutAndSave took 109 ms (total: 8.82 sec)
+[2024.01.27-21.45.54:107][817]LogStall: Shutdown...
+[2024.01.27-21.45.54:110][817]LogStall: Shutdown complete.
+[2024.01.27-21.45.54:233][817]LogWorld: UWorld::CleanupWorld for World_26, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.54:233][817]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.27-21.45.54:356][817]LogWorld: UWorld::CleanupWorld for World_27, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.54:356][817]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.27-21.45.54:449][817]LogWorld: UWorld::CleanupWorld for World_28, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.54:450][817]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.27-21.45.54:499][817]LogActorComponent: UnregisterComponent: (/Engine/Transient.EditorFloorComp) Not registered. Aborting.
+[2024.01.27-21.45.54:499][817]LogWorld: UWorld::CleanupWorld for World_29, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.54:499][817]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.27-21.45.54:544][817]LogSlate: Window 'SettingsMenu' being destroyed
+[2024.01.27-21.45.54:552][817]LogWorld: UWorld::CleanupWorld for World_31, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.54:552][817]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.27-21.45.54:566][817]LogWorld: UWorld::CleanupWorld for World_30, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.54:566][817]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.27-21.45.54:636][817]LogSlate: Window 'Message Log' being destroyed
+[2024.01.27-21.45.54:638][817]LogSlate: Window 'Patchwork_UE - Unreal Editor' being destroyed
+[2024.01.27-21.45.54:741][817]AssetCheck: New page: Asset Save: multiple assets
+[2024.01.27-21.45.54:741][817]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/interior.interior
+[2024.01.27-21.45.54:741][817]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_002.Material_002
+[2024.01.27-21.45.54:741][817]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_003.Material_003
+[2024.01.27-21.45.54:741][817]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/Material_010.Material_010
+[2024.01.27-21.45.54:741][817]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/window.window
+[2024.01.27-21.45.54:741][817]LogContentValidation: Display: Validating /Script/Engine.Material /Game/Patchwork/Models/Levels/TechnoReverie/Placeholders/window_frame.window_frame
+[2024.01.27-21.45.54:743][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.54:743][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.54:743][817]LogStaticMesh: Warning: Invalid material [M_Glass] used on Nanite static mesh [mini-shop-test]. Only opaque or masked blend modes are currently supported, [BLEND_Translucent] blend mode was specified.
+[2024.01.27-21.45.54:746][818]Cmd: QUIT_EDITOR
+[2024.01.27-21.45.54:746][818]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2024.01.27-21.45.54:771][818]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2024.01.27-21.45.54:771][818]LogStaticMesh: Abandoning remaining async distance field tasks for shutdown
+[2024.01.27-21.45.54:771][818]LogStaticMesh: Abandoning remaining async card representation tasks for shutdown
+[2024.01.27-21.45.54:828][818]LogWorld: UWorld::CleanupWorld for TechnoReverie, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.54:829][818]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.01.27-21.45.54:843][818]LogLevelSequenceEditor: LevelSequenceEditor subsystem deinitialized.
+[2024.01.27-21.45.55:295][818]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2024.01.27-21.45.55:295][818]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2024.01.27-21.45.55:295][818]LogAudio: Display: Audio Device unregistered from world 'TechnoReverie'.
+[2024.01.27-21.45.55:295][818]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID 1
+[2024.01.27-21.45.55:295][818]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2024.01.27-21.45.55:296][818]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2024.01.27-21.45.55:300][818]LogAudio: Display: Audio Device Manager Shutdown
+[2024.01.27-21.45.55:301][818]LogWindowsTextInputMethodSystem: Activated input method: English (United States) - (Keyboard).
+[2024.01.27-21.45.55:304][818]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2024.01.27-21.45.55:304][818]LogExit: Preparing to exit.
+[2024.01.27-21.45.55:335][818]LogUObjectHash: Compacting FUObjectHashTables data took   1.00ms
+[2024.01.27-21.45.55:350][818]LogPython: Display: Object '/Engine/PythonTypes.add_controls_for_selected_options' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:350][818]LogPython: Display: Object '/Engine/PythonTypes.add_controls_for_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:353][818]LogPython: Display: Object '/Engine/PythonTypes.add_null_above_selected' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.align_translation_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.align_translation_all' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.align_translation_x' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.align_translation_y' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.align_translation_z' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.align_rotation' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.align_scale' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.search_replace_name_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.search_replace_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.add_prefix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.add_prefix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.add_suffix_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.add_suffix_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.do_rename_dialog' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.do_rename_entry' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:354][818]LogPython: Display: Object '/Engine/PythonTypes.set_bone_reference_pose' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:355][818]LogPython: Display: Object '/Engine/PythonTypes.ControlOutputFormat' was externally referenced when shutting down Python. Forcibly releasing its Python resources!
+[2024.01.27-21.45.55:746][818]LogWorld: UWorld::CleanupWorld for World_0, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:749][818]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:753][818]LogWorld: UWorld::CleanupWorld for World_2, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:755][818]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:757][818]LogWorld: UWorld::CleanupWorld for World_4, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:759][818]LogWorld: UWorld::CleanupWorld for World_5, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:761][818]LogWorld: UWorld::CleanupWorld for World_6, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:763][818]LogWorld: UWorld::CleanupWorld for World_7, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:764][818]LogWorld: UWorld::CleanupWorld for World_8, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:766][818]LogWorld: UWorld::CleanupWorld for World_11, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:768][818]LogWorld: UWorld::CleanupWorld for World_12, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:769][818]LogWorld: UWorld::CleanupWorld for World_13, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:772][818]LogWorld: UWorld::CleanupWorld for World_14, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:773][818]LogWorld: UWorld::CleanupWorld for World_15, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:775][818]LogWorld: UWorld::CleanupWorld for World_16, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:777][818]LogWorld: UWorld::CleanupWorld for World_17, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:778][818]LogWorld: UWorld::CleanupWorld for World_18, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:780][818]LogWorld: UWorld::CleanupWorld for World_19, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:782][818]LogWorld: UWorld::CleanupWorld for World_20, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:783][818]LogWorld: UWorld::CleanupWorld for World_21, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:785][818]LogWorld: UWorld::CleanupWorld for World_22, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:786][818]LogWorld: UWorld::CleanupWorld for World_23, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:788][818]LogWorld: UWorld::CleanupWorld for World_24, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:790][818]LogWorld: UWorld::CleanupWorld for World_25, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:793][818]LogWorld: UWorld::CleanupWorld for World_10, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.55:795][818]LogWorld: UWorld::CleanupWorld for World_9, bSessionEnded=true, bCleanupResources=true
+[2024.01.27-21.45.56:012][818]LogDemo: Cleaned up 0 splitscreen connections, owner deletion: enabled
+[2024.01.27-21.45.56:043][818]LogExit: Editor shut down
+[2024.01.27-21.45.56:046][818]LogExit: Transaction tracking system shut down
+[2024.01.27-21.45.56:480][818]LogExit: Object subsystem successfully closed.
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: ================================================
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: Total job queries 478, among them cache hits 251 (52.51%)
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: Tracking 227 distinct input hashes that result in 188 distinct outputs (82.82%)
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: RAM used: 5.67 MiB of 1.60 GiB budget. Usage: 0.35%
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: Shaders Compiled: 0
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: Jobs assigned 0, completed 0 (0%)
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 0.00 s
+[2024.01.27-21.45.56:485][818]LogShaderCompilers: Display: ================================================
+[2024.01.27-21.45.56:545][818]LogShaderCompilers: Display: Shaders left to compile 0
+[2024.01.27-21.45.56:615][818]LogVirtualization: UE::Virtualization was shutdown
+[2024.01.27-21.45.56:624][818]LogModuleManager: Shutting down and abandoning module HierarchicalLODUtilities (1086)
+[2024.01.27-21.45.56:624][818]LogModuleManager: Shutting down and abandoning module MaterialEditor (1084)
+[2024.01.27-21.45.56:624][818]LogModuleManager: Shutting down and abandoning module DataTableEditor (1082)
+[2024.01.27-21.45.56:624][818]LogModuleManager: Shutting down and abandoning module MovieSceneCapture (1080)
+[2024.01.27-21.45.56:624][818]LogModuleManager: Shutting down and abandoning module Voice (1078)
+[2024.01.27-21.45.56:624][818]LogModuleManager: Shutting down and abandoning module HierarchicalLODOutliner (1076)
+[2024.01.27-21.45.56:624][818]LogModuleManager: Shutting down and abandoning module AddContentDialog (1074)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module WidgetCarousel (1073)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module SubobjectEditor (1070)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module SceneOutliner (1068)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module StatusBar (1066)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module UnsavedAssetsTracker (1064)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module GameProjectGeneration (1062)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module DataLayerEditor (1060)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module StatsViewer (1058)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module SequenceRecorderSections (1056)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module AutomationWorker (1054)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module WaveTableEditor (1052)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module RigVMEditor (1050)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module ResonanceAudioEditor (1048)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module GooglePADEditor (1046)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module AudioCaptureEditor (1044)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module WaterEditor (1042)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module AndroidFileServerEditor (1040)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module PlanarCut (1038)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module FractureEngine (1036)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module CharacterAI (1034)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module TemplateSequenceEditor (1032)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module LevelSequenceEditor (1030)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module ActorSequenceEditor (1028)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module WebMMediaFactory (1026)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module WebMMediaEditor (1024)
+[2024.01.27-21.45.56:625][818]LogModuleManager: Shutting down and abandoning module WebMMedia (1022)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module WmfMediaFactory (1020)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module WmfMediaEditor (1018)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module MediaPlayerEditor (1016)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module MediaCompositingEditor (1014)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module SequenceRecorder (1013)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module OpenExrWrapper (1010)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module ImgMediaFactory (1008)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module ImgMediaEditor (1006)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module AvfMediaFactory (1004)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module AvfMediaEditor (1002)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module AndroidMediaFactory (1000)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module AndroidMediaEditor (998)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module TextureAlignMode (996)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module BspMode (994)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module GeometryMode (992)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module EngineAssetDefinitions (990)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module IKRigEditor (988)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module CameraShakePreviewer (986)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module ControlRigEditor (984)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module SmartSnapping (982)
+[2024.01.27-21.45.56:626][818]LogModuleManager: Shutting down and abandoning module SessionServices (980)
+[2024.01.27-21.45.56:628][818]LogModuleManager: Shutting down and abandoning module MeshPaint (978)
+[2024.01.27-21.45.56:628][818]LogModuleManager: Shutting down and abandoning module VirtualTexturingEditor (976)
+[2024.01.27-21.45.56:628][818]LogModuleManager: Shutting down and abandoning module PlacementMode (975)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module FoliageEdit (972)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module LandscapeEditor (970)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module SceneDepthPickerMode (968)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module ActorPickerMode (966)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module ViewportSnapping (964)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module EditorWidgets (962)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module ViewportInteraction (960)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module ClothPainter (958)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module SkeletalMeshEditor (957)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module WidgetRegistration (954)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module LogVisualizer (952)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module IOSPlatformEditor (950)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module AndroidPlatformEditor (948)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module PIEPreviewDeviceProfileSelector (947)
+[2024.01.27-21.45.56:629][818]LogModuleManager: Shutting down and abandoning module AndroidDeviceDetection (945)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module WindowsPlatformEditor (942)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module MacPlatformEditor (940)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module IOSRuntimeSettings (938)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module AndroidRuntimeSettings (936)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module RenderResourceViewer (934)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module GameplayDebuggerEditor (932)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module AnimationSettings (930)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module VirtualizationEditor (928)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module CSVtoSVG (926)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module DerivedDataEditor (924)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module EditorConfig (922)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module EditorFramework (920)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module StaticMeshEditor (918)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module TraceInsights (916)
+[2024.01.27-21.45.56:749][818]MemoryProfiler: Shutdown
+[2024.01.27-21.45.56:749][818]NetworkingProfiler: Shutdown
+[2024.01.27-21.45.56:749][818]LoadingProfiler: Shutdown
+[2024.01.27-21.45.56:749][818]TimingProfiler: Shutdown
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module TraceServices (915)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module TraceAnalysis (914)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module EditorInteractiveToolsFramework (910)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module InteractiveToolsFramework (909)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module InputBindingEditor (906)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module MergeActors (904)
+[2024.01.27-21.45.56:749][818]LogModuleManager: Shutting down and abandoning module LocalizationDashboard (902)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module LocalizationService (901)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module HardwareTargeting (898)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module DeviceProfileEditor (896)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module UndoHistory (894)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module XmlParser (892)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module Blutility (890)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module ProjectSettingsViewer (888)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module ProjectTargetPlatformEditor (887)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module EditorSettingsViewer (884)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module InternationalizationSettings (883)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module SettingsEditor (880)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module ProjectLauncher (878)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module SessionFrontend (876)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module ProfilerClient (874)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module DeviceManager (872)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module AutomationController (870)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module AutomationWindow (868)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module Layers (866)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module ComponentVisualizers (864)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module DetailCustomizations (862)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module PackagesDialog (860)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module AnimationBlueprintEditor (858)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module Persona (856)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module AdvancedPreviewScene (855)
+[2024.01.27-21.45.56:750][818]LogModuleManager: Shutting down and abandoning module Kismet (852)
+[2024.01.27-21.45.56:759][818]LogModuleManager: Shutting down and abandoning module KismetWidgets (851)
+[2024.01.27-21.45.56:759][818]LogModuleManager: Shutting down and abandoning module GraphEditor (848)
+[2024.01.27-21.45.56:759][818]LogModuleManager: Shutting down and abandoning module StructViewer (846)
+[2024.01.27-21.45.56:759][818]LogModuleManager: Shutting down and abandoning module ClassViewer (844)
+[2024.01.27-21.45.56:759][818]LogModuleManager: Shutting down and abandoning module UncontrolledChangelists (842)
+[2024.01.27-21.45.56:759][818]LogModuleManager: Shutting down and abandoning module SourceControlWindowExtender (840)
+[2024.01.27-21.45.56:759][818]LogModuleManager: Shutting down and abandoning module SourceControlWindows (838)
+[2024.01.27-21.45.56:759][818]LogModuleManager: Shutting down and abandoning module OutputLog (836)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module Documentation (834)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module SparseVolumeTexture (832)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module MovieSceneTracks (830)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module MovieScene (828)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module StreamingPauseRendering (826)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module BinkAudioDecoder (824)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module AudioMixerXAudio2 (822)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module AudioMixer (821)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module AudioMixerCore (820)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module LauncherPlatform (816)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module AnalyticsET (814)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module PortalServices (812)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module PortalRpc (810)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module MessagingRpc (808)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module AIModule (806)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module GameplayDebugger (805)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module AITestSuite (803)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module NavigationSystem (801)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module LevelInstanceEditor (798)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module TypedElementRuntime (796)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module TypedElementFramework (794)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module ImageWriteQueue (792)
+[2024.01.27-21.45.56:761][818]LogModuleManager: Shutting down and abandoning module ProfilerService (790)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ProfileVisualizer (788)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module CacheTrackRecorder (786)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module TakeRecorderSources (784)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module TakeTrackRecorders (782)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module TakesCore (780)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module AudioSynesthesiaEditor (778)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module MegascansPlugin (776)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module Bridge (774)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ObjectMixerEditor (772)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module LightMixer (770)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module PortableObjectFileDataSource (768)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ContentBrowserFileDataSource (766)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ContentBrowserClassDataSource (764)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ContentBrowserAssetDataSource (762)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module CollectionManager (761)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module VariantManager (758)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module VariantManagerContentEditor (757)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module TakeSequencer (754)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module TakeMovieScene (752)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module DatasmithContentEditor (750)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InterchangeFbxParser (748)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InterchangeCommonParser (746)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InterchangeDispatcher (744)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InterchangeExport (742)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InterchangeMessages (740)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module GLTFCore (738)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InterchangeEditorUtilities (736)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InterchangeEditorPipelines (734)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InterchangeEditor (732)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module SynthesisEditor (730)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ResonanceAudio (728)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponentEditor (726)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module MobilePatchingUtils (724)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ModelingOperatorsEditorOnly (722)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ModelingOperators (720)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ModelingComponentsEditorOnly (718)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module ModelingComponents (716)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module GeometryFramework (715)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module MeshModelingToolsEditorOnly (712)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module MeshModelingTools (710)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InputDebuggingEditor (708)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module InputDebugging (706)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module GooglePAD (704)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module DynamicMesh (702)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module GeometryAlgorithms (700)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module GeometryCacheTracks (698)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module GeometryCacheStreamer (696)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module GeometryCacheSequencer (694)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module CommonInput (692)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module CommonUIEditor (690)
+[2024.01.27-21.45.56:962][818]LogModuleManager: Shutting down and abandoning module CommonUI (688)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module AudioCapture (686)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module AudioCaptureWasapi (685)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module AssetTags (682)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ArchVisCharacter (680)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module AppleImageUtilsBlueprintSupport (678)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module AppleImageUtils (676)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module AndroidPermission (674)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ActorLayerUtilitiesEditor (672)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ActorLayerUtilities (670)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ToolPresetEditor (668)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ToolPresetAsset (666)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module StructUtilsTestSuite (664)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module StructUtilsNodes (662)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module StructUtilsEditor (660)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module StructUtilsEngine (658)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module PCGEditor (656)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module PCG (654)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module OpenImageDenoise (652)
+[2024.01.27-21.45.56:963][818]LogOpenImageDenoise: OIDN shutting down
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module SkeletalMeshModifiers (650)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ModelingEditorUI (648)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryProcessingAdapters (646)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module MeshModelingToolsEditorOnlyExp (644)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module MeshModelingToolsExp (642)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module MeshLODToolset (640)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module LocalizableMessageBlueprint (638)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module LocalizableMessage (636)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module LandmassEditor (634)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module Landmass (632)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryScriptingEditor (630)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryCollectionNodes (628)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryCollectionTracks (626)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryCollectionEngine (625)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryCollectionSequencer (623)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryCollectionEditor (620)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryFlowMeshProcessingEditor (618)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryFlowMeshProcessing (616)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module GeometryFlowCore (614)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module DataflowNodes (612)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module DataflowEnginePlugin (610)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module DataflowEditor (608)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ChaosUserDataPT (606)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ChaosSolverEditor (604)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ChaosNiagara (602)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module ChaosClothEditor (600)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module FractureEditor (598)
+[2024.01.27-21.45.56:963][818]LogModuleManager: Shutting down and abandoning module AutomationUtilsEditor (596)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module AutomationUtils (594)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module BackChannel (592)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module VisualStudioSourceCodeAccess (590)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module VisualStudioCodeSourceCodeAccess (588)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module UObjectPlugin (586)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module SubversionSourceControl (584)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module RiderSourceCodeAccess (582)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module SequencerScriptingEditor (580)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module SequencerScripting (578)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module TemplateSequence (576)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module PluginUtils (574)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module N10XSourceCodeAccess (572)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module GitSourceControl (570)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module DumpGPUServices (568)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module MediaPlateEditor (566)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module MediaPlate (564)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module CLionSourceCodeAccess (562)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module MediaCompositing (560)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module ImgMedia (558)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module AnimationSharingEd (556)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module WorldPartitionHLODUtilities (554)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module UVEditorToolsEditorOnly (552)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module UVEditorTools (550)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module UVEditor (548)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module SpeedTreeImporter (546)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module SequencerAnimTools (544)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module PluginBrowser (542)
+[2024.01.27-21.45.56:964][818]LogModuleManager: Shutting down and abandoning module ModelingToolsEditorMode (540)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module MobileLauncherProfileWizard (538)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module MaterialAnalyzer (536)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module EditorScriptingUtilities (532)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module EditorDebugTools (530)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module CurveEditorTools (528)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module CryptoKeysOpenSSL (526)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module CryptoKeys (524)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module ChangelistReview (522)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module BlueprintHeaderView (520)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module ControlRigSpline (518)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module OodleNetworkHandlerComponent (516)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module AlembicImporter (514)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module AlembicLibrary (513)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module GeometryCache (512)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module GeometryCacheEd (511)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module BlendSpaceMotionAnalysis (506)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module AnimationModifierLibrary (504)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module InterchangeTestEditor (502)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module InterchangeTests (500)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module ACLPluginEditor (498)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module NiagaraFluids (496)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module NiagaraEditorWidgets (494)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module PaperTiledImporter (492)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module PaperSpriteSheetImporter (490)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module Paper2DEditor (488)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module EditorTraceUtilities (486)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module TraceUtilities (484)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module MeshPaintingToolset (482)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module MeshPaintEditorMode (480)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module InputEditor (478)
+[2024.01.27-21.45.56:965][818]LogModuleManager: Shutting down and abandoning module UdpMessaging (476)
+[2024.01.27-21.45.57:067][818]LogModuleManager: Shutting down and abandoning module TcpMessaging (474)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module InterchangePipelines (472)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module InterchangeImport (470)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module InterchangeFactoryNodes (468)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module InterchangeNodes (466)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module Synthesis (464)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module EnvironmentQueryEditor (462)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module SoundFields (460)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module SignificanceManager (458)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module RigVMDeveloper (456)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module RigVM (454)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module PropertyAccessEditor (452)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponent (450)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module MsQuicRuntime (448)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module MetasoundEditor (446)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module AudioWidgets (445)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module AdvancedWidgets (444)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module MetasoundEngineTest (440)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module MetasoundEngine (438)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module WaveTable (437)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module AudioCodecEngine (435)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module MetasoundStandardNodes (432)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module MetasoundFrontend (430)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module MetasoundGenerator (428)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module MetasoundGraphCore (426)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module LocationServicesBPLibrary (424)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module CustomMeshComponent (422)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module CableComponent (420)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module AudioSynesthesia (418)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module AudioAnalyzer (417)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module AudioSynesthesiaCore (414)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module StructUtils (412)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module PythonScriptPlugin (410)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module GeometryScriptingCore (408)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module PBIK (406)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module FullBodyIK (404)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module ChaosCachingEditor (402)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module TakeRecorder (401)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module ChaosCaching (398)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module TraceDataFiltering (396)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module PropertyAccessNode (394)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module ActorSequence (392)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module ImgMediaEngine (390)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module AnimationSharing (388)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module GameplayTagsEditor (386)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module FacialAnimationEditor (384)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module FacialAnimation (382)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module DataValidation (380)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module AssetManagerEditor (378)
+[2024.01.27-21.45.57:167][818]LogModuleManager: Shutting down and abandoning module LevelEditor (377)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module PixelInspectorModule (376)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module CommonMenuExtensions (374)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module MainFrame (372)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module HotReload (371)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module TreeMap (367)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module IKRigDeveloper (364)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module IKRig (362)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module GameplayCameras (360)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module ControlRigDeveloper (358)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module ControlRig (356)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module Constraints (355)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module AnimationData (352)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module NiagaraAnimNotifies (350)
+[2024.01.27-21.45.57:171][818]LogModuleManager: Shutting down and abandoning module Niagara (348)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module SignalProcessing (347)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module NiagaraEditor (345)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module LevelSequence (344)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module ContentBrowser (342)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module ToolMenus (341)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module ContentBrowserData (339)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module NiagaraCore (334)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module Paper2D (332)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module InputBlueprintNodes (330)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module BlueprintGraph (329)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module EnhancedInput (326)
+[2024.01.27-21.45.57:172][818]LogModuleManager: Shutting down and abandoning module WindowsMoviePlayer (324)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module WebMMoviePlayer (322)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module AndroidFileServer (320)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module BlueprintMaterialTextureNodes (318)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module NetworkReplayStreaming (316)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module PacketHandler (314)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module WorldPartitionEditor (312)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module AnimGraph (310)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module TimeManagement (308)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module AnimationDataController (306)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module ClothingSystemEditor (304)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module ClothingSystemRuntimeNv (302)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module MediaAssets (300)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module Overlay (298)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module OverlayEditor (297)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module VREditor (294)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module StringTableEditor (292)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module GameplayTasksEditor (290)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module BehaviorTreeEditor (288)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module FunctionalTesting (286)
+[2024.01.27-21.45.57:198][818]LogModuleManager: Shutting down and abandoning module CollisionAnalyzer (284)
+[2024.01.27-21.45.57:199][818]LogModuleManager: Shutting down and abandoning module WorkspaceMenuStructure (283)
+[2024.01.27-21.45.57:199][818]LogModuleManager: Shutting down and abandoning module ScriptableEditorWidgets (280)
+[2024.01.27-21.45.57:199][818]LogModuleManager: Shutting down and abandoning module UMG (278)
+[2024.01.27-21.45.57:199][818]LogModuleManager: Shutting down and abandoning module UMGEditor (277)
+[2024.01.27-21.45.57:199][818]LogModuleManager: Shutting down and abandoning module EditorStyle (272)
+[2024.01.27-21.45.57:199][818]LogModuleManager: Shutting down and abandoning module SlateReflector (270)
+[2024.01.27-21.45.57:199][818]LogModuleManager: Shutting down and abandoning module Slate (268)
+[2024.01.27-21.45.57:199][818]LogModuleManager: Shutting down and abandoning module SlateCore (266)
+[2024.01.27-21.45.57:200][818]LogModuleManager: Shutting down and abandoning module SubobjectDataInterface (264)
+[2024.01.27-21.45.57:200][818]LogModuleManager: Shutting down and abandoning module LandscapeEditorUtilities (262)
+[2024.01.27-21.45.57:200][818]LogModuleManager: Shutting down and abandoning module UnrealEd (260)
+[2024.01.27-21.45.57:200][818]LogModuleManager: Shutting down and abandoning module MRMesh (258)
+[2024.01.27-21.45.57:200][818]LogModuleManager: Shutting down and abandoning module Messaging (256)
+[2024.01.27-21.45.57:200][818]LogModuleManager: Shutting down and abandoning module SourceCodeAccess (254)
+[2024.01.27-21.45.57:200][818]LogModuleManager: Shutting down and abandoning module HeadMountedDisplay (252)
+[2024.01.27-21.45.57:200][818]LogModuleManager: Shutting down and abandoning module LiveCoding (250)
+[2024.01.27-21.45.57:207][818]LogModuleManager: Shutting down and abandoning module Networking (248)
+[2024.01.27-21.45.57:207][818]LogModuleManager: Shutting down and abandoning module Core (246)
+[2024.01.27-21.45.57:207][818]LogModuleManager: Shutting down and abandoning module AssetDefinition (244)
+[2024.01.27-21.45.57:207][818]LogModuleManager: Shutting down and abandoning module MovieSceneTools (242)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module CurveEditor (241)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module Sequencer (239)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module KismetCompiler (236)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module MeshBuilder (234)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module NaniteBuilder (232)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module MeshUtilities (230)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module MeshMergeUtilities (229)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module StaticMeshDescription (228)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module GeometryProcessingInterfaces (227)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module MeshReductionInterface (224)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module MeshBoneReduction (223)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module SkeletalMeshReduction (221)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module ProxyLODMeshReduction (219)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module QuadricMeshReduction (217)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module MaterialBaking (213)
+[2024.01.27-21.45.57:208][818]LogModuleManager: Shutting down and abandoning module TargetDeviceServices (210)
+[2024.01.27-21.45.57:219][818]LogModuleManager: Shutting down and abandoning module TelemetryUtils (207)
+[2024.01.27-21.45.57:219][818]LogModuleManager: Shutting down and abandoning module NullInstallBundleManager (204)
+[2024.01.27-21.45.57:219][818]LogModuleManager: Shutting down and abandoning module ShaderPreprocessor (202)
+[2024.01.27-21.45.57:219][818]LogModuleManager: Shutting down and abandoning module DerivedDataCache (200)
+[2024.01.27-21.45.57:229][818]LogModuleManager: Shutting down and abandoning module TargetPlatform (198)
+[2024.01.27-21.45.57:229][818]LogModuleManager: Shutting down and abandoning module MetalShaderFormat (197)
+[2024.01.27-21.45.57:229][818]LogModuleManager: Shutting down and abandoning module VulkanShaderFormat (195)
+[2024.01.27-21.45.57:229][818]LogModuleManager: Shutting down and abandoning module ShaderFormatOpenGL (193)
+[2024.01.27-21.45.57:229][818]LogModuleManager: Shutting down and abandoning module ShaderFormatD3D (191)
+[2024.01.27-21.45.57:229][818]LogModuleManager: Shutting down and abandoning module ShaderFormatVectorVM (189)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module AudioFormatBINK (187)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module AudioFormatADPCM (185)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module AudioFormatOGG (183)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module AudioFormatOPUS (181)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module WindowsTargetPlatform (179)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TVOSTargetPlatform (177)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module MacTargetPlatform (175)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module LinuxArm64TargetPlatform (173)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module LinuxTargetPlatform (171)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module IOSTargetPlatform (169)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module AndroidTargetPlatform (167)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TextureFormat (165)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module ImageWrapper (164)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TextureFormatOodle (162)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TextureFormatUncompressed (160)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TextureFormatIntelISPCTexComp (158)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TextureFormatETC2 (156)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TextureFormatDXT (154)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TextureFormatASTC (152)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module TurnkeySupport (149)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module InputCore (146)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module Settings (144)
+[2024.01.27-21.45.57:230][818]LogModuleManager: Shutting down and abandoning module DirectoryWatcher (142)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module ChaosSolverEngine (140)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module FieldSystemEngine (139)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module Chaos (136)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module GeometryCore (135)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module WindowsPlatformFeatures (132)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module GameplayMediaEncoder (131)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module AVEncoder (130)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module D3D12RHI (126)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module VariantManagerContent (124)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module GLTFExporter (122)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module DatasmithContent (120)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module WindowsDeviceProfileSelector (118)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module AISupportModule (116)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module ExampleDeviceProfileSelector (114)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module ChunkDownloader (112)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module Water (110)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module ChaosCloth (108)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module RenderDocPlugin (106)
+[2024.01.27-21.45.57:231][818]RenderDocPlugin: plugin has been unloaded.
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module PixWinPlugin (104)
+[2024.01.27-21.45.57:231][818]LogModuleManager: Shutting down and abandoning module WmfMedia (102)
+[2024.01.27-21.45.57:234][818]LogModuleManager: Shutting down and abandoning module Media (101)
+[2024.01.27-21.45.57:235][818]LogModuleManager: Shutting down and abandoning module ExrReaderGpu (98)
+[2024.01.27-21.45.57:235][818]LogModuleManager: Shutting down and abandoning module OnlineBlueprintSupport (96)
+[2024.01.27-21.45.57:235][818]LogModuleManager: Shutting down and abandoning module OnlineSubsystemUtils (94)
+[2024.01.27-21.45.57:235][818]LogModuleManager: Shutting down and abandoning module OnlineSubsystem (92)
+[2024.01.27-21.45.57:237][818]LogModuleManager: Shutting down and abandoning module XMPP (87)
+[2024.01.27-21.45.57:237][818]LogModuleManager: Shutting down and abandoning module WebSockets (86)
+[2024.01.27-21.45.57:255][818]LogModuleManager: Shutting down and abandoning module HTTP (83)
+[2024.01.27-21.45.57:255][818]LogHttp: Warning: [FHttpManager::Shutdown] Unbinding delegates for 1 outstanding Http Requests:
+[2024.01.27-21.45.57:255][818]LogHttp: Warning: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7BBE3634C3-4C8C-E524-EE4C-829ADE11315B%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.3.2-29314046%2B%2B%2BUE5%2BRelease-5.3&UserID=d8f0dcb0452256c84552d083468ae762%7C4611ab85e9a046b08ea9e506519f0ae6%7C299d33dc-8710-426d-bf57-92755e67e23e&AppEnvironment=datacollector-binary&UploadType=eteventstream] refs=[1] status=Processing
+[2024.01.27-21.45.57:289][818]LogModuleManager: Shutting down and abandoning module SSL (82)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module OnlineServicesCommonEngineUtils (78)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module OnlineServicesCommon (76)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module OnlineServicesInterface (74)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module LauncherChunkInstaller (72)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module ACLPlugin (70)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module NiagaraVertexFactories (68)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module NiagaraShader (66)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module DesktopPlatform (64)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module PythonScriptPluginPreload (62)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module PlatformCryptoOpenSSL (60)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module PlatformCryptoTypes (58)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module PlatformCrypto (56)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module PlasticSourceControl (54)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module PerforceSourceControl (52)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module SourceControl (51)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module XGEController (48)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module FastBuildController (46)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module IoStoreOnDemand (44)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module AnimationModifiers (42)
+[2024.01.27-21.45.57:290][818]LogModuleManager: Shutting down and abandoning module AudioEditor (40)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module PropertyEditor (39)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module Virtualization (36)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module MessageLog (35)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module TextureCompressor (32)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module OpenColorIOWrapper (31)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module RenderCore (28)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module Landscape (26)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module SlateRHIRenderer (24)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module AnimGraphRuntime (22)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module Renderer (20)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module Engine (18)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module CoreUObject (16)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module SandboxFile (14)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module PakFile (12)
+[2024.01.27-21.45.57:291][818]LogPakFile: Destroying PakPlatformFile
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module RSA (11)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module NetworkFile (8)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module StreamingFile (6)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module CookOnTheFly (4)
+[2024.01.27-21.45.57:291][818]LogModuleManager: Shutting down and abandoning module StorageServerClient (2)
+[2024.01.27-21.45.58:492][818]LogD3D12RHI: ~FD3D12DynamicRHI
+[2024.01.27-21.45.58:588][818]LogExit: Exiting.
+[2024.01.27-21.45.58:614][818]Log file closed, 01/27/24 16:45:58
