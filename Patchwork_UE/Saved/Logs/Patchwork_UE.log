@@ -12688,3 +12688,26 @@ Script call stack:
 [2024.08.29-03.00.54:402][436]LogUObjectHash: Compacting FUObjectHashTables data took   0.60ms
 [2024.08.29-03.00.54:428][436]LogUObjectHash: Compacting FUObjectHashTables data took   0.62ms
 [2024.08.29-03.00.54:449][436]LogFileHelpers: InternalPromptForCheckoutAndSave took 163.313 ms (total: 4.52 sec)
+[2024.08.29-03.01.51:817][469]LogRenderer: Display: Invalidated clipmap due to WPO threshold change. This can occur due to resolution or FOV changes.
+[2024.08.29-03.02.04:782][ 72]Cmd: TRANSACTION UNDO
+[2024.08.29-03.02.04:782][ 72]LogEditorTransaction: Undo Transform
+[2024.08.29-03.02.45:415][128]LogStaticMesh: Display: Building static mesh Box_8A8895BC (Required Memory Estimate: 0.66595 MB)...
+[2024.08.29-03.02.45:416][128]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/_GENERATED/mharr/Box_8A8895BC) ...
+[2024.08.29-03.02.45:422][128]LogStaticMesh: Built static mesh [0.01s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/_GENERATED/mharr/Box_8A8895BC.Box_8A8895BC
+[2024.08.29-03.03.11:230][520]Cmd: SELECT NONE
+[2024.08.29-03.03.12:640][606]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.08.29-03.03.12:732][606]LogUObjectHash: Compacting FUObjectHashTables data took   1.36ms
+[2024.08.29-03.03.12:764][606]LogUObjectHash: Compacting FUObjectHashTables data took   0.63ms
+[2024.08.29-03.03.12:789][606]LogUObjectHash: Compacting FUObjectHashTables data took   0.65ms
+[2024.08.29-03.03.12:794][606]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/D/I7/S84EDK67INP2GUWJ0PVI4B
+[2024.08.29-03.03.12:794][606]LogSavePackage: Moving 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/S84EDK67INP2GUWJ0PVI4B3CA60C0343286630959CDDBF02D75F02.tmp' to 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/D/I7/S84EDK67INP2GUWJ0PVI4B.uasset'
+[2024.08.29-03.03.12:795][606]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/D/ML/10W7TSXDJ43GHA3HBAHXO0
+[2024.08.29-03.03.12:796][606]LogSavePackage: Moving 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/10W7TSXDJ43GHA3HBAHXO01FBEC4FA4A777DE3DC42BAAE2AE154FA.tmp' to 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/D/ML/10W7TSXDJ43GHA3HBAHXO0.uasset'
+[2024.08.29-03.03.12:812][606]LogFileHelpers: InternalPromptForCheckoutAndSave took 171.620 ms (total: 4.69 sec)
+[2024.08.29-03.03.12:863][606]LogContentValidation: Display: Starting to validate 2 assets
+[2024.08.29-03.03.12:863][606]LogContentValidation: Enabled validators:
+[2024.08.29-03.03.12:863][606]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.08.29-03.03.12:863][606]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.08.29-03.03.12:863][606]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.08.29-03.03.12:863][606]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest.Mushroom_Forest
+[2024.08.29-03.03.12:864][606]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest Validating asset
