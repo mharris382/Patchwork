@@ -12599,3 +12599,92 @@ Script call stack:
 [2024.08.29-02.58.10:865][ 53]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
 [2024.08.29-02.58.10:865][ 53]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest.Mushroom_Forest
 [2024.08.29-02.58.10:866][ 53]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest Validating asset
+[2024.08.29-02.59.24:184][805]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_13]: Trivially invalid mesh path used.
+[2024.08.29-02.59.24:184][805]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.24:993][843]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.24:996][843]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_13]: Trivially invalid mesh path used.
+[2024.08.29-02.59.31:045][159]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.31:049][159]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - StaticMeshSpawner_13]: Trivially invalid mesh path used.
+[2024.08.29-02.59.31:443][179]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.31:446][179]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - StaticMeshSpawner_13]: Trivially invalid mesh path used.
+[2024.08.29-02.59.32:418][213]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.32:421][213]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - StaticMeshSpawner_13]: Trivially invalid mesh path used.
+[2024.08.29-02.59.34:358][325]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - StaticMeshSpawner_13]: Trivially invalid mesh path used.
+[2024.08.29-02.59.34:358][325]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.34:970][361]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.34:972][361]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - StaticMeshSpawner_13]: Trivially invalid mesh path used.
+[2024.08.29-02.59.35:546][395]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - StaticMeshSpawner_13]: Trivially invalid mesh path used.
+[2024.08.29-02.59.35:546][395]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.53:234][449]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.53:236][449]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC66F61602_1301828025 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-02.59.55:819][598]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-02.59.55:821][598]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.02:571][933]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.02:574][933]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.09:218][306]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.09:219][306]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.11:361][390]Cmd: SELECT NONE
+[2024.08.29-03.00.12:209][431]Cmd: TRANSACTION UNDO
+[2024.08.29-03.00.12:209][431]LogEditorTransaction: Undo Select None
+[2024.08.29-03.00.15:318][565]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.15:320][565]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.15:871][588]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.15:873][588]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.16:409][615]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.16:411][615]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.17:055][644]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.17:057][644]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.17:613][671]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.17:615][671]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.18:598][721]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.18:600][721]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.23:520][943]Cmd: DELETE
+[2024.08.29-03.00.23:520][943]Cmd: ACTOR DELETE
+[2024.08.29-03.00.23:541][943]LogEditorActor: Deleted Actor: BP_PCG_VillagePlankGrid_C
+[2024.08.29-03.00.23:580][943]LogUObjectHash: Compacting FUObjectHashTables data took   1.82ms
+[2024.08.29-03.00.23:591][943]LogEditorActor: Deleted 1 Actors (0.071 secs)
+[2024.08.29-03.00.28:116][147]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.28:119][147]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.28:814][180]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.28:817][180]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.30:029][238]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.30:032][238]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.32:638][358]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.32:640][358]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.34:342][445]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.34:345][445]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.34:741][465]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.34:744][465]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.35:992][525]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.35:995][525]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.37:766][608]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.37:768][608]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.38:622][647]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.38:625][647]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.39:281][678]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.39:284][678]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.41:064][768]LogPCG: Error: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - MakeVectorAttribute_4]: Attribute/Property 'None' from pin X is not a supported type ('Vector')
+[2024.08.29-03.00.41:066][768]LogPCG: Warning: [BP_PCG_VillagePlankGrid_C_UAID_50EBF6CFEC669A1602_1674842842 - StaticMeshSpawner_2]: Trivially invalid mesh path used.
+[2024.08.29-03.00.45:992][991]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.08.29-03.00.46:075][991]LogUObjectHash: Compacting FUObjectHashTables data took   1.32ms
+[2024.08.29-03.00.46:108][991]LogUObjectHash: Compacting FUObjectHashTables data took   0.62ms
+[2024.08.29-03.00.46:135][991]LogUObjectHash: Compacting FUObjectHashTables data took   0.69ms
+[2024.08.29-03.00.46:141][991]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/2/3Z/MDAWQSI0Y4XAVYWTSWFYYX
+[2024.08.29-03.00.46:141][991]LogSavePackage: Moving 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/MDAWQSI0Y4XAVYWTSWFYYX791DB5124AEEF4F4477F5D9304C2FCA0.tmp' to 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/2/3Z/MDAWQSI0Y4XAVYWTSWFYYX.uasset'
+[2024.08.29-03.00.46:143][991]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/6/31/G3SIT1NNA4GX1N9BKOXHKU
+[2024.08.29-03.00.46:144][991]LogSavePackage: Moving 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/G3SIT1NNA4GX1N9BKOXHKU28D70B944CBB65032F0B1CA8D8AD600C.tmp' to 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/6/31/G3SIT1NNA4GX1N9BKOXHKU.uasset'
+[2024.08.29-03.00.46:147][991]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/B/T9/5ZEYSZJYX6MMSXSFQA80I1
+[2024.08.29-03.00.46:148][991]LogSavePackage: Moving 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/5ZEYSZJYX6MMSXSFQA80I16CF96FC343F2F87435D66A83119440DE.tmp' to 'B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/B/T9/5ZEYSZJYX6MMSXSFQA80I1.uasset'
+[2024.08.29-03.00.46:160][991]LogFileHelpers: InternalPromptForCheckoutAndSave took 167.868 ms (total: 4.35 sec)
+[2024.08.29-03.00.46:215][991]LogContentValidation: Display: Starting to validate 3 assets
+[2024.08.29-03.00.46:215][991]LogContentValidation: Enabled validators:
+[2024.08.29-03.00.46:215][991]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.08.29-03.00.46:215][991]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.08.29-03.00.46:215][991]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.08.29-03.00.46:215][991]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest.Mushroom_Forest
+[2024.08.29-03.00.46:216][991]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest Validating asset
+[2024.08.29-03.00.54:285][436]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.08.29-03.00.54:374][436]LogUObjectHash: Compacting FUObjectHashTables data took   0.62ms
+[2024.08.29-03.00.54:402][436]LogUObjectHash: Compacting FUObjectHashTables data took   0.60ms
+[2024.08.29-03.00.54:428][436]LogUObjectHash: Compacting FUObjectHashTables data took   0.62ms
+[2024.08.29-03.00.54:449][436]LogFileHelpers: InternalPromptForCheckoutAndSave took 163.313 ms (total: 4.52 sec)
