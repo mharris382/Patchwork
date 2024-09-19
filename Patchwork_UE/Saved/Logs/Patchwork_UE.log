@@ -1,4 +1,4 @@
-﻿Log file open, 09/19/24 12:43:59
+Log file open, 09/19/24 12:43:59
 LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
 LogWindows: File 'aqProf.dll' does not exist
 LogProfilingDebugging: Loading WinPixEventRuntime.dll for PIX profiling (from ../../../Engine/Binaries/ThirdParty/Windows/WinPixEventRuntime/x64).
@@ -16,16 +16,16 @@ LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,reg
 LogTrace: Finished trace initialization.
 LogCsvProfiler: Display: Metadata set : platform="Windows"
 LogCsvProfiler: Display: Metadata set : config="Development"
-LogCsvProfiler: Display: Metadata set : buildversion="++UE5+Release-5.4-CL-35576357"
-LogCsvProfiler: Display: Metadata set : engineversion="5.4.4-35576357+++UE5+Release-5.4"
-LogCsvProfiler: Display: Metadata set : os="Windows 11 (23H2) [10.0.22631.4169] "
-LogCsvProfiler: Display: Metadata set : cpu="GenuineIntel|12th Gen Intel(R) Core(TM) i7-12700K"
+LogCsvProfiler: Display: Metadata set : buildversion="++UE5+Release-5.4-CL-33871570"
+LogCsvProfiler: Display: Metadata set : engineversion="5.4.2-33871570+++UE5+Release-5.4"
+LogCsvProfiler: Display: Metadata set : os="Windows 10 (22H2) [10.0.19045.4894] "
+LogCsvProfiler: Display: Metadata set : cpu="AuthenticAMD|AMD Ryzen 7 2700X Eight-Core Processor"
 LogCsvProfiler: Display: Metadata set : pgoenabled="0"
 LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
 LogCsvProfiler: Display: Metadata set : ltoenabled="0"
 LogCsvProfiler: Display: Metadata set : asan="0"
-LogCsvProfiler: Display: Metadata set : commandline="" B:\UnrealEngine5_Projects\_repos2\Patchwork\Patchwork_UE\Patchwork_UE.uproject""
-LogCsvProfiler: Display: Metadata set : loginid="d8f0dcb0452256c84552d083468ae762"
+LogCsvProfiler: Display: Metadata set : commandline="" "Z:\Documents- Data Drive\Patchwork\Patchwork\Patchwork_UE\Patchwork_UE.uproject"""
+LogCsvProfiler: Display: Metadata set : loginid="0ec5782c4bd8be2430fd3786dffa0a08"
 LogCsvProfiler: Display: Metadata set : llm="0"
 LogStats: Stats thread started at 0.497258
 LogICUInternationalization: ICU TimeZone Detection - Raw Offset: -5:00, Platform Override: ''
@@ -81,11 +81,12 @@ LogPluginManager: Mounting Engine plugin BackChannel
 LogPluginManager: Mounting Engine plugin ChaosCaching
 LogPluginManager: Mounting Engine plugin ChaosEditor
 LogPluginManager: Mounting Engine plugin ChaosNiagara
-LogPluginManager: Mounting Engine plugin ChaosSolverPlugin
 LogPluginManager: Mounting Engine plugin ChaosUserDataPT
+LogPluginManager: Mounting Engine plugin ChaosSolverPlugin
 LogPluginManager: Mounting Engine plugin CharacterAI
 LogPluginManager: Mounting Engine plugin Dataflow
 LogPluginManager: Mounting Engine plugin Fracture
+LogPluginManager: Mounting Engine plugin GeometryCollectionPlugin
 LogPluginManager: Mounting Engine plugin FullBodyIK
 LogPluginManager: Mounting Engine plugin GeometryCollectionPlugin
 LogPluginManager: Mounting Engine plugin GeometryFlow
@@ -101,10 +102,7 @@ LogPluginManager: Mounting Engine plugin SkeletalReduction
 LogPluginManager: Mounting Engine plugin StructUtils
 LogPluginManager: Mounting Engine plugin StudioTelemetry
 LogPluginManager: Mounting Engine plugin ToolPresets
-LogPluginManager: Mounting Engine plugin Niagara
-LogPluginManager: Mounting Engine plugin NiagaraFluids
-LogPluginManager: Mounting Engine plugin NiagaraSimCaching
-LogPluginManager: Mounting Engine plugin LauncherChunkInstaller
+LogPluginManager: Mounting Engine plugin Water
 LogPluginManager: Mounting Engine plugin InterchangeEditor
 LogPluginManager: Mounting Engine plugin CameraShakePreviewer
 LogPluginManager: Mounting Engine plugin Water
@@ -115,6 +113,7 @@ LogPluginManager: Mounting Engine plugin GameplayCameras
 LogPluginManager: Mounting Engine plugin AndroidDeviceProfileSelector
 LogPluginManager: Mounting Engine plugin AndroidFileServer
 LogPluginManager: Mounting Engine plugin AndroidMoviePlayer
+LogPluginManager: Mounting Engine plugin AndroidPermission
 LogPluginManager: Mounting Engine plugin AppleImageUtils
 LogPluginManager: Mounting Engine plugin AppleMoviePlayer
 LogPluginManager: Mounting Engine plugin ArchVisCharacter
@@ -123,30 +122,29 @@ LogPluginManager: Mounting Engine plugin AudioCapture
 LogPluginManager: Mounting Engine plugin AssetTags
 LogPluginManager: Mounting Engine plugin AudioSynesthesia
 LogPluginManager: Mounting Engine plugin AudioWidgets
+LogPluginManager: Mounting Engine plugin AudioSynesthesia
 LogPluginManager: Mounting Engine plugin CableComponent
-LogPluginManager: Mounting Engine plugin ChunkDownloader
-LogPluginManager: Mounting Engine plugin CommonUI
 LogPluginManager: Mounting Engine plugin CustomMeshComponent
 LogPluginManager: Mounting Engine plugin ExampleDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin GeometryCache
+LogPluginManager: Mounting Engine plugin CommonUI
+LogPluginManager: Mounting Engine plugin ChunkDownloader
+LogPluginManager: Mounting Engine plugin GoogleCloudMessaging
 LogPluginManager: Mounting Engine plugin GeometryProcessing
 LogPluginManager: Mounting Engine plugin GoogleCloudMessaging
 LogPluginManager: Mounting Engine plugin GooglePAD
 LogPluginManager: Mounting Engine plugin InputDebugging
 LogPluginManager: Found config from plugin[InputDebugging] Input
 LogPluginManager: Mounting Engine plugin IOSDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin LinuxDeviceProfileSelector
 LogPluginManager: Mounting Engine plugin LocationServicesBPLibrary
-LogPluginManager: Mounting Engine plugin MeshModelingToolset
+LogPluginManager: Mounting Engine plugin LinuxDeviceProfileSelector
 LogPluginManager: Mounting Engine plugin Metasound
+LogPluginManager: Mounting Engine plugin MeshModelingToolset
 LogPluginManager: Mounting Engine plugin MobilePatchingUtils
 LogPluginManager: Mounting Engine plugin MsQuic
 LogPluginManager: Mounting Engine plugin ProceduralMeshComponent
 LogPluginManager: Mounting Engine plugin PropertyAccessEditor
 LogPluginManager: Mounting Engine plugin ResonanceAudio
 LogPluginManager: Mounting Engine plugin RigVM
-LogPluginManager: Mounting Engine plugin SignificanceManager
-LogPluginManager: Mounting Engine plugin SoundFields
 LogPluginManager: Mounting Engine plugin Soundscape
 LogPluginManager: Mounting Engine plugin WaveTable
 LogPluginManager: Mounting Engine plugin Synthesis
@@ -163,8 +161,8 @@ LogPluginManager: Mounting Engine plugin WebMMedia
 LogPluginManager: Mounting Engine plugin WmfMedia
 LogPluginManager: Mounting Engine plugin InterchangeTests
 LogPluginManager: Mounting Engine plugin OodleNetwork
-LogPluginManager: Mounting Engine plugin AnimationSharing
 LogPluginManager: Mounting Engine plugin CLionSourceCodeAccess
+LogPluginManager: Mounting Engine plugin AnimationSharing
 LogPluginManager: Mounting Engine plugin CodeLiteSourceCodeAccess
 LogPluginManager: Mounting Engine plugin DumpGPUServices
 LogPluginManager: Mounting Engine plugin GitSourceControl
@@ -180,6 +178,7 @@ LogPluginManager: Mounting Engine plugin PropertyAccessNode
 LogPluginManager: Mounting Engine plugin RiderSourceCodeAccess
 LogPluginManager: Mounting Engine plugin PluginUtils
 LogPluginManager: Mounting Engine plugin TextureFormatOodle
+LogPluginManager: Mounting Engine plugin SubversionSourceControl
 LogPluginManager: Mounting Engine plugin TraceDataFilters
 LogPluginManager: Mounting Engine plugin AssetManagerEditor
 LogPluginManager: Mounting Engine plugin SubversionSourceControl
@@ -196,10 +195,10 @@ LogPluginManager: Mounting Engine plugin ChangelistReview
 LogPluginManager: Mounting Engine plugin CryptoKeys
 LogPluginManager: Mounting Engine plugin CurveEditorTools
 LogPluginManager: Mounting Engine plugin DataValidation
-LogPluginManager: Mounting Engine plugin EditorDebugTools
 LogPluginManager: Mounting Engine plugin EditorScriptingUtilities
 LogPluginManager: Mounting Engine plugin FacialAnimation
 LogPluginManager: Mounting Engine plugin GameplayTagsEditor
+LogPluginManager: Mounting Engine plugin EngineAssetDefinitions
 LogPluginManager: Mounting Engine plugin GeometryMode
 LogPluginManager: Mounting Engine plugin EngineAssetDefinitions
 LogPluginManager: Mounting Engine plugin MacGraphicsSwitching
@@ -242,14 +241,6 @@ LogPluginManager: Mounting Project plugin PCGExtendedToolkit
 SourceControl: Revision control is disabled
 SourceControl: Revision control is disabled
 SourceControl: Revision control is disabled
-LogStudioTelemetry: Display: Starting StudioTelemetry Module
-LogStudioTelemetry: Display: Created an analytics provider LogAnalytics from module AnalyticsLog configuration Engine [StudioTelemetry.Log]
-LogStudioTelemetry: Started StudioTelemetry Session
-LogWindows: Failed to load 'WinPixGpuCapturer.dll' (GetLastError=126)
-LogWindows: File 'WinPixGpuCapturer.dll' does not exist
-PixWinPlugin: PIX capture plugin failed to initialize! Check that the process is launched from PIX.
-LogConfig: Applying CVar settings from Section [/Script/RenderDocPlugin.RenderDocPluginSettings] File [Engine]
-RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
 LogInit: Using libcurl 8.4.0
 LogInit:  - built for Windows
 LogInit:  - supports SSL with OpenSSL/1.1.1t
@@ -271,22 +262,30 @@ LogInit: CreateHttpThread using FCurlHttpThread
 LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
 LogOnline: OSS: Created online subsystem instance for: NULL
 LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for type [NULL]
+LogStudioTelemetry: Display: Starting StudioTelemetry Module
+LogStudioTelemetry: Display: Created an analytics provider LogAnalytics from module AnalyticsLog configuration Engine [StudioTelemetry.Log]
+LogStudioTelemetry: Started StudioTelemetry Session
+LogWindows: Failed to load 'WinPixGpuCapturer.dll' (GetLastError=126)
+LogWindows: File 'WinPixGpuCapturer.dll' does not exist
+PixWinPlugin: PIX capture plugin failed to initialize! Check that the process is launched from PIX.
+LogConfig: Applying CVar settings from Section [/Script/RenderDocPlugin.RenderDocPluginSettings] File [Engine]
+RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
 LogInit: ExecutableName: UnrealEditor.exe
-LogInit: Build: ++UE5+Release-5.4-CL-35576357
+LogInit: Build: ++UE5+Release-5.4-CL-33871570
 LogInit: Platform=WindowsEditor
-LogInit: MachineId=d8f0dcb0452256c84552d083468ae762
+LogInit: MachineId=0ec5782c4bd8be2430fd3786dffa0a08
 LogInit: DeviceId=
-LogInit: Engine Version: 5.4.4-35576357+++UE5+Release-5.4
+LogInit: Engine Version: 5.4.2-33871570+++UE5+Release-5.4
 LogInit: Compatible Engine Version: 5.4.0-33043543+++UE5+Release-5.4
 LogInit: Net CL: 33043543
-LogInit: OS: Windows 11 (23H2) [10.0.22631.4169] (), CPU: 12th Gen Intel(R) Core(TM) i7-12700K, GPU: NVIDIA GeForce RTX 3080
-LogInit: Compiled (64-bit): Aug 16 2024 04:10:34
+LogInit: OS: Windows 10 (22H2) [10.0.19045.4894] (), CPU: AMD Ryzen 7 2700X Eight-Core Processor         , GPU: NVIDIA GeForce GTX 1660 Ti
+LogInit: Compiled (64-bit): May 24 2024 01:30:00
 LogInit: Architecture: x64
 LogInit: Compiled with Visual C++: 19.38.33130.00
 LogInit: Build Configuration: Development
 LogInit: Branch Name: ++UE5+Release-5.4
 LogInit: Command Line: 
-LogInit: Base Directory: A:/Epic/UE/UE_5.4/Engine/Binaries/Win64/
+LogInit: Base Directory: C:/Program Files/Epic Games/UE_5.4/Engine/Binaries/Win64/
 LogInit: Allocator: Mimalloc
 LogInit: Installed Engine Build: 1
 LogInit: This binary is optimized with LTO: no, PGO: no, instrumented for PGO data collection: no
@@ -327,7 +326,7 @@ LogDevObjectVersion:   UE5-PrivateFrosty (59DA5D52-1232-4948-B878-597870B8E98B):
 LogDevObjectVersion:   UE5-Dev-Cooker (26075A32-730F-4708-88E9-8C32F1599D05): 0
 LogDevObjectVersion:   Dev-MediaFramework (6F0ED827-A609-4895-9C91-998D90180EA4): 2
 LogDevObjectVersion:   UE5-Dev-LWCRendering (30D58BE3-95EA-4282-A6E3-B159D8EBB06A): 1
-LogCoreRedirects: AddRedirect(B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Saved/Config/WindowsEditor/NiagaraFluids.ini) has substring redirect /NiagaraSimulationStages/, these are very slow and should be resolved as soon as possible!
+LogCoreRedirects: AddRedirect(Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Config/WindowsEditor/NiagaraFluids.ini) has substring redirect /NiagaraSimulationStages/, these are very slow and should be resolved as soon as possible!
 LogInit: Presizing for max 25165824 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
 LogInit: Object subsystem initialized
 LogConfig: Set CVar [[con.DebugEarlyDefault:1]]
@@ -11978,3 +11977,427 @@ _MatTransl_3B7A55D3409170328211A060FC2E3BB1E263C720_BBD650804D314CE7A44ADF9BB4F3
 [2024.09.19-20.44.09:152][496]Cmd: CAMERA ALIGN ACTIVEVIEWPORTONLY
 [2024.09.19-20.46.16:250][947]LogDerivedDataCache: C:/Users/mharr/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:09.072 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 5009 files in 6363 folders with total size 283 MiB.
 [2024.09.19-21.07.34:546][ 64]LogD3D12RHI: Creating RTPSO with 70 shaders (0 cached, 1 new) took 71.87 ms. Compile time 66.45 ms, link time 5.37 ms.
+
+[2024.09.19-02.22.02:980][  0]Running Python start-up script 'C:/Program Files/Epic Games/UE_5.4/Engine/Plugins/Animation/ControlRig/Content/Python/init_unreal.py': 0.070254 secs
+[2024.09.19-02.22.03:000][  1]LogFileCache: Retrieving MD5 hashes for directory 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/' took 1.63s
+[2024.09.19-02.22.03:318][  1]LogConsoleManager: Warning: Console variable 'r.ShaderCompiler.JobCache' used in the render thread. Rendering artifacts could happen. Use ECVF_RenderThreadSafe or don't use in render thread.
+[2024.09.19-02.22.03:348][  1]LogD3D12RHI: Cannot end block when stack is empty
+[2024.09.19-02.22.03:600][  2]LogAssetRegistry: AssetRegistryGather time 0.5648s: AssetDataDiscovery 0.2504s, AssetDataGather 0.0892s, StoreResults 0.2251s.
+	NumCachedDirectories 0. NumUncachedDirectories 14535. NumCachedFiles 24862. NumUncachedFiles 0.
+[2024.09.19-02.22.03:789][  2]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000013 seconds (updated 0 objects)
+[2024.09.19-02.22.03:824][  2]LogSourceControl: Uncontrolled asset enumeration started...
+[2024.09.19-02.22.04:092][  3]LogSlate: Took 0.000276 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2024.09.19-02.22.05:724][ 71]LogSourceControl: Uncontrolled asset enumeration finished in 1.900668 seconds (Found 24791 uncontrolled assets)
+[2024.09.19-02.22.10:508][270]LogSlate: Window 'Message Log' being destroyed
+[2024.09.19-02.22.10:516][270]LogSlate: Window 'Message Log' being destroyed
+[2024.09.19-02.22.13:561][549]Cmd: MAP LOAD FILE="Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=4
+[2024.09.19-02.22.13:751][549]LogWorld: UWorld::CleanupWorld for FeatureTestingRoom, bSessionEnded=true, bCleanupResources=true
+[2024.09.19-02.22.13:752][549]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.19-02.22.13:754][549]LogWorld: UWorld::CleanupWorld for Outskirts_Bathhouse, bSessionEnded=true, bCleanupResources=true
+[2024.09.19-02.22.13:754][549]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.19-02.22.13:754][549]LogWorldMetrics: [UWorldMetricsSubsystem::Deinitialize]
+[2024.09.19-02.22.13:754][549]LogWorldMetrics: [UWorldMetricsSubsystem::Clear]
+[2024.09.19-02.22.13:765][549]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2024.09.19-02.22.13:880][549]LogUObjectHash: Compacting FUObjectHashTables data took   2.75ms
+[2024.09.19-02.22.13:900][549]LogAudio: Display: Audio Device (ID: 1) registered with world 'Village_Main_Square'.
+[2024.09.19-02.22.13:901][549]LogWorldMetrics: [UWorldMetricsSubsystem::Initialize]
+[2024.09.19-02.22.13:902][549]LogWorldPartition: ULevel::OnLevelLoaded(Village_Main_Square)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=1, InitializeForMainWorld=1, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.19-02.22.13:902][549]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.19-02.22.13:902][549]LogWorldPartition: UWorldPartition::Initialize : World = /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square.Village_Main_Square, World Type = Editor, IsMainWorldPartition = 1, Location = V(0), Rotation = R(0), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.19-02.22.13:913][549]LogStreaming: Display: FlushAsyncLoading(7): 144 QueuedPackages, 0 AsyncPackages
+[2024.09.19-02.22.14:136][549]LogStreaming: Error: Couldn't find file for package /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Cylinder_568A3EFD requested by async loading code. NameToLoad: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Cylinder_568A3EFD
+[2024.09.19-02.22.14:254][549]LogContentBundle: [Village_Main_Square(Standalone)] Creating new container.
+[2024.09.19-02.22.14:254][549]LogWorldPartition: Display: WorldPartition initialize took 351.966 ms
+[2024.09.19-02.22.14:920][549]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2024.09.19-02.22.14:947][549]LogUObjectHash: Compacting FUObjectHashTables data took   1.26ms
+[2024.09.19-02.22.14:980][549]Cmd: MAP CHECKDEP NOCLEARLOG
+[2024.09.19-02.22.14:980][549]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.832ms to complete.
+[2024.09.19-02.22.16:050][549]LogUObjectHash: Compacting FUObjectHashTables data took   1.15ms
+[2024.09.19-02.23.32:342][598]LogDerivedDataCache: C:/Users/Patrick/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:00.000 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 0 files in 1 folders with total size 0 MiB.
+[2024.09.19-02.23.53:991][334]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7) ...
+[2024.09.19-02.23.53:991][334]LogStaticMesh: Display: Building static mesh Box_0F272FC7 (Required Memory Estimate: 0.466726 MB)...
+[2024.09.19-02.23.53:995][334]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7.Box_0F272FC7
+[2024.09.19-02.23.56:158][516]LogMeshUtilities: Finished distance field build in 2.1s - 126x126x126 sparse distance field, 2.3Mb total, 0.1Mb always loaded, 65% occupied, 96 triangles, Box_0F272FC7
+[2024.09.19-02.24.40:164][431]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7) ...
+[2024.09.19-02.24.40:165][431]LogStaticMesh: Display: Building static mesh Box_0F272FC7 (Required Memory Estimate: 0.466726 MB)...
+[2024.09.19-02.24.40:167][431]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7.Box_0F272FC7
+[2024.09.19-02.24.42:288][614]LogMeshUtilities: Finished distance field build in 2.1s - 126x126x126 sparse distance field, 2.3Mb total, 0.1Mb always loaded, 65% occupied, 96 triangles, Box_0F272FC7
+[2024.09.19-02.25.14:297][836]LogSlate: Took 0.000307 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2024.09.19-02.25.20:265][358]LogEditorViewport: Clicking Background
+[2024.09.19-02.25.43:531][489]LogSlate: Took 0.000254 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2024.09.19-02.26.00:015][730]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C) ...
+[2024.09.19-02.26.00:034][730]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C) ...
+[2024.09.19-02.26.00:034][730]LogStaticMesh: Display: Building static mesh Box_DCA5942C (Required Memory Estimate: 0.040956 MB)...
+[2024.09.19-02.26.00:035][730]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C.Box_DCA5942C
+[2024.09.19-02.26.47:993][132]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7) ...
+[2024.09.19-02.26.47:994][132]LogStaticMesh: Display: Building static mesh Box_0F272FC7 (Required Memory Estimate: 0.541681 MB)...
+[2024.09.19-02.26.47:997][132]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7.Box_0F272FC7
+[2024.09.19-02.26.50:135][295]LogMeshUtilities: Finished distance field build in 2.1s - 126x126x126 sparse distance field, 2.3Mb total, 0.1Mb always loaded, 65% occupied, 112 triangles, Box_0F272FC7
+[2024.09.19-02.27.04:730][443]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7) ...
+[2024.09.19-02.27.04:730][443]LogStaticMesh: Display: Building static mesh Box_0F272FC7 (Required Memory Estimate: 0.541681 MB)...
+[2024.09.19-02.27.04:733][443]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7.Box_0F272FC7
+[2024.09.19-02.27.06:887][617]LogMeshUtilities: Finished distance field build in 2.1s - 126x126x126 sparse distance field, 2.3Mb total, 0.1Mb always loaded, 65% occupied, 112 triangles, Box_0F272FC7
+[2024.09.19-02.27.23:888][985]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7) ...
+[2024.09.19-02.27.23:888][985]LogStaticMesh: Display: Building static mesh Box_0F272FC7 (Required Memory Estimate: 0.541681 MB)...
+[2024.09.19-02.27.23:891][985]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7.Box_0F272FC7
+[2024.09.19-02.27.26:060][171]LogMeshUtilities: Finished distance field build in 2.2s - 126x126x126 sparse distance field, 2.3Mb total, 0.1Mb always loaded, 65% occupied, 112 triangles, Box_0F272FC7
+[2024.09.19-02.28.01:367][183]LogShaderCompilers: Display: ================================================
+[2024.09.19-02.28.01:367][183]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.09.19-02.28.01:367][183]LogShaderCompilers: Display: Total job queries 426, among them cache hits 43 (10.09%), DDC hits 374 (87.79%), Duplicates 7 (1.64%)
+[2024.09.19-02.28.01:367][183]LogShaderCompilers: Display: Tracking 376 distinct input hashes that result in 336 distinct outputs (89.36%)
+[2024.09.19-02.28.01:367][183]LogShaderCompilers: Display: RAM used: 11.17 MiB of 1.60 GiB budget. Usage: 0.68%
+[2024.09.19-02.28.01:367][183]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.09.19-02.28.01:367][183]LogShaderCompilers: Display: Shaders Compiled: 2
+[2024.09.19-02.28.01:367][183]LogShaderCompilers: Display: Jobs assigned 2, completed 2 (100%)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Time job spent in pending queue: average 0.01 s, longest 0.01 s
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Job execution time: average 4.16 s, max 4.26 s
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Job life time (pending + execution): average 4.17 s, max 4.27
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Shader code size: average 31.896 KiB, min 27.684 KiB, max 37.453 KiB
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 4.28 s
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Mutex wait stall in FShaderJobCache::SubmitJobs:  0.01%
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Jobs were issued in 2 batches (only local compilation was used), average 1.00 jobs/batch
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Average processing rate: 0.47 jobs/sec
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Total thread time: 1.447 s
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Total thread preprocess time: 8.927 s
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Percentage time preprocessing: 616.79%
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Effective parallelization: 0.34 (times faster than compiling all shaders on one thread). Compare with number of workers: 8
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy (compiled    1 times, average 0.66 sec, max 0.66 sec, min 0.66 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                                  FVelocityPS (compiled    1 times, average 0.46 sec, max 0.46 sec, min 0.46 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                                  FVelocityVS (compiled    1 times, average 0.33 sec, max 0.33 sec, min 0.33 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                                 FDepthOnlyPS (compiled    0 times, average 0.00 sec, max 0.00 sec, min 0.00 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                 TBasePassCSFNoLightMapPolicy (compiled    0 times, average 0.00 sec, max 0.00 sec, min 0.00 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 45.29% of total time (compiled    1 times, average 0.66 sec, max 0.66 sec, min 0.66 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                                  FVelocityPS - 31.86% of total time (compiled    1 times, average 0.46 sec, max 0.46 sec, min 0.46 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                                  FVelocityVS - 22.85% of total time (compiled    1 times, average 0.33 sec, max 0.33 sec, min 0.33 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:                                 TBasePassCSFNoLightMapPolicy - 0.00% of total time (compiled    0 times, average 0.00 sec, max 0.00 sec, min 0.00 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display:              TShadowDepthPSPixelShadowDepth_VirtualShadowMap - 0.00% of total time (compiled    0 times, average 0.00 sec, max 0.00 sec, min 0.00 sec)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: === Material stats ===
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Materials Cooked:        0
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Materials Translated:    233
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Material Total Translate Time: 0.25 s
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Material Translation Only: 0.12 s (46%)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Material DDC Serialization Only: 0.00 s (2%)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: Material Cache Hits: 75 (32%)
+[2024.09.19-02.28.01:368][183]LogShaderCompilers: Display: ================================================
+[2024.09.19-02.28.08:335][758]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63) ...
+[2024.09.19-02.28.08:353][758]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63) ...
+[2024.09.19-02.28.08:354][758]LogStaticMesh: Display: Building static mesh Box_9103AA63 (Required Memory Estimate: 0.073787 MB)...
+[2024.09.19-02.28.08:355][758]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63.Box_9103AA63
+[2024.09.19-02.29.15:459][781]LogTemp: Warning: CANNOT MODIFY BUILT-IN ENGINE ASSET /Engine/BasicShapes/Cube.Cube
+[2024.09.19-02.29.15:486][781]LogTemp: Warning: CANNOT MODIFY BUILT-IN ENGINE ASSET /Engine/BasicShapes/Cube.Cube
+[2024.09.19-02.29.29:326][935]LogTemp: Warning: CANNOT MODIFY BUILT-IN ENGINE ASSET /Engine/BasicShapes/Cube.Cube
+[2024.09.19-02.29.29:342][935]LogTemp: Warning: CANNOT MODIFY BUILT-IN ENGINE ASSET /Engine/BasicShapes/Cube.Cube
+[2024.09.19-02.29.44:059][136]LogTemp: Warning: CANNOT MODIFY BUILT-IN ENGINE ASSET /Engine/BasicShapes/Cube.Cube
+[2024.09.19-02.29.44:081][136]LogTemp: Warning: CANNOT MODIFY BUILT-IN ENGINE ASSET /Engine/BasicShapes/Cube.Cube
+[2024.09.19-02.29.49:137][586]Cmd: TRANSACTION UNDO
+[2024.09.19-02.29.49:137][586]LogEditorTransaction: Undo Move Elements
+[2024.09.19-02.29.56:551][221]LogTemp: Warning: CANNOT MODIFY BUILT-IN ENGINE ASSET /Engine/BasicShapes/Cube.Cube
+[2024.09.19-02.31.15:709][812]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.09.19-02.31.15:791][812]LogPackageLocalizationCache: Processed 62 localized package path(s) for 1 prioritized culture(s) in 0.020327 seconds
+[2024.09.19-02.31.15:793][812]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/2/LR/4BRBJYSV37554N9RQOHKG2
+[2024.09.19-02.31.15:793][812]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/4BRBJYSV37554N9RQOHKG20FC1533544C7F77F30FE71B6FFE11ED9.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/2/LR/4BRBJYSV37554N9RQOHKG2.uasset'
+[2024.09.19-02.31.15:796][812]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/4/46/46FTCF72XJE4HSDCP366UV
+[2024.09.19-02.31.15:797][812]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/46FTCF72XJE4HSDCP366UVDFC163694E8E3EEB7DF62987FBEFE713.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/4/46/46FTCF72XJE4HSDCP366UV.uasset'
+[2024.09.19-02.31.15:799][812]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/5/03/I9GZMQCO9LIHP9UPB0JMOJ
+[2024.09.19-02.31.15:800][812]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/I9GZMQCO9LIHP9UPB0JMOJC986865D44367B9CCF66028548E99E24.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/5/03/I9GZMQCO9LIHP9UPB0JMOJ.uasset'
+[2024.09.19-02.31.15:802][812]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/5/SC/56BKT510RE06DQXUEUGBDU
+[2024.09.19-02.31.15:803][812]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/56BKT510RE06DQXUEUGBDU60BDE35C4ACA1DF83F3C87BE1EA6680E.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/5/SC/56BKT510RE06DQXUEUGBDU.uasset'
+[2024.09.19-02.31.15:805][812]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/6/DF/4O9H7H58M96X837X6LRQHN
+[2024.09.19-02.31.15:806][812]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/4O9H7H58M96X837X6LRQHNBED2F3A94A488A2E45051AA80F84BCE2.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/6/DF/4O9H7H58M96X837X6LRQHN.uasset'
+[2024.09.19-02.31.15:808][812]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/2U/EE1OP8ITXODBF2KXR9FRF1
+[2024.09.19-02.31.15:809][812]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/EE1OP8ITXODBF2KXR9FRF15C04C1F74FE8D842CD7DD091FB1E9553.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/2U/EE1OP8ITXODBF2KXR9FRF1.uasset'
+[2024.09.19-02.31.15:910][812]LogFileHelpers: InternalPromptForCheckoutAndSave took 201.232 ms
+[2024.09.19-02.31.15:968][812]LogContentValidation: Display: Starting to validate 6 assets
+[2024.09.19-02.31.15:968][812]LogContentValidation: Enabled validators:
+[2024.09.19-02.31.15:968][812]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.09.19-02.31.15:968][812]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.09.19-02.31.15:968][812]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.09.19-02.31.15:968][812]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square.Village_Main_Square
+[2024.09.19-02.31.15:969][812]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square Validating asset
+[2024.09.19-02.31.21:065][364]LogEditorViewport: Clicking Background
+[2024.09.19-02.31.55:150][532]LogEditorViewport: Clicking Background
+[2024.09.19-02.32.15:640][466]LogEditorViewport: Clicking Background
+[2024.09.19-02.32.24:906][409]LogEditorViewport: Clicking Background
+[2024.09.19-02.36.29:950][914]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604) ...
+[2024.09.19-02.36.29:967][914]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604) ...
+[2024.09.19-02.36.29:989][914]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604) ...
+[2024.09.19-02.36.29:990][914]LogStaticMesh: Display: Building static mesh Boolean_BC22E604 (Required Memory Estimate: 1.135961 MB)...
+[2024.09.19-02.36.29:995][914]LogStaticMesh: Built static mesh [0.01s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604.Boolean_BC22E604
+[2024.09.19-02.36.31:854][ 75]LogMeshUtilities: Finished distance field build in 1.8s - 126x126x126 sparse distance field, 2.2Mb total, 0.1Mb always loaded, 61% occupied, 234 triangles, Boolean_BC22E604
+[2024.09.19-02.39.29:447][935]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604) ...
+[2024.09.19-02.39.29:448][935]LogStaticMesh: Display: Building static mesh Boolean_BC22E604 (Required Memory Estimate: 1.135961 MB)...
+[2024.09.19-02.39.29:453][935]LogStaticMesh: Built static mesh [0.01s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604.Boolean_BC22E604
+[2024.09.19-02.39.31:390][ 85]LogMeshUtilities: Finished distance field build in 1.9s - 126x126x126 sparse distance field, 2.2Mb total, 0.1Mb always loaded, 61% occupied, 234 triangles, Boolean_BC22E604
+[2024.09.19-02.42.07:133][431]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86) ...
+[2024.09.19-02.42.07:152][431]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86) ...
+[2024.09.19-02.42.07:153][431]LogStaticMesh: Display: Building static mesh Box_C5204E86 (Required Memory Estimate: 0.251241 MB)...
+[2024.09.19-02.42.07:154][431]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86.Box_C5204E86
+[2024.09.19-02.43.39:090][577]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5) ...
+[2024.09.19-02.43.39:109][577]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5) ...
+[2024.09.19-02.43.39:109][577]LogStaticMesh: Display: Building static mesh Box_0D97FAE5 (Required Memory Estimate: 0.11328 MB)...
+[2024.09.19-02.43.39:110][577]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5.Box_0D97FAE5
+[2024.09.19-02.43.40:206][666]LogMeshUtilities: Finished distance field build in 1.1s - 126x126x105 sparse distance field, 1.4Mb total, 0.0Mb always loaded, 47% occupied, 21 triangles, Box_0D97FAE5
+[2024.09.19-02.44.43:716][359]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E) ...
+[2024.09.19-02.44.43:735][359]LogStaticMesh: Display: Waiting for static meshes to be ready 0/1 (/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E) ...
+[2024.09.19-02.44.43:736][359]LogStaticMesh: Display: Building static mesh Box_4A51915E (Required Memory Estimate: 0.040956 MB)...
+[2024.09.19-02.44.43:737][359]LogStaticMesh: Built static mesh [0.00s] /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E.Box_4A51915E
+[2024.09.19-02.45.11:939][937]Cmd: TRANSACTION UNDO
+[2024.09.19-02.45.11:939][937]LogEditorTransaction: Undo Clicking on Elements
+[2024.09.19-02.45.43:480][943]LogEditorViewport: Clicking Background
+[2024.09.19-02.45.48:228][423]LogEditorViewport: Clicking Background
+[2024.09.19-02.46.38:347][485]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.09.19-02.46.38:410][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/0/OL/G3FEXZ9SZJXR5O4BVXJ44N
+[2024.09.19-02.46.38:411][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/G3FEXZ9SZJXR5O4BVXJ44NC587F20A45B5F5F953FB46AE398CF51B.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/0/OL/G3FEXZ9SZJXR5O4BVXJ44N.uasset'
+[2024.09.19-02.46.38:414][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/0/Q2/57I46YL29MZIB5QAZA2QXF
+[2024.09.19-02.46.38:414][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/57I46YL29MZIB5QAZA2QXFA284A7FF456C2C637CB4A8A9EE8148F0.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/0/Q2/57I46YL29MZIB5QAZA2QXF.uasset'
+[2024.09.19-02.46.38:417][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/0/QH/XKDVYSQDM9X3JVQQHZAE67
+[2024.09.19-02.46.38:417][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/XKDVYSQDM9X3JVQQHZAE67A5E41457419CD048FF48E8B72FD80774.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/0/QH/XKDVYSQDM9X3JVQQHZAE67.uasset'
+[2024.09.19-02.46.38:420][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/1/CX/EX0OATL25MB5WCBM5Y6BX4
+[2024.09.19-02.46.38:420][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/EX0OATL25MB5WCBM5Y6BX4672D5E394CB4C50951D27CA2E6461FE3.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/1/CX/EX0OATL25MB5WCBM5Y6BX4.uasset'
+[2024.09.19-02.46.38:423][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/1/I8/T6VLBXDP0ZIA75DGYO6P0G
+[2024.09.19-02.46.38:423][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/T6VLBXDP0ZIA75DGYO6P0G8D5245964B307B41453D11ADAE2BE396.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/1/I8/T6VLBXDP0ZIA75DGYO6P0G.uasset'
+[2024.09.19-02.46.38:427][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/1/KE/FHA7483KTF2TXTDSAU8VSB
+[2024.09.19-02.46.38:427][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/FHA7483KTF2TXTDSAU8VSB8546737046C64DD1C2DE91A504D7973F.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/1/KE/FHA7483KTF2TXTDSAU8VSB.uasset'
+[2024.09.19-02.46.38:430][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/2/4K/ZMPGRERHG3BSPA2NBIAH65
+[2024.09.19-02.46.38:430][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/ZMPGRERHG3BSPA2NBIAH65E11DC6A14769EF2157FEB691DD6FD661.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/2/4K/ZMPGRERHG3BSPA2NBIAH65.uasset'
+[2024.09.19-02.46.38:433][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/2/TQ/FNBSF4ZAC2U1VBTS8GS34P
+[2024.09.19-02.46.38:433][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/FNBSF4ZAC2U1VBTS8GS34P04A102C644516A94A8D2C491CF6821F2.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/2/TQ/FNBSF4ZAC2U1VBTS8GS34P.uasset'
+[2024.09.19-02.46.38:436][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/2/ZA/6W051L10DV2701X771P444
+[2024.09.19-02.46.38:437][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/6W051L10DV2701X771P444EE816D174C9E883A5E652EA655EE605C.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/2/ZA/6W051L10DV2701X771P444.uasset'
+[2024.09.19-02.46.38:439][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/3/11/QLLQOQQS34PX6FZ92169FD
+[2024.09.19-02.46.38:440][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/QLLQOQQS34PX6FZ92169FD651C66CA4584B3A2E063758396A1D6F0.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/3/11/QLLQOQQS34PX6FZ92169FD.uasset'
+[2024.09.19-02.46.38:443][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/3/2I/AJECXACUUPASVTPQ6H688U
+[2024.09.19-02.46.38:443][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/AJECXACUUPASVTPQ6H688U1FF6C7704A8DDAF829244583BAD8F8D0.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/3/2I/AJECXACUUPASVTPQ6H688U.uasset'
+[2024.09.19-02.46.38:446][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/3/Q7/7QI50Y9XUF4TEXZVSN29G1
+[2024.09.19-02.46.38:446][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/7QI50Y9XUF4TEXZVSN29G16F2629D447C36D34DB96A485CF8F96A2.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/3/Q7/7QI50Y9XUF4TEXZVSN29G1.uasset'
+[2024.09.19-02.46.38:449][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/4/06/QRRWBCXL4DN5ZANIW69IRG
+[2024.09.19-02.46.38:449][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/QRRWBCXL4DN5ZANIW69IRG920FF09E441CB289C8AF5593B70F08D5.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/4/06/QRRWBCXL4DN5ZANIW69IRG.uasset'
+[2024.09.19-02.46.38:452][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/4/HX/1AR1OZYZFWPMXHOATPAR5O
+[2024.09.19-02.46.38:452][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/1AR1OZYZFWPMXHOATPAR5OA862F6F04F25C36CEC3AFCB6D29B5848.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/4/HX/1AR1OZYZFWPMXHOATPAR5O.uasset'
+[2024.09.19-02.46.38:455][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/4/R6/YOGMFTRISF16F7CKJ0PJL2
+[2024.09.19-02.46.38:455][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/YOGMFTRISF16F7CKJ0PJL20075796B45DD83ECE30488B4AA9482C4.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/4/R6/YOGMFTRISF16F7CKJ0PJL2.uasset'
+[2024.09.19-02.46.38:458][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/5/SG/FQF0V37TKLAOU2I9XWWTGC
+[2024.09.19-02.46.38:459][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/FQF0V37TKLAOU2I9XWWTGC021F1F41491B8A358A052A8B58447A6D.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/5/SG/FQF0V37TKLAOU2I9XWWTGC.uasset'
+[2024.09.19-02.46.38:461][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/0A/EZ7E883FAURRSH6PCXKI1Y
+[2024.09.19-02.46.38:462][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/EZ7E883FAURRSH6PCXKI1Y109CE3B04223A4C443C7E697E3A2CEC8.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/0A/EZ7E883FAURRSH6PCXKI1Y.uasset'
+[2024.09.19-02.46.38:464][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/B0/VDEJ99F0YXZYSL5UCT9BM9
+[2024.09.19-02.46.38:465][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/VDEJ99F0YXZYSL5UCT9BM97361A1704BA06858707A62BB1CEC1F76.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/B0/VDEJ99F0YXZYSL5UCT9BM9.uasset'
+[2024.09.19-02.46.38:467][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/LK/G3HK6S3MUHM4V595TPJLDM
+[2024.09.19-02.46.38:468][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/G3HK6S3MUHM4V595TPJLDME08E3F6B43EB420B66571F9B5E40F2BB.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/LK/G3HK6S3MUHM4V595TPJLDM.uasset'
+[2024.09.19-02.46.38:470][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/MA/GFAO05ULZ1UUA0NE88P2SA
+[2024.09.19-02.46.38:471][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/GFAO05ULZ1UUA0NE88P2SA401DEE3E45D7418BE512019807637417.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/MA/GFAO05ULZ1UUA0NE88P2SA.uasset'
+[2024.09.19-02.46.38:473][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/RL/6TG42VUQMK3YSWZUD9T03I
+[2024.09.19-02.46.38:474][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/6TG42VUQMK3YSWZUD9T03ICCDFC9A6403FBE516B489F929DC9F637.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/RL/6TG42VUQMK3YSWZUD9T03I.uasset'
+[2024.09.19-02.46.38:476][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/RW/4WYFCO97IYIXSZBAM4N1AV
+[2024.09.19-02.46.38:477][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/4WYFCO97IYIXSZBAM4N1AV39998F3F4AC63826332190A51806200B.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/8/RW/4WYFCO97IYIXSZBAM4N1AV.uasset'
+[2024.09.19-02.46.38:480][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/9/5C/L4EXGGZRV81GWXWF96CJJW
+[2024.09.19-02.46.38:480][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/L4EXGGZRV81GWXWF96CJJW10CD42A64A4BB8D377C3C2A63F55F377.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/9/5C/L4EXGGZRV81GWXWF96CJJW.uasset'
+[2024.09.19-02.46.38:483][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/9/86/ZFQEDXDYAQF6RWO556IFJU
+[2024.09.19-02.46.38:483][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/ZFQEDXDYAQF6RWO556IFJU59E3044242C907111E3A81BCE96AFEE9.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/9/86/ZFQEDXDYAQF6RWO556IFJU.uasset'
+[2024.09.19-02.46.38:487][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/9/SU/P0H9TFRUQX4WD8YCRQQDEB
+[2024.09.19-02.46.38:487][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/P0H9TFRUQX4WD8YCRQQDEB4E07D94B42584ADA897F538FF384A4E3.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/9/SU/P0H9TFRUQX4WD8YCRQQDEB.uasset'
+[2024.09.19-02.46.38:490][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/A/11/BYC3UR1UJV9EOOIQ9166RK
+[2024.09.19-02.46.38:491][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/BYC3UR1UJV9EOOIQ9166RK318829FE4C02F292B1B8BCADB2099C5D.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/A/11/BYC3UR1UJV9EOOIQ9166RK.uasset'
+[2024.09.19-02.46.38:493][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/A/67/LJVN8L16MRLAS6SL0HL5PB
+[2024.09.19-02.46.38:494][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/LJVN8L16MRLAS6SL0HL5PBFB96322346798CC303268B9E8347827A.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/A/67/LJVN8L16MRLAS6SL0HL5PB.uasset'
+[2024.09.19-02.46.38:496][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/A/TU/MA64XS8Y2TRWN3I3YSUPOB
+[2024.09.19-02.46.38:497][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/MA64XS8Y2TRWN3I3YSUPOB31D6CA8A468CBE8A15578AB0FCB23782.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/A/TU/MA64XS8Y2TRWN3I3YSUPOB.uasset'
+[2024.09.19-02.46.38:499][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/B/MB/3MNNF372N4WRLUYA6E58W3
+[2024.09.19-02.46.38:500][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/3MNNF372N4WRLUYA6E58W3D6BF88014B969C2AD4B62BA7D286D360.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/B/MB/3MNNF372N4WRLUYA6E58W3.uasset'
+[2024.09.19-02.46.38:502][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/B/P2/A50LRGV4IH4CL1EMSP77ZR
+[2024.09.19-02.46.38:503][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/A50LRGV4IH4CL1EMSP77ZR6E3848774793F2065ED012834EB61E8C.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/B/P2/A50LRGV4IH4CL1EMSP77ZR.uasset'
+[2024.09.19-02.46.38:505][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/B/RE/N6MC5TMJB07XBOWQ83IAZB
+[2024.09.19-02.46.38:506][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/N6MC5TMJB07XBOWQ83IAZBEC1CCCFC413FBEA631B84A8A185DDD86.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/B/RE/N6MC5TMJB07XBOWQ83IAZB.uasset'
+[2024.09.19-02.46.38:508][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/C/51/FR4ENQQ32MX8TBMXS3IGM7
+[2024.09.19-02.46.38:509][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/FR4ENQQ32MX8TBMXS3IGM7BB9158404E3AEDAC9A6B3FB62835C791.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/C/51/FR4ENQQ32MX8TBMXS3IGM7.uasset'
+[2024.09.19-02.46.38:511][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/C/YD/112OBSVN95G4KVQEAWKU3W
+[2024.09.19-02.46.38:512][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/112OBSVN95G4KVQEAWKU3WC052A4424FC2FBF51B23E4AA70D64F32.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/C/YD/112OBSVN95G4KVQEAWKU3W.uasset'
+[2024.09.19-02.46.38:515][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/D/1X/1L1KE2RX7TWUE18KC5TNJ6
+[2024.09.19-02.46.38:515][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/1L1KE2RX7TWUE18KC5TNJ68771D8BC424315BBA6A378898930EAF5.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/D/1X/1L1KE2RX7TWUE18KC5TNJ6.uasset'
+[2024.09.19-02.46.38:518][485]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/D/4K/1G516GJG0B3OX5QROLFRZA
+[2024.09.19-02.46.38:518][485]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/1G516GJG0B3OX5QROLFRZA376488A7455B977898B6DA8874E02A7F.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/D/4K/1G516GJG0B3OX5QROLFRZA.uasset'
+[2024.09.19-02.46.38:611][485]LogFileHelpers: InternalPromptForCheckoutAndSave took 264.185 ms (total: 465.418 ms)
+[2024.09.19-02.46.38:688][485]LogContentValidation: Display: Starting to validate 35 assets
+[2024.09.19-02.46.38:688][485]LogContentValidation: Enabled validators:
+[2024.09.19-02.46.38:688][485]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.09.19-02.46.38:688][485]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.09.19-02.46.38:688][485]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.09.19-02.46.38:688][485]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square.Village_Main_Square
+[2024.09.19-02.46.38:688][485]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square Validating asset
+[2024.09.19-02.46.39:609][562]LogActorFactory: Loading ActorFactory Class /Script/Engine.LevelInstance
+[2024.09.19-02.46.39:618][562]LogActorFactory: Loading ActorFactory Class /Script/Engine.LevelInstance
+[2024.09.19-02.46.47:832][379]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Engine/BasicShapes/Cylinder.Cylinder
+[2024.09.19-02.46.47:832][379]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Engine/BasicShapes/Cylinder.Cylinder
+[2024.09.19-02.46.47:836][379]LogActorFactory: Actor Factory spawned StaticMesh /Engine/BasicShapes/Cylinder.Cylinder as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square.Village_Main_Square:PersistentLevel.StaticMeshActor_UAID_04D4C45368148F1D02_1388838287
+[2024.09.19-02.46.47:837][379]LogActorFactory: Actor Factory spawned StaticMesh /Engine/BasicShapes/Cylinder.Cylinder as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square.Village_Main_Square:PersistentLevel.StaticMeshActor_UAID_04D4C45368148F1D02_1388838287
+[2024.09.19-02.47.32:207][128]LogUObjectHash: Compacting FUObjectHashTables data took   1.36ms
+[2024.09.19-02.47.32:215][128]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/N0/KMVNBLJHSOESQFMTUKHIXI_Auto1
+[2024.09.19-02.47.32:215][128]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/KMVNBLJHSOESQFMTUKHIXI_Auto1DB30C5A84DACCC5F5910739B355BAF51.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/N0/KMVNBLJHSOESQFMTUKHIXI_Auto1.uasset'
+[2024.09.19-02.47.32:216][128]LogFileHelpers: Editor autosave (incl. external actors) for '/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square' took 0.040
+[2024.09.19-02.47.32:216][128]LogFileHelpers: Editor autosave (incl. sublevels & external actors) for all levels took 0.040
+[2024.09.19-02.47.32:216][128]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E] ([1] browsable assets)...
+[2024.09.19-02.47.32:225][128]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E.Box_4A51915E]
+[2024.09.19-02.47.32:225][128]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E]
+[2024.09.19-02.47.32:283][128]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E_Auto1
+[2024.09.19-02.47.32:284][128]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_4A51915E_Auto168DBBA444735FC0BAAE5FC8BAF677BBB.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E_Auto1.uasset'
+[2024.09.19-02.47.32:285][128]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86] ([1] browsable assets)...
+[2024.09.19-02.47.32:291][128]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86.Box_C5204E86]
+[2024.09.19-02.47.32:291][128]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86]
+[2024.09.19-02.47.32:295][128]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86_Auto1
+[2024.09.19-02.47.32:296][128]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_C5204E86_Auto16B687957498DC7723166A6AEB0A9E826.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86_Auto1.uasset'
+[2024.09.19-02.47.32:297][128]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63] ([1] browsable assets)...
+[2024.09.19-02.47.32:303][128]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63.Box_9103AA63]
+[2024.09.19-02.47.32:303][128]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63]
+[2024.09.19-02.47.32:306][128]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63_Auto1
+[2024.09.19-02.47.32:307][128]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_9103AA63_Auto1F3BD69D74C985B5DA74DDF8A71136820.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63_Auto1.uasset'
+[2024.09.19-02.47.32:308][128]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C] ([1] browsable assets)...
+[2024.09.19-02.47.32:314][128]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C.Box_DCA5942C]
+[2024.09.19-02.47.32:314][128]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C]
+[2024.09.19-02.47.32:317][128]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C_Auto1
+[2024.09.19-02.47.32:318][128]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_DCA5942C_Auto17BDB1A4F469DDDD42FCB54AD2D5724FF.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C_Auto1.uasset'
+[2024.09.19-02.47.32:319][128]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7] ([1] browsable assets)...
+[2024.09.19-02.47.32:325][128]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7.Box_0F272FC7]
+[2024.09.19-02.47.32:326][128]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7]
+[2024.09.19-02.47.32:330][128]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7_Auto1
+[2024.09.19-02.47.32:330][128]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_0F272FC7_Auto1F036AC7D474121CDBFD2AD8A7B62A203.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7_Auto1.uasset'
+[2024.09.19-02.47.32:331][128]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604] ([1] browsable assets)...
+[2024.09.19-02.47.32:338][128]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604.Boolean_BC22E604]
+[2024.09.19-02.47.32:338][128]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604]
+[2024.09.19-02.47.32:343][128]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604_Auto1
+[2024.09.19-02.47.32:343][128]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Boolean_BC22E604_Auto1EAC700EF4DF743B99E31BE8B4A19BEBF.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604_Auto1.uasset'
+[2024.09.19-02.47.32:344][128]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5] ([1] browsable assets)...
+[2024.09.19-02.47.32:350][128]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5.Box_0D97FAE5]
+[2024.09.19-02.47.32:350][128]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5]
+[2024.09.19-02.47.32:353][128]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5_Auto1
+[2024.09.19-02.47.32:354][128]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_0D97FAE5_Auto19AC117474ADCE4D39ACE99BB766F9E33.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5_Auto1.uasset'
+[2024.09.19-02.47.32:355][128]LogFileHelpers: Auto-saving content packages took 0.139
+[2024.09.19-02.57.43:946][895]LogEditorViewport: Clicking Background
+[2024.09.19-02.58.16:651][681]LogUObjectHash: Compacting FUObjectHashTables data took   0.63ms
+[2024.09.19-02.58.16:656][681]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/N0/KMVNBLJHSOESQFMTUKHIXI_Auto2
+[2024.09.19-02.58.16:656][681]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/KMVNBLJHSOESQFMTUKHIXI_Auto2ACC3568D486E4C34CA4A5198E83C3807.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Autosaves/Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/N0/KMVNBLJHSOESQFMTUKHIXI_Auto2.uasset'
+[2024.09.19-02.58.16:657][681]LogFileHelpers: Editor autosave (incl. external actors) for '/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square' took 0.025
+[2024.09.19-02.58.16:657][681]LogFileHelpers: Editor autosave (incl. sublevels & external actors) for all levels took 0.025
+[2024.09.19-02.58.18:346][825]Cmd: TRANSACTION UNDO
+[2024.09.19-02.58.18:346][825]LogEditorTransaction: Undo Move Elements
+[2024.09.19-02.59.35:503][ 62]Cmd: TRANSACTION UNDO
+[2024.09.19-02.59.35:503][ 62]LogEditorTransaction: Undo Scale Elements
+[2024.09.19-03.00.14:861][198]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.09.19-03.00.14:923][198]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/N0/KMVNBLJHSOESQFMTUKHIXI
+[2024.09.19-03.00.14:923][198]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/KMVNBLJHSOESQFMTUKHIXI2C1FFFD54A29D8600C717CA60CBB489B.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/7/N0/KMVNBLJHSOESQFMTUKHIXI.uasset'
+[2024.09.19-03.00.14:981][198]LogSavePackage: Moving output files for package: /Game/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/C/NG/S69Z0E3MZTI1NSS7T5BEOQ
+[2024.09.19-03.00.14:981][198]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/S69Z0E3MZTI1NSS7T5BEOQ1E0050F242AEFB044977AE855C410F5E.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square/C/NG/S69Z0E3MZTI1NSS7T5BEOQ.uasset'
+[2024.09.19-03.00.15:062][198]LogFileHelpers: InternalPromptForCheckoutAndSave took 200.657 ms (total: 666.075 ms)
+[2024.09.19-03.00.15:132][198]LogContentValidation: Display: Starting to validate 2 assets
+[2024.09.19-03.00.15:132][198]LogContentValidation: Enabled validators:
+[2024.09.19-03.00.15:132][198]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.09.19-03.00.15:132][198]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.09.19-03.00.15:132][198]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.09.19-03.00.15:132][198]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square.Village_Main_Square
+[2024.09.19-03.00.15:132][198]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square Validating asset
+[2024.09.19-03.00.27:040][678]LogUObjectHash: Compacting FUObjectHashTables data took   1.34ms
+[2024.09.19-03.00.28:863][678]LogSlate: Window 'Save Content' being destroyed
+[2024.09.19-03.00.28:878][678]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.09.19-03.00.28:942][678]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604] ([1] browsable assets)...
+[2024.09.19-03.00.28:942][678]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604]
+[2024.09.19-03.00.28:946][678]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604
+[2024.09.19-03.00.28:947][678]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Boolean_BC22E604E460CBE645EFD467E3A7BCA11F60E5F2.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604.uasset'
+[2024.09.19-03.00.28:948][678]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5] ([1] browsable assets)...
+[2024.09.19-03.00.28:948][678]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5]
+[2024.09.19-03.00.28:950][678]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5
+[2024.09.19-03.00.28:951][678]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_0D97FAE5BA2B66654CEDAE42CEF492ACE29B8AD9.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5.uasset'
+[2024.09.19-03.00.28:952][678]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7] ([1] browsable assets)...
+[2024.09.19-03.00.28:952][678]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7]
+[2024.09.19-03.00.28:955][678]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7
+[2024.09.19-03.00.28:956][678]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_0F272FC7B3B7F4474E0BA28E65A077ABF617380D.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7.uasset'
+[2024.09.19-03.00.28:957][678]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E] ([1] browsable assets)...
+[2024.09.19-03.00.28:957][678]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E]
+[2024.09.19-03.00.28:959][678]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E
+[2024.09.19-03.00.28:960][678]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_4A51915E971ED773454B4A92D0DC548F501AD8BD.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E.uasset'
+[2024.09.19-03.00.28:961][678]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63] ([1] browsable assets)...
+[2024.09.19-03.00.28:961][678]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63]
+[2024.09.19-03.00.28:964][678]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63
+[2024.09.19-03.00.28:964][678]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_9103AA630DBABD9C48F19DBF67ADD485AADAEA24.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63.uasset'
+[2024.09.19-03.00.28:966][678]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86] ([1] browsable assets)...
+[2024.09.19-03.00.28:966][678]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86]
+[2024.09.19-03.00.28:968][678]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86
+[2024.09.19-03.00.28:969][678]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_C5204E86B648C6E94E98CB805EFC12B498C9F611.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86.uasset'
+[2024.09.19-03.00.28:970][678]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C] ([1] browsable assets)...
+[2024.09.19-03.00.28:970][678]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C]
+[2024.09.19-03.00.28:972][678]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C
+[2024.09.19-03.00.28:973][678]LogSavePackage: Moving 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Saved/Box_DCA5942C1E71AE934773EBEA2D9F69925E221387.tmp' to 'Z:/Documents- Data Drive/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C.uasset'
+[2024.09.19-03.00.29:106][678]LogFileHelpers: InternalPromptForCheckoutAndSave took 227.585 ms (total: 893.661 ms)
+[2024.09.19-03.00.29:288][678]LogStall: Shutdown...
+[2024.09.19-03.00.29:293][678]LogStall: Shutdown complete.
+[2024.09.19-03.00.29:496][678]LogSlate: Window 'Patchwork_UE - Unreal Editor' being destroyed
+[2024.09.19-03.00.29:581][678]LogContentValidation: Display: Starting to validate 7 assets
+[2024.09.19-03.00.29:581][678]LogContentValidation: Enabled validators:
+[2024.09.19-03.00.29:581][678]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.09.19-03.00.29:581][678]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.09.19-03.00.29:581][678]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.09.19-03.00.29:581][678]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604.Boolean_BC22E604
+[2024.09.19-03.00.29:581][678]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Boolean_BC22E604 Validating asset
+[2024.09.19-03.00.29:581][678]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5.Box_0D97FAE5
+[2024.09.19-03.00.29:581][678]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0D97FAE5 Validating asset
+[2024.09.19-03.00.29:581][678]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7.Box_0F272FC7
+[2024.09.19-03.00.29:581][678]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_0F272FC7 Validating asset
+[2024.09.19-03.00.29:581][678]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E.Box_4A51915E
+[2024.09.19-03.00.29:581][678]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_4A51915E Validating asset
+[2024.09.19-03.00.29:581][678]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63.Box_9103AA63
+[2024.09.19-03.00.29:581][678]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_9103AA63 Validating asset
+[2024.09.19-03.00.29:582][678]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86.Box_C5204E86
+[2024.09.19-03.00.29:582][678]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_C5204E86 Validating asset
+[2024.09.19-03.00.29:582][678]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C.Box_DCA5942C
+[2024.09.19-03.00.29:582][678]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/_GENERATED/Patrick/Box_DCA5942C Validating asset
+[2024.09.19-03.00.29:641][678]Cmd: QUIT_EDITOR
+[2024.09.19-03.00.29:642][678]LogCore: Engine exit requested (reason: UUnrealEdEngine::CloseEditor())
+[2024.09.19-03.00.29:675][679]LogCore: Engine exit requested (reason: EngineExit() was called; note: exit was already requested)
+[2024.09.19-03.00.29:675][679]LogStaticMesh: Abandoning remaining async distance field tasks for shutdown
+[2024.09.19-03.00.29:675][679]LogStaticMesh: Abandoning remaining async card representation tasks for shutdown
+[2024.09.19-03.00.29:757][679]LogWorld: UWorld::CleanupWorld for Village_Main_Square, bSessionEnded=true, bCleanupResources=true
+[2024.09.19-03.00.29:765][679]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.19-03.00.29:765][679]LogWorldPartition: UWorldPartition::Uninitialize : World = /Game/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Village_Main_Square.Village_Main_Square
+[2024.09.19-03.00.29:766][679]LogContentBundle: [Village_Main_Square(Standalone)] Deleting container.
+[2024.09.19-03.00.29:766][679]LogWorldMetrics: [UWorldMetricsSubsystem::Deinitialize]
+[2024.09.19-03.00.29:766][679]LogWorldMetrics: [UWorldMetricsSubsystem::Clear]
+[2024.09.19-03.00.29:800][679]LogLevelSequenceEditor: LevelSequenceEditor subsystem deinitialized.
+[2024.09.19-03.00.29:806][679]LogWorld: UWorld::CleanupWorld for World_0, bSessionEnded=true, bCleanupResources=true
+[2024.09.19-03.00.29:806][679]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.19-03.00.29:807][679]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2024.09.19-03.00.29:807][679]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.19-03.00.30:456][679]LogStudioTelemetry: Ended StudioTelemetry Session
+[2024.09.19-03.00.30:458][679]LogAnalytics: Display: [UEEditor.Rocket.Release] Destroying ET Analytics provider
+[2024.09.19-03.00.30:458][679]LogAnalytics: Display: [UEEditor.Rocket.Release] Ended ET Analytics provider session
+[2024.09.19-03.00.30:459][679]LogAnalytics: Display: [UEEditor.Rocket.Release] Destroyed ET Analytics provider
+[2024.09.19-03.00.30:459][679]LogAudio: Display: Beginning Audio Device Manager Shutdown (Module: AudioMixerXAudio2)...
+[2024.09.19-03.00.30:459][679]LogAudio: Display: Destroying 1 Remaining Audio Device(s)...
+[2024.09.19-03.00.30:459][679]LogAudio: Display: Audio Device unregistered from world 'Village_Main_Square'.
+[2024.09.19-03.00.30:459][679]LogAudio: Display: Shutting down audio device while 1 references to it are still alive. For more information, compile with INSTRUMENT_AUDIODEVICE_HANDLES.
+[2024.09.19-03.00.30:459][679]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2024.09.19-03.00.30:461][679]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=1
+[2024.09.19-03.00.30:471][679]LogAudioMixer: Deinitializing Audio Bus Subsystem for audio device with ID -1
+[2024.09.19-03.00.30:471][679]LogAudio: Display: Audio Device Manager Shutdown
+[2024.09.19-03.00.30:471][679]LogWindowsTextInputMethodSystem: Activated input method: English (United States) - (Keyboard).
+[2024.09.19-03.00.30:474][679]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2024.09.19-03.00.30:474][679]LogExit: Preparing to exit.
+[2024.09.19-03.00.30:910][679]LogUObjectHash: Compacting FUObjectHashTables data took   1.24ms
+[2024.09.19-03.00.31:845][679]LogDemo: Cleaned up 0 splitscreen connections, owner deletion: enabled
+[2024.09.19-03.00.31:873][679]LogExit: Editor shut down
+[2024.09.19-03.00.31:876][679]LogExit: Transaction tracking system shut down
+[2024.09.19-03.00.32:517][679]LogExit: Object subsystem successfully closed.
+[2024.09.19-03.00.32:534][679]LogShaderCompilers: Display: Shaders left to compile 0
+[2024.09.19-03.00.32:654][679]MemoryProfiler: Shutdown
+[2024.09.19-03.00.32:654][679]NetworkingProfiler: Shutdown
+[2024.09.19-03.00.32:654][679]LoadingProfiler: Shutdown
+[2024.09.19-03.00.32:654][679]TimingProfiler: Shutdown
+[2024.09.19-03.00.32:722][679]LogOpenImageDenoise: OIDN shutting down
+[2024.09.19-03.00.32:994][679]RenderDocPlugin: plugin has been unloaded.
+[2024.09.19-03.00.32:994][679]LogStudioTelemetry: Display: Shutdown StudioTelemetry Module
+[2024.09.19-03.00.33:016][679]LogHttp: Warning: [FHttpManager::Shutdown] Unbinding delegates for 1 outstanding Http Requests:
+[2024.09.19-03.00.33:016][679]LogHttp: Warning: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7BCCAEAD39-4461-2ED0-3301-6D95291DA9E5%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.4.2-33871570%2B%2B%2BUE5%2BRelease-5.4&UserID=0ec5782c4bd8be2430fd3786dffa0a08%7C7237ac5311214018865237ebfe22e76c%7C2ba15a50-4968-4a94-a6fe-f3ba08e23cf4&AppEnvironment=datacollector-binary&UploadType=eteventstream] refs=[2] status=Processing
+[2024.09.19-03.00.33:040][679]LogXGEController: Cleaning working directory: C:/Users/Patrick/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2024.09.19-03.00.33:043][679]LogPakFile: Destroying PakPlatformFile
+[2024.09.19-03.00.35:317][679]LogD3D12RHI: ~FD3D12DynamicRHI
+[2024.09.19-03.00.35:355][679]LogExit: Exiting.
+[2024.09.19-03.00.35:384][679]Log file closed, 09/18/24 23:00:35
