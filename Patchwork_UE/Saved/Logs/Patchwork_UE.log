@@ -2076,3 +2076,571 @@ _MatTransl_3B7A55D3409170328211A060FC2E3BB1E263C720_BBD650804D314CE7A44ADF9BB4F3
 [2024.09.21-22.44.28:585][192]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
 [2024.09.21-22.44.28:585][192]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View
 [2024.09.21-22.44.28:586][192]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View Validating asset
+[2024.09.21-22.45.58:872][664]LogRenderer: Display: Invalidated clipmap due to WPO threshold change. This can occur due to resolution or FOV changes.
+[2024.09.21-22.46.00:024][760]LogRenderer: Display: Invalidated clipmap due to WPO threshold change. This can occur due to resolution or FOV changes.
+[2024.09.21-22.47.31:773][110]LogUObjectHash: Compacting FUObjectHashTables data took   0.54ms
+[2024.09.21-22.47.31:803][110]LogLinker: Warning: [AssetLog] C:\Users\piech\OneDrive\Desktop\DreamWalker\Dreamwalker Repo\Patchwork\Patchwork_UE\Content\Patchwork\PCG\VillageHouses\Data\S_SimpleHouseAssemblies.uasset: Failed to load '/Game/Patchwork/PCG/VillageHouses/Assemblies/PT/DataAssets/DEP_PCGA_PT_Door_PCG': Can't find file.
+[2024.09.21-22.47.31:803][110]LogLinker: Warning: [AssetLog] C:\Users\piech\OneDrive\Desktop\DreamWalker\Dreamwalker Repo\Patchwork\Patchwork_UE\Content\Patchwork\PCG\VillageHouses\Data\S_SimpleHouseAssemblies.uasset: VerifyImport: Failed to load package for import object 'Package /Game/Patchwork/PCG/VillageHouses/Assemblies/PT/DataAssets/DEP_PCGA_PT_Door_PCG'
+[2024.09.21-22.47.31:803][110]LogLinker: Warning: [AssetLog] C:\Users\piech\OneDrive\Desktop\DreamWalker\Dreamwalker Repo\Patchwork\Patchwork_UE\Content\Patchwork\PCG\VillageHouses\Data\S_SimpleHouseAssemblies.uasset: Failed to load '/Game/Patchwork/PCG/VillageHouses/Assemblies/PT/DataAssets/DEP_PCGA_PT_Wall_PCG': Can't find file.
+[2024.09.21-22.47.31:803][110]LogLinker: Warning: [AssetLog] C:\Users\piech\OneDrive\Desktop\DreamWalker\Dreamwalker Repo\Patchwork\Patchwork_UE\Content\Patchwork\PCG\VillageHouses\Data\S_SimpleHouseAssemblies.uasset: VerifyImport: Failed to load package for import object 'Package /Game/Patchwork/PCG/VillageHouses/Assemblies/PT/DataAssets/DEP_PCGA_PT_Wall_PCG'
+[2024.09.21-22.47.31:804][110]LogLinker: Warning: [AssetLog] C:\Users\piech\OneDrive\Desktop\DreamWalker\Dreamwalker Repo\Patchwork\Patchwork_UE\Content\Patchwork\PCG\VillageHouses\Data\S_SimpleHouseAssemblies.uasset: Failed to load '/Game/Patchwork/PCG/VillageHouses/Assemblies/PT/DataAssets/DEP_PCGA_Window_PT': Can't find file.
+[2024.09.21-22.47.31:804][110]LogLinker: Warning: [AssetLog] C:\Users\piech\OneDrive\Desktop\DreamWalker\Dreamwalker Repo\Patchwork\Patchwork_UE\Content\Patchwork\PCG\VillageHouses\Data\S_SimpleHouseAssemblies.uasset: VerifyImport: Failed to load package for import object 'Package /Game/Patchwork/PCG/VillageHouses/Assemblies/PT/DataAssets/DEP_PCGA_Window_PT'
+[2024.09.21-22.47.32:049][110]LogStaticMesh: Display: Building static mesh SM_MergedThinLog_02 (Required Memory Estimate: 0.898672 MB)...
+[2024.09.21-22.47.32:050][110]LogStaticMesh: Display: Building static mesh SM_SM_MergedThinLog (Required Memory Estimate: 0.898672 MB)...
+[2024.09.21-22.47.32:117][110]LogStaticMesh: Built static mesh [0.08s] /Game/Patchwork/Models/Village/SM_SM_MergedThinLog.SM_SM_MergedThinLog
+[2024.09.21-22.47.32:118][110]LogStaticMesh: Built static mesh [0.08s] /Game/Patchwork/Models/Village/SM_MergedThinLog_02.SM_MergedThinLog_02
+[2024.09.21-22.47.32:156][110]LogAssetEditorSubsystem: Opening Asset editor for World /Game/Patchwork/Levels/Maps/Mushroom_Forest/PCG_Village_Setup.PCG_Village_Setup
+[2024.09.21-22.47.32:478][110]LogWorld: UWorld::CleanupWorld for Forest_Asset_View, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:478][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:478][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Mushrooms/PA_MushroomTall3_LevelInstance_5afe9c54abb6e6d9_0.PA_MushroomTall3
+[2024.09.21-22.47.32:480][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_24161051e4d15a9c_0.PLA_Dock_Segment
+[2024.09.21-22.47.32:480][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_7351379f876eaa39_0.PLA_Dock_Segment
+[2024.09.21-22.47.32:480][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_aadaaa25cc998f3b_0.PLA_Dock_Segment
+[2024.09.21-22.47.32:480][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_2a37af558acf8ab7_0.PLA_Dock_Segment
+[2024.09.21-22.47.32:481][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_40e193eed40408d3_0.PLA_Dock_Segment
+[2024.09.21-22.47.32:481][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_4dfeaa83589c2a5f_0.PLA_Dock_Segment
+[2024.09.21-22.47.32:481][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_154c788390115462_0.PLA_Dock_Segment
+[2024.09.21-22.47.32:481][110]LogWorldPartition: UWorldPartition::Uninitialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_17da8172aacb6b30_0.PLA_Dock_Segment
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PA_MushroomTall2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PA_MushroomTall3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_PlankGrid_V1, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Vert, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Vert, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Vert_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Vert_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for PLA_Dock_Segment_V2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Vert_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_WallComb, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:482][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:482][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Wall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_VertWallComb, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorld: UWorld::CleanupWorld for L_Halfwall_Broken_2, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:483][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:483][110]LogWorldMetrics: [UWorldMetricsSubsystem::Deinitialize]
+[2024.09.21-22.47.32:483][110]LogWorldMetrics: [UWorldMetricsSubsystem::Clear]
+[2024.09.21-22.47.32:509][110]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2024.09.21-22.47.32:558][110]LogUObjectHash: Compacting FUObjectHashTables data took   1.92ms
+[2024.09.21-22.47.32:589][110]LogWorld: UWorld::CleanupWorld for PCG_Village_Setup, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.47.32:603][110]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.47.32:621][110]LogUObjectHash: Compacting FUObjectHashTables data took   1.02ms
+[2024.09.21-22.47.32:634][110]LogUObjectHash: Compacting FUObjectHashTables data took   1.14ms
+[2024.09.21-22.47.32:695][110]LogAudio: Display: Audio Device (ID: 1) registered with world 'PCG_Village_Setup'.
+[2024.09.21-22.47.32:695][110]LogWorldMetrics: [UWorldMetricsSubsystem::Initialize]
+[2024.09.21-22.47.32:698][110]LogPhysics: Warning: Scale for /Game/Patchwork/Levels/Maps/Mushroom_Forest/PCG_Village_Setup.PCG_Village_Setup:PersistentLevel.StaticMeshActor_148.StaticMeshComponent0 has a component set to zero, which will result in a bad body instance. Scale:X=1.000 Y=1.000 Z=0.000
+[2024.09.21-22.47.32:703][110]LogPhysics: Warning: Scale for /Game/Patchwork/Levels/Maps/Mushroom_Forest/PCG_Village_Setup.PCG_Village_Setup:PersistentLevel.StaticMeshActor_291.StaticMeshComponent0 has a component set to zero, which will result in a bad body instance. Scale:X=1.000 Y=1.000 Z=0.000
+[2024.09.21-22.47.33:469][110]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2024.09.21-22.47.33:499][110]LogUObjectHash: Compacting FUObjectHashTables data took   1.20ms
+[2024.09.21-22.47.33:523][110]Cmd: MAP CHECKDEP NOCLEARLOG
+[2024.09.21-22.47.33:524][110]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.139ms to complete.
+[2024.09.21-22.47.34:857][110]LogUObjectHash: Compacting FUObjectHashTables data took   0.59ms
+[2024.09.21-22.47.55:478][107]LogShaderCompilers: Display: ================================================
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: === FShaderJobCache stats ===
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Total job queries 707, among them cache hits 124 (17.54%), DDC hits 553 (78.22%), Duplicates 12 (1.70%)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Tracking 571 distinct input hashes that result in 470 distinct outputs (82.31%)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: RAM used: 14.07 MiB of 1.60 GiB budget. Usage: 0.86%
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: === Shader Compilation stats ===
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Shaders Compiled: 18
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Jobs assigned 18, completed 18 (100%)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Average time worker was idle: 609.57 s
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Time job spent in pending queue: average 0.07 s, longest 0.10 s
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Job execution time: average 0.75 s, max 1.14 s
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Job life time (pending + execution): average 0.82 s, max 1.22
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Shader code size: average 35.198 KiB, min 27.797 KiB, max 60.914 KiB
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 4.51 s
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Mutex wait stall in FShaderJobCache::SubmitJobs:  0.00%
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Jobs were issued in 18 batches (only local compilation was used), average 1.00 jobs/batch
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Average processing rate: 3.99 jobs/sec
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Total thread time: 6.835 s
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Total thread preprocess time: 10.157 s
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Percentage time preprocessing: 148.61%
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Effective parallelization: 1.52 (times faster than compiling all shaders on one thread). Compare with number of workers: 8
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy (compiled    5 times, average 0.49 sec, max 0.54 sec, min 0.39 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                          FLumenCardPS<false> (compiled    3 times, average 0.39 sec, max 0.42 sec, min 0.36 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                                  FHitProxyPS (compiled    1 times, average 0.33 sec, max 0.33 sec, min 0.33 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:              TShadowDepthPSPixelShadowDepth_VirtualShadowMap (compiled    1 times, average 0.33 sec, max 0.33 sec, min 0.33 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                                 FDepthOnlyPS (compiled    1 times, average 0.32 sec, max 0.32 sec, min 0.32 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Top 5 shader types by total compile time:
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 35.82% of total time (compiled    5 times, average 0.49 sec, max 0.54 sec, min 0.39 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                          FLumenCardPS<false> - 17.17% of total time (compiled    3 times, average 0.39 sec, max 0.42 sec, min 0.36 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                 TBasePassVSFNoLightMapPolicy - 13.83% of total time (compiled    3 times, average 0.32 sec, max 0.39 sec, min 0.27 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                                 FLumenCardVS - 7.69% of total time (compiled    2 times, average 0.26 sec, max 0.31 sec, min 0.22 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display:                                                  FHitProxyPS - 4.89% of total time (compiled    1 times, average 0.33 sec, max 0.33 sec, min 0.33 sec)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: === Material stats ===
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Materials Cooked:        0
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Materials Translated:    235
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Material Total Translate Time: 0.28 s
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Material Translation Only: 0.09 s (32%)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Material DDC Serialization Only: 0.00 s (2%)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: Material Cache Hits: 85 (36%)
+[2024.09.21-22.47.55:479][107]LogShaderCompilers: Display: ================================================
+[2024.09.21-22.51.09:213][192]LogUObjectHash: Compacting FUObjectHashTables data took   0.59ms
+[2024.09.21-22.51.09:369][192]LogAssetEditorSubsystem: Opening Asset editor for World /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View
+[2024.09.21-22.51.09:617][192]LogWorld: UWorld::CleanupWorld for PCG_Village_Setup, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.51.09:617][192]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.51.09:618][192]LogWorldMetrics: [UWorldMetricsSubsystem::Deinitialize]
+[2024.09.21-22.51.09:618][192]LogWorldMetrics: [UWorldMetricsSubsystem::Clear]
+[2024.09.21-22.51.09:636][192]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2024.09.21-22.51.10:001][192]LogUObjectHash: Compacting FUObjectHashTables data took   8.29ms
+[2024.09.21-22.51.10:010][192]LogWorld: UWorld::CleanupWorld for Forest_Asset_View, bSessionEnded=true, bCleanupResources=true
+[2024.09.21-22.51.10:012][192]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.21-22.51.10:030][192]LogUObjectHash: Compacting FUObjectHashTables data took   1.17ms
+[2024.09.21-22.51.10:042][192]LogUObjectHash: Compacting FUObjectHashTables data took   1.01ms
+[2024.09.21-22.51.10:081][192]LogAudio: Display: Audio Device (ID: 1) registered with world 'Forest_Asset_View'.
+[2024.09.21-22.51.10:082][192]LogWorldMetrics: [UWorldMetricsSubsystem::Initialize]
+[2024.09.21-22.51.10:202][192]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2024.09.21-22.51.10:222][192]LogUObjectHash: Compacting FUObjectHashTables data took   1.14ms
+[2024.09.21-22.51.10:246][192]Cmd: MAP CHECKDEP NOCLEARLOG
+[2024.09.21-22.51.10:246][192]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.159ms to complete.
+[2024.09.21-22.51.10:350][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Mushrooms/PA_MushroomTall2_LevelInstance_0e0a56e7c0e1c45f_0) is flushing async loading
+[2024.09.21-22.51.10:350][192]LogStreaming: Display: FlushAsyncLoading(): 1 QueuedPackages, 0 AsyncPackages
+[2024.09.21-22.51.10:376][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Mushrooms/PA_MushroomTall3_LevelInstance_5afe9c54abb6e6d9_0) is flushing async loading
+[2024.09.21-22.51.10:379][192]LogWorldPartition: ULevel::OnLevelLoaded(PA_MushroomTall3)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:379][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:379][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Mushrooms/PA_MushroomTall3_LevelInstance_5afe9c54abb6e6d9_0.PA_MushroomTall3, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-30.14, Y=3249.73, Z=-0.50), Rotation = R(0), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:380][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Mushrooms/PA_MushroomTall3_LevelInstance_5afe9c54abb6e6d9_0.PA_MushroomTall3:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:383][192]LogWorldPartition: Display: WorldPartition initialize took 3.540 ms (total: 59.226 ms)
+[2024.09.21-22.51.10:386][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/PCG/Villiage/Assemblies/PLA_PlankGrid_V1_LevelInstance_cc2e4c82fa85483a_0) is flushing async loading
+[2024.09.21-22.51.10:395][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_LevelInstance_49474cb9338b8cd1_0) is flushing async loading
+[2024.09.21-22.51.10:407][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Vert_LevelInstance_8b2dec131b9b1a24_0) is flushing async loading
+[2024.09.21-22.51.10:437][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_LevelInstance_3a4afbfbf13a5d1a_0) is flushing async loading
+[2024.09.21-22.51.10:461][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Vert_LevelInstance_a0cba279cf35f4da_0) is flushing async loading
+[2024.09.21-22.51.10:505][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_LevelInstance_a7def40b87ea1f49_0) is flushing async loading
+[2024.09.21-22.51.10:517][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Vert_Broken_LevelInstance_e475ff33f3e61f8b_0) is flushing async loading
+[2024.09.21-22.51.10:542][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_LevelInstance_be5e07ee525c585d_0) is flushing async loading
+[2024.09.21-22.51.10:548][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Vert_Broken_LevelInstance_aaa128eacc70103d_0) is flushing async loading
+[2024.09.21-22.51.10:581][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_24161051e4d15a9c_0) is flushing async loading
+[2024.09.21-22.51.10:583][192]LogWorldPartition: ULevel::OnLevelLoaded(PLA_Dock_Segment)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:583][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:583][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_24161051e4d15a9c_0.PLA_Dock_Segment, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-2563.27, Y=-2864.89, Z=0.81), Rotation = R(0), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:583][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_24161051e4d15a9c_0.PLA_Dock_Segment:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:588][192]LogWorldPartition: Display: WorldPartition initialize took 5.057 ms (total: 64.283 ms)
+[2024.09.21-22.51.10:592][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_3483184df488dc17_0) is flushing async loading
+[2024.09.21-22.51.10:600][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_7351379f876eaa39_0) is flushing async loading
+[2024.09.21-22.51.10:602][192]LogWorldPartition: ULevel::OnLevelLoaded(PLA_Dock_Segment)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:602][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:602][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_7351379f876eaa39_0.PLA_Dock_Segment, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-2563.27, Y=-3066.43, Z=0.81), Rotation = R(Y=180.00), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:602][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_7351379f876eaa39_0.PLA_Dock_Segment:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:607][192]LogWorldPartition: Display: WorldPartition initialize took 5.573 ms (total: 69.857 ms)
+[2024.09.21-22.51.10:613][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_aadaaa25cc998f3b_0) is flushing async loading
+[2024.09.21-22.51.10:615][192]LogWorldPartition: ULevel::OnLevelLoaded(PLA_Dock_Segment)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:615][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:615][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_aadaaa25cc998f3b_0.PLA_Dock_Segment, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-2807.96, Y=-3069.91, Z=0.81), Rotation = R(Y=180.00), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:615][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_aadaaa25cc998f3b_0.PLA_Dock_Segment:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:619][192]LogWorldPartition: Display: WorldPartition initialize took 4.431 ms (total: 74.289 ms)
+[2024.09.21-22.51.10:623][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_2a37af558acf8ab7_0) is flushing async loading
+[2024.09.21-22.51.10:624][192]LogWorldPartition: ULevel::OnLevelLoaded(PLA_Dock_Segment)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:624][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:624][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_2a37af558acf8ab7_0.PLA_Dock_Segment, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-2685.64, Y=-3197.02, Z=0.81), Rotation = R(Y=-180.00), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:625][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_2a37af558acf8ab7_0.PLA_Dock_Segment:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:629][192]LogWorldPartition: Display: WorldPartition initialize took 4.416 ms (total: 78.705 ms)
+[2024.09.21-22.51.10:633][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_97d2b6f3b4347c02_0) is flushing async loading
+[2024.09.21-22.51.10:641][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_56abe0464fb8210f_0) is flushing async loading
+[2024.09.21-22.51.10:650][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_690eaf9b622a123f_0) is flushing async loading
+[2024.09.21-22.51.10:659][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_40e193eed40408d3_0) is flushing async loading
+[2024.09.21-22.51.10:660][192]LogWorldPartition: ULevel::OnLevelLoaded(PLA_Dock_Segment)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:660][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:660][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_40e193eed40408d3_0.PLA_Dock_Segment, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-2563.27, Y=-3328.23, Z=0.81), Rotation = R(Y=180.00), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:660][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_40e193eed40408d3_0.PLA_Dock_Segment:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:664][192]LogWorldPartition: Display: WorldPartition initialize took 4.376 ms (total: 83.081 ms)
+[2024.09.21-22.51.10:668][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_4dfeaa83589c2a5f_0) is flushing async loading
+[2024.09.21-22.51.10:670][192]LogWorldPartition: ULevel::OnLevelLoaded(PLA_Dock_Segment)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:670][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:670][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_4dfeaa83589c2a5f_0.PLA_Dock_Segment, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-2807.96, Y=-3331.71, Z=0.81), Rotation = R(Y=180.00), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:670][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_4dfeaa83589c2a5f_0.PLA_Dock_Segment:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:674][192]LogWorldPartition: Display: WorldPartition initialize took 4.359 ms (total: 87.441 ms)
+[2024.09.21-22.51.10:678][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_154c788390115462_0) is flushing async loading
+[2024.09.21-22.51.10:679][192]LogWorldPartition: ULevel::OnLevelLoaded(PLA_Dock_Segment)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:679][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:679][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_154c788390115462_0.PLA_Dock_Segment, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-2685.64, Y=-3458.82, Z=0.81), Rotation = R(Y=-180.00), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:679][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_154c788390115462_0.PLA_Dock_Segment:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:684][192]LogWorldPartition: Display: WorldPartition initialize took 4.457 ms (total: 91.898 ms)
+[2024.09.21-22.51.10:688][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_dd3f9b2b762f2998_0) is flushing async loading
+[2024.09.21-22.51.10:696][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_47a97c01b1d77f9a_0) is flushing async loading
+[2024.09.21-22.51.10:705][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_543b69d8e9da8ec8_0) is flushing async loading
+[2024.09.21-22.51.10:713][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_17da8172aacb6b30_0) is flushing async loading
+[2024.09.21-22.51.10:718][192]LogWorldPartition: ULevel::OnLevelLoaded(PLA_Dock_Segment)(bIsOwningWorldGameWorld=0, bIsOwningWorldPartitioned=0, InitializeForMainWorld=0, InitializeForEditor=1, InitializeForGame=0)
+[2024.09.21-22.51.10:718][192]LogWorldPartition: Display: WorldPartition initialize started...
+[2024.09.21-22.51.10:718][192]LogWorldPartition: UWorldPartition::Initialize : World = /Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_17da8172aacb6b30_0.PLA_Dock_Segment, World Type = Editor, IsMainWorldPartition = 0, Location = V(X=-2685.64, Y=-3589.07, Z=0.81), Rotation = R(Y=-180.00), IsEditor = 1, IsGame = 0, IsPIEWorldTravel = 0, IsCooking = 0
+[2024.09.21-22.51.10:718][192]LogActorComponent: ReregisterComponent: (/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_LevelInstance_17da8172aacb6b30_0.PLA_Dock_Segment:PersistentLevel.Brush_0.BrushComponent0) Not currently registered. Aborting.
+[2024.09.21-22.51.10:723][192]LogWorldPartition: Display: WorldPartition initialize took 4.625 ms (total: 96.524 ms)
+[2024.09.21-22.51.10:727][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_744362b30cf2aa24_0) is flushing async loading
+[2024.09.21-22.51.10:738][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Wooden_Structures/PLA_Dock_Segment_V2_LevelInstance_899ead5da30530e8_0) is flushing async loading
+[2024.09.21-22.51.10:750][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_LevelInstance_d34d4db11048d9ee_0) is flushing async loading
+[2024.09.21-22.51.10:759][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_LevelInstance_dd885acf8bc0a14e_0) is flushing async loading
+[2024.09.21-22.51.10:771][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_2_LevelInstance_568b3a9927d41619_0) is flushing async loading
+[2024.09.21-22.51.10:795][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_2_LevelInstance_d3551ebac88b232c_0) is flushing async loading
+[2024.09.21-22.51.10:816][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_2_LevelInstance_6653ef169287e331_0) is flushing async loading
+[2024.09.21-22.51.10:834][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_LevelInstance_65816c6055df1f44_0) is flushing async loading
+[2024.09.21-22.51.10:840][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_LevelInstance_bf6a4e9d42f086ca_0) is flushing async loading
+[2024.09.21-22.51.10:847][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_LevelInstance_1082e5f0762986bb_0) is flushing async loading
+[2024.09.21-22.51.10:854][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_LevelInstance_c1b3fe8ff61e225a_0) is flushing async loading
+[2024.09.21-22.51.10:860][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_f8caef4027cb87f0_0) is flushing async loading
+[2024.09.21-22.51.10:869][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Vert_Broken_2_LevelInstance_df00f8834e5f0965_0) is flushing async loading
+[2024.09.21-22.51.10:889][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_2efb58696fd4ea94_0) is flushing async loading
+[2024.09.21-22.51.10:898][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_0b554ec05e69e48b_0) is flushing async loading
+[2024.09.21-22.51.10:907][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_2_LevelInstance_d3ab18f2609cf78c_0) is flushing async loading
+[2024.09.21-22.51.10:923][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_3_LevelInstance_2892349552fe2cd6_0) is flushing async loading
+[2024.09.21-22.51.10:931][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_WallComb_LevelInstance_18cdb0ad30451038_0) is flushing async loading
+[2024.09.21-22.51.10:937][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_2_LevelInstance_6e1e620ae4f543bd_0) is flushing async loading
+[2024.09.21-22.51.10:953][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_2_LevelInstance_ec6af537ddb74f95_0) is flushing async loading
+[2024.09.21-22.51.10:968][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_2_LevelInstance_045c48e1cca4b5d1_0) is flushing async loading
+[2024.09.21-22.51.10:984][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Wall_Broken_2_LevelInstance_65991ecb31a791c7_0) is flushing async loading
+[2024.09.21-22.51.11:000][192]LogLevelInstance: Loaded 4 levels in 0.063 seconds
+[2024.09.21-22.51.11:000][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_VertWallComb_LevelInstance_4eca70e58cd3f571_0) is flushing async loading
+[2024.09.21-22.51.11:011][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_97d6874ebfc05eb2_0) is flushing async loading
+[2024.09.21-22.51.11:020][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_6b555a0045d3c0a7_0) is flushing async loading
+[2024.09.21-22.51.11:029][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_49f21dd8d1e73293_0) is flushing async loading
+[2024.09.21-22.51.11:037][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_a54cf5aae537744f_0) is flushing async loading
+[2024.09.21-22.51.11:046][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_72a41c51fe735f63_0) is flushing async loading
+[2024.09.21-22.51.11:055][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_02692b26c0acd02c_0) is flushing async loading
+[2024.09.21-22.51.11:064][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_16b591343df6c9b6_0) is flushing async loading
+[2024.09.21-22.51.11:072][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_59769fe5eb321c50_0) is flushing async loading
+[2024.09.21-22.51.11:081][192]LogLevelInstance: Loaded 8 levels in 0.07 seconds
+[2024.09.21-22.51.11:081][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_9601a6734fcd77fd_0) is flushing async loading
+[2024.09.21-22.51.11:090][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_b1ded96d86bbf78c_0) is flushing async loading
+[2024.09.21-22.51.11:099][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_5af3c1c048a5c406_0) is flushing async loading
+[2024.09.21-22.51.11:107][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_1489b8a54cbccb47_0) is flushing async loading
+[2024.09.21-22.51.11:116][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_3f580cedf5aad38a_0) is flushing async loading
+[2024.09.21-22.51.11:125][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_21a442d2b2796d88_0) is flushing async loading
+[2024.09.21-22.51.11:134][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_04d6dc1cba73b2ad_0) is flushing async loading
+[2024.09.21-22.51.11:142][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_16410932c6a5bb1d_0) is flushing async loading
+[2024.09.21-22.51.11:151][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_f961d034afe742cc_0) is flushing async loading
+[2024.09.21-22.51.11:160][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_8c56e212a911edda_0) is flushing async loading
+[2024.09.21-22.51.11:169][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_33a6e209179213c3_0) is flushing async loading
+[2024.09.21-22.51.11:178][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_b8c0da1340da49f6_0) is flushing async loading
+[2024.09.21-22.51.11:187][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_ac9e3d917d18f952_0) is flushing async loading
+[2024.09.21-22.51.11:196][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_08d8d72f2d349106_0) is flushing async loading
+[2024.09.21-22.51.11:205][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_52e1d5f9a9c2e3a1_0) is flushing async loading
+[2024.09.21-22.51.11:214][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_f831c77eaa470f0d_0) is flushing async loading
+[2024.09.21-22.51.11:222][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_2_LevelInstance_91f4d962db4aeadf_0) is flushing async loading
+[2024.09.21-22.51.11:240][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_2_LevelInstance_03cfde2922a5f9c2_0) is flushing async loading
+[2024.09.21-22.51.11:258][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_f7ef792b19bc96fb_0) is flushing async loading
+[2024.09.21-22.51.11:267][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_20046281e175b8d7_0) is flushing async loading
+[2024.09.21-22.51.11:276][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_567208138ea4e09c_0) is flushing async loading
+[2024.09.21-22.51.11:285][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_124da642426890f2_0) is flushing async loading
+[2024.09.21-22.51.11:295][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_ec8113d356e49475_0) is flushing async loading
+[2024.09.21-22.51.11:304][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_2125272f75da321a_0) is flushing async loading
+[2024.09.21-22.51.11:313][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_3_LevelInstance_b22645076a4b297c_0) is flushing async loading
+[2024.09.21-22.51.11:322][192]LogStreaming: Display: ULevelStreaming::RequestLevel(/Temp/Game/Patchwork/Levels/Maps/Mushroom_Forest/Assemblies/Forest_Huts/L_Halfwall_Broken_2_LevelInstance_fdf6935c3e8bc615_0) is flushing async loading
+[2024.09.21-22.51.11:340][192]LogLevelInstance: Loaded 71 levels in 0.991 seconds
+[2024.09.21-22.51.11:687][204]LogTexture: Display: Building textures: /Game/Megascans/3D_Assets/Wooden_Stool_wjfjbbe/T_Wooden_Stool_wjfjbbe_1K_D.T_Wooden_Stool_wjfjbbe_1K_D (TFO_DXT1, 1024x1024 x1x1x1) (Required Memory Estimate: 125.770823 MB), EncodeSpeed: Fast
+[2024.09.21-22.51.11:734][204]LogTexture: Display: Building textures: /Game/Megascans/3D_Assets/Wooden_Plank_vjjsace/T_WoodenPlank_vjjsace_1K_DpR.T_WoodenPlank_vjjsace_1K_DpR (TFO_DXT1, 1024x1024 x1x1x1) (Required Memory Estimate: 125.770823 MB), EncodeSpeed: Fast
+[2024.09.21-22.51.11:751][204]LogTexture: Display: Building textures: /Game/Megascans/3D_Assets/Wooden_Stool_wjfjbbe/T_WoodenStool_wjfjbbe_1K_DpR.T_WoodenStool_wjfjbbe_1K_DpR (TFO_DXT1, 1024x1024 x1x1x1) (Required Memory Estimate: 125.770823 MB), EncodeSpeed: Fast
+[2024.09.21-22.51.11:796][204]LogTexture: Display: Building textures: /Game/Megascans/3D_Assets/Wooden_Stool_wjfjbbe/T_Wooden_Stool_wjfjbbe_1K_N.T_Wooden_Stool_wjfjbbe_1K_N (TFO_BC5, 1024x1024 x1x1x1) (Required Memory Estimate: 217.562488 MB), EncodeSpeed: Fast
+[2024.09.21-22.51.18:570][763]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.51.18:570][763]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.51.18:571][763]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2 as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_0
+[2024.09.21-22.51.20:424][918]LogUObjectHash: Compacting FUObjectHashTables data took   1.18ms
+[2024.09.21-22.51.20:427][918]LogEditorActor: Deleted 0 Actors (0.016 secs)
+[2024.09.21-22.51.20:432][918]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.51.20:432][918]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.51.20:435][918]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2 as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_12
+[2024.09.21-22.51.24:406][250]Cmd: TRANSACTION UNDO
+[2024.09.21-22.51.24:406][250]LogEditorTransaction: Undo Move Elements
+[2024.09.21-22.51.25:777][326]Cmd: TRANSACTION UNDO
+[2024.09.21-22.51.25:777][326]LogEditorTransaction: Undo Clicking on Elements
+[2024.09.21-22.51.26:422][362]Cmd: TRANSACTION UNDO
+[2024.09.21-22.51.26:423][362]LogEditorTransaction: Undo Place Objects
+[2024.09.21-22.51.28:742][512]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.51.28:742][512]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.51.28:743][512]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2 as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_18
+[2024.09.21-22.51.32:012][812]LogUObjectHash: Compacting FUObjectHashTables data took   0.51ms
+[2024.09.21-22.51.32:016][812]LogEditorActor: Deleted 0 Actors (0.016 secs)
+[2024.09.21-22.51.32:023][812]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.51.32:023][812]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.51.32:025][812]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2 as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_27
+[2024.09.21-22.51.33:394][917]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.51.33:394][917]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.51.33:396][917]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_33
+[2024.09.21-22.51.34:263][985]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.51.34:263][985]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.51.34:265][985]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_38
+[2024.09.21-22.51.36:112][136]Cmd: TRANSACTION UNDO
+[2024.09.21-22.51.36:112][136]LogEditorTransaction: Undo Move Elements
+[2024.09.21-22.51.36:417][145]Cmd: TRANSACTION UNDO
+[2024.09.21-22.51.36:417][145]LogEditorTransaction: Undo Clicking on Elements
+[2024.09.21-22.51.36:769][156]Cmd: TRANSACTION UNDO
+[2024.09.21-22.51.36:769][156]LogEditorTransaction: Undo Place Objects
+[2024.09.21-22.51.37:136][177]Cmd: TRANSACTION UNDO
+[2024.09.21-22.51.37:136][177]LogEditorTransaction: Undo Place Objects
+[2024.09.21-22.51.40:209][400]Cmd: TRANSACTION UNDO
+[2024.09.21-22.51.40:209][400]LogEditorTransaction: Undo Place Objects
+[2024.09.21-22.55.49:206][507]LogEditorFactories: Performing atomic reimport of [C:/Users/piech/OneDrive/Desktop/DreamWalker/Roof/scenes/OPRoof.fbx]
+[2024.09.21-22.55.49:211][507]LogFbx: Loading FBX Scene from C:/Users/piech/OneDrive/Desktop/DreamWalker/Roof/scenes/OPRoof.fbx
+[2024.09.21-22.55.49:217][507]LogFbx: FBX Scene Loaded Succesfully
+[2024.09.21-22.55.49:260][507]LogFbx: Display: Triangulating static mesh OP_Roof
+[2024.09.21-22.55.49:309][507]LogStaticMesh: Display: Building static mesh OPRoof (Required Memory Estimate: 3.55438 MB)...
+[2024.09.21-22.55.49:358][507]LogStaticMesh: Built static mesh [0.05s] /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.55.49:384][507]LogEditorFactories: -- imported successfully
+[2024.09.21-22.55.52:678][636]LogEditorFactories: Performing atomic reimport of [C:/Users/piech/OneDrive/Desktop/DreamWalker/Roof/scenes/OPRoof_2.fbx]
+[2024.09.21-22.55.52:683][636]LogFbx: Loading FBX Scene from C:/Users/piech/OneDrive/Desktop/DreamWalker/Roof/scenes/OPRoof_2.fbx
+[2024.09.21-22.55.52:689][636]LogFbx: FBX Scene Loaded Succesfully
+[2024.09.21-22.55.52:721][636]LogFbx: Display: Triangulating static mesh OP_Roof_Straight
+[2024.09.21-22.55.52:764][636]LogStaticMesh: Display: Building static mesh OPRoof_2 (Required Memory Estimate: 3.554434 MB)...
+[2024.09.21-22.55.52:817][636]LogStaticMesh: Built static mesh [0.05s] /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.55.54:075][636]LogSlate: Window 'Reimport Material Conflicts Resolution' being destroyed
+[2024.09.21-22.55.54:082][636]LogEditorFactories: -- imported successfully
+[2024.09.21-22.55.56:781][759]LogEditorFactories: Performing atomic reimport of [C:/Users/piech/OneDrive/Desktop/DreamWalker/Roof/scenes/CLRoof.fbx]
+[2024.09.21-22.55.56:786][759]LogFbx: Loading FBX Scene from C:/Users/piech/OneDrive/Desktop/DreamWalker/Roof/scenes/CLRoof.fbx
+[2024.09.21-22.55.56:793][759]LogFbx: FBX Scene Loaded Succesfully
+[2024.09.21-22.55.56:840][759]LogFbx: Display: Triangulating static mesh Close_Roof
+[2024.09.21-22.55.56:898][759]LogStaticMesh: Display: Building static mesh CLRoof (Required Memory Estimate: 4.790557 MB)...
+[2024.09.21-22.55.56:967][759]LogStaticMesh: Built static mesh [0.07s] /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof
+[2024.09.21-22.55.56:988][759]LogEditorFactories: -- imported successfully
+[2024.09.21-22.55.59:965][845]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.09.21-22.55.59:992][845]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/ThatchRoof/CLRoof] ([1] browsable assets)...
+[2024.09.21-22.56.00:001][845]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof]
+[2024.09.21-22.56.00:001][845]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/ThatchRoof/CLRoof]
+[2024.09.21-22.56.00:006][845]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof
+[2024.09.21-22.56.00:007][845]LogSavePackage: Moving '../../../../../../Users/piech/OneDrive/Desktop/DreamWalker/Dreamwalker Repo/Patchwork/Patchwork_UE/Saved/CLRoof5C5B420C4EB374C1C43406A35C6BC661.tmp' to '../../../../../../Users/piech/OneDrive/Desktop/DreamWalker/Dreamwalker Repo/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/ThatchRoof/CLRoof.uasset'
+[2024.09.21-22.56.00:016][845]LogFileHelpers: InternalPromptForCheckoutAndSave took 51.364 ms (total: 1.63 sec)
+[2024.09.21-22.56.00:049][845]LogContentValidation: Display: Starting to validate 1 assets
+[2024.09.21-22.56.00:049][845]LogContentValidation: Enabled validators:
+[2024.09.21-22.56.00:049][845]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.09.21-22.56.00:049][845]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.09.21-22.56.00:049][845]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.09.21-22.56.00:049][845]LogContentValidation: Display: Validating asset /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof
+[2024.09.21-22.56.00:049][845]AssetCheck: /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof Validating asset
+[2024.09.21-22.56.00:607][876]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.09.21-22.56.00:643][876]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/ThatchRoof/OPRoof] ([1] browsable assets)...
+[2024.09.21-22.56.00:651][876]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof]
+[2024.09.21-22.56.00:651][876]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/ThatchRoof/OPRoof]
+[2024.09.21-22.56.00:655][876]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof
+[2024.09.21-22.56.00:656][876]LogSavePackage: Moving '../../../../../../Users/piech/OneDrive/Desktop/DreamWalker/Dreamwalker Repo/Patchwork/Patchwork_UE/Saved/OPRoof6D8634D94D317C9DA338ECAD31D95F25.tmp' to '../../../../../../Users/piech/OneDrive/Desktop/DreamWalker/Dreamwalker Repo/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/ThatchRoof/OPRoof.uasset'
+[2024.09.21-22.56.00:664][876]LogFileHelpers: InternalPromptForCheckoutAndSave took 56.974 ms (total: 1.69 sec)
+[2024.09.21-22.56.00:699][876]LogContentValidation: Display: Starting to validate 1 assets
+[2024.09.21-22.56.00:699][876]LogContentValidation: Enabled validators:
+[2024.09.21-22.56.00:699][876]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.09.21-22.56.00:699][876]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.09.21-22.56.00:699][876]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.09.21-22.56.00:699][876]LogContentValidation: Display: Validating asset /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.56.00:699][876]AssetCheck: /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof Validating asset
+[2024.09.21-22.56.01:012][894]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.09.21-22.56.01:042][894]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2] ([1] browsable assets)...
+[2024.09.21-22.56.01:050][894]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2]
+[2024.09.21-22.56.01:050][894]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2]
+[2024.09.21-22.56.01:054][894]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2
+[2024.09.21-22.56.01:055][894]LogSavePackage: Moving '../../../../../../Users/piech/OneDrive/Desktop/DreamWalker/Dreamwalker Repo/Patchwork/Patchwork_UE/Saved/OPRoof_22259BECE492C3BF7D91EEF8D771CCBEB.tmp' to '../../../../../../Users/piech/OneDrive/Desktop/DreamWalker/Dreamwalker Repo/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.uasset'
+[2024.09.21-22.56.01:063][894]LogFileHelpers: InternalPromptForCheckoutAndSave took 51.332 ms (total: 1.74 sec)
+[2024.09.21-22.56.01:090][894]LogContentValidation: Display: Starting to validate 1 assets
+[2024.09.21-22.56.01:090][894]LogContentValidation: Enabled validators:
+[2024.09.21-22.56.01:090][894]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.09.21-22.56.01:090][894]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.09.21-22.56.01:090][894]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.09.21-22.56.01:090][894]LogContentValidation: Display: Validating asset /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.56.01:091][894]AssetCheck: /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2 Validating asset
+[2024.09.21-22.56.05:161][166]Cmd: DELETE
+[2024.09.21-22.56.05:161][166]Cmd: ACTOR DELETE
+[2024.09.21-22.56.05:161][166]LogEditorActor: Cannot delete component StaticMeshComponent /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_282.StaticMeshComponent0: Can't delete non-instanced components or the scene root.
+[2024.09.21-22.56.06:369][251]Cmd: DELETE
+[2024.09.21-22.56.06:369][251]Cmd: ACTOR DELETE
+[2024.09.21-22.56.06:370][251]LogEditorActor: Cannot delete component StaticMeshComponent /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_282.StaticMeshComponent0: Can't delete non-instanced components or the scene root.
+[2024.09.21-22.56.10:647][598]Cmd: DELETE
+[2024.09.21-22.56.10:647][598]Cmd: ACTOR DELETE
+[2024.09.21-22.56.10:662][598]LogEditorActor: Deleted Actor: StaticMeshActor
+[2024.09.21-22.56.10:679][598]LogUObjectHash: Compacting FUObjectHashTables data took   1.16ms
+[2024.09.21-22.56.10:684][598]LogEditorActor: Deleted 1 Actors (0.036 secs)
+[2024.09.21-22.56.12:284][757]Cmd: DELETE
+[2024.09.21-22.56.12:284][757]Cmd: ACTOR DELETE
+[2024.09.21-22.56.12:297][757]LogEditorActor: Deleted Actor: StaticMeshActor
+[2024.09.21-22.56.12:311][757]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2024.09.21-22.56.12:314][757]LogEditorActor: Deleted 1 Actors (0.030 secs)
+[2024.09.21-22.56.13:077][823]Cmd: DELETE
+[2024.09.21-22.56.13:077][823]Cmd: ACTOR DELETE
+[2024.09.21-22.56.13:091][823]LogEditorActor: Deleted Actor: StaticMeshActor
+[2024.09.21-22.56.13:105][823]LogUObjectHash: Compacting FUObjectHashTables data took   0.54ms
+[2024.09.21-22.56.13:107][823]LogEditorActor: Deleted 1 Actors (0.030 secs)
+[2024.09.21-22.56.13:556][856]Cmd: DELETE
+[2024.09.21-22.56.13:556][856]Cmd: ACTOR DELETE
+[2024.09.21-22.56.13:570][856]LogEditorActor: Deleted Actor: StaticMeshActor
+[2024.09.21-22.56.13:581][856]LogUObjectHash: Compacting FUObjectHashTables data took   0.52ms
+[2024.09.21-22.56.13:584][856]LogEditorActor: Deleted 1 Actors (0.029 secs)
+[2024.09.21-22.56.14:462][916]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof
+[2024.09.21-22.56.14:462][916]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof
+[2024.09.21-22.56.14:463][916]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_261
+[2024.09.21-22.56.15:027][966]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2024.09.21-22.56.15:028][966]LogEditorActor: Deleted 0 Actors (0.015 secs)
+[2024.09.21-22.56.15:035][966]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof
+[2024.09.21-22.56.15:035][966]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof
+[2024.09.21-22.56.15:038][966]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/CLRoof.CLRoof as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_262
+[2024.09.21-22.56.15:907][ 16]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.56.15:907][ 16]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.56.15:909][ 16]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2 as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_265
+[2024.09.21-22.56.16:435][ 62]LogUObjectHash: Compacting FUObjectHashTables data took   0.60ms
+[2024.09.21-22.56.16:437][ 62]LogEditorActor: Deleted 0 Actors (0.015 secs)
+[2024.09.21-22.56.16:444][ 62]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.56.16:444][ 62]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2
+[2024.09.21-22.56.16:446][ 62]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof_2.OPRoof_2 as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_267
+[2024.09.21-22.56.17:090][ 93]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.56.17:090][ 93]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.56.17:091][ 93]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_268
+[2024.09.21-22.56.17:479][126]LogUObjectHash: Compacting FUObjectHashTables data took   0.49ms
+[2024.09.21-22.56.17:481][126]LogEditorActor: Deleted 0 Actors (0.014 secs)
+[2024.09.21-22.56.17:488][126]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.56.17:489][126]LogActorFactory: Actor Factory attempting to spawn StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof
+[2024.09.21-22.56.17:491][126]LogActorFactory: Actor Factory spawned StaticMesh /Game/Patchwork/Models/Forest/ThatchRoof/OPRoof.OPRoof as actor: StaticMeshActor /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View:PersistentLevel.StaticMeshActor_271
+[2024.09.21-22.56.20:093][347]LogFileHelpers: InternalPromptForCheckoutAndSave started...
+[2024.09.21-22.56.20:247][347]LogUObjectHash: Compacting FUObjectHashTables data took   0.52ms
+[2024.09.21-22.56.20:350][347]LogSavePackage: Moving output files for package: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View
+[2024.09.21-22.56.20:351][347]LogSavePackage: Moving '../../../../../../Users/piech/OneDrive/Desktop/DreamWalker/Dreamwalker Repo/Patchwork/Patchwork_UE/Saved/Forest_Asset_ViewDD21222F430C0DDC288CA8B81FD398A0.tmp' to '../../../../../../Users/piech/OneDrive/Desktop/DreamWalker/Dreamwalker Repo/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.umap'
+[2024.09.21-22.56.20:376][347]LogFileHelpers: Saving map 'Forest_Asset_View' took 0.234
+[2024.09.21-22.56.20:383][347]LogFileHelpers: InternalPromptForCheckoutAndSave took 290.380 ms (total: 2.03 sec)
+[2024.09.21-22.56.20:415][347]LogContentValidation: Display: Starting to validate 1 assets
+[2024.09.21-22.56.20:415][347]LogContentValidation: Enabled validators:
+[2024.09.21-22.56.20:415][347]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
+[2024.09.21-22.56.20:415][347]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
+[2024.09.21-22.56.20:415][347]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
+[2024.09.21-22.56.20:415][347]LogContentValidation: Display: Validating asset /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View.Forest_Asset_View
+[2024.09.21-22.56.20:417][347]AssetCheck: /Game/Patchwork/Levels/Maps/Mushroom_Forest/Forest_Asset_View Validating asset
