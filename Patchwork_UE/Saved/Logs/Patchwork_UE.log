@@ -1,4 +1,4 @@
-﻿Log file open, 10/10/24 19:12:16
+Log file open, 10/10/24 19:12:16
 LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
 LogWindows: File 'aqProf.dll' does not exist
 LogProfilingDebugging: Loading WinPixEventRuntime.dll for PIX profiling (from ../../../Engine/Binaries/ThirdParty/Windows/WinPixEventRuntime/x64).
@@ -176,6 +176,7 @@ LogPluginManager: Mounting Engine plugin AssetTags
 LogPluginManager: Mounting Engine plugin AudioSynesthesia
 LogPluginManager: Mounting Engine plugin AudioWidgets
 LogPluginManager: Mounting Engine plugin ChunkDownloader
+LogPluginManager: Mounting Engine plugin CommonUI
 LogPluginManager: Mounting Engine plugin CustomMeshComponent
 LogPluginManager: Mounting Engine plugin CableComponent
 LogPluginManager: Mounting Engine plugin CommonUI
@@ -229,6 +230,7 @@ LogPluginManager: Mounting Engine plugin BaseCharacterFXEditor
 LogPluginManager: Mounting Engine plugin MetaHumanProjectUtilities
 LogPluginManager: Mounting Engine plugin SQLiteCore
 LogPluginManager: Mounting Engine plugin LightMixer
+LogPluginManager: Mounting Engine plugin SQLiteCore
 LogPluginManager: Mounting Engine plugin ObjectMixer
 LogPluginManager: Mounting Engine plugin PortableObjectFileDataSource
 LogPluginManager: Mounting Engine plugin OnlineSubsystemGooglePlay
@@ -237,6 +239,7 @@ LogPluginManager: Mounting Engine plugin ConcertReplicationScripting
 LogPluginManager: Mounting Engine plugin ConcertSyncCore
 LogPluginManager: Mounting Engine plugin ConcertSyncClient
 LogPluginManager: Mounting Engine plugin ConcertClientSharedSlate
+LogPluginManager: Mounting Engine plugin MultiUserClient
 LogPluginManager: Mounting Engine plugin ConcertSharedSlate
 LogPluginManager: Mounting Engine plugin MultiUserClient
 LogPluginManager: Mounting Project plugin PCGExtendedToolkit
@@ -272,6 +275,9 @@ LogInit: CreateHttpThread using FCurlHttpThread
 LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
 LogOnline: OSS: Created online subsystem instance for: NULL
 LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for type [NULL]
+LogStudioTelemetry: Display: Starting StudioTelemetry Module
+LogStudioTelemetry: Display: Created an analytics provider LogAnalytics from module AnalyticsLog configuration Engine [StudioTelemetry.Log]
+LogStudioTelemetry: Started StudioTelemetry Session
 LogInit: ExecutableName: UnrealEditor.exe
 LogInit: Build: ++UE5+Release-5.4-CL-33871570
 LogInit: Platform=WindowsEditor
