@@ -52,6 +52,7 @@ LogPluginManager: Mounting Engine plugin RenderGraphInsights
 LogPluginManager: Mounting Engine plugin EnhancedInput
 LogPluginManager: Found config from plugin[EnhancedInput] Input
 LogPluginManager: Mounting Engine plugin TraceUtilities
+LogPluginManager: Mounting Engine plugin XGEController
 LogPluginManager: Mounting Engine plugin WorldMetrics
 LogPluginManager: Mounting Engine plugin XGEController
 LogPluginManager: Mounting Engine plugin ChaosVD
@@ -213,7 +214,6 @@ LogPluginManager: Mounting Engine plugin ResonanceAudio
 LogPluginManager: Mounting Engine plugin SignificanceManager
 LogPluginManager: Mounting Engine plugin RigVM
 LogPluginManager: Mounting Engine plugin SoundFields
-LogPluginManager: Mounting Engine plugin Soundscape
 LogPluginManager: Mounting Engine plugin Synthesis
 LogPluginManager: Mounting Engine plugin WaveTable
 LogPluginManager: Mounting Engine plugin WindowsMoviePlayer
