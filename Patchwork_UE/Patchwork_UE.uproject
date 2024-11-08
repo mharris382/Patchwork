@@ -42,6 +42,10 @@
 		{
 			"Name": "PCGGeometryScriptInterop",
 			"Enabled": true
+		},
+		{
+			"Name": "ImpostorBaker",
+			"Enabled": true
 		}
 	]
 }
