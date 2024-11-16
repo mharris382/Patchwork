@@ -46,6 +46,10 @@
 		{
 			"Name": "ImpostorBaker",
 			"Enabled": true
+		},
+		{
+			"Name": "ArchitectCore",
+			"Enabled": true
 		}
 	]
 }

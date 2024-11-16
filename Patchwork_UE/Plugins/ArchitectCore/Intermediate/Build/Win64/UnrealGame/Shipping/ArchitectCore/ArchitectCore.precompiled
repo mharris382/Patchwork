@@ -1,0 +1,10 @@
+{
+	"OutputFiles": [
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\ArchitectCore\\Module.ArchitectCore.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\ArchitectCore\\ArchitectCore.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\ArchitectCore\\ArchitectCutter.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\ArchitectCore\\ArchitectRecipeStructs.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\ArchitectCore\\PCArchitectBase.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Shipping\\ArchitectCore\\ArchitectRecipe.cpp.obj"
+	]
+}
