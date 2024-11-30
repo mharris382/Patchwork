@@ -8,21 +8,18 @@
 #include "PCGExData.h"
 #include "PCGExFactoryProvider.h"
 
+#include "Graph/PCGExCluster.h"
+
 #include "PCGExPointFilter.generated.h"
 
 namespace PCGExGraph
 {
-	struct FIndexedEdge;
-}
-
-namespace PCGExCluster
-{
-	struct FNode;
+	struct FEdge;
 }
 
 namespace PCGExPointFilter
 {
-	class TFilter;
+	class FFilter;
 }
 
 namespace PCGExFilters
@@ -33,7 +30,7 @@ namespace PCGExFilters
 		Point,
 		Group,
 		Node,
-		ClusterEdge,
+		Edge,
 	};
 }
 
@@ -41,7 +38,7 @@ namespace PCGExFilters
  * 
  */
 UCLASS(Abstract, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExFilterFactoryBase : public UPCGExParamFactoryBase
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFilterFactoryBase : public UPCGExParamFactoryBase
 {
 	GENERATED_BODY()
 
@@ -51,82 +48,115 @@ public:
 	virtual bool Init(FPCGExContext* InContext);
 
 	int32 Priority = 0;
-	virtual PCGExPointFilter::TFilter* CreateFilter() const;
+	virtual TSharedPtr<PCGExPointFilter::FFilter> CreateFilter() const;
+
+	virtual void RegisterBuffersDependencies(FPCGExContext* InContext, PCGExData::FFacadePreloader& FacadePreloader) const
+	{
+	}
 };
 
 namespace PCGExPointFilter
 {
-	PCGEX_ASYNC_STATE(State_FilteringPoints)
+	const FName OutputFilterLabel = FName("Filter");
+	const FName OutputFilterLabelNode = FName("Node Filter");
+	const FName OutputFilterLabelEdge = FName("Edge Filter");
+	const FName SourceFiltersLabel = FName("Filters");
 
-	const FName OutputFilterLabel = TEXT("Filter");
-	const FName SourceFiltersLabel = TEXT("Filters");
-	const FName OutputInsideFiltersLabel = TEXT("Inside");
-	const FName OutputOutsideFiltersLabel = TEXT("Outside");
+	const FName SourceFiltersConditionLabel = FName("Conditions Filters");
+	const FName SourceKeepConditionLabel = FName("Keep Conditions");
 
-	class PCGEXTENDEDTOOLKIT_API TFilter
+	const FName SourcePointFiltersLabel = FName("Point Filters");
+	const FName SourceVtxFiltersLabel = FName("Vtx Filters");
+	const FName SourceEdgeFiltersLabel = FName("Edge Filters");
+
+	const FName OutputInsideFiltersLabel = FName("Inside");
+	const FName OutputOutsideFiltersLabel = FName("Outside");
+
+	class /*PCGEXTENDEDTOOLKIT_API*/ FFilter
 	{
 	public:
-		explicit TFilter(const UPCGExFilterFactoryBase* InFactory):
+		explicit FFilter(const TObjectPtr<const UPCGExFilterFactoryBase>& InFactory):
 			Factory(InFactory)
 		{
 		}
 
+		bool bUseEdgeAsPrimary = false; // This shouldn't be there but...
+		
 		bool DefaultResult = true;
-		PCGExData::FFacade* PointDataFacade = nullptr;
+		TSharedPtr<PCGExData::FFacade> PointDataFacade;
 
 		bool bCacheResults = true;
-		const UPCGExFilterFactoryBase* Factory;
-		TArray<bool> Results;
+		TObjectPtr<const UPCGExFilterFactoryBase> Factory;
+		TArray<int8> Results;
 
 		int32 FilterIndex = 0;
 
 		virtual PCGExFilters::EType GetFilterType() const { return PCGExFilters::EType::Point; }
 
-		virtual bool Init(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade);
+		virtual bool Init(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade> InPointDataFacade);
 
 		virtual void PostInit();
 
 		virtual bool Test(const int32 Index) const;
 		virtual bool Test(const PCGExCluster::FNode& Node) const;
-		virtual bool Test(const PCGExGraph::FIndexedEdge& Edge) const;
+		virtual bool Test(const PCGExGraph::FEdge& Edge) const;
 
-		virtual ~TFilter()
-		{
-			Results.Empty();
-		}
+		virtual ~FFilter() = default;
 	};
 
-	class PCGEXTENDEDTOOLKIT_API TManager
+	class /*PCGEXTENDEDTOOLKIT_API*/ FSimpleFilter : public FFilter
 	{
 	public:
-		explicit TManager(PCGExData::FFacade* InPointDataFacade);
+		explicit FSimpleFilter(const TObjectPtr<const UPCGExFilterFactoryBase>& InFactory):
+			FFilter(InFactory)
+		{
+		}
 
+		virtual bool Test(const int32 Index) const override;
+		virtual bool Test(const PCGExCluster::FNode& Node) const override final;
+		virtual bool Test(const PCGExGraph::FEdge& Edge) const override final;
+	};
+
+	class /*PCGEXTENDEDTOOLKIT_API*/ FManager : public TSharedFromThis<FManager>
+	{
+	public:
+		explicit FManager(const TSharedRef<PCGExData::FFacade>& InPointDataFacade);
+
+		bool bUseEdgeAsPrimary = false; // This shouldn't be there...
+		
 		bool bCacheResultsPerFilter = false;
 		bool bCacheResults = false;
-		TArray<bool> Results;
+		TArray<int8> Results;
 
 		bool bValid = false;
 
-		PCGExData::FFacade* PointDataFacade = nullptr;
+		TSharedRef<PCGExData::FFacade> PointDataFacade;
 
-		bool Init(const FPCGContext* InContext, const TArray<UPCGExFilterFactoryBase*>& InFactories);
+		bool Init(FPCGExContext* InContext, const TArray<TObjectPtr<const UPCGExFilterFactoryBase>>& InFactories);
 
 		virtual bool Test(const int32 Index);
 		virtual bool Test(const PCGExCluster::FNode& Node);
-		virtual bool Test(const PCGExGraph::FIndexedEdge& Edge);
+		virtual bool Test(const PCGExGraph::FEdge& Edge);
 
-		virtual ~TManager()
+		virtual ~FManager()
 		{
-			PCGEX_DELETE_TARRAY(ManagedFilters)
 		}
 
 	protected:
-		TArray<TFilter*> ManagedFilters;
+		TArray<TSharedPtr<FFilter>> ManagedFilters;
 
-		virtual bool InitFilter(const FPCGContext* InContext, TFilter* Filter);
-		virtual bool PostInit(const FPCGContext* InContext);
-		virtual void PostInitFilter(const FPCGContext* InContext, TFilter* InFilter);
+		virtual bool InitFilter(FPCGExContext* InContext, const TSharedPtr<FFilter>& Filter);
+		virtual bool PostInit(FPCGExContext* InContext);
+		virtual void PostInitFilter(FPCGExContext* InContext, const TSharedPtr<FFilter>& InFilter);
 
 		virtual void InitCache();
 	};
+
+	static void RegisterBuffersDependencies(FPCGExContext* InContext, const TArray<TObjectPtr<const UPCGExFilterFactoryBase>>& InFactories, PCGExData::FFacadePreloader& FacadePreloader)
+	{
+		for (const UPCGExFilterFactoryBase* Factory : InFactories)
+		{
+			Factory->RegisterBuffersDependencies(InContext, FacadePreloader);
+		}
+	}
 }

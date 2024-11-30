@@ -8,15 +8,10 @@
 
 #pragma region UPCGSettings interface
 
-PCGExData::EInit UPCGExMakeClustersUniqueSettings::GetMainOutputInitMode() const { return PCGExData::EInit::Forward; }
-PCGExData::EInit UPCGExMakeClustersUniqueSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::Forward; }
+PCGExData::EIOInit UPCGExMakeClustersUniqueSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Forward; }
+PCGExData::EIOInit UPCGExMakeClustersUniqueSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::Forward; }
 
 #pragma endregion
-
-FPCGExMakeClustersUniqueContext::~FPCGExMakeClustersUniqueContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 PCGEX_INITIALIZE_ELEMENT(MakeClustersUnique)
 
@@ -34,11 +29,10 @@ bool FPCGExMakeClustersUniqueElement::ExecuteInternal(FPCGContext* InContext) co
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExMakeClustersUniqueElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(MakeClustersUnique)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
+		Context->SetState(PCGEx::State_ReadyForNextPoints);
 	}
 
 	while (Context->AdvancePointsIO(false))

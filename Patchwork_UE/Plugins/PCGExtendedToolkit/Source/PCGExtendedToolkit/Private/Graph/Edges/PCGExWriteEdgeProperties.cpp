@@ -5,13 +5,11 @@
 
 #include "Data/Blending/PCGExMetadataBlender.h"
 
-#include "Kismet/KismetMathLibrary.h"
-
 #define LOCTEXT_NAMESPACE "PCGExEdgesToPaths"
 #define PCGEX_NAMESPACE WriteEdgeProperties
 
-PCGExData::EInit UPCGExWriteEdgePropertiesSettings::GetMainOutputInitMode() const { return PCGExData::EInit::Forward; }
-PCGExData::EInit UPCGExWriteEdgePropertiesSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExWriteEdgePropertiesSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Forward; }
+PCGExData::EIOInit UPCGExWriteEdgePropertiesSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 TArray<FPCGPinProperties> UPCGExWriteEdgePropertiesSettings::InputPinProperties() const
 {
@@ -21,11 +19,6 @@ TArray<FPCGPinProperties> UPCGExWriteEdgePropertiesSettings::InputPinProperties(
 }
 
 PCGEX_INITIALIZE_ELEMENT(WriteEdgeProperties)
-
-FPCGExWriteEdgePropertiesContext::~FPCGExWriteEdgePropertiesContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExWriteEdgePropertiesElement::Boot(FPCGExContext* InContext) const
 {
@@ -44,25 +37,21 @@ bool FPCGExWriteEdgePropertiesElement::ExecuteInternal(
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExWriteEdgePropertiesElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(WriteEdgeProperties)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
-		if (!Context->StartProcessingClusters<PCGExClusterMT::TBatch<PCGExWriteEdgeProperties::FProcessor>>(
-			[](PCGExData::FPointIOTaggedEntries* Entries) { return true; },
-			[&](PCGExClusterMT::TBatch<PCGExWriteEdgeProperties::FProcessor>* NewBatch)
+		if (!Context->StartProcessingClusters<PCGExWriteEdgeProperties::FBatch>(
+			[](const TSharedPtr<PCGExData::FPointIOTaggedEntries>& Entries) { return true; },
+			[&](const TSharedPtr<PCGExWriteEdgeProperties::FBatch>& NewBatch)
 			{
 				if (Settings->bWriteHeuristics) { NewBatch->SetRequiresHeuristics(true); }
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Could not build any clusters."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not build any clusters."));
 		}
 	}
 
-	if (!Context->ProcessClusters()) { return false; }
+	PCGEX_CLUSTER_BATCH_PROCESSING(PCGEx::State_Done)
 
 	Context->OutputPointsAndEdges();
 
@@ -74,20 +63,23 @@ namespace PCGExWriteEdgeProperties
 {
 	FProcessor::~FProcessor()
 	{
-		PCGEX_DELETE(MetadataBlender)
 	}
 
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExWriteEdgeProperties::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(WriteEdgeProperties)
 
-		if (!FClusterProcessor::Process(AsyncManager)) { return false; }
+		EdgeDataFacade->bSupportsScopedGet = Context->bScopedAttributeGet;
 
-		LocalSettings = Settings;
+		if (!FClusterProcessor::Process(InAsyncManager)) { return false; }
+
+		if (!DirectionSettings.InitFromParent(ExecutionContext, StaticCastWeakPtr<FBatch>(ParentBatch).Pin()->DirectionSettings, EdgeDataFacade))
+		{
+			return false;
+		}
 
 		{
-			PCGExData::FFacade* OutputFacade = EdgeDataFacade;
+			const TSharedRef<PCGExData::FFacade>& OutputFacade = EdgeDataFacade;
 			PCGEX_FOREACH_FIELD_EDGEEXTRAS(PCGEX_OUTPUT_INIT)
 		}
 
@@ -101,49 +93,29 @@ namespace PCGExWriteEdgeProperties
 
 			// Create edge-scope getters
 #define PCGEX_CREATE_LOCAL_AXIS_GETTER(_AXIS)\
-			if (Settings->bWriteRadius##_AXIS && Settings->Radius##_AXIS##Type == EPCGExFetchType::Attribute){\
-				SolidificationRad##_AXIS = Settings->Radius##_AXIS##Source == EPCGExGraphValueSource::Edge ? EdgeDataFacade->GetBroadcaster<double>(Settings->Radius##_AXIS##SourceAttribute) : VtxDataFacade->GetBroadcaster<double>(Settings->Radius##_AXIS##SourceAttribute);\
+			if (Settings->bWriteRadius##_AXIS && Settings->Radius##_AXIS##Input == EPCGExInputValueType::Attribute){\
+				SolidificationRad##_AXIS = Settings->Radius##_AXIS##Source == EPCGExClusterComponentSource::Edge ? EdgeDataFacade->GetBroadcaster<double>(Settings->Radius##_AXIS##SourceAttribute) : VtxDataFacade->GetBroadcaster<double>(Settings->Radius##_AXIS##SourceAttribute);\
 				if (!SolidificationRad##_AXIS){ PCGE_LOG_C(Warning, GraphAndLog, Context, FText::Format(FTEXT("Some edges don't have the specified Radius Attribute \"{0}\"."), FText::FromName(Settings->Radius##_AXIS##SourceAttribute.GetName()))); return false; }}
 			PCGEX_FOREACH_XYZ(PCGEX_CREATE_LOCAL_AXIS_GETTER)
 #undef PCGEX_CREATE_LOCAL_AXIS_GETTER
 
-			if (Settings->SolidificationLerpOperand == EPCGExFetchType::Attribute)
+			if (Settings->SolidificationLerpInput == EPCGExInputValueType::Attribute)
 			{
 				SolidificationLerpGetter = EdgeDataFacade->GetBroadcaster<double>(Settings->SolidificationLerpAttribute);
 				if (!SolidificationLerpGetter)
 				{
-					PCGE_LOG_C(Warning, GraphAndLog, Context, FText::Format(FTEXT("Some edges don't have the specified SolidificationEdgeLerp Attribute \"{0}\"."), FText::FromName(Settings->SolidificationLerpAttribute.GetName())));
+					PCGE_LOG_C(Warning, GraphAndLog, ExecutionContext, FText::Format(FTEXT("Some edges don't have the specified SolidificationEdgeLerp Attribute \"{0}\"."), FText::FromName(Settings->SolidificationLerpAttribute.GetName())));
 					return false;
 				}
 			}
 		}
 
-		if (Settings->DirectionMethod == EPCGExEdgeDirectionMethod::EndpointsAttribute)
-		{
-			VtxDirCompGetter = VtxDataFacade->GetBroadcaster<double>(Settings->DirSourceAttribute);
-			if (!VtxDirCompGetter)
-			{
-				PCGE_LOG_C(Warning, GraphAndLog, Context, FText::Format(FTEXT("Some vtx don't have the specified DirSource Attribute \"{0}\"."), FText::FromName(Settings->DirSourceAttribute.GetName())));
-				return false;
-			}
-		}
-		else if (Settings->DirectionMethod == EPCGExEdgeDirectionMethod::EdgeDotAttribute)
-		{
-			EdgeDirCompGetter = EdgeDataFacade->GetBroadcaster<FVector>(Settings->DirSourceAttribute);
-			if (!EdgeDirCompGetter)
-			{
-				PCGE_LOG_C(Warning, GraphAndLog, Context, FText::Format(FTEXT("Some edges don't have the specified DirSource Attribute \"{0}\"."), FText::FromName(Settings->DirSourceAttribute.GetName())));
-				return false;
-			}
-		}
-
 		if (Settings->bEndpointsBlending)
 		{
-			MetadataBlender = new PCGExDataBlending::FMetadataBlender(const_cast<FPCGExBlendingDetails*>(&Settings->BlendingSettings));
-			MetadataBlender->PrepareForData(EdgeDataFacade, VtxDataFacade, PCGExData::ESource::In, true);
+			MetadataBlender = MakeShared<PCGExDataBlending::FMetadataBlender>(const_cast<FPCGExBlendingDetails*>(&Settings->BlendingSettings));
+			MetadataBlender->PrepareForData(EdgeDataFacade, VtxDataFacade, PCGExData::ESource::In, true, &PCGExGraph::ProtectedClusterAttributes);
 		}
 
-		bAscendingDesired = Settings->DirectionChoice == EPCGExEdgeDirectionChoice::SmallestToGreatest;
 		StartWeight = FMath::Clamp(Settings->EndpointsWeights, 0, 1);
 		EndWeight = 1 - StartWeight;
 
@@ -152,55 +124,34 @@ namespace PCGExWriteEdgeProperties
 		return true;
 	}
 
-	void FProcessor::ProcessSingleEdge(PCGExGraph::FIndexedEdge& Edge)
+	void FProcessor::PrepareSingleLoopScopeForEdges(const uint32 StartIndex, const int32 Count)
 	{
-		uint32 EdgeStartPtIndex = Edge.Start;
-		uint32 EdgeEndPtIndex = Edge.End;
+		FClusterProcessor::PrepareSingleLoopScopeForEdges(StartIndex, Count);
+		EdgeDataFacade->Fetch(StartIndex, Count);
+	}
 
-		const FPCGPoint& StartPoint = VtxIO->GetInPoint(EdgeStartPtIndex);
-		const FPCGPoint& EndPoint = VtxIO->GetInPoint(EdgeEndPtIndex);
+	void FProcessor::ProcessSingleEdge(const int32 EdgeIndex, PCGExGraph::FEdge& Edge, const int32 LoopIdx, const int32 Count)
+	{
+		DirectionSettings.SortEndpoints(Cluster.Get(), Edge);
+
+		const PCGExCluster::FNode& StartNode = *Cluster->GetEdgeStart(Edge);
+		const PCGExCluster::FNode& EndNode = *Cluster->GetEdgeEnd(Edge);
 
 		double BlendWeightStart = StartWeight;
 		double BlendWeightEnd = EndWeight;
 
-		FVector DirFrom = StartPoint.Transform.GetLocation();
-		FVector DirTo = EndPoint.Transform.GetLocation();
-		bool bAscending = true; // Default for Context->DirectionMethod == EPCGExEdgeDirectionMethod::EndpointsOrder
+		const FVector A = Cluster->GetPos(StartNode);
+		const FVector B = Cluster->GetPos(EndNode);
 
-		if (LocalSettings->DirectionMethod == EPCGExEdgeDirectionMethod::EndpointsAttribute)
-		{
-			bAscending = VtxDirCompGetter->Values[EdgeStartPtIndex] < VtxDirCompGetter->Values[EdgeEndPtIndex];
-		}
-		else if (LocalSettings->DirectionMethod == EPCGExEdgeDirectionMethod::EdgeDotAttribute)
-		{
-			const FVector CounterDir = EdgeDirCompGetter->Values[Edge.EdgeIndex];
-			const FVector StartEndDir = (EndPoint.Transform.GetLocation() - StartPoint.Transform.GetLocation()).GetSafeNormal();
-			const FVector EndStartDir = (StartPoint.Transform.GetLocation() - EndPoint.Transform.GetLocation()).GetSafeNormal();
-			bAscending = CounterDir.Dot(StartEndDir) < CounterDir.Dot(EndStartDir);
-		}
-		else if (LocalSettings->DirectionMethod == EPCGExEdgeDirectionMethod::EndpointsIndices)
-		{
-			bAscending = (EdgeStartPtIndex < EdgeEndPtIndex);
-		}
-
-		if (bAscending != bAscendingDesired)
-		{
-			std::swap(DirTo, DirFrom);
-			std::swap(EdgeStartPtIndex, EdgeEndPtIndex);
-		}
-
-		const FVector EdgeDirection = (DirFrom - DirTo).GetSafeNormal();
-		const double EdgeLength = FVector::Distance(DirFrom, DirTo);
+		const FVector EdgeDirection = (A - B).GetSafeNormal();
+		const double EdgeLength = FVector::Distance(A, B);
 
 		PCGEX_OUTPUT_VALUE(EdgeDirection, Edge.PointIndex, EdgeDirection);
 		PCGEX_OUTPUT_VALUE(EdgeLength, Edge.PointIndex, EdgeLength);
 
-		if (LocalSettings->bWriteHeuristics)
+		if (Settings->bWriteHeuristics)
 		{
-			PCGExCluster::FNode StartNode = *(Cluster->Nodes->GetData() + (*Cluster->NodeIndexLookup)[EdgeStartPtIndex]);
-			PCGExCluster::FNode EndNode = *(Cluster->Nodes->GetData() + (*Cluster->NodeIndexLookup)[EdgeEndPtIndex]);
-
-			switch (LocalSettings->HeuristicsMode)
+			switch (Settings->HeuristicsMode)
 			{
 			case EPCGExHeuristicsWriteMode::EndpointsOrder:
 				PCGEX_OUTPUT_VALUE(Heuristics, Edge.PointIndex, HeuristicsHandler->GetEdgeScore(StartNode, EndNode, Edge, StartNode, EndNode));
@@ -221,57 +172,59 @@ namespace PCGExWriteEdgeProperties
 			}
 		}
 
-		FPCGPoint& MutableTarget = EdgesIO->GetMutablePoint(Edge.PointIndex);
+		FPCGPoint& MutableTarget = EdgeDataFacade->Source->GetMutablePoint(Edge.PointIndex);
 
 		auto MetadataBlend = [&]()
 		{
-			const PCGExData::FPointRef Target = EdgesIO->GetOutPointRef(Edge.PointIndex);
+			const PCGExData::FPointRef Target = EdgeDataFacade->Source->GetOutPointRef(Edge.PointIndex);
 			MetadataBlender->PrepareForBlending(Target);
-			MetadataBlender->Blend(Target, VtxIO->GetInPointRef(EdgeStartPtIndex), Target, BlendWeightStart);
-			MetadataBlender->Blend(Target, VtxIO->GetInPointRef(EdgeEndPtIndex), Target, BlendWeightEnd);
+			MetadataBlender->Blend(Target, VtxDataFacade->Source->GetInPointRef(Edge.Start), Target, BlendWeightStart);
+			MetadataBlender->Blend(Target, VtxDataFacade->Source->GetInPointRef(Edge.End), Target, BlendWeightEnd);
 			MetadataBlender->CompleteBlending(Target, 2, BlendWeightStart + BlendWeightEnd);
 		};
 
 		if (bSolidify)
 		{
 			FRotator EdgeRot;
-			FVector Extents = MutableTarget.GetExtents();
 			FVector TargetBoundsMin = MutableTarget.BoundsMin;
 			FVector TargetBoundsMax = MutableTarget.BoundsMax;
 
-			const double EdgeLerp = FMath::Clamp(SolidificationLerpGetter ? SolidificationLerpGetter->Values[Edge.PointIndex] : LocalSettings->SolidificationLerpConstant, 0, 1);
+			const FVector PtScale = MutableTarget.Transform.GetScale3D();
+			const FVector InvScale = FVector::One() / PtScale;
+
+			const double EdgeLerp = FMath::Clamp(SolidificationLerpGetter ? SolidificationLerpGetter->Read(Edge.PointIndex) : Settings->SolidificationLerpConstant, 0, 1);
 			const double EdgeLerpInv = 1 - EdgeLerp;
 			bool bProcessAxis;
 
 #define PCGEX_SOLIDIFY_DIMENSION(_AXIS)\
-				bProcessAxis = LocalSettings->bWriteRadius##_AXIS || LocalSettings->SolidificationAxis == EPCGExMinimalAxis::_AXIS;\
+				bProcessAxis = Settings->bWriteRadius##_AXIS || Settings->SolidificationAxis == EPCGExMinimalAxis::_AXIS;\
 				if (bProcessAxis){\
-					if (LocalSettings->SolidificationAxis == EPCGExMinimalAxis::_AXIS){\
-						TargetBoundsMin._AXIS = -EdgeLength * EdgeLerpInv;\
-						TargetBoundsMax._AXIS = EdgeLength * EdgeLerp;\
+					if (Settings->SolidificationAxis == EPCGExMinimalAxis::_AXIS){\
+						TargetBoundsMin._AXIS = (-EdgeLength * EdgeLerpInv) * InvScale._AXIS;\
+						TargetBoundsMax._AXIS = (EdgeLength * EdgeLerp) * InvScale._AXIS;\
 					}else{\
 						double Rad = Rad##_AXIS##Constant;\
 						if(SolidificationRad##_AXIS){\
-						if (LocalSettings->Radius##_AXIS##Source == EPCGExGraphValueSource::Vtx) { Rad = FMath::Lerp(SolidificationRad##_AXIS->Values[EdgeStartPtIndex], SolidificationRad##_AXIS->Values[EdgeEndPtIndex], EdgeLerp); }\
-						else { Rad = SolidificationRad##_AXIS->Values[Edge.PointIndex]; }}\
-						TargetBoundsMin._AXIS = -Rad;\
-						TargetBoundsMax._AXIS = Rad;\
+						if (Settings->Radius##_AXIS##Source == EPCGExClusterComponentSource::Vtx) { Rad = FMath::Lerp(SolidificationRad##_AXIS->Read(Edge.Start), SolidificationRad##_AXIS->Read(Edge.End), EdgeLerp); }\
+						else { Rad = SolidificationRad##_AXIS->Read(Edge.PointIndex); }}\
+						TargetBoundsMin._AXIS = (-Rad) * InvScale._AXIS;\
+						TargetBoundsMax._AXIS = (Rad) * InvScale._AXIS;\
 					}}
 
 			PCGEX_FOREACH_XYZ(PCGEX_SOLIDIFY_DIMENSION)
 #undef PCGEX_SOLIDIFY_DIMENSION
 
-			switch (LocalSettings->SolidificationAxis)
+			switch (Settings->SolidificationAxis)
 			{
 			default:
 			case EPCGExMinimalAxis::X:
-				EdgeRot = UKismetMathLibrary::MakeRotFromX(EdgeDirection);
+				EdgeRot = FRotationMatrix::MakeFromX(EdgeDirection).Rotator();
 				break;
 			case EPCGExMinimalAxis::Y:
-				EdgeRot = UKismetMathLibrary::MakeRotFromY(EdgeDirection);
+				EdgeRot = FRotationMatrix::MakeFromY(EdgeDirection).Rotator();
 				break;
 			case EPCGExMinimalAxis::Z:
-				EdgeRot = UKismetMathLibrary::MakeRotFromZ(EdgeDirection);
+				EdgeRot = FRotationMatrix::MakeFromZ(EdgeDirection).Rotator();
 				break;
 			}
 
@@ -281,24 +234,58 @@ namespace PCGExWriteEdgeProperties
 
 			if (MetadataBlender) { MetadataBlend(); } // Blend first THEN apply bounds otherwise it gets overwritten
 
-			MutableTarget.Transform = FTransform(EdgeRot, FMath::Lerp(DirTo, DirFrom, EdgeLerp), MutableTarget.Transform.GetScale3D());
+			MutableTarget.Transform = FTransform(EdgeRot, FMath::Lerp(B, A, EdgeLerp), MutableTarget.Transform.GetScale3D());
 
 			MutableTarget.BoundsMin = TargetBoundsMin;
 			MutableTarget.BoundsMax = TargetBoundsMax;
 		}
-		else if (LocalSettings->bWriteEdgePosition)
+		else if (Settings->bWriteEdgePosition)
 		{
-			MutableTarget.Transform.SetLocation(FMath::Lerp(DirTo, DirFrom, LocalSettings->EdgePositionLerp));
-			BlendWeightStart = LocalSettings->EdgePositionLerp;
-			BlendWeightEnd = 1 - LocalSettings->EdgePositionLerp;
+			BlendWeightStart = Settings->EdgePositionLerp;
+			BlendWeightEnd = 1 - Settings->EdgePositionLerp;
 
+			if (MetadataBlender) { MetadataBlend(); }
+
+			MutableTarget.Transform.SetLocation(FMath::Lerp(B, A, Settings->EdgePositionLerp));
+		}
+		else
+		{
 			if (MetadataBlender) { MetadataBlend(); }
 		}
 	}
 
 	void FProcessor::CompleteWork()
 	{
-		EdgeDataFacade->Write(AsyncManagerPtr, true);
+		EdgeDataFacade->Write(AsyncManager);
+	}
+
+	void FBatch::RegisterBuffersDependencies(PCGExData::FFacadePreloader& FacadePreloader)
+	{
+		TBatch<FProcessor>::RegisterBuffersDependencies(FacadePreloader);
+
+		PCGEX_TYPED_CONTEXT_AND_SETTINGS(WriteEdgeProperties)
+
+		if (Settings->bEndpointsBlending)
+		{
+			Settings->BlendingSettings.RegisterBuffersDependencies(Context, VtxDataFacade, FacadePreloader, &PCGExGraph::ProtectedClusterAttributes);
+		}
+
+		DirectionSettings.RegisterBuffersDependencies(ExecutionContext, FacadePreloader);
+	}
+
+	void FBatch::OnProcessingPreparationComplete()
+	{
+		PCGEX_TYPED_CONTEXT_AND_SETTINGS(WriteEdgeProperties)
+
+		DirectionSettings = Settings->DirectionSettings;
+
+		if (!DirectionSettings.Init(ExecutionContext, VtxDataFacade, Context->GetEdgeSortingRules()))
+		{
+			bIsBatchValid = false;
+			return;
+		}
+
+		TBatch<FProcessor>::OnProcessingPreparationComplete();
 	}
 }
 

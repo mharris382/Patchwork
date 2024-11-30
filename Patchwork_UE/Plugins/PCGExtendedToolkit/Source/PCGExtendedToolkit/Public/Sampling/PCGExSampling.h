@@ -5,68 +5,66 @@
 
 #include "PCGEx.h"
 #include "Data/PCGExData.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
 
 #include "PCGExSampling.generated.h"
 
 // Declaration & use pair, boolean will be set by name validation
-#define PCGEX_OUTPUT_DECL_TOGGLE(_NAME, _TYPE) bool bWrite##_NAME = false;
-#define PCGEX_OUTPUT_DECL(_NAME, _TYPE) PCGEx::TFAttributeWriter<_TYPE>* _NAME##Writer = nullptr;
-#define PCGEX_OUTPUT_DECL_AND_TOGGLE(_NAME, _TYPE) PCGEX_OUTPUT_DECL_TOGGLE(_NAME, _TYPE) PCGEX_OUTPUT_DECL(_NAME, _TYPE)
-
-// Create writer in context
-#define PCGEX_OUTPUT_FWD_C(_NAME, _TYPE) if(Context->bWrite##_NAME){ Context->_NAME##Writer =  new PCGEx::TFAttributeWriter<_TYPE>(Settings->_NAME##AttributeName); }
-
-// Create writer in root
-#define PCGEX_OUTPUT_FWD(_NAME, _TYPE) if(TypedContext->bWrite##_NAME){ _NAME##Writer = new PCGEx::TFAttributeWriter<_TYPE>(Settings->_NAME##AttributeName); }
+#define PCGEX_OUTPUT_DECL_TOGGLE(_NAME, _TYPE, _DEFAULT_VALUE) bool bWrite##_NAME = false;
+#define PCGEX_OUTPUT_DECL(_NAME, _TYPE, _DEFAULT_VALUE) TSharedPtr<PCGExData::TBuffer<_TYPE>> _NAME##Writer;
+#define PCGEX_OUTPUT_DECL_AND_TOGGLE(_NAME, _TYPE, _DEFAULT_VALUE) PCGEX_OUTPUT_DECL_TOGGLE(_NAME, _TYPE, _DEFAULT_VALUE) PCGEX_OUTPUT_DECL(_NAME, _TYPE, _DEFAULT_VALUE)
 
 // Simply validate name from settings
-#define PCGEX_OUTPUT_VALIDATE_NAME_NOWRITER_C(_NAME, _TYPE)\
-if(Settings->bWrite##_NAME && !FPCGMetadataAttributeBase::IsValidName(Settings->_NAME##AttributeName))\
-{ PCGE_LOG(Warning, GraphAndLog, FTEXT("Invalid output attribute name for " #_NAME )); }
-
-// Simply validate name from settings
-#define PCGEX_OUTPUT_VALIDATE_NAME(_NAME, _TYPE)\
+#define PCGEX_OUTPUT_VALIDATE_NAME(_NAME, _TYPE, _DEFAULT_VALUE)\
 Context->bWrite##_NAME = Settings->bWrite##_NAME; \
 if(Context->bWrite##_NAME && !FPCGMetadataAttributeBase::IsValidName(Settings->_NAME##AttributeName))\
 { PCGE_LOG(Warning, GraphAndLog, FTEXT("Invalid output attribute name for " #_NAME )); Context->bWrite##_NAME = false; }
 
-#define PCGEX_OUTPUT_VALUE(_NAME, _INDEX, _VALUE) if(_NAME##Writer){(*_NAME##Writer)[_INDEX] = _VALUE; }
-#define PCGEX_OUTPUT_ACCESSOR_INIT(_NAME, _TYPE) if(_NAME##Writer){_NAME##Writer->BindAndSetNumUninitialized(OutputIO);}
-#define PCGEX_OUTPUT_INIT(_NAME, _TYPE) if(TypedContext->bWrite##_NAME){ _NAME##Writer = OutputFacade->GetWriter<_TYPE>(Settings->_NAME##AttributeName, true); }
+#define PCGEX_OUTPUT_INIT(_NAME, _TYPE, _DEFAULT_VALUE) if(Context->bWrite##_NAME){ _NAME##Writer = OutputFacade->GetWritable<_TYPE>(Settings->_NAME##AttributeName, _DEFAULT_VALUE, true, PCGExData::EBufferInit::Inherit); }
+#define PCGEX_OUTPUT_VALUE(_NAME, _INDEX, _VALUE) if(_NAME##Writer){_NAME##Writer->GetMutable(_INDEX) = _VALUE; }
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Surface Source"))
+UENUM()
 enum class EPCGExSurfaceSource : uint8
 {
-	All UMETA(DisplayName = "Any surface", ToolTip="Any surface within range will be tested"),
-	ActorReferences UMETA(DisplayName = "Actor Reference", ToolTip="Only a list of actor surfaces will be included."),
+	All             = 0 UMETA(DisplayName = "Any surface", ToolTip="Any surface within range will be tested"),
+	ActorReferences = 1 UMETA(DisplayName = "Actor Reference", ToolTip="Only a list of actor surfaces will be included."),
 };
 
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Sample Method"))
+UENUM()
 enum class EPCGExSampleMethod : uint8
 {
-	WithinRange UMETA(DisplayName = "All (Within range)", ToolTip="Use RangeMax = 0 to include all targets"),
-	ClosestTarget UMETA(DisplayName = "Closest Target", ToolTip="Picks & process the closest target only"),
-	FarthestTarget UMETA(DisplayName = "Farthest Target", ToolTip="Picks & process the farthest target only"),
+	WithinRange    = 0 UMETA(DisplayName = "All (Within range)", ToolTip="Use RangeMax = 0 to include all targets"),
+	ClosestTarget  = 1 UMETA(DisplayName = "Closest Target", ToolTip="Picks & process the closest target only"),
+	FarthestTarget = 2 UMETA(DisplayName = "Farthest Target", ToolTip="Picks & process the farthest target only"),
+	BestCandidate  = 3 UMETA(DisplayName = "Best Candidate", ToolTip="Picks & process the best candidate based on sorting rules"),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Sample Source"))
+UENUM()
 enum class EPCGExSampleSource : uint8
 {
-	Source UMETA(DisplayName = "Source", ToolTip="Read value on source"),
-	Target UMETA(DisplayName = "Target", ToolTip="Read value on target"),
-	Constant UMETA(DisplayName = "Constant", ToolTip="Read constant"),
+	Source   = 0 UMETA(DisplayName = "Source", ToolTip="Read value on source"),
+	Target   = 1 UMETA(DisplayName = "Target", ToolTip="Read value on target"),
+	Constant = 2 UMETA(DisplayName = "Constant", ToolTip="Read constant"),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Angle Range"))
+UENUM()
 enum class EPCGExAngleRange : uint8
 {
-	URadians UMETA(DisplayName = "Radians (0..+PI)", ToolTip="0..+PI"),
-	PIRadians UMETA(DisplayName = "Radians (-PI..+PI)", ToolTip="-PI..+PI"),
-	TAURadians UMETA(DisplayName = "Radians (0..+TAU)", ToolTip="0..TAU"),
-	UDegrees UMETA(DisplayName = "Degrees (0..+180)", ToolTip="0..+180"),
-	PIDegrees UMETA(DisplayName = "Degrees (-180..+180)", ToolTip="-180..+180"),
-	TAUDegrees UMETA(DisplayName = "Degrees (0..+360)", ToolTip="0..+360"),
+	URadians   = 0 UMETA(DisplayName = "Radians (0..+PI)", ToolTip="0..+PI"),
+	PIRadians  = 1 UMETA(DisplayName = "Radians (-PI..+PI)", ToolTip="-PI..+PI"),
+	TAURadians = 2 UMETA(DisplayName = "Radians (0..+TAU)", ToolTip="0..TAU"),
+	UDegrees   = 3 UMETA(DisplayName = "Degrees (0..+180)", ToolTip="0..+180"),
+	PIDegrees  = 4 UMETA(DisplayName = "Degrees (-180..+180)", ToolTip="-180..+180"),
+	TAUDegrees = 5 UMETA(DisplayName = "Degrees (0..+360)", ToolTip="0..+360"),
+};
+
+UENUM()
+enum class EPCGExSampleWeightMode : uint8
+{
+	Distance      = 0 UMETA(DisplayName = "Distance", ToolTip="Weight is computed using distance to targets"),
+	Attribute     = 1 UMETA(DisplayName = "Attribute", ToolTip="Uses a fixed attribute value on the target as weight"),
+	AttributeMult = 2 UMETA(DisplayName = "Att x Dist", ToolTip="Uses a fixed attribute value on the target as a multiplier to distance-based weight"),
 };
 
 namespace PCGExSampling
@@ -83,6 +81,7 @@ namespace PCGExSampling
 		const FVector N2 = B.GetSafeNormal();
 
 		const double MainDot = N1.Dot(N2);
+		const FVector C = FVector::CrossProduct(N1, N2);
 
 		switch (Mode)
 		{
@@ -93,14 +92,8 @@ namespace PCGExSampling
 			OutAngle = FMath::Acos(MainDot) * FMath::Sign(MainDot);
 			break;
 		case EPCGExAngleRange::TAURadians: // 0 .. 6.28
-			if (FVector::CrossProduct(N1, N2).Z < 0)
-			{
-				OutAngle = (PI * 2) - FMath::Atan2(FVector::CrossProduct(N1, N2).Size(), MainDot);
-			}
-			else
-			{
-				OutAngle = FMath::Atan2(FVector::CrossProduct(N1, N2).Size(), MainDot);
-			}
+			if (C.Z < 0) { OutAngle = TWO_PI - FMath::Atan2(C.Size(), MainDot); }
+			else { OutAngle = FMath::Atan2(C.Size(), MainDot); }
 			break;
 		case EPCGExAngleRange::UDegrees: // 0 .. 180
 			OutAngle = FMath::RadiansToDegrees(FMath::Acos(MainDot));
@@ -109,14 +102,8 @@ namespace PCGExSampling
 			OutAngle = FMath::RadiansToDegrees(FMath::Acos(MainDot)) * FMath::Sign(MainDot);
 			break;
 		case EPCGExAngleRange::TAUDegrees: // 0 .. 360
-			if (FVector::CrossProduct(N1, N2).Z < 0)
-			{
-				OutAngle = 360 - FMath::RadiansToDegrees(FMath::Atan2(FVector::CrossProduct(N1, N2).Size(), MainDot));
-			}
-			else
-			{
-				OutAngle = FMath::RadiansToDegrees(FMath::Atan2(FVector::CrossProduct(N1, N2).Size(), MainDot));
-			}
+			if (C.Z < 0) { OutAngle = 360 - FMath::RadiansToDegrees(FMath::Atan2(C.Size(), MainDot)); }
+			else { OutAngle = FMath::RadiansToDegrees(FMath::Atan2(C.Size(), MainDot)); }
 			break;
 		default: ;
 		}
@@ -126,36 +113,40 @@ namespace PCGExSampling
 
 	static bool GetIncludedActors(
 		const FPCGContext* InContext,
-		const PCGExData::FFacade* InFacade,
+		const TSharedRef<PCGExData::FFacade>& InFacade,
 		const FName ActorReferenceName,
 		TMap<AActor*, int32>& OutActorSet)
 	{
 		FPCGAttributePropertyInputSelector Selector = FPCGAttributePropertyInputSelector();
 		Selector.SetAttributeName(ActorReferenceName);
 
-		PCGEx::FLocalToStringGetter* PathGetter = new PCGEx::FLocalToStringGetter();
-		PathGetter->Capture(Selector);
-		if (!PathGetter->SoftGrab(InFacade->Source))
+		const TUniquePtr<PCGEx::TAttributeBroadcaster<FSoftObjectPath>> ActorReferences = MakeUnique<PCGEx::TAttributeBroadcaster<FSoftObjectPath>>();
+		if (!ActorReferences->Prepare(Selector, InFacade->Source))
 		{
 			PCGE_LOG_C(Error, GraphAndLog, InContext, FTEXT("Actor reference attribute does not exist."));
-			PCGEX_DELETE(PathGetter)
 			return false;
 		}
 
-		const TArray<FPCGPoint>& TargetPoints = InFacade->GetIn()->GetPoints();
-		for (int i = 0; i < TargetPoints.Num(); i++)
+		ActorReferences->Grab();
+
+		for (int i = 0; i < ActorReferences->Values.Num(); i++)
 		{
-			FSoftObjectPath Path = PathGetter->SoftGet(TargetPoints[i], TEXT(""));
-
+			const FSoftObjectPath& Path = ActorReferences->Values[i];
 			if (!Path.IsValid()) { continue; }
-
-			if (UObject* FoundObject = FindObject<AActor>(nullptr, *Path.ToString()))
-			{
-				if (AActor* TargetActor = Cast<AActor>(FoundObject)) { OutActorSet.FindOrAdd(TargetActor, i); }
-			}
+			if (AActor* TargetActor = Cast<AActor>(Path.ResolveObject())) { OutActorSet.FindOrAdd(TargetActor, i); }
 		}
 
-		PCGEX_DELETE(PathGetter)
 		return true;
+	}
+
+	static void PruneFailedSamples(TArray<FPCGPoint>& InMutablePoints, const TArray<int8>& InSampleState)
+	{
+		const int32 NumSamples = InMutablePoints.Num();
+
+		check(InMutablePoints.Num() == NumSamples);
+
+		int32 WriteIndex = 0;
+		for (int32 i = 0; i < NumSamples; i++) { if (InSampleState[i]) { InMutablePoints[WriteIndex++] = InMutablePoints[i]; } }
+		InMutablePoints.SetNum(WriteIndex);
 	}
 }

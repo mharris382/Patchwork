@@ -7,6 +7,7 @@
 
 #include "PCGExPointsProcessor.h"
 
+
 #include "PCGExConditionalActions.generated.h"
 
 class UPCGExConditionalActionOperation;
@@ -14,8 +15,8 @@ class UPCGExConditionalActionFactoryBase;
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph")
-class PCGEXTENDEDTOOLKIT_API UPCGExConditionalActionsSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConditionalActionsSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -33,11 +34,10 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	virtual int32 GetPreferredChunkSize() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	FPCGExAttributeGatherDetails DefaultAttributesFilter;
 
@@ -51,17 +51,15 @@ private:
 	friend class FPCGExConditionalActionsElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExConditionalActionsContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExConditionalActionsContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExConditionalActionsElement;
 
-	virtual ~FPCGExConditionalActionsContext() override;
-
-	PCGEx::FAttributesInfos* DefaultAttributes = nullptr;
-	TArray<UPCGExConditionalActionFactoryBase*> ConditionalActionsFactories;
+	TSharedPtr<PCGEx::FAttributesInfos> DefaultAttributes;
+	TArray<TObjectPtr<const UPCGExConditionalActionFactoryBase>> ConditionalActionsFactories;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExConditionalActionsElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExConditionalActionsElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -76,19 +74,19 @@ protected:
 
 namespace PCGExConditionalActions
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExConditionalActionsContext, UPCGExConditionalActionsSettings>
 	{
 		TArray<UPCGExConditionalActionOperation*> Operations;
 
 	public:
-		FProcessor(PCGExData::FPointIO* InPoints):
-			FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade):
+			TPointsProcessor(InPointDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 LoopCount) override;
 		virtual void CompleteWork() override;

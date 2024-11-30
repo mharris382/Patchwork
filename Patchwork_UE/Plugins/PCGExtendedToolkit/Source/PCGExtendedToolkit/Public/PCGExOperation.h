@@ -4,14 +4,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PCGExBroadcast.h"
 #include "UObject/Object.h"
 
 #include "Data/PCGExAttributeHelpers.h"
 #include "Data/PCGExData.h"
 
 #include "PCGExOperation.generated.h"
-
-#define PCGEX_OVERRIDE_OP_PROPERTY(_ACCESSOR, _NAME, _TYPE) _ACCESSOR = this->GetOverrideValue(_NAME, _ACCESSOR, _TYPE);
 
 namespace PCGExMT
 {
@@ -22,38 +21,31 @@ class FPCGMetadataAttributeBase;
 /**
  * 
  */
-UCLASS(Abstract, DefaultToInstanced, EditInlineNew, BlueprintType, Blueprintable)
-class PCGEXTENDEDTOOLKIT_API UPCGExOperation : public UObject
+UCLASS(Abstract, DefaultToInstanced, EditInlineNew, BlueprintType)
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExOperation : public UObject, public IPCGExManagedObjectInterface
 {
 	GENERATED_BODY()
 	//~Begin UPCGExOperation interface
 public:
-	void BindContext(FPCGContext* InContext);
+	void BindContext(FPCGExContext* InContext);
+	void FindSettingsOverrides(FPCGExContext* InContext, FName InPinLabel);
 
 #if WITH_EDITOR
 	virtual void UpdateUserFacingInfos();
 #endif
 
-	virtual void Cleanup();
+	virtual void Cleanup() override;
 	virtual void CopySettingsFrom(const UPCGExOperation* Other);
 
-	PCGExData::FFacade* PrimaryDataFacade = nullptr;
-	PCGExData::FFacade* SecondaryDataFacade = nullptr;
+	TSharedPtr<PCGExData::FFacade> PrimaryDataFacade;
+	TSharedPtr<PCGExData::FFacade> SecondaryDataFacade;
 
 	template <typename T>
 	T* CopyOperation() const
 	{
-		PCGEX_NEW_FROM(UObject, GenericInstance, this)
+		T* TypedInstance = Context->ManagedObjects->New<T>(GetTransientPackage(), this->GetClass());
 
-		T* TypedInstance = Cast<T>(GenericInstance);
-
-		if (!TypedInstance)
-		{
-			UPCGExOperation* Operation = Cast<UPCGExOperation>(GenericInstance);
-			if (Operation) { PCGEX_DELETE_OPERATION(Operation) }
-			else { PCGEX_DELETE_UOBJECT(GenericInstance) }
-			return nullptr;
-		}
+		check(TypedInstance)
 
 		TypedInstance->CopySettingsFrom(this);
 		return TypedInstance;
@@ -62,19 +54,10 @@ public:
 	virtual void BeginDestroy() override;
 
 protected:
-	FPCGContext* Context = nullptr;
+	FPCGExContext* Context = nullptr;
 	TMap<FName, FPCGMetadataAttributeBase*> PossibleOverrides;
 
-	virtual void ApplyOverrides();
-
-	template <typename T>
-	T GetOverrideValue(const FName Name, const T Fallback, const EPCGMetadataTypes InType)
-	{
-		FPCGMetadataAttributeBase** Att = PossibleOverrides.Find(Name);
-		if (!Att || (*Att)->GetTypeId() != static_cast<int16>(InType)) { return Fallback; }
-		FPCGMetadataAttribute<T>* TypedAttribute = static_cast<FPCGMetadataAttribute<T>*>(*Att);
-		return TypedAttribute->GetValue(PCGInvalidEntryKey);
-	}
+	void ApplyOverrides();
 
 	//~End UPCGExOperation interface
 };

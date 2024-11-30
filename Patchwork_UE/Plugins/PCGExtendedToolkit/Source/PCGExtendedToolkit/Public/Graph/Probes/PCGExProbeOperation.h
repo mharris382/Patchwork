@@ -20,7 +20,7 @@ namespace PCGExProbing
 }
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExProbeConfigBase
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExProbeConfigBase
 {
 	GENERATED_BODY()
 
@@ -33,16 +33,16 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExProbeConfigBase
 	{
 	}
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable, HideInDetailPanel))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable, EditCondition="false", EditConditionHides, HideInDetailPanel))
 	bool bSupportRadius = true;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="bSupportRadius", EditConditionHides))
-	EPCGExFetchType SearchRadiusSource = EPCGExFetchType::Constant;
+	EPCGExInputValueType SearchRadiusInput = EPCGExInputValueType::Constant;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ClampMin=0, EditCondition="bSupportRadius && SearchRadiusSource==EPCGExFetchType::Constant", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Search Radius", ClampMin=0, EditCondition="bSupportRadius && SearchRadiusInput==EPCGExInputValueType::Constant", EditConditionHides))
 	double SearchRadiusConstant = 100;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="bSupportRadius && SearchRadiusSource==EPCGExFetchType::Attribute", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Search Radius", EditCondition="bSupportRadius && SearchRadiusInput==EPCGExInputValueType::Attribute", EditConditionHides))
 	FPCGAttributePropertyInputSelector SearchRadiusAttribute;
 };
 
@@ -50,30 +50,35 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExProbeConfigBase
  * 
  */
 UCLASS(Abstract)
-class PCGEXTENDEDTOOLKIT_API UPCGExProbeOperation : public UPCGExOperation
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExProbeOperation : public UPCGExOperation
 {
 	GENERATED_BODY()
 
 public:
-	virtual bool PrepareForPoints(const PCGExData::FPointIO* InPointIO);
+	virtual bool PrepareForPoints(const TSharedPtr<PCGExData::FPointIO>& InPointIO);
 	virtual bool RequiresDirectProcessing();
 	virtual bool RequiresChainProcessing();
-	virtual void ProcessCandidates(const int32 Index, const FPCGPoint& Point, TArray<PCGExProbing::FCandidate>& Candidates, TSet<uint64>* ConnectedSet, const FVector& ST, TSet<uint64>* OutEdges);
+	virtual void ProcessCandidates(const int32 Index, const FPCGPoint& Point, TArray<PCGExProbing::FCandidate>& Candidates, TSet<FInt32Vector>* Coincidence, const FVector& ST, TSet<uint64>* OutEdges);
 
 	virtual void PrepareBestCandidate(const int32 Index, const FPCGPoint& Point, PCGExProbing::FBestCandidate& InBestCandidate);
 	virtual void ProcessCandidateChained(const int32 Index, const FPCGPoint& Point, const int32 CandidateIndex, PCGExProbing::FCandidate& Candidate, PCGExProbing::FBestCandidate& InBestCandidate);
-	virtual void ProcessBestCandidate(const int32 Index, const FPCGPoint& Point, PCGExProbing::FBestCandidate& InBestCandidate, TArray<PCGExProbing::FCandidate>& Candidates, TSet<uint64>* Stacks, const FVector& ST, TSet<uint64>* OutEdges);
+	virtual void ProcessBestCandidate(const int32 Index, const FPCGPoint& Point, PCGExProbing::FBestCandidate& InBestCandidate, TArray<PCGExProbing::FCandidate>& Candidates, TSet<FInt32Vector>* Coincidence, const FVector& ST, TSet<uint64>* OutEdges);
 
-	virtual void ProcessNode(const int32 Index, const FPCGPoint& Point, TSet<uint64>* Stacks, const FVector& ST, TSet<uint64>* OutEdges);
+	virtual void ProcessNode(const int32 Index, const FPCGPoint& Point, TSet<FInt32Vector>* Coincidence, const FVector& ST, TSet<uint64>* OutEdges);
 
-	virtual void Cleanup() override;
+	virtual void Cleanup() override
+	{
+		SearchRadiusCache.Reset();
+		PointIO.Reset();
+		Super::Cleanup();
+	}
 
 	double SearchRadius = -1;
 	double SearchRadiusSquared = -1;
-	PCGExData::FCache<double>* SearchRadiusCache = nullptr;
+	TSharedPtr<PCGExData::TBuffer<double>> SearchRadiusCache;
 	FPCGExProbeConfigBase* BaseConfig = nullptr;
 
 protected:
-	const PCGExData::FPointIO* PointIO = nullptr;
+	TSharedPtr<PCGExData::FPointIO> PointIO;
 	TArray<double> LocalWeightMultiplier;
 };

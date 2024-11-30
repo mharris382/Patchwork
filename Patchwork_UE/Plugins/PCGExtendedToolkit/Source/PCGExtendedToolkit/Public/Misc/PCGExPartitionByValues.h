@@ -7,44 +7,44 @@
 #include "PCGExFilter.h"
 #include "PCGExPointsProcessor.h"
 
+
 #include "PCGExPartitionByValues.generated.h"
 
 namespace PCGExPartition
 {
-	PCGEX_ASYNC_STATE(State_DistributeToPartition)
-
 	class FKPartition;
 
-	class PCGEXTENDEDTOOLKIT_API FKPartition
+	class /*PCGEXTENDEDTOOLKIT_API*/ FKPartition : public TSharedFromThis<FKPartition>
 	{
 	protected:
 		mutable FRWLock LayersLock;
 		mutable FRWLock PointLock;
 
 	public:
-		FKPartition(FKPartition* InParent, int64 InKey, FPCGExFilter::FRule* InRule, int32 InPartitionIndex);
+		FKPartition(const TWeakPtr<FKPartition>& InParent, int64 InKey, FPCGExFilter::FRule* InRule, int32 InPartitionIndex);
 		~FKPartition();
 
-		FKPartition* Parent = nullptr;
+		TWeakPtr<FKPartition> Parent;
+		int32 IOIndex = -1;
 		int32 PartitionIndex = 0;
 		int64 PartitionKey = 0;
 		FPCGExFilter::FRule* Rule = nullptr;
 
 		TSet<int64> UniquePartitionKeys;
-		TMap<int64, FKPartition*> SubLayers;
+		TMap<int64, TSharedPtr<FKPartition>> SubLayers;
 		TArray<int32> Points;
 
 		int32 GetNum() const { return Points.Num(); }
 		int32 GetSubPartitionsNum();
 
-		FKPartition* GetPartition(int64 Key, FPCGExFilter::FRule* InRule);
+		TSharedPtr<FKPartition> GetPartition(int64 Key, FPCGExFilter::FRule* InRule);
 		FORCEINLINE void Add(const int64 Index)
 		{
 			FWriteScopeLock WriteLock(PointLock);
 			Points.Add(Index);
 		}
 
-		void Register(TArray<FKPartition*>& Partitions);
+		void Register(TArray<TSharedPtr<FKPartition>>& Partitions);
 
 		void SortPartitions();
 	};
@@ -54,8 +54,8 @@ namespace PCGExPartition
 /**
  * 
  */
-UCLASS(Abstract, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExPartitionByValuesBaseSettings : public UPCGExPointsProcessorSettings
+UCLASS(Abstract, MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPartitionByValuesBaseSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -73,10 +73,9 @@ protected:
 	//~Begin UPCGExPointsProcessorSettings
 public:
 	virtual bool GetMainAcceptMultipleData() const override;
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** If false, will only write partition identifier values instead of splitting partitions into new point datasets. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayPriority=-2))
 	bool bSplitOutput = true;
@@ -89,14 +88,14 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="bWriteKeySum"))
 	FName KeySumAttributeName = "KeySum";
 
-	virtual bool GetPartitionRules(const FPCGContext* InContext, TArray<FPCGExPartitonRuleConfig>& OutRules) const;
+	virtual bool GetPartitionRules(FPCGExContext* InContext, TArray<FPCGExPartitonRuleConfig>& OutRules) const;
 };
 
 /**
  * 
  */
-UCLASS(BlueprintType, Hidden, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExPartitionByValuesSettings : public UPCGExPartitionByValuesBaseSettings
+UCLASS(BlueprintType, MinimalAPI, Hidden, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPartitionByValuesSettings : public UPCGExPartitionByValuesBaseSettings
 {
 	GENERATED_BODY()
 
@@ -109,7 +108,6 @@ public:
 	//~Begin UObject interface
 #if WITH_EDITOR
 
-public:
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif
 	//~End UObject interface
@@ -118,19 +116,17 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, TitleProperty="{TitlePropertyName}"))
 	TArray<FPCGExPartitonRuleConfig> PartitionRules;
 
-	virtual bool GetPartitionRules(const FPCGContext* InContext, TArray<FPCGExPartitonRuleConfig>& OutRules) const override;
+	virtual bool GetPartitionRules(FPCGExContext* InContext, TArray<FPCGExPartitonRuleConfig>& OutRules) const override;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExPartitionByValuesBaseContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPartitionByValuesBaseContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExPartitionByValuesBaseElement;
-
-	virtual ~FPCGExPartitionByValuesBaseContext() override;
 
 	TArray<FPCGExPartitonRuleConfig> RulesConfigs;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPartitionByValuesBaseElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPartitionByValuesBaseElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -145,27 +141,23 @@ protected:
 
 namespace PCGExPartitionByValues
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExPartitionByValuesBaseContext, UPCGExPartitionByValuesBaseSettings>
 	{
 		TArray<FPCGExFilter::FRule> Rules;
 		TArray<int64> KeySums;
 
-		PCGExPartition::FKPartition* RootPartition = nullptr;
+		TSharedPtr<PCGExPartition::FKPartition> RootPartition;
 
 		int32 NumPartitions = -1;
-		TArray<PCGExPartition::FKPartition*> Partitions;
-
-		FPCGExPartitionByValuesBaseContext* LocalTypedContext = nullptr;
+		TArray<TSharedPtr<PCGExPartition::FKPartition>> Partitions;
 
 	public:
-		FProcessor(PCGExData::FPointIO* InPoints):
-			FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade):
+			TPointsProcessor(InPointDataFacade)
 		{
 		}
 
-		virtual ~FProcessor() override;
-
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count) override;
 		virtual void ProcessSingleRangeIteration(const int32 Iteration, const int32 LoopIdx, const int32 LoopCount) override;

@@ -4,11 +4,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "PCGExMT.h"
 #include "Graph/PCGExEdgesProcessor.h"
 #include "PCGExUnpackClusters.generated.h"
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Edges")
-class PCGEXTENDEDTOOLKIT_API UPCGExUnpackClustersSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExUnpackClustersSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -27,12 +29,12 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual FName GetMainInputLabel() const override { return PCGExGraph::SourcePackedClustersLabel; }
-	virtual FName GetMainOutputLabel() const override { return PCGExGraph::OutputVerticesLabel; }
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual FName GetMainInputPin() const override { return PCGExGraph::SourcePackedClustersLabel; }
+	virtual FName GetMainOutputPin() const override { return PCGExGraph::OutputVerticesLabel; }
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-	/** Flatten unpacked metadata \n Depending on your setup this is a tradeoff between memory and speed.*/
+	/** Flatten unpacked metadata  Depending on your setup this is a tradeoff between memory and speed.*/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bFlatten = false;
 
@@ -40,17 +42,15 @@ private:
 	friend class FPCGExUnpackClustersElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExUnpackClustersContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExUnpackClustersContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExUnpackClustersElement;
 
-	virtual ~FPCGExUnpackClustersContext() override;
-
-	PCGExData::FPointIOCollection* OutPoints = nullptr;
-	PCGExData::FPointIOCollection* OutEdges = nullptr;
+	TSharedPtr<PCGExData::FPointIOCollection> OutPoints;
+	TSharedPtr<PCGExData::FPointIOCollection> OutEdges;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExUnpackClustersElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExUnpackClustersElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -63,13 +63,13 @@ protected:
 	virtual bool ExecuteInternal(FPCGContext* InContext) const override;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExUnpackClusterTask final : public PCGExMT::FPCGExTask
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExUnpackClusterTask final : public PCGExMT::FPCGExTask
 {
 public:
-	FPCGExUnpackClusterTask(PCGExData::FPointIO* InPointIO) :
+	explicit FPCGExUnpackClusterTask(const TSharedPtr<PCGExData::FPointIO>& InPointIO) :
 		FPCGExTask(InPointIO)
 	{
 	}
 
-	virtual bool ExecuteTask() override;
+	virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override;
 };

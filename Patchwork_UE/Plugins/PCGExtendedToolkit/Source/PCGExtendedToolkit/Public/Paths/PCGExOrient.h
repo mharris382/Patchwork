@@ -7,14 +7,16 @@
 #include "PCGExPathProcessor.h"
 
 #include "PCGExPointsProcessor.h"
+
+
 #include "Orient/PCGExOrientOperation.h"
 #include "PCGExOrient.generated.h"
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Transform Component Selector"))
+UENUM()
 enum class EPCGExOrientUsage : uint8
 {
-	ApplyToPoint UMETA(DisplayName = "Apply to point", ToolTip="Applies the orientation transform to the point"),
-	OutputToAttribute UMETA(DisplayName = "Output to attribute", ToolTip="Output the orientation transform to an attribute"),
+	ApplyToPoint      = 0 UMETA(DisplayName = "Apply to point", ToolTip="Applies the orientation transform to the point"),
+	OutputToAttribute = 1 UMETA(DisplayName = "Output to attribute", ToolTip="Output the orientation transform to an attribute"),
 };
 
 namespace PCGExOrient
@@ -29,30 +31,28 @@ namespace PCGExOrient
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
-class PCGEXTENDEDTOOLKIT_API UPCGExOrientSettings : public UPCGExPathProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExOrientSettings : public UPCGExPathProcessorSettings
 {
 	GENERATED_BODY()
 
 public:
 	//~Begin UPCGSettings
 #if WITH_EDITOR
-	PCGEX_NODE_INFOS(Orient, "Path : Orient", "Orient paths points");
+	PCGEX_NODE_INFOS_CUSTOM_SUBTITLE(
+		PathOrient, "Path : Orient", "Orient paths points",
+		(Orientation ? FName(Orientation.GetClass()->GetMetaData(TEXT("DisplayName"))) : FName("...")));
 #endif
 
 protected:
+	virtual TArray<FPCGPinProperties> InputPinProperties() const override;
 	virtual FPCGElementPtr CreateElement() const override;
 	//~End UPCGSettings
 
 	//~Begin UPCGExPointProcessorSettings
 public:
-	virtual FName GetPointFilterLabel() const override;
+	PCGEX_NODE_POINT_FILTER(FName("Flip Orientation Conditions"), "Filters used to know whether an orientation should be flipped or not", PCGExFactories::PointFilters, false)
 	//~End UPCGExPointProcessorSettings
-
-public:
-	/** Consider paths to be closed -- processing will wrap between first and last points. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	bool bClosedPath = false;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	EPCGExAxis OrientAxis = EPCGExAxis::Forward;
@@ -84,15 +84,14 @@ public:
 	FName DotAttribute = "Dot";
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExOrientContext final : public FPCGExPathProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExOrientContext final : FPCGExPathProcessorContext
 {
 	friend class FPCGExOrientElement;
 
-public:
 	UPCGExOrientOperation* Orientation;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExOrientElement final : public FPCGExPathProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExOrientElement final : public FPCGExPathProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -107,22 +106,26 @@ protected:
 
 namespace PCGExOrient
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	const FName SourceOverridesOrient = TEXT("Overrides : Orient");
+
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExOrientContext, UPCGExOrientSettings>
 	{
-		PCGEx::TFAttributeWriter<FTransform>* TransformWriter = nullptr;
-		PCGEx::TFAttributeWriter<double>* DotWriter = nullptr;
+		TSharedPtr<PCGExPaths::FPath> Path;
+
+		TSharedPtr<PCGExData::TBuffer<FTransform>> TransformWriter;
+		TSharedPtr<PCGExData::TBuffer<double>> DotWriter;
 		UPCGExOrientOperation* Orient = nullptr;
 		int32 LastIndex = 0;
 
 	public:
-		explicit FProcessor(PCGExData::FPointIO* InPoints):
-			FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade):
+			TPointsProcessor(InPointDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count) override;
 		virtual void CompleteWork() override;

@@ -3,22 +3,24 @@
 
 #include "Graph/Edges/PCGExRelaxClusters.h"
 
+
 #include "Graph/Edges/Relaxing/PCGExRelaxClusterOperation.h"
-#include "Graph/Edges/Relaxing/PCGExForceDirectedRelax.h"
 
 #define LOCTEXT_NAMESPACE "PCGExRelaxClusters"
 #define PCGEX_NAMESPACE RelaxClusters
 
-PCGExData::EInit UPCGExRelaxClustersSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExRelaxClustersSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
-PCGExData::EInit UPCGExRelaxClustersSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExRelaxClustersSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
+
+TArray<FPCGPinProperties> UPCGExRelaxClustersSettings::InputPinProperties() const
+{
+	TArray<FPCGPinProperties> PinProperties = Super::InputPinProperties();
+	PCGEX_PIN_OPERATION_OVERRIDES(PCGExRelaxClusters::SourceOverridesRelaxing)
+	return PinProperties;
+}
 
 PCGEX_INITIALIZE_ELEMENT(RelaxClusters)
-
-FPCGExRelaxClustersContext::~FPCGExRelaxClustersContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExRelaxClustersElement::Boot(FPCGExContext* InContext) const
 {
@@ -26,7 +28,7 @@ bool FPCGExRelaxClustersElement::Boot(FPCGExContext* InContext) const
 
 	PCGEX_CONTEXT_AND_SETTINGS(RelaxClusters)
 
-	PCGEX_OPERATION_BIND(Relaxing, UPCGExForceDirectedRelax)
+	PCGEX_OPERATION_BIND(Relaxing, UPCGExRelaxClusterOperation, PCGExRelaxClusters::SourceOverridesRelaxing)
 
 	return true;
 }
@@ -36,25 +38,21 @@ bool FPCGExRelaxClustersElement::ExecuteInternal(FPCGContext* InContext) const
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExRelaxClustersElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(RelaxClusters)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
 		if (!Context->StartProcessingClusters<PCGExClusterMT::TBatch<PCGExRelaxClusters::FProcessor>>(
-			[](PCGExData::FPointIOTaggedEntries* Entries) { return true; },
-			[&](PCGExClusterMT::TBatch<PCGExRelaxClusters::FProcessor>* NewBatch)
+			[](const TSharedPtr<PCGExData::FPointIOTaggedEntries>& Entries) { return true; },
+			[&](const TSharedPtr<PCGExClusterMT::TBatch<PCGExRelaxClusters::FProcessor>>& NewBatch)
 			{
 				NewBatch->bRequiresWriteStep = true;
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Could not build any clusters."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not build any clusters."));
 		}
 	}
 
-	if (!Context->ProcessClusters()) { return false; }
+	PCGEX_CLUSTER_BATCH_PROCESSING(PCGEx::State_Done)
 
 	Context->OutputPointsAndEdges();
 
@@ -65,60 +63,41 @@ namespace PCGExRelaxClusters
 {
 	FProcessor::~FProcessor()
 	{
-		PCGEX_DELETE(PrimaryBuffer)
-		PCGEX_DELETE(SecondaryBuffer)
-
-		PCGEX_DELETE_UOBJECT(RelaxOperation)
-
-		//if (bBuildExpandedNodes) { PCGEX_DELETE_TARRAY_FULL(ExpandedNodes) } // Keep those cached since we forward expanded cluster
 	}
 
-	PCGExCluster::FCluster* FProcessor::HandleCachedCluster(const PCGExCluster::FCluster* InClusterRef)
+	TSharedPtr<PCGExCluster::FCluster> FProcessor::HandleCachedCluster(const TSharedRef<PCGExCluster::FCluster>& InClusterRef)
 	{
-		bDeleteCluster = false;
-		return new PCGExCluster::FCluster(InClusterRef, VtxIO, EdgesIO, true, false, false);
+		return MakeShared<PCGExCluster::FCluster>(
+			InClusterRef, VtxDataFacade->Source, VtxDataFacade->Source, NodeIndexLookup,
+			true, false, false);
 	}
 
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExRelaxClusters::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(RelaxClusters)
 
-		if (!FClusterProcessor::Process(AsyncManager)) { return false; }
+		if (!FClusterProcessor::Process(InAsyncManager)) { return false; }
 
 		InfluenceDetails = Settings->InfluenceDetails;
-		if (!InfluenceDetails.Init(Context, VtxDataFacade)) { return false; }
+		if (!InfluenceDetails.Init(ExecutionContext, VtxDataFacade)) { return false; }
 
-		RelaxOperation = TypedContext->Relaxing->CopyOperation<UPCGExRelaxClusterOperation>();
-		RelaxOperation->PrepareForCluster(Cluster);
+		RelaxOperation = Context->Relaxing->CopyOperation<UPCGExRelaxClusterOperation>();
+		RelaxOperation->PrepareForCluster(Cluster.Get());
 
-		PrimaryBuffer = new TArray<FVector>();
-		SecondaryBuffer = new TArray<FVector>();
+		PrimaryBuffer = MakeShared<TArray<FVector>>();
+		SecondaryBuffer = MakeShared<TArray<FVector>>();
 
-		PCGEX_SET_NUM_UNINITIALIZED_PTR(PrimaryBuffer, NumNodes)
-		PCGEX_SET_NUM_UNINITIALIZED_PTR(SecondaryBuffer, NumNodes)
+		PrimaryBuffer->SetNumUninitialized(NumNodes);
+		SecondaryBuffer->SetNumUninitialized(NumNodes);
 
 		TArray<FVector>& PBufferRef = (*PrimaryBuffer);
 		TArray<FVector>& SBufferRef = (*SecondaryBuffer);
 
 		for (int i = 0; i < NumNodes; i++) { PBufferRef[i] = SBufferRef[i] = Cluster->GetPos(i); }
 
-		ExpandedNodes = Cluster->ExpandedNodes;
 		Iterations = Settings->Iterations;
 
-		IterationGroup = AsyncManagerPtr->CreateGroup();
-
-		if (!ExpandedNodes)
-		{
-			ExpandedNodes = Cluster->GetExpandedNodes(false);
-			bBuildExpandedNodes = true;
-			StartParallelLoopForRange(NumNodes);
-		}
-		else
-		{
-			StartRelaxIteration();
-		}
-
+		StartRelaxIteration();
 		return true;
 	}
 
@@ -129,23 +108,23 @@ namespace PCGExRelaxClusters
 		Iterations--;
 		std::swap(PrimaryBuffer, SecondaryBuffer);
 
-		RelaxOperation->ReadBuffer = PrimaryBuffer;
-		RelaxOperation->WriteBuffer = SecondaryBuffer;
+		RelaxOperation->ReadBuffer = PrimaryBuffer.Get();
+		RelaxOperation->WriteBuffer = SecondaryBuffer.Get();
 
-		IterationGroup->SetOnCompleteCallback([&]() { StartRelaxIteration(); });
+		PCGEX_ASYNC_GROUP_CHKD_VOID(AsyncManager, IterationGroup)
+		IterationGroup->OnCompleteCallback =
+			[WeakThis = TWeakPtr<FProcessor>(SharedThis(this))]()
+			{
+				if (const TSharedPtr<FProcessor> This = WeakThis.Pin()) { This->StartRelaxIteration(); }
+			};
 		IterationGroup->StartRanges<FRelaxRangeTask>(
 			NumNodes, GetDefault<UPCGExGlobalSettings>()->GetPointsBatchChunkSize(),
-			nullptr, this);
+			nullptr, SharedThis(this));
 	}
 
-	void FProcessor::ProcessSingleRangeIteration(const int32 Iteration)
+	void FProcessor::ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node, const int32 LoopIdx, const int32 Count)
 	{
-		(*ExpandedNodes)[Iteration] = new PCGExCluster::FExpandedNode(Cluster, Iteration);
-	}
-
-	void FProcessor::ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node)
-	{
-		RelaxOperation->ProcessExpandedNode(*(ExpandedNodes->GetData() + Index));
+		RelaxOperation->ProcessExpandedNode(Node);
 
 		if (!InfluenceDetails.bProgressiveInfluence) { return; }
 
@@ -155,27 +134,19 @@ namespace PCGExRelaxClusters
 			InfluenceDetails.GetInfluence(Node.PointIndex));
 	}
 
-	void FProcessor::CompleteWork()
-	{
-		if (!bBuildExpandedNodes) { return; }
-		StartRelaxIteration();
-	}
-
 	void FProcessor::Write()
 	{
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(RelaxClusters)
-
 		FClusterProcessor::Write();
 
-		TArray<FPCGPoint>& MutablePoints = VtxIO->GetOut()->GetMutablePoints();
+		TArray<FPCGPoint>& MutablePoints = VtxDataFacade->GetOut()->GetMutablePoints();
 		if (!InfluenceDetails.bProgressiveInfluence)
 		{
-			const TArray<FPCGPoint>& OriginalPoints = VtxIO->GetIn()->GetPoints();
+			const TArray<FPCGPoint>& OriginalPoints = VtxDataFacade->GetIn()->GetPoints();
 			for (const PCGExCluster::FNode& Node : *Cluster->Nodes)
 			{
 				FVector Position = FMath::Lerp(
 					OriginalPoints[Node.PointIndex].Transform.GetLocation(),
-					*(RelaxOperation->WriteBuffer->GetData() + Node.NodeIndex),
+					*(RelaxOperation->WriteBuffer->GetData() + Node.Index),
 					InfluenceDetails.GetInfluence(Node.PointIndex));
 				MutablePoints[Node.PointIndex].Transform.SetLocation(Position);
 			}
@@ -184,16 +155,16 @@ namespace PCGExRelaxClusters
 		{
 			for (const PCGExCluster::FNode& Node : *Cluster->Nodes)
 			{
-				FVector Position = *(RelaxOperation->WriteBuffer->GetData() + Node.NodeIndex);
+				FVector Position = *(RelaxOperation->WriteBuffer->GetData() + Node.Index);
 				MutablePoints[Node.PointIndex].Transform.SetLocation(Position);
 			}
 		}
 
 		Cluster->WillModifyVtxPositions(true);
-		ForwardCluster(true);
+		ForwardCluster();
 	}
 
-	bool FRelaxRangeTask::ExecuteTask()
+	bool FRelaxRangeTask::ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager)
 	{
 		const int32 StartIndex = PCGEx::H64A(Scope);
 		const int32 NumIterations = PCGEx::H64B(Scope);
@@ -201,7 +172,7 @@ namespace PCGExRelaxClusters
 		for (int i = 0; i < NumIterations; i++)
 		{
 			const int32 Index = StartIndex + i;
-			Processor->ProcessSingleNode(Index, *(Processor->Cluster->Nodes->GetData() + Index));
+			Processor->ProcessSingleNode(Index, *Processor->Cluster->GetNode(Index), TaskIndex, NumIterations);
 		}
 
 		return true;

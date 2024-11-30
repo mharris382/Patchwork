@@ -3,10 +3,13 @@
 
 #include "Misc/PCGExRefreshSeed.h"
 
+#include "PCGExRandom.h"
+
+
 #define LOCTEXT_NAMESPACE "PCGExRefreshSeedElement"
 #define PCGEX_NAMESPACE RefreshSeed
 
-PCGExData::EInit UPCGExRefreshSeedSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExRefreshSeedSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 PCGEX_INITIALIZE_ELEMENT(RefreshSeed)
 
@@ -24,40 +27,33 @@ bool FPCGExRefreshSeedElement::ExecuteInternal(FPCGContext* InContext) const
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExRefreshSeedElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(RefreshSeed)
+	PCGEX_EXECUTION_CHECK
 
-	if (Context->IsSetup())
-	{
-		if (!Boot(Context)) { return true; }
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
-	}
-
-	if (Context->IsState(PCGExMT::State_ReadyForNextPoints))
+	PCGEX_ON_INITIAL_EXECUTION
 	{
 		while (Context->AdvancePointsIO(false))
 		{
 			Context->GetAsyncManager()->Start<FPCGExRefreshSeedTask>(Settings->Base + Context->CurrentIO->IOIndex, Context->CurrentIO);
 		}
 
-		Context->SetAsyncState(PCGExMT::State_WaitingOnAsyncWork);
+		Context->SetAsyncState(PCGEx::State_WaitingOnAsyncWork);
 	}
 
-	if (Context->IsState(PCGExMT::State_WaitingOnAsyncWork))
+	PCGEX_ON_ASYNC_STATE_READY(PCGEx::State_WaitingOnAsyncWork)
 	{
-		PCGEX_ASYNC_WAIT
-
 		Context->Done();
-		Context->MainPoints->OutputToContext();
+		Context->MainPoints->StageOutputs();
 	}
 
 	return Context->TryComplete();
 }
 
-bool FPCGExRefreshSeedTask::ExecuteTask()
+bool FPCGExRefreshSeedTask::ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager)
 {
 	TArray<FPCGPoint>& MutablePoints = PointIO->GetOut()->GetMutablePoints();
 
 	const FVector BaseOffset = FVector(TaskIndex) * 0.001;
-	for (int i = 0; i < PointIO->GetNum(); i++) { PCGExMath::RandomizeSeed(MutablePoints[i], BaseOffset); }
+	for (int i = 0; i < PointIO->GetNum(); i++) { MutablePoints[i].Seed = PCGExRandom::ComputeSeed(MutablePoints[i], BaseOffset); }
 
 	return true;
 }

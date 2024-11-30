@@ -5,6 +5,8 @@
 
 #include "CoreMinimal.h"
 #include "PCGExOperation.h"
+
+
 #include "Graph/PCGExCluster.h"
 #include "Graph/Pathfinding/Heuristics/PCGExHeuristics.h"
 #include "UObject/Object.h"
@@ -19,14 +21,14 @@ class UPCGExHeuristicOperation;
 
 namespace PCGExCluster
 {
-	struct FCluster;
+	class FCluster;
 }
 
 /**
  * 
  */
 UCLASS(Abstract)
-class PCGEXTENDEDTOOLKIT_API UPCGExSearchOperation : public UPCGExOperation
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSearchOperation : public UPCGExOperation
 {
 	GENERATED_BODY()
 
@@ -36,12 +38,7 @@ public:
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
 
 	virtual void PrepareForCluster(PCGExCluster::FCluster* InCluster);
-	virtual bool FindPath(
-		const FVector& SeedPosition,
-		const FPCGExNodeSelectionDetails* SeedSelection,
-		const FVector& GoalPosition,
-		const FPCGExNodeSelectionDetails* GoalSelection,
-		PCGExHeuristics::THeuristicsHandler* Heuristics,
-		TArray<int32>& OutPath,
-		PCGExHeuristics::FLocalFeedbackHandler* LocalFeedback = nullptr) const;
+	virtual bool ResolveQuery(
+		const TSharedPtr<PCGExPathfinding::FPathQuery>& InQuery,
+		const TSharedPtr<PCGExHeuristics::FHeuristicsHandler>& Heuristics, const TSharedPtr<PCGExHeuristics::FLocalFeedbackHandler>& LocalFeedback = nullptr) const;
 };

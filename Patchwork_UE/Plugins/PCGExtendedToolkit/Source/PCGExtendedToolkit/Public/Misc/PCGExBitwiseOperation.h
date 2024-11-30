@@ -8,10 +8,12 @@
 #include "PCGExGlobalSettings.h"
 
 #include "PCGExPointsProcessor.h"
+
+
 #include "PCGExBitwiseOperation.generated.h"
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExBitwiseOperationSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExBitwiseOperationSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -28,10 +30,9 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** Target attribute */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	FName FlagAttribute;
@@ -42,25 +43,23 @@ public:
 
 	/** Type of Mask */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	EPCGExFetchType MaskType = EPCGExFetchType::Constant;
+	EPCGExInputValueType MaskInput = EPCGExInputValueType::Constant;
 
 	/** Mask -- Must be int64. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="MaskType==EPCGExFetchType::Attribute", DisplayName="Mask", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Bitmask", EditCondition="MaskInput==EPCGExInputValueType::Attribute", EditConditionHides))
 	FName MaskAttribute;
 
 	/**  */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="MaskType==EPCGExFetchType::Constant", DisplayName="Mask", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Bitmask", EditCondition="MaskInput==EPCGExInputValueType::Constant", EditConditionHides))
 	int64 Bitmask;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExBitwiseOperationContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBitwiseOperationContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExBitwiseOperationElement;
-
-	virtual ~FPCGExBitwiseOperationContext() override;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExBitwiseOperationElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBitwiseOperationElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -75,17 +74,17 @@ protected:
 
 namespace PCGExBitwiseOperation
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExBitwiseOperationContext, UPCGExBitwiseOperationSettings>
 	{
-		PCGEx::FAttributeIOBase<int64>* Reader = nullptr;
-		PCGEx::TFAttributeWriter<int64>* Writer = nullptr;
+		TSharedPtr<PCGExData::TBuffer<int64>> Reader;
+		TSharedPtr<PCGExData::TBuffer<int64>> Writer;
 
 		int64 Mask = 0;
 		EPCGExBitOp Op = EPCGExBitOp::Set;
 
 	public:
-		explicit FProcessor(PCGExData::FPointIO* InPoints):
-			FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade):
+			TPointsProcessor(InPointDataFacade)
 		{
 		}
 
@@ -93,7 +92,7 @@ namespace PCGExBitwiseOperation
 		{
 		}
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count) override;
 		virtual void CompleteWork() override;
 	};

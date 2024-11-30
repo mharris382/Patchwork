@@ -7,19 +7,19 @@
 
 #include "PCGExPointsProcessor.h"
 #include "Data/PCGExAttributeHelpers.h"
-#include "Data/PCGExPointFilter.h"
+
 
 #include "PCGExUberFilter.generated.h"
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Uber Filter Mode"))
+UENUM()
 enum class EPCGExUberFilterMode : uint8
 {
-	Partition UMETA(DisplayName = "Partition points", ToolTip="Create inside/outside dataset from the filter results."),
-	Write UMETA(DisplayName = "Write result", ToolTip="Simply write filter result to an attribute but doesn't change point structure."),
+	Partition = 0 UMETA(DisplayName = "Partition points", ToolTip="Create inside/outside dataset from the filter results."),
+	Write     = 1 UMETA(DisplayName = "Write result", ToolTip="Simply write filter result to an attribute but doesn't change point structure."),
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExUberFilterSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExUberFilterSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -30,7 +30,6 @@ public:
 #endif
 	//~End UObject interface
 
-public:
 	//~Begin UPCGSettings
 #if WITH_EDITOR
 	PCGEX_NODE_INFOS(UberFilter, "Uber Filter", "Filter points based on multiple rules & conditions.");
@@ -38,43 +37,68 @@ public:
 #endif
 
 protected:
-	virtual TArray<FPCGPinProperties> InputPinProperties() const override;
 	virtual TArray<FPCGPinProperties> OutputPinProperties() const override;
 	virtual FPCGElementPtr CreateElement() const override;
 	//~End UPCGSettings
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual FName GetMainOutputPin() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	PCGEX_NODE_POINT_FILTER(PCGExPointFilter::SourceFiltersLabel, "Filters", PCGExFactories::PointFilters, true)
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** Write result to point instead of split outputs */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	EPCGExUberFilterMode Mode = EPCGExUberFilterMode::Partition;
 
 	/** Name of the attribute to write result to */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="Mode==EPCGExUberFilterMode::Write", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(DisplayName="PassFilter", PCG_Overridable, EditCondition="Mode==EPCGExUberFilterMode::Write", EditConditionHides))
 	FName ResultAttributeName = FName("PassFilter");
 
 	/** Invert the filter result */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bSwap = false;
 
+	/** */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, InlineEditConditionToggle))
+	bool bTagIfAnyPointPassed = false;
+
+	/** ... */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, EditCondition="bTagIfAnyPointPassed"))
+	FString HasAnyPointPassedTag = TEXT("SomePointsPassed");
+
+	/** */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, InlineEditConditionToggle))
+	bool bTagIfAllPointsPassed = false;
+
+	/** ... */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, EditCondition="bTagIfAllPointsPassed"))
+	FString AllPointsPassedTag = TEXT("AllPointsPassed");
+
+	/** */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, InlineEditConditionToggle))
+	bool bTagIfNoPointPassed = false;
+
+	/** ... */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, EditCondition="bTagIfNoPointPassed"))
+	FString NoPointPassedTag = TEXT("NoPointPassed");
+	
 private:
 	friend class FPCGExUberFilterElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExUberFilterContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExUberFilterContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExUberFilterElement;
-	virtual ~FPCGExUberFilterContext() override;
 
-	PCGExData::FPointIOCollection* Inside = nullptr;
-	PCGExData::FPointIOCollection* Outside = nullptr;
+	TSharedPtr<PCGExData::FPointIOCollection> Inside;
+	TSharedPtr<PCGExData::FPointIOCollection> Outside;
+
+	int32 NumPairs = 0;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExUberFilterElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExUberFilterElement final : public FPCGExPointsProcessorElement
 {
 	virtual FPCGContext* Initialize(
 		const FPCGDataCollection& InputData,
@@ -88,29 +112,28 @@ protected:
 
 namespace PCGExUberFilter
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExUberFilterContext, UPCGExUberFilterSettings>
 	{
 		int32 NumInside = 0;
 		int32 NumOutside = 0;
 
-		FPCGExUberFilterContext* LocalTypedContext = nullptr;
-
-		PCGExMT::FTaskGroup* TestTaskGroup = nullptr;
-
-		PCGEx::TFAttributeWriter<bool>* Results = nullptr;
+		TSharedPtr<PCGExData::TBuffer<bool>> Results;
 
 	public:
-		PCGExData::FPointIO* Inside = nullptr;
-		PCGExData::FPointIO* Outside = nullptr;
+		TSharedPtr<PCGExData::FPointIO> Inside;
+		TSharedPtr<PCGExData::FPointIO> Outside;
 
-		explicit FProcessor(PCGExData::FPointIO* InPoints):
-			FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade):
+			TPointsProcessor(InPointDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
+		virtual void PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count) override;
+		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 LoopCount) override;
+		TSharedPtr<PCGExData::FPointIO> CreateIO(const TSharedRef<PCGExData::FPointIOCollection>& InCollection, const PCGExData::EIOInit InitMode) const;
 		virtual void CompleteWork() override;
 	};
 }

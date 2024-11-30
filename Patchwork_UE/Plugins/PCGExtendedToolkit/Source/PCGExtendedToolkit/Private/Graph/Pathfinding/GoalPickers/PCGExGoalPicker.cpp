@@ -9,14 +9,13 @@
 void UPCGExGoalPicker::CopySettingsFrom(const UPCGExOperation* Other)
 {
 	Super::CopySettingsFrom(Other);
-	const UPCGExGoalPicker* TypedOther = Cast<UPCGExGoalPicker>(Other);
-	if (TypedOther)
+	if (const UPCGExGoalPicker* TypedOther = Cast<UPCGExGoalPicker>(Other))
 	{
 		IndexSafety = TypedOther->IndexSafety;
 	}
 }
 
-void UPCGExGoalPicker::PrepareForData(PCGExData::FFacade* InSeedsDataFacade, PCGExData::FFacade* InGoalsDataFacade)
+void UPCGExGoalPicker::PrepareForData(const TSharedPtr<PCGExData::FFacade>& InSeedsDataFacade, const TSharedPtr<PCGExData::FFacade>& InGoalsDataFacade)
 {
 	MaxGoalIndex = InGoalsDataFacade->Source->GetNum() - 1;
 }

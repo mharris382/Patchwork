@@ -7,31 +7,18 @@
 #include "PCGExGlobalSettings.h"
 
 #include "PCGExPointsProcessor.h"
-#include "PCGExDetails.h"
+#include "PCGExDetailsIntersection.h"
 #include "Data/PCGExDataFilter.h"
+#include "Data/Blending/PCGExUnionBlender.h"
 #include "Data/Blending/PCGExDataBlending.h"
-#include "Graph/PCGExClusterMT.h"
-#include "Graph/PCGExGraph.h"
+
+#include "Graph/PCGExIntersections.h"
 
 #include "PCGExFusePoints.generated.h"
 
-
-namespace PCGExDataBlending
-{
-	class FCompoundBlender;
-}
-
-namespace PCGExGraph
-{
-	struct FCompoundGraph;
-}
-
 namespace PCGExFuse
 {
-	PCGEX_ASYNC_STATE(State_FindingFusePoints)
-	PCGEX_ASYNC_STATE(State_MergingPoints)
-
-	struct PCGEXTENDEDTOOLKIT_API FFusedPoint
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FFusedPoint
 	{
 		mutable FRWLock IndicesLock;
 		int32 Index = -1;
@@ -43,15 +30,9 @@ namespace PCGExFuse
 		FFusedPoint(const int32 InIndex, const FVector& InPosition)
 			: Index(InIndex), Position(InPosition)
 		{
-			Fused.Empty();
-			Distances.Empty();
 		}
 
-		~FFusedPoint()
-		{
-			Fused.Empty();
-			Distances.Empty();
-		}
+		~FFusedPoint() = default;
 
 		FORCEINLINE void Add(const int32 InIndex, const double Distance)
 		{
@@ -63,8 +44,8 @@ namespace PCGExFuse
 	};
 }
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExFusePointsSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFusePointsSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -81,13 +62,12 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** Fuse Settings */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Point/Point Settings"))
-	FPCGExPointPointIntersectionDetails PointPointIntersectionDetails;
+	FPCGExPointPointIntersectionDetails PointPointIntersectionDetails = FPCGExPointPointIntersectionDetails(false);
 
 	/** Preserve the order of input points */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
@@ -105,14 +85,14 @@ private:
 	friend class FPCGExFusePointsElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExFusePointsContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFusePointsContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExFusePointsElement;
-	virtual ~FPCGExFusePointsContext() override;
+	TSharedPtr<PCGExDetails::FDistances> Distances;
 	FPCGExCarryOverDetails CarryOverDetails;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExFusePointsElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFusePointsElement final : public FPCGExPointsProcessorElement
 {
 	virtual FPCGContext* Initialize(
 		const FPCGDataCollection& InputData,
@@ -126,25 +106,21 @@ protected:
 
 namespace PCGExFusePoints
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExFusePointsContext, UPCGExFusePointsSettings>
 	{
-		FPCGExFusePointsContext* LocalTypedContext = nullptr;
-		const UPCGExFusePointsSettings* LocalSettings = nullptr;
-
-		PCGExGraph::FGraphMetadataDetails GraphMetadataDetails;
-		PCGExGraph::FCompoundGraph* CompoundGraph = nullptr;
-		PCGExDataBlending::FCompoundBlender* CompoundPointsBlender = nullptr;
+		TSharedPtr<PCGExGraph::FUnionGraph> UnionGraph;
+		TSharedPtr<PCGExDataBlending::FUnionBlender> UnionBlender;
 
 	public:
-		explicit FProcessor(PCGExData::FPointIO* InPoints)
-			: FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade)
+			: TPointsProcessor(InPointDataFacade)
 		{
 			bInlineProcessPoints = true;
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 LoopCount) override;
 		virtual void ProcessSingleRangeIteration(const int32 Iteration, const int32 LoopIdx, const int32 LoopCount) override;
 		virtual void CompleteWork() override;

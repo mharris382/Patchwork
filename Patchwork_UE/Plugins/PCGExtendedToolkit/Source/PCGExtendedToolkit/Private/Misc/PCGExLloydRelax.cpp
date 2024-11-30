@@ -3,19 +3,15 @@
 
 #include "Misc/PCGExLloydRelax.h"
 
+
 #include "Geometry/PCGExGeoDelaunay.h"
 
 #define LOCTEXT_NAMESPACE "PCGExLloydRelaxElement"
 #define PCGEX_NAMESPACE LloydRelax
 
-PCGExData::EInit UPCGExLloydRelaxSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExLloydRelaxSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 PCGEX_INITIALIZE_ELEMENT(LloydRelax)
-
-FPCGExLloydRelaxContext::~FPCGExLloydRelaxContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExLloydRelaxElement::Boot(FPCGExContext* InContext) const
 {
@@ -31,67 +27,52 @@ bool FPCGExLloydRelaxElement::ExecuteInternal(FPCGContext* InContext) const
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExLloydRelaxElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(LloydRelax)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
-		bool bInvalidInputs = false;
+		PCGEX_ON_INVALILD_INPUTS(FTEXT("Some inputs have less than 4 points and won't be processed."))
 
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExLloydRelax::FProcessor>>(
-			[&](PCGExData::FPointIO* Entry)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry)
 			{
 				if (Entry->GetNum() <= 4)
 				{
-					Entry->InitializeOutput(PCGExData::EInit::Forward);
-					bInvalidInputs = true;
+					Entry->InitializeOutput(PCGExData::EIOInit::Forward);
+					bHasInvalidInputs = true;
 					return false;
 				}
 				return true;
 			},
-			[&](PCGExPointsMT::TBatch<PCGExLloydRelax::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExLloydRelax::FProcessor>>& NewBatch)
 			{
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Error, GraphAndLog, FTEXT("Could not find any paths to relax."));
-			return true;
-		}
-
-		if (bInvalidInputs)
-		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Some inputs have less than 4 points and won't be processed."));
+			return Context->CancelExecution(TEXT("Could not find any paths to relax."));
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
 
 namespace PCGExLloydRelax
 {
-	FProcessor::~FProcessor()
-	{
-		ActivePositions.Empty();
-	}
-
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExLloydRelax::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(LloydRelax)
 
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
 		InfluenceDetails = Settings->InfluenceDetails;
-		if (!InfluenceDetails.Init(Context, PointDataFacade)) { return false; }
+		if (!InfluenceDetails.Init(ExecutionContext, PointDataFacade)) { return false; }
 
-		PointIO->InitializeOutput(PCGExData::EInit::DuplicateInput);
-		PCGExGeo::PointsToPositions(PointIO->GetIn()->GetPoints(), ActivePositions);
+		PointDataFacade->Source->InitializeOutput(PCGExData::EIOInit::Duplicate);
+		PCGExGeo::PointsToPositions(PointDataFacade->GetIn()->GetPoints(), ActivePositions);
 
-		AsyncManagerPtr->Start<FLloydRelaxTask>(0, PointIO, this, &InfluenceDetails, Settings->Iterations);
+		AsyncManager->Start<FLloydRelaxTask>(0, PointDataFacade->Source, SharedThis(this), &InfluenceDetails, Settings->Iterations);
 
 		return true;
 	}
@@ -109,17 +90,17 @@ namespace PCGExLloydRelax
 		StartParallelLoopForPoints();
 	}
 
-	bool FLloydRelaxTask::ExecuteTask()
+	bool FLloydRelaxTask::ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager)
 	{
 		NumIterations--;
 
-		PCGExGeo::TDelaunay3* Delaunay = new PCGExGeo::TDelaunay3();
+		TUniquePtr<PCGExGeo::TDelaunay3> Delaunay = MakeUnique<PCGExGeo::TDelaunay3>();
 		TArray<FVector>& Positions = Processor->ActivePositions;
 
 		//FPCGExPointsProcessorContext* Context = static_cast<FPCGExPointsProcessorContext*>(Manager->Context);
 
 		const TArrayView<FVector> View = MakeArrayView(Positions);
-		if (!Delaunay->Process(View, false)) { return false; }
+		if (!Delaunay->Process<false, false>(View)) { return false; }
 
 		const int32 NumPoints = Positions.Num();
 
@@ -145,7 +126,7 @@ namespace PCGExLloydRelax
 			for (int i = 0; i < NumPoints; i++) { Positions[i] = FMath::Lerp(Positions[i], Sum[i] / Counts[i], InfluenceSettings->GetInfluence(i)); }
 		}
 
-		PCGEX_DELETE(Delaunay)
+		Delaunay.Reset();
 
 		if (NumIterations > 0)
 		{

@@ -11,7 +11,7 @@
 
 UPCGExParamFactoryBase* UPCGExPartitionRuleProviderSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const
 {
-	UPCGExPartitionRule* NewFactory = NewObject<UPCGExPartitionRule>();
+	UPCGExPartitionRule* NewFactory = InContext->ManagedObjects->New<UPCGExPartitionRule>();
 	NewFactory->Config = Config;
 	return NewFactory;
 }
@@ -27,9 +27,9 @@ TArray<FPCGPinProperties> UPCGExModularPartitionByValuesSettings::InputPinProper
 	return PinProperties;
 }
 
-bool UPCGExModularPartitionByValuesSettings::GetPartitionRules(const FPCGContext* InContext, TArray<FPCGExPartitonRuleConfig>& OutRules) const
+bool UPCGExModularPartitionByValuesSettings::GetPartitionRules(FPCGExContext* InContext, TArray<FPCGExPartitonRuleConfig>& OutRules) const
 {
-	TArray<UPCGExPartitionRule*> Factories;
+	TArray<TObjectPtr<const UPCGExPartitionRule>> Factories;
 	if (!PCGExFactories::GetInputFactories(
 		InContext, TEXT("PartitionRules"), Factories,
 		{PCGExFactories::EType::RulePartition}, false))

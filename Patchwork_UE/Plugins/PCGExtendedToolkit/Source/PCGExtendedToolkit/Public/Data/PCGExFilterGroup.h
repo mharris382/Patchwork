@@ -9,152 +9,146 @@
 #include "PCGExFactoryProvider.h"
 
 #include "PCGExPointFilter.h"
+
+
 #include "Graph/Filters/PCGExClusterFilter.h"
 #include "PCGExFilterGroup.generated.h"
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Filter Group Mode"))
+UENUM()
 enum class EPCGExFilterGroupMode : uint8
 {
-	AND UMETA(DisplayName = "And", ToolTip="All connected filters must pass."),
-	OR UMETA(DisplayName = "Or", ToolTip="Only a single connected filter must pass.")
+	AND = 0 UMETA(DisplayName = "And", ToolTip="All connected filters must pass."),
+	OR  = 1 UMETA(DisplayName = "Or", ToolTip="Only a single connected filter must pass.")
 };
 
 /**
  * 
  */
-UCLASS(Abstract, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExFilterGroupFactoryBase : public UPCGExClusterFilterFactoryBase
+UCLASS(Abstract, MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFilterGroupFactoryBase : public UPCGExClusterFilterFactoryBase
 {
 	GENERATED_BODY()
 
 public:
-	TArray<UPCGExFilterFactoryBase*> FilterFactories;
+	bool bInvert = false;
+	TArray<TObjectPtr<const UPCGExFilterFactoryBase>> FilterFactories;
 
 	virtual PCGExFactories::EType GetFactoryType() const override { return PCGExFactories::EType::FilterGroup; }
-	virtual PCGExPointFilter::TFilter* CreateFilter() const override { return nullptr; }
+	virtual TSharedPtr<PCGExPointFilter::FFilter> CreateFilter() const override { return nullptr; }
 };
 
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExFilterGroupFactoryBaseAND : public UPCGExFilterGroupFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFilterGroupFactoryBaseAND : public UPCGExFilterGroupFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	virtual PCGExFactories::EType GetFactoryType() const override { return PCGExFactories::EType::FilterGroup; }
-	virtual PCGExPointFilter::TFilter* CreateFilter() const override;
+	virtual TSharedPtr<PCGExPointFilter::FFilter> CreateFilter() const override;
 };
 
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExFilterGroupFactoryBaseOR : public UPCGExFilterGroupFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFilterGroupFactoryBaseOR : public UPCGExFilterGroupFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	virtual PCGExFactories::EType GetFactoryType() const override { return PCGExFactories::EType::FilterGroup; }
-	virtual PCGExPointFilter::TFilter* CreateFilter() const override;
+	virtual TSharedPtr<PCGExPointFilter::FFilter> CreateFilter() const override;
 };
 
 namespace PCGExFilterGroup
 {
-	class PCGEXTENDEDTOOLKIT_API TFilterGroup : public PCGExClusterFilter::TFilter
+	class /*PCGEXTENDEDTOOLKIT_API*/ FFilterGroup : public PCGExClusterFilter::FFilter
 	{
 	public:
-		explicit TFilterGroup(const UPCGExFilterGroupFactoryBase* InFactory, const TArray<UPCGExFilterFactoryBase*>* InFilterFactories):
-			TFilter(InFactory), GroupFactory(InFactory), ManagedFactories(InFilterFactories)
+		explicit FFilterGroup(const UPCGExFilterGroupFactoryBase* InFactory, const TArray<TObjectPtr<const UPCGExFilterFactoryBase>>* InFilterFactories):
+			FFilter(InFactory), GroupFactory(InFactory), ManagedFactories(InFilterFactories)
 		{
 		}
 
 		bool bValid = false;
+		bool bInvert = false;
 		const UPCGExFilterGroupFactoryBase* GroupFactory;
-		const TArray<UPCGExFilterFactoryBase*>* ManagedFactories;
-
-		PCGExCluster::FCluster* Cluster = nullptr;
-		PCGExData::FFacade* EdgeDataCache = nullptr;
-
+		const TArray<TObjectPtr<const UPCGExFilterFactoryBase>>* ManagedFactories;
 
 		virtual PCGExFilters::EType GetFilterType() const override { return PCGExFilters::EType::Group; }
 
-		virtual bool Init(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade) override;
-		virtual bool Init(const FPCGContext* InContext, PCGExCluster::FCluster* InCluster, PCGExData::FFacade* InPointDataFacade, PCGExData::FFacade* InEdgeDataFacade) override;
+		virtual bool Init(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade> InPointDataFacade) override;
+		virtual bool Init(FPCGExContext* InContext, const TSharedRef<PCGExCluster::FCluster>& InCluster, const TSharedRef<PCGExData::FFacade>& InPointDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade) override;
 
 		virtual void PostInit() override;
 
 		virtual bool Test(const int32 Index) const override = 0;
 		virtual bool Test(const PCGExCluster::FNode& Node) const override = 0;
-		virtual bool Test(const PCGExGraph::FIndexedEdge& Edge) const override = 0;
-
-		virtual ~TFilterGroup() override
-		{
-			Results.Empty();
-			PCGEX_DELETE_TARRAY(ManagedFilters)
-		}
+		virtual bool Test(const PCGExGraph::FEdge& Edge) const override = 0;
 
 	protected:
-		TArray<PCGExPointFilter::TFilter*> ManagedFilters;
+		TArray<TSharedPtr<PCGExPointFilter::FFilter>> ManagedFilters;
 
-		virtual bool InitManaged(const FPCGContext* InContext);
-		bool InitManagedFilter(const FPCGContext* InContext, PCGExPointFilter::TFilter* Filter);
-		virtual bool PostInitManaged(const FPCGContext* InContext);
-		virtual void PostInitManagedFilter(const FPCGContext* InContext, PCGExPointFilter::TFilter* InFilter);
+		virtual bool InitManaged(FPCGExContext* InContext);
+		bool InitManagedFilter(FPCGExContext* InContext, const TSharedPtr<PCGExPointFilter::FFilter>& Filter) const;
+		virtual bool PostInitManaged(FPCGExContext* InContext);
+		virtual void PostInitManagedFilter(FPCGExContext* InContext, const TSharedPtr<PCGExPointFilter::FFilter>& InFilter);
 	};
 
-	class PCGEXTENDEDTOOLKIT_API TFilterGroupAND : public TFilterGroup
+	class /*PCGEXTENDEDTOOLKIT_API*/ FFilterGroupAND final : public FFilterGroup
 	{
 	public:
-		explicit TFilterGroupAND(const UPCGExFilterGroupFactoryBase* InFactory, const TArray<UPCGExFilterFactoryBase*>* InFilterFactories):
-			TFilterGroup(InFactory, InFilterFactories)
+		explicit FFilterGroupAND(const UPCGExFilterGroupFactoryBase* InFactory, const TArray<TObjectPtr<const UPCGExFilterFactoryBase>>* InFilterFactories):
+			FFilterGroup(InFactory, InFilterFactories)
 		{
 		}
 
 		FORCEINLINE virtual bool Test(const int32 Index) const override
 		{
-			for (const PCGExPointFilter::TFilter* Filter : ManagedFilters) { if (!Filter->Test(Index)) { return false; } }
-			return true;
+			for (const TSharedPtr<PCGExPointFilter::FFilter>& Filter : ManagedFilters) { if (!Filter->Test(Index)) { return bInvert; } }
+			return !bInvert;
 		}
 
 		FORCEINLINE virtual bool Test(const PCGExCluster::FNode& Node) const override
 		{
-			for (const PCGExPointFilter::TFilter* Filter : ManagedFilters) { if (!Filter->Test(Node)) { return false; } }
-			return true;
+			for (const TSharedPtr<PCGExPointFilter::FFilter>& Filter : ManagedFilters) { if (!Filter->Test(Node)) { return bInvert; } }
+			return !bInvert;
 		}
 
-		FORCEINLINE virtual bool Test(const PCGExGraph::FIndexedEdge& Edge) const override
+		FORCEINLINE virtual bool Test(const PCGExGraph::FEdge& Edge) const override
 		{
-			for (const PCGExPointFilter::TFilter* Filter : ManagedFilters) { if (!Filter->Test(Edge)) { return false; } }
-			return true;
+			for (const TSharedPtr<PCGExPointFilter::FFilter>& Filter : ManagedFilters) { if (!Filter->Test(Edge)) { return bInvert; } }
+			return !bInvert;
 		}
 	};
 
-	class PCGEXTENDEDTOOLKIT_API TFilterGroupOR : public TFilterGroup
+	class /*PCGEXTENDEDTOOLKIT_API*/ FFilterGroupOR final : public FFilterGroup
 	{
 	public:
-		explicit TFilterGroupOR(const UPCGExFilterGroupFactoryBase* InFactory, const TArray<UPCGExFilterFactoryBase*>* InFilterFactories):
-			TFilterGroup(InFactory, InFilterFactories)
+		explicit FFilterGroupOR(const UPCGExFilterGroupFactoryBase* InFactory, const TArray<TObjectPtr<const UPCGExFilterFactoryBase>>* InFilterFactories):
+			FFilterGroup(InFactory, InFilterFactories)
 		{
 		}
 
 		FORCEINLINE virtual bool Test(const int32 Index) const override
 		{
-			for (const PCGExPointFilter::TFilter* Filter : ManagedFilters) { if (Filter->Test(Index)) { return true; } }
-			return false;
+			for (const TSharedPtr<PCGExPointFilter::FFilter>& Filter : ManagedFilters) { if (Filter->Test(Index)) { return !bInvert; } }
+			return bInvert;
 		}
 
 		FORCEINLINE virtual bool Test(const PCGExCluster::FNode& Node) const override
 		{
-			for (const PCGExPointFilter::TFilter* Filter : ManagedFilters) { if (Filter->Test(Node)) { return true; } }
-			return false;
+			for (const TSharedPtr<PCGExPointFilter::FFilter>& Filter : ManagedFilters) { if (Filter->Test(Node)) { return !bInvert; } }
+			return bInvert;
 		}
 
-		FORCEINLINE virtual bool Test(const PCGExGraph::FIndexedEdge& Edge) const override
+		FORCEINLINE virtual bool Test(const PCGExGraph::FEdge& Edge) const override
 		{
-			for (const PCGExPointFilter::TFilter* Filter : ManagedFilters) { if (Filter->Test(Edge)) { return true; } }
-			return false;
+			for (const TSharedPtr<PCGExPointFilter::FFilter>& Filter : ManagedFilters) { if (Filter->Test(Edge)) { return !bInvert; } }
+			return bInvert;
 		}
 	};
 }

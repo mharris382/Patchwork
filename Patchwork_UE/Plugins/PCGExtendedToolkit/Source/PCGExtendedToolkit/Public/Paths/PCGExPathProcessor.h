@@ -5,6 +5,7 @@
 
 #include "CoreMinimal.h"
 #include "PCGExGlobalSettings.h"
+#include "PCGExPaths.h"
 #include "PCGExPointsProcessor.h"
 
 #include "PCGExPathProcessor.generated.h"
@@ -22,11 +23,13 @@ namespace PCGExCluster
  * 
  */
 UCLASS(Abstract, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
-class PCGEXTENDEDTOOLKIT_API UPCGExPathProcessorSettings : public UPCGExPointsProcessorSettings
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPathProcessorSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
 public:
+	UPCGExPathProcessorSettings(const FObjectInitializer& ObjectInitializer);
+
 	//~Begin UPCGSettings
 #if WITH_EDITOR
 	virtual FLinearColor GetNodeTitleColor() const override { return GetDefault<UPCGExGlobalSettings>()->NodeColorPath; }
@@ -34,24 +37,34 @@ public:
 	//~End UPCGSettings
 
 	//~Begin UPCGExPointsProcessorSettings
-public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual FName GetMainInputLabel() const override { return PCGExGraph::SourcePathsLabel; }
-	virtual FName GetMainOutputLabel() const override { return PCGExGraph::OutputPathsLabel; }
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual FName GetMainInputPin() const override { return PCGExGraph::SourcePathsLabel; }
+	virtual FName GetMainOutputPin() const override { return PCGExGraph::OutputPathsLabel; }
 	virtual FString GetPointFilterTooltip() const override { return TEXT("Path points processing filters"); }
+
 	//~End UPCGExPointsProcessorSettings
+
+	UPROPERTY()
+	bool bSupportClosedLoops = true;
+
+	/** Closed loop handling.*/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayPriority=-1, EditCondition="bSupportClosedLoops", EditConditionHides, HideEditConditionToggle))
+	FPCGExPathClosedLoopDetails ClosedLoop;
+
+	/** If enabled, collections that have less than 2 points won't be processed and be omitted from the output. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable), AdvancedDisplay)
+	bool bOmitInvalidPathsOutputs = true;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExPathProcessorContext : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathProcessorContext : FPCGExPointsProcessorContext
 {
 	friend class FPCGExPathProcessorElement;
 
-	virtual ~FPCGExPathProcessorContext() override;
-
-	PCGExData::FPointIOCollection* MainPaths = nullptr;
+	FPCGExPathClosedLoopDetails ClosedLoop;
+	TSharedPtr<PCGExData::FPointIOCollection> MainPaths;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPathProcessorElement : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathProcessorElement : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(

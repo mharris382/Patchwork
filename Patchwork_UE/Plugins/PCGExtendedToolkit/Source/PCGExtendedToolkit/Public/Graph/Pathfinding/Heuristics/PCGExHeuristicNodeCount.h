@@ -8,10 +8,11 @@
 #include "Graph/PCGExCluster.h"
 #include "PCGExHeuristicDistance.h"
 
+
 #include "PCGExHeuristicNodeCount.generated.h"
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExHeuristicConfigLeastNodes : public FPCGExHeuristicConfigBase
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExHeuristicConfigLeastNodes : public FPCGExHeuristicConfigBase
 {
 	GENERATED_BODY()
 
@@ -24,38 +25,47 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExHeuristicConfigLeastNodes : public FPCGExHeu
 /**
  * 
  */
-UCLASS(DisplayName = "Least Nodes")
-class PCGEXTENDEDTOOLKIT_API UPCGExHeuristicNodeCount : public UPCGExHeuristicDistance
+UCLASS(MinimalAPI, DisplayName = "Least Nodes")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExHeuristicNodeCount : public UPCGExHeuristicDistance
 {
 	GENERATED_BODY()
 
 public:
-	virtual double GetEdgeScore(
+	FORCEINLINE virtual double GetGlobalScore(
 		const PCGExCluster::FNode& From,
-		const PCGExCluster::FNode& To,
-		const PCGExGraph::FIndexedEdge& Edge,
 		const PCGExCluster::FNode& Seed,
 		const PCGExCluster::FNode& Goal) const override
 	{
-		return ReferenceWeight;
+		return GetScoreInternal(0.5);
+	}
+
+	FORCEINLINE virtual double GetEdgeScore(
+		const PCGExCluster::FNode& From,
+		const PCGExCluster::FNode& To,
+		const PCGExGraph::FEdge& Edge,
+		const PCGExCluster::FNode& Seed,
+		const PCGExCluster::FNode& Goal,
+		const TSharedPtr<PCGEx::FHashLookup> TravelStack = nullptr) const override
+	{
+		return GetScoreInternal(0.5);
 	}
 };
 
 ////
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGHeuristicsFactoryLeastNodes : public UPCGExHeuristicsFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExHeuristicsFactoryLeastNodes : public UPCGExHeuristicsFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExHeuristicConfigLeastNodes Config;
 
-	virtual UPCGExHeuristicOperation* CreateOperation() const override;
+	virtual UPCGExHeuristicOperation* CreateOperation(FPCGExContext* InContext) const override;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
-class PCGEXTENDEDTOOLKIT_API UPCGExHeuristicsLeastNodesProviderSettings : public UPCGExHeuristicsFactoryProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExHeuristicsLeastNodesProviderSettings : public UPCGExHeuristicsFactoryProviderSettings
 {
 	GENERATED_BODY()
 

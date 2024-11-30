@@ -7,45 +7,22 @@
 #include "PCGExPointsProcessor.h"
 #include "Data/PCGExDataForward.h"
 
-
-#include "Geometry/PCGExGeo.h"
 #include "Geometry/PCGExGeoMesh.h"
 
 #include "PCGExMeshToClusters.generated.h"
 
-namespace PCGExGeo
-{
-	class FGeoStaticMesh;
-}
-
-namespace PCGExGeo
-{
-	class FGeoStaticMeshMap;
-}
-
-namespace PCGExGeo
-{
-	class TVoronoiMesh3;
-}
-
-namespace PCGExGeo
-{
-	class TConvexHull3;
-	class TDelaunayTriangulation3;
-}
-
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Mesh Source Type"))
+UENUM()
 enum class EPCGExMeshAttributeHandling : uint8
 {
-	StaticMeshSoftPath UMETA(DisplayName = "StaticMesh Soft Path", ToolTip="Read the attribute as a StaticMesh soft path."),
-	ActorReference UMETA(DisplayName = "Actor Reference", ToolTip="Read the attribute as an actor reference to extract primitive from."),
+	StaticMeshSoftPath = 0 UMETA(DisplayName = "StaticMesh Soft Path", ToolTip="Read the attribute as a StaticMesh soft path."),
+	ActorReference     = 1 UMETA(DisplayName = "Actor Reference", ToolTip="Read the attribute as an actor reference to extract primitive from."),
 };
 
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph")
-class PCGEXTENDEDTOOLKIT_API UPCGExMeshToClustersSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExMeshToClustersSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -63,32 +40,31 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual FName GetMainInputLabel() const override { return PCGEx::SourceTargetsLabel; }
-	virtual FName GetMainOutputLabel() const override { return PCGExGraph::OutputVerticesLabel; }
+	virtual FName GetMainInputPin() const override { return PCGEx::SourceTargetsLabel; }
+	virtual FName GetMainOutputPin() const override { return PCGExGraph::OutputVerticesLabel; }
 	virtual bool GetMainAcceptMultipleData() const override { return false; }
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** Triangulation type */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	EPCGExTriangulationType GraphOutputType = EPCGExTriangulationType::Raw;
 
 	/** Mesh source */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	EPCGExFetchType StaticMeshSource = EPCGExFetchType::Constant;
+	EPCGExInputValueType StaticMeshInput = EPCGExInputValueType::Constant;
 
 	/** Static mesh constant */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, EditCondition="StaticMeshSource==EPCGExFetchType::Constant", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, DisplayName="Static Mesh", EditCondition="StaticMeshInput==EPCGExInputValueType::Constant", EditConditionHides))
 	TSoftObjectPtr<UStaticMesh> StaticMeshConstant;
 
 	/** Static mesh path attribute -- Either FString, FName or FSoftObjectPath*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, EditCondition="StaticMeshSource==EPCGExFetchType::Attribute", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, DisplayName="Static Mesh", EditCondition="StaticMeshInput==EPCGExInputValueType::Attribute", EditConditionHides))
 	FName StaticMeshAttribute;
 
 	/** Static mesh path attribute type*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, EditCondition="StaticMeshSource==EPCGExFetchType::Attribute", EditConditionHides))
-	EPCGExMeshAttributeHandling AttributeHandling;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, EditCondition="StaticMeshInput==EPCGExInputValueType::Attribute", EditConditionHides))
+	EPCGExMeshAttributeHandling AttributeHandling; // TODO : Refactor this to support both. We care about primitives, not where they come from.
 
 	/** Target inherit behavior */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
@@ -110,27 +86,26 @@ private:
 	friend class FPCGExMeshToClustersElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExMeshToClustersContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExMeshToClustersContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExMeshToClustersElement;
 
 	FPCGExGraphBuilderDetails GraphBuilderDetails;
 	FPCGExTransformDetails TransformDetails;
 
-	PCGExGeo::FGeoStaticMeshMap* StaticMeshMap = nullptr;
+	TSharedPtr<PCGExData::FFacade> TargetsDataFacade;
+	TSharedPtr<PCGExGeo::FGeoStaticMeshMap> StaticMeshMap;
 	TArray<int32> MeshIdx;
 
-	PCGExData::FPointIOCollection* RootVtx = nullptr;
-	PCGExData::FPointIOCollection* VtxChildCollection = nullptr;
-	PCGExData::FPointIOCollection* EdgeChildCollection = nullptr;
+	TSharedPtr<PCGExData::FPointIOCollection> RootVtx;
+	TSharedPtr<PCGExData::FPointIOCollection> VtxChildCollection;
+	TSharedPtr<PCGExData::FPointIOCollection> EdgeChildCollection;
 
-	TArray<PCGExGraph::FGraphBuilder*> GraphBuilders;
-
-	virtual ~FPCGExMeshToClustersContext() override;
+	TArray<TSharedPtr<PCGExGraph::FGraphBuilder>> GraphBuilders;
 };
 
 
-class PCGEXTENDEDTOOLKIT_API FPCGExMeshToClustersElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExMeshToClustersElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -145,19 +120,19 @@ protected:
 
 namespace PCGExMeshToCluster
 {
-	class PCGEXTENDEDTOOLKIT_API FExtractMeshAndBuildGraph final : public PCGExMT::FPCGExTask
+	class /*PCGEXTENDEDTOOLKIT_API*/ FExtractMeshAndBuildGraph final : public PCGExMT::FPCGExTask
 	{
 	public:
 		FExtractMeshAndBuildGraph(
-			PCGExData::FPointIO* InPointIO,
-			PCGExGeo::FGeoStaticMesh* InMesh) :
+			const TSharedPtr<PCGExData::FPointIO>& InPointIO,
+			const TSharedPtr<PCGExGeo::FGeoStaticMesh>& InMesh) :
 			FPCGExTask(InPointIO),
 			Mesh(InMesh)
 		{
 		}
 
-		PCGExGeo::FGeoStaticMesh* Mesh = nullptr;
+		TSharedPtr<PCGExGeo::FGeoStaticMesh> Mesh;
 
-		virtual bool ExecuteTask() override;
+		virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override;
 	};
 }

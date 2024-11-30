@@ -17,8 +17,8 @@ namespace PCGExDataBlending
 	struct FPropertiesBlender;
 }
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Edges")
-class PCGEXTENDEDTOOLKIT_API UPCGExDrawEdgesSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters", Hidden)
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExDrawEdgesSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -35,49 +35,47 @@ protected:
 	//~End UPCGSettings
 
 	//~Begin IPCGExDebug interface
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 	//~End IPCGExDebug interface
 
 	/** Draw color. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings", meta=(PCG_Overridable))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	FColor Color = FColor::Cyan;
 
 	/** Lerp to secondary color based on cluster index */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Debug", meta=(PCG_Overridable, InlineEditConditionToggle))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Debug, meta=(PCG_Overridable, InlineEditConditionToggle))
 	bool bLerpColor = false;
 
 	/** Lerp to secondary color based on cluster index */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings", meta=(PCG_Overridable, EditCondition="bLerpColor"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="bLerpColor"))
 	FColor SecondaryColor = FColor::Red;
 
 	/** Draw thickness. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings", meta=(PCG_Overridable, ClampMin=0.01, ClampMax=100))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ClampMin=0.01, ClampMax=100))
 	double Thickness = 0.5;
 
 	/** Depth priority. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings", meta=(PCG_Overridable))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	int32 DepthPriority = 0;
 
 	/** Debug drawing toggle. Exposed to have more control on debug draw in sub-graph. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Debug", meta=(PCG_Overridable))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Debug, meta=(PCG_Overridable))
 	bool bPCGExDebug = true;
 
 private:
 	friend class FPCGExDrawEdgesElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExDrawEdgesContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExDrawEdgesContext final : FPCGExEdgesProcessorContext
 {
 	friend class FPCGExDrawEdgesElement;
 
 	double MaxLerp = 1;
 	double CurrentLerp = 0;
-
-	virtual ~FPCGExDrawEdgesContext() override;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExDrawEdgesElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExDrawEdgesElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(

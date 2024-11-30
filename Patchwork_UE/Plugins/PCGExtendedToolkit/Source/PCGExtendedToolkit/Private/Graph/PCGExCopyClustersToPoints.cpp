@@ -8,17 +8,10 @@
 
 #pragma region UPCGSettings interface
 
-PCGExData::EInit UPCGExCopyClustersToPointsSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NoOutput; }
-PCGExData::EInit UPCGExCopyClustersToPointsSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExCopyClustersToPointsSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::None; }
+PCGExData::EIOInit UPCGExCopyClustersToPointsSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 #pragma endregion
-
-FPCGExCopyClustersToPointsContext::~FPCGExCopyClustersToPointsContext()
-{
-	PCGEX_TERMINATE_ASYNC
-
-	PCGEX_DELETE(Targets)
-}
 
 PCGEX_INITIALIZE_ELEMENT(CopyClustersToPoints)
 
@@ -35,10 +28,16 @@ bool FPCGExCopyClustersToPointsElement::Boot(FPCGExContext* InContext) const
 
 	PCGEX_CONTEXT_AND_SETTINGS(CopyClustersToPoints)
 
-	PCGEX_FWD(TransformDetails)
+	Context->TargetsDataFacade = PCGExData::TryGetSingleFacade(Context, PCGEx::SourceTargetsLabel, true);
+	if (!Context->TargetsDataFacade) { return false; }
 
-	Context->Targets = PCGExData::TryGetSingleInput(Context, PCGEx::SourceTargetsLabel, true);
-	if (!Context->Targets) { return false; }
+	PCGEX_FWD(TransformDetails)
+	if (!Context->TransformDetails.Init(Context, Context->TargetsDataFacade.ToSharedRef())) { return false; }
+
+	PCGEX_FWD(TargetsAttributesToPathTags)
+	if (!Context->TargetsAttributesToPathTags.Init(Context, Context->TargetsDataFacade)) { return false; }
+
+	Context->TargetsForwardHandler = Settings->TargetsForwarding.GetHandler(Context->TargetsDataFacade);
 
 	return true;
 }
@@ -48,23 +47,20 @@ bool FPCGExCopyClustersToPointsElement::ExecuteInternal(FPCGContext* InContext) 
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExCopyClustersToPointsElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(CopyClustersToPoints)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
 		if (!Context->StartProcessingClusters<PCGExCopyClusters::FBatch>(
-			[](PCGExData::FPointIOTaggedEntries* Entries) { return true; },
-			[&](PCGExCopyClusters::FBatch* NewBatch)
+			[](const TSharedPtr<PCGExData::FPointIOTaggedEntries>& Entries) { return true; },
+			[&](const TSharedPtr<PCGExCopyClusters::FBatch>& NewBatch)
 			{
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Could not build any clusters."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not build any clusters."));
 		}
 	}
 
-	if (!Context->ProcessClusters()) { return false; }
+	PCGEX_CLUSTER_BATCH_PROCESSING(PCGEx::State_Done)
 
 	Context->OutputPointsAndEdges();
 	Context->Done();
@@ -78,28 +74,24 @@ namespace PCGExCopyClusters
 	{
 	}
 
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(CopyClustersToPoints)
+		if (!FClusterProcessor::Process(InAsyncManager)) { return false; }
 
-		if (!FClusterProcessor::Process(AsyncManager)) { return false; }
-
-		LocalTypedContext = TypedContext;
-
-		const TArray<FPCGPoint>& Targets = TypedContext->Targets->GetIn()->GetPoints();
+		const TArray<FPCGPoint>& Targets = Context->TargetsDataFacade->GetIn()->GetPoints();
 		const int32 NumTargets = Targets.Num();
 
-		PCGEX_SET_NUM_UNINITIALIZED(EdgesDupes, NumTargets)
+		PCGEx::InitArray(EdgesDupes, NumTargets);
 
 		for (int i = 0; i < NumTargets; i++)
 		{
 			// Create an edge copy per target point
-			PCGExData::FPointIO* EdgeDupe = LocalTypedContext->MainEdges->Emplace_GetRef(EdgesIO, PCGExData::EInit::DuplicateInput);
+			TSharedPtr<PCGExData::FPointIO> EdgeDupe = Context->MainEdges->Emplace_GetRef(EdgeDataFacade->Source, PCGExData::EIOInit::Duplicate);
 
 			EdgesDupes[i] = EdgeDupe;
 			PCGExGraph::MarkClusterEdges(EdgeDupe, *(VtxTag->GetData() + i));
 
-			AsyncManagerPtr->Start<PCGExGeoTasks::FTransformPointIO>(i, TypedContext->Targets, EdgeDupe, &TypedContext->TransformDetails);
+			AsyncManager->Start<PCGExGeoTasks::FTransformPointIO>(i, Context->TargetsDataFacade->Source, EdgeDupe, &Context->TransformDetails);
 		}
 
 		return true;
@@ -107,26 +99,34 @@ namespace PCGExCopyClusters
 
 	void FProcessor::CompleteWork()
 	{
-		// Once work is complete, check if there are cached clusters we can forward
-		const PCGExCluster::FCluster* CachedCluster = PCGExClusterData::TryGetCachedCluster(VtxIO, EdgesIO);
-
-		if (!CachedCluster) { return; }
-
-		const TArray<FPCGPoint>& Targets = LocalTypedContext->Targets->GetIn()->GetPoints();
+		const TArray<FPCGPoint>& Targets = Context->TargetsDataFacade->GetIn()->GetPoints();
 		const int32 NumTargets = Targets.Num();
+
+		// Once work is complete, check if there are cached clusters we can forward
+		const TSharedPtr<PCGExCluster::FCluster> CachedCluster = PCGExClusterData::TryGetCachedCluster(VtxDataFacade->Source, EdgeDataFacade->Source);
 
 		for (int i = 0; i < NumTargets; i++)
 		{
-			PCGExData::FPointIO* VtxDupe = *(VtxDupes->GetData() + i);
-			PCGExData::FPointIO* EdgeDupe = EdgesDupes[i];
+			TSharedPtr<PCGExData::FPointIO> EdgeDupe = EdgesDupes[i];
+
+			Context->TargetsAttributesToPathTags.Tag(i, EdgeDupe);
+			Context->TargetsForwardHandler->Forward(i, EdgeDupe->GetOut()->Metadata);
+		}
+
+		if (!CachedCluster) { return; }
+
+		for (int i = 0; i < NumTargets; i++)
+		{
+			TSharedPtr<PCGExData::FPointIO> VtxDupe = *(VtxDupes->GetData() + i);
+			TSharedPtr<PCGExData::FPointIO> EdgeDupe = EdgesDupes[i];
 
 			UPCGExClusterEdgesData* EdgeDupeTypedData = Cast<UPCGExClusterEdgesData>(EdgeDupe->GetOut());
 			if (CachedCluster && EdgeDupeTypedData)
 			{
-				PCGExCluster::FCluster* ClusterCopy = new PCGExCluster::FCluster(
-					CachedCluster, VtxDupe, EdgeDupe, false, false, false);
-
-				EdgeDupeTypedData->SetBoundCluster(ClusterCopy, true);
+				EdgeDupeTypedData->SetBoundCluster(
+					MakeShared<PCGExCluster::FCluster>(
+						CachedCluster.ToSharedRef(), VtxDupe, EdgeDupe, CachedCluster->NodeIndexLookup,
+						false, false, false));
 			}
 		}
 	}
@@ -135,22 +135,20 @@ namespace PCGExCopyClusters
 	{
 	}
 
-	void FBatch::Process(PCGExMT::FTaskManager* AsyncManager)
+	void FBatch::Process()
 	{
 		PCGEX_TYPED_CONTEXT_AND_SETTINGS(CopyClustersToPoints)
 
-		LocalTypedContext = TypedContext;
-
-		const TArray<FPCGPoint>& Targets = TypedContext->Targets->GetIn()->GetPoints();
+		const TArray<FPCGPoint>& Targets = Context->TargetsDataFacade->GetIn()->GetPoints();
 		const int32 NumTargets = Targets.Num();
 
-		PCGEX_SET_NUM_UNINITIALIZED(VtxDupes, NumTargets)
+		PCGEx::InitArray(VtxDupes, NumTargets);
 		VtxTag.Reserve(NumTargets);
 
 		for (int i = 0; i < NumTargets; i++)
 		{
 			// Create a vtx copy per target point
-			PCGExData::FPointIO* VtxDupe = LocalTypedContext->MainPoints->Emplace_GetRef(VtxIO, PCGExData::EInit::DuplicateInput);
+			TSharedPtr<PCGExData::FPointIO> VtxDupe = Context->MainPoints->Emplace_GetRef(VtxDataFacade->Source, PCGExData::EIOInit::Duplicate);
 
 			FString OutId;
 			PCGExGraph::SetClusterVtx(VtxDupe, OutId);
@@ -158,19 +156,21 @@ namespace PCGExCopyClusters
 			VtxDupes[i] = VtxDupe;
 			VtxTag.Add(OutId);
 
-			AsyncManager->Start<PCGExGeoTasks::FTransformPointIO>(i, TypedContext->Targets, VtxDupe, &TypedContext->TransformDetails);
+			AsyncManager->Start<PCGExGeoTasks::FTransformPointIO>(i, Context->TargetsDataFacade->Source, VtxDupe, &Context->TransformDetails);
+
+			Context->TargetsAttributesToPathTags.Tag(i, VtxDupe);
+			Context->TargetsForwardHandler->Forward(i, VtxDupe->GetOut()->Metadata);
 		}
 
-		TBatch<FProcessor>::Process(AsyncManager);
+		TBatch<FProcessor>::Process();
 	}
 
-	bool FBatch::PrepareSingle(FProcessor* ClusterProcessor)
+	bool FBatch::PrepareSingle(const TSharedPtr<FProcessor>& ClusterProcessor)
 	{
 		if (!TBatch<FProcessor>::PrepareSingle(ClusterProcessor)) { return false; }
 		ClusterProcessor->VtxDupes = &VtxDupes;
 		ClusterProcessor->VtxTag = &VtxTag;
 		return true;
 	}
-
 }
 #undef LOCTEXT_NAMESPACE

@@ -4,13 +4,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PCGExDataDetails.h"
+#include "PCGExDetailsData.h"
+
+
 #include "Graph/PCGExEdgesProcessor.h"
 #include "Relaxing/PCGExForceDirectedRelax.h"
 #include "PCGExRelaxClusters.generated.h"
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Edges")
-class PCGEXTENDEDTOOLKIT_API UPCGExRelaxClustersSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExRelaxClustersSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -20,13 +22,16 @@ public:
 
 	//~Begin UPCGSettings
 #if WITH_EDITOR
-	PCGEX_NODE_INFOS(RelaxClusters, "Cluster : Relax", "Relax point positions using edges connecting them.");
+	PCGEX_NODE_INFOS_CUSTOM_SUBTITLE(
+		RelaxClusters, "Cluster : Relax", "Relax point positions using edges connecting them.",
+		(Relaxing ? FName(Relaxing.GetClass()->GetMetaData(TEXT("DisplayName"))) : FName("...")));
 #endif
 
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 
 protected:
+	virtual TArray<FPCGPinProperties> InputPinProperties() const override;
 	virtual FPCGElementPtr CreateElement() const override;
 	//~End UPCGSettings
 
@@ -36,7 +41,7 @@ public:
 	int32 Iterations = 100;
 
 	/** Influence Settings*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ShowOnlyInnerProperties))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	FPCGExInfluenceDetails InfluenceDetails;
 
 	/** Relaxing arithmetics */
@@ -47,16 +52,14 @@ private:
 	friend class FPCGExRelaxClustersElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExRelaxClustersContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExRelaxClustersContext final : FPCGExEdgesProcessorContext
 {
 	friend class FPCGExRelaxClustersElement;
-
-	virtual ~FPCGExRelaxClustersContext() override;
 
 	UPCGExRelaxClusterOperation* Relaxing = nullptr;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExRelaxClustersElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExRelaxClustersElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -71,52 +74,48 @@ protected:
 
 namespace PCGExRelaxClusters
 {
-	class FProcessor final : public PCGExClusterMT::FClusterProcessor
+	const FName SourceOverridesRelaxing = TEXT("Overrides : Relaxing");
+
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExRelaxClustersContext, UPCGExRelaxClustersSettings>
 	{
-		PCGExMT::FTaskGroup* IterationGroup = nullptr;
 		int32 Iterations = 10;
 
-		PCGExData::FCache<double>* InfluenceCache = nullptr;
+		TSharedPtr<PCGExData::TBuffer<double>> InfluenceCache;
 
 		UPCGExRelaxClusterOperation* RelaxOperation = nullptr;
 
-		TArray<FVector>* PrimaryBuffer = nullptr;
-		TArray<FVector>* SecondaryBuffer = nullptr;
+		TSharedPtr<TArray<FVector>> PrimaryBuffer;
+		TSharedPtr<TArray<FVector>> SecondaryBuffer;
 
 		FPCGExInfluenceDetails InfluenceDetails;
 
-		bool bBuildExpandedNodes = false;
-		TArray<PCGExCluster::FExpandedNode*>* ExpandedNodes = nullptr;
-
 	public:
-		FProcessor(PCGExData::FPointIO* InVtx, PCGExData::FPointIO* InEdges):
-			FClusterProcessor(InVtx, InEdges)
+		FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade)
+			: TProcessor(InVtxDataFacade, InEdgeDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual PCGExCluster::FCluster* HandleCachedCluster(const PCGExCluster::FCluster* InClusterRef) override;
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual TSharedPtr<PCGExCluster::FCluster> HandleCachedCluster(const TSharedRef<PCGExCluster::FCluster>& InClusterRef) override;
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		void StartRelaxIteration();
-		virtual void ProcessSingleRangeIteration(const int32 Iteration) override;
-		virtual void ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node) override;
-		virtual void CompleteWork() override;
+		virtual void ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node, const int32 LoopIdx, const int32 Count) override;
 		virtual void Write() override;
 	};
 
-	class FRelaxRangeTask : public PCGExMT::FPCGExTask
+	class FRelaxRangeTask final : public PCGExMT::FPCGExTask
 	{
 	public:
-		FRelaxRangeTask(PCGExData::FPointIO* InPointIO,
-		                FProcessor* InProcessor):
+		FRelaxRangeTask(const TSharedPtr<PCGExData::FPointIO>& InPointIO,
+		                const TSharedPtr<FProcessor>& InProcessor):
 			FPCGExTask(InPointIO),
 			Processor(InProcessor)
 		{
 		}
 
-		FProcessor* Processor = nullptr;
+		TSharedPtr<FProcessor> Processor;
 		uint64 Scope = 0;
-		virtual bool ExecuteTask() override;
+		virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override;
 	};
 }

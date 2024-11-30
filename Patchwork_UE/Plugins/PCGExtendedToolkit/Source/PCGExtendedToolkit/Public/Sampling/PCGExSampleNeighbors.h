@@ -4,6 +4,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+
 #include "Graph/PCGExEdgesProcessor.h"
 
 #include "PCGExSampleNeighbors.generated.h"
@@ -16,14 +18,8 @@ namespace PCGExNeighborSample
 class UPCGExNeighborSamplerFactoryBase;
 class UPCGExNeighborSampleOperation;
 
-namespace PCGExSampleNeighbors
-{
-	PCGEX_ASYNC_STATE(State_ReadyForNextOperation)
-	PCGEX_ASYNC_STATE(State_Sampling)
-}
-
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Edges")
-class PCGEXTENDEDTOOLKIT_API UPCGExSampleNeighborsSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSampleNeighborsSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -41,27 +37,24 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
 	//~Begin UPCGExEdgesProcessorSettings
-public:
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
 private:
 	friend class FPCGExSampleNeighborsElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExSampleNeighborsContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSampleNeighborsContext final : FPCGExEdgesProcessorContext
 {
 	friend class FPCGExSampleNeighborsElement;
-	virtual ~FPCGExSampleNeighborsContext() override;
-
-	TArray<UPCGExNeighborSamplerFactoryBase*> SamplerFactories;
+	TArray<TObjectPtr<const UPCGExNeighborSamplerFactoryBase>> SamplerFactories;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExSampleNeighborsElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSampleNeighborsElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -76,26 +69,38 @@ protected:
 
 namespace PCGExSampleNeighbors
 {
-	class FProcessor final : public PCGExClusterMT::FClusterProcessor
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExSampleNeighborsContext, UPCGExSampleNeighborsSettings>
 	{
 		TArray<UPCGExNeighborSampleOperation*> SamplingOperations;
 		TArray<UPCGExNeighborSampleOperation*> OpsWithValueTest;
 
-		bool bBuildExpandedNodes = false;
-		TArray<PCGExCluster::FExpandedNode*>* ExpandedNodes = nullptr;
-
 	public:
-		FProcessor(PCGExData::FPointIO* InVtx, PCGExData::FPointIO* InEdges):
-			FClusterProcessor(InVtx, InEdges)
+		FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade):
+			TProcessor(InVtxDataFacade, InEdgeDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
-		virtual void ProcessSingleRangeIteration(const int32 Iteration) override;
-		virtual void ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node) override;
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
+		virtual void ProcessSingleRangeIteration(const int32 Iteration, const int32 LoopIdx, const int32 Count) override;
+		virtual void ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node, const int32 LoopIdx, const int32 Count) override;
 		virtual void CompleteWork() override;
 		virtual void Write() override;
+	};
+
+	class FBatch final : public PCGExClusterMT::TBatch<FProcessor>
+	{
+	public:
+		FBatch(FPCGExContext* InContext, const TSharedRef<PCGExData::FPointIO>& InVtx, const TArrayView<TSharedRef<PCGExData::FPointIO>> InEdges)
+			: TBatch(InContext, InVtx, InEdges)
+		{
+			PCGEX_TYPED_CONTEXT_AND_SETTINGS(SampleNeighbors)
+			bRequiresWriteStep = true;
+			bWriteVtxDataFacade = true;
+			bAllowVtxDataFacadeScopedGet = true;
+		}
+
+		virtual void RegisterBuffersDependencies(PCGExData::FFacadePreloader& FacadePreloader) override;
 	};
 }

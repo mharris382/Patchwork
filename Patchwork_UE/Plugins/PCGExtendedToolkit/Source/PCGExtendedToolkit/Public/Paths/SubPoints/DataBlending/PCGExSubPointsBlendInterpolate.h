@@ -7,13 +7,14 @@
 #include "PCGExSubPointsBlendOperation.h"
 #include "Data/Blending/PCGExMetadataBlender.h"
 
+
 #include "PCGExSubPointsBlendInterpolate.generated.h"
 
 /**
  * 
  */
-UCLASS(DisplayName = "Interpolate")
-class PCGEXTENDEDTOOLKIT_API UPCGExSubPointsBlendInterpolate : public UPCGExSubPointsBlendOperation
+UCLASS(MinimalAPI, DisplayName = "Interpolate")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSubPointsBlendInterpolate : public UPCGExSubPointsBlendOperation
 {
 	GENERATED_BODY()
 
@@ -21,21 +22,21 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	EPCGExBlendOver BlendOver = EPCGExBlendOver::Distance;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="BlendOver==EPCGExPathBlendOver::Fixed", EditConditionHides))
-	double Weight = 0.5;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="BlendOver==EPCGExBlendOver::Fixed", EditConditionHides))
+	double Lerp = 0.5;
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
 
 	virtual void BlendSubPoints(
-		const PCGExData::FPointRef& StartPoint,
-		const PCGExData::FPointRef& EndPoint,
+		const PCGExData::FPointRef& From,
+		const PCGExData::FPointRef& To,
 		const TArrayView<FPCGPoint>& SubPoints,
-		const PCGExMath::FPathMetricsSquared& Metrics,
-		PCGExDataBlending::FMetadataBlender* InBlender) const override;
+		const PCGExPaths::FPathMetrics& Metrics,
+		PCGExDataBlending::FMetadataBlender* InBlender,
+		const int32 StartIndex) const override;
 
-	virtual PCGExDataBlending::FMetadataBlender* CreateBlender(PCGExData::FFacade* InPrimaryFacade, PCGExData::FFacade* InSecondaryFacade, const PCGExData::ESource SecondarySource) override;
+	virtual TSharedPtr<PCGExDataBlending::FMetadataBlender> CreateBlender(const TSharedRef<PCGExData::FFacade>& InPrimaryFacade, const TSharedRef<PCGExData::FFacade>& InSecondaryFacade, const PCGExData::ESource SecondarySource, const TSet<FName>* IgnoreAttributeSet) override;
 
 protected:
-	virtual EPCGExDataBlendingType GetDefaultBlending() override;
-	virtual void ApplyOverrides() override;
+	virtual EPCGExDataBlendingType GetDefaultBlending() override { return EPCGExDataBlendingType::Lerp; }
 };

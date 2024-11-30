@@ -3,19 +3,15 @@
 
 #include "Misc/PCGExBitwiseOperation.h"
 
+
 #include "Misc/PCGExBitmask.h"
 
 #define LOCTEXT_NAMESPACE "PCGExBitwiseOperationElement"
 #define PCGEX_NAMESPACE BitwiseOperation
 
-PCGExData::EInit UPCGExBitwiseOperationSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExBitwiseOperationSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 PCGEX_INITIALIZE_ELEMENT(BitwiseOperation)
-
-FPCGExBitwiseOperationContext::~FPCGExBitwiseOperationContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExBitwiseOperationElement::Boot(FPCGExContext* InContext) const
 {
@@ -25,7 +21,7 @@ bool FPCGExBitwiseOperationElement::Boot(FPCGExContext* InContext) const
 
 	PCGEX_VALIDATE_NAME(Settings->FlagAttribute)
 
-	if (Settings->MaskType == EPCGExFetchType::Attribute)
+	if (Settings->MaskInput == EPCGExInputValueType::Attribute)
 	{
 		PCGEX_VALIDATE_NAME(Settings->MaskAttribute)
 	}
@@ -38,59 +34,51 @@ bool FPCGExBitwiseOperationElement::ExecuteInternal(FPCGContext* InContext) cons
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExBitwiseOperationElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(BitwiseOperation)
+	PCGEX_EXECUTION_CHECK
 
-	if (Context->IsSetup())
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
+		PCGEX_ON_INVALILD_INPUTS(FTEXT("Some inputs are missing the specified MaskAttribute and won't be processed."))
 
-		bool bInvalidInputs = false;
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExBitwiseOperation::FProcessor>>(
-			[&](PCGExData::FPointIO* Entry)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry)
 			{
-				if (Settings->MaskType == EPCGExFetchType::Attribute && !Entry->GetOut()->Metadata->HasAttribute(Settings->MaskAttribute))
+				if (Settings->MaskInput == EPCGExInputValueType::Attribute && !Entry->GetOut()->Metadata->HasAttribute(Settings->MaskAttribute))
 				{
-					bInvalidInputs = true;
+					bHasInvalidInputs = true;
 					return false;
 				}
 				return true;
 			},
-			[&](PCGExPointsMT::TBatch<PCGExBitwiseOperation::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExBitwiseOperation::FProcessor>>& NewBatch)
 			{
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Error, GraphAndLog, FTEXT("Could not find any points to process."));
-			return true;
-		}
-
-		if (bInvalidInputs)
-		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Some inputs are missing the specified MaskAttribute and won't be processed."));
+			return Context->CancelExecution(TEXT("Could not find any points to process."));
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
 
 namespace PCGExBitwiseOperation
 {
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExBitwiseOperation::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(BitwiseOperation)
 
 
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
-		Writer = PointDataFacade->GetWriter<int64>(Settings->FlagAttribute, 0, false, false);
+		Writer = PointDataFacade->GetWritable<int64>(Settings->FlagAttribute, 0, false, PCGExData::EBufferInit::Inherit);
 
-		if (Settings->MaskType == EPCGExFetchType::Attribute)
+		if (Settings->MaskInput == EPCGExInputValueType::Attribute)
 		{
-			Reader = PointDataFacade->GetScopedReader<int64>(Settings->MaskAttribute);
+			Reader = PointDataFacade->GetScopedReadable<int64>(Settings->MaskAttribute);
 			if (!Reader) { return false; }
 		}
 		else
@@ -107,12 +95,12 @@ namespace PCGExBitwiseOperation
 
 	void FProcessor::ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count)
 	{
-		PCGExBitmask::Do(Op, Writer->Values[Index], Reader ? Reader->Values[Index] : Mask);
+		PCGExBitmask::Do(Op, Writer->GetMutable(Index), Reader ? Reader->Read(Index) : Mask);
 	}
 
 	void FProcessor::CompleteWork()
 	{
-		PointDataFacade->Write(AsyncManagerPtr, true);
+		PointDataFacade->Write(AsyncManager);
 	}
 }
 

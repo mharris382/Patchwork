@@ -15,27 +15,45 @@ namespace PCGExCluster
 
 namespace PCGExCluster
 {
-	struct FCluster;
+	class FCluster;
 }
 
 /**
  * 
  */
 UCLASS(Abstract)
-class PCGEXTENDEDTOOLKIT_API UPCGExRelaxClusterOperation : public UPCGExOperation
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExRelaxClusterOperation : public UPCGExOperation
 {
 	GENERATED_BODY()
 
 public:
-	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
+	virtual void CopySettingsFrom(const UPCGExOperation* Other) override
+	{
+		Super::CopySettingsFrom(Other);
+		if (const UPCGExRelaxClusterOperation* TypedOther = Cast<UPCGExRelaxClusterOperation>(Other))
+		{
+		}
+	}
 
-	virtual void PrepareForCluster(PCGExCluster::FCluster* InCluster);
-	virtual void ProcessExpandedNode(const PCGExCluster::FExpandedNode* ExpandedNode);
+	virtual void PrepareForCluster(PCGExCluster::FCluster* InCluster)
+	{
+		Cluster = InCluster;
+	}
+
+	virtual void ProcessExpandedNode(const PCGExCluster::FNode& Node)
+	{
+	}
 
 	PCGExCluster::FCluster* Cluster = nullptr;
-	TArray<PCGExCluster::FExpandedNode*>* ExpandedNodes = nullptr;
 	TArray<FVector>* ReadBuffer = nullptr;
 	TArray<FVector>* WriteBuffer = nullptr;
 
-	virtual void Cleanup() override;
+	virtual void Cleanup() override
+	{
+		Cluster = nullptr;
+		ReadBuffer = nullptr;
+		WriteBuffer = nullptr;
+
+		Super::Cleanup();
+	}
 };

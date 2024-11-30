@@ -10,21 +10,22 @@
 #include "PCGExOperation.h"
 #include "Data/PCGExPointFilter.h"
 
+
 #include "PCGExConditionalActionFactoryProvider.generated.h"
 
 #define PCGEX_BITMASK_TRANSMUTE_CREATE_FACTORY(_NAME, _BODY) \
 	UPCGExParamFactoryBase* UPCGEx##_NAME##ProviderSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const{ \
-	UPCGEx##_NAME##Factory* NewFactory = NewObject<UPCGEx##_NAME##Factory>(); _BODY if(!Super::CreateFactory(InContext, NewFactory)){ PCGEX_DELETE_UOBJECT(NewFactory) } return NewFactory; }
+	UPCGEx##_NAME##Factory* NewFactory = NewObject<UPCGEx##_NAME##Factory>(); _BODY if(!Super::CreateFactory(InContext, NewFactory)){ InContext->ManagedObjects->Destroy(NewFactory); } return NewFactory; }
 
 #define PCGEX_BITMASK_TRANSMUTE_CREATE_OPERATION(_NAME, _BODY) \
-	UPCGExConditionalActionOperation* UPCGEx##_NAME##Factory::CreateOperation() const{ \
-	PCGEX_NEW(UPCGEx##_NAME##Operation, NewOperation, this->GetOuter()) \
+	UPCGExConditionalActionOperation* UPCGEx##_NAME##Factory::CreateOperation(FPCGExContext* InContext) const{ \
+	UPCGEx##_NAME##Operation* NewOperation = InContext->ManagedObjects->New<UPCGEx##_NAME##Operation>(this->GetOuter()); \
 	NewOperation->TypedFactory = const_cast<UPCGEx##_NAME##Factory*>(this); \
 	NewOperation->Factory = NewOperation->TypedFactory; \
 	_BODY \
 	return NewOperation;}
 
-class UPCGExFilterFactoryBase;
+class UPCGExConditionalActionFactoryBase;
 
 namespace PCGExConditionalActions
 {
@@ -34,11 +35,12 @@ namespace PCGExConditionalActions
 	const FName OutputConditionalActionLabel = TEXT("Action");
 }
 
+
 /**
  * 
  */
 UCLASS()
-class PCGEXTENDEDTOOLKIT_API UPCGExConditionalActionOperation : public UPCGExOperation
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConditionalActionOperation : public UPCGExOperation
 {
 	GENERATED_BODY()
 
@@ -47,7 +49,7 @@ public:
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
 
-	virtual bool PrepareForData(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade);
+	virtual bool PrepareForData(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade>& InPointDataFacade);
 	virtual void ProcessPoint(int32 Index, const FPCGPoint& Point);
 
 	virtual void OnMatchSuccess(int32 Index, const FPCGPoint& Point);
@@ -56,31 +58,31 @@ public:
 	virtual void Cleanup() override;
 
 protected:
-	PCGExPointFilter::TManager* FilterManager = nullptr;
+	TSharedPtr<PCGExPointFilter::FManager> FilterManager;
 };
 
 UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExConditionalActionFactoryBase : public UPCGExParamFactoryBase
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConditionalActionFactoryBase : public UPCGExParamFactoryBase
 {
 	GENERATED_BODY()
 
 public:
-	PCGEx::FAttributesInfos* CheckSuccessInfos = nullptr;
-	PCGEx::FAttributesInfos* CheckFailInfos = nullptr;
+	TSharedPtr<PCGEx::FAttributesInfos> CheckSuccessInfos;
+	TSharedPtr<PCGEx::FAttributesInfos> CheckFailInfos;
 
-	TArray<UPCGExFilterFactoryBase*> FilterFactories;
+	TArray<TObjectPtr<const UPCGExFilterFactoryBase>> FilterFactories;
 
 	virtual PCGExFactories::EType GetFactoryType() const override { return PCGExFactories::EType::ConditionalActions; }
-	virtual UPCGExConditionalActionOperation* CreateOperation() const;
+	virtual UPCGExConditionalActionOperation* CreateOperation(FPCGExContext* InContext) const;
 
 	virtual bool Boot(FPCGContext* InContext);
-	virtual bool AppendAndValidate(PCGEx::FAttributesInfos* InInfos, FString& OutMessage);
+	virtual bool AppendAndValidate(PCGEx::FAttributesInfos* InInfos, FString& OutMessage) const;
 
 	virtual void BeginDestroy() override;
 };
 
 UCLASS(Abstract, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|ConditionalAction")
-class PCGEXTENDEDTOOLKIT_API UPCGExConditionalActionProviderSettings : public UPCGExFactoryProviderSettings
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConditionalActionProviderSettings : public UPCGExFactoryProviderSettings
 {
 	GENERATED_BODY()
 
@@ -96,7 +98,7 @@ protected:
 	//~End UPCGSettings
 
 public:
-	virtual FName GetMainOutputLabel() const override { return PCGExConditionalActions::OutputConditionalActionLabel; }
+	virtual FName GetMainOutputPin() const override { return PCGExConditionalActions::OutputConditionalActionLabel; }
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const override;
 
 #if WITH_EDITOR

@@ -10,16 +10,17 @@
 /**
  * 
  */
-UCLASS(DisplayName = "Inherit Last")
-class PCGEXTENDEDTOOLKIT_API UPCGExSubPointsBlendInheritEnd : public UPCGExSubPointsBlendOperation
+UCLASS(MinimalAPI, DisplayName = "Inherit Last")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSubPointsBlendInheritEnd : public UPCGExSubPointsBlendOperation
 {
 	GENERATED_BODY()
 
 public:
 	virtual void BlendSubPoints(
-		const PCGExData::FPointRef& StartPoint,
-		const PCGExData::FPointRef& EndPoint,
+		const PCGExData::FPointRef& From,
+		const PCGExData::FPointRef& To,
 		const TArrayView<FPCGPoint>& SubPoints,
-		const PCGExMath::FPathMetricsSquared& Metrics,
-		PCGExDataBlending::FMetadataBlender* InBlender) const override;
+		const PCGExPaths::FPathMetrics& Metrics,
+		PCGExDataBlending::FMetadataBlender* InBlender,
+		const int32 StartIndex) const override;
 };

@@ -4,48 +4,49 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PCGEx.h"
 #include "UObject/Object.h"
 #include "PCGExGoalPicker.h"
 #include "Data/PCGExAttributeHelpers.h"
+
+
 #include "PCGExGoalPickerRandom.generated.h"
 
 struct FPCGExInputConfig;
 struct FPCGPoint;
 class UPCGPointData;
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Goal Pick Random - Amount"))
+UENUM()
 enum class EPCGExGoalPickRandomAmount : uint8
 {
-	Single UMETA(DisplayName = "Single", Tooltip="A single random goal is picked"),
-	Fixed UMETA(DisplayName = "Multiple Fixed", Tooltip="A fixed number of random goals is picked"),
-	Random UMETA(DisplayName = "Multiple Random", Tooltip="A random number of random goals is picked."),
+	Single = 0 UMETA(DisplayName = "Single", Tooltip="A single random goal is picked"),
+	Fixed  = 1 UMETA(DisplayName = "Multiple Fixed", Tooltip="A fixed number of random goals is picked"),
+	Random = 2 UMETA(DisplayName = "Multiple Random", Tooltip="A random number of random goals is picked."),
 };
 
 /**
  * 
  */
-UCLASS(DisplayName = "Random")
-class PCGEXTENDEDTOOLKIT_API UPCGExGoalPickerRandom : public UPCGExGoalPicker
+UCLASS(MinimalAPI, DisplayName = "Random")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExGoalPickerRandom : public UPCGExGoalPicker
 {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = GoalPicker)
 	EPCGExGoalPickRandomAmount GoalCount = EPCGExGoalPickRandomAmount::Single;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(EditCondition="GoalCount!=EPCGExGoalPickRandomAmount::Single", ClampMin=1))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = GoalPicker, meta=(EditCondition="GoalCount!=EPCGExGoalPickRandomAmount::Single", ClampMin=1))
 	int32 NumGoals = 5;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(EditCondition="GoalCount!=EPCGExGoalPickRandomAmount::Single"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = GoalPicker, meta=(EditCondition="GoalCount!=EPCGExGoalPickRandomAmount::Single"))
 	bool bUseLocalNumGoals = false;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(EditCondition="GoalCount!=EPCGExGoalPickRandomAmount::Single && bUseLocalNumGoals"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = GoalPicker, meta=(EditCondition="GoalCount!=EPCGExGoalPickRandomAmount::Single && bUseLocalNumGoals"))
 	FPCGAttributePropertyInputSelector LocalNumGoalAttribute;
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
 
-	virtual void PrepareForData(PCGExData::FFacade* InSeedsDataFacade, PCGExData::FFacade* InGoalsDataFacade) override;
+	virtual void PrepareForData(const TSharedPtr<PCGExData::FFacade>& InSeedsDataFacade, const TSharedPtr<PCGExData::FFacade>& InGoalsDataFacade) override;
 
 	virtual int32 GetGoalIndex(const PCGExData::FPointRef& Seed) const override;
 	virtual void GetGoalIndices(const PCGExData::FPointRef& Seed, TArray<int32>& OutIndices) const override;
@@ -54,6 +55,5 @@ public:
 	virtual void Cleanup() override;
 
 protected:
-	PCGExData::FCache<int32>* NumGoalsGetter = nullptr;
-	virtual void ApplyOverrides() override;
+	TSharedPtr<PCGExData::TBuffer<int32>> NumGoalsGetter;
 };

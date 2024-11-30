@@ -4,16 +4,16 @@
 
 #include "Graph/Pathfinding/Heuristics/PCGExHeuristicNodeCount.h"
 
-UPCGExHeuristicOperation* UPCGHeuristicsFactoryLeastNodes::CreateOperation() const
+UPCGExHeuristicOperation* UPCGExHeuristicsFactoryLeastNodes::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExHeuristicNodeCount, NewOperation)
+	UPCGExHeuristicNodeCount* NewOperation = InContext->ManagedObjects->New<UPCGExHeuristicNodeCount>();
 	PCGEX_FORWARD_HEURISTIC_CONFIG
 	return NewOperation;
 }
 
 UPCGExParamFactoryBase* UPCGExHeuristicsLeastNodesProviderSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const
 {
-	UPCGHeuristicsFactoryLeastNodes* NewFactory = NewObject<UPCGHeuristicsFactoryLeastNodes>();
+	UPCGExHeuristicsFactoryLeastNodes* NewFactory = InContext->ManagedObjects->New<UPCGExHeuristicsFactoryLeastNodes>();
 	PCGEX_FORWARD_HEURISTIC_FACTORY
 	return Super::CreateFactory(InContext, NewFactory);
 }
@@ -21,7 +21,7 @@ UPCGExParamFactoryBase* UPCGExHeuristicsLeastNodesProviderSettings::CreateFactor
 #if WITH_EDITOR
 FString UPCGExHeuristicsLeastNodesProviderSettings::GetDisplayName() const
 {
-	return GetDefaultNodeName().ToString()
+	return GetDefaultNodeTitle().ToString().Replace(TEXT("PCGEx | Heuristics"), TEXT("HX"))
 		+ TEXT(" @ ")
 		+ FString::Printf(TEXT("%.3f"), (static_cast<int32>(1000 * Config.WeightFactor) / 1000.0));
 }

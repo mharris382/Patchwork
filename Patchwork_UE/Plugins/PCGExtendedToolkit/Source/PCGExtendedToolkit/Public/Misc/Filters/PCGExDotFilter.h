@@ -5,17 +5,17 @@
 
 #include "CoreMinimal.h"
 #include "PCGExCompare.h"
-#include "PCGExCompare.h"
 #include "PCGExFilterFactoryProvider.h"
 #include "UObject/Object.h"
 
 #include "Data/PCGExPointFilter.h"
 #include "PCGExPointsProcessor.h"
 
+
 #include "PCGExDotFilter.generated.h"
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExDotFilterConfig
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExDotFilterConfig
 {
 	GENERATED_BODY()
 
@@ -33,14 +33,14 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExDotFilterConfig
 
 	/** Type of OperandB */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	EPCGExFetchType CompareAgainst = EPCGExFetchType::Constant;
+	EPCGExInputValueType CompareAgainst = EPCGExInputValueType::Constant;
 
 	/** Operand B for computing the dot product */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="CompareAgainst==EPCGExFetchType::Attribute", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Operand B", EditCondition="CompareAgainst==EPCGExInputValueType::Attribute", EditConditionHides))
 	FPCGAttributePropertyInputSelector OperandB;
 
 	/** Operand B for computing the dot product. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="CompareAgainst==EPCGExFetchType::Constant", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Operand B", EditCondition="CompareAgainst==EPCGExInputValueType::Constant", EditConditionHides))
 	FVector OperandBConstant = FVector::UpVector;
 
 	/** Transform OperandB with the local point' transform */
@@ -59,45 +59,46 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExDotFilterConfig
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
-class PCGEXTENDEDTOOLKIT_API UPCGExDotFilterFactory : public UPCGExFilterFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExDotFilterFactory : public UPCGExFilterFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExDotFilterConfig Config;
 	virtual bool Init(FPCGExContext* InContext) override;
-	virtual PCGExPointFilter::TFilter* CreateFilter() const override;
+	virtual TSharedPtr<PCGExPointFilter::FFilter> CreateFilter() const override;
+	virtual void RegisterConsumableAttributes(FPCGExContext* InContext) const override;
 };
 
 namespace PCGExPointsFilter
 {
-	class PCGEXTENDEDTOOLKIT_API TDotFilter final : public PCGExPointFilter::TFilter
+	class /*PCGEXTENDEDTOOLKIT_API*/ TDotFilter final : public PCGExPointFilter::FSimpleFilter
 	{
 	public:
-		explicit TDotFilter(const UPCGExDotFilterFactory* InFactory)
-			: TFilter(InFactory), TypedFilterFactory(InFactory)
+		explicit TDotFilter(const TObjectPtr<const UPCGExDotFilterFactory>& InFactory)
+			: FSimpleFilter(InFactory), TypedFilterFactory(InFactory)
 		{
 			DotComparison = TypedFilterFactory->Config.DotComparisonDetails;
 		}
 
-		const UPCGExDotFilterFactory* TypedFilterFactory;
+		const TObjectPtr<const UPCGExDotFilterFactory> TypedFilterFactory;
 
 		FPCGExDotComparisonDetails DotComparison;
 
-		PCGExData::FCache<FVector>* OperandA = nullptr;
-		PCGExData::FCache<FVector>* OperandB = nullptr;
+		TSharedPtr<PCGExData::TBuffer<FVector>> OperandA;
+		TSharedPtr<PCGExData::TBuffer<FVector>> OperandB;
 
-		virtual bool Init(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade) override;
+		virtual bool Init(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade> InPointDataFacade) override;
 		FORCEINLINE virtual bool Test(const int32 PointIndex) const override
 		{
 			const FPCGPoint& Point = PointDataFacade->Source->GetInPoint(PointIndex);
 
 			const FVector A = TypedFilterFactory->Config.bTransformOperandA ?
-				                  OperandA->Values[PointIndex] :
-				                  Point.Transform.TransformVectorNoScale(OperandA->Values[PointIndex]);
+				                  OperandA->Read(PointIndex) :
+				                  Point.Transform.TransformVectorNoScale(OperandA->Read(PointIndex));
 
-			FVector B = OperandB ? OperandB->Values[PointIndex].GetSafeNormal() : TypedFilterFactory->Config.OperandBConstant;
+			FVector B = OperandB ? OperandB->Read(PointIndex).GetSafeNormal() : TypedFilterFactory->Config.OperandBConstant;
 			if (TypedFilterFactory->Config.bTransformOperandB) { B = Point.Transform.TransformVectorNoScale(B); }
 
 			const double Dot = DotComparison.bUnsignedDot ? FMath::Abs(FVector::DotProduct(A, B)) : FVector::DotProduct(A, B);
@@ -106,15 +107,14 @@ namespace PCGExPointsFilter
 
 		virtual ~TDotFilter() override
 		{
-			TypedFilterFactory = nullptr;
 		}
 	};
 }
 
 ///
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
-class PCGEXTENDEDTOOLKIT_API UPCGExDotFilterProviderSettings : public UPCGExFilterProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExDotFilterProviderSettings : public UPCGExFilterProviderSettings
 {
 	GENERATED_BODY()
 
@@ -127,12 +127,10 @@ public:
 #endif
 	//~End UPCGSettings
 
-public:
 	/** Filter Config.*/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ShowOnlyInnerProperties))
 	FPCGExDotFilterConfig Config;
 
-public:
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const override;
 
 #if WITH_EDITOR

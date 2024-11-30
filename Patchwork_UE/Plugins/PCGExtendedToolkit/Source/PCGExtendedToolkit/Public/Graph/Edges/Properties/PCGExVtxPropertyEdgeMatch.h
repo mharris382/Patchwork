@@ -9,6 +9,9 @@
 
 #include "PCGExFactoryProvider.h"
 #include "PCGExVtxPropertyFactoryProvider.h"
+#include "Data/PCGExPointFilter.h"
+
+
 #include "Graph/PCGExCluster.h"
 #include "Graph/PCGExGraph.h"
 
@@ -16,15 +19,8 @@
 
 ///
 
-class UPCGExFilterFactoryBase;
-
-namespace PCGExPointFilter
-{
-	class TManager;
-}
-
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExEdgeMatchConfig
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExEdgeMatchConfig
 {
 	GENERATED_BODY()
 
@@ -34,14 +30,14 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExEdgeMatchConfig
 
 	/** Where to read the compared direction from. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	EPCGExFetchType DirectionSource = EPCGExFetchType::Constant;
+	EPCGExInputValueType DirectionInput = EPCGExInputValueType::Constant;
 
 	/** Operand B for testing -- Will be translated to `double` under the hood. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="DirectionSource==EPCGExFetchType::Attribute", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Direction", EditCondition="DirectionInput==EPCGExInputValueType::Attribute", EditConditionHides))
 	FPCGAttributePropertyInputSelector Direction;
 
 	/** Direction for computing the dot product against the edge's. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="DirectionSource==EPCGExFetchType::Constant", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Direction", EditCondition="DirectionInput==EPCGExInputValueType::Constant", EditConditionHides))
 	FVector DirectionConstant = FVector::ForwardVector;
 
 	/** Whether to transform the direction source by the vtx' transform */
@@ -65,45 +61,46 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExEdgeMatchConfig
 /**
  * 
  */
-UCLASS()
-class PCGEXTENDEDTOOLKIT_API UPCGExVtxPropertyEdgeMatch : public UPCGExVtxPropertyOperation
+UCLASS(MinimalAPI)
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExVtxPropertyEdgeMatch : public UPCGExVtxPropertyOperation
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExEdgeMatchConfig Config;
-	TArray<UPCGExFilterFactoryBase*>* FilterFactories = nullptr;
+	TArray<TObjectPtr<const UPCGExFilterFactoryBase>>* FilterFactories = nullptr;
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
-	virtual void ClusterReserve(const int32 NumClusters) override;
-	virtual void PrepareForCluster(const FPCGContext* InContext, const int32 ClusterIdx, PCGExCluster::FCluster* Cluster, PCGExData::FFacade* VtxDataFacade, PCGExData::FFacade* EdgeDataFacade) override;
-	virtual bool PrepareForVtx(const FPCGContext* InContext, PCGExData::FFacade* InVtxDataFacade) override;
-	virtual void ProcessNode(const int32 ClusterIdx, const PCGExCluster::FCluster* Cluster, PCGExCluster::FNode& Node, const TArray<PCGExCluster::FAdjacencyData>& Adjacency) override;
-	virtual void Cleanup() override;
+	virtual bool PrepareForCluster(
+		const FPCGContext* InContext,
+		TSharedPtr<PCGExCluster::FCluster> InCluster,
+		const TSharedPtr<PCGExData::FFacade>& InVtxDataFacade,
+		const TSharedPtr<PCGExData::FFacade>& InEdgeDataFacade) override;
+	virtual void ProcessNode(PCGExCluster::FNode& Node, const TArray<PCGExCluster::FAdjacencyData>& Adjacency) override;
+
+	virtual void Cleanup() override
+	{
+		Config = FPCGExEdgeMatchConfig{};
+		DirCache.Reset();
+		Super::Cleanup();
+	}
 
 protected:
-	bool bEdgeFilterInitialized = false;
-	void InitEdgeFilters();
-
-	mutable FRWLock FilterLock;
-
-	PCGExData::FCache<FVector>* DirCache = nullptr;
-	TArray<PCGExPointFilter::TManager*> FilterManagers;
+	TSharedPtr<PCGExData::TBuffer<FVector>> DirCache;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExVtxPropertyEdgeMatchFactory : public UPCGExVtxPropertyFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExVtxPropertyEdgeMatchFactory : public UPCGExVtxPropertyFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExEdgeMatchConfig Config;
-	TArray<UPCGExFilterFactoryBase*> FilterFactories;
-	virtual UPCGExVtxPropertyOperation* CreateOperation() const override;
+	virtual UPCGExVtxPropertyOperation* CreateOperation(FPCGExContext* InContext) const override;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|VtxProperty")
-class PCGEXTENDEDTOOLKIT_API UPCGExVtxPropertyEdgeMatchSettings : public UPCGExVtxPropertyProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|VtxProperty")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExVtxPropertyEdgeMatchSettings : public UPCGExVtxPropertyProviderSettings
 {
 	GENERATED_BODY()
 

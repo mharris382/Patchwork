@@ -7,11 +7,12 @@
 #include "PCGExCluster.h"
 #include "PCGExEdgesProcessor.h"
 
+
 #include "PCGExSanitizeClusters.generated.h"
 
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph")
-class PCGEXTENDEDTOOLKIT_API UPCGExSanitizeClustersSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSanitizeClustersSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -28,8 +29,8 @@ protected:
 
 	//~Begin UPCGExEdgesProcessorSettings interface
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 	//~End UPCGExEdgesProcessorSettings interface
 
 	/** Graph & Edges output properties. Note that pruning isolated points is ignored. */
@@ -37,18 +38,13 @@ public:
 	FPCGExGraphBuilderDetails GraphBuilderDetails;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExSanitizeClustersContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSanitizeClustersContext final : FPCGExEdgesProcessorContext
 {
 	friend class UPCGExSanitizeClustersSettings;
 	friend class FPCGExSanitizeClustersElement;
-
-	virtual ~FPCGExSanitizeClustersContext() override;
-
-	TArray<PCGExGraph::FGraphBuilder*> Builders;
-	TArray<TMap<uint32, int32>> EndpointsLookups;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExSanitizeClustersElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSanitizeClustersElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -61,32 +57,31 @@ protected:
 	virtual bool ExecuteInternal(FPCGContext* InContext) const override;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExSanitizeClusterTask final : public PCGExMT::FPCGExTask
+namespace PCGExSanitizeClusters
 {
-public:
-	FPCGExSanitizeClusterTask(PCGExData::FPointIO* InPointIO,
-	                          PCGExData::FPointIOTaggedEntries* InTaggedEdges) :
-		FPCGExTask(InPointIO),
-		TaggedEdges(InTaggedEdges)
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExSanitizeClustersContext, UPCGExSanitizeClustersSettings>
 	{
-	}
+	public:
+		FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade)
+			: TProcessor(InVtxDataFacade, InEdgeDataFacade)
+		{
+			bBuildCluster = false;
+		}
 
-	PCGExData::FPointIOTaggedEntries* TaggedEdges = nullptr;
+		virtual ~FProcessor() override;
 
-	virtual bool ExecuteTask() override;
-};
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
+	};
 
-class PCGEXTENDEDTOOLKIT_API FPCGExSanitizeInsertTask final : public PCGExMT::FPCGExTask
-{
-public:
-	FPCGExSanitizeInsertTask(PCGExData::FPointIO* InPointIO,
-	                         PCGExData::FPointIO* InEdgeIO) :
-		FPCGExTask(InPointIO),
-		EdgeIO(InEdgeIO)
+	class FBatch final : public PCGExClusterMT::TBatchWithGraphBuilder<FProcessor>
 	{
-	}
+	public:
+		FBatch(FPCGExContext* InContext, const TSharedRef<PCGExData::FPointIO>& InVtx, const TArrayView<TSharedRef<PCGExData::FPointIO>> InEdges):
+			TBatchWithGraphBuilder(InContext, InVtx, InEdges)
+		{
+		}
 
-	PCGExData::FPointIO* EdgeIO = nullptr;
-
-	virtual bool ExecuteTask() override;
-};
+		virtual void CompleteWork() override;
+		virtual void Output() override;
+	};
+}

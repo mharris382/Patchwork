@@ -8,7 +8,6 @@
 #include "PCGExPathfinding.h"
 #include "PCGExPointsProcessor.h"
 #include "Graph/PCGExEdgesProcessor.h"
-#include "Heuristics/PCGExHeuristics.h"
 
 #include "PCGExPathfindingPlotEdges.generated.h"
 
@@ -18,8 +17,8 @@ class UPCGExSearchOperation;
  * Use PCGExTransform to manipulate the outgoing attributes instead of handling everything here.
  * This way we can multi-thread the various calculations instead of mixing everything along with async/game thread collision
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExPathfindingPlotEdgesSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPathfindingPlotEdgesSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -40,26 +39,28 @@ protected:
 public:
 #if WITH_EDITOR
 
-public:
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif
 	//~End UObject interface
 
-public:
 	/** Add seed point at the beginning of the path */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bAddSeedToPath = false;
 
 	/** Add goal point at the beginning of the path */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bAddGoalToPath = false;
 
 	/** Insert plot points inside the path */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
-	bool bAddPlotPointsToPath = true;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	bool bAddPlotPointsToPath = false;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
-	bool bClosedPath = false;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	bool bClosedLoop = false;
+
+	/** What are the paths made of. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	EPCGExPathComposition PathComposition = EPCGExPathComposition::Vtx;
 
 	/** Drive how a seed selects a node. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Node Picking", meta=(PCG_Overridable))
@@ -83,26 +84,38 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
 	bool bOmitCompletePathOnFailedPlot = false;
+
+	/** */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, InlineEditConditionToggle))
+	bool bTagIfClosedLoop = true;
+
+	/** ... */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, EditCondition="bTagIfClosedLoop"))
+	FString IsClosedLoopTag = TEXT("ClosedLoop");
+
+	/** */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, InlineEditConditionToggle))
+	bool bTagIfOpenPath = false;
+
+	/** ... */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, EditCondition="bTagIfOpenPath"))
+	FString IsOpenPathTag = TEXT("OpenPath");
 };
 
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExPathfindingPlotEdgesContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathfindingPlotEdgesContext final : FPCGExEdgesProcessorContext
 {
 	friend class FPCGExPathfindingPlotEdgesElement;
 
-	virtual ~FPCGExPathfindingPlotEdgesContext() override;
-
-	PCGExData::FPointIOCollection* Plots = nullptr;
-	PCGExData::FPointIOCollection* OutputPaths = nullptr;
+	TArray<TSharedPtr<PCGExData::FFacade>> Plots;
+	TSharedPtr<PCGExData::FPointIOCollection> OutputPaths;
 
 	UPCGExSearchOperation* SearchAlgorithm = nullptr;
 
-	void TryFindPath(
-		const UPCGExSearchOperation* SearchOperation,
-		const PCGExData::FPointIO* InPlotPoints, PCGExHeuristics::THeuristicsHandler* HeuristicsHandler) const;
+	void BuildPath(const TSharedPtr<PCGExPathfinding::FPlotQuery>& Query) const;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPathfindingPlotEdgesElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathfindingPlotEdgesElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -117,35 +130,13 @@ protected:
 
 namespace PCGExPathfindingPlotEdge
 {
-	class PCGEXTENDEDTOOLKIT_API FPCGExPlotClusterPathTask final : public FPCGExPathfindingTask
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExPathfindingPlotEdgesContext, UPCGExPathfindingPlotEdgesSettings>
 	{
+		TArray<TSharedPtr<PCGExPathfinding::FPlotQuery>> Queries;
+
 	public:
-		FPCGExPlotClusterPathTask(PCGExData::FPointIO* InPointIO,
-		                          const UPCGExSearchOperation* InSearchOperation,
-		                          const PCGExData::FPointIOCollection* InPlots,
-		                          PCGExHeuristics::THeuristicsHandler* InHeuristics,
-		                          const bool Inlined = false) :
-			FPCGExPathfindingTask(InPointIO, nullptr),
-			SearchOperation(InSearchOperation),
-			Plots(InPlots),
-			Heuristics(InHeuristics),
-			bInlined(Inlined)
-		{
-		}
-
-		const UPCGExSearchOperation* SearchOperation = nullptr;
-		const PCGExData::FPointIOCollection* Plots = nullptr;
-		PCGExHeuristics::THeuristicsHandler* Heuristics = nullptr;
-		bool bInlined = false;
-
-		virtual bool ExecuteTask() override;
-	};
-
-	class FProcessor final : public PCGExClusterMT::FClusterProcessor
-	{
-	public:
-		FProcessor(PCGExData::FPointIO* InVtx, PCGExData::FPointIO* InEdges):
-			FClusterProcessor(InVtx, InEdges)
+		FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade):
+			TProcessor(InVtxDataFacade, InEdgeDataFacade)
 		{
 		}
 
@@ -153,6 +144,6 @@ namespace PCGExPathfindingPlotEdge
 
 		UPCGExSearchOperation* SearchOperation = nullptr;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 	};
 }

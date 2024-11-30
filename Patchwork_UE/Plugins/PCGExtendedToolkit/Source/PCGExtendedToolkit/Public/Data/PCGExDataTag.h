@@ -11,10 +11,11 @@
 
 namespace PCGExData
 {
-	const FString TagSeparator = FSTRING("::");
+	const FString TagSeparator = FSTRING(":");
 
 	struct FTags
 	{
+		mutable FRWLock TagsLock;
 		TSet<FString> RawTags;       // Contains all data tag
 		TMap<FString, FString> Tags; // PCGEx Tags Name::Value
 
@@ -46,70 +47,102 @@ namespace PCGExData
 			}
 		}
 
-		explicit FTags(const FTags& InTags)
+		explicit FTags(const TSharedPtr<FTags>& InTags)
 			: FTags()
 		{
 			Reset(InTags);
 		}
 
-		void Append(const FTags* InTags)
+		void Append(const TSharedRef<FTags>& InTags)
 		{
+			FWriteScopeLock WriteScopeLock(TagsLock);
 			Tags.Append(InTags->Tags);
 			RawTags.Append(InTags->RawTags);
 		}
 
+		void Append(const TArray<FString>& InTags)
+		{
+			FWriteScopeLock WriteScopeLock(TagsLock);
+			RawTags.Append(InTags);
+		}
+
 		void Reset()
 		{
+			FWriteScopeLock WriteScopeLock(TagsLock);
 			RawTags.Empty();
 			Tags.Empty();
 		}
 
-		void Reset(const FTags& InTags)
+		void Reset(const TSharedPtr<FTags>& InTags)
 		{
 			Reset();
-			RawTags.Append(InTags.RawTags);
-			Tags.Append(InTags.Tags);
+			if (InTags) { Append(InTags.ToSharedRef()); }
 		}
 
-		void Dump(TSet<FString>& InTags) const
+		void DumpTo(TSet<FString>& InTags) const
 		{
+			FReadScopeLock ReadScopeLock(TagsLock);
 			InTags.Append(RawTags);
 			for (const TPair<FString, FString>& Tag : Tags) { InTags.Add((Tag.Key + TagSeparator + Tag.Value)); }
 		}
 
+		void DumpTo(TArray<FName>& InTags) const
+		{
+			FReadScopeLock ReadScopeLock(TagsLock);
+			TArray<FName> NameDump = ToFNameList();
+			InTags.Reserve(InTags.Num() + NameDump.Num());
+			InTags.Append(NameDump);
+		}
+
 		TSet<FString> ToSet()
 		{
+			FReadScopeLock ReadScopeLock(TagsLock);
 			TSet<FString> Flattened;
 			Flattened.Append(RawTags);
 			for (const TPair<FString, FString>& Tag : Tags) { Flattened.Add((Tag.Key + TagSeparator + Tag.Value)); }
 			return Flattened;
 		}
 
-		~FTags()
+		TArray<FName> ToFNameList() const
 		{
-			RawTags.Empty();
-			Tags.Empty();
+			FReadScopeLock ReadScopeLock(TagsLock);
+			TArray<FName> Flattened;
+			for (const FString& Key : RawTags) { Flattened.Add(FName(Key)); }
+			for (const TPair<FString, FString>& Tag : Tags) { Flattened.Add(FName((Tag.Key + TagSeparator + Tag.Value))); }
+			return Flattened;
 		}
 
-		void Set(const FString& Key, const FString& Value)
+		~FTags() = default;
+
+		void Add(const FString& Key)
 		{
+			FWriteScopeLock WriteScopeLock(TagsLock);
+			RawTags.Add(Key);
+		}
+
+		void Add(const FString& Key, const FString& Value)
+		{
+			FWriteScopeLock WriteScopeLock(TagsLock);
 			Tags.Add(Key, Value);
 		}
 
-		void Set(const FString& Key, const int64 Value, FString& OutValue)
+		void Add(const FString& Key, const uint32 Value, FString& OutValue)
 		{
-			OutValue = FString::Printf(TEXT("%llu"), Value);
+			FWriteScopeLock WriteScopeLock(TagsLock);
+			OutValue = FString::Printf(TEXT("%u"), Value);
 			Tags.Add(Key, OutValue);
 		}
 
 		void Remove(const FString& Key)
 		{
+			FWriteScopeLock WriteScopeLock(TagsLock);
 			Tags.Remove(Key);
 			RawTags.Remove(Key);
 		}
 
 		void Remove(const TSet<FString>& InSet)
 		{
+			FWriteScopeLock WriteScopeLock(TagsLock);
 			for (const FString& Tag : InSet)
 			{
 				Tags.Remove(Tag);
@@ -119,6 +152,7 @@ namespace PCGExData
 
 		bool GetValue(const FString& Key, FString& OutValue)
 		{
+			FReadScopeLock ReadScopeLock(TagsLock);
 			if (FString* Value = Tags.Find(Key))
 			{
 				OutValue = *Value;
@@ -130,6 +164,7 @@ namespace PCGExData
 
 		void GetOrSet(const FString& Key, FString& Value)
 		{
+			FWriteScopeLock WriteScopeLock(TagsLock);
 			if (FString* InValue = Tags.Find(Key))
 			{
 				Value = *InValue;
@@ -139,15 +174,28 @@ namespace PCGExData
 			Tags.Add(Key, Value);
 		}
 
-		void GetOrSet(const FString& Key, const int64 Value, FString& OutValue)
+		void GetOrSet(const FString& Key, const uint32 Value, FString& OutValue)
 		{
-			OutValue = FString::Printf(TEXT("%llu"), Value);
+			OutValue = FString::Printf(TEXT("%u"), Value);
 			GetOrSet(Key, OutValue);
 		}
 
-		bool IsTagged(const FString& Key) const { return Tags.Contains(Key); }
-		bool IsTagged(const FString& Key, const FString& Value) const { return RawTags.Contains(Key + TagSeparator + Value); }
-		bool IsTagged(const FString& Key, const int64 Value) const { return IsTagged(Key, FString::Printf(TEXT("%llu"), Value)); }
+		bool IsTagged(const FString& Key) const
+		{
+			FReadScopeLock ReadScopeLock(TagsLock);
+			return Tags.Contains(Key) || RawTags.Contains(Key);
+		}
+
+		bool IsTagged(const FString& Key, const FString& Value) const
+		{
+			FReadScopeLock ReadScopeLock(TagsLock);
+			return RawTags.Contains(Key + TagSeparator + Value);
+		}
+
+		bool IsTagged(const FString& Key, const uint32 Value) const
+		{
+			return IsTagged(Key, FString::Printf(TEXT("%u"), Value));
+		}
 
 	protected:
 		// NAME::VALUE

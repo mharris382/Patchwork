@@ -4,7 +4,8 @@
 
 #include "Graph/Pathfinding/Heuristics/PCGExHeuristicOperation.h"
 
-void UPCGExHeuristicOperation::PrepareForCluster(const PCGExCluster::FCluster* InCluster)
+
+void UPCGExHeuristicOperation::PrepareForCluster(const TSharedPtr<const PCGExCluster::FCluster>& InCluster)
 {
 	Cluster = InCluster;
 	LocalWeightMultiplier.Empty();
@@ -12,11 +13,11 @@ void UPCGExHeuristicOperation::PrepareForCluster(const PCGExCluster::FCluster* I
 	bHasCustomLocalWeightMultiplier = false;
 	if (bUseLocalWeightMultiplier)
 	{
-		const PCGExData::FPointIO* PointIO = LocalWeightMultiplierSource == EPCGExGraphValueSource::Vtx ? InCluster->VtxIO : InCluster->EdgesIO;
-		PCGExData::FFacade* DataFacade = LocalWeightMultiplierSource == EPCGExGraphValueSource::Vtx ? PrimaryDataFacade : SecondaryDataFacade;
+		const TSharedPtr<PCGExData::FPointIO> PointIO = LocalWeightMultiplierSource == EPCGExClusterComponentSource::Vtx ? InCluster->VtxIO.Pin() : InCluster->EdgesIO.Pin();
+		const TSharedPtr<PCGExData::FFacade> DataFacade = LocalWeightMultiplierSource == EPCGExClusterComponentSource::Vtx ? PrimaryDataFacade : SecondaryDataFacade;
 
 		const int32 NumPoints = PointIO->GetNum();
-		PCGExData::FCache<double>* LocalWeightCache = DataFacade->GetBroadcaster<double>(WeightMultiplierAttribute);
+		const TSharedPtr<PCGExData::TBuffer<double>> LocalWeightCache = DataFacade->GetBroadcaster<double>(WeightMultiplierAttribute);
 
 		if (!LocalWeightCache)
 		{
@@ -24,24 +25,17 @@ void UPCGExHeuristicOperation::PrepareForCluster(const PCGExCluster::FCluster* I
 			return;
 		}
 
-		if (LocalWeightMultiplierSource == EPCGExGraphValueSource::Vtx)
+		if (LocalWeightMultiplierSource == EPCGExClusterComponentSource::Vtx)
 		{
 			LocalWeightMultiplier.SetNumZeroed(InCluster->Nodes->Num());
-			for (const PCGExCluster::FNode& Node : (*InCluster->Nodes)) { LocalWeightMultiplier[Node.NodeIndex] = LocalWeightCache->Values[Node.PointIndex]; }
+			for (const PCGExCluster::FNode& Node : (*InCluster->Nodes)) { LocalWeightMultiplier[Node.Index] = LocalWeightCache->Read(Node.PointIndex); }
 		}
 		else
 		{
 			LocalWeightMultiplier.SetNumZeroed(NumPoints);
-			for (int i = 0; i < NumPoints; i++) { LocalWeightMultiplier[i] = LocalWeightCache->Values[i]; }
+			for (int i = 0; i < NumPoints; i++) { LocalWeightMultiplier[i] = LocalWeightCache->Read(i); }
 		}
 
 		bHasCustomLocalWeightMultiplier = true;
 	}
-}
-
-void UPCGExHeuristicOperation::Cleanup()
-{
-	Cluster = nullptr;
-	LocalWeightMultiplier.Empty();
-	Super::Cleanup();
 }

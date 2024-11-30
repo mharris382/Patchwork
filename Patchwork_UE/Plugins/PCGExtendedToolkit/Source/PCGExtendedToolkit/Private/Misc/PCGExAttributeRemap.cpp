@@ -4,16 +4,12 @@
 
 #include "Misc/PCGExAttributeRemap.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExAttributeRemap"
 #define PCGEX_NAMESPACE AttributeRemap
 
 
-PCGExData::EInit UPCGExAttributeRemapSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
-
-FPCGExAttributeRemapContext::~FPCGExAttributeRemapContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
+PCGExData::EIOInit UPCGExAttributeRemapSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 PCGEX_INITIALIZE_ELEMENT(AttributeRemap)
 
@@ -46,227 +42,220 @@ bool FPCGExAttributeRemapElement::ExecuteInternal(FPCGContext* InContext) const
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExAttributeRemapElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(AttributeRemap)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
-	}
-
-	if (Context->IsState(PCGExMT::State_ReadyForNextPoints))
-	{
-		int32 IOIndex = 0;
-		while (Context->AdvancePointsIO(false))
+		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExAttributeRemap::FProcessor>>(
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry) { return true; },
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExAttributeRemap::FProcessor>>& NewBatch)
+			{
+			}))
 		{
-			PCGEx::FAttributesInfos* Infos = PCGEx::FAttributesInfos::Get(Context->CurrentIO->GetIn()->Metadata);
-			const PCGEx::FAttributeIdentity* AttIdentity = Infos->Find(Settings->SourceAttributeName);
-
-			if (!AttIdentity)
-			{
-				PCGEX_DELETE(Infos)
-				PCGE_LOG(Error, GraphAndLog, FTEXT("Some inputs are missing the specified source attribute."));
-				continue;
-			}
-
-			int32 Dimensions;
-			switch (AttIdentity->UnderlyingType)
-			{
-			case EPCGMetadataTypes::Float:
-			case EPCGMetadataTypes::Double:
-			case EPCGMetadataTypes::Integer32:
-			case EPCGMetadataTypes::Integer64:
-				Dimensions = 1;
-				break;
-			case EPCGMetadataTypes::Vector2:
-				Dimensions = 2;
-				break;
-			case EPCGMetadataTypes::Vector:
-			case EPCGMetadataTypes::Rotator:
-				Dimensions = 3;
-				break;
-			case EPCGMetadataTypes::Vector4:
-			case EPCGMetadataTypes::Quaternion:
-				Dimensions = 4;
-				break;
-			default:
-			case EPCGMetadataTypes::Transform:
-			case EPCGMetadataTypes::String:
-			case EPCGMetadataTypes::Boolean:
-			case EPCGMetadataTypes::Name:
-			case EPCGMetadataTypes::Unknown:
-				Dimensions = -1;
-				break;
-			}
-
-			if (Dimensions == -1)
-			{
-				PCGEX_DELETE(Infos)
-				PCGE_LOG(Error, GraphAndLog, FTEXT("Source attribute type cannot be remapped."));
-				continue;
-			}
-
-			if (AttIdentity)
-			{
-				Context->GetAsyncManager()->Start<FPCGExRemapPointIO>(
-					IOIndex++, Context->CurrentIO,
-					AttIdentity->UnderlyingType, Dimensions);
-			}
-			else
-			{
-				PCGE_LOG(Error, GraphAndLog, FTEXT("Some inputs are missing the specified source attribute."));
-			}
-
-			PCGEX_DELETE(Infos)
+			return Context->CancelExecution(TEXT("Could not find any paths to remap."));
 		}
-
-		Context->SetAsyncState(PCGExMT::State_ProcessingPoints);
 	}
 
-	if (Context->IsState(PCGExMT::State_ProcessingPoints))
-	{
-		PCGEX_ASYNC_WAIT
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-		Context->MainPoints->OutputToContext();
-		Context->Done();
-	}
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
 
-bool FPCGExRemapPointIO::ExecuteTask()
+namespace PCGExAttributeRemap
 {
-	const FPCGExAttributeRemapContext* Context = Manager->GetContext<FPCGExAttributeRemapContext>();
-	PCGEX_SETTINGS(AttributeRemap);
-
-	FPCGExComponentRemapRule RemapSettings[4];
-
-	int32 NumPoints = PointIO->GetNum();
-
-	auto ProcessValues = [&](auto DummyValue) -> void
+	FProcessor::~FProcessor()
 	{
-		using RawT = decltype(DummyValue);
+	}
 
-		TArray<RawT> RawValues;
-		RawValues.SetNumUninitialized(NumPoints);
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
+	{
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
-		FPCGMetadataAttribute<RawT>* AttributeIn = PointIO->GetIn()->Metadata->GetMutableTypedAttribute<RawT>(Settings->SourceAttributeName);
-		FPCGAttributeAccessor<RawT>* Getter = new FPCGAttributeAccessor<RawT>(AttributeIn, PointIO->GetIn()->Metadata);
 
-		TArrayView<RawT> Values(RawValues);
-		Getter->GetRange(
-			Values, 0, *PointIO->CreateInKeys(),
-			EPCGAttributeAccessorFlags::AllowBroadcast);
+		const TSharedPtr<PCGEx::FAttributesInfos> Infos = PCGEx::FAttributesInfos::Get(PointDataFacade->GetIn()->Metadata);
+		const PCGEx::FAttributeIdentity* Identity = Infos->Find(Settings->SourceAttributeName);
 
-		for (int i = 0; i < Dimensions; i++)
+		if (!Identity)
 		{
-			FPCGExComponentRemapRule Rule = FPCGExComponentRemapRule(Context->RemapSettings[Context->RemapIndices[i]]);
-
-			const double CachedRMin = Rule.RemapDetails.InMin;
-			const double CachedRMax = Rule.RemapDetails.InMax;
-
-			Rule.RemapDetails.InMin = TNumericLimits<double>::Max();
-			Rule.RemapDetails.InMax = TNumericLimits<double>::Min();
-
-			double VAL;
-
-			if (Rule.RemapDetails.bUseAbsoluteRange)
-			{
-				for (RawT& V : RawValues)
-				{
-					VAL = Rule.InputClampDetails.GetClampedValue(PCGExMath::GetComponent(V, i));
-					PCGExMath::SetComponent(V, i, VAL);
-
-					Rule.RemapDetails.InMin = FMath::Min(Rule.RemapDetails.InMin, FMath::Abs(VAL));
-					Rule.RemapDetails.InMax = FMath::Max(Rule.RemapDetails.InMax, FMath::Abs(VAL));
-				}
-
-				if (Rule.RemapDetails.bUseInMin) { Rule.RemapDetails.InMin = CachedRMin; }
-				if (Rule.RemapDetails.bUseInMax) { Rule.RemapDetails.InMax = CachedRMax; }
-
-				if (Rule.RemapDetails.RangeMethod == EPCGExRangeType::FullRange) { Rule.RemapDetails.InMin = 0; }
-
-				if (Rule.RemapDetails.bPreserveSign)
-				{
-					for (RawT& V : RawValues)
-					{
-						VAL = PCGExMath::GetComponent(V, i);
-						VAL = Rule.RemapDetails.GetRemappedValue(FMath::Abs(VAL)) * PCGExMath::SignPlus(VAL);
-						VAL = Rule.OutputClampDetails.GetClampedValue(VAL);
-
-						PCGExMath::SetComponent(V, i, VAL);
-					}
-				}
-				else
-				{
-					for (RawT& V : RawValues)
-					{
-						VAL = PCGExMath::GetComponent(V, i);
-						VAL = Rule.RemapDetails.GetRemappedValue(FMath::Abs(VAL));
-						VAL = Rule.OutputClampDetails.GetClampedValue(VAL);
-
-						PCGExMath::SetComponent(V, i, VAL);
-					}
-				}
-			}
-			else
-			{
-				for (RawT& V : RawValues)
-				{
-					VAL = Rule.InputClampDetails.GetClampedValue(PCGExMath::GetComponent(V, i));
-					PCGExMath::SetComponent(V, i, VAL);
-
-					Rule.RemapDetails.InMin = FMath::Min(Rule.RemapDetails.InMin, VAL);
-					Rule.RemapDetails.InMax = FMath::Max(Rule.RemapDetails.InMax, VAL);
-				}
-
-				if (Rule.RemapDetails.bUseInMin) { Rule.RemapDetails.InMin = CachedRMin; }
-				if (Rule.RemapDetails.bUseInMax) { Rule.RemapDetails.InMax = CachedRMax; }
-
-				if (Rule.RemapDetails.RangeMethod == EPCGExRangeType::FullRange) { Rule.RemapDetails.InMin = 0; }
-
-				if (Rule.RemapDetails.bPreserveSign)
-				{
-					for (RawT& V : RawValues)
-					{
-						VAL = PCGExMath::GetComponent(V, i);
-						VAL = Rule.RemapDetails.GetRemappedValue(VAL);
-						VAL = Rule.OutputClampDetails.GetClampedValue(VAL);
-
-						PCGExMath::SetComponent(V, i, VAL);
-					}
-				}
-				else
-				{
-					for (RawT& V : RawValues)
-					{
-						VAL = PCGExMath::GetComponent(V, i);
-						VAL = Rule.RemapDetails.GetRemappedValue(FMath::Abs(VAL));
-						VAL = Rule.OutputClampDetails.GetClampedValue(VAL);
-
-						PCGExMath::SetComponent(V, i, VAL);
-					}
-				}
-			}
+			PCGE_LOG_C(Error, GraphAndLog, ExecutionContext, FTEXT("Some inputs are missing the specified source attribute."));
+			return false;
 		}
 
-		FPCGMetadataAttribute<RawT>* AttributeOut = PointIO->GetOut()->Metadata->FindOrCreateAttribute<RawT>(
-			Settings->TargetAttributeName, RawT{},
-			AttributeIn->AllowsInterpolation(), true, true);
+		UnderlyingType = Identity->UnderlyingType;
 
-		FPCGAttributeAccessor<RawT>* Setter = new FPCGAttributeAccessor<RawT>(AttributeOut, PointIO->GetOut()->Metadata);
-		Setter->template SetRange<RawT>(
-			Values, 0, *PointIO->CreateOutKeys(),
-			EPCGAttributeAccessorFlags::AllowBroadcast);
+		switch (UnderlyingType)
+		{
+		case EPCGMetadataTypes::Float:
+		case EPCGMetadataTypes::Double:
+		case EPCGMetadataTypes::Integer32:
+		case EPCGMetadataTypes::Integer64:
+			Dimensions = 1;
+			break;
+		case EPCGMetadataTypes::Vector2:
+			Dimensions = 2;
+			break;
+		case EPCGMetadataTypes::Vector:
+		case EPCGMetadataTypes::Rotator:
+			Dimensions = 3;
+			break;
+		case EPCGMetadataTypes::Vector4:
+		case EPCGMetadataTypes::Quaternion:
+			Dimensions = 4;
+			break;
+		default:
+		case EPCGMetadataTypes::Transform:
+		case EPCGMetadataTypes::String:
+		case EPCGMetadataTypes::Boolean:
+		case EPCGMetadataTypes::Name:
+		case EPCGMetadataTypes::Unknown:
+			Dimensions = -1;
+			break;
+		}
 
-		RawValues.Empty();
+		if (Dimensions == -1)
+		{
+			PCGE_LOG_C(Error, GraphAndLog, ExecutionContext, FTEXT("Source attribute type cannot be remapped."));
+			return false;
+		}
 
-		delete Getter;
-		delete Setter;
-	};
+		if (!Identity)
+		{
+			PCGE_LOG_C(Error, GraphAndLog, ExecutionContext, FTEXT("Some inputs are missing the specified source attribute."));
+			return false;
+		}
 
-	PCGMetadataAttribute::CallbackWithRightType(static_cast<uint16>(DataType), ProcessValues);
 
-	return false;
+		PCGMetadataAttribute::CallbackWithRightType(
+			static_cast<uint16>(UnderlyingType), [&](auto DummyValue) -> void
+			{
+				using RawT = decltype(DummyValue);
+				CacheWriter = PointDataFacade->GetWritable<RawT>(Settings->TargetAttributeName, PCGExData::EBufferInit::New);
+				CacheReader = PointDataFacade->GetScopedReadable<RawT>(Identity->Name);
+			});
+
+		Rules.Reserve(Dimensions);
+		for (int i = 0; i < Dimensions; i++)
+		{
+			FPCGExComponentRemapRule Rule = Rules.Add_GetRef(FPCGExComponentRemapRule(Context->RemapSettings[Context->RemapIndices[i]]));
+			Rule.RemapDetails.InMin = MAX_dbl;
+			Rule.RemapDetails.InMax = MIN_dbl_neg;
+		}
+
+		PCGEX_ASYNC_GROUP_CHKD(AsyncManager, FetchTask)
+		FetchTask->OnCompleteCallback =
+			[&]()
+			{
+				// Fix min/max range
+				for (FPCGExComponentRemapRule& Rule : Rules)
+				{
+					if (Rule.RemapDetails.bUseInMin) { Rule.RemapDetails.InMin = Rule.RemapDetails.CachedInMin; }
+					else { for (const double Min : Rule.MinCache) { Rule.RemapDetails.InMin = FMath::Min(Rule.RemapDetails.InMin, Min); } }
+
+					if (Rule.RemapDetails.bUseInMax) { Rule.RemapDetails.InMax = Rule.RemapDetails.CachedInMax; }
+					else { for (const double Max : Rule.MaxCache) { Rule.RemapDetails.InMax = FMath::Max(Rule.RemapDetails.InMax, Max); } }
+
+					if (Rule.RemapDetails.RangeMethod == EPCGExRangeType::FullRange) { Rule.RemapDetails.InMin = 0; }
+				}
+
+				OnPreparationComplete();
+			};
+
+		FetchTask->OnPrepareSubLoopsCallback =
+			[&](const TArray<uint64>& Loops)
+			{
+				for (FPCGExComponentRemapRule& Rule : Rules)
+				{
+					Rule.MinCache.Init(MAX_dbl, Loops.Num());
+					Rule.MaxCache.Init(MIN_dbl_neg, Loops.Num());
+				}
+			};
+
+		FetchTask->OnSubLoopStartCallback =
+			[&](const int32 StartIndex, const int32 Count, const int32 LoopIdx)
+			{
+				TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExAttributeRemap::Fetch);
+
+				PointDataFacade->Fetch(StartIndex, Count);
+				PCGMetadataAttribute::CallbackWithRightType(
+					static_cast<uint16>(UnderlyingType), [&](auto DummyValue) -> void
+					{
+						using RawT = decltype(DummyValue);
+						TSharedPtr<PCGExData::TBuffer<RawT>> Writer = StaticCastSharedPtr<PCGExData::TBuffer<RawT>>(CacheWriter);
+						TSharedPtr<PCGExData::TBuffer<RawT>> Reader = StaticCastSharedPtr<PCGExData::TBuffer<RawT>>(CacheReader);
+
+						// TODO : Swap for a scoped accessor since we don't need to keep readable values in memory
+						for (int i = StartIndex; i < StartIndex + Count; i++) { Writer->GetMutable(i) = Reader->Read(i); } // Copy range to writer
+
+						// Find min/max & clamp values
+
+						for (int d = 0; d < Dimensions; d++)
+						{
+							FPCGExComponentRemapRule& Rule = Rules[d];
+
+							double Min = MAX_dbl;
+							double Max = MIN_dbl_neg;
+
+							if (Rule.RemapDetails.bUseAbsoluteRange)
+							{
+								for (int i = StartIndex; i < StartIndex + Count; i++)
+								{
+									RawT& V = Writer->GetMutable(i);
+									const double VAL = Rule.InputClampDetails.GetClampedValue(PCGExMath::GetComponent(V, d));
+									PCGExMath::SetComponent(V, d, VAL);
+
+									Min = FMath::Min(Min, FMath::Abs(VAL));
+									Max = FMath::Max(Max, FMath::Abs(VAL));
+								}
+							}
+							else
+							{
+								for (int i = StartIndex; i < StartIndex + Count; i++)
+								{
+									RawT& V = Writer->GetMutable(i);
+									const double VAL = Rule.InputClampDetails.GetClampedValue(PCGExMath::GetComponent(V, d));
+									PCGExMath::SetComponent(V, d, VAL);
+
+									Min = FMath::Min(Min, VAL);
+									Max = FMath::Max(Max, VAL);
+								}
+							}
+
+							Rule.MinCache[LoopIdx] = Min;
+							Rule.MaxCache[LoopIdx] = Max;
+						}
+					});
+			};
+
+		FetchTask->StartSubLoops(PointDataFacade->GetNum(), GetDefault<UPCGExGlobalSettings>()->GetPointsBatchChunkSize());
+
+		return true;
+	}
+
+	void FProcessor::OnPreparationComplete()
+	{
+		PCGEX_ASYNC_GROUP_CHKD_VOID(AsyncManager, RemapTask)
+		RemapTask->OnSubLoopStartCallback =
+			[WeakThis = TWeakPtr<FProcessor>(SharedThis(this))]
+			(const int32 StartIndex, const int32 Count, const int32 LoopIdx)
+			{
+				TSharedPtr<FProcessor> This = WeakThis.Pin();
+				if (!This) { return; }
+
+				PCGMetadataAttribute::CallbackWithRightType(
+					static_cast<uint16>(This->UnderlyingType), [&](auto DummyValue) -> void
+					{
+						This->RemapRange(StartIndex, Count, DummyValue);
+					});
+			};
+
+		RemapTask->StartSubLoops(PointDataFacade->GetNum(), GetDefault<UPCGExGlobalSettings>()->GetPointsBatchChunkSize());
+	}
+
+	void FProcessor::CompleteWork()
+	{
+		PointDataFacade->Write(AsyncManager);
+	}
 }
 
 #undef LOCTEXT_NAMESPACE

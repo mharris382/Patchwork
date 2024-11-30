@@ -3,17 +3,13 @@
 
 #include "Misc/PCGExWriteIndex.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExWriteIndexElement"
 #define PCGEX_NAMESPACE WriteIndex
 
-PCGExData::EInit UPCGExWriteIndexSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExWriteIndexSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 PCGEX_INITIALIZE_ELEMENT(WriteIndex)
-
-FPCGExWriteIndexContext::~FPCGExWriteIndexContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExWriteIndexElement::Boot(FPCGExContext* InContext) const
 {
@@ -23,6 +19,11 @@ bool FPCGExWriteIndexElement::Boot(FPCGExContext* InContext) const
 
 	PCGEX_VALIDATE_NAME(Settings->OutputAttributeName)
 
+	if (Settings->bOutputCollectionIndex)
+	{
+		PCGEX_VALIDATE_NAME(Settings->CollectionIndexAttributeName)
+	}
+
 	return true;
 }
 
@@ -31,48 +32,48 @@ bool FPCGExWriteIndexElement::ExecuteInternal(FPCGContext* InContext) const
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExWriteIndexElement::Execute);
 
 	PCGEX_CONTEXT(WriteIndex)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExWriteIndex::FProcessor>>(
-			[&](PCGExData::FPointIO* Entry) { return true; },
-			[&](PCGExPointsMT::TBatch<PCGExWriteIndex::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry) { return true; },
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExWriteIndex::FProcessor>>& NewBatch)
 			{
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Error, GraphAndLog, FTEXT("Could not find any points to process."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not find any points to process."));
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
 
 namespace PCGExWriteIndex
 {
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExWriteIndex::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(WriteIndex)
 
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
-		NumPoints = PointIO->GetNum();
+		NumPoints = PointDataFacade->GetNum();
 
 		if (Settings->bOutputNormalizedIndex)
 		{
-			DoubleWriter = PointDataFacade->GetWriter<double>(Settings->OutputAttributeName, -1, false, false);
+			DoubleWriter = PointDataFacade->GetWritable<double>(Settings->OutputAttributeName, -1, Settings->bAllowInterpolation, PCGExData::EBufferInit::Inherit);
 		}
 		else
 		{
-			IntWriter = PointDataFacade->GetWriter<int32>(Settings->OutputAttributeName, -1, false, false);
+			IntWriter = PointDataFacade->GetWritable<int32>(Settings->OutputAttributeName, -1, Settings->bAllowInterpolation, PCGExData::EBufferInit::Inherit);
+		}
+
+		if (Settings->bOutputCollectionIndex)
+		{
+			WriteMark(PointDataFacade->Source, Settings->CollectionIndexAttributeName, BatchIndex);
 		}
 
 		StartParallelLoopForPoints();
@@ -82,13 +83,13 @@ namespace PCGExWriteIndex
 
 	void FProcessor::ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count)
 	{
-		if (DoubleWriter) { DoubleWriter->Values[Index] = static_cast<double>(Index) / NumPoints; }
-		else { IntWriter->Values[Index] = Index; }
+		if (DoubleWriter) { DoubleWriter->GetMutable(Index) = static_cast<double>(Index) / NumPoints; }
+		else { IntWriter->GetMutable(Index) = Index; }
 	}
 
 	void FProcessor::CompleteWork()
 	{
-		PointDataFacade->Write(AsyncManagerPtr, true);
+		PointDataFacade->Write(AsyncManager);
 	}
 }
 

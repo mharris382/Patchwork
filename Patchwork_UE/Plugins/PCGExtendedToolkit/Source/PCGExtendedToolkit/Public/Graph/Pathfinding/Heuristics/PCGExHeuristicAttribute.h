@@ -16,7 +16,7 @@
 class UPCGExHeuristicOperation;
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExHeuristicAttributeConfig : public FPCGExHeuristicConfigBase
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExHeuristicAttributeConfig : public FPCGExHeuristicConfigBase
 {
 	GENERATED_BODY()
 
@@ -27,7 +27,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExHeuristicAttributeConfig : public FPCGExHeur
 
 	/** Read the data from either vertices or edges */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	EPCGExGraphValueSource Source = EPCGExGraphValueSource::Vtx;
+	EPCGExClusterComponentSource Source = EPCGExClusterComponentSource::Vtx;
 
 	/** Attribute to read modifier value from. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
@@ -37,56 +37,54 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExHeuristicAttributeConfig : public FPCGExHeur
 /**
  * 
  */
-UCLASS(DisplayName = "Direction")
-class PCGEXTENDEDTOOLKIT_API UPCGExHeuristicAttribute : public UPCGExHeuristicOperation
+UCLASS(MinimalAPI, DisplayName = "Attribute")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExHeuristicAttribute : public UPCGExHeuristicOperation
 {
 	GENERATED_BODY()
 
 public:
-	virtual void PrepareForCluster(const PCGExCluster::FCluster* InCluster) override;
-
-	FORCEINLINE virtual double GetGlobalScore(
-		const PCGExCluster::FNode& From,
-		const PCGExCluster::FNode& Seed,
-		const PCGExCluster::FNode& Goal) const override
-	{
-		return 0;
-	}
+	virtual void PrepareForCluster(const TSharedPtr<const PCGExCluster::FCluster>& InCluster) override;
 
 	FORCEINLINE virtual double GetEdgeScore(
 		const PCGExCluster::FNode& From,
 		const PCGExCluster::FNode& To,
-		const PCGExGraph::FIndexedEdge& Edge,
+		const PCGExGraph::FEdge& Edge,
 		const PCGExCluster::FNode& Seed,
-		const PCGExCluster::FNode& Goal) const override
+		const PCGExCluster::FNode& Goal,
+		const TSharedPtr<PCGEx::FHashLookup> TravelStack) const override
 	{
-		return CachedScores[Source == EPCGExGraphValueSource::Edge ? Edge.PointIndex : To.NodeIndex];
+		return CachedScores[Source == EPCGExClusterComponentSource::Edge ? Edge.PointIndex : To.Index];
 	}
 
-	virtual void Cleanup() override;
+	virtual void Cleanup() override
+	{
+		CachedScores.Empty();
+		LastPoints.Reset();
+		Super::Cleanup();
+	}
 
-	EPCGExGraphValueSource Source = EPCGExGraphValueSource::Vtx;
+	EPCGExClusterComponentSource Source = EPCGExClusterComponentSource::Vtx;
 	FPCGAttributePropertyInputSelector Attribute;
 
 protected:
-	PCGExData::FPointIO* LastPoints = nullptr;
+	TSharedPtr<PCGExData::FPointIO> LastPoints;
 	TArray<double> CachedScores;
 };
 
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGHeuristicsFactoryAttribute : public UPCGExHeuristicsFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExHeuristicsFactoryAttribute : public UPCGExHeuristicsFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExHeuristicAttributeConfig Config;
 
-	virtual UPCGExHeuristicOperation* CreateOperation() const override;
+	virtual UPCGExHeuristicOperation* CreateOperation(FPCGExContext* InContext) const override;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
-class PCGEXTENDEDTOOLKIT_API UPCGExCreateHeuristicAttributeSettings : public UPCGExHeuristicsFactoryProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExCreateHeuristicAttributeSettings : public UPCGExHeuristicsFactoryProviderSettings
 {
 	GENERATED_BODY()
 

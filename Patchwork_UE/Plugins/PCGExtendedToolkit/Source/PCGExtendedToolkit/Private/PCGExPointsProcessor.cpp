@@ -6,84 +6,11 @@
 #include "PCGPin.h"
 #include "Data/PCGExData.h"
 #include "Data/PCGExPointFilter.h"
+
+
 #include "Helpers/PCGSettingsHelpers.h"
-#include "PCGExGlobalSettings.h"
 
 #define LOCTEXT_NAMESPACE "PCGExGraphSettings"
-
-
-#pragma region Loops
-
-PCGExData::FPointIO* PCGEx::FAPointLoop::GetPointIO() const { return PointIO ? PointIO : Context->CurrentIO; }
-
-bool PCGEx::FPointLoop::Advance(const TFunction<void(PCGExData::FPointIO*)>&& Initialize, const TFunction<void(const int32, const PCGExData::FPointIO*)>&& LoopBody)
-{
-	if (CurrentIndex == -1)
-	{
-		PCGExData::FPointIO* PtIO = GetPointIO();
-		Initialize(PtIO);
-		NumIterations = PtIO->GetNum();
-		CurrentIndex = 0;
-	}
-	return Advance(std::move(LoopBody));
-}
-
-bool PCGEx::FPointLoop::Advance(const TFunction<void(const int32, const PCGExData::FPointIO*)>&& LoopBody)
-{
-	const PCGExData::FPointIO* PtIO = GetPointIO();
-	if (CurrentIndex == -1)
-	{
-		NumIterations = PtIO->GetNum();
-		CurrentIndex = 0;
-	}
-	const int32 ChunkNumIterations = FMath::Min(NumIterations - CurrentIndex, GetCurrentChunkSize());
-	if (ChunkNumIterations > 0)
-	{
-		for (int i = 0; i < ChunkNumIterations; i++) { LoopBody(CurrentIndex + i, PtIO); }
-		CurrentIndex += ChunkNumIterations;
-	}
-	if (CurrentIndex >= NumIterations)
-	{
-		CurrentIndex = -1;
-		return true;
-	}
-	return false;
-}
-
-bool PCGEx::FAsyncPointLoop::Advance(const TFunction<void(PCGExData::FPointIO*)>&& Initialize, const TFunction<void(const int32, const PCGExData::FPointIO*)>&& LoopBody)
-{
-	if (!bAsyncEnabled) { return FPointLoop::Advance(std::move(Initialize), std::move(LoopBody)); }
-
-	PCGExData::FPointIO* PtIO = GetPointIO();
-	NumIterations = PtIO->GetNum();
-	return FPCGAsync::AsyncProcessingOneToOneEx(
-		&(Context->AsyncState), NumIterations, [&]()
-		{
-			Initialize(PtIO);
-		}, [&](const int32 ReadIndex, const int32 WriteIndex)
-		{
-			LoopBody(ReadIndex, PtIO);
-			return true;
-		}, true, ChunkSize);
-}
-
-bool PCGEx::FAsyncPointLoop::Advance(const TFunction<void(const int32, const PCGExData::FPointIO*)>&& LoopBody)
-{
-	if (!bAsyncEnabled) { return FPointLoop::Advance(std::move(LoopBody)); }
-
-	const PCGExData::FPointIO* PtIO = GetPointIO();
-	NumIterations = PtIO->GetNum();
-	return FPCGAsync::AsyncProcessingOneToOneEx(
-		&(Context->AsyncState), NumIterations, []()
-		{
-		}, [&](const int32 ReadIndex, const int32 WriteIndex)
-		{
-			LoopBody(ReadIndex, PtIO);
-			return true;
-		}, true, ChunkSize);
-}
-
-#pragma endregion
 
 #pragma region UPCGSettings interface
 
@@ -91,13 +18,16 @@ TArray<FPCGPinProperties> UPCGExPointsProcessorSettings::InputPinProperties() co
 {
 	TArray<FPCGPinProperties> PinProperties;
 
-	if (GetMainAcceptMultipleData()) { PCGEX_PIN_POINTS(GetMainInputLabel(), "The point data to be processed.", Required, {}) }
-	else { PCGEX_PIN_POINT(GetMainInputLabel(), "The point data to be processed.", Required, {}) }
+	if (!IsInputless())
+	{
+		if (GetMainAcceptMultipleData()) { PCGEX_PIN_POINTS(GetMainInputPin(), "The point data to be processed.", Required, {}) }
+		else { PCGEX_PIN_POINT(GetMainInputPin(), "The point data to be processed.", Required, {}) }
+	}
 
 	if (SupportsPointFilters())
 	{
-		if (RequiresPointFilters()) { PCGEX_PIN_PARAMS(GetPointFilterLabel(), GetPointFilterTooltip(), Required, {}) }
-		else { PCGEX_PIN_PARAMS(GetPointFilterLabel(), GetPointFilterTooltip(), Advanced, {}) }
+		if (RequiresPointFilters()) { PCGEX_PIN_PARAMS(GetPointFilterPin(), GetPointFilterTooltip(), Required, {}) }
+		else { PCGEX_PIN_PARAMS(GetPointFilterPin(), GetPointFilterTooltip(), Normal, {}) }
 	}
 
 	return PinProperties;
@@ -107,35 +37,26 @@ TArray<FPCGPinProperties> UPCGExPointsProcessorSettings::InputPinProperties() co
 TArray<FPCGPinProperties> UPCGExPointsProcessorSettings::OutputPinProperties() const
 {
 	TArray<FPCGPinProperties> PinProperties;
-	PCGEX_PIN_POINTS(GetMainOutputLabel(), "The processed points.", Required, {})
+	PCGEX_PIN_POINTS(GetMainOutputPin(), "The processed points.", Required, {})
 	return PinProperties;
 }
 
-PCGExData::EInit UPCGExPointsProcessorSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NewOutput; }
+PCGExData::EIOInit UPCGExPointsProcessorSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::New; }
 
 FPCGExPointsProcessorContext::~FPCGExPointsProcessorContext()
 {
 	PCGEX_TERMINATE_ASYNC
 
-	PCGEX_DELETE(AsyncLoop)
-
-	for (UPCGExOperation* Operation : ProcessorOperations)
+	for (UPCGExOperation* Op : ProcessorOperations)
 	{
-		Operation->Cleanup();
-		if (OwnedProcessorOperations.Contains(Operation)) { PCGEX_DELETE_OPERATION(Operation) }
+		if (OwnedProcessorOperations.Contains(Op))
+		{
+			ManagedObjects->Destroy(Op);
+		}
 	}
 
-	PCGEX_DELETE(MainBatch)
-	BatchablePoints.Empty();
-
-	ProcessorOperations.Empty();
-	OwnedProcessorOperations.Empty();
-
-	FilterFactories.Empty();
-	PCGEX_DELETE(MainPoints)
-
-	CurrentIO = nullptr;
-	World = nullptr;
+	if (MainBatch) { MainBatch->Cleanup(); }
+	MainBatch.Reset();
 }
 
 bool FPCGExPointsProcessorContext::AdvancePointsIO(const bool bCleanupKeys)
@@ -152,88 +73,148 @@ bool FPCGExPointsProcessorContext::AdvancePointsIO(const bool bCleanupKeys)
 	return false;
 }
 
-bool FPCGExPointsProcessorContext::ExecuteAutomation() { return true; }
-
-bool FPCGExPointsProcessorContext::TryComplete(const bool bForce)
-{
-	if (!bForce && !IsDone()) { return false; }
-	OnComplete();
-	return true;
-}
 
 #pragma endregion
 
-bool FPCGExPointsProcessorContext::ProcessPointsBatch()
+bool FPCGExPointsProcessorContext::ProcessPointsBatch(const PCGEx::AsyncState NextStateId, const bool bIsNextStateAsync)
 {
-	if (BatchablePoints.IsEmpty()) { return true; }
+	if (!bBatchProcessingEnabled) { return true; }
 
-	if (IsState(PCGExPointsMT::MTState_PointsProcessing))
+	PCGEX_ON_ASYNC_STATE_READY_INTERNAL(PCGExPointsMT::MTState_PointsProcessing)
 	{
-		if (!IsAsyncWorkComplete()) { return false; }
-
-		CompleteBatch(GetAsyncManager(), MainBatch);
+		TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExPointsProcessorContext::BatchProcessing_InitialProcessingDone);
+		BatchProcessing_InitialProcessingDone();
 		SetAsyncState(PCGExPointsMT::MTState_PointsCompletingWork);
+		MainBatch->CompleteWork();
 	}
 
-	if (IsState(PCGExPointsMT::MTState_PointsCompletingWork))
+	PCGEX_ON_ASYNC_STATE_READY_INTERNAL(PCGExPointsMT::MTState_PointsCompletingWork)
 	{
-		if (!IsAsyncWorkComplete()) { return false; }
-
+		TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExPointsProcessorContext::BatchProcessing_WorkComplete);
+		BatchProcessing_WorkComplete();
 		if (MainBatch->bRequiresWriteStep)
 		{
-			WriteBatch(GetAsyncManager(), MainBatch);
 			SetAsyncState(PCGExPointsMT::MTState_PointsWriting);
+			MainBatch->Write();
+			return false;
 		}
-		else
-		{
-			if (TargetState_PointsProcessingDone == PCGExMT::State_Done) { Done(); }
-			else { SetState(TargetState_PointsProcessingDone); }
-		}
+
+		bBatchProcessingEnabled = false;
+		if (NextStateId == PCGEx::State_Done) { Done(); }
+		if (bIsNextStateAsync) { SetAsyncState(NextStateId); }
+		else { SetState(NextStateId); }
 	}
 
-	if (IsState(PCGExPointsMT::MTState_PointsWriting))
+	PCGEX_ON_ASYNC_STATE_READY_INTERNAL(PCGExPointsMT::MTState_PointsWriting)
 	{
-		if (!IsAsyncWorkComplete()) { return false; }
+		TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExPointsProcessorContext::BatchProcessing_WritingDone);
+		BatchProcessing_WritingDone();
 
-		if (TargetState_PointsProcessingDone == PCGExMT::State_Done) { Done(); }
-		else { SetState(TargetState_PointsProcessingDone); }
+		bBatchProcessingEnabled = false;
+		if (NextStateId == PCGEx::State_Done) { Done(); }
+		if (bIsNextStateAsync) { SetAsyncState(NextStateId); }
+		else { SetState(NextStateId); }
 	}
 
-	return true;
+	return false;
 }
 
-PCGExMT::FTaskManager* FPCGExPointsProcessorContext::GetAsyncManager()
+TSharedPtr<PCGExMT::FTaskManager> FPCGExPointsProcessorContext::GetAsyncManager()
 {
 	if (!AsyncManager)
 	{
-		FWriteScopeLock WriteLock(ContextLock);
-		AsyncManager = new PCGExMT::FTaskManager();
-		AsyncManager->ForceSync = !bDoAsyncProcessing;
-		AsyncManager->Context = this;
+		FWriteScopeLock WriteLock(AsyncLock);
+		AsyncManager = MakeShared<PCGExMT::FTaskManager>(this);
+		AsyncManager->ForceSync = !bAsyncEnabled;
 
 		PCGEX_SETTINGS_LOCAL(PointsProcessor)
 		PCGExMT::SetWorkPriority(Settings->WorkPriority, AsyncManager->WorkPriority);
 	}
+
 	return AsyncManager;
 }
 
-void FPCGExPointsProcessorContext::ResetAsyncWork()
+
+bool FPCGExPointsProcessorContext::ShouldWaitForAsync()
 {
-	bIsPaused = false;
+	if (!AsyncManager)
+	{
+		if (bWaitingForAsyncCompletion) { ResumeExecution(); }
+		return false;
+	}
+
+	return FPCGExContext::ShouldWaitForAsync();
+}
+
+void FPCGExPointsProcessorContext::ResumeExecution()
+{
 	if (AsyncManager) { AsyncManager->Reset(); }
+	FPCGExContext::ResumeExecution();
 }
 
 bool FPCGExPointsProcessorContext::IsAsyncWorkComplete()
 {
-	if (!bDoAsyncProcessing || !AsyncManager) { return true; }
-	if (AsyncManager->IsAsyncWorkComplete())
+	// Context must be unpaused for this to be called
+
+	if (!bAsyncEnabled) { return true; }
+	if (!bWaitingForAsyncCompletion || !AsyncManager) { return true; }
+
+	if (AsyncManager->IsWorkComplete())
 	{
-		ResetAsyncWork();
+		ResumeExecution();
 		return true;
 	}
 
-	bIsPaused = true;
 	return false;
+}
+
+bool FPCGExPointsProcessorElement::PrepareDataInternal(FPCGContext* InContext) const
+{
+	FPCGExPointsProcessorContext* Context = static_cast<FPCGExPointsProcessorContext*>(InContext);
+	check(Context);
+
+	if (!Context->GetInputSettings<UPCGSettings>()->bEnabled)
+	{
+		Context->bExecutionCancelled = true;
+		return true;
+	}
+
+	PCGEX_EXECUTION_CHECK_C(Context)
+
+	if (Context->IsState(PCGEx::State_Preparation))
+	{
+		if (!Boot(Context))
+		{
+			Context->OutputData.TaggedData.Empty(); // Ensure culling of subsequent nodes if boot fails
+			return Context->CancelExecution(TEXT(""));
+		}
+
+		Context->RegisterAssetDependencies();
+		if (Context->HasAssetRequirements())
+		{
+			Context->LoadAssets();
+			return false;
+		}
+	}
+
+	PCGEX_ON_ASYNC_STATE_READY(PCGEx::State_LoadingAssetDependencies)
+	{
+		PostLoadAssetsDependencies(Context);
+		PCGEX_EXECUTION_CHECK_C(Context)
+	}
+
+	PCGEX_ON_ASYNC_STATE_READY(PCGEx::State_AsyncPreparation)
+	{
+		PCGEX_EXECUTION_CHECK_C(Context)
+	}
+
+	if (!PostBoot(Context))
+	{
+		return Context->CancelExecution(TEXT("There was a problem during post-data preparation."));
+	}
+
+	Context->ReadyForExecution();
+	return IPCGElement::PrepareDataInternal(Context);
 }
 
 FPCGContext* FPCGExPointsProcessorElement::Initialize(
@@ -246,77 +227,50 @@ FPCGContext* FPCGExPointsProcessorElement::Initialize(
 	return Context;
 }
 
+bool FPCGExPointsProcessorElement::IsCacheable(const UPCGSettings* InSettings) const
+{
+	const UPCGExPointsProcessorSettings* Settings = static_cast<const UPCGExPointsProcessorSettings*>(InSettings);
+	return Settings->bCacheResult;
+}
+
 void FPCGExPointsProcessorElement::DisabledPassThroughData(FPCGContext* Context) const
 {
-	//FPCGPointProcessingElementBase::DisabledPassThroughData(Context);
-
 	const UPCGExPointsProcessorSettings* Settings = Context->GetInputSettings<UPCGExPointsProcessorSettings>();
 	check(Settings);
 
 	//Forward main points
-	TArray<FPCGTaggedData> MainSources = Context->InputData.GetInputsByPin(Settings->GetMainInputLabel());
+	TArray<FPCGTaggedData> MainSources = Context->InputData.GetInputsByPin(Settings->GetMainInputPin());
 	for (const FPCGTaggedData& TaggedData : MainSources)
 	{
 		FPCGTaggedData& TaggedDataCopy = Context->OutputData.TaggedData.Emplace_GetRef();
 		TaggedDataCopy.Data = TaggedData.Data;
 		TaggedDataCopy.Tags.Append(TaggedData.Tags);
-		TaggedDataCopy.Pin = Settings->GetMainOutputLabel();
+		TaggedDataCopy.Pin = Settings->GetMainOutputPin();
 	}
 }
 
-FPCGContext* FPCGExPointsProcessorElement::InitializeContext(
+FPCGExContext* FPCGExPointsProcessorElement::InitializeContext(
 	FPCGExPointsProcessorContext* InContext,
 	const FPCGDataCollection& InputData,
 	TWeakObjectPtr<UPCGComponent> SourceComponent,
 	const UPCGNode* Node) const
 {
+	check(SourceComponent.IsValid());
+
 	InContext->InputData = InputData;
 	InContext->SourceComponent = SourceComponent;
 	InContext->Node = Node;
 
-	check(SourceComponent.IsValid());
-	InContext->World = SourceComponent->GetWorld();
+	InContext->SetState(PCGEx::State_Preparation);
 
 	const UPCGExPointsProcessorSettings* Settings = InContext->GetInputSettings<UPCGExPointsProcessorSettings>();
 	check(Settings);
 
 	InContext->bFlattenOutput = Settings->bFlattenOutput;
-
-	InContext->SetState(PCGExMT::State_Setup);
-	InContext->bDoAsyncProcessing = Settings->bDoAsyncProcessing;
+	InContext->bAsyncEnabled = Settings->bDoAsyncProcessing;
 	InContext->ChunkSize = FMath::Max((Settings->ChunkSize <= 0 ? Settings->GetPreferredChunkSize() : Settings->ChunkSize), 1);
 
-	InContext->AsyncLoop = InContext->MakeLoop<PCGExMT::FAsyncParallelLoop>();
-
-	InContext->MainPoints = new PCGExData::FPointIOCollection(InContext);
-	InContext->MainPoints->DefaultOutputLabel = Settings->GetMainOutputLabel();
-
-	if (!Settings->bEnabled) { return InContext; }
-
-	if (Settings->GetMainAcceptMultipleData())
-	{
-		TArray<FPCGTaggedData> Sources = InContext->InputData.GetInputsByPin(Settings->GetMainInputLabel());
-		InContext->MainPoints->Initialize(Sources, Settings->GetMainOutputInitMode());
-	}
-	else
-	{
-		TArray<FPCGTaggedData> Sources = InContext->InputData.GetInputsByPin(Settings->GetMainInputLabel());
-		const UPCGPointData* InData = nullptr;
-		const FPCGTaggedData* Source = nullptr;
-		int32 SrcIndex = -1;
-
-		while (!InData && Sources.IsValidIndex(++SrcIndex))
-		{
-			InData = PCGExData::GetMutablePointData(InContext, Sources[SrcIndex]);
-			if (InData && !InData->GetPoints().IsEmpty()) { Source = &Sources[SrcIndex]; }
-			else { InData = nullptr; }
-		}
-
-		if (InData)
-		{
-			InContext->MainPoints->Emplace_GetRef(InData, Settings->GetMainOutputInitMode(), &Source->Tags);
-		}
-	}
+	InContext->bScopedAttributeGet = Settings->bScopedAttributeGet;
 
 	return InContext;
 }
@@ -326,26 +280,49 @@ bool FPCGExPointsProcessorElement::Boot(FPCGExContext* InContext) const
 	FPCGExPointsProcessorContext* Context = static_cast<FPCGExPointsProcessorContext*>(InContext);
 	PCGEX_SETTINGS(PointsProcessor)
 
-	if (Context->InputData.GetInputs().IsEmpty()) { return false; } //Get rid of errors and warning when there is no input
+	Context->bDeleteConsumableAttributes = Settings->bDeleteConsumableAttributes;
 
-	if (Context->MainPoints->IsEmpty())
+	if (Context->InputData.GetInputs().IsEmpty() && !Settings->IsInputless()) { return false; } //Get rid of errors and warning when there is no input
+
+	Context->MainPoints = MakeShared<PCGExData::FPointIOCollection>(Context);
+	Context->MainPoints->OutputPin = Settings->GetMainOutputPin();
+
+	if (Settings->GetMainAcceptMultipleData())
 	{
-		PCGE_LOG(Error, GraphAndLog, FText::Format(FText::FromString(TEXT("Missing {0} inputs")), FText::FromName(Settings->GetMainInputLabel())));
+		TArray<FPCGTaggedData> Sources = Context->InputData.GetInputsByPin(Settings->GetMainInputPin());
+		Context->MainPoints->Initialize(Sources, Settings->GetMainOutputInitMode());
+	}
+	else
+	{
+		const TSharedPtr<PCGExData::FPointIO> SingleInput = PCGExData::TryGetSingleInput(Context, Settings->GetMainInputPin(), false);
+		if (SingleInput) { Context->MainPoints->AddUnsafe(SingleInput); }
+	}
+
+	if (Context->MainPoints->IsEmpty() && !Settings->IsInputless())
+	{
+		PCGE_LOG(Error, GraphAndLog, FText::Format(FText::FromString(TEXT("Missing {0} inputs (either no data or no points)")), FText::FromName(Settings->GetMainInputPin())));
 		return false;
 	}
 
 	if (Settings->SupportsPointFilters())
 	{
-		GetInputFactories(
-			InContext, Settings->GetPointFilterLabel(), Context->FilterFactories,
-			Settings->GetPointFilterTypes(), false);
+		GetInputFactories(Context, Settings->GetPointFilterPin(), Context->FilterFactories, Settings->GetPointFilterTypes(), false);
 		if (Settings->RequiresPointFilters() && Context->FilterFactories.IsEmpty())
 		{
-			PCGE_LOG(Error, GraphAndLog, FText::Format(FTEXT("Missing {0}."), FText::FromName(Settings->GetPointFilterLabel())));
+			PCGE_LOG(Error, GraphAndLog, FText::Format(FTEXT("Missing {0}."), FText::FromName(Settings->GetPointFilterPin())));
 			return false;
 		}
 	}
 
+	return true;
+}
+
+void FPCGExPointsProcessorElement::PostLoadAssetsDependencies(FPCGExContext* InContext) const
+{
+}
+
+bool FPCGExPointsProcessorElement::PostBoot(FPCGExContext* InContext) const
+{
 	return true;
 }
 

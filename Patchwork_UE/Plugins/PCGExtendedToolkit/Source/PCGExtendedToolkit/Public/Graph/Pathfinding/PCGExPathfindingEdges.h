@@ -17,8 +17,8 @@ class UPCGExSearchOperation;
  * Use PCGExTransform to manipulate the outgoing attributes instead of handling everything here.
  * This way we can multi-thread the various calculations instead of mixing everything along with async/game thread collision
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExPathfindingEdgesSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPathfindingEdgesSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -36,19 +36,18 @@ protected:
 	//~End UPCGSettings
 
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 
 	//~Begin UObject interface
 #if WITH_EDITOR
 
-public:
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif
 	//~End UObject interface
 
 	/** Controls how goals are picked.*/
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = Settings, Instanced, meta = (PCG_Overridable, NoResetToDefault, ShowOnlyInnerProperties))
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Settings|GoalPicker", Instanced, meta = (PCG_Overridable, NoResetToDefault, ShowOnlyInnerProperties))
 	TObjectPtr<UPCGExGoalPicker> GoalPicker;
 
 	/** Add seed point at the beginning of the path */
@@ -58,6 +57,10 @@ public:
 	/** Add goal point at the beginning of the path */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bAddGoalToPath = false;
+
+	/** What are the paths made of. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	EPCGExPathComposition PathComposition = EPCGExPathComposition::Vtx;
 
 	/** Drive how a seed selects a node. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Node Picking", meta=(PCG_Overridable))
@@ -97,16 +100,14 @@ public:
 };
 
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExPathfindingEdgesContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathfindingEdgesContext final : FPCGExEdgesProcessorContext
 {
 	friend class FPCGExPathfindingEdgesElement;
 
-	virtual ~FPCGExPathfindingEdgesContext() override;
+	TSharedPtr<PCGExData::FFacade> SeedsDataFacade;
+	TSharedPtr<PCGExData::FFacade> GoalsDataFacade;
 
-	PCGExData::FFacade* SeedsDataFacade = nullptr;
-	PCGExData::FFacade* GoalsDataFacade = nullptr;
-
-	PCGExData::FPointIOCollection* OutputPaths = nullptr;
+	TSharedPtr<PCGExData::FPointIOCollection> OutputPaths;
 
 	UPCGExGoalPicker* GoalPicker = nullptr;
 	UPCGExSearchOperation* SearchAlgorithm = nullptr;
@@ -114,18 +115,16 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExPathfindingEdgesContext final : public FPCGE
 	FPCGExAttributeToTagDetails SeedAttributesToPathTags;
 	FPCGExAttributeToTagDetails GoalAttributesToPathTags;
 
-	PCGExData::FDataForwardHandler* SeedForwardHandler = nullptr;
-	PCGExData::FDataForwardHandler* GoalForwardHandler = nullptr;
+	TSharedPtr<PCGExData::FDataForwardHandler> SeedForwardHandler;
+	TSharedPtr<PCGExData::FDataForwardHandler> GoalForwardHandler;
 
-	TArray<PCGExPathfinding::FPathQuery*> PathQueries;
+	TArray<uint64> SeedGoalPairs;
 
-	void TryFindPath(
-		const UPCGExSearchOperation* SearchOperation,
-		const PCGExPathfinding::FPathQuery* Query,
-		PCGExHeuristics::THeuristicsHandler* HeuristicsHandler);
+	void BuildPath(
+		const TSharedPtr<PCGExPathfinding::FPathQuery>& Query);
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPathfindingEdgesElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathfindingEdgesElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -140,40 +139,21 @@ protected:
 
 namespace PCGExPathfindingEdge
 {
-	class PCGEXTENDEDTOOLKIT_API FSampleClusterPathTask final : public FPCGExPathfindingTask
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExPathfindingEdgesContext, UPCGExPathfindingEdgesSettings>
 	{
+		TArray<TSharedPtr<PCGExPathfinding::FPathQuery>> Queries;
+
 	public:
-		FSampleClusterPathTask(PCGExData::FPointIO* InPointIO,
-		                       const UPCGExSearchOperation* InSearchOperation,
-		                       const TArray<PCGExPathfinding::FPathQuery*>* InQueries,
-		                       PCGExHeuristics::THeuristicsHandler* InHeuristics,
-		                       const bool Inlined = false) :
-			FPCGExPathfindingTask(InPointIO, InQueries),
-			SearchOperation(InSearchOperation),
-			Heuristics(InHeuristics),
-			bInlined(Inlined)
-		{
-		}
-
-		const UPCGExSearchOperation* SearchOperation = nullptr;
-		PCGExHeuristics::THeuristicsHandler* Heuristics = nullptr;
-		bool bInlined = false;
-
-		virtual bool ExecuteTask() override;
-	};
-
-	class FProcessor final : public PCGExClusterMT::FClusterProcessor
-	{
-	public:
-		FProcessor(PCGExData::FPointIO* InVtx, PCGExData::FPointIO* InEdges):
-			FClusterProcessor(InVtx, InEdges)
+		FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade):
+			TProcessor(InVtxDataFacade, InEdgeDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
+
 		UPCGExSearchOperation* SearchOperation = nullptr;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 	};
 }

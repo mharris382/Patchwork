@@ -10,34 +10,21 @@
 void UPCGExSubPointsOperation::CopySettingsFrom(const UPCGExOperation* Other)
 {
 	Super::CopySettingsFrom(Other);
-	const UPCGExSubPointsOperation* TypedOther = Cast<UPCGExSubPointsOperation>(Other);
-	if (TypedOther)
+	if (const UPCGExSubPointsOperation* TypedOther = Cast<UPCGExSubPointsOperation>(Other))
 	{
-		bClosedPath = TypedOther->bClosedPath;
+		bClosedLoop = TypedOther->bClosedLoop;
 	}
 }
 
-void UPCGExSubPointsOperation::PrepareForData(PCGExData::FFacade* InPrimaryFacade)
+void UPCGExSubPointsOperation::PrepareForData(const TSharedPtr<PCGExData::FFacade>& InPrimaryFacade, const TSet<FName>* IgnoreAttributeSet)
 {
 }
 
-void UPCGExSubPointsOperation::ProcessPoints(UPCGPointData* InData) const
+void UPCGExSubPointsOperation::ProcessSubPoints(
+	const PCGExData::FPointRef& From,
+	const PCGExData::FPointRef& To,
+	const TArrayView<FPCGPoint>& SubPoints,
+	const PCGExPaths::FPathMetrics& Metrics,
+	const int32 StartIndex) const
 {
-	TArray<FPCGPoint>& Points = InData->GetMutablePoints();
-	TArrayView<FPCGPoint> Path = MakeArrayView(Points.GetData(), Points.Num());
-	const PCGExData::FPointRef StartPoint = PCGExData::FPointRef(Points[0], 0);
-	const PCGExData::FPointRef EndPoint = PCGExData::FPointRef(Points.Last(), Points.Num() - 1);
-	ProcessSubPoints(StartPoint, EndPoint, Path, PCGExMath::FPathMetricsSquared());
-}
-
-void UPCGExSubPointsOperation::ProcessSubPoints(const PCGExData::FPointRef& Start, const PCGExData::FPointRef& End, const TArrayView<FPCGPoint>& SubPoints, const PCGExMath::FPathMetricsSquared& Metrics) const
-{
-}
-
-void UPCGExSubPointsOperation::ProcessSubPoints(const TArrayView<FPCGPoint>& SubPoints, const PCGExMath::FPathMetricsSquared& Metrics, const int32 Offset) const
-{
-	const FPCGPoint& Start = SubPoints[0];
-	const int32 LastIndex = SubPoints.Num() - 1;
-	const FPCGPoint& End = SubPoints[LastIndex];
-	ProcessSubPoints(PCGExData::FPointRef(Start, 0), PCGExData::FPointRef(End, LastIndex), SubPoints, Metrics);
 }

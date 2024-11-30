@@ -7,59 +7,69 @@
 #include "PCGExGlobalSettings.h"
 
 #include "PCGExPointsProcessor.h"
+#include "PCGExSortPoints.h"
+#include "Data/PCGExPointIOMerger.h"
+
 #include "PCGExMergePointsByTag.generated.h"
 
-class FPCGExPointIOMerger;
-
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Selector Type"))
+UENUM()
 enum class EPCGExMergeByTagOverlapResolutionMode : uint8
 {
-	Strict UMETA(DisplayName = "Strict", ToolTip="Merge happens per-tag, and higher priority tags are removed from lower priority overlaps."),
-	ImmediateOverlap UMETA(DisplayName = "Overlap", ToolTip="Merge happens per-tag, overlapping data is merged entierely."),
+	Strict           = 0 UMETA(DisplayName = "Strict", ToolTip="Merge happens per-tag, and higher priority tags are removed from lower priority overlaps."),
+	ImmediateOverlap = 1 UMETA(DisplayName = "Overlap", ToolTip="Merge happens per-tag, overlapping data is merged entierely."),
+	Flatten          = 2 UMETA(DisplayName = "Flatten", ToolTip="Flatten all tags into a unique identifier and match-merge based on that identifier."),
+};
+
+UENUM()
+enum class EPCGExMergeByTagFallbackBehavior : uint8
+{
+	Omit    = 0 UMETA(DisplayName = "Omit", ToolTip="Do not output data that didn't pass filters"),
+	Merge   = 1 UMETA(DisplayName = "Merge", ToolTip="Merge all data that didn't pass filter in a single blob"),
+	Forward = 2 UMETA(DisplayName = "Forward", ToolTip="Forward data that didn't pass filter without merging them"),
 };
 
 namespace PCPGExMergePointsByTag
 {
-	class PCGEXTENDEDTOOLKIT_API FMergeList
+	class /*PCGEXTENDEDTOOLKIT_API*/ FMergeList
 	{
 	public:
-		TArray<PCGExData::FPointIO*> IOs;
-		PCGExData::FPointIO* CompositeIO = nullptr;
-		FPCGExPointIOMerger* Merger = nullptr;
+		TArray<TSharedPtr<PCGExData::FPointIO>> IOs;
+		TSharedPtr<PCGExData::FFacade> CompositeIODataFacade;
+		TSharedPtr<FPCGExPointIOMerger> Merger;
 
 		FMergeList();
-		~FMergeList();
+		~FMergeList() = default;
 
-		void Merge(PCGExMT::FTaskManager* AsyncManager, const FPCGExCarryOverDetails* InCarryOverDetails);
-		void Write(PCGExMT::FTaskManager* AsyncManager) const;
+		void Merge(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager, const FPCGExCarryOverDetails* InCarryOverDetails);
+		void Write(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) const;
 	};
 
-	class PCGEXTENDEDTOOLKIT_API FTagBucket
+	class /*PCGEXTENDEDTOOLKIT_API*/ FTagBucket
 	{
 	public:
 		FString Tag;
-		TArray<PCGExData::FPointIO*> IOs;
+		TArray<TSharedPtr<PCGExData::FPointIO>> IOs;
 		explicit FTagBucket(const FString& InTag);
-		~FTagBucket();
+		~FTagBucket() = default;
 	};
 
-	class PCGEXTENDEDTOOLKIT_API FTagBuckets
+	class /*PCGEXTENDEDTOOLKIT_API*/ FTagBuckets
 	{
 	public:
-		TArray<FTagBucket*> Buckets;
+		TArray<TSharedPtr<FTagBucket>> Buckets;
 		TMap<FString, int32> BucketsMap;
-		TMap<PCGExData::FPointIO*, TSet<FTagBucket*>*> ReverseBucketsMap;
+		TMap<PCGExData::FPointIO*, TSharedPtr<TSet<TSharedPtr<FTagBucket>>>> ReverseBucketsMap;
 		explicit FTagBuckets();
-		~FTagBuckets();
+		~FTagBuckets() = default;
 
-		void Distribute(PCGExData::FPointIO* IO, const FPCGExNameFiltersDetails& Filters);
-		void AddToReverseMap(PCGExData::FPointIO* IO, FTagBucket* Bucket);
-		void BuildMergeLists(EPCGExMergeByTagOverlapResolutionMode Mode, TArray<FMergeList*>& OutLists, const TArray<FString>& Priorities);
+		void Distribute(FPCGExContext* InContext, const TSharedPtr<PCGExData::FPointIO>& IO, const FPCGExNameFiltersDetails& Filters);
+		void AddToReverseMap(const TSharedPtr<PCGExData::FPointIO>& IO, const TSharedPtr<FTagBucket>& Bucket);
+		void BuildMergeLists(FPCGExContext* InContext, EPCGExMergeByTagOverlapResolutionMode Mode, TArray<TSharedPtr<FMergeList>>& OutLists, const TArray<FString>& Priorities, const EPCGExSortDirection SortDirection);
 	};
 }
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExMergePointsByTagSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExMergePointsByTagSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -76,13 +86,20 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** TBD */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable))
 	EPCGExMergeByTagOverlapResolutionMode Mode = EPCGExMergeByTagOverlapResolutionMode::Strict;
+
+	/** Sorting direction */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable, EditCondition="Mode!=EPCGExMergeByTagOverlapResolutionMode::Flatten", EditConditionHides))
+	EPCGExSortDirection SortDirection = EPCGExSortDirection::Descending;
+
+	/** Fallback behavior */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable, EditCondition="Mode==EPCGExMergeByTagOverlapResolutionMode::Flatten", EditConditionHides))
+	EPCGExMergeByTagFallbackBehavior FallbackBehavior = EPCGExMergeByTagFallbackBehavior::Omit;
 
 	/** Tags to be processed or ignored. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
@@ -97,19 +114,19 @@ public:
 	FPCGExCarryOverDetails CarryOverDetails;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExMergePointsByTagContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExMergePointsByTagContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExMergePointsByTagElement;
-
-	virtual ~FPCGExMergePointsByTagContext() override;
 
 	FPCGExNameFiltersDetails TagFilters;
 	FPCGExCarryOverDetails CarryOverDetails;
 
-	TArray<PCPGExMergePointsByTag::FMergeList*> MergeLists;
+	TSharedPtr<PCPGExMergePointsByTag::FMergeList> FallbackMergeList;
+	TMap<uint32, TSharedPtr<PCPGExMergePointsByTag::FMergeList>> MergeMap;
+	TArray<TSharedPtr<PCPGExMergePointsByTag::FMergeList>> MergeLists;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExMergePointsByTagElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExMergePointsByTagElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(

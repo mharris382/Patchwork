@@ -7,18 +7,29 @@
 #include "PCGExPathfinding.h"
 #include "PCGExPointsProcessor.h"
 #include "Data/PCGExDataForward.h"
+#include "AI/Navigation/NavigationTypes.h"
+
+
 #include "Paths/SubPoints/DataBlending/PCGExSubPointsBlendInterpolate.h"
 #include "PCGExPathfindingNavmesh.generated.h"
 
 class UPCGExSubPointsBlendOperation;
 class UPCGExGoalPicker;
 
+
+UENUM()
+enum class EPCGExPathfindingNavmeshMode : uint8
+{
+	Regular      = 0 UMETA(DisplayName = "Regular", ToolTip="Regular pathfinding"),
+	Hierarchical = 1 UMETA(DisplayName = "HIerarchical", ToolTip="Cell-based pathfinding"),
+};
+
 /**
  * Use PCGExTransform to manipulate the outgoing attributes instead of handling everything here.
  * This way we can multi-thread the various calculations instead of mixing everything along with async/game thread collision
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExPathfindingNavmeshSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPathfindingNavmeshSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -39,21 +50,18 @@ protected:
 public:
 #if WITH_EDITOR
 
-public:
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif
 	//~End UObject interface
 
 	//~Begin UPCGExPointsProcessorSettings
-public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 
-	virtual FName GetMainInputLabel() const override { return PCGExGraph::SourceSeedsLabel; }
-	virtual FName GetMainOutputLabel() const override { return PCGExGraph::OutputPathsLabel; }
+	virtual FName GetMainInputPin() const override { return PCGExGraph::SourceSeedsLabel; }
+	virtual FName GetMainOutputPin() const override { return PCGExGraph::OutputPathsLabel; }
 	//~End UPCGExPointsProcessorSettings
 
 
-public:
 	/** Controls how goals are picked.*/
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = Settings, Instanced, meta = (PCG_Overridable, NoResetToDefault, ShowOnlyInnerProperties))
 	TObjectPtr<UPCGExGoalPicker> GoalPicker;
@@ -105,21 +113,19 @@ public:
 };
 
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExPathfindingNavmeshContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathfindingNavmeshContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExPathfindingNavmeshElement;
 
-	virtual ~FPCGExPathfindingNavmeshContext() override;
+	TSharedPtr<PCGExData::FFacade> SeedsDataFacade;
+	TSharedPtr<PCGExData::FFacade> GoalsDataFacade;
 
-	PCGExData::FFacade* SeedsDataFacade = nullptr;
-	PCGExData::FFacade* GoalsDataFacade = nullptr;
-
-	PCGExData::FPointIOCollection* OutputPaths = nullptr;
+	TSharedPtr<PCGExData::FPointIOCollection> OutputPaths;
 
 	UPCGExGoalPicker* GoalPicker = nullptr;
 	UPCGExSubPointsBlendOperation* Blending = nullptr;
 
-	TArray<PCGExPathfinding::FPathQuery*> PathQueries;
+	TArray<PCGExPathfinding::FSeedGoalPair> PathQueries;
 
 	FNavAgentProperties NavAgentProperties;
 
@@ -130,11 +136,11 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExPathfindingNavmeshContext final : public FPC
 	FPCGExAttributeToTagDetails SeedAttributesToPathTags;
 	FPCGExAttributeToTagDetails GoalAttributesToPathTags;
 
-	PCGExData::FDataForwardHandler* SeedForwardHandler = nullptr;
-	PCGExData::FDataForwardHandler* GoalForwardHandler = nullptr;
+	TSharedPtr<PCGExData::FDataForwardHandler> SeedForwardHandler;
+	TSharedPtr<PCGExData::FDataForwardHandler> GoalForwardHandler;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPathfindingNavmeshElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathfindingNavmeshElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -148,14 +154,14 @@ protected:
 };
 
 
-class PCGEXTENDEDTOOLKIT_API FSampleNavmeshTask final : public FPCGExPathfindingTask
+class /*PCGEXTENDEDTOOLKIT_API*/ FSampleNavmeshTask final : public FPCGExPathfindingTask
 {
 public:
 	FSampleNavmeshTask(
-		PCGExData::FPointIO* InPointIO, const TArray<PCGExPathfinding::FPathQuery*>* InQueries) :
+		const TSharedPtr<PCGExData::FPointIO>& InPointIO, const TArray<PCGExPathfinding::FSeedGoalPair>* InQueries) :
 		FPCGExPathfindingTask(InPointIO, InQueries)
 	{
 	}
 
-	virtual bool ExecuteTask() override;
+	virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override;
 };

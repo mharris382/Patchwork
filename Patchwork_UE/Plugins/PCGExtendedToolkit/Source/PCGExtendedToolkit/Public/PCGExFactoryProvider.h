@@ -8,6 +8,8 @@
 #include "PCGExContext.h"
 #include "PCGExMacros.h"
 #include "PCGExGlobalSettings.h"
+#include "PCGParamData.h"
+#include "Data/PCGExData.h"
 #include "Data/PCGPointData.h"
 #include "UObject/Object.h"
 
@@ -30,25 +32,27 @@ namespace PCGExFactories
 		RuleSort,
 		RulePartition,
 		Probe,
-		StateNode,
-		StateSocket,
+		NodeState,
 		Sampler,
 		Heuristics,
 		VtxProperty,
-		ConditionalActions
+		ConditionalActions,
+		ShapeBuilder
 	};
 
 	static inline TSet<EType> AnyFilters = {EType::FilterPoint, EType::FilterNode, EType::FilterEdge, EType::FilterGroup};
 	static inline TSet<EType> PointFilters = {EType::FilterPoint, EType::FilterGroup};
 	static inline TSet<EType> ClusterNodeFilters = {EType::FilterPoint, EType::FilterNode, EType::FilterGroup};
 	static inline TSet<EType> ClusterEdgeFilters = {EType::FilterPoint, EType::FilterEdge, EType::FilterGroup};
+	static inline TSet<EType> SupportsClusterFilters = {EType::FilterEdge, EType::FilterNode, EType::NodeState, EType::FilterGroup};
+	static inline TSet<EType> ClusterOnlyFilters = {EType::FilterEdge, EType::FilterNode, EType::NodeState};
 }
 
 /**
  * 
  */
 UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExParamDataBase : public UPCGPointData
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExParamDataBase : public UPCGPointData
 {
 	GENERATED_BODY()
 
@@ -60,17 +64,22 @@ public:
  * 
  */
 UCLASS(Abstract, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExParamFactoryBase : public UPCGExParamDataBase
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExParamFactoryBase : public UPCGExParamDataBase
 {
 	GENERATED_BODY()
 
 public:
 	int32 Priority = 0;
+	bool bDoRegisterConsumableAttributes = false;
 	virtual PCGExFactories::EType GetFactoryType() const { return PCGExFactories::EType::None; }
+
+	virtual void RegisterConsumableAttributes(FPCGExContext* InContext) const
+	{
+	}
 };
 
 UCLASS(Abstract, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
-class PCGEXTENDEDTOOLKIT_API UPCGExFactoryProviderSettings : public UPCGSettings
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFactoryProviderSettings : public UPCGSettings
 {
 	GENERATED_BODY()
 
@@ -79,7 +88,7 @@ public:
 #if WITH_EDITOR
 	bool bCacheResult = false;
 	PCGEX_NODE_INFOS_CUSTOM_SUBTITLE(
-		FactoryProvider, "Factory : Proviader", "Creates an abstract factory provider.",
+		FactoryProvider, "Factory : Provider", "Creates an abstract factory provider.",
 		FName(GetDisplayName()))
 	virtual EPCGSettingsType GetType() const override { return EPCGSettingsType::Param; }
 	virtual FLinearColor GetNodeTitleColor() const override { return GetDefault<UPCGExGlobalSettings>()->NodeColorFilter; }
@@ -93,16 +102,20 @@ protected:
 
 	//~Begin UPCGExFactoryProviderSettings
 public:
-	virtual FName GetMainOutputLabel() const { return TEXT(""); }
+	virtual FName GetMainOutputPin() const { return TEXT(""); }
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory = nullptr) const;
 
 #if WITH_EDITOR
 	virtual FString GetDisplayName() const;
 #endif
 	//~End UPCGExFactoryProviderSettings
+
+	/** Whether this factory can register consumable attributes or not. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_NotOverridable), AdvancedDisplay)
+	bool bDoRegisterConsumableAttributes = false;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExFactoryProviderElement final : public IPCGElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFactoryProviderElement final : public IPCGElement
 {
 public:
 #if WITH_EDITOR
@@ -119,27 +132,28 @@ public:
 namespace PCGExFactories
 {
 	template <typename T_DEF>
-	static bool GetInputFactories(const FPCGContext* InContext, const FName InLabel, TArray<T_DEF*>& OutFactories, const TSet<EType>& Types, const bool bThrowError = true)
+	static bool GetInputFactories(FPCGExContext* InContext, const FName InLabel, TArray<TObjectPtr<const T_DEF>>& OutFactories, const TSet<EType>& Types, const bool bThrowError = true)
 	{
 		const TArray<FPCGTaggedData>& Inputs = InContext->InputData.GetInputsByPin(InLabel);
-		TSet<uint64> UniqueData;
+		TSet<uint32> UniqueData;
 		UniqueData.Reserve(Inputs.Num());
 
 		for (const FPCGTaggedData& TaggedData : Inputs)
 		{
 			bool bIsAlreadyInSet;
-			UniqueData.Add(TaggedData.Data->UID, &bIsAlreadyInSet);
+			UniqueData.Add(TaggedData.Data->GetUniqueID(), &bIsAlreadyInSet);
 			if (bIsAlreadyInSet) { continue; }
 
-			if (const T_DEF* State = Cast<T_DEF>(TaggedData.Data))
+			if (const T_DEF* Factory = Cast<T_DEF>(TaggedData.Data))
 			{
-				if (!Types.Contains(State->GetFactoryType()))
+				if (!Types.Contains(Factory->GetFactoryType()))
 				{
-					PCGE_LOG_C(Warning, GraphAndLog, InContext, FText::Format(FTEXT("Input '{0}' is not supported."), FText::FromString(State->GetClass()->GetName())));
+					PCGE_LOG_C(Warning, GraphAndLog, InContext, FText::Format(FTEXT("Input '{0}' is not supported."), FText::FromString(Factory->GetClass()->GetName())));
 					continue;
 				}
 
-				OutFactories.AddUnique(const_cast<T_DEF*>(State));
+				OutFactories.AddUnique(const_cast<T_DEF*>(Factory));
+				if (Factory->bDoRegisterConsumableAttributes) { Factory->RegisterConsumableAttributes(InContext); }
 			}
 			else
 			{

@@ -3,10 +3,33 @@
 
 #include "Sampling/PCGExSampleNearestSpline.h"
 
-#include "Data/PCGExPointFilter.h"
 
 #define LOCTEXT_NAMESPACE "PCGExSampleNearestSplineElement"
 #define PCGEX_NAMESPACE SampleNearestPolyLine
+
+namespace PCGExPolyLine
+{
+	void FSamplesStats::Update(const FSample& Infos, bool& IsNewClosest, bool& IsNewFarthest)
+	{
+		UpdateCount++;
+
+		if (Infos.Distance < SampledRangeMin)
+		{
+			Closest = Infos;
+			SampledRangeMin = Infos.Distance;
+			IsNewClosest = true;
+		}
+
+		if (Infos.Distance > SampledRangeMax)
+		{
+			Farthest = Infos;
+			SampledRangeMax = Infos.Distance;
+			IsNewFarthest = true;
+		}
+
+		SampledRangeWidth = SampledRangeMax - SampledRangeMin;
+	}
+}
 
 UPCGExSampleNearestSplineSettings::UPCGExSampleNearestSplineSettings(
 	const FObjectInitializer& ObjectInitializer)
@@ -20,24 +43,14 @@ TArray<FPCGPinProperties> UPCGExSampleNearestSplineSettings::InputPinProperties(
 {
 	TArray<FPCGPinProperties> PinProperties = Super::InputPinProperties();
 	PCGEX_PIN_POLYLINES(PCGEx::SourceTargetsLabel, "The spline data set to check against.", Required, {})
-	PCGEX_PIN_PARAMS(PCGEx::SourcePointFilters, "Filter which points will be processed.", Advanced, {})
 	return PinProperties;
 }
 
-PCGExData::EInit UPCGExSampleNearestSplineSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExSampleNearestSplineSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 int32 UPCGExSampleNearestSplineSettings::GetPreferredChunkSize() const { return PCGExMT::GAsyncLoop_L; }
 
-FName UPCGExSampleNearestSplineSettings::GetPointFilterLabel() const { return PCGExPointFilter::SourceFiltersLabel; }
-
 PCGEX_INITIALIZE_ELEMENT(SampleNearestSpline)
-
-FPCGExSampleNearestSplineContext::~FPCGExSampleNearestSplineContext()
-{
-	PCGEX_TERMINATE_ASYNC
-
-	Targets.Empty();
-}
 
 bool FPCGExSampleNearestSplineElement::Boot(FPCGExContext* InContext) const
 {
@@ -47,13 +60,28 @@ bool FPCGExSampleNearestSplineElement::Boot(FPCGExContext* InContext) const
 
 	TArray<FPCGTaggedData> Targets = Context->InputData.GetInputsByPin(PCGEx::SourceTargetsLabel);
 
+	Context->DistanceDetails = PCGExDetails::MakeDistances(Settings->DistanceSettings, Settings->DistanceSettings);
+
 	if (!Targets.IsEmpty())
 	{
 		for (const FPCGTaggedData& TaggedData : Targets)
 		{
 			const UPCGSplineData* SplineData = Cast<UPCGSplineData>(TaggedData.Data);
 			if (!SplineData) { continue; }
-			Context->Targets.Add(const_cast<UPCGSplineData*>(SplineData));
+
+			switch (Settings->SampleInputs)
+			{
+			default:
+			case EPCGExSplineSamplingIncludeMode::All:
+				Context->Targets.Add(SplineData);
+				break;
+			case EPCGExSplineSamplingIncludeMode::ClosedLoopOnly:
+				if (SplineData->SplineStruct.bClosedLoop) { Context->Targets.Add(SplineData); }
+				break;
+			case EPCGExSplineSamplingIncludeMode::OpenSplineOnly:
+				if (!SplineData->SplineStruct.bClosedLoop) { Context->Targets.Add(SplineData); }
+				break;
+			}
 		}
 
 		Context->NumTargets = Context->Targets.Num();
@@ -64,6 +92,12 @@ bool FPCGExSampleNearestSplineElement::Boot(FPCGExContext* InContext) const
 		PCGE_LOG(Error, GraphAndLog, FTEXT("No targets (either no input or empty dataset)"));
 		return false;
 	}
+
+	Context->Splines.Reserve(Context->NumTargets);
+	for (const UPCGSplineData* SplineData : Context->Targets) { Context->Splines.Add(&SplineData->SplineStruct); }
+
+	Context->SegmentCounts.SetNumUninitialized(Context->NumTargets);
+	for (int i = 0; i < Context->NumTargets; i++) { Context->SegmentCounts[i] = Context->Targets[i]->SplineStruct.GetNumberOfSplineSegments(); }
 
 	Context->WeightCurve = Settings->WeightOverDistance.LoadSynchronous();
 	if (!Context->WeightCurve)
@@ -82,26 +116,23 @@ bool FPCGExSampleNearestSplineElement::ExecuteInternal(FPCGContext* InContext) c
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExSampleNearestSplineElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(SampleNearestSpline)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExSampleNearestSpline::FProcessor>>(
-			[&](PCGExData::FPointIO* Entry) { return true; },
-			[&](PCGExPointsMT::TBatch<PCGExSampleNearestSpline::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry) { return true; },
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExSampleNearestSpline::FProcessor>>& NewBatch)
 			{
-			},
-			PCGExMT::State_Done))
+				if (Settings->bPruneFailedSamples) { NewBatch->bRequiresWriteStep = true; }
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Could not find any paths to split."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not find any paths to split."));
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
@@ -113,191 +144,267 @@ namespace PCGExSampleNearestSpline
 	{
 	}
 
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExSampleNearestSpline::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(SampleNearestSpline)
 
-		LocalTypedContext = TypedContext;
-		LocalSettings = Settings;
+		PointDataFacade->bSupportsScopedGet = Context->bScopedAttributeGet;
 
-		// TODO : Add Scoped Fetch
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
+		SampleState.SetNumUninitialized(PointDataFacade->GetNum());
+		
+		if (Settings->SampleInputs != EPCGExSplineSamplingIncludeMode::All)
+		{
+			bOnlySignIfClosed = Settings->bOnlySignIfClosed;
+			bOnlyIncrementInsideNumIfClosed = Settings->bOnlyIncrementInsideNumIfClosed;
+		}
+		else
+		{
+			bOnlySignIfClosed = false;
+			bOnlyIncrementInsideNumIfClosed = false;
+		}
+
+		SafeUpVector = Settings->LookAtUpConstant;
 
 		{
-			PCGExData::FFacade* OutputFacade = PointDataFacade;
+			const TSharedRef<PCGExData::FFacade>& OutputFacade = PointDataFacade;
 			PCGEX_FOREACH_FIELD_NEARESTPOLYLINE(PCGEX_OUTPUT_INIT)
 		}
 
 		if (Settings->bUseLocalRangeMin)
 		{
 			RangeMinGetter = PointDataFacade->GetScopedBroadcaster<double>(Settings->LocalRangeMin);
-			if (!RangeMinGetter) { PCGE_LOG_C(Warning, GraphAndLog, Context, FTEXT("RangeMin metadata missing")); }
+			if (!RangeMinGetter) { PCGE_LOG_C(Warning, GraphAndLog, ExecutionContext, FTEXT("RangeMin metadata missing")); }
 		}
 
 		if (Settings->bUseLocalRangeMax)
 		{
 			RangeMaxGetter = PointDataFacade->GetScopedBroadcaster<double>(Settings->LocalRangeMax);
-			if (!RangeMaxGetter) { PCGE_LOG_C(Warning, GraphAndLog, Context, FTEXT("RangeMax metadata missing")); }
+			if (!RangeMaxGetter) { PCGE_LOG_C(Warning, GraphAndLog, ExecutionContext, FTEXT("RangeMax metadata missing")); }
 		}
 
-		if (Settings->bWriteLookAtTransform)
+		if (Settings->bWriteLookAtTransform && Settings->LookAtUpSelection == EPCGExSampleSource::Source)
 		{
-			if (Settings->LookAtUpSelection == EPCGExSampleSource::Target)
-			{
-			} // 
-			else { LookAtUpGetter = PointDataFacade->GetScopedBroadcaster<FVector>(Settings->LookAtUpSource); }
-
-			if (!LookAtUpGetter) { PCGE_LOG_C(Warning, GraphAndLog, Context, FTEXT("LookAtUp is invalid.")); }
+			LookAtUpGetter = PointDataFacade->GetScopedBroadcaster<FVector>(Settings->LookAtUpSource);
+			if (!LookAtUpGetter) { PCGE_LOG_C(Warning, GraphAndLog, ExecutionContext, FTEXT("LookAtUp is invalid.")); }
 		}
 
-		PointIO->CreateOutKeys();
+		bSingleSample = Settings->SampleMethod != EPCGExSampleMethod::WithinRange;
+		bClosestSample = Settings->SampleMethod != EPCGExSampleMethod::FarthestTarget;
 
 		StartParallelLoopForPoints();
 
 		return true;
 	}
 
+	void FProcessor::PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count)
+	{
+		PointDataFacade->Fetch(StartIndex, Count);
+		FilterScope(StartIndex, Count);
+	}
+
+	void FProcessor::SamplingFailed(const int32 Index, const FPCGPoint& Point, const double InDepth)
+	{
+		SampleState[Index] = false;
+		
+		const double FailSafeDist = RangeMaxGetter ? FMath::Sqrt(RangeMaxGetter->Read(Index)) : Settings->RangeMax;
+		PCGEX_OUTPUT_VALUE(Success, Index, false)
+		PCGEX_OUTPUT_VALUE(Transform, Index, Point.Transform)
+		PCGEX_OUTPUT_VALUE(LookAtTransform, Index, Point.Transform)
+		PCGEX_OUTPUT_VALUE(Distance, Index, FailSafeDist)
+		PCGEX_OUTPUT_VALUE(Depth, Index, Settings->bInvertDepth ? 1-InDepth : InDepth)
+		PCGEX_OUTPUT_VALUE(SignedDistance, Index, FailSafeDist)
+		PCGEX_OUTPUT_VALUE(Angle, Index, 0)
+		PCGEX_OUTPUT_VALUE(Time, Index, -1)
+		PCGEX_OUTPUT_VALUE(NumInside, Index, -1)
+		PCGEX_OUTPUT_VALUE(NumSamples, Index, 0)
+		PCGEX_OUTPUT_VALUE(ClosedLoop, Index, false)
+	}
+
 	void FProcessor::ProcessSinglePoint(int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count)
 	{
-		auto SamplingFailed = [&]()
-		{
-			const double FailSafeDist = RangeMaxGetter ? FMath::Sqrt(RangeMaxGetter->Values[Index]) : LocalSettings->RangeMax;
-			PCGEX_OUTPUT_VALUE(Success, Index, false)
-			PCGEX_OUTPUT_VALUE(Transform, Index, Point.Transform)
-			PCGEX_OUTPUT_VALUE(LookAtTransform, Index, Point.Transform)
-			PCGEX_OUTPUT_VALUE(Distance, Index, FailSafeDist)
-			PCGEX_OUTPUT_VALUE(Angle, Index, 0)
-			PCGEX_OUTPUT_VALUE(Time, Index, -1)
-			PCGEX_OUTPUT_VALUE(NumInside, Index, -1)
-			PCGEX_OUTPUT_VALUE(SignedDistance, Index, FailSafeDist)
-
-		};
-
 		if (!PointFilterCache[Index])
 		{
-			SamplingFailed();
+			if (Settings->bProcessFilteredOutAsFails) { SamplingFailed(Index, Point, 0); }
 			return;
 		}
 
-
 		int32 NumInside = 0;
+		int32 NumSampled = 0;
+		int32 NumInClosed = 0;
 
-		double RangeMin = FMath::Pow(RangeMinGetter ? RangeMinGetter->Values[Index] : LocalSettings->RangeMin, 2);
-		double RangeMax = FMath::Pow(RangeMaxGetter ? RangeMaxGetter->Values[Index] : LocalSettings->RangeMax, 2);
+		bool bClosed = false;
 
-		if (RangeMin > RangeMax) { std::swap(RangeMin, RangeMax); }
+		double BaseRangeMin = RangeMinGetter ? RangeMinGetter->Read(Index) : Settings->RangeMin;
+		double BaseRangeMax = RangeMaxGetter ? RangeMaxGetter->Read(Index) : Settings->RangeMax;
 
-		TArray<PCGExPolyLine::FSampleInfos> TargetsInfos;
-		TargetsInfos.Reserve(LocalTypedContext->NumTargets);
+		if (BaseRangeMin > BaseRangeMax) { std::swap(BaseRangeMin, BaseRangeMax); }
 
-		PCGExPolyLine::FTargetsCompoundInfos TargetsCompoundInfos;
+		double RangeMin = BaseRangeMin;
+		double RangeMax = BaseRangeMax;
+		double Depth = MAX_dbl;
+		double DepthSamples = Settings->DepthMode == EPCGExSplineDepthMode::Average ? 0 : 1;
+
+		if (Settings->DepthMode == EPCGExSplineDepthMode::Max || Settings->DepthMode == EPCGExSplineDepthMode::Average) { Depth = 0; }
+
+		TArray<PCGExPolyLine::FSample> Samples;
+		Samples.Reserve(Context->NumTargets);
+
+		PCGExPolyLine::FSamplesStats Stats;
 
 		FVector Origin = Point.Transform.GetLocation();
-		auto ProcessTarget = [&](const FTransform& Transform, const double& Time)
+		auto ProcessTarget = [&](const FTransform& Transform, const double& Time, const FPCGSplineStruct* InSpline)
 		{
-			const FVector ModifiedOrigin = PCGExMath::GetSpatializedCenter(LocalSettings->DistanceSettings, Point, Origin, Transform.GetLocation());
-			const double Dist = FVector::DistSquared(ModifiedOrigin, Transform.GetLocation());
+			const FVector SampleLocation = Transform.GetLocation();
+			const FVector ModifiedOrigin = Context->DistanceDetails->GetSourceCenter(Point, Origin, SampleLocation);
+			const double Dist = FVector::Dist(ModifiedOrigin, SampleLocation);
 
-			if (RangeMax > 0 && (Dist < RangeMin || Dist > RangeMax)) { return; }
+			double RMin = BaseRangeMin;
+			double RMax = BaseRangeMax;
+			double DepthRange = Settings->DepthRange;
 
-			if (FVector::DotProduct(
-				(Transform.GetLocation() - ModifiedOrigin).GetSafeNormal(),
-				Transform.GetRotation().GetRightVector()) > 0)
+			if (Settings->bSplineScalesRanges)
 			{
-				NumInside++;
+				const FVector S = Transform.GetScale3D();
+				const double RScale = FVector2D(S.Y, S.Z).Length();
+				RMin *= RScale;
+				RMax *= RScale;
+				DepthRange *= RScale;
 			}
 
-			if (LocalSettings->SampleMethod == EPCGExSampleMethod::ClosestTarget ||
-				LocalSettings->SampleMethod == EPCGExSampleMethod::FarthestTarget)
+			if (Settings->bWriteDepth)
 			{
-				TargetsCompoundInfos.UpdateCompound(PCGExPolyLine::FSampleInfos(Transform, Dist, Time));
-				return;
+				switch (Settings->DepthMode)
+				{
+				default:
+				case EPCGExSplineDepthMode::Min:
+					Depth = FMath::Min(Depth, FMath::Clamp(Dist, 0, DepthRange) / DepthRange);
+					break;
+				case EPCGExSplineDepthMode::Max:
+					Depth = FMath::Max(Depth, FMath::Clamp(Dist, 0, DepthRange) / DepthRange);
+					break;
+				case EPCGExSplineDepthMode::Average:
+					Depth += FMath::Clamp(Dist, 0, DepthRange);
+					DepthSamples++;
+					break;
+				}
 			}
 
-			const PCGExPolyLine::FSampleInfos& Infos = TargetsInfos.Emplace_GetRef(Transform, Dist, Time);
-			TargetsCompoundInfos.UpdateCompound(Infos);
+			if (RMax > 0 && (Dist < RMin || Dist > RMax)) { return; }
+
+			int32 NumInsideIncrement = 0;
+
+			if (FVector::DotProduct((SampleLocation - ModifiedOrigin).GetSafeNormal(), Transform.GetRotation().GetRightVector()) > 0)
+			{
+				if (!bOnlyIncrementInsideNumIfClosed || InSpline->bClosedLoop) { NumInsideIncrement = 1; }
+			}
+
+			bool IsNewClosest = false;
+			bool IsNewFarthest = false;
+
+			if (bSingleSample)
+			{
+				Stats.Update(PCGExPolyLine::FSample(Transform, Dist, Time), IsNewClosest, IsNewFarthest);
+
+				if ((bClosestSample && !IsNewClosest) || !IsNewFarthest) { return; }
+
+				bClosed = InSpline->bClosedLoop;
+
+				NumInside = NumInsideIncrement;
+				NumInClosed = NumInsideIncrement;
+
+				RangeMin = RMin;
+				RangeMax = RMax;
+			}
+			else
+			{
+				const PCGExPolyLine::FSample& Infos = Samples.Emplace_GetRef(Transform, Dist, Time);
+				Stats.Update(Infos, IsNewClosest, IsNewFarthest);
+
+				if (InSpline->bClosedLoop)
+				{
+					bClosed = true;
+					NumInClosed++;
+				}
+
+				NumInside += NumInsideIncrement;
+
+				RangeMin = FMath::Min(RangeMin, RMin);
+				RangeMax = FMath::Max(RangeMax, RMax);
+			}
 		};
 
 		// First: Sample all possible targets
-		if (RangeMax > 0)
+		for (int i = 0; i < Context->NumTargets; i++)
 		{
-			for (UPCGSplineData* Line : LocalTypedContext->Targets)
-			{
-				FTransform SampledTransform;
-				double Time = Line->SplineStruct.FindInputKeyClosestToWorldLocation(Origin);
-				SampledTransform = Line->SplineStruct.GetTransformAtSplineInputKey(static_cast<float>(Time), ESplineCoordinateSpace::World, false);
-				ProcessTarget(SampledTransform, Time);
-			}
-		}
-		else
-		{
-			for (UPCGSplineData* Line : LocalTypedContext->Targets)
-			{
-				FTransform SampledTransform;
-				double Time = Line->SplineStruct.FindInputKeyClosestToWorldLocation(Origin);
-				SampledTransform = Line->SplineStruct.GetTransformAtSplineInputKey(static_cast<float>(Time), ESplineCoordinateSpace::World, false);
-				ProcessTarget(SampledTransform, Time);
-			}
+			const FPCGSplineStruct* Line = Context->Splines[i];
+			FTransform SampledTransform;
+			double Time = Line->FindInputKeyClosestToWorldLocation(Origin);
+			SampledTransform = Line->GetTransformAtSplineInputKey(static_cast<float>(Time), ESplineCoordinateSpace::World, Settings->bSplineScalesRanges);
+			ProcessTarget(SampledTransform, Time / Context->SegmentCounts[i], Line);
 		}
 
+		Depth /= DepthSamples;
+
 		// Compound never got updated, meaning we couldn't find target in range
-		if (TargetsCompoundInfos.UpdateCount <= 0)
+		if (Stats.UpdateCount <= 0)
 		{
-			SamplingFailed();
+			SamplingFailed(Index, Point, Depth);
 			return;
 		}
 
 		// Compute individual target weight
-		if (LocalSettings->WeightMethod == EPCGExRangeType::FullRange && RangeMax > 0)
+		if (Settings->WeightMethod == EPCGExRangeType::FullRange && BaseRangeMax > 0)
 		{
 			// Reset compounded infos to full range
-			TargetsCompoundInfos.SampledRangeMin = RangeMin;
-			TargetsCompoundInfos.SampledRangeMax = RangeMax;
-			TargetsCompoundInfos.SampledRangeWidth = RangeMax - RangeMin;
+			Stats.SampledRangeMin = RangeMin;
+			Stats.SampledRangeMax = RangeMax;
+			Stats.SampledRangeWidth = RangeMax - RangeMin;
 		}
 
 		FTransform WeightedTransform = FTransform::Identity;
 		WeightedTransform.SetScale3D(FVector::ZeroVector);
 
 		FVector WeightedUp = SafeUpVector;
-		if (LocalSettings->LookAtUpSelection == EPCGExSampleSource::Source && LookAtUpGetter) { WeightedUp = LookAtUpGetter->Values[Index]; }
+		if (LookAtUpGetter) { WeightedUp = LookAtUpGetter->Read(Index); }
 
 		FVector WeightedSignAxis = FVector::Zero();
 		FVector WeightedAngleAxis = FVector::Zero();
 		double WeightedTime = 0;
 		double TotalWeight = 0;
 
-		auto ProcessTargetInfos = [&](const PCGExPolyLine::FSampleInfos& TargetInfos, const double Weight)
+		auto ProcessTargetInfos = [&](const PCGExPolyLine::FSample& Sample, const double Weight)
 		{
-			const FQuat Quat = TargetInfos.Transform.GetRotation();
+			const FQuat Quat = Sample.Transform.GetRotation();
 
-			WeightedTransform.SetRotation(WeightedTransform.GetRotation() + (TargetInfos.Transform.GetRotation() * Weight));
-			WeightedTransform.SetScale3D(WeightedTransform.GetScale3D() + (TargetInfos.Transform.GetScale3D() * Weight));
-			WeightedTransform.SetLocation(WeightedTransform.GetLocation() + (TargetInfos.Transform.GetLocation() * Weight));
+			WeightedTransform.SetRotation(WeightedTransform.GetRotation() + (Sample.Transform.GetRotation() * Weight));
+			WeightedTransform.SetScale3D(WeightedTransform.GetScale3D() + (Sample.Transform.GetScale3D() * Weight));
+			WeightedTransform.SetLocation(WeightedTransform.GetLocation() + (Sample.Transform.GetLocation() * Weight));
 
-			if (LocalSettings->LookAtUpSelection == EPCGExSampleSource::Target) { WeightedUp += PCGExMath::GetDirection(Quat, LocalSettings->LookAtUpAxis) * Weight; }
+			if (Settings->LookAtUpSelection == EPCGExSampleSource::Target) { WeightedUp += PCGExMath::GetDirection(Quat, Settings->LookAtUpAxis) * Weight; }
 
-			WeightedSignAxis += PCGExMath::GetDirection(Quat, LocalSettings->SignAxis) * Weight;
-			WeightedAngleAxis += PCGExMath::GetDirection(Quat, LocalSettings->AngleAxis) * Weight;
-			WeightedTime += TargetInfos.Time * Weight;
+			WeightedSignAxis += PCGExMath::GetDirection(Quat, Settings->SignAxis) * Weight;
+			WeightedAngleAxis += PCGExMath::GetDirection(Quat, Settings->AngleAxis) * Weight;
+			WeightedTime += Sample.Time * Weight;
 			TotalWeight += Weight;
+
+			NumSampled++;
 		};
 
 
-		if (LocalSettings->SampleMethod == EPCGExSampleMethod::ClosestTarget ||
-			LocalSettings->SampleMethod == EPCGExSampleMethod::FarthestTarget)
+		if (Settings->SampleMethod == EPCGExSampleMethod::ClosestTarget ||
+			Settings->SampleMethod == EPCGExSampleMethod::FarthestTarget)
 		{
-			const PCGExPolyLine::FSampleInfos& TargetInfos = LocalSettings->SampleMethod == EPCGExSampleMethod::ClosestTarget ? TargetsCompoundInfos.Closest : TargetsCompoundInfos.Farthest;
-			const double Weight = LocalTypedContext->WeightCurve->GetFloatValue(TargetsCompoundInfos.GetRangeRatio(TargetInfos.Distance));
+			const PCGExPolyLine::FSample& TargetInfos = Settings->SampleMethod == EPCGExSampleMethod::ClosestTarget ? Stats.Closest : Stats.Farthest;
+			const double Weight = Context->WeightCurve->GetFloatValue(Stats.GetRangeRatio(TargetInfos.Distance));
 			ProcessTargetInfos(TargetInfos, Weight);
 		}
 		else
 		{
-			for (PCGExPolyLine::FSampleInfos& TargetInfos : TargetsInfos)
+			for (PCGExPolyLine::FSample& TargetInfos : Samples)
 			{
-				const double Weight = LocalTypedContext->WeightCurve->GetFloatValue(TargetsCompoundInfos.GetRangeRatio(TargetInfos.Distance));
+				const double Weight = Context->WeightCurve->GetFloatValue(Stats.GetRangeRatio(TargetInfos.Distance));
 				if (Weight == 0) { continue; }
 				ProcessTargetInfos(TargetInfos, Weight);
 			}
@@ -322,19 +429,33 @@ namespace PCGExSampleNearestSpline
 		FVector LookAt = (Point.Transform.GetLocation() - WeightedTransform.GetLocation()).GetSafeNormal();
 		const double WeightedDistance = FVector::Dist(Origin, WeightedTransform.GetLocation());
 
-		PCGEX_OUTPUT_VALUE(Success, Index, TargetsCompoundInfos.IsValid())
+		SampleState[Index] = Stats.IsValid();
+		PCGEX_OUTPUT_VALUE(Success, Index, Stats.IsValid())
 		PCGEX_OUTPUT_VALUE(Transform, Index, WeightedTransform)
-		PCGEX_OUTPUT_VALUE(LookAtTransform, Index, PCGExMath::MakeLookAtTransform(LookAt, WeightedUp, LocalSettings->LookAtAxisAlign))
+		PCGEX_OUTPUT_VALUE(LookAtTransform, Index, PCGExMath::MakeLookAtTransform(LookAt, WeightedUp, Settings->LookAtAxisAlign))
 		PCGEX_OUTPUT_VALUE(Distance, Index, WeightedDistance)
-		PCGEX_OUTPUT_VALUE(SignedDistance, Index, FMath::Sign(WeightedSignAxis.Dot(LookAt)) * WeightedDistance)
-		PCGEX_OUTPUT_VALUE(Angle, Index, PCGExSampling::GetAngle(LocalSettings->AngleRange, WeightedAngleAxis, LookAt))
+		PCGEX_OUTPUT_VALUE(Depth, Index, Settings->bInvertDepth ? 1 - Depth : Depth)
+		PCGEX_OUTPUT_VALUE(SignedDistance, Index, (!bOnlySignIfClosed || NumInClosed > 0) ? FMath::Sign(WeightedSignAxis.Dot(LookAt)) * WeightedDistance : WeightedDistance)
+		PCGEX_OUTPUT_VALUE(Angle, Index, PCGExSampling::GetAngle(Settings->AngleRange, WeightedAngleAxis, LookAt))
 		PCGEX_OUTPUT_VALUE(Time, Index, WeightedTime)
 		PCGEX_OUTPUT_VALUE(NumInside, Index, NumInside)
+		PCGEX_OUTPUT_VALUE(NumSamples, Index, NumSampled)
+		PCGEX_OUTPUT_VALUE(ClosedLoop, Index, bClosed)
+
+		FPlatformAtomics::InterlockedExchange(&bAnySuccess, 1);
 	}
 
 	void FProcessor::CompleteWork()
 	{
-		PointDataFacade->Write(AsyncManagerPtr, true);
+		PointDataFacade->Write(AsyncManager);
+
+		if (Settings->bTagIfHasSuccesses && bAnySuccess) { PointDataFacade->Source->Tags->Add(Settings->HasSuccessesTag); }
+		if (Settings->bTagIfHasNoSuccesses && !bAnySuccess) { PointDataFacade->Source->Tags->Add(Settings->HasNoSuccessesTag); }
+	}
+
+	void FProcessor::Write()
+	{
+		PCGExSampling::PruneFailedSamples(PointDataFacade->GetMutablePoints(), SampleState);
 	}
 }
 

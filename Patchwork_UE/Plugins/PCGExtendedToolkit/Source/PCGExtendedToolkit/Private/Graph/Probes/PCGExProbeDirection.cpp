@@ -9,14 +9,14 @@ PCGEX_CREATE_PROBE_FACTORY(Direction, {}, {})
 
 bool UPCGExProbeDirection::RequiresChainProcessing() { return Config.bDoChainedProcessing; }
 
-bool UPCGExProbeDirection::PrepareForPoints(const PCGExData::FPointIO* InPointIO)
+bool UPCGExProbeDirection::PrepareForPoints(const TSharedPtr<PCGExData::FPointIO>& InPointIO)
 {
 	if (!Super::PrepareForPoints(InPointIO)) { return false; }
 
 	bUseBestDot = Config.Favor == EPCGExProbeDirectionPriorization::Dot;
-	MaxDot = PCGExMath::DegreesToDot(Config.MaxAngle * 0.5);
+	MinDot = PCGExMath::DegreesToDot(Config.MaxAngle);
 
-	if (Config.DirectionSource == EPCGExFetchType::Constant)
+	if (Config.DirectionInput == EPCGExInputValueType::Constant)
 	{
 		Direction = Config.DirectionConstant.GetSafeNormal();
 		bUseConstantDir = true;
@@ -35,15 +35,15 @@ bool UPCGExProbeDirection::PrepareForPoints(const PCGExData::FPointIO* InPointIO
 	return true;
 }
 
-void UPCGExProbeDirection::ProcessCandidates(const int32 Index, const FPCGPoint& Point, TArray<PCGExProbing::FCandidate>& Candidates, TSet<uint64>* ConnectedSet, const FVector& ST, TSet<uint64>* OutEdges)
+void UPCGExProbeDirection::ProcessCandidates(const int32 Index, const FPCGPoint& Point, TArray<PCGExProbing::FCandidate>& Candidates, TSet<FInt32Vector>* Coincidence, const FVector& ST, TSet<uint64>* OutEdges)
 {
 	bool bIsAlreadyConnected;
-	const double R = SearchRadiusCache ? SearchRadiusCache->Values[Index] : SearchRadiusSquared;
+	const double R = SearchRadiusCache ? SearchRadiusCache->Read(Index) : SearchRadiusSquared;
 	double BestDot = -1;
-	double BestDist = TNumericLimits<double>::Max();
+	double BestDist = MAX_dbl;
 	int32 BestCandidateIndex = -1;
 
-	FVector Dir = DirectionCache ? DirectionCache->Values[Index].GetSafeNormal() : Direction;
+	FVector Dir = DirectionCache ? DirectionCache->Read(Index).GetSafeNormal() : Direction;
 	if (Config.bTransformDirection) { Dir = Point.Transform.TransformVectorNoScale(Dir); }
 
 	for (int i = 0; i < Candidates.Num(); i++)
@@ -51,7 +51,7 @@ void UPCGExProbeDirection::ProcessCandidates(const int32 Index, const FPCGPoint&
 		const PCGExProbing::FCandidate& C = Candidates[i];
 
 		if (C.Distance > R) { break; }
-		if (ConnectedSet && ConnectedSet->Contains(C.GH)) { continue; }
+		if (Coincidence && Coincidence->Contains(C.GH)) { continue; }
 		//if (OutEdges->Contains(PCGEx::H64U(Index, C.PointIndex))) { continue; }
 
 		double Dot = 0;
@@ -63,7 +63,7 @@ void UPCGExProbeDirection::ProcessCandidates(const int32 Index, const FPCGPoint&
 		else
 		{
 			Dot = FVector::DotProduct(Dir, C.Direction);
-			if (Dot < MaxDot) { continue; }
+			if (Dot < MinDot) { continue; }
 		}
 
 		if (bUseBestDot)
@@ -90,9 +90,9 @@ void UPCGExProbeDirection::ProcessCandidates(const int32 Index, const FPCGPoint&
 	{
 		const PCGExProbing::FCandidate& C = Candidates[BestCandidateIndex];
 
-		if (ConnectedSet)
+		if (Coincidence)
 		{
-			ConnectedSet->Add(C.GH, &bIsAlreadyConnected);
+			Coincidence->Add(C.GH, &bIsAlreadyConnected);
 			if (bIsAlreadyConnected) { return; }
 		}
 
@@ -104,13 +104,13 @@ void UPCGExProbeDirection::PrepareBestCandidate(const int32 Index, const FPCGPoi
 {
 	InBestCandidate.BestIndex = -1;
 	InBestCandidate.BestPrimaryValue = -1;
-	InBestCandidate.BestSecondaryValue = TNumericLimits<double>::Max();
+	InBestCandidate.BestSecondaryValue = MAX_dbl;
 }
 
 void UPCGExProbeDirection::ProcessCandidateChained(const int32 Index, const FPCGPoint& Point, const int32 CandidateIndex, PCGExProbing::FCandidate& Candidate, PCGExProbing::FBestCandidate& InBestCandidate)
 {
-	const double R = SearchRadiusCache ? SearchRadiusCache->Values[Index] : SearchRadiusSquared;
-	FVector Dir = DirectionCache ? DirectionCache->Values[Index].GetSafeNormal() : Direction;
+	const double R = SearchRadiusCache ? SearchRadiusCache->Read(Index) : SearchRadiusSquared;
+	FVector Dir = DirectionCache ? DirectionCache->Read(Index).GetSafeNormal() : Direction;
 	if (Config.bTransformDirection) { Dir = Point.Transform.TransformVectorNoScale(Dir); }
 
 	if (Candidate.Distance > R) { return; }
@@ -124,7 +124,7 @@ void UPCGExProbeDirection::ProcessCandidateChained(const int32 Index, const FPCG
 	else
 	{
 		Dot = FVector::DotProduct(Dir, Candidate.Direction);
-		if (Dot < MaxDot) { return;; }
+		if (Dot < MinDot) { return; }
 	}
 
 	if (bUseBestDot)
@@ -147,16 +147,16 @@ void UPCGExProbeDirection::ProcessCandidateChained(const int32 Index, const FPCG
 	}
 }
 
-void UPCGExProbeDirection::ProcessBestCandidate(const int32 Index, const FPCGPoint& Point, PCGExProbing::FBestCandidate& InBestCandidate, TArray<PCGExProbing::FCandidate>& Candidates, TSet<uint64>* Stacks, const FVector& ST, TSet<uint64>* OutEdges)
+void UPCGExProbeDirection::ProcessBestCandidate(const int32 Index, const FPCGPoint& Point, PCGExProbing::FBestCandidate& InBestCandidate, TArray<PCGExProbing::FCandidate>& Candidates, TSet<FInt32Vector>* Coincidence, const FVector& ST, TSet<uint64>* OutEdges)
 {
 	if (InBestCandidate.BestIndex == -1) { return; }
 
 	const PCGExProbing::FCandidate& C = Candidates[InBestCandidate.BestIndex];
 
 	bool bIsAlreadyConnected;
-	if (Stacks)
+	if (Coincidence)
 	{
-		Stacks->Add(C.GH, &bIsAlreadyConnected);
+		Coincidence->Add(C.GH, &bIsAlreadyConnected);
 		if (bIsAlreadyConnected) { return; }
 	}
 

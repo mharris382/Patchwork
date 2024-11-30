@@ -12,20 +12,14 @@
 
 int32 UPCGExFlagNodesSettings::GetPreferredChunkSize() const { return PCGExMT::GAsyncLoop_M; }
 
-PCGExData::EInit UPCGExFlagNodesSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
-PCGExData::EInit UPCGExFlagNodesSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::Forward; }
+PCGExData::EIOInit UPCGExFlagNodesSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
+PCGExData::EIOInit UPCGExFlagNodesSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::Forward; }
 
 TArray<FPCGPinProperties> UPCGExFlagNodesSettings::InputPinProperties() const
 {
 	TArray<FPCGPinProperties> PinProperties = Super::InputPinProperties();
 	PCGEX_PIN_PARAMS(PCGExCluster::SourceNodeFlagLabel, "Node states.", Required, {})
 	return PinProperties;
-}
-
-FPCGExFlagNodesContext::~FPCGExFlagNodesContext()
-{
-	PCGEX_TERMINATE_ASYNC
-	StateFactories.Empty();
 }
 
 PCGEX_INITIALIZE_ELEMENT(FlagNodes)
@@ -38,7 +32,7 @@ bool FPCGExFlagNodesElement::Boot(FPCGExContext* InContext) const
 
 	return PCGExFactories::GetInputFactories(
 		Context, PCGExCluster::SourceNodeFlagLabel, Context->StateFactories,
-		{PCGExFactories::EType::StateNode}, true);
+		{PCGExFactories::EType::NodeState}, true);
 }
 
 bool FPCGExFlagNodesElement::ExecuteInternal(
@@ -47,110 +41,88 @@ bool FPCGExFlagNodesElement::ExecuteInternal(
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExFlagNodesElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(FlagNodes)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
-		if (!Context->StartProcessingClusters<PCGExFindNodeState::FProcessorBatch>(
-			[](PCGExData::FPointIOTaggedEntries* Entries) { return true; },
-			[&](PCGExFindNodeState::FProcessorBatch* NewBatch)
+		if (!Context->StartProcessingClusters<PCGExFlagNodes::FBatch>(
+			[](const TSharedPtr<PCGExData::FPointIOTaggedEntries>& Entries) { return true; },
+			[&](const TSharedPtr<PCGExFlagNodes::FBatch>& NewBatch)
 			{
 				NewBatch->bRequiresWriteStep = true;
 				NewBatch->bWriteVtxDataFacade = true;
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Could not build any clusters."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not build any clusters."));
 		}
 	}
 
-	if (!Context->ProcessClusters()) { return false; }
+	PCGEX_CLUSTER_BATCH_PROCESSING(PCGEx::State_Done)
 
 	Context->OutputPointsAndEdges();
 
 	return Context->TryComplete();
 }
 
-namespace PCGExFindNodeState
+namespace PCGExFlagNodes
 {
 	FProcessor::~FProcessor()
 	{
-		PCGEX_DELETE(StateManager)
 	}
 
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExFindNodeState::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(FlagNodes)
 
-		if (!FClusterProcessor::Process(AsyncManager)) { return false; }
-
-		ExpandedNodes = Cluster->ExpandedNodes;
-
-		if (!ExpandedNodes)
-		{
-			ExpandedNodes = Cluster->GetExpandedNodes(false);
-			bBuildExpandedNodes = true;
-		}
+		if (!FClusterProcessor::Process(InAsyncManager)) { return false; }
 
 		Cluster->ComputeEdgeLengths();
 
-		StateManager = new PCGExClusterStates::FStateManager(StateFlags, Cluster, VtxDataFacade, EdgeDataFacade);
-		StateManager->Init(Context, TypedContext->StateFactories);
+		StateManager = MakeShared<PCGExClusterStates::FStateManager>(StateFlags, Cluster.ToSharedRef(), VtxDataFacade, EdgeDataFacade);
+		StateManager->Init(ExecutionContext, Context->StateFactories);
 
-		if (bBuildExpandedNodes) { StartParallelLoopForRange(NumNodes); }
-		else { StartParallelLoopForNodes(); }
+		StartParallelLoopForNodes();
 
 		return true;
 	}
 
-	void FProcessor::ProcessSingleRangeIteration(const int32 Iteration)
-	{
-		(*ExpandedNodes)[Iteration] = new PCGExCluster::FExpandedNode(Cluster, Iteration);
-	}
-
-	void FProcessor::ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node)
+	void FProcessor::ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node, const int32 LoopIdx, const int32 Count)
 	{
 		StateManager->Test(Node);
 	}
 
 	void FProcessor::CompleteWork()
 	{
-		if (bBuildExpandedNodes) { StartParallelLoopForNodes(); }
 	}
 
 	void FProcessor::Write()
 	{
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(FlagNodes)
 	}
 
 	//////// BATCH
 
-	FProcessorBatch::FProcessorBatch(FPCGContext* InContext, PCGExData::FPointIO* InVtx, const TArrayView<PCGExData::FPointIO*> InEdges):
-		TBatch(InContext, InVtx, InEdges)
-	{
-	}
-
-	FProcessorBatch::~FProcessorBatch()
+	FBatch::~FBatch()
 	{
 		StateFlags = nullptr;
 	}
 
-	bool FProcessorBatch::PrepareProcessing()
+	void FBatch::RegisterBuffersDependencies(PCGExData::FFacadePreloader& FacadePreloader)
+	{
+		TBatch<FProcessor>::RegisterBuffersDependencies(FacadePreloader);
+		PCGEX_TYPED_CONTEXT_AND_SETTINGS(FlagNodes)
+		PCGExPointFilter::RegisterBuffersDependencies(ExecutionContext, Context->StateFactories, FacadePreloader);
+	}
+
+	void FBatch::OnProcessingPreparationComplete()
 	{
 		PCGEX_TYPED_CONTEXT_AND_SETTINGS(FlagNodes)
 
-		if (!TBatch::PrepareProcessing()) { return false; }
+		const TSharedPtr<PCGExData::TBuffer<int64>> Writer = VtxDataFacade->GetWritable(Settings->FlagAttribute, Settings->InitialFlags, false, PCGExData::EBufferInit::Inherit);
+		StateFlags = Writer->GetOutValues();
 
-		PCGEx::TFAttributeWriter<int64>* Writer = VtxDataFacade->GetWriter(Settings->FlagAttribute, Settings->InitialFlags, false, false);
-		StateFlags = &Writer->Values;
-
-		return true;
+		TBatch<FProcessor>::OnProcessingPreparationComplete();
 	}
 
-	bool FProcessorBatch::PrepareSingle(FProcessor* ClusterProcessor)
+	bool FBatch::PrepareSingle(const TSharedPtr<FProcessor>& ClusterProcessor)
 	{
 		ClusterProcessor->StateFlags = StateFlags;
 		return true;

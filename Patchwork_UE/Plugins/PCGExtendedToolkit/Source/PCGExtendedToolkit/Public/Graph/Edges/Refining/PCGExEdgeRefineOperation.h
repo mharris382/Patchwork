@@ -5,50 +5,53 @@
 
 #include "CoreMinimal.h"
 #include "PCGExOperation.h"
+#include "Graph/PCGExCluster.h"
+#include "Graph/Pathfinding/Heuristics/PCGExHeuristics.h"
+
 #include "PCGExEdgeRefineOperation.generated.h"
-
-namespace PCGExGraph
-{
-	struct FIndexedEdge;
-}
-
-namespace PCGExCluster
-{
-	struct FNode;
-}
-
-namespace PCGExHeuristics
-{
-	class THeuristicsHandler;
-}
-
-namespace PCGExGraph
-{
-	class FGraph;
-}
-
-namespace PCGExCluster
-{
-	struct FCluster;
-}
 
 /**
  * 
  */
 UCLASS(Abstract)
-class PCGEXTENDEDTOOLKIT_API UPCGExEdgeRefineOperation : public UPCGExOperation
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExEdgeRefineOperation : public UPCGExOperation
 {
 	GENERATED_BODY()
 
 public:
-	virtual bool InvalidateAllEdgesBeforeProcessing() { return false; }
+	virtual bool SupportFilters() { return false; }
+	virtual bool GetDefaultEdgeValidity() { return true; }
 	virtual bool RequiresNodeOctree() { return false; }
 	virtual bool RequiresEdgeOctree() { return false; }
 	virtual bool RequiresHeuristics() { return false; }
 	virtual bool RequiresIndividualNodeProcessing() { return false; }
 	virtual bool RequiresIndividualEdgeProcessing() { return false; }
 
-	virtual void PrepareForCluster(PCGExCluster::FCluster* InCluster, PCGExHeuristics::THeuristicsHandler* InHeuristics = nullptr);
+	TArray<int8>* VtxFilters = nullptr;
+	TArray<int8>* EdgesFilters = nullptr;
+
+	virtual void RegisterBuffersDependencies(FPCGExContext* InContext, PCGExData::FFacadePreloader& FacadePreloader)
+	{
+	}
+
+	virtual void PrepareVtxFacade(const TSharedPtr<PCGExData::FFacade>& InVtxFacade) const
+	{
+	}
+
+	virtual void PrepareForCluster(const TSharedPtr<PCGExCluster::FCluster>& InCluster, const TSharedPtr<PCGExHeuristics::FHeuristicsHandler>& InHeuristics = nullptr)
+	{
+		Cluster = InCluster;
+		Heuristics = InHeuristics;
+
+		if (RequiresNodeOctree()) { Cluster->RebuildOctree(EPCGExClusterClosestSearchMode::Node); }
+		if (RequiresEdgeOctree()) { Cluster->RebuildOctree(EPCGExClusterClosestSearchMode::Edge); }
+
+		if (RequiresHeuristics() && Heuristics)
+		{
+			RoamingSeedNode = Heuristics->GetRoamingSeed();
+			RoamingGoalNode = Heuristics->GetRoamingGoal();
+		}
+	}
 
 	virtual void Process()
 	{
@@ -58,15 +61,22 @@ public:
 	{
 	}
 
-	virtual void ProcessEdge(PCGExGraph::FIndexedEdge& Edge)
+	virtual void ProcessEdge(PCGExGraph::FEdge& Edge)
 	{
 	}
 
-	virtual void Cleanup() override;
+	virtual void Cleanup() override
+	{
+		Cluster.Reset();
+		Heuristics.Reset();
+		Super::Cleanup();
+	}
 
 protected:
-	PCGExCluster::FCluster* Cluster = nullptr;
-	PCGExHeuristics::THeuristicsHandler* Heuristics = nullptr;
+	const PCGExCluster::FNode* RoamingSeedNode = nullptr;
+	const PCGExCluster::FNode* RoamingGoalNode = nullptr;
+	TSharedPtr<PCGExCluster::FCluster> Cluster;
+	TSharedPtr<PCGExHeuristics::FHeuristicsHandler> Heuristics;
 	mutable FRWLock EdgeLock;
 	mutable FRWLock NodeLock;
 };

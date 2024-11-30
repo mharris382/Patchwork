@@ -5,7 +5,6 @@
 
 #include "CoreMinimal.h"
 #include "PCGPoint.h"
-#include "Data/Blending/PCGExPropertiesBlender.h"
 #include "Paths/SubPoints/PCGExSubPointsOperation.h"
 #include "PCGExSubPointsBlendOperation.generated.h"
 
@@ -18,7 +17,7 @@ namespace PCGExDataBlending
  * 
  */
 UCLASS(Abstract)
-class PCGEXTENDEDTOOLKIT_API UPCGExSubPointsBlendOperation : public UPCGExSubPointsOperation
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSubPointsBlendOperation : public UPCGExSubPointsOperation
 {
 	GENERATED_BODY()
 
@@ -28,47 +27,38 @@ public:
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
 
-	virtual void PrepareForData(PCGExData::FFacade* InPrimaryFacade) override;
-	virtual void PrepareForData(PCGExData::FFacade* InPrimaryFacade, PCGExData::FFacade* InSecondaryFacade, const PCGExData::ESource SecondarySource);
+	virtual void PrepareForData(const TSharedPtr<PCGExData::FFacade>& InPrimaryFacade, const TSet<FName>* IgnoreAttributeSet = nullptr) override;
+	virtual void PrepareForData(const TSharedPtr<PCGExData::FFacade>& InPrimaryFacade, const TSharedPtr<PCGExData::FFacade>& InSecondaryFacade, const PCGExData::ESource SecondarySource, const TSet<FName>* IgnoreAttributeSet = nullptr);
 
 	virtual void ProcessSubPoints(
-		const PCGExData::FPointRef& Start,
-		const PCGExData::FPointRef& End,
+		const PCGExData::FPointRef& From,
+		const PCGExData::FPointRef& To,
 		const TArrayView<FPCGPoint>& SubPoints,
-		const PCGExMath::FPathMetricsSquared& Metrics) const override;
-
-	virtual void ProcessSubPoints(
-		const TArrayView<FPCGPoint>& SubPoints,
-		const PCGExMath::FPathMetricsSquared& Metrics,
-		const int32 Offset = 0) const override;
-
-	virtual void ProcessSubPoints(
-		const TArrayView<FPCGPoint>& SubPoints,
-		const PCGExMath::FPathMetricsSquared& PathInfos,
-		PCGExDataBlending::FMetadataBlender* InBlender,
-		const int32 Offset = 0) const;
+		const PCGExPaths::FPathMetrics& Metrics,
+		const int32 StartIndex = -1) const override;
 
 	virtual void BlendSubPoints(
-		const PCGExData::FPointRef& StartPoint,
-		const PCGExData::FPointRef& EndPoint,
+		const PCGExData::FPointRef& From,
+		const PCGExData::FPointRef& To,
 		const TArrayView<FPCGPoint>& SubPoints,
-		const PCGExMath::FPathMetricsSquared& Metrics,
+		const PCGExPaths::FPathMetrics& Metrics,
+		PCGExDataBlending::FMetadataBlender* InBlender,
+		const int32 StartIndex = -1) const;
+
+	virtual void BlendSubPoints(
+		TArray<FPCGPoint>& SubPoints,
+		const PCGExPaths::FPathMetrics& Metrics,
 		PCGExDataBlending::FMetadataBlender* InBlender) const;
-
-	virtual void BlendSubPoints(
-		const TArrayView<FPCGPoint>& SubPoints,
-		const PCGExMath::FPathMetricsSquared& Metrics,
-		PCGExDataBlending::FMetadataBlender* InBlender,
-		const int32 Offset = 0) const;
 
 	virtual void Cleanup() override;
 
-	virtual PCGExDataBlending::FMetadataBlender* CreateBlender(
-		PCGExData::FFacade* InPrimaryFacade,
-		PCGExData::FFacade* InSecondaryFacade,
-		const PCGExData::ESource SecondarySource = PCGExData::ESource::In);
+	virtual TSharedPtr<PCGExDataBlending::FMetadataBlender> CreateBlender(
+		const TSharedRef<PCGExData::FFacade>& InPrimaryFacade,
+		const TSharedRef<PCGExData::FFacade>& InSecondaryFacade,
+		const PCGExData::ESource SecondarySource = PCGExData::ESource::In,
+		const TSet<FName>* IgnoreAttributeSet = nullptr);
 
 protected:
 	virtual EPCGExDataBlendingType GetDefaultBlending();
-	PCGExDataBlending::FMetadataBlender* InternalBlender;
+	TSharedPtr<PCGExDataBlending::FMetadataBlender> InternalBlender;
 };

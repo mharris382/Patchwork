@@ -5,25 +5,36 @@
 
 #include "CoreMinimal.h"
 #include "PCGPoint.h"
-#include "Data/PCGExAttributeHelpers.h"
 #include "PCGExOperation.h"
+
+
+#include "Paths/PCGExPaths.h"
 #include "PCGExSubPointsOperation.generated.h"
 
 /**
  * 
  */
 UCLASS(Abstract)
-class PCGEXTENDEDTOOLKIT_API UPCGExSubPointsOperation : public UPCGExOperation
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSubPointsOperation : public UPCGExOperation
 {
 	GENERATED_BODY()
 
 public:
-	bool bClosedPath = false;
+	bool bClosedLoop = false;
+
+	bool bPreserveTransform = false;
+	bool bPreservePosition = false;
+	bool bPreserveRotation = false;
+	bool bPreserveScale = false;
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
 
-	virtual void PrepareForData(PCGExData::FFacade* InPrimaryFacade);
-	virtual void ProcessPoints(UPCGPointData* InData) const;
-	virtual void ProcessSubPoints(const PCGExData::FPointRef& Start, const PCGExData::FPointRef& End, const TArrayView<FPCGPoint>& SubPoints, const PCGExMath::FPathMetricsSquared& Metrics) const;
-	virtual void ProcessSubPoints(const TArrayView<FPCGPoint>& SubPoints, const PCGExMath::FPathMetricsSquared& Metrics, const int32 Offset) const;
+	virtual void PrepareForData(const TSharedPtr<PCGExData::FFacade>& InPrimaryFacade, const TSet<FName>* IgnoreAttributeSet);
+
+	virtual void ProcessSubPoints(
+		const PCGExData::FPointRef& From,
+		const PCGExData::FPointRef& To,
+		const TArrayView<FPCGPoint>& SubPoints,
+		const PCGExPaths::FPathMetrics& Metrics,
+		const int32 StartIndex = -1) const;
 };

@@ -12,22 +12,11 @@
 class UPCGExProbeFactoryBase;
 class UPCGExProbeOperation;
 
-namespace PCGExGraph
-{
-	struct FCompoundProcessor;
-}
-
-namespace PCGExDataBlending
-{
-	class FMetadataBlender;
-	class FCompoundBlender;
-}
-
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
-class PCGEXTENDEDTOOLKIT_API UPCGExConnectPointsSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConnectPointsSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -46,17 +35,16 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual FName GetMainOutputLabel() const override { return PCGExGraph::OutputVerticesLabel; }
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual FName GetMainOutputPin() const override { return PCGExGraph::OutputVerticesLabel; }
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/**  */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, InlineEditConditionToggle))
-	bool bPreventStacking = true;
+	bool bPreventCoincidence = true;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, EditCondition="bPreventStacking", ClampMin=0.00001, ClampMax=1))
-	double StackingPreventionTolerance = 0.001;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, EditCondition="bPreventCoincidence", ClampMin=0.00001, ClampMax=1))
+	double CoincidenceTolerance = 0.001;
 
 	/**  */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, InlineEditConditionToggle))
@@ -71,23 +59,18 @@ public:
 	FPCGExGraphBuilderDetails GraphBuilderDetails;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExConnectPointsContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExConnectPointsContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExConnectPointsElement;
 
-	virtual ~FPCGExConnectPointsContext() override;
+	TArray<TObjectPtr<const UPCGExProbeFactoryBase>> ProbeFactories;
+	TArray<TObjectPtr<const UPCGExFilterFactoryBase>> GeneratorsFiltersFactories;
+	TArray<TObjectPtr<const UPCGExFilterFactoryBase>> ConnectablesFiltersFactories;
 
-	TArray<UPCGExProbeFactoryBase*> ProbeFactories;
-	TArray<UPCGExFilterFactoryBase*> GeneratorsFiltersFactories;
-	TArray<UPCGExFilterFactoryBase*> ConnetablesFiltersFactories;
-
-	PCGExData::FPointIOCollection* MainVtx = nullptr;
-	PCGExData::FPointIOCollection* MainEdges = nullptr;
-
-	FVector CWStackingTolerance = FVector::OneVector;
+	FVector CWCoincidenceTolerance = FVector::OneVector;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExConnectPointsElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExConnectPointsElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -102,87 +85,46 @@ protected:
 
 namespace PCGExConnectPoints
 {
-	struct PCGEXTENDEDTOOLKIT_API FPositionRef
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExConnectPointsContext, UPCGExConnectPointsSettings>
 	{
-		int32 Index;
-		FBoxSphereBounds Bounds;
+		TSharedPtr<PCGExPointFilter::FManager> GeneratorsFilter;
+		TSharedPtr<PCGExPointFilter::FManager> ConnectableFilter;
 
-		FPositionRef(const int32 InItemIndex, const FBoxSphereBounds& InBounds)
-			: Index(InItemIndex), Bounds(InBounds)
-		{
-		}
-	};
+		TSharedPtr<PCGExGraph::FGraphBuilder> GraphBuilder;
 
-	struct PCGEXTENDEDTOOLKIT_API FPositionRefSemantics
-	{
-		enum { MaxElementsPerLeaf = 16 };
-
-		enum { MinInclusiveElementsPerNode = 7 };
-
-		enum { MaxNodeDepth = 12 };
-
-		using ElementAllocator = TInlineAllocator<MaxElementsPerLeaf>;
-
-		FORCEINLINE static const FBoxSphereBounds& GetBoundingBox(const FPositionRef& InPosition)
-		{
-			return InPosition.Bounds;
-		}
-
-		FORCEINLINE static const bool AreElementsEqual(const FPositionRef& A, const FPositionRef& B)
-		{
-			return A.Index == B.Index;
-		}
-
-		FORCEINLINE static void ApplyOffset(FPositionRef& InNode)
-		{
-			ensureMsgf(false, TEXT("Not implemented"));
-		}
-
-		FORCEINLINE static void SetElementId(const FPositionRef& Element, FOctreeElementId2 OctreeElementID)
-		{
-		}
-	};
-
-	using PositionOctree = TOctree2<FPositionRef, FPositionRefSemantics>;
-
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
-	{
-		PCGExPointFilter::TManager* GeneratorsFilter = nullptr;
-		PCGExPointFilter::TManager* ConnectableFilter = nullptr;
-
-		PCGExGraph::FGraphBuilder* GraphBuilder = nullptr;
 		TArray<UPCGExProbeOperation*> ProbeOperations;
 		TArray<UPCGExProbeOperation*> DirectProbeOperations;
 		TArray<UPCGExProbeOperation*> ChainProbeOperations;
 		TArray<UPCGExProbeOperation*> SharedProbeOperations;
 		bool bUseVariableRadius = false;
 		int32 NumChainedOps = 0;
-		double SharedSearchRadius = TNumericLimits<double>::Min();
+		double SharedSearchRadius = 0;
 
-		TArray<bool> CanGenerate;
-		PositionOctree* Octree = nullptr;
+		TArray<int8> CanGenerate;
+		TUniquePtr<PCGEx::FIndexedItemOctree> Octree;
 
 		const TArray<FPCGPoint>* InPoints = nullptr;
 		TArray<FTransform> CachedTransforms;
 
-		TArray<TSet<uint64>*> DistributedEdgesSet;
+		TArray<TSharedPtr<TSet<uint64>>> DistributedEdgesSet;
 		FPCGExGeo2DProjectionDetails ProjectionDetails;
 
-		bool bPreventStacking = false;
+		bool bPreventCoincidence = false;
 		bool bUseProjection = false;
-		FVector CWStackingTolerance = FVector::OneVector;
+		FVector CWCoincidenceTolerance = FVector::OneVector;
 
 	public:
-		explicit FProcessor(PCGExData::FPointIO* InPoints)
-			: FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade)
+			: TPointsProcessor(InPointDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		void OnPreparationComplete();
 		virtual void PrepareLoopScopesForPoints(const TArray<uint64>& Loops) override;
+		virtual void PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count) override;
 		virtual void CompleteWork() override;
 		virtual void Write() override;

@@ -5,7 +5,7 @@
 
 namespace PCGExSearch
 {
-	class TScoredQueue
+	class FScoredQueue
 	{
 		struct FScoredNode
 		{
@@ -13,7 +13,7 @@ namespace PCGExSearch
 			double Score = 0;
 
 			/** Creates and initializes a new node. */
-			explicit FScoredNode(const int32& InItem, const double InScore)
+			explicit FScoredNode(const int32 InItem, const double InScore)
 				: Id(InItem), Score(InScore)
 			{
 			}
@@ -34,23 +34,26 @@ namespace PCGExSearch
 	public:
 		TArray<double> Scores;
 
-		TScoredQueue(const int32 Size, const int32& Item, const double Score)
+		FScoredQueue(const int32 Size, const int32& Item, const double Score)
 		{
-			PCGEX_SET_NUM_UNINITIALIZED(Scores, Size)
+			Scores.Init(MAX_dbl, Size);
 			Enqueue(Item, Score);
 		}
 
-		~TScoredQueue()
+		~FScoredQueue()
 		{
 			std::priority_queue<FScoredNode, std::vector<FScoredNode>, std::greater<FScoredNode>> EmptyQueue;
 			std::swap(InternalQueue, EmptyQueue);
-			Scores.Empty();
 		}
 
-		FORCEINLINE void Enqueue(const int32& Id, const double Score)
+		FORCEINLINE bool Enqueue(const int32 Index, const double InScore)
 		{
-			Scores[Id] = Score;
-			InternalQueue.push(FScoredNode(Id, Score));
+			double& RegisteredScore = Scores[Index];
+			if (RegisteredScore <= InScore) { return false; }
+
+			RegisteredScore = InScore;
+			InternalQueue.push(FScoredNode(Index, InScore));
+			return true;
 		}
 
 		FORCEINLINE bool Dequeue(int32& Item, double& OutScore)

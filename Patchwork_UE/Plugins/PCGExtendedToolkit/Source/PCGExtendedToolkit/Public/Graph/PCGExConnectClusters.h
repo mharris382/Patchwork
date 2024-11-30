@@ -4,22 +4,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Data/PCGExPointIOMerger.h"
 #include "Graph/PCGExEdgesProcessor.h"
+
 #include "PCGExConnectClusters.generated.h"
 
-class FPCGExPointIOMerger;
-
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Bridge Cluster Mode"))
+UENUM()
 enum class EPCGExBridgeClusterMethod : uint8
 {
-	Delaunay3D UMETA(DisplayName = "Delaunay 3D", ToolTip="Uses Delaunay 3D graph to find connections."),
-	Delaunay2D UMETA(DisplayName = "Delaunay 2D", ToolTip="Uses Delaunay 2D graph to find connections."),
-	LeastEdges UMETA(DisplayName = "Least Edges", ToolTip="Ensure all clusters are connected using the least possible number of bridges."),
-	MostEdges UMETA(DisplayName = "Most Edges", ToolTip="Each cluster will have a bridge to every other cluster"),
+	Delaunay3D = 0 UMETA(DisplayName = "Delaunay 3D", ToolTip="Uses Delaunay 3D graph to find connections."),
+	Delaunay2D = 1 UMETA(DisplayName = "Delaunay 2D", ToolTip="Uses Delaunay 2D graph to find connections."),
+	LeastEdges = 2 UMETA(DisplayName = "Least Edges", ToolTip="Ensure all clusters are connected using the least possible number of bridges."),
+	MostEdges  = 3 UMETA(DisplayName = "Most Edges", ToolTip="Each cluster will have a bridge to every other cluster"),
+	Filters    = 4 UMETA(DisplayName = "Node Filters", ToolTip="Isolate nodes in each cluster as generators & connectable and connect by proximity.", Hidden),
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Edges")
-class PCGEXTENDEDTOOLKIT_API UPCGExConnectClustersSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConnectClustersSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -36,13 +37,15 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual TArray<FPCGPinProperties> InputPinProperties() const override;
+
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
 
 	/** Method used to find & insert bridges */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(DisplayName="Connect Method"))
 	EPCGExBridgeClusterMethod BridgeMethod = EPCGExBridgeClusterMethod::Delaunay3D;
 
 	/** Projection settings. */
@@ -57,22 +60,27 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, DisplayName="Cluster Output Settings"))
 	FPCGExGraphBuilderDetails GraphBuilderDetails;
 
+	/** If enabled, won't throw a warning if no bridge could be created. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	bool bMuteNoBridgeWarning = false;
+
 private:
 	friend class FPCGExConnectClustersElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExConnectClustersContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExConnectClustersContext final : FPCGExEdgesProcessorContext
 {
 	friend class FPCGExConnectClustersElement;
 	friend class FPCGExCreateBridgeTask;
 
-	virtual ~FPCGExConnectClustersContext() override;
-
 	FPCGExGeo2DProjectionDetails ProjectionDetails;
 	FPCGExCarryOverDetails CarryOverDetails;
+
+	TArray<TObjectPtr<const UPCGExFilterFactoryBase>> GeneratorsFiltersFactories;
+	TArray<TObjectPtr<const UPCGExFilterFactoryBase>> ConnectablesFiltersFactories;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExConnectClustersElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExConnectClustersElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -87,44 +95,42 @@ protected:
 
 namespace PCGExBridgeClusters
 {
-	class FProcessor final : public PCGExClusterMT::FClusterProcessor
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExConnectClustersContext, UPCGExConnectClustersSettings>
 	{
 	public:
-		FProcessor(PCGExData::FPointIO* InVtx, PCGExData::FPointIO* InEdges):
-			FClusterProcessor(InVtx, InEdges)
+		FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade):
+			TProcessor(InVtxDataFacade, InEdgeDataFacade)
 		{
 		}
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
-		virtual void ProcessSingleEdge(PCGExGraph::FIndexedEdge& Edge) override;
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
+		virtual void ProcessSingleEdge(const int32 EdgeIndex, PCGExGraph::FEdge& Edge, const int32 LoopIdx, const int32 Count) override;
 		virtual void CompleteWork() override;
 	};
 
-	class FProcessorBatch final : public PCGExClusterMT::TBatch<FProcessor>
+	class FBatch final : public PCGExClusterMT::TBatch<FProcessor>
 	{
 	public:
-		PCGExData::FPointIO* ConsolidatedEdges = nullptr;
-		FPCGExPointIOMerger* Merger = nullptr;
+		TSharedPtr<PCGExData::FFacade> CompoundedEdgesDataFacade;
+		TSharedPtr<FPCGExPointIOMerger> Merger;
 		TSet<uint64> Bridges;
 
-		FProcessorBatch(FPCGContext* InContext, PCGExData::FPointIO* InVtx, TArrayView<PCGExData::FPointIO*> InEdges);
-		virtual ~FProcessorBatch() override;
+		FBatch(FPCGExContext* InContext, const TSharedRef<PCGExData::FPointIO>& InVtx, TArrayView<TSharedRef<PCGExData::FPointIO>> InEdges);
 
-		virtual bool PrepareProcessing() override;
-		virtual void Process(PCGExMT::FTaskManager* AsyncManager) override;
-		virtual bool PrepareSingle(FProcessor* ClusterProcessor) override;
+		virtual void Process() override;
+		virtual bool PrepareSingle(const TSharedPtr<FProcessor>& ClusterProcessor) override;
 		virtual void CompleteWork() override;
 		virtual void Write() override;
 	};
 
-	class PCGEXTENDEDTOOLKIT_API FPCGExCreateBridgeTask final : public PCGExMT::FPCGExTask
+	class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExCreateBridgeTask final : public PCGExMT::FPCGExTask
 	{
 	public:
 		FPCGExCreateBridgeTask(
-			PCGExData::FPointIO* InPointIO,
-			FProcessorBatch* InBatch,
-			PCGExCluster::FCluster* A,
-			PCGExCluster::FCluster* B) :
+			const TSharedPtr<PCGExData::FPointIO>& InPointIO,
+			const TSharedPtr<FBatch>& InBatch,
+			const TSharedPtr<PCGExCluster::FCluster>& A,
+			const TSharedPtr<PCGExCluster::FCluster>& B) :
 			FPCGExTask(InPointIO),
 			Batch(InBatch),
 			ClusterA(A),
@@ -132,11 +138,11 @@ namespace PCGExBridgeClusters
 		{
 		}
 
-		FProcessorBatch* Batch = nullptr;
+		TSharedPtr<FBatch> Batch;
 
-		PCGExCluster::FCluster* ClusterA = nullptr;
-		PCGExCluster::FCluster* ClusterB = nullptr;
+		TSharedPtr<PCGExCluster::FCluster> ClusterA;
+		TSharedPtr<PCGExCluster::FCluster> ClusterB;
 
-		virtual bool ExecuteTask() override;
+		virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override;
 	};
 }

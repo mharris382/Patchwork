@@ -2,24 +2,29 @@
 // Released under the MIT license https://opensource.org/license/MIT/
 
 #include "Graph/PCGExConnectClusters.h"
-
 #include "Data/PCGExPointIOMerger.h"
 #include "Geometry/PCGExGeoDelaunay.h"
 
 #define LOCTEXT_NAMESPACE "PCGExConnectClusters"
 #define PCGEX_NAMESPACE ConnectClusters
 
-PCGExData::EInit UPCGExConnectClustersSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
-PCGExData::EInit UPCGExConnectClustersSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExConnectClustersSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::None; }
+PCGExData::EIOInit UPCGExConnectClustersSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 PCGEX_INITIALIZE_ELEMENT(ConnectClusters)
 
-
-FPCGExConnectClustersContext::~FPCGExConnectClustersContext()
+TArray<FPCGPinProperties> UPCGExConnectClustersSettings::InputPinProperties() const
 {
-	PCGEX_TERMINATE_ASYNC
-}
+	TArray<FPCGPinProperties> PinProperties = Super::InputPinProperties();
 
+	if (BridgeMethod == EPCGExBridgeClusterMethod::Filters)
+	{
+		PCGEX_PIN_PARAMS(PCGExGraph::SourceFilterGenerators, "Nodes that don't meet requirements won't generate connections", Required, {})
+		PCGEX_PIN_PARAMS(PCGExGraph::SourceFilterConnectables, "Nodes that don't meet requirements can't receive connections", Required, {})
+	}
+
+	return PinProperties;
+}
 
 bool FPCGExConnectClustersElement::Boot(FPCGExContext* InContext) const
 {
@@ -33,56 +38,70 @@ bool FPCGExConnectClustersElement::Boot(FPCGExContext* InContext) const
 	PCGEX_FWD(ProjectionDetails)
 	PCGEX_FWD(GraphBuilderDetails)
 
+	if (Settings->BridgeMethod == EPCGExBridgeClusterMethod::Filters)
+	{
+		PCGE_LOG(Error, GraphAndLog, FTEXT("Bridge through filter is not implemented yet!"));
+		return false;
+
+		/*
+		if (!GetInputFactories(
+			Context, PCGExGraph::SourceFilterGenerators, Context->GeneratorsFiltersFactories,
+			PCGExFactories::ClusterNodeFilters, true)) { return false; }
+
+		if (!GetInputFactories(
+			Context, PCGExGraph::SourceFilterConnectables, Context->ConnectablesFiltersFactories,
+			PCGExFactories::ClusterNodeFilters, true)) { return false; }
+		*/
+	}
+
 	return true;
 }
 
-bool FPCGExConnectClustersElement::ExecuteInternal(
-	FPCGContext* InContext) const
+bool FPCGExConnectClustersElement::ExecuteInternal(FPCGContext* InContext) const
 {
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExConnectClustersElement::Execute);
 
-	PCGEX_CONTEXT(ConnectClusters)
-
-	if (Context->IsSetup())
+	PCGEX_CONTEXT_AND_SETTINGS(ConnectClusters)
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
-		if (!Context->StartProcessingClusters<PCGExBridgeClusters::FProcessorBatch>(
-			[&](PCGExData::FPointIOTaggedEntries* Entries)
+		if (!Context->StartProcessingClusters<PCGExBridgeClusters::FBatch>(
+			[&](const TSharedPtr<PCGExData::FPointIOTaggedEntries>& Entries)
 			{
 				if (Entries->Entries.Num() == 1)
 				{
 					// No clusters to consolidate, just dump existing points
-					Context->CurrentIO->InitializeOutput(PCGExData::EInit::Forward);
-					Entries->Entries[0]->InitializeOutput(PCGExData::EInit::Forward);
+					Context->CurrentIO->InitializeOutput(PCGExData::EIOInit::Forward);
+					Entries->Entries[0]->InitializeOutput(PCGExData::EIOInit::Forward);
 					return false;
 				}
 
 				return true;
 			},
-			[&](PCGExBridgeClusters::FProcessorBatch* NewBatch)
+			[&](const TSharedPtr<PCGExBridgeClusters::FBatch>& NewBatch)
 			{
 				NewBatch->bRequiresWriteStep = true;
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("No bridge was created."));
+			if (!Settings->bMuteNoBridgeWarning) { PCGE_LOG(Warning, GraphAndLog, FTEXT("No bridge was created.")); }
+
+			for (const TSharedPtr<PCGExData::FPointIO>& Vtx : Context->MainPoints->Pairs) { Vtx->InitializeOutput(PCGExData::EIOInit::Forward); }
+			for (const TSharedPtr<PCGExData::FPointIO>& Edges : Context->MainEdges->Pairs) { Edges->InitializeOutput(PCGExData::EIOInit::Forward); }
+
 			Context->OutputPointsAndEdges();
-			return true;
+			return Context->TryComplete(true);
 		}
 	}
 
-	if (!Context->ProcessClusters()) { return false; }
 
-	for (PCGExClusterMT::FClusterProcessorBatchBase* Batch : Context->Batches)
+	PCGEX_CLUSTER_BATCH_PROCESSING(PCGEx::State_Done)
+
+	for (const TSharedPtr<PCGExClusterMT::FClusterProcessorBatchBase>& Batch : Context->Batches)
 	{
-		const PCGExBridgeClusters::FProcessorBatch* BridgeBatch = static_cast<PCGExBridgeClusters::FProcessorBatch*>(Batch);
-		const int64 ClusterId = BridgeBatch->VtxIO->GetOut()->UID;
-		PCGExData::WriteMark(BridgeBatch->ConsolidatedEdges->GetOut()->Metadata, PCGExGraph::Tag_ClusterId, ClusterId);
-
+		const TSharedPtr<PCGExBridgeClusters::FBatch> BridgeBatch = StaticCastSharedPtr<PCGExBridgeClusters::FBatch>(Batch);
 		FString OutId;
-		PCGExGraph::SetClusterVtx(BridgeBatch->VtxIO, OutId);
-		PCGExGraph::MarkClusterEdges(BridgeBatch->ConsolidatedEdges, OutId);
+		PCGExGraph::SetClusterVtx(BridgeBatch->VtxDataFacade->Source, OutId);
+		PCGExGraph::MarkClusterEdges(BridgeBatch->CompoundedEdgesDataFacade->Source, OutId);
 	}
 
 	Context->OutputPointsAndEdges();
@@ -92,91 +111,67 @@ bool FPCGExConnectClustersElement::ExecuteInternal(
 
 namespace PCGExBridgeClusters
 {
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExBridgeClusters::Process);
-		PCGEX_SETTINGS(ConnectClusters)
 
-		if (!FClusterProcessor::Process(AsyncManager)) { return false; }
-
+		if (!FClusterProcessor::Process(InAsyncManager)) { return false; }
 
 		return true;
 	}
 
-	void FProcessor::ProcessSingleEdge(PCGExGraph::FIndexedEdge& Edge)
+	void FProcessor::ProcessSingleEdge(const int32 EdgeIndex, PCGExGraph::FEdge& Edge, const int32 LoopIdx, const int32 Count)
 	{
-		PCGEX_SETTINGS(ConnectClusters)
 	}
 
 	void FProcessor::CompleteWork()
 	{
+		// if mode == filter, loop through generators and find all suitable connectables
 	}
 
 	//////// BATCH
 
-	FProcessorBatch::FProcessorBatch(FPCGContext* InContext, PCGExData::FPointIO* InVtx, const TArrayView<PCGExData::FPointIO*> InEdges):
+	FBatch::FBatch(FPCGExContext* InContext, const TSharedRef<PCGExData::FPointIO>& InVtx, const TArrayView<TSharedRef<PCGExData::FPointIO>> InEdges):
 		TBatch(InContext, InVtx, InEdges)
 	{
+		InVtx->InitializeOutput(PCGExData::EIOInit::Duplicate);
 	}
 
-	FProcessorBatch::~FProcessorBatch()
-	{
-		PCGEX_DELETE(Merger)
-
-		ConsolidatedEdges = nullptr;
-		Bridges.Empty();
-	}
-
-	bool FProcessorBatch::PrepareProcessing()
-	{
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(ConnectClusters)
-		//const FPCGExConnectClustersContext* InContext = static_cast<FPCGExConnectClustersContext*>(Context);
-
-		ConsolidatedEdges = TypedContext->MainEdges->Emplace_GetRef(PCGExData::EInit::NewOutput);
-
-		if (!TBatch::PrepareProcessing()) { return false; }
-
-		return true;
-	}
-
-	void FProcessorBatch::Process(PCGExMT::FTaskManager* AsyncManager)
+	void FBatch::Process()
 	{
 		PCGEX_TYPED_CONTEXT_AND_SETTINGS(ConnectClusters)
 
-		TBatch<FProcessor>::Process(AsyncManager);
+		const TSharedPtr<PCGExData::FPointIO> ConsolidatedEdges = Context->MainEdges->Emplace_GetRef(PCGExData::EIOInit::New);
+		CompoundedEdgesDataFacade = MakeShared<PCGExData::FFacade>(ConsolidatedEdges.ToSharedRef());
+
+		TBatch<FProcessor>::Process();
 
 		// Start merging right away
-		TSet<FName> IgnoreAttributes = {PCGExGraph::Tag_ClusterId};
-
-		Merger = new FPCGExPointIOMerger(ConsolidatedEdges);
+		Merger = MakeShared<FPCGExPointIOMerger>(CompoundedEdgesDataFacade.ToSharedRef());
 		Merger->Append(Edges);
-		Merger->Merge(AsyncManagerPtr, &TypedContext->CarryOverDetails);
+		Merger->Merge(AsyncManager, &Context->CarryOverDetails);
 	}
 
-	bool FProcessorBatch::PrepareSingle(FProcessor* ClusterProcessor)
+	bool FBatch::PrepareSingle(const TSharedPtr<FProcessor>& ClusterProcessor)
 	{
-		PCGEX_SETTINGS(ConnectClusters)
-		ConsolidatedEdges->Tags->Append(ClusterProcessor->EdgesIO->Tags);
-
+		CompoundedEdgesDataFacade->Source->Tags->Append(ClusterProcessor->EdgeDataFacade->Source->Tags.ToSharedRef());
 		return true;
 	}
 
-	void FProcessorBatch::CompleteWork()
+	void FBatch::CompleteWork()
 	{
+		PCGEX_TYPED_CONTEXT_AND_SETTINGS(ConnectClusters)
+
 		const int32 NumValidClusters = GatherValidClusters();
 
 		if (Processors.Num() != NumValidClusters)
 		{
-			PCGE_LOG_C(Warning, GraphAndLog, Context, FTEXT("Some vtx/edges groups have invalid clusters. Make sure to sanitize the input first."));
+			PCGE_LOG_C(Warning, GraphAndLog, ExecutionContext, FTEXT("Some vtx/edges groups have invalid clusters. Make sure to sanitize the input first."));
 		}
 
 		if (ValidClusters.IsEmpty()) { return; } // Skip work completion entirely
 
-		Merger->Write(AsyncManagerPtr); // Write base attributes value while finding bridges		
-
-		////
-		PCGEX_SETTINGS(ConnectClusters)
-		const FPCGExConnectClustersContext* InContext = static_cast<FPCGExConnectClustersContext*>(Context);
+		CompoundedEdgesDataFacade->Write(AsyncManager); // Write base attributes value while finding bridges
 
 		const int32 NumBounds = ValidClusters.Num();
 		EPCGExBridgeClusterMethod SafeMethod = Settings->BridgeMethod;
@@ -193,38 +188,36 @@ namespace PCGExBridgeClusters
 		// First find which cluster are connected
 
 		TArray<FBox> Bounds;
-		Bounds.SetNumUninitialized(NumBounds);
+		PCGEx::InitArray(Bounds, NumBounds);
 		for (int i = 0; i < NumBounds; i++) { Bounds[i] = ValidClusters[i]->Bounds; }
 
 		if (SafeMethod == EPCGExBridgeClusterMethod::Delaunay3D)
 		{
-			PCGExGeo::TDelaunay3* Delaunay = new PCGExGeo::TDelaunay3();
+			const TUniquePtr<PCGExGeo::TDelaunay3> Delaunay = MakeUnique<PCGExGeo::TDelaunay3>();
 
 			TArray<FVector> Positions;
 			Positions.SetNum(NumBounds);
 
 			for (int i = 0; i < NumBounds; i++) { Positions[i] = Bounds[i].GetCenter(); }
 
-			if (Delaunay->Process(Positions, false)) { Bridges.Append(Delaunay->DelaunayEdges); }
-			else { PCGE_LOG_C(Warning, GraphAndLog, Context, FTEXT("Delaunay 3D failed. Are points coplanar? If so, use Delaunay 2D instead.")); }
+			if (Delaunay->Process<false, false>(Positions)) { Bridges.Append(Delaunay->DelaunayEdges); }
+			else { PCGE_LOG_C(Warning, GraphAndLog, ExecutionContext, FTEXT("Delaunay 3D failed. Are points coplanar? If so, use Delaunay 2D instead.")); }
 
 			Positions.Empty();
-			PCGEX_DELETE(Delaunay)
 		}
 		else if (SafeMethod == EPCGExBridgeClusterMethod::Delaunay2D)
 		{
-			PCGExGeo::TDelaunay2* Delaunay = new PCGExGeo::TDelaunay2();
+			const TUniquePtr<PCGExGeo::TDelaunay2> Delaunay = MakeUnique<PCGExGeo::TDelaunay2>();
 
 			TArray<FVector> Positions;
 			Positions.SetNum(NumBounds);
 
 			for (int i = 0; i < NumBounds; i++) { Positions[i] = Bounds[i].GetCenter(); }
 
-			if (Delaunay->Process(Positions, InContext->ProjectionDetails)) { Bridges.Append(Delaunay->DelaunayEdges); }
-			else { PCGE_LOG_C(Warning, GraphAndLog, Context, FTEXT("Delaunay 2D failed.")); }
+			if (Delaunay->Process(Positions, Context->ProjectionDetails)) { Bridges.Append(Delaunay->DelaunayEdges); }
+			else { PCGE_LOG_C(Warning, GraphAndLog, ExecutionContext, FTEXT("Delaunay 2D failed.")); }
 
 			Positions.Empty();
-			PCGEX_DELETE(Delaunay)
 		}
 		else if (SafeMethod == EPCGExBridgeClusterMethod::LeastEdges)
 		{
@@ -232,7 +225,7 @@ namespace PCGExBridgeClusters
 			for (int i = 0; i < NumBounds; i++)
 			{
 				VisitedEdges.Add(i); // As to not connect to self or already connected
-				double Distance = TNumericLimits<double>::Max();
+				double Distance = MAX_dbl;
 				int32 ClosestIndex = -1;
 
 				for (int j = 0; j < NumBounds; j++)
@@ -263,12 +256,15 @@ namespace PCGExBridgeClusters
 				}
 			}
 		}
+		else if (SafeMethod == EPCGExBridgeClusterMethod::Filters)
+		{
+			// Let cluster processor handle it.
+		}
 	}
 
-	void FProcessorBatch::Write()
+	void FBatch::Write()
 	{
-		//TArray<FPCGPoint>& MutableEdges = ConsolidatedEdges->GetOut()->GetMutablePoints();
-		//UPCGMetadata* Metadata = ConsolidatedEdges->GetOut()->Metadata;
+		const TSharedRef<PCGExData::FPointIO> ConsolidatedEdges = CompoundedEdgesDataFacade->Source;
 
 		for (const uint64 Bridge : Bridges)
 		{
@@ -279,28 +275,17 @@ namespace PCGExBridgeClusters
 			uint32 End;
 			PCGEx::H64(Bridge, Start, End);
 
-			AsyncManagerPtr->Start<FPCGExCreateBridgeTask>(
-				EdgePointIndex, ConsolidatedEdges,
-				this, ValidClusters[Start], ValidClusters[End]);
+			AsyncManager->Start<FPCGExCreateBridgeTask>(EdgePointIndex, ConsolidatedEdges, SharedThis(this), ValidClusters[Start], ValidClusters[End]);
 		}
-
-		// Force writing cluster ID to Vtx, otherwise we inherit from previous metadata.
-		const uint64 ClusterId = VtxIO->GetOut()->UID;
-		PCGEx::TFAttributeWriter<int64>* ClusterIdWriter = new PCGEx::TFAttributeWriter<int64>(PCGExGraph::Tag_ClusterId);
-		for (int64& Id : ClusterIdWriter->Values) { Id = ClusterId; }
-		PCGEX_ASYNC_WRITE_DELETE(AsyncManagerPtr, ClusterIdWriter);
-
-		TBatch<FProcessor>::Write();
-		// TODO : OPTIM : We can easily build this batch' cluster by appending existing ones into a big one and just add edges
 	}
 
 
-	bool FPCGExCreateBridgeTask::ExecuteTask()
+	bool FPCGExCreateBridgeTask::ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager)
 	{
 		int32 IndexA = -1;
 		int32 IndexB = -1;
 
-		double Distance = TNumericLimits<double>::Max();
+		double Distance = MAX_dbl;
 
 		const TArray<PCGExCluster::FNode>& NodesRefA = *ClusterA->Nodes;
 		const TArray<PCGExCluster::FNode>& NodesRefB = *ClusterB->Nodes;
@@ -321,13 +306,14 @@ namespace PCGExBridgeClusters
 		}
 
 		UPCGMetadata* EdgeMetadata = PointIO->GetOut()->Metadata;
+		const TSharedRef<PCGExData::FPointIO>& VtxIO = Batch->VtxDataFacade->Source;
 
-		const FPCGMetadataAttribute<int64>* InVtxEndpointAtt = static_cast<FPCGMetadataAttribute<int64>*>(Batch->VtxIO->GetIn()->Metadata->GetMutableAttribute(PCGExGraph::Tag_VtxEndpoint));
+		const FPCGMetadataAttribute<int64>* InVtxEndpointAtt = static_cast<FPCGMetadataAttribute<int64>*>(VtxIO->GetIn()->Metadata->GetMutableAttribute(PCGExGraph::Tag_VtxEndpoint));
 
 		FPCGPoint& EdgePoint = PointIO->GetOut()->GetMutablePoints()[TaskIndex];
 
-		const FPCGPoint& StartPoint = Batch->VtxIO->GetOutPoint(IndexA);
-		const FPCGPoint& EndPoint = Batch->VtxIO->GetOutPoint(IndexB);
+		const FPCGPoint& StartPoint = VtxIO->GetOutPoint(IndexA);
+		const FPCGPoint& EndPoint = VtxIO->GetOutPoint(IndexB);
 
 		EdgePoint.Transform.SetLocation(FMath::Lerp(StartPoint.Transform.GetLocation(), EndPoint.Transform.GetLocation(), 0.5));
 
@@ -337,11 +323,11 @@ namespace PCGExBridgeClusters
 		uint32 EndIdx;
 		uint32 EndNumEdges;
 
-		PCGEx::H64(InVtxEndpointAtt->GetValueFromItemKey(Batch->VtxIO->GetInPoint(IndexA).MetadataEntry), StartIdx, StartNumEdges);
-		PCGEx::H64(InVtxEndpointAtt->GetValueFromItemKey(Batch->VtxIO->GetInPoint(IndexB).MetadataEntry), EndIdx, EndNumEdges);
+		PCGEx::H64(InVtxEndpointAtt->GetValueFromItemKey(VtxIO->GetInPoint(IndexA).MetadataEntry), StartIdx, StartNumEdges);
+		PCGEx::H64(InVtxEndpointAtt->GetValueFromItemKey(VtxIO->GetInPoint(IndexB).MetadataEntry), EndIdx, EndNumEdges);
 
 		FPCGMetadataAttribute<int64>* EdgeEndpointsAtt = static_cast<FPCGMetadataAttribute<int64>*>(EdgeMetadata->GetMutableAttribute(PCGExGraph::Tag_EdgeEndpoints));
-		FPCGMetadataAttribute<int64>* OutVtxEndpointAtt = static_cast<FPCGMetadataAttribute<int64>*>(Batch->VtxIO->GetOut()->Metadata->GetMutableAttribute(PCGExGraph::Tag_VtxEndpoint));
+		FPCGMetadataAttribute<int64>* OutVtxEndpointAtt = static_cast<FPCGMetadataAttribute<int64>*>(VtxIO->GetOut()->Metadata->GetMutableAttribute(PCGExGraph::Tag_VtxEndpoint));
 
 		EdgeEndpointsAtt->SetValue(EdgePoint.MetadataEntry, PCGEx::H64(StartIdx, EndIdx));
 		OutVtxEndpointAtt->SetValue(StartPoint.MetadataEntry, PCGEx::H64(StartIdx, StartNumEdges + 1));

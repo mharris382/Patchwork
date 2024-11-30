@@ -17,7 +17,7 @@ TArray<FPCGPinProperties> UPCGExFactoryProviderSettings::InputPinProperties() co
 TArray<FPCGPinProperties> UPCGExFactoryProviderSettings::OutputPinProperties() const
 {
 	TArray<FPCGPinProperties> PinProperties;
-	PCGEX_PIN_PARAM(GetMainOutputLabel(), GetMainOutputLabel().ToString(), Required, {})
+	PCGEX_PIN_PARAM(GetMainOutputPin(), GetMainOutputPin().ToString(), Required, {})
 	return PinProperties;
 }
 
@@ -43,18 +43,19 @@ bool FPCGExFactoryProviderElement::ExecuteInternal(FPCGContext* Context) const
 
 	FPCGExContext* PCGExContext = static_cast<FPCGExContext*>(Context);
 	check(PCGExContext);
-	
+
 	UPCGExParamFactoryBase* OutFactory = Settings->CreateFactory(PCGExContext, nullptr);
 
 	if (!OutFactory) { return true; }
 
-	PCGExContext->FutureOutput(Settings->GetMainOutputLabel(), OutFactory);
+	OutFactory->bDoRegisterConsumableAttributes = Settings->bDoRegisterConsumableAttributes;
+	PCGExContext->StageOutput(Settings->GetMainOutputPin(), OutFactory, false);
 	PCGExContext->OnComplete();
 
 	return true;
 }
 
-FPCGContext* FPCGExFactoryProviderElement::Initialize(const FPCGDataCollection& InputData, TWeakObjectPtr<UPCGComponent> SourceComponent, const UPCGNode* Node)
+FPCGContext* FPCGExFactoryProviderElement::Initialize(const FPCGDataCollection& InputData, const TWeakObjectPtr<UPCGComponent> SourceComponent, const UPCGNode* Node)
 {
 	FPCGExContext* Context = new FPCGExContext();
 	Context->InputData = InputData;

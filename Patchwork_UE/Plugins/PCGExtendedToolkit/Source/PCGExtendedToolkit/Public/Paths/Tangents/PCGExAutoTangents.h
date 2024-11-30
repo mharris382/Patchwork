@@ -5,24 +5,30 @@
 
 #include "CoreMinimal.h"
 #include "PCGExTangentsOperation.h"
+#include "Geometry/PCGExGeo.h"
 #include "PCGExAutoTangents.generated.h"
 
 /**
  * 
  */
-UCLASS(DisplayName="Auto")
-class PCGEXTENDEDTOOLKIT_API UPCGExAutoTangents : public UPCGExTangentsOperation
+UCLASS(MinimalAPI, DisplayName="Auto")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExAutoTangents : public UPCGExTangentsOperation
 {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	double Scale = 1;
+	FORCEINLINE virtual void ProcessPoint(
+		const TArray<FPCGPoint>& InPoints,
+		const int32 Index, const int32 NextIndex, const int32 PrevIndex,
+		const FVector& ArriveScale, FVector& OutArrive,
+		const FVector& LeaveScale, FVector& OutLeave) const override
+	{
+		const PCGExGeo::FApex Apex = PCGExGeo::FApex(
+			InPoints[PrevIndex].Transform.GetLocation(),
+			InPoints[NextIndex].Transform.GetLocation(),
+			InPoints[Index].Transform.GetLocation());
 
-	virtual void ProcessFirstPoint(const PCGExData::FPointRef& MainPoint, const PCGExData::FPointRef& NextPoint, FVector& OutArrive, FVector& OutLeave) const override;
-	virtual void ProcessLastPoint(const PCGExData::FPointRef& MainPoint, const PCGExData::FPointRef& PreviousPoint, FVector& OutArrive, FVector& OutLeave) const override;
-	virtual void ProcessPoint(const PCGExData::FPointRef& MainPoint, const PCGExData::FPointRef& PreviousPoint, const PCGExData::FPointRef& NextPoint, FVector& OutArrive, FVector& OutLeave) const override;
-
-protected:
-	virtual void ApplyOverrides() override;
+		OutArrive = Apex.TowardStart * ArriveScale;
+		OutLeave = Apex.TowardEnd * -1 * LeaveScale;
+	}
 };

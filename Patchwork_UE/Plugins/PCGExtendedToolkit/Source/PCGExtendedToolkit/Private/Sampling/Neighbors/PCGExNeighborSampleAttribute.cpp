@@ -5,25 +5,25 @@
 
 #include "Data/Blending/PCGExMetadataBlender.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExCreateNeighborSample"
 #define PCGEX_NAMESPACE PCGExCreateNeighborSample
 
 void UPCGExNeighborSampleAttribute::CopySettingsFrom(const UPCGExOperation* Other)
 {
 	Super::CopySettingsFrom(Other);
-	const UPCGExNeighborSampleAttribute* TypedOther = Cast<UPCGExNeighborSampleAttribute>(Other);
-	if (TypedOther)
+	if (const UPCGExNeighborSampleAttribute* TypedOther = Cast<UPCGExNeighborSampleAttribute>(Other))
 	{
 		SourceAttributes = TypedOther->SourceAttributes;
 		Blending = TypedOther->Blending;
 	}
 }
 
-void UPCGExNeighborSampleAttribute::PrepareForCluster(const FPCGContext* InContext, PCGExCluster::FCluster* InCluster, PCGExData::FFacade* InVtxDataFacade, PCGExData::FFacade* InEdgeDataFacade)
+void UPCGExNeighborSampleAttribute::PrepareForCluster(FPCGExContext* InContext, const TSharedRef<PCGExCluster::FCluster> InCluster, const TSharedRef<PCGExData::FFacade> InVtxDataFacade, const TSharedRef<PCGExData::FFacade> InEdgeDataFacade)
 {
 	Super::PrepareForCluster(InContext, InCluster, InVtxDataFacade, InEdgeDataFacade);
 
-	PCGEX_DELETE(Blender)
+	Blender.Reset();
 	bIsValidOperation = false;
 
 	if (SourceAttributes.IsEmpty())
@@ -37,7 +37,7 @@ void UPCGExNeighborSampleAttribute::PrepareForCluster(const FPCGContext* InConte
 
 	for (const FName& Id : MissingAttributes)
 	{
-		if (SamplingConfig.NeighborSource == EPCGExGraphValueSource::Vtx) { PCGE_LOG_C(Warning, GraphAndLog, InContext, FText::Format(FTEXT("Missing source attribute on vtx: {0}."), FText::FromName(Id))); }
+		if (SamplingConfig.NeighborSource == EPCGExClusterComponentSource::Vtx) { PCGE_LOG_C(Warning, GraphAndLog, InContext, FText::Format(FTEXT("Missing source attribute on vtx: {0}."), FText::FromName(Id))); }
 		else { PCGE_LOG_C(Warning, GraphAndLog, InContext, FText::Format(FTEXT("Missing source attribute on edges: {0}."), FText::FromName(Id))); }
 	}
 
@@ -47,22 +47,22 @@ void UPCGExNeighborSampleAttribute::PrepareForCluster(const FPCGContext* InConte
 		return;
 	}
 
-	Blender = new PCGExDataBlending::FMetadataBlender(&MetadataBlendingDetails);
+	Blender = MakeShared<PCGExDataBlending::FMetadataBlender>(&MetadataBlendingDetails);
 	Blender->bBlendProperties = false;
-	Blender->PrepareForData(InVtxDataFacade, GetSourceDataFacade(), PCGExData::ESource::In, true);
+	Blender->PrepareForData(InVtxDataFacade, GetSourceDataFacade(), PCGExData::ESource::In);
 
 	bIsValidOperation = true;
 }
 
-void UPCGExNeighborSampleAttribute::FinalizeOperation()
+void UPCGExNeighborSampleAttribute::CompleteOperation()
 {
-	Super::FinalizeOperation();
-	PCGEX_DELETE(Blender)
+	Super::CompleteOperation();
+	Blender.Reset();
 }
 
 void UPCGExNeighborSampleAttribute::Cleanup()
 {
-	PCGEX_DELETE(Blender)
+	Blender.Reset();
 	Super::Cleanup();
 }
 
@@ -79,9 +79,9 @@ FString UPCGExNeighborSampleAttributeSettings::GetDisplayName() const
 }
 #endif
 
-UPCGExNeighborSampleOperation* UPCGExNeighborSamplerFactoryAttribute::CreateOperation() const
+UPCGExNeighborSampleOperation* UPCGExNeighborSamplerFactoryAttribute::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExNeighborSampleAttribute, NewOperation)
+	UPCGExNeighborSampleAttribute* NewOperation = InContext->ManagedObjects->New<UPCGExNeighborSampleAttribute>();
 	PCGEX_SAMPLER_CREATE
 
 	NewOperation->SourceAttributes = Config.SourceAttributes;
@@ -92,7 +92,7 @@ UPCGExNeighborSampleOperation* UPCGExNeighborSamplerFactoryAttribute::CreateOper
 
 UPCGExParamFactoryBase* UPCGExNeighborSampleAttributeSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const
 {
-	UPCGExNeighborSamplerFactoryAttribute* SamplerFactory = NewObject<UPCGExNeighborSamplerFactoryAttribute>();
+	UPCGExNeighborSamplerFactoryAttribute* SamplerFactory = InContext->ManagedObjects->New<UPCGExNeighborSamplerFactoryAttribute>();
 	SamplerFactory->Config = Config;
 
 	return Super::CreateFactory(InContext, SamplerFactory);

@@ -10,10 +10,11 @@
 #include "Data/PCGExPointFilter.h"
 #include "PCGExPointsProcessor.h"
 
+
 #include "PCGExMeanFilter.generated.h"
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExMeanFilterConfig
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExMeanFilterConfig
 {
 	GENERATED_BODY()
 
@@ -61,55 +62,58 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExMeanFilterConfig
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
-class PCGEXTENDEDTOOLKIT_API UPCGExMeanFilterFactory : public UPCGExFilterFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExMeanFilterFactory : public UPCGExFilterFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExMeanFilterConfig Config;
 
-	virtual PCGExPointFilter::TFilter* CreateFilter() const override;
+	virtual TSharedPtr<PCGExPointFilter::FFilter> CreateFilter() const override;
+	virtual void RegisterBuffersDependencies(FPCGExContext* InContext, PCGExData::FFacadePreloader& FacadePreloader) const override;
+	virtual void RegisterConsumableAttributes(FPCGExContext* InContext) const override;
 };
 
 namespace PCGExPointsFilter
 {
-	class PCGEXTENDEDTOOLKIT_API TMeanFilter final : public PCGExPointFilter::TFilter
+	class /*PCGEXTENDEDTOOLKIT_API*/ TMeanFilter final : public PCGExPointFilter::FSimpleFilter
 	{
 	public:
-		explicit TMeanFilter(const UPCGExMeanFilterFactory* InFactory)
-			: TFilter(InFactory), TypedFilterFactory(InFactory)
+		explicit TMeanFilter(const TObjectPtr<const UPCGExMeanFilterFactory>& InFactory)
+			: FSimpleFilter(InFactory), TypedFilterFactory(InFactory)
 		{
 		}
 
-		const UPCGExMeanFilterFactory* TypedFilterFactory;
+		const TObjectPtr<const UPCGExMeanFilterFactory> TypedFilterFactory;
 
-		PCGExData::FCache<double>* Target = nullptr;
+		TArray<double> Values;
+
+		double DataMin = 0;
+		double DataMax = 0;
 
 		double ReferenceValue = 0;
 		double ReferenceMin = 0;
 		double ReferenceMax = 0;
 
-		virtual bool Init(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade) override;
+		virtual bool Init(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade> InPointDataFacade) override;
+		virtual void PostInit() override;
+
 		FORCEINLINE virtual bool Test(const int32 PointIndex) const override
 		{
-			return FMath::IsWithin(Target->Values[PointIndex], ReferenceMin, ReferenceMax);
+			return FMath::IsWithin(Values[PointIndex], ReferenceMin, ReferenceMax);
 		}
-
-
-		virtual void PostInit() override;
 
 		virtual ~TMeanFilter() override
 		{
-			TypedFilterFactory = nullptr;
 		}
 	};
 }
 
 ///
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
-class PCGEXTENDEDTOOLKIT_API UPCGExMeanFilterProviderSettings : public UPCGExFilterProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExMeanFilterProviderSettings : public UPCGExFilterProviderSettings
 {
 	GENERATED_BODY()
 
@@ -122,12 +126,10 @@ public:
 #endif
 	//~End UPCGSettings
 
-public:
 	/** Filter Config.*/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ShowOnlyInnerProperties))
 	FPCGExMeanFilterConfig Config;
 
-public:
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const override;
 
 #if WITH_EDITOR

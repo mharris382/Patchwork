@@ -3,14 +3,24 @@
 
 #include "Misc/Filters/PCGExNumericCompareFilter.h"
 
-PCGExPointFilter::TFilter* UPCGExNumericCompareFilterFactory::CreateFilter() const
+
+#define LOCTEXT_NAMESPACE "PCGExCompareFilterDefinition"
+#define PCGEX_NAMESPACE CompareFilterDefinition
+
+TSharedPtr<PCGExPointFilter::FFilter> UPCGExNumericCompareFilterFactory::CreateFilter() const
 {
-	return new PCGExPointsFilter::TNumericComparisonFilter(this);
+	return MakeShared<PCGExPointsFilter::TNumericComparisonFilter>(this);
 }
 
-bool PCGExPointsFilter::TNumericComparisonFilter::Init(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade)
+void UPCGExNumericCompareFilterFactory::RegisterConsumableAttributes(FPCGExContext* InContext) const
 {
-	if (!TFilter::Init(InContext, InPointDataFacade)) { return false; }
+	Super::RegisterConsumableAttributes(InContext);
+	//TODO : Implement Consumable
+}
+
+bool PCGExPointsFilter::TNumericComparisonFilter::Init(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade> InPointDataFacade)
+{
+	if (!FFilter::Init(InContext, InPointDataFacade)) { return false; }
 
 	OperandA = PointDataFacade->GetScopedBroadcaster<double>(TypedFilterFactory->Config.OperandA);
 
@@ -20,7 +30,7 @@ bool PCGExPointsFilter::TNumericComparisonFilter::Init(const FPCGContext* InCont
 		return false;
 	}
 
-	if (TypedFilterFactory->Config.CompareAgainst == EPCGExFetchType::Attribute)
+	if (TypedFilterFactory->Config.CompareAgainst == EPCGExInputValueType::Attribute)
 	{
 		OperandB = PointDataFacade->GetScopedBroadcaster<double>(TypedFilterFactory->Config.OperandB);
 
@@ -34,21 +44,14 @@ bool PCGExPointsFilter::TNumericComparisonFilter::Init(const FPCGContext* InCont
 	return true;
 }
 
-namespace PCGExCompareFilter
-{
-}
-
-#define LOCTEXT_NAMESPACE "PCGExCompareFilterDefinition"
-#define PCGEX_NAMESPACE CompareFilterDefinition
-
 PCGEX_CREATE_FILTER_FACTORY(NumericCompare)
 
 #if WITH_EDITOR
 FString UPCGExNumericCompareFilterProviderSettings::GetDisplayName() const
 {
-	FString DisplayName = Config.OperandA.GetName().ToString() + PCGExCompare::ToString(Config.Comparison);
+	FString DisplayName = PCGEx::GetSelectorDisplayName(Config.OperandA) + PCGExCompare::ToString(Config.Comparison);
 
-	if (Config.CompareAgainst == EPCGExFetchType::Attribute) { DisplayName += Config.OperandB.GetName().ToString(); }
+	if (Config.CompareAgainst == EPCGExInputValueType::Attribute) { DisplayName += PCGEx::GetSelectorDisplayName(Config.OperandB); }
 	else { DisplayName += FString::Printf(TEXT("%.3f"), (static_cast<int32>(1000 * Config.OperandBConstant) / 1000.0)); }
 
 	return DisplayName;

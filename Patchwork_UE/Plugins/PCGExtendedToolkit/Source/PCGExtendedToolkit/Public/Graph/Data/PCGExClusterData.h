@@ -13,19 +13,19 @@
 
 namespace PCGExData
 {
-	enum class EInit : uint8;
+	enum class EIOInit : uint8;
 }
 
 namespace PCGExCluster
 {
-	struct FCluster;
+	class FCluster;
 }
 
 /**
  * 
  */
 UCLASS(Abstract)
-class PCGEXTENDEDTOOLKIT_API UPCGExClusterData : public UPCGExPointData
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExClusterData : public UPCGExPointData
 {
 	GENERATED_BODY()
 };
@@ -34,7 +34,7 @@ class PCGEXTENDEDTOOLKIT_API UPCGExClusterData : public UPCGExPointData
  * 
  */
 UCLASS()
-class PCGEXTENDEDTOOLKIT_API UPCGExClusterNodesData : public UPCGExClusterData
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExClusterNodesData : public UPCGExClusterData
 {
 	GENERATED_BODY()
 
@@ -43,48 +43,55 @@ class PCGEXTENDEDTOOLKIT_API UPCGExClusterNodesData : public UPCGExClusterData
 public:
 	TSet<PCGExCluster::FCluster*> BoundClusters;
 
-	virtual void InitializeFromPCGExData(const UPCGExPointData* InPCGExPointData, const PCGExData::EInit InitMode) override;
+	virtual void InitializeFromPCGExData(const UPCGExPointData* InPCGExPointData, const PCGExData::EIOInit InitMode) override;
 
 	void AddBoundCluster(PCGExCluster::FCluster* InCluster);
 
 	virtual void BeginDestroy() override;
 
 protected:
+#if PCGEX_ENGINE_VERSION < 505
 	virtual UPCGSpatialData* CopyInternal() const override;
+#else
+	virtual UPCGSpatialData* CopyInternal(FPCGContext* Context) const override;
+#endif
 };
 
 /**
  * 
  */
 UCLASS()
-class PCGEXTENDEDTOOLKIT_API UPCGExClusterEdgesData : public UPCGExClusterData
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExClusterEdgesData : public UPCGExClusterData
 {
 	GENERATED_BODY()
 
 public:
-	virtual void InitializeFromPCGExData(const UPCGExPointData* InPCGExPointData, const PCGExData::EInit InitMode) override;
+	virtual void InitializeFromPCGExData(const UPCGExPointData* InPCGExPointData, const PCGExData::EIOInit InitMode) override;
 
-	virtual void SetBoundCluster(PCGExCluster::FCluster* InCluster, bool bIsOwner);
-	PCGExCluster::FCluster* GetBoundCluster() const;
+	virtual void SetBoundCluster(const TSharedPtr<PCGExCluster::FCluster>& InCluster);
+	const TSharedPtr<PCGExCluster::FCluster>& GetBoundCluster() const;
 
 	virtual void BeginDestroy() override;
 
 protected:
-	PCGExCluster::FCluster* Cluster = nullptr;
+	TSharedPtr<PCGExCluster::FCluster> Cluster;
+#if PCGEX_ENGINE_VERSION < 505
 	virtual UPCGSpatialData* CopyInternal() const override;
-	bool bOwnsCluster = true;
+#else
+	virtual UPCGSpatialData* CopyInternal(FPCGContext* Context) const override;
+#endif
 };
 
 namespace PCGExClusterData
 {
-	static const PCGExCluster::FCluster* TryGetCachedCluster(const PCGExData::FPointIO* VtxIO, const PCGExData::FPointIO* EdgeIO)
+	static TSharedPtr<PCGExCluster::FCluster> TryGetCachedCluster(const TSharedRef<PCGExData::FPointIO>& VtxIO, const TSharedRef<PCGExData::FPointIO>& EdgeIO)
 	{
 		if (GetDefault<UPCGExGlobalSettings>()->bCacheClusters)
 		{
 			if (const UPCGExClusterEdgesData* ClusterEdgesData = Cast<UPCGExClusterEdgesData>(EdgeIO->GetIn()))
 			{
 				//Try to fetch cached cluster
-				if (const PCGExCluster::FCluster* CachedCluster = ClusterEdgesData->GetBoundCluster())
+				if (const TSharedPtr<PCGExCluster::FCluster>& CachedCluster = ClusterEdgesData->GetBoundCluster())
 				{
 					// Cheap validation -- if there are artifact use SanitizeCluster node, it's still incredibly cheaper.
 					if (CachedCluster->IsValidWith(VtxIO, EdgeIO))

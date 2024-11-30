@@ -10,8 +10,8 @@
 #include "Data/PCGExDataFilter.h"
 #include "PCGExMetaCleanup.generated.h"
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExMetaCleanupSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExMetaCleanupSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -28,25 +28,22 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** List of attributes to delete. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ShowOnlyInnerProperties))
 	FPCGExCarryOverDetails Filters;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExMetaCleanupContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExMetaCleanupContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExMetaCleanupElement;
 
 	FPCGExCarryOverDetails Filters;
-
-	virtual ~FPCGExMetaCleanupContext() override;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExMetaCleanupElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExMetaCleanupElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(

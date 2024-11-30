@@ -16,16 +16,16 @@ namespace PCGExProbing
 	struct FCandidate;
 }
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Mean Measure"))
+UENUM()
 enum class EPCGExProbeTargetMode : uint8
 {
-	Target UMETA(DisplayName = "Target", ToolTip="Target index is used as-is to create a connection"),
-	OneWayOffset UMETA(DisplayName = "One-way Offset", ToolTip="Target index is used as an offset value from the current point' index"),
-	TwoWayOffset UMETA(DisplayName = "Two-way Offset", ToolTip="Target index is used as both a positive and negative offset value from the current point' index"),
+	Target       = 0 UMETA(DisplayName = "Target", ToolTip="Target index is used as-is to create a connection"),
+	OneWayOffset = 1 UMETA(DisplayName = "One-way Offset", ToolTip="Target index is used as an offset value from the current point' index"),
+	TwoWayOffset = 2 UMETA(DisplayName = "Two-way Offset", ToolTip="Target index is used as both a positive and negative offset value from the current point' index"),
 };
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExProbeConfigIndex : public FPCGExProbeConfigBase
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExProbeConfigIndex : public FPCGExProbeConfigBase
 {
 	GENERATED_BODY()
 
@@ -41,30 +41,42 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExProbeConfigIndex : public FPCGExProbeConfigB
 	EPCGExIndexSafety IndexSafety = EPCGExIndexSafety::Ignore;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	EPCGExFetchType TargetIndex = EPCGExFetchType::Constant;
+	EPCGExInputValueType IndexInput = EPCGExInputValueType::Constant;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ClampMin=0, EditCondition="TargetIndex==EPCGExFetchType::Constant", EditConditionHides))
-	int32 TargetConstant = 1;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Index", ClampMin=0, EditCondition="IndexInput==EPCGExInputValueType::Constant", EditConditionHides))
+	int32 IndexConstant = 1;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="TargetIndex==EPCGExFetchType::Attribute", EditConditionHides))
-	FPCGAttributePropertyInputSelector TargetAttribute;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Index", EditCondition="IndexInput==EPCGExInputValueType::Attribute", EditConditionHides))
+	FPCGAttributePropertyInputSelector IndexAttribute;
 };
 
 /**
  * 
  */
-UCLASS(DisplayName = "Index")
-class PCGEXTENDEDTOOLKIT_API UPCGExProbeIndex : public UPCGExProbeOperation
+UCLASS(MinimalAPI, DisplayName = "Index")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExProbeIndex : public UPCGExProbeOperation
 {
 	GENERATED_BODY()
 
 public:
 	virtual bool RequiresDirectProcessing() override;
-	virtual bool PrepareForPoints(const PCGExData::FPointIO* InPointIO) override;
-	virtual void ProcessNode(const int32 Index, const FPCGPoint& Point, TSet<uint64>* Stacks, const FVector& ST, TSet<uint64>* OutEdges) override;
+	virtual bool PrepareForPoints(const TSharedPtr<PCGExData::FPointIO>& InPointIO) override;
+	FORCEINLINE virtual void ProcessNode(const int32 Index, const FPCGPoint& Point, TSet<FInt32Vector>* Coincidence, const FVector& ST, TSet<uint64>* OutEdges) override
+	{
+		TryCreateEdge(Index, OutEdges);
+	}
+
+	virtual void Cleanup() override
+	{
+		TargetCache.Reset();
+		Super::Cleanup();
+	}
 
 	FPCGExProbeConfigIndex Config;
-	PCGExData::FCache<int32>* TargetCache;
+	TSharedPtr<PCGExData::TBuffer<int32>> TargetCache;
+
+	using TryCreateEdgeCallback = std::function<void(const int32, TSet<uint64>*)>;
+	TryCreateEdgeCallback TryCreateEdge;
 
 protected:
 	int32 MaxIndex = -1;
@@ -72,18 +84,18 @@ protected:
 
 ////
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExProbeFactoryIndex : public UPCGExProbeFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExProbeFactoryIndex : public UPCGExProbeFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExProbeConfigIndex Config;
-	virtual UPCGExProbeOperation* CreateOperation() const override;
+	virtual UPCGExProbeOperation* CreateOperation(FPCGExContext* InContext) const override;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
-class PCGEXTENDEDTOOLKIT_API UPCGExProbeIndexProviderSettings : public UPCGExProbeFactoryProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExProbeIndexProviderSettings : public UPCGExProbeFactoryProviderSettings
 {
 	GENERATED_BODY()
 

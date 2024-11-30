@@ -9,13 +9,9 @@
 #include "Data/Blending/PCGExDataBlendingOperations.h"
 #include "Data/Blending/PCGExDataBlending.h"
 
+
 namespace PCGExDataBlending
 {
-	FMetadataBlender::~FMetadataBlender()
-	{
-		Cleanup();
-	}
-
 	FMetadataBlender::FMetadataBlender(const FPCGExBlendingDetails* InBlendingDetails)
 	{
 		BlendingDetails = InBlendingDetails;
@@ -27,29 +23,31 @@ namespace PCGExDataBlending
 	}
 
 	void FMetadataBlender::PrepareForData(
-		PCGExData::FFacade* InPrimaryFacade,
+		const TSharedRef<PCGExData::FFacade>& InPrimaryFacade,
 		const PCGExData::ESource SecondarySource,
 		const bool bInitFirstOperation,
-		const TSet<FName>* IgnoreAttributeSet)
+		const TSet<FName>* IgnoreAttributeSet,
+		const bool bSoftMode)
 	{
-		InternalPrepareForData(InPrimaryFacade, InPrimaryFacade, SecondarySource, bInitFirstOperation, IgnoreAttributeSet);
+		InternalPrepareForData(InPrimaryFacade, InPrimaryFacade, SecondarySource, bInitFirstOperation, IgnoreAttributeSet, bSoftMode);
 	}
 
 	void FMetadataBlender::PrepareForData(
-		PCGExData::FFacade* InPrimaryFacade,
-		PCGExData::FFacade* InSecondaryFacade,
+		const TSharedRef<PCGExData::FFacade>& InPrimaryFacade,
+		const TSharedRef<PCGExData::FFacade>& InSecondaryFacade,
 		const PCGExData::ESource SecondarySource,
 		const bool bInitFirstOperation,
-		const TSet<FName>* IgnoreAttributeSet)
+		const TSet<FName>* IgnoreAttributeSet,
+		const bool bSoftMode)
 	{
-		InternalPrepareForData(InPrimaryFacade, InSecondaryFacade, SecondarySource, bInitFirstOperation, IgnoreAttributeSet);
+		InternalPrepareForData(InPrimaryFacade, InSecondaryFacade, SecondarySource, bInitFirstOperation, IgnoreAttributeSet, bSoftMode);
 	}
 
 	void FMetadataBlender::PrepareRangeForBlending(
 		const int32 StartIndex,
 		const int32 Range) const
 	{
-		for (const FDataBlendingOperationBase* Op : OperationsToBePrepared) { Op->PrepareRangeOperation(StartIndex, Range); }
+		for (const TSharedPtr<FDataBlendingOperationBase>& Op : Operations) { Op->PrepareRangeOperation(StartIndex, Range); }
 
 		if (bSkipProperties) { return; }
 
@@ -67,8 +65,8 @@ namespace PCGExDataBlending
 		const int32 PrimaryIndex = A.Index;
 		const int32 SecondaryIndex = B.Index;
 
-		const bool IsFirstOperation = FirstPointOperation[PrimaryIndex];
-		for (const FDataBlendingOperationBase* Op : Operations) { Op->DoRangeOperation(PrimaryIndex, SecondaryIndex, StartIndex, Weights, IsFirstOperation); }
+		const int8 IsFirstOperation = FirstPointOperation[PrimaryIndex];
+		for (const TSharedPtr<FDataBlendingOperationBase>& Op : Operations) { Op->DoRangeOperation(PrimaryIndex, SecondaryIndex, StartIndex, Weights, IsFirstOperation); }
 		FirstPointOperation[PrimaryIndex] = false;
 
 		if (bSkipProperties) { return; }
@@ -83,7 +81,7 @@ namespace PCGExDataBlending
 		const TArrayView<const int32>& Counts,
 		const TArrayView<double>& TotalWeights) const
 	{
-		for (const FDataBlendingOperationBase* Op : OperationsToBePrepared) { Op->FinalizeRangeOperation(StartIndex, Counts, TotalWeights); }
+		for (const TSharedPtr<FDataBlendingOperationBase>& Op : Operations) { Op->CompleteRangeOperation(StartIndex, Counts, TotalWeights); }
 
 		if (bSkipProperties) { return; }
 
@@ -105,16 +103,10 @@ namespace PCGExDataBlending
 		const int32 PrimaryIndex = From.Index;
 		const int32 SecondaryIndex = To.Index;
 
-		const bool IsFirstOperation = FirstPointOperation[PrimaryIndex];
+		const int8 IsFirstOperation = FirstPointOperation[PrimaryIndex];
 
-		for (const FDataBlendingOperationBase* Op : OperationsToBePrepared)
-		{
-			Op->PrepareRangeOperation(StartIndex, Range);
-			Op->DoRangeOperation(PrimaryIndex, SecondaryIndex, StartIndex, Weights, IsFirstOperation);
-			Op->FinalizeRangeOperation(StartIndex, Counts, Weights);
-		}
-
-		FirstPointOperation[PrimaryIndex] = false;
+		for (const TSharedPtr<FDataBlendingOperationBase>& Op : Operations) { Op->DoRangeOperation(PrimaryIndex, SecondaryIndex, StartIndex, Weights, IsFirstOperation); }
+		for (int i = 0; i < Weights.Num(); i++) { FirstPointOperation[StartIndex + i] = false; }
 
 		if (bSkipProperties) { return; }
 
@@ -127,42 +119,33 @@ namespace PCGExDataBlending
 		FirstPointOperation.Empty();
 		OperationIdMap.Empty();
 
-		PCGEX_DELETE(PropertiesBlender)
-
-		PCGEX_DELETE_TARRAY(Operations)
-
-		OperationsToBePrepared.Empty();
-		OperationsToBeCompleted.Empty();
-
 		PrimaryPoints = nullptr;
 		SecondaryPoints = nullptr;
 	}
 
 	void FMetadataBlender::InternalPrepareForData(
-		PCGExData::FFacade* InPrimaryFacade,
-		PCGExData::FFacade* InSecondaryFacade,
+		const TSharedPtr<PCGExData::FFacade>& InPrimaryFacade,
+		const TSharedPtr<PCGExData::FFacade>& InSecondaryFacade,
 		const PCGExData::ESource SecondarySource,
 		const bool bInitFirstOperation,
-		const TSet<FName>* IgnoreAttributeSet)
+		const TSet<FName>* IgnoreAttributeSet,
+		const bool bSoftMode)
 	{
 		Cleanup();
 
 		bSkipProperties = !bBlendProperties;
 		if (!bSkipProperties)
 		{
-			PropertiesBlender = new FPropertiesBlender(BlendingDetails->GetPropertiesBlendingDetails());
+			PropertiesBlender = MakeUnique<FPropertiesBlender>(BlendingDetails->GetPropertiesBlendingDetails());
 			if (PropertiesBlender->bHasNoBlending)
 			{
 				bSkipProperties = true;
-				PCGEX_DELETE(PropertiesBlender)
+				PropertiesBlender.Reset();
 			}
 		}
 
-		InPrimaryFacade->Source->CreateOutKeys();
-		InSecondaryFacade->Source->CreateKeys(SecondarySource);
-
 		PrimaryPoints = &InPrimaryFacade->Source->GetOut()->GetMutablePoints();
-		SecondaryPoints = const_cast<TArray<FPCGPoint>*>(&InSecondaryFacade->Source->GetData(SecondarySource)->GetPoints());
+		SecondaryPoints = &InSecondaryFacade->Source->GetData(SecondarySource)->GetPoints();
 
 		TArray<PCGEx::FAttributeIdentity> Identities;
 		PCGEx::FAttributeIdentity::Get(InPrimaryFacade->Source->GetOut()->Metadata, Identities);
@@ -207,8 +190,6 @@ namespace PCGExDataBlending
 		}
 
 		Operations.Empty(Identities.Num());
-		OperationsToBeCompleted.Empty(Identities.Num());
-		OperationsToBePrepared.Empty(Identities.Num());
 
 		for (const PCGEx::FAttributeIdentity& Identity : Identities)
 		{
@@ -216,24 +197,19 @@ namespace PCGExDataBlending
 
 			const EPCGExDataBlendingType* TypePtr = BlendingDetails->AttributesOverrides.Find(Identity.Name);
 
-			FDataBlendingOperationBase* Op;
+			TSharedPtr<FDataBlendingOperationBase> Op;
 			if (PCGEx::IsPCGExAttribute(Identity.Name)) { Op = CreateOperation(EPCGExDataBlendingType::Copy, Identity); }
-			else { Op = CreateOperation(TypePtr ? *TypePtr : BlendingDetails->DefaultBlending, Identity); }
+			else { Op = CreateOperation(TypePtr, BlendingDetails->DefaultBlending, Identity); }
 
 			if (!Op) { continue; }
 
-			OperationIdMap.Add(Identity.Name, Op);
-
+			OperationIdMap.Add(Identity.Name, Op.Get());
 			Operations.Add(Op);
-			if (Op->GetRequiresPreparation()) { OperationsToBePrepared.Add(Op); }
-			if (Op->GetRequiresFinalization()) { OperationsToBeCompleted.Add(Op); }
 
-			Op->PrepareForData(InPrimaryFacade, InSecondaryFacade, SecondarySource);
+			if (bSoftMode) { Op->SoftPrepareForData(InPrimaryFacade, InSecondaryFacade, SecondarySource); }
+			else { Op->PrepareForData(InPrimaryFacade, InSecondaryFacade, SecondarySource); }
 		}
 
-		FirstPointOperation.SetNum(PrimaryPoints->Num());
-
-		if (bInitFirstOperation) { for (bool& bFirstOp : FirstPointOperation) { bFirstOp = true; } }
-		else { for (bool& bFirstOp : FirstPointOperation) { bFirstOp = false; } }
+		FirstPointOperation.Init(bInitFirstOperation, PrimaryPoints->Num());
 	}
 }

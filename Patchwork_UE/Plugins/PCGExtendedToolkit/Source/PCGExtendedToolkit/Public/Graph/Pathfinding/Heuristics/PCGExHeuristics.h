@@ -7,42 +7,39 @@
 #include "PCGExHeuristicFeedback.h"
 #include "PCGExHeuristicsFactoryProvider.h"
 
+
 #include "Graph/Pathfinding/PCGExPathfinding.h"
 
 #include "PCGExHeuristics.generated.h"
 
-class UPCGExHeuristicFeedback;
-
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Heuristic Score Mode"))
+UENUM()
 enum class EPCGExHeuristicScoreMode : uint8
 {
-	LowerIsBetter UMETA(DisplayName = "Lower is Better", Tooltip="Lower values are considered more desirable."),
-	HigherIsBetter UMETA(DisplayName = "Higher is Better", Tooltip="Higher values are considered more desirable."),
+	LowerIsBetter  = 0 UMETA(DisplayName = "Lower is Better", Tooltip="Lower values are considered more desirable."),
+	HigherIsBetter = 1 UMETA(DisplayName = "Higher is Better", Tooltip="Higher values are considered more desirable."),
 };
 
 namespace PCGExHeuristics
 {
-	struct PCGEXTENDEDTOOLKIT_API FLocalFeedbackHandler
+	class /*PCGEXTENDEDTOOLKIT_API*/ FLocalFeedbackHandler : public TSharedFromThis<FLocalFeedbackHandler>
 	{
-		PCGExData::FFacade* VtxDataFacade = nullptr;
-		PCGExData::FFacade* EdgeDataFacade = nullptr;
+	public:
+		FPCGExContext* ExecutionContext = nullptr;
+
+		TSharedPtr<PCGExData::FFacade> VtxDataFacade;
+		TSharedPtr<PCGExData::FFacade> EdgeDataFacade;
 
 		TArray<UPCGExHeuristicFeedback*> Feedbacks;
-		double TotalWeight = 0;
+		double TotalStaticWeight = 0;
 
-		FLocalFeedbackHandler()
+		explicit FLocalFeedbackHandler(FPCGExContext* InContext):
+			ExecutionContext(InContext)
 		{
 		}
 
 		~FLocalFeedbackHandler()
 		{
-			for (UPCGExHeuristicFeedback* Feedback : Feedbacks)
-			{
-				Feedback->Cleanup();
-				PCGEX_DELETE_OPERATION(Feedback)
-			}
-
-			Feedbacks.Empty();
+			for (UPCGExHeuristicFeedback* Feedback : Feedbacks) { ExecutionContext->ManagedObjects->Destroy(Feedback); }
 		}
 
 		FORCEINLINE double GetGlobalScore(
@@ -58,12 +55,13 @@ namespace PCGExHeuristics
 		FORCEINLINE double GetEdgeScore(
 			const PCGExCluster::FNode& From,
 			const PCGExCluster::FNode& To,
-			const PCGExGraph::FIndexedEdge& Edge,
+			const PCGExGraph::FEdge& Edge,
 			const PCGExCluster::FNode& Seed,
-			const PCGExCluster::FNode& Goal) const
+			const PCGExCluster::FNode& Goal,
+			const TSharedPtr<PCGEx::FHashLookup> TravelStack = nullptr) const
 		{
 			double EScore = 0;
-			for (const UPCGExHeuristicFeedback* Feedback : Feedbacks) { EScore += Feedback->GetEdgeScore(From, To, Edge, Seed, Goal); }
+			for (const UPCGExHeuristicFeedback* Feedback : Feedbacks) { EScore += Feedback->GetEdgeScore(From, To, Edge, Seed, Goal, TravelStack); }
 			return EScore;
 		}
 
@@ -72,37 +70,44 @@ namespace PCGExHeuristics
 			for (UPCGExHeuristicFeedback* Feedback : Feedbacks) { Feedback->FeedbackPointScore(Node); }
 		}
 
-		FORCEINLINE void FeedbackScore(const PCGExCluster::FNode& Node, const PCGExGraph::FIndexedEdge& Edge)
+		FORCEINLINE void FeedbackScore(const PCGExCluster::FNode& Node, const PCGExGraph::FEdge& Edge)
 		{
 			for (UPCGExHeuristicFeedback* Feedback : Feedbacks) { Feedback->FeedbackScore(Node, Edge); }
 		}
 	};
 
-	class PCGEXTENDEDTOOLKIT_API THeuristicsHandler
+	class /*PCGEXTENDEDTOOLKIT_API*/ FHeuristicsHandler : public TSharedFromThis<FHeuristicsHandler>
 	{
+		FPCGExContext* ExecutionContext = nullptr;
+		bool bIsValidHandler = false;
+
 	public:
-		PCGExData::FFacade* VtxDataFacade = nullptr;
-		PCGExData::FFacade* EdgeDataFacade = nullptr;
+		mutable FRWLock HandlerLock;
+		TSharedPtr<PCGExData::FFacade> VtxDataFacade;
+		TSharedPtr<PCGExData::FFacade> EdgeDataFacade;
 
 		TArray<UPCGExHeuristicOperation*> Operations;
 		TArray<UPCGExHeuristicFeedback*> Feedbacks;
-		TArray<const UPCGExHeuristicsFactoryBase*> LocalFeedbackFactories;
+		TArray<TObjectPtr<const UPCGExHeuristicsFactoryBase>> LocalFeedbackFactories;
 
-		PCGExCluster::FCluster* CurrentCluster = nullptr;
+		TSharedPtr<PCGExCluster::FCluster> Cluster;
 
 		double ReferenceWeight = 1;
 		double TotalStaticWeight = 0;
 		bool bUseDynamicWeight = false;
 
+		bool IsValidHandler() const { return bIsValidHandler; }
 		bool HasGlobalFeedback() const { return !Feedbacks.IsEmpty(); };
+		bool HasLocalFeedback() const { return !LocalFeedbackFactories.IsEmpty(); };
+		bool HasAnyFeedback() const { return HasGlobalFeedback() || HasLocalFeedback(); };
 
-		explicit THeuristicsHandler(FPCGContext* InContext, PCGExData::FFacade* InVtxDataFacade, PCGExData::FFacade* InEdgeDataFacade);
-		explicit THeuristicsHandler(FPCGContext* InContext, PCGExData::FFacade* InVtxDataCache, PCGExData::FFacade* InEdgeDataCache, const TArray<UPCGExHeuristicsFactoryBase*>& InFactories);
-		~THeuristicsHandler();
+		FHeuristicsHandler(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade>& InVtxDataCache, const TSharedPtr<PCGExData::FFacade>& InEdgeDataCache, const TArray<TObjectPtr<const UPCGExHeuristicsFactoryBase>>& InFactories);
+		~FHeuristicsHandler();
 
-		void BuildFrom(FPCGContext* InContext, const TArray<UPCGExHeuristicsFactoryBase*>& InFactories);
-		void PrepareForCluster(PCGExCluster::FCluster* InCluster);
+		bool BuildFrom(FPCGExContext* InContext, const TArray<TObjectPtr<const UPCGExHeuristicsFactoryBase>>& InFactories);
+		void PrepareForCluster(const TSharedPtr<PCGExCluster::FCluster>& InCluster);
 		void CompleteClusterPreparation();
+
 
 		FORCEINLINE double GetGlobalScore(
 			const PCGExCluster::FNode& From,
@@ -110,38 +115,58 @@ namespace PCGExHeuristics
 			const PCGExCluster::FNode& Goal,
 			const FLocalFeedbackHandler* LocalFeedback = nullptr) const
 		{
-			//TODO : Account for custom weight here
 			double GScore = 0;
+			double EWeight = TotalStaticWeight;
+
 			for (const UPCGExHeuristicOperation* Op : Operations) { GScore += Op->GetGlobalScore(From, Seed, Goal); }
-			if (LocalFeedback) { return (GScore + LocalFeedback->GetGlobalScore(From, Seed, Goal)) / (TotalStaticWeight + LocalFeedback->TotalWeight); }
-			return GScore / TotalStaticWeight;
+			if (LocalFeedback)
+			{
+				GScore += LocalFeedback->GetGlobalScore(From, Seed, Goal);
+				EWeight += LocalFeedback->TotalStaticWeight;
+			}
+			return GScore / EWeight;
 		}
 
 		FORCEINLINE double GetEdgeScore(
 			const PCGExCluster::FNode& From,
 			const PCGExCluster::FNode& To,
-			const PCGExGraph::FIndexedEdge& Edge,
+			const PCGExGraph::FEdge& Edge,
 			const PCGExCluster::FNode& Seed,
 			const PCGExCluster::FNode& Goal,
-			const FLocalFeedbackHandler* LocalFeedback = nullptr) const
+			const FLocalFeedbackHandler* LocalFeedback = nullptr,
+			const TSharedPtr<PCGEx::FHashLookup> TravelStack = nullptr) const
 		{
-			//TODO : Account for custom weight here
 			double EScore = 0;
+			double EWeight = TotalStaticWeight;
+
 			if (!bUseDynamicWeight)
 			{
-				for (const UPCGExHeuristicOperation* Op : Operations) { EScore += Op->GetEdgeScore(From, To, Edge, Seed, Goal); }
-				if (LocalFeedback) { return (EScore + LocalFeedback->GetEdgeScore(From, To, Edge, Seed, Goal)) / (TotalStaticWeight + LocalFeedback->TotalWeight); }
-				return EScore / TotalStaticWeight;
+				for (const UPCGExHeuristicOperation* Op : Operations) { EScore += Op->GetEdgeScore(From, To, Edge, Seed, Goal, TravelStack); }
+
+				if (LocalFeedback)
+				{
+					EScore += LocalFeedback->GetEdgeScore(From, To, Edge, Seed, Goal, TravelStack);
+					EWeight += LocalFeedback->TotalStaticWeight;
+				}
+
+				return EScore / EWeight;
 			}
 
-			double DynamicWeight = 0;
+			EWeight = 0;
+
 			for (const UPCGExHeuristicOperation* Op : Operations)
 			{
-				EScore += Op->GetEdgeScore(From, To, Edge, Seed, Goal);
-				DynamicWeight += (Op->WeightFactor * Op->GetCustomWeightMultiplier(To.NodeIndex, Edge.PointIndex));
+				EScore += Op->GetEdgeScore(From, To, Edge, Seed, Goal, TravelStack);
+				EWeight += (Op->WeightFactor * Op->GetCustomWeightMultiplier(To.Index, Edge.PointIndex));
 			}
-			if (LocalFeedback) { return (EScore + LocalFeedback->GetEdgeScore(From, To, Edge, Seed, Goal)) / (DynamicWeight + LocalFeedback->TotalWeight); }
-			return EScore / DynamicWeight;
+
+			if (LocalFeedback)
+			{
+				EScore += LocalFeedback->GetEdgeScore(From, To, Edge, Seed, Goal, TravelStack);
+				//EWeight += LocalFeedback->TotalStaticWeight;
+			}
+
+			return EScore / EWeight;
 		}
 
 		FORCEINLINE void FeedbackPointScore(const PCGExCluster::FNode& Node)
@@ -149,11 +174,28 @@ namespace PCGExHeuristics
 			for (UPCGExHeuristicFeedback* Op : Feedbacks) { Op->FeedbackPointScore(Node); }
 		}
 
-		FORCEINLINE void FeedbackScore(const PCGExCluster::FNode& Node, const PCGExGraph::FIndexedEdge& Edge)
+		FORCEINLINE void FeedbackScore(const PCGExCluster::FNode& Node, const PCGExGraph::FEdge& Edge)
 		{
 			for (UPCGExHeuristicFeedback* Op : Feedbacks) { Op->FeedbackScore(Node, Edge); }
 		}
 
-		FLocalFeedbackHandler* MakeLocalFeedbackHandler(const PCGExCluster::FCluster* InCluster);
+		FORCEINLINE FVector GetSeedUVW() const
+		{
+			FVector UVW = FVector::ZeroVector;
+			for (const UPCGExHeuristicOperation* Op : Operations) { UVW += Op->GetSeedUVW(); }
+			return UVW;
+		}
+
+		FORCEINLINE FVector GetGoalUVW() const
+		{
+			FVector UVW = FVector::ZeroVector;
+			for (const UPCGExHeuristicOperation* Op : Operations) { UVW += Op->GetGoalUVW(); }
+			return UVW;
+		}
+
+		FORCEINLINE const PCGExCluster::FNode* GetRoamingSeed() const { return Cluster->GetRoamingNode(GetSeedUVW()); }
+		FORCEINLINE const PCGExCluster::FNode* GetRoamingGoal() const { return Cluster->GetRoamingNode(GetGoalUVW()); }
+
+		TSharedPtr<FLocalFeedbackHandler> MakeLocalFeedbackHandler(const TSharedPtr<const PCGExCluster::FCluster>& InCluster);
 	};
 }

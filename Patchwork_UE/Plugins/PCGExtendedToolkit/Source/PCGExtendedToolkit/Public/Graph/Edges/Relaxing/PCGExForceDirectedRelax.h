@@ -10,15 +10,36 @@
 /**
  * 
  */
-UCLASS(meta=(DisplayName="Force Directed"))
-class PCGEXTENDEDTOOLKIT_API UPCGExForceDirectedRelax : public UPCGExRelaxClusterOperation
+UCLASS(MinimalAPI, meta=(DisplayName="Force Directed"))
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExForceDirectedRelax : public UPCGExRelaxClusterOperation
 {
 	GENERATED_BODY()
 
 public:
-	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
+	virtual void CopySettingsFrom(const UPCGExOperation* Other) override
+	{
+		Super::CopySettingsFrom(Other);
+		if (const UPCGExForceDirectedRelax* TypedOther = Cast<UPCGExForceDirectedRelax>(Other))
+		{
+			SpringConstant = TypedOther->SpringConstant;
+			ElectrostaticConstant = TypedOther->ElectrostaticConstant;
+		}
+	}
 
-	virtual void ProcessExpandedNode(const PCGExCluster::FExpandedNode* ExpandedNode) override;
+	virtual void ProcessExpandedNode(const PCGExCluster::FNode& Node) override
+	{
+		const FVector Position = *(ReadBuffer->GetData() + Node.Index);
+		FVector Force = FVector::Zero();
+
+		for (const PCGExGraph::FLink& Lk : Node.Links)
+		{
+			const FVector OtherPosition = *(ReadBuffer->GetData() + Lk.Node);
+			CalculateAttractiveForce(Force, Position, OtherPosition);
+			CalculateRepulsiveForce(Force, Position, OtherPosition);
+		}
+
+		(*WriteBuffer)[Node.Index] = Position + Force;
+	}
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	double SpringConstant = 0.1;

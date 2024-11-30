@@ -3,24 +3,15 @@
 
 #include "Graph/PCGExSanitizeClusters.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExGraphSettings"
 
 #pragma region UPCGSettings interface
 
-PCGExData::EInit UPCGExSanitizeClustersSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
-PCGExData::EInit UPCGExSanitizeClustersSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExSanitizeClustersSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
+PCGExData::EIOInit UPCGExSanitizeClustersSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 #pragma endregion
-
-FPCGExSanitizeClustersContext::~FPCGExSanitizeClustersContext()
-{
-	PCGEX_TERMINATE_ASYNC
-
-	PCGEX_DELETE_TARRAY(Builders)
-
-	for (TMap<uint32, int32>& Map : EndpointsLookups) { Map.Empty(); }
-	EndpointsLookups.Empty();
-}
 
 PCGEX_INITIALIZE_ELEMENT(SanitizeClusters)
 
@@ -39,96 +30,62 @@ bool FPCGExSanitizeClustersElement::ExecuteInternal(FPCGContext* InContext) cons
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExSanitizeClustersElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(SanitizeClusters)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
-	}
-
-	if (Context->IsState(PCGExMT::State_ReadyForNextPoints))
-	{
-		Context->bBuildEndpointsLookup = false;
-
-		int32 BuildIndex = 0;
-		while (Context->AdvancePointsIO(false))
-		{
-			if (!Context->TaggedEdges) { continue; }
-			Context->EndpointsLookups.Emplace();
-			Context->Builders.Add(nullptr);
-			Context->GetAsyncManager()->Start<FPCGExSanitizeClusterTask>(BuildIndex++, Context->CurrentIO, Context->TaggedEdges);
-		}
-
-		Context->SetAsyncState(PCGExMT::State_WaitingOnAsyncCompletion);
-	}
-
-	if (Context->IsState(PCGExMT::State_WaitingOnAsyncCompletion))
-	{
-		PCGEX_ASYNC_WAIT
-
-		for (PCGExGraph::FGraphBuilder* Builder : Context->Builders) { Builder->CompileAsync(Context->GetAsyncManager()); }
-
-		Context->SetAsyncState(PCGExMT::State_WaitingOnAsyncWork);
-	}
-
-	if (Context->IsState(PCGExMT::State_WaitingOnAsyncWork))
-	{
-		PCGEX_ASYNC_WAIT
-
-		for (const PCGExGraph::FGraphBuilder* Builder : Context->Builders)
-		{
-			if (!Builder) { continue; }
-			if (!Builder->bCompiledSuccessfully)
+		if (!Context->StartProcessingClusters<PCGExSanitizeClusters::FBatch>(
+			[](const TSharedPtr<PCGExData::FPointIOTaggedEntries>& Entries) { return true; },
+			[&](const TSharedPtr<PCGExSanitizeClusters::FBatch>& NewBatch)
 			{
-				Builder->PointIO->InitializeOutput(PCGExData::EInit::NoOutput);
-				continue;
-			}
-			Builder->Write();
+				NewBatch->GraphBuilderDetails = Context->GraphBuilderDetails;
+			}))
+		{
+			return Context->CancelExecution(TEXT("Could not find any clusters."));
 		}
-
-		Context->Done();
-		Context->MainPoints->OutputToContext();
 	}
+
+	PCGEX_CLUSTER_BATCH_PROCESSING(PCGEx::State_Done)
+
+	Context->OutputBatches();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
 
-bool FPCGExSanitizeClusterTask::ExecuteTask()
+namespace PCGExSanitizeClusters
 {
-	FPCGExSanitizeClustersContext* Context = Manager->GetContext<FPCGExSanitizeClustersContext>();
-	PCGEX_SETTINGS(SanitizeClusters)
-
-	Context->Builders[TaskIndex] = new PCGExGraph::FGraphBuilder(PointIO, &Context->GraphBuilderDetails, 6, Context->MainEdges);
-
-	TMap<uint32, int32>& Map = Context->EndpointsLookups[TaskIndex];
-	TArray<int32> Adjacency;
-
-	PCGExGraph::BuildEndpointsLookup(PointIO, Map, Adjacency);
-
-	for (PCGExData::FPointIO* Edges : TaggedEdges->Entries)
+	FProcessor::~FProcessor()
 	{
-		InternalStart<FPCGExSanitizeInsertTask>(TaskIndex, PointIO, Edges);
 	}
 
-	return true;
-}
+	bool FProcessor::Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
+	{
+		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExSanitizeClusters::Process);
 
-bool FPCGExSanitizeInsertTask::ExecuteTask()
-{
-	FPCGExSanitizeClustersContext* Context = Manager->GetContext<FPCGExSanitizeClustersContext>();
-	PCGEX_SETTINGS(SanitizeClusters)
+		if (!FClusterProcessor::Process(InAsyncManager)) { return false; }
 
-	const PCGExGraph::FGraphBuilder* Builder = Context->Builders[TaskIndex];
+		TArray<PCGExGraph::FEdge> IndexedEdges;
 
-	TArray<PCGExGraph::FIndexedEdge> IndexedEdges;
-	EdgeIO->CreateInKeys();
+		BuildIndexedEdges(EdgeDataFacade->Source, *EndpointsLookup, IndexedEdges);
+		if (!IndexedEdges.IsEmpty()) { GraphBuilder->Graph->InsertEdges(IndexedEdges); }
 
-	BuildIndexedEdges(EdgeIO, Context->EndpointsLookups[TaskIndex], IndexedEdges);
-	if (!IndexedEdges.IsEmpty()) { Builder->Graph->InsertEdges(IndexedEdges); }
+		EdgeDataFacade->Source->CleanupKeys();
 
-	EdgeIO->CleanupKeys();
+		return true;
+	}
 
-	return true;
+	void FBatch::CompleteWork()
+	{
+		GraphBuilder->Compile(AsyncManager, true);
+		//TBatchWithGraphBuilder<FProcessor>::CompleteWork();
+	}
+
+	void FBatch::Output()
+	{
+		if (GraphBuilder->bCompiledSuccessfully) { GraphBuilder->StageEdgesOutputs(); }
+		else { GraphBuilder->NodeDataFacade->Source->InitializeOutput(PCGExData::EIOInit::None); }
+		//TBatchWithGraphBuilder<FProcessor>::Output();
+	}
 }
 
 #undef LOCTEXT_NAMESPACE

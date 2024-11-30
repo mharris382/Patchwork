@@ -11,16 +11,30 @@
 
 namespace PCGExDataBlending
 {
-	static TSet<EPCGExDataBlendingType> ResetBlend = {
-		EPCGExDataBlendingType::Average,
-		EPCGExDataBlendingType::Weight,
-		EPCGExDataBlendingType::WeightedSum,
-		EPCGExDataBlendingType::Sum,
+	inline bool ResetBlend[] = {
+		false, //None            
+		true,  //Average         
+		true,  //Weight          
+		false, //Min             
+		false, //Max             
+		false, //Copy            
+		true,  //Sum             
+		true,  //WeightedSum     
+		false, //Lerp            
+		false, //Subtract        
+		false, //UnsignedMin     
+		false, //UnsignedMax     
+		false, //AbsoluteMin     
+		false, //AbsoluteMax     
+		true,  //WeightedSubtract		
+		false, //CopyOther		
 	};
 
-	struct PCGEXTENDEDTOOLKIT_API FPropertiesBlender
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FPropertiesBlender
 	{
-#define PCGEX_BLEND_FUNCREF(_TYPE, _NAME, ...) bool bReset##_NAME = false; EPCGExDataBlendingType _NAME##Blending = EPCGExDataBlendingType::Weight;
+#define PCGEX_BLEND_FUNCREF(_TYPE, _NAME, ...) \
+	bool bReset##_NAME = false; EPCGExDataBlendingType _NAME##Blending = EPCGExDataBlendingType::Weight; \
+	using _NAME##FuncDef = std::function<_TYPE(const _TYPE& O, const _TYPE& A, const _TYPE& B, const double W)>; _NAME##FuncDef _NAME##Func;
 		PCGEX_FOREACH_BLEND_POINTPROPERTY(PCGEX_BLEND_FUNCREF)
 #undef PCGEX_BLEND_FUNCREF
 
@@ -57,7 +71,5 @@ namespace PCGExDataBlending
 		void CompleteRangeBlending(const TArrayView<FPCGPoint>& Targets, const TArrayView<const int32>& Counts, const TArrayView<double>& TotalWeights) const;
 
 		void BlendRangeFromTo(const FPCGPoint& From, const FPCGPoint& To, const TArrayView<FPCGPoint>& Targets, const TArrayView<double>& Weights) const;
-
-		void CopyBlendedProperties(FPCGPoint& Target, const FPCGPoint& Source) const;
 	};
 }

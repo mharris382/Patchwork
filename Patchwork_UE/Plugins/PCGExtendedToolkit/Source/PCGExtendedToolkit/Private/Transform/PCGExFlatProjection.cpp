@@ -3,17 +3,13 @@
 
 #include "Transform/PCGExFlatProjection.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExFlatProjectionElement"
 #define PCGEX_NAMESPACE FlatProjection
 
-PCGExData::EInit UPCGExFlatProjectionSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExFlatProjectionSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 PCGEX_INITIALIZE_ELEMENT(FlatProjection)
-
-FPCGExFlatProjectionContext::~FPCGExFlatProjectionContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExFlatProjectionElement::Boot(FPCGExContext* InContext) const
 {
@@ -35,15 +31,13 @@ bool FPCGExFlatProjectionElement::ExecuteInternal(FPCGContext* InContext) const
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExFlatProjectionElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(FlatProjection)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
 		bool bHasInvalidEntries = false;
 
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExFlatProjection::FProcessor>>(
-			[&](PCGExData::FPointIO* Entry)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry)
 			{
 				if (Settings->bRestorePreviousProjection)
 				{
@@ -55,13 +49,11 @@ bool FPCGExFlatProjectionElement::ExecuteInternal(FPCGContext* InContext) const
 				}
 				return true;
 			},
-			[&](PCGExPointsMT::TBatch<PCGExFlatProjection::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExFlatProjection::FProcessor>>& NewBatch)
 			{
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Error, GraphAndLog, FTEXT("Could not find any points to process."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not find any points to process."));
 		}
 
 		if (bHasInvalidEntries)
@@ -70,23 +62,22 @@ bool FPCGExFlatProjectionElement::ExecuteInternal(FPCGContext* InContext) const
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
 
 namespace PCGExFlatProjection
 {
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExFlatProjection::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(FlatProjection)
 
-		// TODO : Add Scoped Fetch
+		PointDataFacade->bSupportsScopedGet = Context->bScopedAttributeGet;
 
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
 		bWriteAttribute = Settings->bSaveAttributeForRestore;
 		bInverseExistingProjection = Settings->bRestorePreviousProjection;
@@ -94,13 +85,13 @@ namespace PCGExFlatProjection
 
 		if (bInverseExistingProjection)
 		{
-			TransformReader = PointDataFacade->GetScopedReader<FTransform>(TypedContext->CachedTransformAttributeName);
+			TransformReader = PointDataFacade->GetScopedReadable<FTransform>(Context->CachedTransformAttributeName);
 		}
 		else if (bWriteAttribute)
 		{
 			ProjectionDetails = Settings->ProjectionDetails;
-			ProjectionDetails.Init(Context, PointDataFacade);
-			TransformWriter = PointDataFacade->GetWriter<FTransform>(TypedContext->CachedTransformAttributeName, true);
+			ProjectionDetails.Init(ExecutionContext, PointDataFacade);
+			TransformWriter = PointDataFacade->GetWritable<FTransform>(Context->CachedTransformAttributeName, PCGExData::EBufferInit::New);
 		}
 
 		StartParallelLoopForPoints();
@@ -108,15 +99,20 @@ namespace PCGExFlatProjection
 		return true;
 	}
 
+	void FProcessor::PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count)
+	{
+		PointDataFacade->Fetch(StartIndex, Count);
+	}
+
 	void FProcessor::ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count)
 	{
 		if (bInverseExistingProjection)
 		{
-			Point.Transform = TransformReader->Values[Index];
+			Point.Transform = TransformReader->Read(Index);
 		}
 		else if (bWriteAttribute)
 		{
-			TransformWriter->Values[Index] = Point.Transform;
+			TransformWriter->GetMutable(Index) = Point.Transform;
 
 			if (bProjectLocalTransform)
 			{
@@ -131,15 +127,13 @@ namespace PCGExFlatProjection
 
 	void FProcessor::CompleteWork()
 	{
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(FlatProjection)
 		if (bInverseExistingProjection)
 		{
-			UPCGMetadata* Metadata = PointIO->GetOut()->Metadata;
-			Metadata->DeleteAttribute(TypedContext->CachedTransformAttributeName);
+			PointDataFacade->Source->DeleteAttribute(Context->CachedTransformAttributeName);
 		}
 		else if (bWriteAttribute)
 		{
-			PointDataFacade->Write(AsyncManagerPtr, true);
+			PointDataFacade->Write(AsyncManager);
 		}
 	}
 }

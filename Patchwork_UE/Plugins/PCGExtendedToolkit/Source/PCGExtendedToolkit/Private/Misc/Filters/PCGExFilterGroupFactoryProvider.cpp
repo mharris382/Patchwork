@@ -28,17 +28,17 @@ UPCGExParamFactoryBase* UPCGExFilterGroupProviderSettings::CreateFactory(FPCGExC
 {
 	UPCGExFilterGroupFactoryBase* NewFactory;
 
-	if (Mode == EPCGExFilterGroupMode::AND) { NewFactory = NewObject<UPCGExFilterGroupFactoryBaseAND>(); }
-	else { NewFactory = NewObject<UPCGExFilterGroupFactoryBaseOR>(); }
+	if (Mode == EPCGExFilterGroupMode::AND) { NewFactory = InContext->ManagedObjects->New<UPCGExFilterGroupFactoryBaseAND>(); }
+	else { NewFactory = InContext->ManagedObjects->New<UPCGExFilterGroupFactoryBaseOR>(); }
 
 	NewFactory->Priority = Priority;
-	NewFactory->FilterFactories;
+	NewFactory->bInvert = bInvert;
 
 	if (!GetInputFactories(
 		InContext, PCGExPointFilter::SourceFiltersLabel, NewFactory->FilterFactories,
 		PCGExFactories::AnyFilters, true))
 	{
-		PCGEX_DELETE_UOBJECT(NewFactory)
+		InContext->ManagedObjects->Destroy(NewFactory);
 	}
 
 	return NewFactory;

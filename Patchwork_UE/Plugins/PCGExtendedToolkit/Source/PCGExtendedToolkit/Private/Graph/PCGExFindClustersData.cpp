@@ -10,7 +10,11 @@
 TArray<FPCGPinProperties> UPCGExFindClustersDataSettings::InputPinProperties() const
 {
 	TArray<FPCGPinProperties> PinProperties;
-	PCGEX_PIN_ANY(GetMainInputLabel(), "The point data to be processed.", Required, {})
+	PCGEX_PIN_ANY(GetMainInputPin(), "The point data to be processed.", Required, {})
+	if (SearchMode != EPCGExClusterDataSearchMode::All)
+	{
+		PCGEX_PIN_POINT(GetSearchOutputPin(), "The search data to match against.", Required, {})
+	}
 	return PinProperties;
 }
 
@@ -21,16 +25,9 @@ TArray<FPCGPinProperties> UPCGExFindClustersDataSettings::OutputPinProperties() 
 	return PinProperties;
 }
 
-PCGExData::EInit UPCGExFindClustersDataSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExFindClustersDataSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 PCGEX_INITIALIZE_ELEMENT(FindClustersData)
-
-FPCGExFindClustersDataContext::~FPCGExFindClustersDataContext()
-{
-	PCGEX_TERMINATE_ASYNC
-
-	PCGEX_DELETE(MainEdges)
-}
 
 bool FPCGExFindClustersDataElement::Boot(FPCGExContext* InContext) const
 {
@@ -38,8 +35,38 @@ bool FPCGExFindClustersDataElement::Boot(FPCGExContext* InContext) const
 
 	PCGEX_CONTEXT_AND_SETTINGS(FindClustersData)
 
-	Context->MainEdges = new PCGExData::FPointIOCollection(Context);
-	Context->MainEdges->DefaultOutputLabel = PCGExGraph::OutputEdgesLabel;
+	Context->MainEdges = MakeShared<PCGExData::FPointIOCollection>(Context);
+	Context->MainEdges->OutputPin = PCGExGraph::OutputEdgesLabel;
+
+
+	if (Settings->SearchMode != EPCGExClusterDataSearchMode::All)
+	{
+		Context->SearchKeyIO = PCGExData::TryGetSingleInput(Context, Settings->GetSearchOutputPin(), true);
+		if (!Context->SearchKeyIO)
+		{
+			PCGE_LOG_C(Error, GraphAndLog, InContext, FTEXT("Invalid reference input."));
+			return false;
+		}
+
+		if (Settings->SearchMode == EPCGExClusterDataSearchMode::EdgesFromVtx)
+		{
+			if (!Context->SearchKeyIO->Tags->IsTagged(PCGExGraph::TagStr_PCGExVtx))
+			{
+				PCGE_LOG_C(Error, GraphAndLog, InContext, FTEXT("Invalid reference input (not a Vtx group)."));
+				return false;
+			}
+		}
+		else if (Settings->SearchMode == EPCGExClusterDataSearchMode::VtxFromEdges)
+		{
+			if (!Context->SearchKeyIO->Tags->IsTagged(PCGExGraph::TagStr_PCGExEdges))
+			{
+				PCGE_LOG_C(Error, GraphAndLog, InContext, FTEXT("Invalid reference input. (not an Edges group)"));
+				return false;
+			}
+		}
+
+		Context->SearchKeyIO->Tags->GetValue(PCGExGraph::TagStr_ClusterPair, Context->SearchKey);
+	}
 
 	return true;
 }
@@ -53,18 +80,92 @@ bool FPCGExFindClustersDataElement::ExecuteInternal(FPCGContext* InContext) cons
 
 	if (!Boot(Context)) { return true; }
 
-	PCGExData::FPointIOTaggedDictionary* InputDictionary = new PCGExData::FPointIOTaggedDictionary(PCGExGraph::TagStr_ClusterPair);
+	if (Settings->SearchMode == EPCGExClusterDataSearchMode::EdgesFromVtx)
+	{
+		// We have a single Vtx input, find matching edges
+		FString OtherKey = TEXT("");
+		for (int i = 0; i < Context->MainPoints->Pairs.Num(); i++)
+		{
+			const TSharedPtr<PCGExData::FPointIO> InputIO = Context->MainPoints->Pairs[i];
+			if (!InputIO->Tags->GetValue(PCGExGraph::TagStr_ClusterPair, OtherKey) || OtherKey != Context->SearchKey) { continue; }
+			if (!InputIO->Tags->IsTagged(PCGExGraph::TagStr_PCGExEdges)) { continue; }
 
-	TArray<PCGExData::FPointIO*> TaggedVtx;
-	TArray<PCGExData::FPointIO*> TaggedEdges;
+			// Remove found edges from main points
+			Context->MainPoints->Pairs.RemoveAt(i);
+			i--;
 
-	for (PCGExData::FPointIO* MainIO : Context->MainPoints->Pairs)
+			// Add to main edges & forward
+			Context->MainEdges->AddUnsafe(InputIO);
+			InputIO->InitializeOutput(PCGExData::EIOInit::Forward);
+		}
+
+		if (Context->MainEdges->IsEmpty())
+		{
+			PCGE_LOG_C(Error, GraphAndLog, InContext, FTEXT("Could not find any match."));
+			return true;
+		}
+
+		// Add vtx key to main output & forward
+		Context->MainPoints->AddUnsafe(Context->SearchKeyIO);
+		Context->SearchKeyIO->InitializeOutput(PCGExData::EIOInit::Forward);
+		Context->SearchKeyIO = nullptr;
+
+		Context->MainPoints->StageOutputs();
+		Context->MainEdges->StageOutputs();
+
+		Context->Done();
+
+		return Context->TryComplete();
+	}
+
+	if (Settings->SearchMode == EPCGExClusterDataSearchMode::VtxFromEdges)
+	{
+		// We have a single Edge input, find (first) matching Vtx
+		bool bFoundMatch = false;
+		FString OtherKey = TEXT("");
+		for (int i = 0; i < Context->MainPoints->Pairs.Num(); i++)
+		{
+			const TSharedPtr<PCGExData::FPointIO> InputIO = Context->MainPoints->Pairs[i];
+			if (!InputIO->Tags->GetValue(PCGExGraph::TagStr_ClusterPair, OtherKey) || OtherKey != Context->SearchKey) { continue; }
+			if (!InputIO->Tags->IsTagged(PCGExGraph::TagStr_PCGExVtx)) { continue; }
+
+			// Output vtx
+			InputIO->InitializeOutput(PCGExData::EIOInit::Forward);
+			bFoundMatch = true;
+			break;
+		}
+
+		if (!bFoundMatch)
+		{
+			PCGE_LOG_C(Error, GraphAndLog, InContext, FTEXT("Could not find any match."));
+			return true;
+		}
+
+		// Move edge key to edges output and forward
+		Context->MainEdges->AddUnsafe(Context->SearchKeyIO);
+		Context->SearchKeyIO->InitializeOutput(PCGExData::EIOInit::Forward);
+		Context->SearchKeyIO = nullptr;
+
+		Context->MainPoints->StageOutputs();
+		Context->MainEdges->StageOutputs();
+
+		Context->Done();
+
+		return Context->TryComplete();
+	}
+
+	const TSharedPtr<PCGExData::FPointIOTaggedDictionary> InputDictionary = MakeShared<PCGExData::FPointIOTaggedDictionary>(PCGExGraph::TagStr_ClusterPair);
+
+	TArray<TSharedPtr<PCGExData::FPointIO>> TaggedVtx;
+	TArray<TSharedPtr<PCGExData::FPointIO>> TaggedEdges;
+
+	for (const TSharedPtr<PCGExData::FPointIO>& MainIO : Context->MainPoints->Pairs)
 	{
 		// Vtx ?
 
-		if (MainIO->Tags->RawTags.Contains(PCGExGraph::TagStr_PCGExVtx))
+		if (MainIO->Tags->IsTagged(PCGExGraph::TagStr_PCGExVtx))
 		{
-			if (MainIO->Tags->RawTags.Contains(PCGExGraph::TagStr_PCGExEdges))
+			if (MainIO->Tags->IsTagged(PCGExGraph::TagStr_PCGExEdges))
 			{
 				if (!Settings->bSkipTrivialWarnings) { PCGE_LOG(Warning, GraphAndLog, FTEXT("Uh oh, a data is marked as both Vtx and Edges -- it will be ignored for safety.")); }
 				continue;
@@ -82,9 +183,9 @@ bool FPCGExFindClustersDataElement::ExecuteInternal(FPCGContext* InContext) cons
 
 		// Edge ?
 
-		if (MainIO->Tags->RawTags.Contains(PCGExGraph::TagStr_PCGExEdges))
+		if (MainIO->Tags->IsTagged(PCGExGraph::TagStr_PCGExEdges))
 		{
-			if (MainIO->Tags->RawTags.Contains(PCGExGraph::TagStr_PCGExVtx))
+			if (MainIO->Tags->IsTagged(PCGExGraph::TagStr_PCGExVtx))
 			{
 				if (!Settings->bSkipTrivialWarnings) { PCGE_LOG(Warning, GraphAndLog, FTEXT("Uh oh, a data is marked as both Vtx and Edges -- it will be ignored for safety.")); }
 				continue;
@@ -103,28 +204,28 @@ bool FPCGExFindClustersDataElement::ExecuteInternal(FPCGContext* InContext) cons
 		if (!Settings->bSkipTrivialWarnings) { PCGE_LOG(Warning, GraphAndLog, FTEXT("An input data is neither tagged Vtx or Edges and will be ignored.")); }
 	}
 
-	for (PCGExData::FPointIO* Vtx : TaggedVtx)
+	for (const TSharedPtr<PCGExData::FPointIO>& Vtx : TaggedVtx)
 	{
-		if (!InputDictionary->CreateKey(*Vtx))
+		if (!InputDictionary->CreateKey(Vtx.ToSharedRef()))
 		{
 			if (!Settings->bSkipImportantWarnings) { PCGE_LOG(Warning, GraphAndLog, FTEXT("At least two Vtx inputs share the same PCGEx/Cluster tag. Only one will be processed.")); }
 			Vtx->Disable();
 		}
 	}
 
-	for (PCGExData::FPointIO* Edges : TaggedEdges)
+	for (const TSharedPtr<PCGExData::FPointIO>& Edges : TaggedEdges)
 	{
-		if (!InputDictionary->TryAddEntry(*Edges))
+		if (!InputDictionary->TryAddEntry(Edges.ToSharedRef()))
 		{
 			if (!Settings->bSkipImportantWarnings) { PCGE_LOG(Warning, GraphAndLog, FTEXT("Some input edges have no associated vtx.")); }
 		}
 	}
 
-	for (PCGExData::FPointIO* Vtx : TaggedVtx)
+	for (const TSharedPtr<PCGExData::FPointIO>& Vtx : TaggedVtx)
 	{
 		if (!Vtx->IsEnabled()) { continue; }
 
-		PCGExData::FPointIOTaggedEntries* EdgesEntries;
+		TSharedPtr<PCGExData::FPointIOTaggedEntries> EdgesEntries;
 
 		if (FString CurrentPairId;
 			Vtx->Tags->GetValue(PCGExGraph::TagStr_ClusterPair, CurrentPairId))
@@ -136,16 +237,16 @@ bool FPCGExFindClustersDataElement::ExecuteInternal(FPCGContext* InContext) cons
 
 		if (EdgesEntries)
 		{
-			Vtx->InitializeOutput(PCGExData::EInit::Forward);
-			Vtx->DefaultOutputLabel = PCGExGraph::OutputVerticesLabel;
+			Vtx->InitializeOutput(PCGExData::EIOInit::Forward);
+			Vtx->OutputPin = PCGExGraph::OutputVerticesLabel;
 
-			for (PCGExData::FPointIO* ValidEdges : EdgesEntries->Entries)
+			for (const TSharedRef<PCGExData::FPointIO>& ValidEdges : EdgesEntries->Entries)
 			{
 				Context->MainPoints->Pairs.Remove(ValidEdges);
 				Context->MainEdges->Pairs.Add(ValidEdges);
-				ValidEdges->DefaultOutputLabel = PCGExGraph::OutputEdgesLabel;
+				ValidEdges->OutputPin = PCGExGraph::OutputEdgesLabel;
 
-				ValidEdges->InitializeOutput(PCGExData::EInit::Forward);
+				ValidEdges->InitializeOutput(PCGExData::EIOInit::Forward);
 			}
 		}
 		else
@@ -154,10 +255,8 @@ bool FPCGExFindClustersDataElement::ExecuteInternal(FPCGContext* InContext) cons
 		}
 	}
 
-	PCGEX_DELETE(InputDictionary)
-
-	Context->MainPoints->OutputToContext();
-	Context->MainEdges->OutputToContext();
+	Context->MainPoints->StageOutputs();
+	Context->MainEdges->StageOutputs();
 
 	Context->Done();
 

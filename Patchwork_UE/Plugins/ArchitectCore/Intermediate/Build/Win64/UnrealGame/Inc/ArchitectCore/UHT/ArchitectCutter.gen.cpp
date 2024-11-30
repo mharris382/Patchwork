@@ -143,10 +143,10 @@ struct Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_Archit
 		{ EArchitectCutterMode_StaticEnum, TEXT("EArchitectCutterMode"), &Z_Registration_Info_UEnum_EArchitectCutterMode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1765296782U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AArchitectCutter, AArchitectCutter::StaticClass, TEXT("AArchitectCutter"), &Z_Registration_Info_UClass_AArchitectCutter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AArchitectCutter), 4008446990U) },
+		{ Z_Construct_UClass_AArchitectCutter, AArchitectCutter::StaticClass, TEXT("AArchitectCutter"), &Z_Registration_Info_UClass_AArchitectCutter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AArchitectCutter), 487751384U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_1006315855(TEXT("/Script/ArchitectCore"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_1066539313(TEXT("/Script/ArchitectCore"),
 	Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_Statics::EnumInfo));

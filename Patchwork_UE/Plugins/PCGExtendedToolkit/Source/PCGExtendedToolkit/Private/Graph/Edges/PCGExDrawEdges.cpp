@@ -3,22 +3,14 @@
 
 #include "Graph/Edges/PCGExDrawEdges.h"
 
-#include "Data/Blending/PCGExMetadataBlender.h"
-
-
 #define LOCTEXT_NAMESPACE "PCGExEdgesToPaths"
 #define PCGEX_NAMESPACE DrawEdges
 
-PCGExData::EInit UPCGExDrawEdgesSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NoOutput; }
-PCGExData::EInit UPCGExDrawEdgesSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExDrawEdgesSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::None; }
+PCGExData::EIOInit UPCGExDrawEdgesSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 
 PCGEX_INITIALIZE_ELEMENT(DrawEdges)
-
-FPCGExDrawEdgesContext::~FPCGExDrawEdgesContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExDrawEdgesElement::Boot(FPCGExContext* InContext) const
 {
@@ -39,27 +31,17 @@ bool FPCGExDrawEdgesElement::ExecuteInternal(
 	FPCGContext* InContext) const
 {
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExDrawEdgesElement::Execute);
-
 	PCGEX_CONTEXT_AND_SETTINGS(DrawEdges)
 
 #if WITH_EDITOR
 
-
-	if (Context->IsSetup())
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context))
-		{
-			DisabledPassThroughData(Context);
-			return true;
-		}
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
-
+		Context->SetState(PCGEx::State_ReadyForNextPoints);
 		Context->MaxLerp = static_cast<double>(Context->MainEdges->Num());
-
-		return false;
 	}
 
-	if (Context->IsState(PCGExMT::State_ReadyForNextPoints))
+	PCGEX_ON_STATE(PCGEx::State_ReadyForNextPoints)
 	{
 		if (!Context->AdvancePointsIO()) { Context->Done(); }
 		else
@@ -67,7 +49,7 @@ bool FPCGExDrawEdgesElement::ExecuteInternal(
 			if (!Context->TaggedEdges)
 			{
 				PCGE_LOG(Warning, GraphAndLog, FTEXT("Some input points have no bound edges."));
-				Context->SetState(PCGExMT::State_ReadyForNextPoints);
+				Context->SetState(PCGEx::State_ReadyForNextPoints);
 			}
 			else
 			{
@@ -76,8 +58,11 @@ bool FPCGExDrawEdgesElement::ExecuteInternal(
 		}
 	}
 
-	if (Context->IsState(PCGExGraph::State_ReadyForNextEdges))
+	PCGEX_ON_STATE(PCGExGraph::State_ReadyForNextEdges)
 	{
+		const UWorld* World = Context->SourceComponent->GetWorld();
+
+		/*
 		while (Context->AdvanceEdges(true))
 		{
 			if (!Context->CurrentCluster)
@@ -98,13 +83,14 @@ bool FPCGExDrawEdgesElement::ExecuteInternal(
 				if (!Edge.bValid) { continue; }
 				FVector Start = Context->CurrentCluster->GetPos(NodeIndexLookupRef[Edge.Start]);
 				FVector End = Context->CurrentCluster->GetPos(NodeIndexLookupRef[Edge.End]);
-				DrawDebugLine(Context->World, Start, End, Col, true, -1, Settings->DepthPriority, Settings->Thickness);
+				DrawDebugLine(World, Start, End, Col, true, -1, Settings->DepthPriority, Settings->Thickness);
 			}
 
 			Context->CurrentLerp++;
 		}
+		*/
 
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
+		Context->SetState(PCGEx::State_ReadyForNextPoints);
 	}
 
 	if (Context->IsDone())

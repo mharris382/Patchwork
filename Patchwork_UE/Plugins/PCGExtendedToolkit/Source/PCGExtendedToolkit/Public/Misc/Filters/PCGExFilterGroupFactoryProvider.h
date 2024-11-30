@@ -13,8 +13,8 @@
 
 ///
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|FilterGroup")
-class PCGEXTENDEDTOOLKIT_API UPCGExFilterGroupProviderSettings : public UPCGExFactoryProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|FilterGroup")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFilterGroupProviderSettings : public UPCGExFactoryProviderSettings
 {
 	GENERATED_BODY()
 
@@ -32,7 +32,7 @@ protected:
 	virtual TArray<FPCGPinProperties> InputPinProperties() const override;
 
 public:
-	virtual FName GetMainOutputLabel() const override { return PCGExPointFilter::OutputFilterLabel; }
+	virtual FName GetMainOutputPin() const override { return PCGExPointFilter::OutputFilterLabel; }
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const override;
 
 #if WITH_EDITOR
@@ -41,9 +41,13 @@ public:
 
 	/** Filter Priority.*/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayPriority=-1))
-	int32 Priority;
+	int32 Priority = 0;
 
 	/** Filter Priority.*/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayPriority=-1))
 	EPCGExFilterGroupMode Mode = EPCGExFilterGroupMode::AND;
+
+	/** Inverts the group output value. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayPriority=-1))
+	bool bInvert = false;
 };

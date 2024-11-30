@@ -5,25 +5,16 @@
 
 #include "CoreMinimal.h"
 #include "PCGExCluster.h"
+#include "PCGExUnionHelpers.h"
 #include "PCGExEdgesProcessor.h"
 #include "PCGExIntersections.h"
+#include "Data/Blending/PCGExUnionBlender.h"
 #include "Data/Blending/PCGExDataBlending.h"
 
 #include "PCGExFuseClusters.generated.h"
 
-namespace PCGExDataBlending
-{
-	class FCompoundBlender;
-}
-
-namespace PCGExGraph
-{
-	struct FCompoundProcessor;
-	struct FCompoundGraph;
-}
-
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph")
-class PCGEXTENDEDTOOLKIT_API UPCGExFuseClustersSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFuseClustersSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -40,8 +31,8 @@ protected:
 
 	//~Begin UPCGExEdgesProcessorSettings interface
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 	//~End UPCGExEdgesProcessorSettings interface
 
 	/** Fuse Settings */
@@ -49,7 +40,7 @@ public:
 	FPCGExPointPointIntersectionDetails PointPointIntersectionDetails;
 
 	/** Find Point-Edge intersection */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, InlineEditConditionToggle))
 	bool bFindPointEdgeIntersections;
 
 	/** Point-Edge intersection settings */
@@ -57,7 +48,7 @@ public:
 	FPCGExPointEdgeIntersectionDetails PointEdgeIntersectionDetails;
 
 	/** Find Edge-Edge intersection */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, InlineEditConditionToggle))
 	bool bFindEdgeEdgeIntersections;
 
 	/** Edge-Edge intersection */
@@ -102,26 +93,22 @@ public:
 	FPCGExGraphBuilderDetails GraphBuilderDetails;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExFuseClustersContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFuseClustersContext final : FPCGExEdgesProcessorContext
 {
 	friend class UPCGExFuseClustersSettings;
 	friend class FPCGExFuseClustersElement;
 
-	virtual ~FPCGExFuseClustersContext() override;
-
-	TArray<PCGExData::FFacade*> VtxFacades;
-	PCGExGraph::FCompoundGraph* CompoundGraph = nullptr;
-	PCGExData::FFacade* CompoundFacade = nullptr;
+	TArray<TSharedRef<PCGExData::FFacade>> VtxFacades;
+	TSharedPtr<PCGExGraph::FUnionGraph> UnionGraph;
+	TSharedPtr<PCGExData::FFacade> UnionDataFacade;
 
 	FPCGExCarryOverDetails VtxCarryOverDetails;
 	FPCGExCarryOverDetails EdgesCarryOverDetails;
 
-	PCGExDataBlending::FCompoundBlender* CompoundEdgesBlender = nullptr;
-
-	PCGExGraph::FCompoundProcessor* CompoundProcessor = nullptr;
+	TSharedPtr<PCGExGraph::FUnionProcessor> UnionProcessor;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExFuseClustersElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFuseClustersElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -136,36 +123,36 @@ protected:
 
 namespace PCGExFuseClusters
 {
-	class FProcessor final : public PCGExClusterMT::FClusterProcessor
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExFuseClustersContext, UPCGExFuseClustersSettings>
 	{
 		int32 VtxIOIndex = 0;
 		int32 EdgesIOIndex = 0;
-		TArray<PCGExGraph::FIndexedEdge> IndexedEdges;
+		TArray<PCGExGraph::FEdge> IndexedEdges;
 		const TArray<FPCGPoint>* InPoints = nullptr;
 
 	public:
 		bool bInvalidEdges = true;
-		PCGExGraph::FCompoundGraph* CompoundGraph = nullptr;
+		TSharedPtr<PCGExGraph::FUnionGraph> UnionGraph;
 
-		explicit FProcessor(PCGExData::FPointIO* InVtx, PCGExData::FPointIO* InEdges)
-			: FClusterProcessor(InVtx, InEdges)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade)
+			: TProcessor(InVtxDataFacade, InEdgeDataFacade)
 		{
 			bBuildCluster = false;
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
-		FORCEINLINE virtual void ProcessSingleRangeIteration(const int32 Iteration) override
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
+		FORCEINLINE virtual void ProcessSingleRangeIteration(const int32 Iteration, const int32 LoopIdx, const int32 Count) override
 		{
-			ProcessSingleEdge(IndexedEdges[Iteration]);
+			ProcessSingleEdge(Iteration, IndexedEdges[Iteration], LoopIdx, Count);
 		}
 
-		FORCEINLINE virtual void ProcessSingleEdge(PCGExGraph::FIndexedEdge& Edge) override
+		FORCEINLINE virtual void ProcessSingleEdge(const int32 EdgeIndex, PCGExGraph::FEdge& Edge, const int32 LoopIdx, const int32 Count) override
 		{
 			TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExFusePointsElement::ProcessSingleEdge);
 
-			CompoundGraph->InsertEdge(
+			UnionGraph->InsertEdge(
 				*(InPoints->GetData() + Edge.Start), VtxIOIndex, Edge.Start,
 				*(InPoints->GetData() + Edge.End), VtxIOIndex, Edge.End,
 				EdgesIOIndex, Edge.PointIndex);

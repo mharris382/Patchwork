@@ -5,6 +5,7 @@
 
 #include "PCGPin.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExCreateNeighborSample"
 #define PCGEX_NAMESPACE PCGExCreateNeighborSample
 
@@ -12,15 +13,14 @@
 void UPCGExNeighborSampleOperation::CopySettingsFrom(const UPCGExOperation* Other)
 {
 	Super::CopySettingsFrom(Other);
-	const UPCGExNeighborSampleOperation* TypedOther = Cast<UPCGExNeighborSampleOperation>(Other);
-	if (TypedOther)
+	if (const UPCGExNeighborSampleOperation* TypedOther = Cast<UPCGExNeighborSampleOperation>(Other))
 	{
 		SamplingConfig = TypedOther->SamplingConfig;
 		WeightCurveObj = TypedOther->WeightCurveObj;
 	}
 }
 
-void UPCGExNeighborSampleOperation::PrepareForCluster(const FPCGContext* InContext, PCGExCluster::FCluster* InCluster, PCGExData::FFacade* InVtxDataFacade, PCGExData::FFacade* InEdgeDataFacade)
+void UPCGExNeighborSampleOperation::PrepareForCluster(FPCGExContext* InContext, TSharedRef<PCGExCluster::FCluster> InCluster, TSharedRef<PCGExData::FFacade> InVtxDataFacade, TSharedRef<PCGExData::FFacade> InEdgeDataFacade)
 {
 	Cluster = InCluster;
 
@@ -29,24 +29,24 @@ void UPCGExNeighborSampleOperation::PrepareForCluster(const FPCGContext* InConte
 
 	if (!PointFilterFactories.IsEmpty())
 	{
-		PointFilters = new PCGExClusterFilter::TManager(InCluster, InVtxDataFacade, InEdgeDataFacade);
+		PointFilters = MakeShared<PCGExClusterFilter::FManager>(InCluster, InVtxDataFacade, InEdgeDataFacade);
 		PointFilters->Init(InContext, PointFilterFactories);
 	}
 
 	if (!ValueFilterFactories.IsEmpty())
 	{
-		ValueFilters = new PCGExClusterFilter::TManager(InCluster, InVtxDataFacade, InEdgeDataFacade);
+		ValueFilters = MakeShared<PCGExClusterFilter::FManager>(InCluster, InVtxDataFacade, InEdgeDataFacade);
 		ValueFilters->Init(InContext, ValueFilterFactories);
 	}
 }
 
 bool UPCGExNeighborSampleOperation::IsOperationValid() { return bIsValidOperation; }
 
-PCGExData::FPointIO* UPCGExNeighborSampleOperation::GetSourceIO() const { return GetSourceDataFacade()->Source; }
+TSharedRef<PCGExData::FPointIO> UPCGExNeighborSampleOperation::GetSourceIO() const { return GetSourceDataFacade()->Source; }
 
-PCGExData::FFacade* UPCGExNeighborSampleOperation::GetSourceDataFacade() const
+TSharedRef<PCGExData::FFacade> UPCGExNeighborSampleOperation::GetSourceDataFacade() const
 {
-	return SamplingConfig.NeighborSource == EPCGExGraphValueSource::Vtx ? VtxDataFacade : EdgeDataFacade;
+	return SamplingConfig.NeighborSource == EPCGExClusterComponentSource::Vtx ? VtxDataFacade.ToSharedRef() : EdgeDataFacade.ToSharedRef();
 }
 
 void UPCGExNeighborSampleOperation::ProcessNode(const int32 NodeIndex) const
@@ -59,17 +59,15 @@ void UPCGExNeighborSampleOperation::ProcessNode(const int32 NodeIndex) const
 	int32 Count = 0;
 	double TotalWeight = 0;
 
-	TArray<PCGExCluster::FExpandedNeighbor>* A = new TArray<PCGExCluster::FExpandedNeighbor>();
-	TArray<PCGExCluster::FExpandedNeighbor>* B = new TArray<PCGExCluster::FExpandedNeighbor>();
+	const TUniquePtr<TArray<PCGExGraph::FLink>> A = MakeUnique<TArray<PCGExGraph::FLink>>();
+	const TUniquePtr<TArray<PCGExGraph::FLink>> B = MakeUnique<TArray<PCGExGraph::FLink>>();
 
-	TArray<PCGExCluster::FExpandedNeighbor>* CurrentNeighbors = A;
-	TArray<PCGExCluster::FExpandedNeighbor>* NextNeighbors = B;
+	TArray<PCGExGraph::FLink>* CurrentNeighbors = A.Get();
+	TArray<PCGExGraph::FLink>* NextNeighbors = B.Get();
 	TSet<int32> VisitedNodes;
 
-	const TArray<PCGExCluster::FExpandedNode*>& ExpandedNodesRef = (*Cluster->ExpandedNodes);
-
 	VisitedNodes.Add(NodeIndex);
-	CurrentNeighbors->Append(ExpandedNodesRef[NodeIndex]->Neighbors);
+	CurrentNeighbors->Append(Node.Links);
 
 	PrepareNode(Node);
 	const FVector Origin = Cluster->GetPos(Node);
@@ -80,14 +78,14 @@ void UPCGExNeighborSampleOperation::ProcessNode(const int32 NodeIndex) const
 		if (CurrentNeighbors->IsEmpty()) { break; }
 		CurrentDepth++;
 
-		for (const PCGExCluster::FExpandedNeighbor& Neighbor : (*CurrentNeighbors))
+		for (const PCGExGraph::FLink Lk : (*CurrentNeighbors))
 		{
-			VisitedNodes.Add(Neighbor.Node->NodeIndex);
+			VisitedNodes.Add(Lk.Node);
 			double LocalWeight;
 
 			if (SamplingConfig.BlendOver == EPCGExBlendOver::Distance)
 			{
-				const double Dist = FVector::Dist(Origin, Cluster->GetPos(Neighbor)); // Use Neighbor.FromNode to accumulate per-path distance 
+				const double Dist = FVector::Dist(Origin, Cluster->GetPos(Lk)); // Use Neighbor.FromNode to accumulate per-path distance 
 				if (Dist > SamplingConfig.MaxDistance) { continue; }
 				LocalWeight = 1 - (Dist / SamplingConfig.MaxDistance);
 			}
@@ -98,8 +96,8 @@ void UPCGExNeighborSampleOperation::ProcessNode(const int32 NodeIndex) const
 
 			LocalWeight = SampleCurve(LocalWeight);
 
-			if (SamplingConfig.NeighborSource == EPCGExGraphValueSource::Vtx) { BlendNodePoint(Node, Neighbor, LocalWeight); }
-			else { BlendNodeEdge(Node, Neighbor, LocalWeight); }
+			if (SamplingConfig.NeighborSource == EPCGExClusterComponentSource::Vtx) { BlendNodePoint(Node, Lk, LocalWeight); }
+			else { BlendNodeEdge(Node, Lk, LocalWeight); }
 
 			Count++;
 			TotalWeight += LocalWeight;
@@ -110,16 +108,16 @@ void UPCGExNeighborSampleOperation::ProcessNode(const int32 NodeIndex) const
 		// Gather next depth
 
 		NextNeighbors->Reset();
-		for (const PCGExCluster::FExpandedNeighbor& Old : (*CurrentNeighbors))
+		for (const PCGExGraph::FLink& Old : (*CurrentNeighbors))
 		{
-			const TArray<PCGExCluster::FExpandedNeighbor>& Neighbors = ExpandedNodesRef[Old.Node->NodeIndex]->Neighbors;
+			const TArray<PCGExGraph::FLink>& Neighbors = Cluster->GetNode(Old.Node)->Links;
 			if (ValueFilters)
 			{
-				for (const PCGExCluster::FExpandedNeighbor& Next : Neighbors)
+				for (const PCGExGraph::FLink Next : Neighbors)
 				{
-					int32 NextIndex = Next.Node->NodeIndex;
+					int32 NextIndex = Next.Node;
 					if (VisitedNodes.Contains(NextIndex)) { continue; }
-					if (!ValueFilters->Results[Next.Node->PointIndex])
+					if (!ValueFilters->Results[Cluster->GetNode(Next)->PointIndex])
 					{
 						VisitedNodes.Add(NextIndex);
 						continue;
@@ -129,9 +127,9 @@ void UPCGExNeighborSampleOperation::ProcessNode(const int32 NodeIndex) const
 			}
 			else
 			{
-				for (const PCGExCluster::FExpandedNeighbor& Next : Neighbors)
+				for (const PCGExGraph::FLink Next : Neighbors)
 				{
-					if (VisitedNodes.Contains(Next.Node->NodeIndex)) { continue; }
+					if (VisitedNodes.Contains(Next.Node)) { continue; }
 					NextNeighbors->Add(Next);
 				}
 			}
@@ -141,20 +139,19 @@ void UPCGExNeighborSampleOperation::ProcessNode(const int32 NodeIndex) const
 	}
 
 	FinalizeNode(Node, Count, TotalWeight);
-
-	PCGEX_DELETE(A)
-	PCGEX_DELETE(B)
 }
 
-void UPCGExNeighborSampleOperation::FinalizeOperation()
+void UPCGExNeighborSampleOperation::CompleteOperation()
 {
 }
 
 void UPCGExNeighborSampleOperation::Cleanup()
 {
+	PointFilters.Reset();
+	ValueFilters.Reset();
+	VtxDataFacade.Reset();
+	EdgeDataFacade.Reset();
 	Super::Cleanup();
-	PCGEX_DELETE(PointFilters)
-	PCGEX_DELETE(ValueFilters)
 }
 
 #if WITH_EDITOR
@@ -164,11 +161,10 @@ FString UPCGExNeighborSampleProviderSettings::GetDisplayName() const
 }
 #endif
 
-UPCGExNeighborSampleOperation* UPCGExNeighborSamplerFactoryBase::CreateOperation() const
+UPCGExNeighborSampleOperation* UPCGExNeighborSamplerFactoryBase::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExNeighborSampleOperation, NewOperation)
+	UPCGExNeighborSampleOperation* NewOperation = InContext->ManagedObjects->New<UPCGExNeighborSampleOperation>();
 	PCGEX_SAMPLER_CREATE
-
 	return NewOperation;
 }
 

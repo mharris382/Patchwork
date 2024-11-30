@@ -11,18 +11,26 @@
 #include "Graph/PCGExIntersections.h"
 #include "PCGExFindClustersData.generated.h"
 
+UENUM()
+enum class EPCGExClusterDataSearchMode : uint8
+{
+	All          = 0 UMETA(DisplayName = "All"),
+	VtxFromEdges = 1 UMETA(DisplayName = "Vtx from Edges"),
+	EdgesFromVtx = 2 UMETA(DisplayName = "Edges from Vtx"),
+};
+
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
-class PCGEXTENDEDTOOLKIT_API UPCGExFindClustersDataSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFindClustersDataSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
 public:
 	//~Begin UPCGSettings
 #if WITH_EDITOR
-	PCGEX_NODE_INFOS(FindClustersData, "Find Clusters", "Find vtx/edge pairs among a soup of data collections");
+	PCGEX_NODE_INFOS(FindClustersData, "Find Clusters", "Find vtx/edge pairs inside a soup of data collections");
 	virtual FLinearColor GetNodeTitleColor() const override { return GetDefault<UPCGExGlobalSettings>()->NodeColorEdge; }
 #endif
 
@@ -34,9 +42,14 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual FName GetMainOutputLabel() const override { return PCGExGraph::OutputVerticesLabel; }
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual FName GetMainOutputPin() const override { return PCGExGraph::OutputVerticesLabel; }
+	FName GetSearchOutputPin() const { return SearchMode == EPCGExClusterDataSearchMode::VtxFromEdges ? FName("Edges") : FName("Vtx"); }
 	//~End UPCGExPointsProcessorSettings
+
+	/** Search mode. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ShowOnlyInnerProperties))
+	EPCGExClusterDataSearchMode SearchMode = EPCGExClusterDataSearchMode::VtxFromEdges;
 
 	/** Warning about inputs mismatch and triage */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ShowOnlyInnerProperties))
@@ -47,16 +60,16 @@ public:
 	bool bSkipImportantWarnings = false;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExFindClustersDataContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFindClustersDataContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExFindClustersDataElement;
 
-	virtual ~FPCGExFindClustersDataContext() override;
-
-	PCGExData::FPointIOCollection* MainEdges = nullptr;
+	FString SearchKey = TEXT("");
+	TSharedPtr<PCGExData::FPointIO> SearchKeyIO;
+	TSharedPtr<PCGExData::FPointIOCollection> MainEdges;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExFindClustersDataElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFindClustersDataElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(

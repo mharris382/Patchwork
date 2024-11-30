@@ -3,134 +3,141 @@
 
 #pragma once
 
-#include "Runtime/Launch/Resources/Version.h"
+#include "Misc/ScopeRWLock.h"
+#include "UObject/ObjectPtr.h"
+#include "Templates/SharedPointer.h"
+#include "Templates/SharedPointerFwd.h"
+#include "Curves/CurveFloat.h"
+#include "Math/GenericOctree.h"
+#include "CollisionQueryParams.h"
+#include "GameFramework/Actor.h"
+#include "Engine/HitResult.h"
+#include "Engine/World.h"
+#include "Engine/StaticMesh.h"
+#include "Components/StaticMeshComponent.h"
+#include "StaticMeshResources.h"
+
 #include "PCGComponent.h"
 #include "PCGContext.h"
+#include "PCGExH.h"
 #include "MatchAndSet/PCGMatchAndSetWeighted.h"
 #include "Metadata/PCGMetadataAttribute.h"
 
+#include "PCGExMacros.h"
+
 #include "PCGEx.generated.h"
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Ordered Field Selection"))
-enum class EPCGExOrderedFieldSelection : uint8
+UENUM()
+enum class EPCGExAttributeSetPackingMode : uint8
 {
-	X UMETA(DisplayName = "X", ToolTip="X/Roll component if it exist, raw value otherwise."),
-	Y UMETA(DisplayName = "Y (→x)", ToolTip="Y/Pitch component if it exist, fallback to previous value otherwise."),
-	Z UMETA(DisplayName = "Z (→y)", ToolTip="Z/Yaw component if it exist, fallback to previous value otherwise."),
-	W UMETA(DisplayName = "W (→z)", ToolTip="W component if it exist, fallback to previous value otherwise."),
-	XYZ UMETA(DisplayName = "X→Y→Z", ToolTip="X, then Y, then Z. Mostly for comparisons, fallback to X/Roll otherwise"),
-	XZY UMETA(DisplayName = "X→Z→Y", ToolTip="X, then Z, then Y. Mostly for comparisons, fallback to X/Roll otherwise"),
-	YXZ UMETA(DisplayName = "Y→X→Z", ToolTip="Y, then X, then Z. Mostly for comparisons, fallback to Y/Pitch otherwise"),
-	YZX UMETA(DisplayName = "Y→Z→X", ToolTip="Y, then Z, then X. Mostly for comparisons, fallback to Y/Pitch otherwise"),
-	ZXY UMETA(DisplayName = "Z→X→Y", ToolTip="Z, then X, then Y. Mostly for comparisons, fallback to Z/Yaw otherwise"),
-	ZYX UMETA(DisplayName = "Z→Y→X", ToolTip="Z, then Y, then Z. Mostly for comparisons, fallback to Z/Yaw otherwise"),
-	Length UMETA(DisplayName = "Length", ToolTip="Length if vector, raw value otherwise."),
+	PerInput = 0 UMETA(DisplayName = "Per Input", ToolTip="..."),
+	Merged   = 1 UMETA(DisplayName = "Merged", ToolTip="..."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Transform Component Selector"))
+UENUM()
+enum class EPCGExWinding : uint8
+{
+	Clockwise        = 1 UMETA(DisplayName = "Clockwise", ToolTip="..."),
+	CounterClockwise = 2 UMETA(DisplayName = "Counter Clockwise", ToolTip="..."),
+};
+
+UENUM()
+enum class EPCGExWindingMutation : uint8
+{
+	Unchanged        = 0 UMETA(DisplayName = "Unchanged", ToolTip="..."),
+	Clockwise        = 1 UMETA(DisplayName = "Clockwise", ToolTip="..."),
+	CounterClockwise = 2 UMETA(DisplayName = "CounterClockwise", ToolTip="..."),
+};
+
+UENUM()
 enum class EPCGExTransformComponent : uint8
 {
-	Position UMETA(DisplayName = "Position", ToolTip="Position component."),
-	Rotation UMETA(DisplayName = "Rotation", ToolTip="Rotation component."),
-	Scale UMETA(DisplayName = "Scale", ToolTip="Scale component."),
+	Position = 0 UMETA(DisplayName = "Position", ToolTip="Position component."),
+	Rotation = 1 UMETA(DisplayName = "Rotation", ToolTip="Rotation component."),
+	Scale    = 2 UMETA(DisplayName = "Scale", ToolTip="Scale component."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Minimal Axis"))
+UENUM()
 enum class EPCGExMinimalAxis : uint8
 {
-	None UMETA(DisplayName = "None", ToolTip="None"),
-	X UMETA(DisplayName = "X", ToolTip="X Axis"),
-	Y UMETA(DisplayName = "Y", ToolTip="Y Axis"),
-	Z UMETA(DisplayName = "Z", ToolTip="Z Axis"),
+	None = 0 UMETA(DisplayName = "None", ToolTip="None"),
+	X    = 1 UMETA(DisplayName = "X", ToolTip="X Axis"),
+	Y    = 2 UMETA(DisplayName = "Y", ToolTip="Y Axis"),
+	Z    = 3 UMETA(DisplayName = "Z", ToolTip="Z Axis"),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Single Component Selector"))
+UENUM()
 enum class EPCGExSingleField : uint8
 {
-	X UMETA(DisplayName = "X/Roll", ToolTip="X/Roll component if it exist, raw value otherwise."),
-	Y UMETA(DisplayName = "Y/Pitch", ToolTip="Y/Pitch component if it exist, fallback to previous value otherwise."),
-	Z UMETA(DisplayName = "Z/Yaw", ToolTip="Z/Yaw component if it exist, fallback to previous value otherwise."),
-	W UMETA(DisplayName = "W", ToolTip="W component if it exist, fallback to previous value otherwise."),
-	Length UMETA(DisplayName = "Length", ToolTip="Length if vector, raw value otherwise."),
+	X      = 0 UMETA(DisplayName = "X/Roll", ToolTip="X/Roll component if it exist, raw value otherwise."),
+	Y      = 1 UMETA(DisplayName = "Y/Pitch", ToolTip="Y/Pitch component if it exist, fallback to previous value otherwise."),
+	Z      = 2 UMETA(DisplayName = "Z/Yaw", ToolTip="Z/Yaw component if it exist, fallback to previous value otherwise."),
+	W      = 3 UMETA(DisplayName = "W", ToolTip="W component if it exist, fallback to previous value otherwise."),
+	Length = 4 UMETA(DisplayName = "Length", ToolTip="Length if vector, raw value otherwise."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Axis Selector"))
+UENUM()
 enum class EPCGExAxis : uint8
 {
-	Forward UMETA(DisplayName = "Default (Forward)", ToolTip="Forward from Transform/FQuat/Rotator, or raw vector."),
-	Backward UMETA(DisplayName = "Backward", ToolTip="Backward from Transform/FQuat/Rotator, or raw vector."),
-	Right UMETA(DisplayName = "Right", ToolTip="Right from Transform/FQuat/Rotator, or raw vector."),
-	Left UMETA(DisplayName = "Left", ToolTip="Left from Transform/FQuat/Rotator, or raw vector."),
-	Up UMETA(DisplayName = "Up", ToolTip="Up from Transform/FQuat/Rotator, or raw vector."),
-	Down UMETA(DisplayName = "Down", ToolTip="Down from Transform/FQuat/Rotator, or raw vector."),
-	Euler UMETA(DisplayName = "Euler", ToolTip="Fetch Euler from Transform.GetRotation/FQuat/Rotator."),
+	Forward  = 0 UMETA(DisplayName = "Default (Forward)", ToolTip="Forward from Transform/FQuat/Rotator, or raw vector."),
+	Backward = 1 UMETA(DisplayName = "Backward", ToolTip="Backward from Transform/FQuat/Rotator, or raw vector."),
+	Right    = 2 UMETA(DisplayName = "Right", ToolTip="Right from Transform/FQuat/Rotator, or raw vector."),
+	Left     = 3 UMETA(DisplayName = "Left", ToolTip="Left from Transform/FQuat/Rotator, or raw vector."),
+	Up       = 4 UMETA(DisplayName = "Up", ToolTip="Up from Transform/FQuat/Rotator, or raw vector."),
+	Down     = 5 UMETA(DisplayName = "Down", ToolTip="Down from Transform/FQuat/Rotator, or raw vector."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Axis Alignment Selector"))
+UENUM()
 enum class EPCGExAxisAlign : uint8
 {
-	Forward UMETA(DisplayName = "Forward", ToolTip="..."),
-	Backward UMETA(DisplayName = "Backward", ToolTip="..."),
-	Right UMETA(DisplayName = "Right", ToolTip="..."),
-	Left UMETA(DisplayName = "Left", ToolTip="..."),
-	Up UMETA(DisplayName = "Up", ToolTip="..."),
-	Down UMETA(DisplayName = "Down", ToolTip="..."),
+	Forward  = 0 UMETA(DisplayName = "Forward", ToolTip="..."),
+	Backward = 1 UMETA(DisplayName = "Backward", ToolTip="..."),
+	Right    = 2 UMETA(DisplayName = "Right", ToolTip="..."),
+	Left     = 3 UMETA(DisplayName = "Left", ToolTip="..."),
+	Up       = 4 UMETA(DisplayName = "Up", ToolTip="..."),
+	Down     = 5 UMETA(DisplayName = "Down", ToolTip="..."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Extent Type Selector"))
-enum class EPCGExExtension : uint8
-{
-	None UMETA(DisplayName = "None", ToolTip="No Extension"),
-	Extents UMETA(DisplayName = "Extents", ToolTip="Extents"),
-	Scale UMETA(DisplayName = "Scale", ToolTip="Scale"),
-	ScaledExtents UMETA(DisplayName = "Scaled Extents", ToolTip="Scaled extents"),
-};
-
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Distance Reference Selector"))
+UENUM()
 enum class EPCGExDistance : uint8
 {
-	Center UMETA(DisplayName = "Center", ToolTip="Center"),
-	SphereBounds UMETA(DisplayName = "Sphere Bounds", ToolTip="Point sphere which radius is scaled extent"),
-	BoxBounds UMETA(DisplayName = "Box Bounds", ToolTip="Point extents"),
+	Center       = 0 UMETA(DisplayName = "Center", ToolTip="Center"),
+	SphereBounds = 1 UMETA(DisplayName = "Sphere Bounds", ToolTip="Point sphere which radius is scaled extent"),
+	BoxBounds    = 2 UMETA(DisplayName = "Box Bounds", ToolTip="Point extents"),
+	None         = 3 UMETA(Hidden, DisplayName = "None", ToolTip="Used for union blending with full weight."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Index Safety"))
+UENUM()
 enum class EPCGExIndexSafety : uint8
 {
-	Ignore UMETA(DisplayName = "Ignore", Tooltip="Out of bounds indices are ignored."),
-	Tile UMETA(DisplayName = "Tile", Tooltip="Out of bounds indices are tiled."),
-	Clamp UMETA(DisplayName = "Clamp", Tooltip="Out of bounds indices are clamped."),
+	Ignore = 0 UMETA(DisplayName = "Ignore", Tooltip="Out of bounds indices are ignored."),
+	Tile   = 1 UMETA(DisplayName = "Tile", Tooltip="Out of bounds indices are tiled."),
+	Clamp  = 2 UMETA(DisplayName = "Clamp", Tooltip="Out of bounds indices are clamped."),
+	Yoyo   = 3 UMETA(DisplayName = "Yoyo", Tooltip="Out of bounds indices are mirrored and back."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Collision Type Filter"))
+UENUM()
 enum class EPCGExCollisionFilterType : uint8
 {
-	Channel UMETA(DisplayName = "Channel", ToolTip="Channel"),
-	ObjectType UMETA(DisplayName = "Object Type", ToolTip="Object Type"),
-	Profile UMETA(DisplayName = "Profile", ToolTip="Profile"),
+	Channel    = 0 UMETA(DisplayName = "Channel", ToolTip="Channel"),
+	ObjectType = 1 UMETA(DisplayName = "Object Type", ToolTip="Object Type"),
+	Profile    = 2 UMETA(DisplayName = "Profile", ToolTip="Profile"),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Selector Type"))
-enum class EPCGExSelectorType : uint8
-{
-	SingleField UMETA(DisplayName = "Single Field", ToolTip="Forward from Transform/FQuat/Rotator, or raw vector."),
-	Direction UMETA(DisplayName = "Direction", ToolTip="Backward from Transform/FQuat/Rotator, or raw vector."),
-};
-
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Range Type"))
+UENUM()
 enum class EPCGExRangeType : uint8
 {
-	FullRange UMETA(DisplayName = "Full Range", ToolTip="Normalize in the [0..1] range using [0..Max Value] range."),
-	EffectiveRange UMETA(DisplayName = "Effective Range", ToolTip="Remap the input [Min..Max] range to [0..1]."),
+	FullRange      = 0 UMETA(DisplayName = "Full Range", ToolTip="Normalize in the [0..1] range using [0..Max Value] range."),
+	EffectiveRange = 1 UMETA(DisplayName = "Effective Range", ToolTip="Remap the input [Min..Max] range to [0..1]."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Truncate Mode"))
+UENUM()
 enum class EPCGExTruncateMode : uint8
 {
-	None UMETA(DisplayName = "None", ToolTip="None"),
-	Round UMETA(DisplayName = "Round", ToolTip="Round"),
-	Ceil UMETA(DisplayName = "Ceil", ToolTip="Ceil"),
-	Floor UMETA(DisplayName = "Floor", ToolTip="Floor"),
+	None  = 0 UMETA(DisplayName = "None", ToolTip="None"),
+	Round = 1 UMETA(DisplayName = "Round", ToolTip="Round"),
+	Ceil  = 2 UMETA(DisplayName = "Ceil", ToolTip="Ceil"),
+	Floor = 3 UMETA(DisplayName = "Floor", ToolTip="Floor"),
 };
 
 namespace PCGEx
@@ -153,16 +160,40 @@ namespace PCGEx
 	const FSoftObjectPath WeightDistributionExpo = FSoftObjectPath(TEXT("/PCGExtendedToolkit/Curves/FC_PCGExWeightDistribution_Expo.FC_PCGExWeightDistribution_Expo"));
 	const FSoftObjectPath SteepnessWeightCurve = FSoftObjectPath(TEXT("/PCGExtendedToolkit/Curves/FC_PCGExSteepness_Default.FC_PCGExSteepness_Default"));
 
-	static bool IsPCGExAttribute(const FString& InStr) { return InStr.StartsWith(PCGExPrefix); }
-	static bool IsPCGExAttribute(const FName InName) { return IsPCGExAttribute(InName.ToString()); }
-	static bool IsPCGExAttribute(const FText& InText) { return IsPCGExAttribute(InText.ToString()); }
+	FORCEINLINE static bool IsPCGExAttribute(const FString& InStr) { return InStr.StartsWith(PCGExPrefix); }
+	FORCEINLINE static bool IsPCGExAttribute(const FName InName) { return IsPCGExAttribute(InName.ToString()); }
+	FORCEINLINE static bool IsPCGExAttribute(const FText& InText) { return IsPCGExAttribute(InText.ToString()); }
 
 	static FName MakePCGExAttributeName(const FString& Str0) { return FName(FText::Format(FText::FromString(TEXT("{0}{1}")), FText::FromString(PCGExPrefix), FText::FromString(Str0)).ToString()); }
 	static FName MakePCGExAttributeName(const FString& Str0, const FString& Str1) { return FName(FText::Format(FText::FromString(TEXT("{0}{1}/{2}")), FText::FromString(PCGExPrefix), FText::FromString(Str0), FText::FromString(Str1)).ToString()); }
 
 	static bool IsValidName(const FName Name) { return FPCGMetadataAttributeBase::IsValidName(Name) && !Name.IsNone(); }
 
-	static void ArrayOfIndices(TArray<int32>& OutArray, const int32 InNum)
+	static FString StringTagFromName(const FName Name)
+	{
+		if (Name.IsNone()) { return TEXT(""); }
+		return Name.ToString().TrimStartAndEnd();
+	}
+
+	static bool IsValidStringTag(const FString& Tag)
+	{
+		if (Tag.TrimStartAndEnd().IsEmpty()) { return false; }
+		return true;
+	}
+
+	FORCEINLINE double TruncateDbl(const double Value, const EPCGExTruncateMode Mode)
+	{
+		switch (Mode)
+		{
+		case EPCGExTruncateMode::Round: return FMath::RoundToInt(Value);
+		case EPCGExTruncateMode::Ceil: return FMath::CeilToDouble(Value);
+		case EPCGExTruncateMode::Floor: return FMath::FloorToDouble(Value);
+		default:
+		case EPCGExTruncateMode::None: return Value;
+		}
+	}
+
+	FORCEINLINE static void ArrayOfIndices(TArray<int32>& OutArray, const int32 InNum)
 	{
 		{
 			const int32 _num_ = InNum;
@@ -172,109 +203,19 @@ namespace PCGEx
 		for (int i = 0; i < InNum; i++) { OutArray[i] = i; }
 	}
 
-	static FName GetCompoundName(const FName A, const FName B)
+	FORCEINLINE static FName GetCompoundName(const FName A, const FName B)
 	{
 		// PCGEx/A/B
 		const FString Separator = TEXT("/");
 		return *(TEXT("PCGEx") + Separator + A.ToString() + Separator + B.ToString());
 	}
 
-	static FName GetCompoundName(const FName A, const FName B, const FName C)
+	FORCEINLINE static FName GetCompoundName(const FName A, const FName B, const FName C)
 	{
 		// PCGEx/A/B/C
 		const FString Separator = TEXT("/");
 		return *(TEXT("PCGEx") + Separator + A.ToString() + Separator + B.ToString() + Separator + C.ToString());
 	}
-
-	// Unsigned uint64 hash
-	FORCEINLINE static uint64 H64U(const uint32 A, const uint32 B)
-	{
-		return A > B ?
-			       static_cast<uint64>(A) << 32 | B :
-			       static_cast<uint64>(B) << 32 | A;
-	}
-
-	// Signed uint64 hash
-	FORCEINLINE static uint64 H64(const uint32 A, const uint32 B) { return static_cast<uint64>(A) << 32 | B; }
-	FORCEINLINE static uint64 NH64(const int32 A, const int32 B) { return H64(A + 1, B + 1); }
-	FORCEINLINE static uint64 NH64U(const int32 A, const int32 B) { return H64U(A + 1, B + 1); }
-
-	// Expand uint64 hash
-	FORCEINLINE static uint32 H64A(const uint64 Hash) { return static_cast<uint32>(Hash >> 32); }
-	FORCEINLINE static uint32 H64B(const uint64 Hash) { return static_cast<uint32>(Hash); }
-
-	FORCEINLINE static int32 NH64A(const uint64 Hash) { return static_cast<int32>(H64A(Hash)) - 1; }
-	FORCEINLINE static int32 NH64B(const uint64 Hash) { return static_cast<int32>(H64B(Hash)) - 1; }
-
-	FORCEINLINE static void H64(const uint64 Hash, uint32& A, uint32& B)
-	{
-		A = H64A(Hash);
-		B = H64B(Hash);
-	}
-
-	FORCEINLINE static void NH64(const uint64 Hash, int32& A, int32& B)
-	{
-		A = NH64A(Hash);
-		B = NH64B(Hash);
-	}
-
-	FORCEINLINE static uint64 H64NOT(const uint64 Hash, const uint32 Not)
-	{
-		const uint32 A = H64A(Hash);
-		return A == Not ? H64B(Hash) : A;
-	}
-
-	FORCEINLINE static int32 NH64NOT(const uint64 Hash, const int32 Not)
-	{
-		const int32 A = NH64A(Hash);
-		return A == Not ? NH64B(Hash) : A;
-	}
-
-	FORCEINLINE static uint64 H6416(const uint16 A, const uint16 B, const uint16 C, const uint16 D)
-	{
-		return (static_cast<uint64>(A) << 48) |
-			(static_cast<uint64>(B) << 32) |
-			(static_cast<uint64>(C) << 16) |
-			static_cast<uint64>(D);
-	}
-
-	FORCEINLINE static void H6416(const uint64_t H, uint16& A, uint16& B, uint16& C, uint16& D)
-	{
-		A = static_cast<uint16>(H >> 48);
-		B = static_cast<uint16>((H >> 32) & 0xFFFF);
-		C = static_cast<uint16>((H >> 16) & 0xFFFF);
-		D = static_cast<uint16>(H & 0xFFFF);
-	}
-
-	FORCEINLINE static uint64 H64S(const uint32 A, const uint32 B, const uint32 C)
-	{
-		return HashCombineFast(A, HashCombineFast(B, C));
-	}
-
-	FORCEINLINE static uint64 H64S(int32 ABC[3]) { return H64S(ABC[0], ABC[1], ABC[2]); }
-
-	FORCEINLINE static uint32 GH(const FInt64Vector3& Seed) { return GetTypeHash(Seed); }
-
-	FORCEINLINE static FInt64Vector3 I643(const FVector& Seed, const FVector& Tolerance)
-	{
-		return FInt64Vector3(
-			FMath::FloorToInt64(Seed.X * Tolerance.X),
-			FMath::FloorToInt64(Seed.Y * Tolerance.Y),
-			FMath::FloorToInt64(Seed.Z * Tolerance.Z));
-	}
-
-	FORCEINLINE static FInt64Vector3 I643(const FVector& Seed, const FInt64Vector3& Tolerance)
-	{
-		return FInt64Vector3(
-			FMath::FloorToInt64(Seed.X * Tolerance.X),
-			FMath::FloorToInt64(Seed.Y * Tolerance.Y),
-			FMath::FloorToInt64(Seed.Z * Tolerance.Z));
-	}
-
-	FORCEINLINE static uint32 GH(const FVector& Seed, const FInt64Vector3& Tolerance) { return GetTypeHash(I643(Seed, Tolerance)); }
-
-	FORCEINLINE static uint32 GH(const FVector& Seed, const FVector& Tolerance) { return GetTypeHash(I643(Seed, Tolerance)); }
-
 
 #pragma region Field Helpers
 
@@ -405,18 +346,10 @@ namespace PCGEx
 
 #pragma endregion
 
-	static UWorld* GetWorld(const FPCGContext* Context)
+	FORCEINLINE static UWorld* GetWorld(const FPCGContext* Context)
 	{
 		check(Context->SourceComponent.IsValid());
 		return Context->SourceComponent->GetWorld();
-	}
-
-	template <typename T>
-	static void Swap(TArray<T>& Array, int32 FirstIndex, int32 SecondIndex)
-	{
-		T* Ptr1 = &Array[FirstIndex];
-		T* Ptr2 = &Array[SecondIndex];
-		std::swap(*Ptr1, *Ptr2);
 	}
 
 	static void ScopeIndices(const TArray<int32>& InIndices, TArray<uint64>& OutScopes)
@@ -447,66 +380,23 @@ namespace PCGEx
 	}
 
 	template <typename T>
-	static bool SameSet(const TSet<T>& A, const TSet<T>& B)
+	FORCEINLINE static bool SameSet(const TSet<T>& A, const TSet<T>& B)
 	{
 		if (A.Num() != B.Num()) { return false; }
-		for (const T& Entry : A) { if (!B.Contains(Entry)) { return false; } }
+		for (const T& Entry : A) { if (!B.IsInside(Entry)) { return false; } }
 		return true;
 	}
 
-#pragma region Metadata Type
+	struct FIndexedItem
+	{
+		int32 Index;
+		FBoxSphereBounds Bounds;
 
-	template <typename T, typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const T Dummy) { return EPCGMetadataTypes::Unknown; }
+		FIndexedItem(const int32 InIndex, const FBoxSphereBounds& InBounds)
+			: Index(InIndex), Bounds(InBounds)
+		{
+		}
+	};
 
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const bool Dummy) { return EPCGMetadataTypes::Boolean; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const int32 Dummy) { return EPCGMetadataTypes::Integer32; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const int64 Dummy) { return EPCGMetadataTypes::Integer64; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const float Dummy) { return EPCGMetadataTypes::Float; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const double Dummy) { return EPCGMetadataTypes::Double; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FVector2D Dummy) { return EPCGMetadataTypes::Vector2; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FVector Dummy) { return EPCGMetadataTypes::Vector; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FVector4 Dummy) { return EPCGMetadataTypes::Vector4; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FQuat Dummy) { return EPCGMetadataTypes::Quaternion; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FRotator Dummy) { return EPCGMetadataTypes::Rotator; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FTransform Dummy) { return EPCGMetadataTypes::Transform; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FString Dummy) { return EPCGMetadataTypes::String; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FName Dummy) { return EPCGMetadataTypes::Name; }
-
-#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION > 3
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FSoftClassPath Dummy) { return EPCGMetadataTypes::Unknown; }
-
-	template <typename CompilerSafety = void>
-	static EPCGMetadataTypes GetMetadataType(const FSoftObjectPath Dummy) { return EPCGMetadataTypes::Unknown; }
-
-#endif
-
-#pragma endregion
+	PCGEX_OCTREE_SEMANTICS_REF(FIndexedItem, { return Element.Bounds;}, { return A.Index == B.Index; })
 }

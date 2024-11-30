@@ -7,6 +7,7 @@
 
 #include "PCGExEdge.h"
 #include "PCGExGraph.h"
+#include "PCGExSorting.h"
 #include "Data/PCGExAttributeHelpers.h"
 #include "Geometry/PCGExGeo.h"
 
@@ -14,20 +15,18 @@
 
 namespace PCGExCluster
 {
-	struct FAdjacencyData;
-	struct FExpandedNode;
-	struct FExpandedEdge;
+	struct FBoundedEdge;
 }
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Cluster Closest Search Mode"))
+UENUM()
 enum class EPCGExClusterClosestSearchMode : uint8
 {
-	Node UMETA(DisplayName = "Closest node", ToolTip="Proximity to node position"),
-	Edge UMETA(DisplayName = "Closest edge", ToolTip="Proximity to edge, then endpoint"),
+	Node = 0 UMETA(DisplayName = "Closest node", ToolTip="Proximity to node position"),
+	Edge = 1 UMETA(DisplayName = "Closest edge", ToolTip="Proximity to edge, then endpoint"),
 };
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExNodeSelectionDetails
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExNodeSelectionDetails
 {
 	GENERATED_BODY()
 
@@ -63,125 +62,65 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExNodeSelectionDetails
 
 namespace PCGExCluster
 {
+	using PCGExGraph::FLink;
+	using PCGExGraph::FEdge;
+
 	const FName OutputNodeFlagLabel = TEXT("Flag");
 	const FName SourceNodeFlagLabel = TEXT("Node Flags");
 
-	PCGEX_ASYNC_STATE(State_ProcessingCluster)
-
-	struct PCGEXTENDEDTOOLKIT_API FClusterItemRef
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FAdjacencyData
 	{
-		int32 ItemIndex;
-		FBoxSphereBounds Bounds;
-
-		FClusterItemRef(const int32 InItemIndex, const FBoxSphereBounds& InBounds)
-			: ItemIndex(InItemIndex), Bounds(InBounds)
-		{
-		}
+		int32 NodeIndex = -1;
+		int32 NodePointIndex = -1;
+		int32 EdgeIndex = -1;
+		FVector Direction = FVector::OneVector;
+		double Length = 0;
 	};
 
-	struct PCGEXTENDEDTOOLKIT_API FClusterItemRefSemantics
+	class FCluster;
+
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FNode : PCGExGraph::FNode
 	{
-		enum { MaxElementsPerLeaf = 16 };
-
-		enum { MinInclusiveElementsPerNode = 7 };
-
-		enum { MaxNodeDepth = 12 };
-
-		using ElementAllocator = TInlineAllocator<MaxElementsPerLeaf>;
-
-		FORCEINLINE static const FBoxSphereBounds& GetBoundingBox(const FClusterItemRef& InNode)
-		{
-			return InNode.Bounds;
-		}
-
-		FORCEINLINE static const bool AreElementsEqual(const FClusterItemRef& A, const FClusterItemRef& B)
-		{
-			return A.ItemIndex == B.ItemIndex;
-		}
-
-		FORCEINLINE static void ApplyOffset(FClusterItemRef& InNode)
-		{
-			ensureMsgf(false, TEXT("Not implemented"));
-		}
-
-		FORCEINLINE static void SetElementId(const FClusterItemRef& Element, FOctreeElementId2 OctreeElementID)
-		{
-		}
-	};
-
-	struct FCluster;
-
-	struct PCGEXTENDEDTOOLKIT_API FNode : public PCGExGraph::FNode
-	{
-		FNode(): PCGExGraph::FNode()
-		{
-		}
+		FNode() = default;
 
 		FNode(const int32 InNodeIndex, const int32 InPointIndex):
 			PCGExGraph::FNode(InNodeIndex, InPointIndex)
 		{
 		}
 
-		~FNode();
-
-		FORCEINLINE bool IsDeadEnd() const { return Adjacency.Num() == 1; }
-		FORCEINLINE bool IsSimple() const { return Adjacency.Num() == 2; }
-		FORCEINLINE bool IsComplex() const { return Adjacency.Num() > 2; }
-
-		FORCEINLINE bool IsAdjacentTo(const int32 OtherNodeIndex) const
-		{
-			for (const uint64 AdjacencyHash : Adjacency) { if (OtherNodeIndex == PCGEx::H64A(AdjacencyHash)) { return true; } }
-			return false;
-		}
-
-		FORCEINLINE void AddConnection(const int32 InNodeIndex, const int32 InEdgeIndex)
-		{
-			Adjacency.AddUnique(PCGEx::H64(InNodeIndex, InEdgeIndex));
-		}
-
 		FVector GetCentroid(const FCluster* InCluster) const;
-
-		FORCEINLINE int32 GetEdgeIndex(int32 AdjacentNodeIndex) const
-		{
-			for (const uint64 AdjacencyHash : Adjacency) { if (PCGEx::H64A(AdjacencyHash) == AdjacentNodeIndex) { return PCGEx::H64B(AdjacencyHash); } }
-			return -1;
-		}
-
 		void ComputeNormal(const FCluster* InCluster, const TArray<FAdjacencyData>& AdjacencyData, FVector& OutNormal) const;
-
-		FORCEINLINE void Add(const FNode& Neighbor, int32 EdgeIndex) { Adjacency.Add(PCGEx::H64(Neighbor.NodeIndex, EdgeIndex)); }
+		int32 ValidEdges(const FCluster* InCluster);
+		bool HasAnyValidEdges(const FCluster* InCluster);
 	};
 
-	struct PCGEXTENDEDTOOLKIT_API FExpandedNeighbor
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FBoundedEdge
 	{
-		const FNode* Node;
-		const PCGExGraph::FIndexedEdge* Edge;
-		FVector Direction;
+		int32 Index;
+		FBoxSphereBounds Bounds;
 
-		FExpandedNeighbor(const FNode* InNode, const PCGExGraph::FIndexedEdge* InEdge, const FVector& InDirection):
-			Node(InNode), Edge(InEdge), Direction(InDirection)
+		FBoundedEdge(const FCluster* Cluster, const int32 InEdgeIndex);
+
+		FBoundedEdge():
+			Index(-1), Bounds(FBoxSphereBounds(ForceInit))
 		{
 		}
+
+		~FBoundedEdge() = default;
+
+		bool operator==(const FBoundedEdge& ExpandedEdge) const
+		{
+			return (Index == ExpandedEdge.Index && Bounds == ExpandedEdge.Bounds);
+		};
 	};
 
-	struct PCGEXTENDEDTOOLKIT_API FCluster
+	class /*PCGEXTENDEDTOOLKIT_API*/ FCluster : public TSharedFromThis<FCluster>
 	{
 	protected:
 		bool bIsMirror = false;
-		bool bOwnsNodes = true;
-		bool bOwnsEdges = true;
-		bool bOwnsNodeIndexLookup = true;
-		bool bOwnsNodeOctree = true;
-		bool bOwnsEdgeOctree = true;
-		bool bOwnsLengths = true;
-		bool bOwnsVtxPointIndices = true;
-		bool bOwnsExpandedNodes = true;
-		bool bOwnsExpandedEdges = true;
 
 		bool bEdgeLengthsDirty = true;
 		bool bIsCopyCluster = false;
-		TArray<int32>* VtxPointIndices = nullptr;
-		TArray<uint64>* VtxPointScopes = nullptr;
 
 		mutable FRWLock ClusterLock;
 
@@ -193,26 +132,29 @@ namespace PCGExCluster
 		bool bIsOneToOne = false; // Whether the input data has a single set of edges for a single set of vtx
 
 		int32 ClusterID = -1;
-		TMap<int32, int32>* NodeIndexLookup = nullptr; // Node index -> Point Index
+		TSharedPtr<PCGEx::FIndexLookup> NodeIndexLookup; // Point Index -> Node index
 		//TMap<uint64, int32> EdgeIndexLookup;   // Edge Hash -> Edge Index
-		TArray<FNode>* Nodes = nullptr;
-		TArray<FExpandedNode*>* ExpandedNodes = nullptr;
-		TArray<FExpandedEdge*>* ExpandedEdges = nullptr;
-		TArray<PCGExGraph::FIndexedEdge>* Edges = nullptr;
-		TArray<double>* EdgeLengths = nullptr;
+		TSharedPtr<TArray<FNode>> Nodes;
+		TSharedPtr<TArray<FBoundedEdge>> BoundedEdges;
+		TSharedPtr<TArray<FEdge>> Edges;
+		TSharedPtr<TArray<double>> EdgeLengths;
 		TArray<FVector> NodePositions;
 
 		FBox Bounds;
 
-		PCGExData::FPointIO* VtxIO = nullptr;
-		PCGExData::FPointIO* EdgesIO = nullptr;
+		const TArray<FPCGPoint>* VtxPoints = nullptr;
 
-		using ClusterItemOctree = TOctree2<FClusterItemRef, FClusterItemRefSemantics>;
-		ClusterItemOctree* NodeOctree = nullptr;
-		ClusterItemOctree* EdgeOctree = nullptr;
+		TWeakPtr<PCGExData::FPointIO> VtxIO;
+		TWeakPtr<PCGExData::FPointIO> EdgesIO;
 
-		FCluster();
-		FCluster(const FCluster* OtherCluster, PCGExData::FPointIO* InVtxIO, PCGExData::FPointIO* InEdgesIO,
+		TSharedPtr<PCGEx::FIndexedItemOctree> NodeOctree;
+		TSharedPtr<PCGEx::FIndexedItemOctree> EdgeOctree;
+
+		FCluster(const TSharedPtr<PCGExData::FPointIO>& InVtxIO, const TSharedPtr<PCGExData::FPointIO>& InEdgesIO,
+		         const TSharedPtr<PCGEx::FIndexLookup>& InNodeIndexLookup);
+		FCluster(const TSharedRef<FCluster>& OtherCluster,
+		         const TSharedPtr<PCGExData::FPointIO>& InVtxIO, const TSharedPtr<PCGExData::FPointIO>& InEdgesIO,
+		         const TSharedPtr<PCGEx::FIndexLookup>& InNodeIndexLookup,
 		         bool bCopyNodes, bool bCopyEdges, bool bCopyLookup);
 
 		void ClearInheritedForChanges(const bool bClearOwned = false);
@@ -222,70 +164,272 @@ namespace PCGExCluster
 		~FCluster();
 
 		bool BuildFrom(
-			const PCGExData::FPointIO* EdgeIO,
-			const TArray<FPCGPoint>& InNodePoints,
 			const TMap<uint32, int32>& InEndpointsLookup,
-			const TArray<int32>* InExpectedAdjacency = nullptr);
+			const TArray<int32>* InExpectedAdjacency,
+			const PCGExData::ESource PointsSource = PCGExData::ESource::In);
 
 		void BuildFrom(const PCGExGraph::FSubGraph* SubGraph);
 
-		bool IsValidWith(const PCGExData::FPointIO* InVtxIO, const PCGExData::FPointIO* InEdgesIO) const;
+		bool IsValidWith(const TSharedRef<PCGExData::FPointIO>& InVtxIO, const TSharedRef<PCGExData::FPointIO>& InEdgesIO) const;
 
-		const TArray<uint64>* GetVtxPointScopesPtr();
-		const TArray<int32>& GetVtxPointIndices();
-		TArrayView<const int32> GetVtxPointIndicesView();
+		FORCEINLINE FNode* GetNode(const int32 Index) const { return (Nodes->GetData() + Index); }
+		FORCEINLINE FNode* GetNode(const FLink Lk) const { return (Nodes->GetData() + Lk.Node); }
+		FORCEINLINE int32 GetNodePointIndex(const int32 Index) const { return (Nodes->GetData() + Index)->PointIndex; }
+		FORCEINLINE const FPCGPoint* GetNodePoint(const int32 Index) const { return (VtxPoints->GetData() + (Nodes->GetData() + Index)->PointIndex); }
+		FORCEINLINE FEdge* GetEdge(const int32 Index) const { return (Edges->GetData() + Index); }
+		FORCEINLINE FEdge* GetEdge(const FLink Lk) const { return (Edges->GetData() + Lk.Edge); }
 
-		const TArray<int32>* GetVtxPointIndicesPtr();
-		const TArray<uint64>& GetVtxPointScopes();
-		TArrayView<const uint64> GetVtxPointScopesView();
+		FORCEINLINE FNode* GetEdgeStart(const FEdge& InEdge) const { return (Nodes->GetData() + NodeIndexLookup->Get(InEdge.Start)); }
+		FORCEINLINE FNode* GetEdgeStart(const int32 InEdgeIndex) const { return (Nodes->GetData() + NodeIndexLookup->Get((Edges->GetData() + InEdgeIndex)->Start)); }
+		FORCEINLINE FNode* GetEdgeEnd(const FEdge& InEdge) const { return (Nodes->GetData() + NodeIndexLookup->Get(InEdge.End)); }
+		FORCEINLINE FNode* GetEdgeEnd(const int32 InEdgeIndex) const { return (Nodes->GetData() + NodeIndexLookup->Get((Edges->GetData() + InEdgeIndex)->End)); }
+		FORCEINLINE FNode* GetEdgeOtherNode(const int32 InEdgeIndex, const int32 InNodeIndex) const { return (Nodes->GetData() + NodeIndexLookup->Get((Edges->GetData() + InEdgeIndex)->Other((Nodes->GetData() + InNodeIndex)->PointIndex))); }
+		FORCEINLINE FNode* GetEdgeOtherNode(const FLink Lk) const { return (Nodes->GetData() + NodeIndexLookup->Get((Edges->GetData() + Lk.Edge)->Other((Nodes->GetData() + Lk.Node)->PointIndex))); }
 
-		FORCEINLINE FVector GetPos(const FNode& InNode) const { return *(NodePositions.GetData() + InNode.NodeIndex); }
-		FORCEINLINE FVector GetPos(const FNode* InNode) const { return *(NodePositions.GetData() + InNode->NodeIndex); }
+		FORCEINLINE FVector GetStartPos(const FEdge& InEdge) const { return *(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.Start)); }
+		FORCEINLINE FVector GetStartPos(const FEdge* InEdge) const { return *(NodePositions.GetData() + NodeIndexLookup->Get(InEdge->Start)); }
+		FORCEINLINE FVector GetStartPos(const int32 InEdgeIndex) const { return GetStartPos(*(Edges->GetData() + InEdgeIndex)); }
+		FORCEINLINE FVector GetEndPos(const FEdge& InEdge) const { return *(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.End)); }
+		FORCEINLINE FVector GetEndPos(const FEdge* InEdge) const { return *(NodePositions.GetData() + NodeIndexLookup->Get(InEdge->End)); }
+		FORCEINLINE FVector GetEndPos(const int32 InEdgeIndex) const { return GetEndPos(*(Edges->GetData() + InEdgeIndex)); }
+
+		FORCEINLINE FVector GetPos(const FNode& InNode) const { return *(NodePositions.GetData() + InNode.Index); }
+		FORCEINLINE FVector GetPos(const FNode* InNode) const { return *(NodePositions.GetData() + InNode->Index); }
 		FORCEINLINE FVector GetPos(const int32 Index) const { return *(NodePositions.GetData() + Index); }
-		FORCEINLINE FVector GetPos(const FExpandedNeighbor& InNode) const { return *(NodePositions.GetData() + InNode.Node->NodeIndex); }
-		FORCEINLINE FVector GetPos(const FExpandedNeighbor* InNode) const { return *(NodePositions.GetData() + InNode->Node->NodeIndex); }
+		FORCEINLINE FVector GetPos(const FLink Lk) const { return *(NodePositions.GetData() + Lk.Node); }
 
+		FORCEINLINE double GetDist(const FEdge& InEdge) const { return FVector::Dist((*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.Start))), (*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.End)))); }
+		FORCEINLINE double GetDist(const int32 InEdgeIndex) const { return GetDist(*(Edges->GetData() + InEdgeIndex)); }
 		FORCEINLINE double GetDist(const int32 NodeA, const int32 NodeB) const { return FVector::Dist(*(NodePositions.GetData() + NodeA), *(NodePositions.GetData() + NodeB)); }
-		FORCEINLINE double GetDist(const FNode& A, const FNode& B) const { return GetDist(A.NodeIndex, B.NodeIndex); }
+		FORCEINLINE double GetDist(const FNode& A, const FNode& B) const { return GetDist(A.Index, B.Index); }
+		FORCEINLINE double GetDistSquared(const FEdge& InEdge) const { return FVector::DistSquared((*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.Start))), (*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.End)))); }
+		FORCEINLINE double GetDistSquared(const int32 InEdgeIndex) const { return GetDist(*(Edges->GetData() + InEdgeIndex)); }
 		FORCEINLINE double GetDistSquared(const int32 NodeA, const int32 NodeB) const { return FVector::DistSquared(*(NodePositions.GetData() + NodeA), *(NodePositions.GetData() + NodeB)); }
-		FORCEINLINE double GetDistSquared(const FNode& A, const FNode& B) const { return GetDistSquared(A.NodeIndex, B.NodeIndex); }
+		FORCEINLINE double GetDistSquared(const FNode& A, const FNode& B) const { return GetDistSquared(A.Index, B.Index); }
 
-		FORCEINLINE double EdgeDistToEdge(const uint64 A, const uint64 B, FVector& OutP1, FVector& OutP2) const
+		FNode* GetGuidedHalfEdge(const int32 Edge, const FVector& Guide, const FVector& Up = FVector::UpVector) const;
+
+		FORCEINLINE FNode* GetRoamingNode(const FVector& UVW) const { return GetNode(FindClosestNode(Bounds.GetCenter() + Bounds.GetExtent() * UVW, EPCGExClusterClosestSearchMode::Edge)); }
+
+		FORCEINLINE double EdgeDistToEdge(const FEdge* A, const FEdge* B, FVector& OutP1, FVector& OutP2) const
 		{
 			FMath::SegmentDistToSegment(
-				GetPos(PCGEx::H64A(A)), GetPos(PCGEx::H64B(B)),
-				GetPos(PCGEx::H64A(B)), GetPos(PCGEx::H64B(B)),
+				GetPos(GetEdgeStart(A->Start)), GetPos(GetEdgeStart(A->End)),
+				GetPos(GetEdgeStart(B->Start)), GetPos(GetEdgeStart(B->End)),
 				OutP1, OutP2);
 
 			return FVector::Dist(OutP1, OutP2);
 		}
 
-		FORCEINLINE double EdgeDistToEdgeSquared(const uint64 A, const uint64 B, FVector& OutP1, FVector& OutP2) const
+		FORCEINLINE double EdgeDistToEdge(const int32 EdgeA, const int32 EdgeB, FVector& OutP1, FVector& OutP2) const
+		{
+			return EdgeDistToEdge(GetEdge(EdgeA), GetEdge(EdgeB), OutP1, OutP2);
+		}
+
+		FORCEINLINE double EdgeDistToEdgeSquared(const FEdge* A, const FEdge* B, FVector& OutP1, FVector& OutP2) const
 		{
 			FMath::SegmentDistToSegment(
-				GetPos(PCGEx::H64A(A)), GetPos(PCGEx::H64B(A)),
-				GetPos(PCGEx::H64A(B)), GetPos(PCGEx::H64B(B)),
+				GetPos(GetEdgeStart(A->Start)), GetPos(GetEdgeStart(A->End)),
+				GetPos(GetEdgeStart(B->Start)), GetPos(GetEdgeStart(B->End)),
 				OutP1, OutP2);
 
 			return FVector::DistSquared(OutP1, OutP2);
 		}
 
-		FORCEINLINE FVector GetDir(const int32 FromNode, const int32 ToNode) const
+		FORCEINLINE double EdgeDistToEdgeSquared(const int32 EdgeA, const int32 EdgeB, FVector& OutP1, FVector& OutP2) const
 		{
-			return ((*(NodePositions.GetData() + ToNode)) - (*(NodePositions.GetData() + FromNode))).GetSafeNormal();
+			return EdgeDistToEdgeSquared(GetEdge(EdgeA), GetEdge(EdgeB), OutP1, OutP2);
 		}
 
-		FORCEINLINE FVector GetDir(const FNode& From, const FNode& To) const { return GetDir(From.NodeIndex, To.NodeIndex); }
+		FORCEINLINE FVector GetDir(const int32 FromNode, const int32 ToNode) const { return ((*(NodePositions.GetData() + ToNode)) - (*(NodePositions.GetData() + FromNode))).GetSafeNormal(); }
+		FORCEINLINE FVector GetDir(const FNode& From, const FNode& To) const { return GetDir(From.Index, To.Index); }
+
+		FORCEINLINE FVector GetEdgeDir(const FEdge& InEdge) const
+		{
+			return ((*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.Start))) - (*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.End)))).GetSafeNormal();
+		}
+
+		TSharedPtr<PCGEx::FIndexedItemOctree> GetNodeOctree();
+		TSharedPtr<PCGEx::FIndexedItemOctree> GetEdgeOctree();
 
 		void RebuildNodeOctree();
 		void RebuildEdgeOctree();
 		void RebuildOctree(EPCGExClusterClosestSearchMode Mode, const bool bForceRebuild = false);
 
-		int32 FindClosestNode(const FVector& Position, EPCGExClusterClosestSearchMode Mode, const int32 MinNeighbors = 0) const;
-		int32 FindClosestNode(const FVector& Position, const int32 MinNeighbors = 0) const;
-		int32 FindClosestNodeFromEdge(const FVector& Position, const int32 MinNeighbors = 0) const;
+		template <int32 MinNeighbors = 0>
+		int32 FindClosestNode(const FVector& Position, EPCGExClusterClosestSearchMode Mode) const
+		{
+			switch (Mode)
+			{
+			default: ;
+			case EPCGExClusterClosestSearchMode::Node:
+				return FindClosestNode<MinNeighbors>(Position);
+			case EPCGExClusterClosestSearchMode::Edge:
+				return FindClosestNodeFromEdge<MinNeighbors>(Position);
+			}
+		}
 
-		int32 FindClosestEdge(const int32 InNodeIndex, const FVector& InPosition) const;
+		template <int32 MinNeighbors = 0>
+		int32 FindClosestNode(const FVector& Position) const
+		{
+			double MaxDistance = MAX_dbl;
+			int32 ClosestIndex = -1;
+
+			const TArray<FNode>& NodesRef = *Nodes;
+
+			if (NodeOctree)
+			{
+				auto ProcessCandidate = [&](const PCGEx::FIndexedItem& Item)
+				{
+					const FNode& Node = NodesRef[Item.Index];
+					if constexpr (MinNeighbors > 0) { if (Node.Num() < MinNeighbors) { return; } }
+					const double Dist = FVector::DistSquared(Position, GetPos(Node));
+					if (Dist < MaxDistance)
+					{
+						MaxDistance = Dist;
+						ClosestIndex = Node.Index;
+					}
+				};
+
+				NodeOctree->FindNearbyElements(Position, ProcessCandidate);
+			}
+			else
+			{
+				for (const FNode& Node : (*Nodes))
+				{
+					if constexpr (MinNeighbors > 0) { if (Node.Num() < MinNeighbors) { continue; } }
+					const double Dist = FVector::DistSquared(Position, GetPos(Node));
+					if (Dist < MaxDistance)
+					{
+						MaxDistance = Dist;
+						ClosestIndex = Node.Index;
+					}
+				}
+			}
+
+			return ClosestIndex;
+		}
+
+		template <int32 MinNeighbors = 0>
+		int32 FindClosestNodeFromEdge(const FVector& Position) const
+		{
+			double MaxDistance = MAX_dbl;
+			int32 ClosestIndex = -1;
+
+			const TArray<FNode>& NodesRef = *Nodes;
+			const TArray<FEdge>& EdgesRef = *Edges;
+
+			if (EdgeOctree)
+			{
+				auto ProcessCandidate = [&](const PCGEx::FIndexedItem& Item)
+				{
+					const double Dist = GetPointDistToEdgeSquared(Item.Index, Position);
+					if (Dist < MaxDistance)
+					{
+						if constexpr (MinNeighbors > 0)
+						{
+							if (GetEdgeStart(Item.Index)->Links.Num() < MinNeighbors &&
+								GetEdgeEnd(Item.Index)->Links.Num() < MinNeighbors)
+							{
+								return;
+							}
+						}
+						MaxDistance = Dist;
+						ClosestIndex = Item.Index;
+					}
+				};
+
+				EdgeOctree->FindNearbyElements(Position, ProcessCandidate);
+			}
+			else if (BoundedEdges)
+			{
+				for (const FBoundedEdge& Edge : (*BoundedEdges))
+				{
+					const double Dist = GetPointDistToEdgeSquared(Edge.Index, Position);
+					if (Dist < MaxDistance)
+					{
+						if constexpr (MinNeighbors > 0)
+						{
+							if (GetEdgeStart(Edge.Index)->Links.Num() < MinNeighbors &&
+								GetEdgeEnd(Edge.Index)->Links.Num() < MinNeighbors)
+							{
+								continue;
+							}
+						}
+
+						MaxDistance = Dist;
+						ClosestIndex = Edge.Index;
+					}
+				}
+			}
+			else
+			{
+				for (const FEdge& Edge : (*Edges))
+				{
+					const double Dist = GetPointDistToEdgeSquared(Edge, Position);
+					if (Dist < MaxDistance)
+					{
+						if constexpr (MinNeighbors > 0)
+						{
+							if (GetEdgeStart(Edge.Index)->Links.Num() < MinNeighbors &&
+								GetEdgeEnd(Edge.Index)->Links.Num() < MinNeighbors)
+							{
+								continue;
+							}
+						}
+
+						MaxDistance = Dist;
+						ClosestIndex = Edge.Index;
+					}
+				}
+			}
+
+			if (ClosestIndex == -1) { return -1; }
+
+			const FEdge& Edge = EdgesRef[ClosestIndex];
+			const FNode* Start = GetEdgeStart(Edge);
+			const FNode* End = GetEdgeEnd(Edge);
+
+			ClosestIndex = FVector::DistSquared(Position, GetPos(Start)) < FVector::DistSquared(Position, GetPos(End)) ? Start->Index : End->Index;
+
+			return ClosestIndex;
+		}
+
+		template <int32 MinNeighbors = 0>
+		int32 FindClosestEdge(const int32 InNodeIndex, const FVector& InPosition) const
+		{
+			if (!Nodes->IsValidIndex(InNodeIndex) || (Nodes->GetData() + InNodeIndex)->IsEmpty()) { return -1; }
+			const FNode& Node = *(Nodes->GetData() + InNodeIndex);
+
+			double BestDist = MAX_dbl;
+			double BestDot = MAX_dbl;
+
+			int32 BestIndex = -1;
+
+			const FVector Position = GetPos(Node);
+			const FVector SearchDirection = (GetPos(Node) - InPosition).GetSafeNormal();
+
+			for (const FLink Lk : Node.Links)
+			{
+				if constexpr (MinNeighbors > 0)
+				{
+					if (GetNode(Lk)->Links.Num() < MinNeighbors) { continue; }
+				}
+
+				FVector NPos = GetPos(Lk.Node);
+				const double Dist = FMath::PointDistToSegmentSquared(InPosition, Position, NPos);
+				if (Dist <= BestDist)
+				{
+					const double Dot = FMath::Abs(FVector::DotProduct(SearchDirection, (NPos - Position).GetSafeNormal()));
+					if (Dist == BestDist && Dot > BestDot) { continue; }
+					BestDot = Dot;
+					BestDist = Dist;
+					BestIndex = Lk.Edge;
+				}
+			}
+
+			return BestIndex;
+		}
 
 		int32 FindClosestNeighbor(const int32 NodeIndex, const FVector& Position, int32 MinNeighborCount = 1) const;
 		int32 FindClosestNeighbor(const int32 NodeIndex, const FVector& Position, const TSet<int32>& Exclusion, int32 MinNeighborCount = 1) const;
@@ -299,49 +443,72 @@ namespace PCGExCluster
 		void GetConnectedEdges(const int32 FromNodeIndex, TArray<int32>& OutNodeIndices, TArray<int32>& OutEdgeIndices, const int32 SearchDepth, const TSet<int32>& SkipNodes, const TSet<int32>& SkipEdges) const;
 
 		FORCEINLINE FVector GetEdgeDirection(const int32 FromIndex, const int32 ToIndex) const { return (GetPos(FromIndex) - GetPos(ToIndex)).GetSafeNormal(); }
+		FORCEINLINE FVector GetClosestPointOnEdge(const int32 FromIndex, const int32 ToIndex, const FVector& Position) const
+		{
+			return FMath::ClosestPointOnSegment(Position, GetPos(FromIndex), GetPos(ToIndex));
+		}
+
+		FORCEINLINE FVector GetClosestPointOnEdge(const FEdge& InEdge, const FVector& Position) const
+		{
+			return FMath::ClosestPointOnSegment(
+				Position,
+				*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.Start)),
+				*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.End)));
+		}
+
+		FORCEINLINE FVector GetClosestPointOnEdge(const int32 EdgeIndex, const FVector& Position) const
+		{
+			return GetClosestPointOnEdge(*(Edges->GetData() + EdgeIndex), Position);
+		}
+
+		FORCEINLINE double GetPointDistToEdgeSquared(const FEdge& InEdge, const FVector& Position) const
+		{
+			return FMath::PointDistToSegmentSquared(
+				Position,
+				*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.Start)),
+				*(NodePositions.GetData() + NodeIndexLookup->Get(InEdge.End)));
+		}
+
+		FORCEINLINE double GetPointDistToEdgeSquared(const int32 EdgeIndex, const FVector& Position) const
+		{
+			return GetPointDistToEdgeSquared(*(Edges->GetData() + EdgeIndex), Position);
+		}
 
 		FORCEINLINE FVector GetCentroid(const int32 NodeIndex) const
 		{
 			const FNode* Node = (Nodes->GetData() + NodeIndex);
 			FVector Centroid = FVector::ZeroVector;
-			for (const uint64 AdjacencyHash : Node->Adjacency) { Centroid += GetPos(PCGEx::H64A(AdjacencyHash)); }
-			return Centroid / static_cast<double>(Node->Adjacency.Num());
+			for (const FLink Lk : Node->Links) { Centroid += GetPos(Lk.Node); }
+			return Centroid / static_cast<double>(Node->Num());
 		}
 
-		void GetValidEdges(TArray<PCGExGraph::FIndexedEdge>& OutValidEdges) const;
+		void GetValidEdges(TArray<FEdge>& OutValidEdges) const;
 
 		int32 FindClosestNeighborInDirection(const int32 NodeIndex, const FVector& Direction, int32 MinNeighborCount = 1) const;
 
-		TArray<FExpandedNode*>* GetExpandedNodes(const bool bBuild);
-		void ExpandNodes(PCGExMT::FTaskManager* AsyncManager);
-
-		TArray<FExpandedEdge*>* GetExpandedEdges(const bool bBuild);
+		TSharedPtr<TArray<FBoundedEdge>> GetBoundedEdges(const bool bBuild);
 		void ExpandEdges(PCGExMT::FTaskManager* AsyncManager);
 
 		template <typename T, class MakeFunc>
 		void GrabNeighbors(const int32 NodeIndex, TArray<T>& OutNeighbors, const MakeFunc&& Make) const
 		{
 			FNode* Node = (Nodes->GetData() + NodeIndex);
-			PCGEX_SET_NUM_UNINITIALIZED(OutNeighbors, Node->Adjacency.Num())
-			for (int i = 0; i < Node->Adjacency.Num(); i++)
+			PCGEx::InitArray(OutNeighbors, Node->Num());
+			for (int i = 0; i < Node->Num(); i++)
 			{
-				uint32 OtherNodeIndex;
-				uint32 EdgeIndex;
-				PCGEx::H64(Node->Adjacency[i], OtherNodeIndex, EdgeIndex);
-				OutNeighbors[i] = Make(Node, (Nodes->GetData() + OtherNodeIndex), (Edges->GetData() + EdgeIndex));
+				const FLink Lk = Node->Links[i];
+				OutNeighbors[i] = Make(Node, (Nodes->GetData() + Lk.Node), (Edges->GetData() + Lk.Edge));
 			}
 		}
 
 		template <typename T, class MakeFunc>
 		void GrabNeighbors(const FNode& Node, TArray<T>& OutNeighbors, const MakeFunc&& Make) const
 		{
-			PCGEX_SET_NUM_UNINITIALIZED(OutNeighbors, Node.Adjacency.Num())
-			for (int i = 0; i < Node.Adjacency.Num(); i++)
+			PCGEx::InitArray(OutNeighbors, Node.Num());
+			for (int i = 0; i < Node.Num(); i++)
 			{
-				uint32 OtherNodeIndex;
-				uint32 EdgeIndex;
-				PCGEx::H64(Node.Adjacency[i], OtherNodeIndex, EdgeIndex);
-				OutNeighbors[i] = Make((Nodes->GetData() + OtherNodeIndex), (Edges->GetData() + EdgeIndex));
+				const FLink Lk = Node.Links[i];
+				OutNeighbors[i] = Make((Nodes->GetData() + Lk.Node), (Edges->GetData() + Lk.Edge));
 			}
 		}
 
@@ -350,312 +517,85 @@ namespace PCGExCluster
 	protected:
 		FORCEINLINE FNode& GetOrCreateNodeUnsafe(const TArray<FPCGPoint>& InNodePoints, int32 PointIndex)
 		{
-			const int32* NodeIndex = NodeIndexLookup->Find(PointIndex);
+			int32 NodeIndex = NodeIndexLookup->Get(PointIndex);
 
-			if (!NodeIndex)
-			{
-				NodeIndexLookup->Add(PointIndex, Nodes->Num());
-				FNode& NewNode = Nodes->Emplace_GetRef(Nodes->Num(), PointIndex);
-				const FVector Pos = InNodePoints[PointIndex].Transform.GetLocation();
-				NodePositions.Add(Pos);
-				Bounds += Pos;
-				return NewNode;
-			}
+			if (NodeIndex != -1) { return *(Nodes->GetData() + NodeIndex); }
 
-			return *(Nodes->GetData() + *NodeIndex);
-		}
+			NodeIndex = Nodes->Num();
+			NodeIndexLookup->GetMutable(PointIndex) = NodeIndex;
 
-		void CreateVtxPointIndices();
-		void CreateVtxPointScopes();
-	};
+			FNode& NewNode = Nodes->Emplace_GetRef(NodeIndex, PointIndex);
+			const FVector Pos = InNodePoints[PointIndex].Transform.GetLocation();
+			NodePositions.Add(Pos);
+			Bounds += Pos;
 
-	struct PCGEXTENDEDTOOLKIT_API FExpandedNode
-	{
-		const FNode* Node = nullptr;
-		TArray<FExpandedNeighbor> Neighbors;
-
-		FExpandedNode(const FCluster* Cluster, const int32 InNodeIndex):
-			Node(Cluster->Nodes->GetData() + InNodeIndex)
-		{
-			const int32 NumNeighbors = Node->Adjacency.Num();
-			const FVector Pos = Cluster->GetPos(InNodeIndex);
-			PCGEX_SET_NUM_UNINITIALIZED(Neighbors, NumNeighbors)
-			for (int i = 0; i < Neighbors.Num(); i++)
-			{
-				uint32 NodeIndex;
-				uint32 EdgeIndex;
-				PCGEx::H64(Node->Adjacency[i], NodeIndex, EdgeIndex);
-				Neighbors[i] = FExpandedNeighbor(
-					Cluster->Nodes->GetData() + NodeIndex, Cluster->Edges->GetData() + EdgeIndex,
-					(Cluster->GetPos(NodeIndex) - Pos).GetSafeNormal());
-			}
-		}
-
-		~FExpandedNode()
-		{
-			Node = nullptr;
-			Neighbors.Empty();
+			return NewNode;
 		}
 	};
 
-	struct PCGEXTENDEDTOOLKIT_API FExpandedEdge
-	{
-		const int32 Index;
-		const FNode* Start = nullptr;
-		const FNode* End = nullptr;
-		const FBoxSphereBounds Bounds;
-
-		FExpandedEdge(const FCluster* Cluster, const int32 InEdgeIndex):
-			Index(InEdgeIndex),
-			Start(Cluster->Nodes->GetData() + (*Cluster->NodeIndexLookup)[(Cluster->Edges->GetData() + InEdgeIndex)->Start]),
-			End(Cluster->Nodes->GetData() + (*Cluster->NodeIndexLookup)[(Cluster->Edges->GetData() + InEdgeIndex)->End]),
-			Bounds(FBoxSphereBounds(FSphere(FMath::Lerp(Cluster->GetPos(Start), Cluster->GetPos(End), 0.5), FVector::Dist(Cluster->GetPos(Start), Cluster->GetPos(End)) * 0.5)))
-		{
-		}
-
-		~FExpandedEdge()
-		{
-			Start = nullptr;
-			End = nullptr;
-		}
-
-		FORCEINLINE uint64 GetNodes() const { return PCGEx::H64(Start->NodeIndex, End->NodeIndex); }
-		FORCEINLINE double GetEdgeLength(const FCluster* Cluster) const { return FVector::Dist(Cluster->GetPos(Start), Cluster->GetPos(End)); }
-		FORCEINLINE double GetEdgeLengthSquared(const FCluster* Cluster) const { return FVector::DistSquared(Cluster->GetPos(Start), Cluster->GetPos(End)); }
-		FORCEINLINE FVector GetCenter() const { return Bounds.Origin; }
-		FORCEINLINE int32 OtherNodeIndex(int32 NodeIndex) const
-		{
-			check(NodeIndex == Start->NodeIndex || NodeIndex == End->NodeIndex)
-			return NodeIndex == Start->NodeIndex ? End->NodeIndex : Start->NodeIndex;
-		}
-	};
-
-	struct PCGEXTENDEDTOOLKIT_API FNodeChain
-	{
-		int32 First = -1;
-		int32 Last = -1;
-		int32 SingleEdge = -1;
-		TArray<int32> Nodes;
-		TArray<int32> Edges;
-
-		FNodeChain()
-		{
-		}
-
-		~FNodeChain()
-		{
-			Nodes.Empty();
-			Edges.Empty();
-		}
-
-		uint64 GetUniqueHash() const
-		{
-			const uint32 BaseHash = First > Last ? HashCombineFast(GetTypeHash(Last), GetTypeHash(First)) : HashCombineFast(GetTypeHash(First), GetTypeHash(Last));
-			if (SingleEdge != -1) { return BaseHash; }
-			if (Nodes.Num() == 1) { return HashCombineFast(BaseHash, GetTypeHash(Nodes[0])); }
-			const uint32 NodeBaseHash = Nodes[0] > Nodes[1] ? HashCombineFast(GetTypeHash(Nodes[1]), GetTypeHash(Nodes[0])) : HashCombineFast(GetTypeHash(Nodes[0]), GetTypeHash(Nodes[1]));
-			return HashCombineFast(BaseHash, NodeBaseHash);
-		}
-	};
-
-	struct PCGEXTENDEDTOOLKIT_API FAdjacencyData
-	{
-		int32 NodeIndex = -1;
-		int32 NodePointIndex = -1;
-		int32 EdgeIndex = -1;
-		FVector Direction = FVector::OneVector;
-		double Length = 0;
-	};
 
 	static void GetAdjacencyData(const FCluster* InCluster, FNode& InNode, TArray<FAdjacencyData>& OutData)
 	{
-		const int32 NumAdjacency = InNode.Adjacency.Num();
+		const int32 NumAdjacency = InNode.Num();
 		const FVector NodePosition = InCluster->GetPos(InNode);
 		OutData.Reserve(NumAdjacency);
 		for (int i = 0; i < NumAdjacency; i++)
 		{
-			uint32 NIndex;
-			uint32 EIndex;
+			const FLink Lk = InNode.Links[i];
 
-			PCGEx::H64(InNode.Adjacency[i], NIndex, EIndex);
-
-			const FNode* OtherNode = InCluster->Nodes->GetData() + NIndex;
+			const FNode* OtherNode = InCluster->Nodes->GetData() + Lk.Node;
 			const FVector OtherPosition = InCluster->GetPos(OtherNode);
 
 			FAdjacencyData& Data = OutData.Emplace_GetRef();
-			Data.NodeIndex = NIndex;
+			Data.NodeIndex = Lk.Node;
 			Data.NodePointIndex = OtherNode->PointIndex;
-			Data.EdgeIndex = EIndex;
+			Data.EdgeIndex = Lk.Edge;
 			Data.Direction = (NodePosition - OtherPosition).GetSafeNormal();
 			Data.Length = FVector::Dist(NodePosition, OtherPosition);
 		}
 	}
 }
 
-namespace PCGExClusterTask
+USTRUCT(BlueprintType)
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExEdgeDirectionSettings
 {
-	class PCGEXTENDEDTOOLKIT_API FBuildCluster final : public PCGExMT::FPCGExTask
-	{
-	public:
-		FBuildCluster(
-			PCGExData::FPointIO* InPointIO,
-			PCGExCluster::FCluster* InCluster,
-			const PCGExData::FPointIO* InEdgeIO,
-			const TMap<uint32, int32>* InEndpointsLookup,
-			const TArray<int32>* InExpectedAdjacency) :
-			FPCGExTask(InPointIO),
-			Cluster(InCluster),
-			EdgeIO(InEdgeIO),
-			EndpointsLookup(InEndpointsLookup),
-			ExpectedAdjacency(InExpectedAdjacency)
-		{
-		}
+	GENERATED_BODY()
 
-		PCGExCluster::FCluster* Cluster = nullptr;
-		const PCGExData::FPointIO* EdgeIO = nullptr;
-		const TMap<uint32, int32>* EndpointsLookup = nullptr;
-		const TArray<int32>* ExpectedAdjacency = nullptr;
+	/** Method to pick the edge direction amongst various possibilities.*/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	EPCGExEdgeDirectionMethod DirectionMethod = EPCGExEdgeDirectionMethod::EndpointsOrder;
 
-		virtual bool ExecuteTask() override;
-	};
+	/** Attribute picker for the selected Direction Method.*/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="DirectionMethod==EPCGExEdgeDirectionMethod::EdgeDotAttribute", EditConditionHides))
+	FPCGAttributePropertyInputSelector DirSourceAttribute;
 
+	/** Further refine the direction method. Not all methods make use of this property.*/
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	EPCGExEdgeDirectionChoice DirectionChoice = EPCGExEdgeDirectionChoice::SmallestToGreatest;
 
-	class PCGEXTENDEDTOOLKIT_API FFindNodeChains final : public PCGExMT::FPCGExTask
-	{
-	public:
-		FFindNodeChains(PCGExData::FPointIO* InPointIO,
-		                const PCGExCluster::FCluster* InCluster,
-		                const TArray<bool>* InBreakpoints,
-		                TArray<PCGExCluster::FNodeChain*>* InChains,
-		                const bool InSkipSingleEdgeChains = false,
-		                const bool InDeadEndsOnly = false) :
-			FPCGExTask(InPointIO),
-			Cluster(InCluster),
-			Breakpoints(InBreakpoints),
-			Chains(InChains),
-			bSkipSingleEdgeChains(InSkipSingleEdgeChains),
-			bDeadEndsOnly(InDeadEndsOnly)
-		{
-		}
+	bool bAscendingDesired = false;
+	TSharedPtr<PCGExData::TBuffer<FVector>> EdgeDirReader;
 
-		const PCGExCluster::FCluster* Cluster = nullptr;
-		const TArray<bool>* Breakpoints = nullptr;
-		TArray<PCGExCluster::FNodeChain*>* Chains = nullptr;
+	TSharedPtr<PCGExSorting::PointSorter<true>> Sorter;
 
-		const bool bSkipSingleEdgeChains = false;
-		const bool bDeadEndsOnly = false;
+	void RegisterBuffersDependencies(
+		FPCGExContext* InContext,
+		PCGExData::FFacadePreloader& FacadePreloader,
+		const TArray<FPCGExSortRuleConfig>* InSortingRules = nullptr) const;
 
-		virtual bool ExecuteTask() override;
-	};
+	bool Init(
+		FPCGExContext* InContext,
+		const TSharedRef<PCGExData::FFacade>& InVtxDataFacade,
+		const TArray<FPCGExSortRuleConfig>* InSortingRules = nullptr);
 
-	class PCGEXTENDEDTOOLKIT_API FBuildChain final : public PCGExMT::FPCGExTask
-	{
-	public:
-		FBuildChain(PCGExData::FPointIO* InPointIO,
-		            const PCGExCluster::FCluster* InCluster,
-		            const TArray<bool>* InBreakpoints,
-		            TArray<PCGExCluster::FNodeChain*>* InChains,
-		            const int32 InStartIndex,
-		            const uint64 InAdjacencyHash) :
-			FPCGExTask(InPointIO),
-			Cluster(InCluster),
-			Breakpoints(InBreakpoints),
-			Chains(InChains),
-			StartIndex(InStartIndex),
-			AdjacencyHash(InAdjacencyHash)
-		{
-		}
+	bool InitFromParent(
+		FPCGExContext* InContext,
+		const FPCGExEdgeDirectionSettings& ParentSettings,
+		const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade);
 
-		const PCGExCluster::FCluster* Cluster = nullptr;
-		const TArray<bool>* Breakpoints = nullptr;
-		TArray<PCGExCluster::FNodeChain*>* Chains = nullptr;
-		int32 StartIndex = 0;
-		uint64 AdjacencyHash = 0;
+	bool RequiresSortingRules() const { return DirectionMethod == EPCGExEdgeDirectionMethod::EndpointsSort; }
+	bool RequiresEndpointsMetadata() const { return DirectionMethod == EPCGExEdgeDirectionMethod::EndpointsSort; }
+	bool RequiresEdgeMetadata() const { return DirectionMethod == EPCGExEdgeDirectionMethod::EdgeDotAttribute; }
 
-		virtual bool ExecuteTask() override;
-	};
-
-	static void BuildChain(
-		PCGExCluster::FNodeChain* Chain,
-		const TArray<bool>* Breakpoints,
-		const PCGExCluster::FCluster* Cluster)
-	{
-		TArray<PCGExCluster::FNode>& Nodes = *Cluster->Nodes;
-
-		int32 LastIndex = Chain->First;
-		int32 NextIndex = Chain->Last;
-		Chain->Edges.Add(Nodes[LastIndex].GetEdgeIndex(NextIndex));
-
-		while (NextIndex != -1)
-		{
-			const PCGExCluster::FNode& NextNode = Nodes[NextIndex];
-			if ((*(Breakpoints->GetData() + NextIndex)) || NextNode.IsComplex() || NextNode.IsDeadEnd())
-			{
-				LastIndex = NextIndex;
-				break;
-			}
-
-			uint32 OtherIndex;
-			uint32 EdgeIndex;
-			PCGEx::H64(NextNode.Adjacency[0], OtherIndex, EdgeIndex);                                  // Get next node
-			if (OtherIndex == LastIndex) { PCGEx::H64(NextNode.Adjacency[1], OtherIndex, EdgeIndex); } // Get other next
-
-			LastIndex = NextIndex;
-			NextIndex = OtherIndex;
-
-			Chain->Nodes.Add(LastIndex);
-			Chain->Edges.Add(EdgeIndex);
-		}
-
-		Chain->Last = LastIndex;
-	}
-
-	static void DedupeChains(TArray<PCGExCluster::FNodeChain*>& InChains)
-	{
-		TSet<uint64> Chains;
-		Chains.Reserve(InChains.Num() / 2);
-
-
-		for (int i = 0; i < InChains.Num(); i++)
-		{
-			const PCGExCluster::FNodeChain* Chain = InChains[i];
-			if (!Chain) { continue; }
-
-			bool bAlreadyExists = false;
-			Chains.Add(Chain->GetUniqueHash(), &bAlreadyExists);
-			if (bAlreadyExists)
-			{
-				PCGEX_DELETE(Chain)
-				InChains[i] = nullptr;
-			}
-		}
-	}
-
-	class PCGEXTENDEDTOOLKIT_API FExpandClusterNodes final : public PCGExMT::FPCGExTask
-	{
-	public:
-		FExpandClusterNodes(PCGExData::FPointIO* InPointIO, PCGExCluster::FCluster* InCluster, const int32 InNumIterations) :
-			FPCGExTask(InPointIO), Cluster(InCluster), NumIterations(InNumIterations)
-		{
-		}
-
-		PCGExCluster::FCluster* Cluster = nullptr;
-		int32 NumIterations = 0;
-
-		virtual bool ExecuteTask() override;
-	};
-
-	class PCGEXTENDEDTOOLKIT_API FExpandClusterEdges final : public PCGExMT::FPCGExTask
-	{
-	public:
-		FExpandClusterEdges(PCGExData::FPointIO* InPointIO, PCGExCluster::FCluster* InCluster, const int32 InNumIterations) :
-			FPCGExTask(InPointIO), Cluster(InCluster), NumIterations(InNumIterations)
-		{
-		}
-
-		PCGExCluster::FCluster* Cluster = nullptr;
-		int32 NumIterations = 0;
-
-		virtual bool ExecuteTask() override;
-	};
-}
+	bool SortEndpoints(const PCGExCluster::FCluster* InCluster, PCGExGraph::FEdge& InEdge) const;
+};

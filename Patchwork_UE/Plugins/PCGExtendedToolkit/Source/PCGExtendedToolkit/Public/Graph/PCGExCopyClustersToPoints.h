@@ -6,18 +6,20 @@
 #include "CoreMinimal.h"
 #include "PCGExCluster.h"
 #include "PCGExEdgesProcessor.h"
+#include "Data/PCGExDataForward.h"
+
 
 #include "PCGExCopyClustersToPoints.generated.h"
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph")
-class PCGEXTENDEDTOOLKIT_API UPCGExCopyClustersToPointsSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExCopyClustersToPointsSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
 public:
 	//~Begin UPCGSettings
 #if WITH_EDITOR
-	PCGEX_NODE_INFOS(CopyClustersToPoints, "Cluster : Copy to Points", "Create a copies of the input clusters onto the target points. \n NOTE: Does not sanitize input.");
+	PCGEX_NODE_INFOS(CopyClustersToPoints, "Cluster : Copy to Points", "Create a copies of the input clusters onto the target points.  NOTE: Does not sanitize input.");
 	virtual FLinearColor GetNodeTitleColor() const override { return GetDefault<UPCGExGlobalSettings>()->NodeColorCluster; }
 #endif
 
@@ -28,28 +30,37 @@ protected:
 
 	//~Begin UPCGExEdgesProcessorSettings interface
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 	//~End UPCGExEdgesProcessorSettings interface
 
 	/** Target inherit behavior */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, ShowOnlyInnerProperties))
 	FPCGExTransformDetails TransformDetails;
+
+	/** TBD */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging & Forwarding")
+	FPCGExAttributeToTagDetails TargetsAttributesToPathTags;
+
+	/** Which Seed attributes to forward on paths. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging & Forwarding")
+	FPCGExForwardDetails TargetsForwarding;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExCopyClustersToPointsContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExCopyClustersToPointsContext final : FPCGExEdgesProcessorContext
 {
 	friend class UPCGExCopyClustersToPointsSettings;
 	friend class FPCGExCopyClustersToPointsElement;
 
-	virtual ~FPCGExCopyClustersToPointsContext() override;
-
 	FPCGExTransformDetails TransformDetails;
 
-	PCGExData::FPointIO* Targets = nullptr;
+	TSharedPtr<PCGExData::FFacade> TargetsDataFacade;
+
+	FPCGExAttributeToTagDetails TargetsAttributesToPathTags;
+	TSharedPtr<PCGExData::FDataForwardHandler> TargetsForwardHandler;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExCopyClustersToPointsElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExCopyClustersToPointsElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -64,24 +75,22 @@ protected:
 
 namespace PCGExCopyClusters
 {
-	class FProcessor final : public PCGExClusterMT::FClusterProcessor
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExCopyClustersToPointsContext, UPCGExCopyClustersToPointsSettings>
 	{
-		FPCGExCopyClustersToPointsContext* LocalTypedContext = nullptr;
-		
 	public:
-		TArray<PCGExData::FPointIO*>* VtxDupes = nullptr;
+		TArray<TSharedPtr<PCGExData::FPointIO>>* VtxDupes = nullptr;
 		TArray<FString>* VtxTag = nullptr;
 
-		TArray<PCGExData::FPointIO*> EdgesDupes;
+		TArray<TSharedPtr<PCGExData::FPointIO>> EdgesDupes;
 
-		FProcessor(PCGExData::FPointIO* InVtx, PCGExData::FPointIO* InEdges):
-			FClusterProcessor(InVtx, InEdges)
+		FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade):
+			TProcessor(InVtxDataFacade, InEdgeDataFacade)
 		{
 			bBuildCluster = false;
 		}
 
 		virtual ~FProcessor() override;
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void CompleteWork() override;
 	};
 
@@ -89,19 +98,17 @@ namespace PCGExCopyClusters
 	{
 		friend class FProcessor;
 
-		FPCGExCopyClustersToPointsContext* LocalTypedContext = nullptr;
-		
 	public:
-		TArray<PCGExData::FPointIO*> VtxDupes;
+		TArray<TSharedPtr<PCGExData::FPointIO>> VtxDupes;
 		TArray<FString> VtxTag;
 
-		FBatch(FPCGContext* InContext, PCGExData::FPointIO* InVtx, const TArrayView<PCGExData::FPointIO*> InEdges):
+		FBatch(FPCGExContext* InContext, const TSharedRef<PCGExData::FPointIO>& InVtx, const TArrayView<TSharedRef<PCGExData::FPointIO>> InEdges):
 			TBatch(InContext, InVtx, InEdges)
 		{
 		}
 
 		virtual ~FBatch() override;
-		virtual void Process(PCGExMT::FTaskManager* AsyncManager) override;
-		virtual bool PrepareSingle(FProcessor* ClusterProcessor) override;
+		virtual void Process() override;
+		virtual bool PrepareSingle(const TSharedPtr<FProcessor>& ClusterProcessor) override;
 	};
 }

@@ -3,27 +3,26 @@
 
 #include "Graph/Edges/Properties/PCGExVtxPropertySpecialNeighbors.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExVtxPropertySpecialNeighbors"
 #define PCGEX_NAMESPACE PCGExVtxPropertySpecialNeighbors
-
-#define PCGEX_FOREACH_FIELD_SPECIALEDGE(MACRO)\
-MACRO(Shortest)\
-MACRO(Longest)\
-MACRO(Average)
 
 void UPCGExVtxPropertySpecialNeighbors::CopySettingsFrom(const UPCGExOperation* Other)
 {
 	Super::CopySettingsFrom(Other);
-	const UPCGExVtxPropertySpecialNeighbors* TypedOther = Cast<UPCGExVtxPropertySpecialNeighbors>(Other);
-	if (TypedOther)
+	if (const UPCGExVtxPropertySpecialNeighbors* TypedOther = Cast<UPCGExVtxPropertySpecialNeighbors>(Other))
 	{
 		Config = TypedOther->Config;
 	}
 }
 
-bool UPCGExVtxPropertySpecialNeighbors::PrepareForVtx(const FPCGContext* InContext, PCGExData::FFacade* InVtxDataFacade)
+bool UPCGExVtxPropertySpecialNeighbors::PrepareForCluster(
+	const FPCGContext* InContext,
+	TSharedPtr<PCGExCluster::FCluster> InCluster,
+	const TSharedPtr<PCGExData::FFacade>& InVtxDataFacade,
+	const TSharedPtr<PCGExData::FFacade>& InEdgeDataFacade)
 {
-	if (!Super::PrepareForVtx(InContext, InVtxDataFacade)) { return false; }
+	if (!Super::PrepareForCluster(InContext, InCluster, InVtxDataFacade, InEdgeDataFacade)) { return false; }
 
 	if (!Config.LargestNeighbor.Validate(InContext) ||
 		!Config.SmallestNeighbor.Validate(InContext))
@@ -32,41 +31,42 @@ bool UPCGExVtxPropertySpecialNeighbors::PrepareForVtx(const FPCGContext* InConte
 		return false;
 	}
 
-	Config.LargestNeighbor.Init(InVtxDataFacade);
-	Config.SmallestNeighbor.Init(InVtxDataFacade);
+	Config.LargestNeighbor.Init(InVtxDataFacade.ToSharedRef());
+	Config.SmallestNeighbor.Init(InVtxDataFacade.ToSharedRef());
 
 	return bIsValidOperation;
 }
 
-void UPCGExVtxPropertySpecialNeighbors::ProcessNode(const int32 ClusterIdx, const PCGExCluster::FCluster* Cluster, PCGExCluster::FNode& Node, const TArray<PCGExCluster::FAdjacencyData>& Adjacency)
+void UPCGExVtxPropertySpecialNeighbors::ProcessNode(PCGExCluster::FNode& Node, const TArray<PCGExCluster::FAdjacencyData>& Adjacency)
 {
-	double LLargest = TNumericLimits<double>::Min();
+	int32 LLargest = MIN_int32;
 	int32 ILargest = -1;
 
-	double LSmallest = TNumericLimits<double>::Max();
+	int32 LSmallest = MAX_int32;
 	int32 ISmallest = -1;
 
 	for (int i = 0; i < Adjacency.Num(); i++)
 	{
 		const PCGExCluster::FAdjacencyData& A = Adjacency[i];
+		const int32 NumAdj = Cluster->GetNode(A.NodeIndex)->Num();
 
-		if (A.Length > LLargest)
+		if (NumAdj > LLargest)
 		{
 			ILargest = i;
-			LLargest = A.Length;
+			LLargest = NumAdj;
 		}
 
-		if (A.Length < LSmallest)
+		if (NumAdj < LSmallest)
 		{
 			ISmallest = i;
-			LSmallest = A.Length;
+			LSmallest = NumAdj;
 		}
 	}
 
-	if (ILargest != -1) { Config.LargestNeighbor.Set(Node.PointIndex, Adjacency[ISmallest], (*Cluster->Nodes)[Adjacency[ISmallest].NodeIndex].Adjacency.Num()); }
+	if (ILargest != -1) { Config.LargestNeighbor.Set(Node.PointIndex, Adjacency[ILargest], Cluster->GetNode(Adjacency[ILargest].NodeIndex)->Num()); }
 	else { Config.LargestNeighbor.Set(Node.PointIndex, 0, FVector::ZeroVector, -1, -1, 0); }
 
-	if (ISmallest != -1) { Config.SmallestNeighbor.Set(Node.PointIndex, Adjacency[ILargest], (*Cluster->Nodes)[Adjacency[ILargest].NodeIndex].Adjacency.Num()); }
+	if (ISmallest != -1) { Config.SmallestNeighbor.Set(Node.PointIndex, Adjacency[ISmallest], Cluster->GetNode(Adjacency[ISmallest].NodeIndex)->Num()); }
 	else { Config.SmallestNeighbor.Set(Node.PointIndex, 0, FVector::ZeroVector, -1, -1, 0); }
 }
 
@@ -77,20 +77,19 @@ FString UPCGExVtxPropertySpecialNeighborsSettings::GetDisplayName() const
 }
 #endif
 
-UPCGExVtxPropertyOperation* UPCGExVtxPropertySpecialNeighborsFactory::CreateOperation() const
+UPCGExVtxPropertyOperation* UPCGExVtxPropertySpecialNeighborsFactory::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExVtxPropertySpecialNeighbors, NewOperation)
+	UPCGExVtxPropertySpecialNeighbors* NewOperation = InContext->ManagedObjects->New<UPCGExVtxPropertySpecialNeighbors>();
 	PCGEX_VTX_EXTRA_CREATE
 	return NewOperation;
 }
 
 UPCGExParamFactoryBase* UPCGExVtxPropertySpecialNeighborsSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const
 {
-	UPCGExVtxPropertySpecialNeighborsFactory* NewFactory = NewObject<UPCGExVtxPropertySpecialNeighborsFactory>();
+	UPCGExVtxPropertySpecialNeighborsFactory* NewFactory = InContext->ManagedObjects->New<UPCGExVtxPropertySpecialNeighborsFactory>();
 	NewFactory->Config = Config;
 	return Super::CreateFactory(InContext, NewFactory);
 }
 
-#undef PCGEX_FOREACH_FIELD_SPECIALEDGE
 #undef LOCTEXT_NAMESPACE
 #undef PCGEX_NAMESPACE

@@ -7,11 +7,13 @@
 #include "PCGExHeuristicDistance.h"
 #include "UObject/Object.h"
 #include "PCGExHeuristicOperation.h"
+
+
 #include "Graph/PCGExCluster.h"
 #include "PCGExHeuristicSteepness.generated.h"
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExHeuristicConfigSteepness : public FPCGExHeuristicConfigBase
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExHeuristicConfigSteepness : public FPCGExHeuristicConfigBase
 {
 	GENERATED_BODY()
 
@@ -32,32 +34,33 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExHeuristicConfigSteepness : public FPCGExHeur
 /**
  * 
  */
-UCLASS(DisplayName = "Steepness")
-class PCGEXTENDEDTOOLKIT_API UPCGExHeuristicSteepness : public UPCGExHeuristicOperation
+UCLASS(MinimalAPI, DisplayName = "Steepness")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExHeuristicSteepness : public UPCGExHeuristicOperation
 {
 	GENERATED_BODY()
 
-	friend class UPCGHeuristicsFactorySteepness;
+	friend class UPCGExHeuristicsFactorySteepness;
 
 public:
-	virtual void PrepareForCluster(const PCGExCluster::FCluster* InCluster) override;
+	virtual void PrepareForCluster(const TSharedPtr<const PCGExCluster::FCluster>& InCluster) override;
 
 	FORCEINLINE virtual double GetGlobalScore(
 		const PCGExCluster::FNode& From,
 		const PCGExCluster::FNode& Seed,
 		const PCGExCluster::FNode& Goal) const override
 	{
-		return SampleCurve(GetDot(Cluster->GetPos(From), Cluster->GetPos(Goal))) * ReferenceWeight;
+		return GetScoreInternal(GetDot(Cluster->GetPos(From), Cluster->GetPos(Goal)));
 	}
 
 	FORCEINLINE virtual double GetEdgeScore(
 		const PCGExCluster::FNode& From,
 		const PCGExCluster::FNode& To,
-		const PCGExGraph::FIndexedEdge& Edge,
+		const PCGExGraph::FEdge& Edge,
 		const PCGExCluster::FNode& Seed,
-		const PCGExCluster::FNode& Goal) const override
+		const PCGExCluster::FNode& Goal,
+		const TSharedPtr<PCGEx::FHashLookup> TravelStack) const override
 	{
-		return SampleCurve(GetDot(Cluster->GetPos(From), Cluster->GetPos(To))) * ReferenceWeight;
+		return GetScoreInternal(GetDot(Cluster->GetPos(From), Cluster->GetPos(To)));
 	}
 
 protected:
@@ -71,19 +74,19 @@ protected:
 	}
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGHeuristicsFactorySteepness : public UPCGExHeuristicsFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExHeuristicsFactorySteepness : public UPCGExHeuristicsFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExHeuristicConfigSteepness Config;
 
-	virtual UPCGExHeuristicOperation* CreateOperation() const override;
+	virtual UPCGExHeuristicOperation* CreateOperation(FPCGExContext* InContext) const override;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
-class PCGEXTENDEDTOOLKIT_API UPCGExHeuristicsSteepnessProviderSettings : public UPCGExHeuristicsFactoryProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExHeuristicsSteepnessProviderSettings : public UPCGExHeuristicsFactoryProviderSettings
 {
 	GENERATED_BODY()
 

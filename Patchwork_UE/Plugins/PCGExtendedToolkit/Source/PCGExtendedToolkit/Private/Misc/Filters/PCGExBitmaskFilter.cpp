@@ -3,16 +3,27 @@
 
 #include "Misc/Filters/PCGExBitmaskFilter.h"
 
-PCGExPointFilter::TFilter* UPCGExBitmaskFilterFactory::CreateFilter() const
+
+#define LOCTEXT_NAMESPACE "PCGExCompareFilterDefinition"
+#define PCGEX_NAMESPACE CompareFilterDefinition
+
+TSharedPtr<PCGExPointFilter::FFilter> UPCGExBitmaskFilterFactory::CreateFilter() const
 {
-	return new PCGExPointsFilter::TBitmaskFilter(this);
+	return MakeShared<PCGExPointsFilter::TBitmaskFilter>(this);
 }
 
-bool PCGExPointsFilter::TBitmaskFilter::Init(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade)
+void UPCGExBitmaskFilterFactory::RegisterConsumableAttributes(FPCGExContext* InContext) const
 {
-	if (!TFilter::Init(InContext, InPointDataFacade)) { return false; }
+	Super::RegisterConsumableAttributes(InContext);
+	InContext->AddConsumableAttributeName(Config.FlagsAttribute);
+	InContext->AddConsumableAttributeName(Config.BitmaskAttribute);
+}
 
-	FlagsReader = PointDataFacade->GetScopedReader<int64>(TypedFilterFactory->Config.FlagsAttribute);
+bool PCGExPointsFilter::TBitmaskFilter::Init(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade> InPointDataFacade)
+{
+	if (!FFilter::Init(InContext, InPointDataFacade)) { return false; }
+
+	FlagsReader = PointDataFacade->GetScopedReadable<int64>(TypedFilterFactory->Config.FlagsAttribute);
 
 	if (!FlagsReader)
 	{
@@ -20,9 +31,9 @@ bool PCGExPointsFilter::TBitmaskFilter::Init(const FPCGContext* InContext, PCGEx
 		return false;
 	}
 
-	if (TypedFilterFactory->Config.MaskType == EPCGExFetchType::Attribute)
+	if (TypedFilterFactory->Config.MaskInput == EPCGExInputValueType::Attribute)
 	{
-		MaskReader = PointDataFacade->GetScopedReader<int64>(TypedFilterFactory->Config.BitmaskAttribute);
+		MaskReader = PointDataFacade->GetScopedReadable<int64>(TypedFilterFactory->Config.BitmaskAttribute);
 		if (!MaskReader)
 		{
 			PCGE_LOG_C(Error, GraphAndLog, InContext, FText::Format(FTEXT("Invalid Mask attribute: \"{0}\"."), FText::FromName(TypedFilterFactory->Config.BitmaskAttribute)));
@@ -33,19 +44,12 @@ bool PCGExPointsFilter::TBitmaskFilter::Init(const FPCGContext* InContext, PCGEx
 	return true;
 }
 
-namespace PCGExCompareFilter
-{
-}
-
-#define LOCTEXT_NAMESPACE "PCGExCompareFilterDefinition"
-#define PCGEX_NAMESPACE CompareFilterDefinition
-
 PCGEX_CREATE_FILTER_FACTORY(Bitmask)
 
 #if WITH_EDITOR
 FString UPCGExBitmaskFilterProviderSettings::GetDisplayName() const
 {
-	FString A = Config.MaskType == EPCGExFetchType::Attribute ? Config.BitmaskAttribute.ToString() : TEXT("(Const)");
+	FString A = Config.MaskInput == EPCGExInputValueType::Attribute ? Config.BitmaskAttribute.ToString() : TEXT("(Const)");
 	FString B = Config.FlagsAttribute.ToString();
 	FString DisplayName;
 

@@ -3,7 +3,6 @@
 
 #include "Sampling/PCGExSampleSurfaceGuided.h"
 
-#include "Data/PCGExPointFilter.h"
 
 #define LOCTEXT_NAMESPACE "PCGExSampleSurfaceGuidedElement"
 #define PCGEX_NAMESPACE SampleSurfaceGuided
@@ -12,22 +11,14 @@ TArray<FPCGPinProperties> UPCGExSampleSurfaceGuidedSettings::InputPinProperties(
 {
 	TArray<FPCGPinProperties> PinProperties = Super::InputPinProperties();
 	if (SurfaceSource == EPCGExSurfaceSource::ActorReferences) { PCGEX_PIN_POINT(PCGExSampling::SourceActorReferencesLabel, "Points with actor reference paths.", Required, {}) }
-	PCGEX_PIN_PARAMS(PCGEx::SourcePointFilters, "Filter which points will be processed.", Advanced, {})
 	return PinProperties;
 }
 
-PCGExData::EInit UPCGExSampleSurfaceGuidedSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExSampleSurfaceGuidedSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 int32 UPCGExSampleSurfaceGuidedSettings::GetPreferredChunkSize() const { return PCGExMT::GAsyncLoop_L; }
 
-FName UPCGExSampleSurfaceGuidedSettings::GetPointFilterLabel() const { return PCGExPointFilter::SourceFiltersLabel; }
-
 PCGEX_INITIALIZE_ELEMENT(SampleSurfaceGuided)
-
-FPCGExSampleSurfaceGuidedContext::~FPCGExSampleSurfaceGuidedContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExSampleSurfaceGuidedElement::Boot(FPCGExContext* InContext) const
 {
@@ -41,19 +32,19 @@ bool FPCGExSampleSurfaceGuidedElement::Boot(FPCGExContext* InContext) const
 	if (Context->bUseInclude)
 	{
 		PCGEX_VALIDATE_NAME(Settings->ActorReference)
-		PCGExData::FPointIO* ActorRefIO = PCGExData::TryGetSingleInput(Context, PCGExSampling::SourceActorReferencesLabel, true);
-
-		if (!ActorRefIO) { return false; }
-
-		Context->ActorReferenceDataFacade = new PCGExData::FFacade(ActorRefIO);
+		Context->ActorReferenceDataFacade = PCGExData::TryGetSingleFacade(Context, PCGExSampling::SourceActorReferencesLabel, true);
+		if (!Context->ActorReferenceDataFacade) { return false; }
 
 		if (!PCGExSampling::GetIncludedActors(
-			Context, Context->ActorReferenceDataFacade,
+			Context, Context->ActorReferenceDataFacade.ToSharedRef(),
 			Settings->ActorReference, Context->IncludedActors))
 		{
 			return false;
 		}
 	}
+
+	Context->CollisionSettings = Settings->CollisionSettings;
+	Context->CollisionSettings.Init(Context);
 
 	return true;
 }
@@ -63,36 +54,23 @@ bool FPCGExSampleSurfaceGuidedElement::ExecuteInternal(FPCGContext* InContext) c
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExSampleSurfaceGuidedElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(SampleSurfaceGuided)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
-		if (Settings->bIgnoreSelf) { Context->IgnoredActors.Add(Context->SourceComponent->GetOwner()); }
-
-		if (Settings->bIgnoreActors)
-		{
-			const TFunction<bool(const AActor*)> BoundsCheck = [](const AActor*) -> bool { return true; };
-			const TFunction<bool(const AActor*)> SelfIgnoreCheck = [](const AActor*) -> bool { return true; };
-			const TArray<AActor*> IgnoredActors = PCGExActorSelector::FindActors(Settings->IgnoredActorSelector, Context->SourceComponent.Get(), BoundsCheck, SelfIgnoreCheck);
-			Context->IgnoredActors.Append(IgnoredActors);
-		}
-
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExSampleSurfaceGuided::FProcessor>>(
-			[&](PCGExData::FPointIO* Entry) { return true; },
-			[&](PCGExPointsMT::TBatch<PCGExSampleSurfaceGuided::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry) { return true; },
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExSampleSurfaceGuided::FProcessor>>& NewBatch)
 			{
-			},
-			PCGExMT::State_Done))
+				if (Settings->bPruneFailedSamples) { NewBatch->bRequiresWriteStep = true; }
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Could not find any points to sample."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not find any points to sample."));
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
@@ -101,33 +79,31 @@ namespace PCGExSampleSurfaceGuided
 {
 	FProcessor::~FProcessor()
 	{
-		PCGEX_DELETE(SurfacesForward)
 	}
 
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExSampleSurfaceGuided::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(SampleSurfaceGuided)
 
-		LocalTypedContext = TypedContext;
-		LocalSettings = Settings;
+		SurfacesForward = Context->bUseInclude ? Settings->AttributesForwarding.TryGetHandler(Context->ActorReferenceDataFacade, PointDataFacade) : nullptr;
 
-		SurfacesForward = TypedContext->bUseInclude ? Settings->AttributesForwarding.TryGetHandler(TypedContext->ActorReferenceDataFacade, PointDataFacade) : nullptr;
+		// Must be set before process for filters
+		PointDataFacade->bSupportsScopedGet = Context->bScopedAttributeGet;
 
-		PointDataFacade->bSupportsDynamic = true;
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
+		SampleState.SetNumUninitialized(PointDataFacade->GetNum());
 
 		DirectionGetter = PointDataFacade->GetScopedBroadcaster<FVector>(Settings->Direction);
 
 		if (!DirectionGetter)
 		{
-			PCGE_LOG_C(Error, GraphAndLog, Context, FTEXT("Some inputs don't have the required Direction data."));
+			PCGE_LOG_C(Error, GraphAndLog, ExecutionContext, FTEXT("Some inputs don't have the required Direction data."));
 			return false;
 		}
 
 		{
-			PCGExData::FFacade* OutputFacade = PointDataFacade;
+			const TSharedRef<PCGExData::FFacade>& OutputFacade = PointDataFacade;
 			PCGEX_FOREACH_FIELD_SURFACEGUIDED(PCGEX_OUTPUT_INIT)
 		}
 
@@ -136,11 +112,12 @@ namespace PCGExSampleSurfaceGuided
 			MaxDistanceGetter = PointDataFacade->GetScopedBroadcaster<double>(Settings->LocalMaxDistance);
 			if (!MaxDistanceGetter)
 			{
-				PCGE_LOG_C(Error, GraphAndLog, Context, FTEXT("LocalMaxDistance missing"));
+				PCGE_LOG_C(Error, GraphAndLog, ExecutionContext, FTEXT("LocalMaxDistance missing"));
 				return false;
 			}
 		}
 
+		World = Context->SourceComponent->GetWorld();
 		StartParallelLoopForPoints();
 
 		return true;
@@ -149,38 +126,39 @@ namespace PCGExSampleSurfaceGuided
 	void FProcessor::PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count)
 	{
 		PointDataFacade->Fetch(StartIndex, Count);
+		FilterScope(StartIndex, Count);
 	}
 
 	void FProcessor::ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count)
 	{
-		const double MaxDistance = MaxDistanceGetter ? MaxDistanceGetter->Values[Index] : LocalSettings->MaxDistance;
-		const FVector Direction = DirectionGetter->Values[Index].GetSafeNormal();
+		const double MaxDistance = MaxDistanceGetter ? MaxDistanceGetter->Read(Index) : Settings->MaxDistance;
+		const FVector Direction = DirectionGetter->Read(Index).GetSafeNormal();
 
 		auto SamplingFailed = [&]()
 		{
+			SampleState[Index] = false;
+
 			PCGEX_OUTPUT_VALUE(Location, Index, Point.Transform.GetLocation())
 			PCGEX_OUTPUT_VALUE(Normal, Index, Direction*-1)
 			PCGEX_OUTPUT_VALUE(LookAt, Index, Direction)
 			PCGEX_OUTPUT_VALUE(Distance, Index, MaxDistance)
-			PCGEX_OUTPUT_VALUE(IsInside, Index, false)
-			PCGEX_OUTPUT_VALUE(Success, Index, false)
-
-			PCGEX_OUTPUT_VALUE(ActorReference, Index, TEXT(""))
-			PCGEX_OUTPUT_VALUE(PhysMat, Index, TEXT(""))
+			//PCGEX_OUTPUT_VALUE(IsInside, Index, false)
+			//PCGEX_OUTPUT_VALUE(Success, Index, false)
+			//PCGEX_OUTPUT_VALUE(ActorReference, Index, TEXT(""))
+			//PCGEX_OUTPUT_VALUE(PhysMat, Index, TEXT(""))
 		};
 
-		if (PrimaryFilters && !PrimaryFilters->Test(Index))
+		if (!PointFilterCache[Index])
 		{
-			SamplingFailed();
+			if (Settings->bProcessFilteredOutAsFails) { SamplingFailed(); }
 			return;
 		}
 
 		const FVector Origin = Point.Transform.GetLocation();
 
 		FCollisionQueryParams CollisionParams;
-		CollisionParams.bTraceComplex = LocalSettings->bTraceComplex;
+		Context->CollisionSettings.Update(CollisionParams);
 		CollisionParams.bReturnPhysicalMaterial = PhysMatWriter ? true : false;
-		CollisionParams.AddIgnoredActors(LocalTypedContext->IgnoredActors);
 
 		const FVector Trace = Direction * MaxDistance;
 		const FVector End = Origin + Trace;
@@ -198,27 +176,39 @@ namespace PCGExSampleSurfaceGuided
 			PCGEX_OUTPUT_VALUE(LookAt, Index, Direction)
 			PCGEX_OUTPUT_VALUE(Normal, Index, HitResult.ImpactNormal)
 			PCGEX_OUTPUT_VALUE(Distance, Index, FVector::Distance(HitResult.ImpactPoint, Origin))
-			PCGEX_OUTPUT_VALUE(IsInside, Index, FVector::DotProduct(Direction, HitResult.ImpactNormal) > 0)
+			PCGEX_OUTPUT_VALUE(IsInside, Index, FVector::DotProduct(Direction, HitResult.Normal) > 0)
 			PCGEX_OUTPUT_VALUE(Success, Index, bSuccess)
 
+			SampleState[Index] = bSuccess;
+
+#if PCGEX_ENGINE_VERSION <= 503
 			if (const AActor* HitActor = HitResult.GetActor())
 			{
-				HitIndex = LocalTypedContext->IncludedActors.Find(HitActor);
+				HitIndex = Context->IncludedActors.Find(HitActor);
 				PCGEX_OUTPUT_VALUE(ActorReference, Index, HitActor->GetPathName())
 			}
-			else { PCGEX_OUTPUT_VALUE(ActorReference, Index, TEXT("")) }
 
 			if (const UPhysicalMaterial* PhysMat = HitResult.PhysMaterial.Get()) { PCGEX_OUTPUT_VALUE(PhysMat, Index, PhysMat->GetPathName()) }
-			else { PCGEX_OUTPUT_VALUE(PhysMat, Index, TEXT("")) }
+#else
+			if (const AActor* HitActor = HitResult.GetActor())
+			{
+				HitIndex = Context->IncludedActors.Find(HitActor);
+				PCGEX_OUTPUT_VALUE(ActorReference, Index, FSoftObjectPath(HitActor->GetPathName()))
+			}
+
+			if (const UPhysicalMaterial* PhysMat = HitResult.PhysMaterial.Get()) { PCGEX_OUTPUT_VALUE(PhysMat, Index, FSoftObjectPath(PhysMat->GetPathName())) }
+#endif
 
 			if (SurfacesForward && HitIndex) { SurfacesForward->Forward(*HitIndex, Index); }
+
+			FPlatformAtomics::InterlockedExchange(&bAnySuccess, 1);
 		};
 
 		auto ProcessMultipleTraceResult = [&]()
 		{
 			for (const FHitResult& Hit : HitResults)
 			{
-				if (LocalTypedContext->IncludedActors.Contains(Hit.GetActor()))
+				if (Context->IncludedActors.Contains(Hit.GetActor()))
 				{
 					HitResult = Hit;
 					ProcessTraceResult();
@@ -227,60 +217,60 @@ namespace PCGExSampleSurfaceGuided
 			}
 		};
 
-		switch (LocalSettings->CollisionType)
+		switch (Context->CollisionSettings.CollisionType)
 		{
 		case EPCGExCollisionFilterType::Channel:
-			if (LocalTypedContext->bUseInclude)
+			if (Context->bUseInclude)
 			{
-				if (LocalTypedContext->World->LineTraceMultiByChannel(
+				if (World->LineTraceMultiByChannel(
 					HitResults, Origin, End,
-					LocalSettings->CollisionChannel, CollisionParams))
+					Context->CollisionSettings.CollisionChannel, CollisionParams))
 				{
 					ProcessMultipleTraceResult();
 				}
 			}
 			else
 			{
-				if (LocalTypedContext->World->LineTraceSingleByChannel(
+				if (World->LineTraceSingleByChannel(
 					HitResult, Origin, End,
-					LocalSettings->CollisionChannel, CollisionParams))
+					Context->CollisionSettings.CollisionChannel, CollisionParams))
 				{
 					ProcessTraceResult();
 				}
 			}
 			break;
 		case EPCGExCollisionFilterType::ObjectType:
-			if (LocalTypedContext->bUseInclude)
+			if (Context->bUseInclude)
 			{
-				if (LocalTypedContext->World->LineTraceMultiByObjectType(
+				if (World->LineTraceMultiByObjectType(
 					HitResults, Origin, End,
-					FCollisionObjectQueryParams(LocalSettings->CollisionObjectType), CollisionParams))
+					FCollisionObjectQueryParams(Context->CollisionSettings.CollisionObjectType), CollisionParams))
 				{
 					ProcessMultipleTraceResult();
 				}
 			}
 			else
 			{
-				if (LocalTypedContext->World->LineTraceSingleByObjectType(
+				if (World->LineTraceSingleByObjectType(
 					HitResult, Origin, End,
-					FCollisionObjectQueryParams(LocalSettings->CollisionObjectType), CollisionParams)) { ProcessTraceResult(); }
+					FCollisionObjectQueryParams(Context->CollisionSettings.CollisionObjectType), CollisionParams)) { ProcessTraceResult(); }
 			}
 			break;
 		case EPCGExCollisionFilterType::Profile:
-			if (LocalTypedContext->bUseInclude)
+			if (Context->bUseInclude)
 			{
-				if (LocalTypedContext->World->LineTraceMultiByProfile(
+				if (World->LineTraceMultiByProfile(
 					HitResults, Origin, End,
-					LocalSettings->CollisionProfileName, CollisionParams))
+					Context->CollisionSettings.CollisionProfileName, CollisionParams))
 				{
 					ProcessMultipleTraceResult();
 				}
 			}
 			else
 			{
-				if (LocalTypedContext->World->LineTraceSingleByProfile(
+				if (World->LineTraceSingleByProfile(
 					HitResult, Origin, End,
-					LocalSettings->CollisionProfileName, CollisionParams)) { ProcessTraceResult(); }
+					Context->CollisionSettings.CollisionProfileName, CollisionParams)) { ProcessTraceResult(); }
 			}
 			break;
 		default:
@@ -292,7 +282,15 @@ namespace PCGExSampleSurfaceGuided
 
 	void FProcessor::CompleteWork()
 	{
-		PointDataFacade->Write(AsyncManagerPtr, true);
+		PointDataFacade->Write(AsyncManager);
+
+		if (Settings->bTagIfHasSuccesses && bAnySuccess) { PointDataFacade->Source->Tags->Add(Settings->HasSuccessesTag); }
+		if (Settings->bTagIfHasNoSuccesses && !bAnySuccess) { PointDataFacade->Source->Tags->Add(Settings->HasNoSuccessesTag); }
+	}
+
+	void FProcessor::Write()
+	{
+		PCGExSampling::PruneFailedSamples(PointDataFacade->GetMutablePoints(), SampleState);
 	}
 }
 

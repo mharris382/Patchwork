@@ -3,16 +3,32 @@
 
 #include "Misc/Filters/PCGExMeanFilter.h"
 
-PCGExPointFilter::TFilter* UPCGExMeanFilterFactory::CreateFilter() const
+
+#define LOCTEXT_NAMESPACE "PCGExMeanFilterDefinition"
+#define PCGEX_NAMESPACE MeanFilterDefinition
+
+TSharedPtr<PCGExPointFilter::FFilter> UPCGExMeanFilterFactory::CreateFilter() const
 {
-	return new PCGExPointsFilter::TMeanFilter(this);
+	return MakeShared<PCGExPointsFilter::TMeanFilter>(this);
 }
 
-bool PCGExPointsFilter::TMeanFilter::Init(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade)
+void UPCGExMeanFilterFactory::RegisterBuffersDependencies(FPCGExContext* InContext, PCGExData::FFacadePreloader& FacadePreloader) const
 {
-	if (!TFilter::Init(InContext, InPointDataFacade)) { return false; }
+	Super::RegisterBuffersDependencies(InContext, FacadePreloader);
+	//FacadePreloader.Register<double>(InContext, Config.Target); // TODO SUPPORT MIN MAX FETCH
+}
 
-	Target = PointDataFacade->GetBroadcaster<double>(TypedFilterFactory->Config.Target, true);
+void UPCGExMeanFilterFactory::RegisterConsumableAttributes(FPCGExContext* InContext) const
+{
+	Super::RegisterConsumableAttributes(InContext);
+	//TODO : Implement Consumable
+}
+
+bool PCGExPointsFilter::TMeanFilter::Init(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade> InPointDataFacade)
+{
+	if (!FFilter::Init(InContext, InPointDataFacade)) { return false; }
+
+	const TSharedPtr<PCGExData::TBuffer<double>> Target = PointDataFacade->GetBroadcaster<double>(TypedFilterFactory->Config.Target, true);
 
 	if (!Target)
 	{
@@ -20,36 +36,37 @@ bool PCGExPointsFilter::TMeanFilter::Init(const FPCGContext* InContext, PCGExDat
 		return false;
 	}
 
+	DataMin = Target->Min;
+	DataMax = Target->Max;
+
+	Values.Reserve(Target->GetInValues()->Num());
+	Values.Append(*Target->GetInValues());
+
 	return true;
 }
 
 void PCGExPointsFilter::TMeanFilter::PostInit()
 {
 	const int32 NumPoints = PointDataFacade->Source->GetNum();
-	Results.SetNum(NumPoints);
+	Results.Init(false, NumPoints);
 
 	double SumValue = 0;
-
-	for (int i = 0; i < NumPoints; i++)
-	{
-		Results[i] = false;
-		SumValue += Target->Values[i];
-	}
+	for (int i = 0; i < NumPoints; i++) { SumValue += Values[i]; }
 
 	if (TypedFilterFactory->Config.Measure == EPCGExMeanMeasure::Relative)
 	{
-		double RelativeMinEdgeLength = TNumericLimits<double>::Max();
-		double RelativeMaxEdgeLength = TNumericLimits<double>::Min();
+		double RelativeMinEdgeLength = MAX_dbl;
+		double RelativeMaxEdgeLength = MIN_dbl;
 		SumValue = 0;
 		for (int i = 0; i < NumPoints; i++)
 		{
-			const double Normalized = (Target->Values[i] /= Target->Max);
+			const double Normalized = (Values[i] /= DataMax);
 			RelativeMinEdgeLength = FMath::Min(Normalized, RelativeMinEdgeLength);
 			RelativeMaxEdgeLength = FMath::Max(Normalized, RelativeMaxEdgeLength);
 			SumValue += Normalized;
 		}
-		Target->Min = RelativeMinEdgeLength;
-		Target->Max = 1;
+		DataMin = RelativeMinEdgeLength;
+		DataMax = RelativeMaxEdgeLength;
 	}
 
 	switch (TypedFilterFactory->Config.MeanMethod)
@@ -59,31 +76,28 @@ void PCGExPointsFilter::TMeanFilter::PostInit()
 		ReferenceValue = SumValue / NumPoints;
 		break;
 	case EPCGExMeanMethod::Median:
-		ReferenceValue = PCGExMath::GetMedian(Target->Values);
+		ReferenceValue = PCGExMath::GetMedian(Values);
 		break;
 	case EPCGExMeanMethod::Fixed:
 		ReferenceValue = TypedFilterFactory->Config.MeanValue;
 		break;
 	case EPCGExMeanMethod::ModeMin:
-		ReferenceValue = PCGExMath::GetMode(Target->Values, false, TypedFilterFactory->Config.ModeTolerance);
+		ReferenceValue = PCGExMath::GetMode(Values, false, TypedFilterFactory->Config.ModeTolerance);
 		break;
 	case EPCGExMeanMethod::ModeMax:
-		ReferenceValue = PCGExMath::GetMode(Target->Values, true, TypedFilterFactory->Config.ModeTolerance);
+		ReferenceValue = PCGExMath::GetMode(Values, true, TypedFilterFactory->Config.ModeTolerance);
 		break;
 	case EPCGExMeanMethod::Central:
-		ReferenceValue = Target->Min + (Target->Max - Target->Min) * 0.5;
+		ReferenceValue = DataMin + (DataMax - DataMin) * 0.5;
 		break;
 	}
 
-	const double RMin = TypedFilterFactory->Config.bDoExcludeBelowMean ? ReferenceValue - TypedFilterFactory->Config.ExcludeBelow : 0;
-	const double RMax = TypedFilterFactory->Config.bDoExcludeAboveMean ? ReferenceValue + TypedFilterFactory->Config.ExcludeAbove : TNumericLimits<double>::Max();
+	const double RMin = TypedFilterFactory->Config.bDoExcludeBelowMean ? ReferenceValue - TypedFilterFactory->Config.ExcludeBelow : MIN_dbl_neg;
+	const double RMax = TypedFilterFactory->Config.bDoExcludeAboveMean ? ReferenceValue + TypedFilterFactory->Config.ExcludeAbove : MAX_dbl;
 
 	ReferenceMin = FMath::Min(RMin, RMax);
 	ReferenceMax = FMath::Max(RMin, RMax);
 }
-
-#define LOCTEXT_NAMESPACE "PCGExMeanFilterDefinition"
-#define PCGEX_NAMESPACE MeanFilterDefinition
 
 PCGEX_CREATE_FILTER_FACTORY(Mean)
 
@@ -96,7 +110,7 @@ FString UPCGExMeanFilterProviderSettings::GetDisplayName() const
 	if (Config.bDoExcludeBelowMean && Config.bDoExcludeAboveMean) { DisplayName += "&& "; }
 	if (Config.bDoExcludeAboveMean) { DisplayName += FString::Printf(TEXT("> %.3f "), (static_cast<int32>(1000 * Config.ExcludeAbove) / 1000.0)); }
 
-	DisplayName += Config.Target.GetName().ToString() + "' ";
+	DisplayName += PCGEx::GetSelectorDisplayName(Config.Target) + "' ";
 
 	switch (Config.MeanMethod)
 	{

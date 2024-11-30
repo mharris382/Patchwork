@@ -4,18 +4,33 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PCGExCompare.h"
-#include "PCGExCompare.h"
 #include "PCGExFilterFactoryProvider.h"
 #include "UObject/Object.h"
 
 #include "Data/PCGExPointFilter.h"
 #include "PCGExPointsProcessor.h"
 
+
 #include "PCGExBoundsFilter.generated.h"
 
+UENUM()
+enum class EPCGExBoundsCheckType : uint8
+{
+	Intersects           = 0 UMETA(DisplayName = "Intersects", Tooltip="..."),
+	IsInside             = 1 UMETA(DisplayName = "Is Inside", Tooltip="..."),
+	IsInsideOrOn         = 2 UMETA(DisplayName = "Is Inside or On", Tooltip="..."),
+	IsInsideOrIntersects = 3 UMETA(DisplayName = "Is Inside or Intersects", Tooltip="..."),
+};
+
+UENUM()
+enum class EPCGExBoundsFilterCompareMode : uint8
+{
+	PerPointBounds           = 0 UMETA(DisplayName = "Per Point Bounds", Tooltip="..."),
+	CollectionBounds             = 1 UMETA(DisplayName = "Collection Bounds", Tooltip="..."),
+};
+
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExBoundsFilterConfig
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBoundsFilterConfig
 {
 	GENERATED_BODY()
 
@@ -23,65 +38,82 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExBoundsFilterConfig
 	{
 	}
 
-	/** Bounds type. */
+	/** Bounds to use on input points. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	EPCGExBoundsFilterCompareMode Mode = EPCGExBoundsFilterCompareMode::PerPointBounds;
+	
+	/** Bounds to use on input points. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	EPCGExPointBoundsSource BoundsSource = EPCGExPointBoundsSource::ScaledBounds;
-
-	/** Transform OperandA with the local point' transform */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	bool bCheckIfInside = true;
-
-	/** Epsilon value used to expand the box when testing if IsInside. */
+		
+	/** Bounds to use on input bounds. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	double InsideEpsilon = 1e-4;
+	EPCGExPointBoundsSource BoundsTarget = EPCGExPointBoundsSource::ScaledBounds;
+
+	/** */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
+	EPCGExBoundsCheckType CheckType = EPCGExBoundsCheckType::Intersects;
+
+	/** Epsilon value used to slightly expand target bounds. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	double Epsilon = 1e-4;
+
+	/** If enabled, invert the result of the test */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	bool bInvert = false;
 };
 
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
-class PCGEXTENDEDTOOLKIT_API UPCGExBoundsFilterFactory : public UPCGExFilterFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExBoundsFilterFactory : public UPCGExFilterFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExBoundsFilterConfig Config;
-	PCGExData::FFacade* BoundsDataFacade = nullptr;
+	TSharedPtr<PCGExData::FFacade> BoundsDataFacade;
 	virtual bool Init(FPCGExContext* InContext) override;
-	virtual PCGExPointFilter::TFilter* CreateFilter() const override;
+	virtual TSharedPtr<PCGExPointFilter::FFilter> CreateFilter() const override;
 
 	virtual void BeginDestroy() override;
+
+	virtual void RegisterConsumableAttributes(FPCGExContext* InContext) const override;
 };
 
 namespace PCGExPointsFilter
 {
-	class PCGEXTENDEDTOOLKIT_API TBoundsFilter final : public PCGExPointFilter::TFilter
+	class /*PCGEXTENDEDTOOLKIT_API*/ TBoundsFilter final : public PCGExPointFilter::FSimpleFilter
 	{
 	public:
-		explicit TBoundsFilter(const UPCGExBoundsFilterFactory* InFactory)
-			: TFilter(InFactory), TypedFilterFactory(InFactory)
+		explicit TBoundsFilter(const TObjectPtr<const UPCGExBoundsFilterFactory>& InFactory)
+			: FSimpleFilter(InFactory), TypedFilterFactory(InFactory)
 		{
-			Cloud = TypedFilterFactory->BoundsDataFacade ? TypedFilterFactory->BoundsDataFacade->GetCloud(TypedFilterFactory->Config.BoundsSource, TypedFilterFactory->Config.InsideEpsilon) : nullptr;
+			Cloud = TypedFilterFactory->BoundsDataFacade ? TypedFilterFactory->BoundsDataFacade->GetCloud(TypedFilterFactory->Config.BoundsTarget, TypedFilterFactory->Config.Epsilon) : nullptr;
 		}
 
-		const UPCGExBoundsFilterFactory* TypedFilterFactory;
+		const TObjectPtr<const UPCGExBoundsFilterFactory> TypedFilterFactory;
 
-		PCGExGeo::FPointBoxCloud* Cloud = nullptr;
+		TSharedPtr<PCGExGeo::FPointBoxCloud> Cloud;
+		EPCGExPointBoundsSource BoundsTarget = EPCGExPointBoundsSource::ScaledBounds;
 
-		virtual bool Init(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade) override;
-		virtual bool Test(const int32 PointIndex) const override;
+		using BoundCheckCallback = std::function<bool(const FPCGPoint&)>;
+		BoundCheckCallback BoundCheck;
+
+		virtual bool Init(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade> InPointDataFacade) override;
+		FORCEINLINE virtual bool Test(const int32 PointIndex) const override { return BoundCheck(PointDataFacade->Source->GetInPoint(PointIndex)); }
 
 		virtual ~TBoundsFilter() override
 		{
-			TypedFilterFactory = nullptr;
 		}
 	};
 }
 
 ///
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
-class PCGEXTENDEDTOOLKIT_API UPCGExBoundsFilterProviderSettings : public UPCGExFilterProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Filter")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExBoundsFilterProviderSettings : public UPCGExFilterProviderSettings
 {
 	GENERATED_BODY()
 
@@ -102,7 +134,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ShowOnlyInnerProperties))
 	FPCGExBoundsFilterConfig Config;
 
-public:
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const override;
 
 #if WITH_EDITOR

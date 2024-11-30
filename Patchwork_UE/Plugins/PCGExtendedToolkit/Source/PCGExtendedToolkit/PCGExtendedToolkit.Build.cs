@@ -1,4 +1,5 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright Timothé Lapetite 2024
+// Released under the MIT license https://opensource.org/license/MIT/
 
 using UnrealBuildTool;
 
@@ -6,9 +7,7 @@ public class PCGExtendedToolkit : ModuleRules
 {
 	public PCGExtendedToolkit(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-
-		// if (Target.Platform == UnrealTargetPlatform.Win64) { bUseRTTI = true; }
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicIncludePaths.AddRange(
 			new string[]
@@ -25,12 +24,10 @@ public class PCGExtendedToolkit : ModuleRules
 
 
 		PublicDependencyModuleNames.AddRange(
-			new string[]
+			new[]
 			{
 				"Core",
 				"CoreUObject",
-				"GeometryCore",
-				"NavigationSystem",
 				"Engine",
 				"PCG",
 			}
@@ -40,6 +37,13 @@ public class PCGExtendedToolkit : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+				"GeometryCore",
+				"GeometryFramework",
+				"GeometryScriptingCore",
+				"RenderCore",
+				"RHI",
+				"PhysicsCore",
+				"NavigationSystem"
 			}
 		);
 
@@ -51,13 +55,11 @@ public class PCGExtendedToolkit : ModuleRules
 		);
 
 		if (Target.bBuildEditor)
-		{
 			// Editor only modules
 			PrivateDependencyModuleNames.AddRange(
 				new string[]
 				{
 				}
 			);
-		}
 	}
 }

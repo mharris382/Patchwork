@@ -7,11 +7,13 @@
 #include "PCGExGlobalSettings.h"
 
 #include "PCGExPointsProcessor.h"
+
+
 #include "Geometry/PCGExGeo.h"
 #include "PCGExFlatProjection.generated.h"
 
 UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExFlatProjectionSettings : public UPCGExPointsProcessorSettings
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExFlatProjectionSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -28,10 +30,9 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** Whether this is a new projection or an old one*/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bRestorePreviousProjection = false;
@@ -53,16 +54,14 @@ public:
 	FPCGExGeo2DProjectionDetails ProjectionDetails;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExFlatProjectionContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFlatProjectionContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExFlatProjectionElement;
-
-	virtual ~FPCGExFlatProjectionContext() override;
 
 	FName CachedTransformAttributeName = NAME_None;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExFlatProjectionElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExFlatProjectionElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -77,19 +76,19 @@ protected:
 
 namespace PCGExFlatProjection
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExFlatProjectionContext, UPCGExFlatProjectionSettings>
 	{
 		bool bWriteAttribute = false;
 		bool bInverseExistingProjection = false;
 		bool bProjectLocalTransform = false;
 		FPCGExGeo2DProjectionDetails ProjectionDetails;
 
-		PCGEx::TFAttributeWriter<FTransform>* TransformWriter = nullptr;
-		PCGEx::FAttributeIOBase<FTransform>* TransformReader = nullptr;
+		TSharedPtr<PCGExData::TBuffer<FTransform>> TransformWriter;
+		TSharedPtr<PCGExData::TBuffer<FTransform>> TransformReader;
 
 	public:
-		explicit FProcessor(PCGExData::FPointIO* InPoints):
-			FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade):
+			TPointsProcessor(InPointDataFacade)
 		{
 		}
 
@@ -97,7 +96,8 @@ namespace PCGExFlatProjection
 		{
 		}
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
+		virtual void PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count) override;
 		virtual void CompleteWork() override;
 	};

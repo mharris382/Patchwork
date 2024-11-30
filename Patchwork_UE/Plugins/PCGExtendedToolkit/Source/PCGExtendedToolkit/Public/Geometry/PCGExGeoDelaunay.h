@@ -12,7 +12,6 @@ namespace PCGExGeo
 {
 	struct FDelaunaySite2
 	{
-	public:
 		int32 Vtx[3];
 		int32 Neighbors[3];
 		int32 Id = -1;
@@ -44,7 +43,7 @@ namespace PCGExGeo
 		}
 	};
 
-	class PCGEXTENDEDTOOLKIT_API TDelaunay2
+	class /*PCGEXTENDEDTOOLKIT_API*/ TDelaunay2
 	{
 	public:
 		TArray<FDelaunaySite2> Sites;
@@ -106,7 +105,7 @@ namespace PCGExGeo
 
 			DelaunayEdges.Reserve(NumReserve);
 
-			PCGEX_SET_NUM_UNINITIALIZED(Sites, NumSites)
+			PCGEx::InitArray(Sites, NumSites);
 
 			for (int i = 0; i < NumSites; i++)
 			{
@@ -162,25 +161,32 @@ namespace PCGExGeo
 			}
 		}
 
-		void GetMergedSites(const int32 SiteIndex, const TSet<uint64>& EdgeConnectors, TSet<int32>& OutMerged, TSet<uint64>& OutUEdges)
+		void GetMergedSites(const int32 SiteIndex, const TSet<uint64>& EdgeConnectors, TSet<int32>& OutMerged, TSet<uint64>& OutUEdges, TBitArray<>& VisitedSites)
 		{
 			TArray<int32> Stack;
+
+			VisitedSites[SiteIndex] = false;
 			Stack.Add(SiteIndex);
 
 			while (!Stack.IsEmpty())
 			{
+#if PCGEX_ENGINE_VERSION <= 503
 				const int32 NextIndex = Stack.Pop(false);
+#else
+				const int32 NextIndex = Stack.Pop(EAllowShrinking::No);
+#endif
 
-				bool bAlreadyProcessed;
-				OutMerged.Add(NextIndex, &bAlreadyProcessed);
-				if (bAlreadyProcessed) { continue; }
+				if (VisitedSites[NextIndex]) { continue; }
+
+				OutMerged.Add(NextIndex);
+				VisitedSites[NextIndex] = true;
 
 				const FDelaunaySite2* Site = (Sites.GetData() + NextIndex);
 
 				for (int i = 0; i < 3; i++)
 				{
 					const int32 OtherIndex = Site->Neighbors[i];
-					if (OtherIndex == -1 || OutMerged.Contains(OtherIndex)) { continue; }
+					if (OtherIndex == -1 || VisitedSites[OtherIndex]) { continue; }
 					const FDelaunaySite2* NeighborSite = Sites.GetData() + OtherIndex;
 					if (const uint64 SharedEdge = Site->GetSharedEdge(NeighborSite); EdgeConnectors.Contains(SharedEdge))
 					{
@@ -189,6 +195,8 @@ namespace PCGExGeo
 					}
 				}
 			}
+
+			VisitedSites[SiteIndex] = true;
 		}
 	};
 
@@ -201,50 +209,36 @@ namespace PCGExGeo
 
 	struct FDelaunaySite3
 	{
-	public:
-		uint64 Faces[4];
+		uint32 Faces[4];
 		int32 Vtx[4];
-		int32 Neighbors[4];
 		int32 Id = -1;
-		bool bOnHull = false;
+		int8 bOnHull = 0;
 
 		explicit FDelaunaySite3(const FIntVector4& InVtx, const int32 InId = -1) : Id(InId)
 		{
 			for (int i = 0; i < 4; i++)
 			{
 				Vtx[i] = InVtx[i];
-				Neighbors[i] = -1;
 				Faces[i] = 0;
 			}
 
-			std::sort(std::begin(Vtx), std::end(Vtx));
+			Algo::Sort(Vtx);
 		}
 
 		void ComputeFaces()
 		{
-			for (int i = 0; i < 4; i++) { Faces[i] = PCGEx::H64S(Vtx[MTX[i][0]], Vtx[MTX[i][1]], Vtx[MTX[i][2]]); }
-		}
-
-		FORCEINLINE void SetAdjacency(const uint64 Face, const int32 Neighbor)
-		{
-			for (int i = 0; i < 4; i++)
-			{
-				if (Faces[i] == Face)
-				{
-					Neighbors[i] = Neighbor;
-					return;
-				}
-			}
+			for (int i = 0; i < 4; i++) { Faces[i] = PCGEx::UH3(Vtx[MTX[i][0]], Vtx[MTX[i][1]], Vtx[MTX[i][2]]); }
 		}
 	};
 
-	class PCGEXTENDEDTOOLKIT_API TDelaunay3
+	class /*PCGEXTENDEDTOOLKIT_API*/ TDelaunay3
 	{
 	public:
 		TArray<FDelaunaySite3> Sites;
 
 		TSet<uint64> DelaunayEdges;
 		TSet<int32> DelaunayHull;
+		TMap<uint32, uint64> Adjacency;
 
 		bool IsValid = false;
 
@@ -268,7 +262,8 @@ namespace PCGExGeo
 			IsValid = false;
 		}
 
-		bool Process(const TArrayView<FVector>& Positions, const bool bComputeFaces = false)
+		template <bool bComputeAdjacency = false, bool bComputeHull = false>
+		bool Process(const TArrayView<FVector>& Positions)
 		{
 			Clear();
 			if (Positions.IsEmpty() || Positions.Num() <= 3) { return false; }
@@ -290,14 +285,17 @@ namespace PCGExGeo
 
 			DelaunayEdges.Reserve(NumReserve);
 
-			TMap<uint64, int32> Faces;
-			if (bComputeFaces) { Faces.Reserve(NumSites); }
+			TSet<uint32> FacesUsage;
+			if constexpr (bComputeAdjacency) { Adjacency.Reserve(NumSites * 4); }
+			if constexpr (bComputeHull) { FacesUsage.Reserve(NumSites); }
 
-			PCGEX_SET_NUM_UNINITIALIZED(Sites, NumSites)
+			//PCGEx::InitArray(Sites, NumSites);
+			Sites.SetNumUninitialized(NumSites);
 
 			for (int i = 0; i < NumSites; i++)
 			{
-				FDelaunaySite3& Site = Sites[i] = FDelaunaySite3(Tetrahedra[i], i);
+				Sites[i] = FDelaunaySite3(Tetrahedra[i], i);
+				FDelaunaySite3& Site = Sites[i];
 
 				for (int a = 0; a < 4; a++)
 				{
@@ -307,41 +305,59 @@ namespace PCGExGeo
 					}
 				}
 
-				if (bComputeFaces)
-				{
-					Site.ComputeFaces();
+				if constexpr (bComputeHull || bComputeAdjacency) { Site.ComputeFaces(); }
 
+				if constexpr (bComputeHull && bComputeAdjacency)
+				{
 					for (int f = 0; f < 4; f++)
 					{
-						const uint64 FH = Site.Faces[f];
-						if (const int32* NeighborId = Faces.Find(FH))
-						{
-							Faces.Remove(FH);
-							Site.SetAdjacency(FH, *NeighborId);
-							Sites[*NeighborId].SetAdjacency(FH, i);
-						}
-						else
-						{
-							Faces.Add(FH, Site.Id);
-						}
+						const uint32 FH = Site.Faces[f];
+
+						bool bAlreadySet = false;
+						FacesUsage.Add(FH, &bAlreadySet);
+						if (bAlreadySet) { FacesUsage.Remove(FH); }
+
+						if (const uint64* AH = Adjacency.Find(FH)) { Adjacency.Add(FH, PCGEx::NH64(i, PCGEx::NH64B(*AH))); }
+						else { Adjacency.Add(FH, PCGEx::NH64(-1, i)); }
 					}
 				}
-			}
-
-			for (FDelaunaySite3& Site : Sites)
-			{
-				for (int f = 0; f < 4; f++)
+				else if constexpr (bComputeHull)
 				{
-					if (Site.Neighbors[f] == -1)
+					for (int f = 0; f < 4; f++)
 					{
-						for (int fi = 0; fi < 3; fi++) { DelaunayHull.Add(Site.Vtx[MTX[f][fi]]); }
-						Site.bOnHull = true;
-						break;
+						const uint32 FH = Site.Faces[f];
+						bool bAlreadySet = false;
+						FacesUsage.Add(FH, &bAlreadySet);
+						if (bAlreadySet) { FacesUsage.Remove(FH); }
+					}
+				}
+				else if constexpr (bComputeAdjacency)
+				{
+					for (int f = 0; f < 4; f++)
+					{
+						const uint32 FH = Site.Faces[f];
+						if (const uint64* AH = Adjacency.Find(FH)) { Adjacency.Add(FH, PCGEx::NH64(i, PCGEx::NH64B(*AH))); }
+						else { Adjacency.Add(FH, PCGEx::NH64(-1, i)); }
 					}
 				}
 			}
 
-			Faces.Empty();
+			if constexpr (bComputeHull)
+			{
+				for (FDelaunaySite3& Site : Sites)
+				{
+					for (int f = 0; f < 4; f++)
+					{
+						if (FacesUsage.Contains(Site.Faces[f]))
+						{
+							for (int fi = 0; fi < 3; fi++) { DelaunayHull.Add(Site.Vtx[MTX[f][fi]]); }
+							Site.bOnHull = true;
+						}
+					}
+				}
+			}
+
+			FacesUsage.Empty();
 			Tetrahedra.Empty();
 
 			return IsValid;

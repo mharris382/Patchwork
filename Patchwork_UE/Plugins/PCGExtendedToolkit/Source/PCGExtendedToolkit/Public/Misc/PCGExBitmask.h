@@ -4,11 +4,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Elements/PCGPointProcessingElementBase.h"
 
 #include "PCGEx.h"
 #include "PCGExCompare.h"
-#include "PCGExPointsProcessor.h"
 
 #include "PCGExBitmask.generated.h"
 
@@ -65,21 +63,8 @@ namespace PCGExBitmask
 	}
 }
 
-UCLASS()
-class PCGEXTENDEDTOOLKIT_API UPCGExGlobalBitmaskManager : public UObject
-{
-	GENERATED_BODY()
-
-public:
-	static UPCGExGlobalBitmaskManager* Get();
-	static UPCGParamData* GetOrCreate(const int64 Bitmask);
-
-	UPROPERTY()
-	TMap<int64, UPCGParamData*> SharedInstances;
-};
-
-UCLASS(BlueprintType, ClassGroup = (Procedural))
-class PCGEXTENDEDTOOLKIT_API UPCGExBitmaskSettings : public UPCGSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural))
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExBitmaskSettings : public UPCGSettings
 {
 	GENERATED_BODY()
 
@@ -102,13 +87,9 @@ protected:
 	/** Operations executed on the flag if all filters pass */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ShowOnlyInnerProperties))
 	FPCGExBitmask Bitmask;
-
-	/** If marked global, this bitmask will always be loaded in memory. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable))
-	bool bGlobalInstance = false;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExBitmaskElement final : public IPCGElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBitmaskElement final : public IPCGElement
 {
 public:
 	virtual FPCGContext* Initialize(const FPCGDataCollection& InputData, TWeakObjectPtr<UPCGComponent> SourceComponent, const UPCGNode* Node) override;

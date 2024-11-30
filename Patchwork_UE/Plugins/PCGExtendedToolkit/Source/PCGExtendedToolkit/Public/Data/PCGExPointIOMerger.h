@@ -5,31 +5,31 @@
 
 #include "CoreMinimal.h"
 #include "PCGExAttributeHelpers.h"
+#include "PCGExData.h"
+#include "PCGExDataFilter.h"
 #include "PCGExMT.h"
+
+
 #include "UObject/Object.h"
 
-struct FPCGExCarryOverDetails;
-
-class PCGEXTENDEDTOOLKIT_API FPCGExPointIOMerger final
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPointIOMerger final : public TSharedFromThis<FPCGExPointIOMerger>
 {
 	friend class FPCGExAttributeMergeTask;
 
 public:
 	TArray<PCGEx::FAttributeIdentity> UniqueIdentities;
-	PCGExData::FPointIO* CompositeIO = nullptr;
-	TArray<PCGExData::FPointIO*> IOSources;
+	TSharedRef<PCGExData::FFacade> UnionDataFacade;
+	TArray<TSharedPtr<PCGExData::FPointIO>> IOSources;
 	TArray<uint64> Scopes;
-	TArray<PCGEx::FAAttributeIO*> Writers;
+	TArray<TSharedPtr<PCGExData::FBufferBase>> Buffers;
 
-	FPCGExPointIOMerger(PCGExData::FPointIO* OutMergedData);
+	explicit FPCGExPointIOMerger(const TSharedRef<PCGExData::FFacade>& InUnionDataFacade);
 	~FPCGExPointIOMerger();
 
-	void Append(PCGExData::FPointIO* InData);
-	void Append(const TArray<PCGExData::FPointIO*>& InData);
-	void Append(PCGExData::FPointIOCollection* InCollection);
-	void Merge(PCGExMT::FTaskManager* AsyncManager, const FPCGExCarryOverDetails* InCarryOverDetails);
-	void Write();
-	void Write(PCGExMT::FTaskManager* AsyncManager);
+	void Append(const TSharedPtr<PCGExData::FPointIO>& InData);
+	void Append(const TArray<TSharedPtr<PCGExData::FPointIO>>& InData);
+	void Append(const TSharedRef<PCGExData::FPointIOCollection>& InCollection);
+	void Merge(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager, const FPCGExCarryOverDetails* InCarryOverDetails);
 
 protected:
 	int32 NumCompositePoints = 0;
@@ -38,59 +38,63 @@ protected:
 namespace PCGExPointIOMerger
 {
 	template <typename T>
-	static void ScopeMerge(const uint64 Scope, const PCGEx::FAttributeIdentity& Identity, PCGExData::FPointIO* SourceIO, PCGEx::TFAttributeWriter<T>* Writer)
+	static void ScopeMerge(const uint64 Scope, const PCGEx::FAttributeIdentity& Identity, const TSharedPtr<PCGExData::FPointIO>& SourceIO, TArray<T>& OutValues)
 	{
-		PCGEx::TFAttributeReader<T>* Reader = new PCGEx::TFAttributeReader<T>(Identity.Name);
-		Reader->Bind(SourceIO);
+		UPCGMetadata* InMetadata = SourceIO->GetIn()->Metadata;
+
+		// 'template' spec required for clang on mac, not sure why.
+		// ReSharper disable once CppRedundantTemplateKeyword
+		const FPCGMetadataAttribute<T>* TypedInAttribute = InMetadata->template GetConstTypedAttribute<T>(Identity.Name);
+		TUniquePtr<FPCGAttributeAccessor<T>> InAccessor = MakeUnique<FPCGAttributeAccessor<T>>(TypedInAttribute, InMetadata);
+
+		if (!TypedInAttribute || !InAccessor.IsValid()) { return; }
 
 		uint32 StartIndex;
 		uint32 Range;
 		PCGEx::H64(Scope, StartIndex, Range);
 
-		const int32 Count = static_cast<int>(Range);
-		for (int i = 0; i < Count; i++) { Writer->Values[StartIndex + i] = Reader->Values[i]; }
-
-		PCGEX_DELETE(Reader);
+		TArrayView<T> InRange = MakeArrayView(OutValues.GetData() + StartIndex, Range);
+		InAccessor->GetRange(InRange, 0, *SourceIO->GetInKeys());
 	}
 
-	class PCGEXTENDEDTOOLKIT_API FWriteAttributeTask final : public PCGExMT::FPCGExTask
+	class /*PCGEXTENDEDTOOLKIT_API*/ FCopyAttributeTask final : public PCGExMT::FPCGExTask
 	{
 	public:
-		FWriteAttributeTask(
-			PCGExData::FPointIO* InPointIO,
-			FPCGExPointIOMerger* InMerger)
+		FCopyAttributeTask(
+			const TSharedPtr<PCGExData::FPointIO>& InPointIO,
+			const TSharedPtr<FPCGExPointIOMerger>& InMerger)
 			: FPCGExTask(InPointIO),
 			  Merger(InMerger)
 		{
 		}
 
-		FPCGExPointIOMerger* Merger = nullptr;
-		virtual bool ExecuteTask() override;
+		TSharedPtr<FPCGExPointIOMerger> Merger;
+		virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override;
 	};
 
 	template <typename T>
-	class PCGEXTENDEDTOOLKIT_API FWriteAttributeScopeTask final : public PCGExMT::FPCGExTask
+	class /*PCGEXTENDEDTOOLKIT_API*/ FWriteAttributeScopeTask final : public PCGExMT::FPCGExTask
 	{
 	public:
 		FWriteAttributeScopeTask(
-			PCGExData::FPointIO* InPointIO,
+			const TSharedPtr<PCGExData::FPointIO>& InPointIO,
 			const uint64 InScope,
 			const PCGEx::FAttributeIdentity& InIdentity,
-			PCGEx::TFAttributeWriter<T>* InWriter)
+			const TSharedPtr<TArray<T>>& InOutValues)
 			: FPCGExTask(InPointIO),
 			  Scope(InScope),
 			  Identity(InIdentity),
-			  Writer(InWriter)
+			  OutValues(InOutValues)
 		{
 		}
 
 		const uint64 Scope;
 		const PCGEx::FAttributeIdentity Identity;
-		PCGEx::TFAttributeWriter<T>* Writer = nullptr;
+		TSharedPtr<TArray<T>> OutValues;
 
-		virtual bool ExecuteTask() override
+		virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override
 		{
-			ScopeMerge<T>(Scope, Identity, PointIO, Writer);
+			ScopeMerge<T>(Scope, Identity, PointIO, *OutValues.Get());
 			return true;
 		}
 	};

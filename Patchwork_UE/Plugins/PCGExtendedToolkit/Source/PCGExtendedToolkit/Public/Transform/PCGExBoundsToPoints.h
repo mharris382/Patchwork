@@ -7,17 +7,15 @@
 #include "PCGExGlobalSettings.h"
 
 #include "PCGExPointsProcessor.h"
-#include "Data/PCGExAttributeHelpers.h"
+#include "PCGExTransform.h"
 #include "Data/PCGExDataForward.h"
-#include "Data/Blending/PCGExMetadataBlender.h"
-#include "PCGExtendedToolkit/Public/Transform/PCGExTransform.h"
 
 #include "PCGExBoundsToPoints.generated.h"
 
 class FPCGExComputeIOBounds;
 
 UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExBoundsToPointsSettings : public UPCGExPointsProcessorSettings
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExBoundsToPointsSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -34,10 +32,9 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** Generates a point collections per generated point */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bGeneratePerPointData = false;
@@ -74,14 +71,12 @@ private:
 	friend class FPCGExBoundsToPointsElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExBoundsToPointsContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBoundsToPointsContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExBoundsToPointsElement;
-
-	virtual ~FPCGExBoundsToPointsContext() override;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExBoundsToPointsElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBoundsToPointsElement final : public FPCGExPointsProcessorElement
 {
 	virtual FPCGContext* Initialize(
 		const FPCGDataCollection& InputData,
@@ -95,7 +90,7 @@ protected:
 
 namespace PCGExBoundsToPoints
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExBoundsToPointsContext, UPCGExBoundsToPointsSettings>
 	{
 		int32 NumPoints = 0;
 		bool bGeneratePerPointData = false;
@@ -113,16 +108,14 @@ namespace PCGExBoundsToPoints
 		FPCGExAttributeToTagDetails PointAttributesToOutputTags;
 
 	public:
-		explicit FProcessor(PCGExData::FPointIO* InPoints):
-			FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade):
+			TPointsProcessor(InPointDataFacade)
 		{
 		}
 
-		TArray<PCGExData::FPointIO*> NewOutputs;
+		TArray<TSharedPtr<PCGExData::FPointIO>> NewOutputs;
 
-		virtual ~FProcessor() override;
-
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 LoopCount) override;
 		virtual void CompleteWork() override;
 	};

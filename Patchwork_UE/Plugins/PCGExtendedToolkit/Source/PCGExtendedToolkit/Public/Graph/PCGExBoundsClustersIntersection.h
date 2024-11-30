@@ -5,15 +5,15 @@
 
 #include "CoreMinimal.h"
 #include "PCGExCluster.h"
-#include "PCGExDataDetails.h"
+#include "PCGExDetailsData.h"
 #include "PCGExEdgesProcessor.h"
 #include "PCGExIntersections.h"
 
 #include "PCGExBoundsClustersIntersection.generated.h"
 
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph", Hidden)
-class PCGEXTENDEDTOOLKIT_API UPCGExBoundsClustersIntersectionSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters", Hidden)
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExBoundsClustersIntersectionSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -31,8 +31,8 @@ protected:
 
 	//~Begin UPCGExEdgesProcessorSettings interface
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 	//~End UPCGExEdgesProcessorSettings interface
 
 	/** */
@@ -40,17 +40,15 @@ public:
 	FPCGExBoxIntersectionDetails IntersectionDetails;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExBoundsClustersIntersectionContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBoundsClustersIntersectionContext final : FPCGExEdgesProcessorContext
 {
 	friend class UPCGExBoundsClustersIntersectionSettings;
 	friend class FPCGExBoundsClustersIntersectionElement;
 
-	virtual ~FPCGExBoundsClustersIntersectionContext() override;
-
-	PCGExData::FFacade* BoundsDataFacade = nullptr;
+	TSharedPtr<PCGExData::FFacade> BoundsDataFacade;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExBoundsClustersIntersectionElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBoundsClustersIntersectionElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(

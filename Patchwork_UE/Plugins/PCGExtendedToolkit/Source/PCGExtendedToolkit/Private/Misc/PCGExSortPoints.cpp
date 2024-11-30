@@ -4,6 +4,9 @@
 
 #include "Misc/PCGExSortPoints.h"
 
+#include "Misc/PCGExModularSortPoints.h"
+
+
 #define LOCTEXT_NAMESPACE "PCGExSortPoints"
 #define PCGEX_NAMESPACE SortPoints
 
@@ -17,14 +20,14 @@ void UPCGExSortPointsSettings::PostEditChangeProperty(FPropertyChangedEvent& Pro
 
 FPCGElementPtr UPCGExSortPointsBaseSettings::CreateElement() const { return MakeShared<FPCGExSortPointsBaseElement>(); }
 
-PCGExData::EInit UPCGExSortPointsBaseSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExSortPointsBaseSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
-bool UPCGExSortPointsBaseSettings::GetSortingRules(const FPCGContext* InContext, TArray<FPCGExSortRuleConfig>& OutRules) const
+bool UPCGExSortPointsBaseSettings::GetSortingRules(FPCGExContext* InContext, TArray<FPCGExSortRuleConfig>& OutRules) const
 {
 	return true;
 }
 
-bool UPCGExSortPointsSettings::GetSortingRules(const FPCGContext* InContext, TArray<FPCGExSortRuleConfig>& OutRules) const
+bool UPCGExSortPointsSettings::GetSortingRules(FPCGExContext* InContext, TArray<FPCGExSortRuleConfig>& OutRules) const
 {
 	if (Rules.IsEmpty()) { return false; }
 	for (const FPCGExSortRuleConfig& Config : Rules) { OutRules.Add(Config); }
@@ -37,104 +40,60 @@ bool FPCGExSortPointsBaseElement::ExecuteInternal(FPCGContext* InContext) const
 
 	PCGEX_CONTEXT(PointsProcessor)
 	PCGEX_SETTINGS(SortPointsBase)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
 		TArray<FPCGExSortRuleConfig> RuleConfigs;
 		if (!Settings->GetSortingRules(Context, RuleConfigs))
 		{
-			PCGE_LOG(Error, GraphAndLog, FTEXT("No attributes to sort over."));
-			return true;
+			return Context->CancelExecution(TEXT("No attributes to sort over."));
 		}
 
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExSortPoints::FProcessor>>(
-			[&](PCGExData::FPointIO* Entry) { return true; },
-			[&](PCGExPointsMT::TBatch<PCGExSortPoints::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry) { return true; },
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExSortPoints::FProcessor>>& NewBatch)
 			{
-			},
-			PCGExMT::State_Done))
+				NewBatch->bPrefetchData = true;
+			}))
 		{
-			PCGE_LOG(Error, GraphAndLog, FTEXT("Could not find any points to sort."));
-			return true;
+			Context->CancelExecution(TEXT("Could not find any points to sort."));
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
 
 namespace PCGExSortPoints
 {
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	void FProcessor::RegisterBuffersDependencies(PCGExData::FFacadePreloader& FacadePreloader)
 	{
-		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExSortPoints::Process);
-		PCGEX_SETTINGS(SortPointsBase)
-
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
+		TPointsProcessor::RegisterBuffersDependencies(FacadePreloader);
 
 		TArray<FPCGExSortRuleConfig> RuleConfigs;
-		Settings->GetSortingRules(Context, RuleConfigs);
+		Settings->GetSortingRules(ExecutionContext, RuleConfigs);
 
-		TArray<FPCGExSortRule*> Rules;
-		Rules.Reserve(RuleConfigs.Num());
+		Sorter = MakeShared<PCGExSorting::PointSorter<true>>(Context, PointDataFacade, RuleConfigs);
+		Sorter->SortDirection = Settings->SortDirection;
+		Sorter->RegisterBuffersDependencies(FacadePreloader);
+	}
 
-		TMap<PCGMetadataEntryKey, int32> PointIndices;
-		PointIO->PrintOutKeysMap(PointIndices, true);
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
+	{
+		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExSortPoints::Process);
 
-		for (const FPCGExSortRuleConfig& RuleConfig : RuleConfigs)
+		if (!TPointsProcessor::Process(InAsyncManager)) { return false; }
+
+		if (!Sorter->Init())
 		{
-			FPCGExSortRule* NewRule = new FPCGExSortRule();
-			PCGExData::FCache<double>* Cache = PointDataFacade->GetBroadcaster<double>(RuleConfig.Selector);
-
-			if (!Cache)
-			{
-				PCGE_LOG_C(Warning, GraphAndLog, Context, FTEXT("Some points are missing attributes used for sorting."));
-				delete NewRule;
-				continue;
-			}
-
-			NewRule->Cache = Cache;
-			NewRule->Tolerance = RuleConfig.Tolerance;
-			NewRule->bInvertRule = RuleConfig.bInvertRule;
-			Rules.Add(NewRule);
-		}
-
-		if (Rules.IsEmpty())
-		{
-			// Don't sort
-			PointIndices.Empty();
+			PCGE_LOG_C(Warning, GraphAndLog, ExecutionContext, FTEXT("Some dataset have no valid sorting rules, they won't be sorted."));
 			return false;
 		}
 
-		auto SortPredicate = [&](const FPCGPoint& A, const FPCGPoint& B)
-		{
-			int Result = 0;
-			for (const FPCGExSortRule* Rule : Rules)
-			{
-				const double ValueA = Rule->Cache->Values[PointIndices[A.MetadataEntry]];
-				const double ValueB = Rule->Cache->Values[PointIndices[B.MetadataEntry]];
-				Result = FMath::IsNearlyEqual(ValueA, ValueB, Rule->Tolerance) ? 0 : ValueA < ValueB ? -1 : 1;
-				if (Result != 0)
-				{
-					if (Rule->bInvertRule) { Result *= -1; }
-					break;
-				}
-			}
-
-			if (Settings->SortDirection == EPCGExSortDirection::Descending) { Result *= -1; }
-			return Result < 0;
-		};
-
-		PointIO->GetOut()->GetMutablePoints().Sort(SortPredicate);
-
-		PointIndices.Empty();
-		PCGEX_DELETE_TARRAY(Rules)
-
+		PointDataFacade->GetOut()->GetMutablePoints().Sort([&](const FPCGPoint& A, const FPCGPoint& B) { return Sorter->Sort(A, B); });
 		return true;
 	}
 

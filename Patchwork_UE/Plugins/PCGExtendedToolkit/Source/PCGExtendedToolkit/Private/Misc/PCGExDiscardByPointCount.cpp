@@ -8,9 +8,30 @@
 #define LOCTEXT_NAMESPACE "PCGExDiscardByPointCountElement"
 #define PCGEX_NAMESPACE DiscardByPointCount
 
-PCGExData::EInit UPCGExDiscardByPointCountSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExDiscardByPointCountSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Forward; }
+
+TArray<FPCGPinProperties> UPCGExDiscardByPointCountSettings::OutputPinProperties() const
+{
+	TArray<FPCGPinProperties> PinProperties = Super::OutputPinProperties();
+	PCGEX_PIN_POINTS(PCGExDiscardByPointCount::OutputDiscardedLabel, "Discarded outputs.", Normal, {})
+	return PinProperties;
+}
 
 FPCGElementPtr UPCGExDiscardByPointCountSettings::CreateElement() const { return MakeShared<FPCGExDiscardByPointCountElement>(); }
+
+bool FPCGExDiscardByPointCountElement::Boot(FPCGExContext* InContext) const
+{
+	FPCGExPointsProcessorContext* Context = static_cast<FPCGExPointsProcessorContext*>(InContext);
+	PCGEX_SETTINGS(PointsProcessor)
+
+	Context->MainPoints = MakeShared<PCGExData::FPointIOCollection>(Context);
+	Context->MainPoints->OutputPin = Settings->GetMainOutputPin();
+
+	TArray<FPCGTaggedData> Sources = Context->InputData.GetInputsByPin(Settings->GetMainInputPin());
+	Context->MainPoints->Initialize(Sources, Settings->GetMainOutputInitMode());
+
+	return true;
+}
 
 bool FPCGExDiscardByPointCountElement::ExecuteInternal(FPCGContext* InContext) const
 {
@@ -18,23 +39,23 @@ bool FPCGExDiscardByPointCountElement::ExecuteInternal(FPCGContext* InContext) c
 
 	PCGEX_CONTEXT(PointsProcessor)
 	PCGEX_SETTINGS(DiscardByPointCount)
-
-	if (Context->IsSetup())
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
+		const int32 Min = (Settings->bRemoveBelow && Settings->MinPointCount >= 0) ? Settings->MinPointCount : -1;
+		const int32 Max = (Settings->bRemoveAbove && Settings->MaxPointCount >= 0) ? Settings->MaxPointCount : MAX_int32;
+
+		for (const TSharedPtr<PCGExData::FPointIO>& PointIO : Context->MainPoints->Pairs)
+		{
+			PointIO->bAllowEmptyOutput = Settings->bAllowEmptyOutputs;
+			if (!FMath::IsWithin(PointIO->GetNum(), Min, Max))
+			{
+				PointIO->OutputPin = PCGExDiscardByPointCount::OutputDiscardedLabel;
+			}
+		}
+
+		Context->MainPoints->StageOutputs();
+		Context->Done();
 	}
-
-	const int32 Min = Settings->bRemoveBelow ? FMath::Max(1, Settings->MinPointCount) : 1;
-	const int32 Max = Settings->bRemoveAbove ? FMath::Max(1, Settings->MaxPointCount) : TNumericLimits<int32>::Max();
-
-	for (PCGExData::FPointIO* PointIO : Context->MainPoints->Pairs)
-	{
-		if (!FMath::IsWithin(PointIO->GetNum(), Min, Max)) { continue; }
-		PointIO->InitializeOutput(PCGExData::EInit::Forward);
-	}
-
-	Context->MainPoints->OutputToContext();
-	Context->Done();
 
 	return Context->TryComplete();
 }

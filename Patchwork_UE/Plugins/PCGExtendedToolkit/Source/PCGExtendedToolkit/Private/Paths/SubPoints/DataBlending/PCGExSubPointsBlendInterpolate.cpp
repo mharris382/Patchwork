@@ -4,34 +4,23 @@
 
 #include "Paths/SubPoints/DataBlending/PCGExSubPointsBlendInterpolate.h"
 
-EPCGExDataBlendingType UPCGExSubPointsBlendInterpolate::GetDefaultBlending()
-{
-	return EPCGExDataBlendingType::Lerp;
-}
-
-void UPCGExSubPointsBlendInterpolate::ApplyOverrides()
-{
-	Super::ApplyOverrides();
-	PCGEX_OVERRIDE_OP_PROPERTY(Weight, FName(TEXT("Blending/Weight")), EPCGMetadataTypes::Double);
-}
-
 void UPCGExSubPointsBlendInterpolate::CopySettingsFrom(const UPCGExOperation* Other)
 {
 	Super::CopySettingsFrom(Other);
-	const UPCGExSubPointsBlendInterpolate* TypedOther = Cast<UPCGExSubPointsBlendInterpolate>(Other);
-	if (TypedOther)
+	if (const UPCGExSubPointsBlendInterpolate* TypedOther = Cast<UPCGExSubPointsBlendInterpolate>(Other))
 	{
 		BlendOver = TypedOther->BlendOver;
-		Weight = TypedOther->Weight;
+		Lerp = TypedOther->Lerp;
 	}
 }
 
 void UPCGExSubPointsBlendInterpolate::BlendSubPoints(
-	const PCGExData::FPointRef& StartPoint,
-	const PCGExData::FPointRef& EndPoint,
+	const PCGExData::FPointRef& From,
+	const PCGExData::FPointRef& To,
 	const TArrayView<FPCGPoint>& SubPoints,
-	const PCGExMath::FPathMetricsSquared& Metrics,
-	PCGExDataBlending::FMetadataBlender* InBlender) const
+	const PCGExPaths::FPathMetrics& Metrics,
+	PCGExDataBlending::FMetadataBlender* InBlender,
+	const int32 StartIndex) const
 {
 	const int32 NumPoints = SubPoints.Num();
 
@@ -46,7 +35,7 @@ void UPCGExSubPointsBlendInterpolate::BlendSubPoints(
 
 	if (SafeBlendOver == EPCGExBlendOver::Distance)
 	{
-		PCGExMath::FPathMetricsSquared PathMetrics = PCGExMath::FPathMetricsSquared(StartPoint.Point->Transform.GetLocation());
+		PCGExPaths::FPathMetrics PathMetrics = PCGExPaths::FPathMetrics(From.Point->Transform.GetLocation());
 		for (int i = 0; i < NumPoints; i++)
 		{
 			const FVector Location = SubPoints[i].Transform.GetLocation();
@@ -67,22 +56,23 @@ void UPCGExSubPointsBlendInterpolate::BlendSubPoints(
 		for (int i = 0; i < NumPoints; i++)
 		{
 			Locations[i] = SubPoints[i].Transform.GetLocation();
-			Weights[i] = Weight;
+			Weights[i] = Lerp;
 		}
 	}
 
-	InBlender->BlendRangeFromTo(StartPoint, EndPoint, StartPoint.Index, Weights);
+	InBlender->BlendRangeFromTo(From, To, StartIndex < 0 ? From.Index : StartIndex, Weights);
 
 	// Restore pre-blend position
 	for (int i = 0; i < NumPoints; i++) { SubPoints[i].Transform.SetLocation(Locations[i]); }
 }
 
-PCGExDataBlending::FMetadataBlender* UPCGExSubPointsBlendInterpolate::CreateBlender(
-	PCGExData::FFacade* InPrimaryFacade,
-	PCGExData::FFacade* InSecondaryFacade,
-	const PCGExData::ESource SecondarySource)
+TSharedPtr<PCGExDataBlending::FMetadataBlender> UPCGExSubPointsBlendInterpolate::CreateBlender(
+	const TSharedRef<PCGExData::FFacade>& InPrimaryFacade,
+	const TSharedRef<PCGExData::FFacade>& InSecondaryFacade,
+	const PCGExData::ESource SecondarySource,
+	const TSet<FName>* IgnoreAttributeSet)
 {
-	PCGExDataBlending::FMetadataBlender* NewBlender = new PCGExDataBlending::FMetadataBlender(&BlendingDetails);
-	NewBlender->PrepareForData(InPrimaryFacade, InSecondaryFacade, SecondarySource);
+	TSharedPtr<PCGExDataBlending::FMetadataBlender> NewBlender = MakeShared<PCGExDataBlending::FMetadataBlender>(&BlendingDetails);
+	NewBlender->PrepareForData(InPrimaryFacade, InSecondaryFacade, SecondarySource, true, IgnoreAttributeSet);
 	return NewBlender;
 }

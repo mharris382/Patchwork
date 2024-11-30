@@ -5,6 +5,7 @@
 
 #include "PCGPin.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExWriteConditionalActions"
 #define PCGEX_NAMESPACE PCGExWriteConditionalActions
 
@@ -18,20 +19,18 @@ void UPCGExConditionalActionOperation::CopySettingsFrom(const UPCGExOperation* O
 	}
 }
 
-bool UPCGExConditionalActionOperation::PrepareForData(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade)
+bool UPCGExConditionalActionOperation::PrepareForData(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade>& InPointDataFacade)
 {
 	PrimaryDataFacade = InPointDataFacade;
 
-	FilterManager = new PCGExPointFilter::TManager(PrimaryDataFacade);
-	FilterManager->bCacheResults = false;
-	FilterManager->bCacheResultsPerFilter = false;
+	FilterManager = MakeShared<PCGExPointFilter::FManager>(PrimaryDataFacade.ToSharedRef());
 
 	if (!FilterManager->Init(InContext, Factory->FilterFactories)) { return false; }
 
 	return true;
 }
 
-void UPCGExConditionalActionOperation::ProcessPoint(int32 Index, const FPCGPoint& Point)
+void UPCGExConditionalActionOperation::ProcessPoint(const int32 Index, const FPCGPoint& Point)
 {
 	if (FilterManager->Test(Index)) { OnMatchSuccess(Index, Point); }
 	else { OnMatchFail(Index, Point); }
@@ -47,7 +46,6 @@ void UPCGExConditionalActionOperation::OnMatchFail(int32 Index, const FPCGPoint&
 
 void UPCGExConditionalActionOperation::Cleanup()
 {
-	PCGEX_DELETE(FilterManager)
 	Super::Cleanup();
 }
 
@@ -55,9 +53,9 @@ void UPCGExConditionalActionOperation::Cleanup()
 FString UPCGExConditionalActionProviderSettings::GetDisplayName() const { return TEXT(""); }
 #endif
 
-UPCGExConditionalActionOperation* UPCGExConditionalActionFactoryBase::CreateOperation() const
+UPCGExConditionalActionOperation* UPCGExConditionalActionFactoryBase::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExConditionalActionOperation, NewOperation)
+	UPCGExConditionalActionOperation* NewOperation = InContext->ManagedObjects->New<UPCGExConditionalActionOperation>();
 	NewOperation->Factory = const_cast<UPCGExConditionalActionFactoryBase*>(this);
 	return NewOperation;
 }
@@ -67,7 +65,7 @@ bool UPCGExConditionalActionFactoryBase::Boot(FPCGContext* InContext)
 	return true;
 }
 
-bool UPCGExConditionalActionFactoryBase::AppendAndValidate(PCGEx::FAttributesInfos* InInfos, FString& OutMessage)
+bool UPCGExConditionalActionFactoryBase::AppendAndValidate(PCGEx::FAttributesInfos* InInfos, FString& OutMessage) const
 {
 	TSet<FName> Mismatch;
 
@@ -98,9 +96,6 @@ bool UPCGExConditionalActionFactoryBase::AppendAndValidate(PCGEx::FAttributesInf
 
 void UPCGExConditionalActionFactoryBase::BeginDestroy()
 {
-	PCGEX_DELETE(CheckSuccessInfos)
-	PCGEX_DELETE(CheckFailInfos)
-
 	Super::BeginDestroy();
 }
 
@@ -113,9 +108,7 @@ TArray<FPCGPinProperties> UPCGExConditionalActionProviderSettings::InputPinPrope
 
 UPCGExParamFactoryBase* UPCGExConditionalActionProviderSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const
 {
-	UPCGExConditionalActionFactoryBase* TypedFactory = Cast<UPCGExConditionalActionFactoryBase>(InFactory);
-
-	if (TypedFactory)
+	if (UPCGExConditionalActionFactoryBase* TypedFactory = Cast<UPCGExConditionalActionFactoryBase>(InFactory))
 	{
 		if (!GetInputFactories(
 			InContext, PCGExConditionalActions::SourceConditionsFilterLabel, TypedFactory->FilterFactories,

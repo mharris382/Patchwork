@@ -6,8 +6,10 @@
 #include "UObject/Object.h"
 #include "CoreMinimal.h"
 #include "Data/PCGExPointStates.h"
+
+
 #include "Graph/Filters/PCGExClusterFilter.h"
-#include "../../Misc/PCGExBitmaskMerge.h"
+#include "Misc/PCGExBitmaskMerge.h"
 #include "Graph/PCGExCluster.h"
 #include "PCGExClusterStates.generated.h"
 
@@ -18,7 +20,7 @@ namespace PCGExNodeFlags
 }
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExClusterStateConfigBase : public FPCGExStateConfigBase
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExClusterStateConfigBase : public FPCGExStateConfigBase
 {
 	GENERATED_BODY()
 
@@ -31,24 +33,26 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExClusterStateConfigBase : public FPCGExStateC
  * 
  */
 UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExClusterStateFactoryBase : public UPCGExClusterFilterFactoryBase
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExClusterStateFactoryBase : public UPCGExClusterFilterFactoryBase
 {
 	GENERATED_BODY()
 
 public:
-	virtual PCGExFactories::EType GetFactoryType() const override { return PCGExFactories::EType::StateNode; }
+	virtual PCGExFactories::EType GetFactoryType() const override { return PCGExFactories::EType::NodeState; }
 
-	TArray<UPCGExFilterFactoryBase*> FilterFactories;
-	virtual PCGExPointFilter::TFilter* CreateFilter() const override;
+	TArray<TObjectPtr<const UPCGExFilterFactoryBase>> FilterFactories;
+	virtual TSharedPtr<PCGExPointFilter::FFilter> CreateFilter() const override;
 
 	FPCGExClusterStateConfigBase Config;
+
+	virtual void RegisterBuffersDependencies(FPCGExContext* InContext, PCGExData::FFacadePreloader& FacadePreloader) const override;
 
 	virtual void BeginDestroy() override;
 };
 
 namespace PCGExClusterStates
 {
-	class PCGEXTENDEDTOOLKIT_API FState : public PCGExClusterFilter::TFilter
+	class /*PCGEXTENDEDTOOLKIT_API*/ FState final : public PCGExClusterFilter::FFilter
 	{
 	public:
 		FPCGExClusterStateConfigBase Config;
@@ -56,62 +60,65 @@ namespace PCGExClusterStates
 		const UPCGExClusterStateFactoryBase* StateFactory = nullptr;
 
 		explicit FState(const UPCGExClusterStateFactoryBase* InFactory):
-			TFilter(InFactory), StateFactory(InFactory)
+			FFilter(InFactory), StateFactory(InFactory)
 		{
 		}
 
 		virtual ~FState() override;
 
-		virtual bool Init(const FPCGContext* InContext, PCGExCluster::FCluster* InCluster, PCGExData::FFacade* InPointDataFacade, PCGExData::FFacade* InEdgeDataFacade) override;
-		virtual bool InitInternalManager(const FPCGContext* InContext, const TArray<UPCGExFilterFactoryBase*>& InFactories);
+		virtual bool Init(FPCGExContext* InContext, const TSharedRef<PCGExCluster::FCluster>& InCluster, const TSharedRef<PCGExData::FFacade>& InPointDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade) override;
+		bool InitInternalManager(FPCGExContext* InContext, const TArray<TObjectPtr<const UPCGExFilterFactoryBase>>& InFactories);
 
 		virtual bool Test(const int32 Index) const override;
 		virtual bool Test(const PCGExCluster::FNode& Node) const override;
-		virtual bool Test(const PCGExGraph::FIndexedEdge& Edge) const override;
+		virtual bool Test(const PCGExGraph::FEdge& Edge) const override;
 
 		void ProcessFlags(const bool bSuccess, int64& InFlags) const;
 
 	protected:
-		PCGExClusterFilter::TManager* Manager = nullptr;
+		TSharedPtr<PCGExClusterFilter::FManager> Manager;
 	};
 
-	class PCGEXTENDEDTOOLKIT_API FStateManager : public PCGExClusterFilter::TManager
+	class /*PCGEXTENDEDTOOLKIT_API*/ FStateManager final : public PCGExClusterFilter::FManager
 	{
-		TArray<FState*> States;
-		TArray<int64>* FlagsCache = nullptr;
+		TArray<TSharedPtr<FState>> States;
+		TSharedPtr<TArray<int64>> FlagsCache;
 
 	public:
-		explicit FStateManager(TArray<int64>* InFlags, PCGExCluster::FCluster* InCluster, PCGExData::FFacade* InPointDataCache, PCGExData::FFacade* InEdgeDataCache);
-		virtual ~FStateManager() override;
+		explicit FStateManager(
+			const TSharedPtr<TArray<int64>>& InFlags,
+			const TSharedRef<PCGExCluster::FCluster>& InCluster,
+			const TSharedRef<PCGExData::FFacade>& InPointDataCache,
+			const TSharedRef<PCGExData::FFacade>& InEdgeDataCache);
 
 		FORCEINLINE virtual bool Test(const int32 Index) override
 		{
 			int64& Flags = *(FlagsCache->GetData() + Index);
-			for (const FState* State : States) { State->ProcessFlags(State->Test(Index), Flags); }
+			for (const TSharedPtr<FState>& State : States) { State->ProcessFlags(State->Test(Index), Flags); }
 			return true;
 		}
 
 		FORCEINLINE virtual bool Test(const PCGExCluster::FNode& Node) override
 		{
 			int64& Flags = *(FlagsCache->GetData() + Node.PointIndex);
-			for (const FState* State : States) { State->ProcessFlags(State->Test(Node), Flags); }
+			for (const TSharedPtr<FState>& State : States) { State->ProcessFlags(State->Test(Node), Flags); }
 			return true;
 		}
 
-		FORCEINLINE virtual bool Test(const PCGExGraph::FIndexedEdge& Edge) override
+		FORCEINLINE virtual bool Test(const PCGExGraph::FEdge& Edge) override
 		{
 			int64& Flags = *(FlagsCache->GetData() + Edge.PointIndex);
-			for (const FState* State : States) { State->ProcessFlags(State->Test(Edge), Flags); }
+			for (const TSharedPtr<FState>& State : States) { State->ProcessFlags(State->Test(Edge), Flags); }
 			return true;
 		}
 
 	protected:
-		virtual void PostInitFilter(const FPCGContext* InContext, PCGExPointFilter::TFilter* InFilter) override;
+		virtual void PostInitFilter(FPCGExContext* InContext, const TSharedPtr<PCGExPointFilter::FFilter>& InFilter) override;
 	};
 };
 
 UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph|Params")
-class PCGEXTENDEDTOOLKIT_API UPCGExClusterStateFactoryProviderSettings : public UPCGExFactoryProviderSettings
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExClusterStateFactoryProviderSettings : public UPCGExFactoryProviderSettings
 {
 	GENERATED_BODY()
 
@@ -119,7 +126,7 @@ public:
 	//~Begin UPCGSettings
 #if WITH_EDITOR
 	PCGEX_NODE_INFOS_CUSTOM_SUBTITLE(
-		NodeFilter, "Cluster : Node Flag", "A single, filter-driven node flag.",
+		ClusterNodeFlag, "Cluster : Node Flag", "A single, filter-driven node flag.",
 		PCGEX_FACTORY_NAME_PRIORITY)
 	virtual FLinearColor GetNodeTitleColor() const override { return GetDefault<UPCGExGlobalSettings>()->NodeColorClusterState; }
 #endif
@@ -130,7 +137,7 @@ protected:
 	//~End UPCGSettings
 
 public:
-	virtual FName GetMainOutputLabel() const override { return PCGExCluster::OutputNodeFlagLabel; }
+	virtual FName GetMainOutputPin() const override { return PCGExCluster::OutputNodeFlagLabel; }
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const override;
 
 	/** */

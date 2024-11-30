@@ -3,17 +3,15 @@
 
 #include "Paths/PCGExPathProcessor.h"
 
-#include "PCGExPointsMT.h"
-#include "Graph/PCGExCluster.h"
-
 #define LOCTEXT_NAMESPACE "PCGExPathProcessorElement"
 
-PCGExData::EInit UPCGExPathProcessorSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
-
-FPCGExPathProcessorContext::~FPCGExPathProcessorContext()
+UPCGExPathProcessorSettings::UPCGExPathProcessorSettings(
+	const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
-	PCGEX_TERMINATE_ASYNC
 }
+
+PCGExData::EIOInit UPCGExPathProcessorSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 PCGEX_INITIALIZE_CONTEXT(PathProcessor)
 
@@ -22,6 +20,9 @@ bool FPCGExPathProcessorElement::Boot(FPCGExContext* InContext) const
 	if (!FPCGExPointsProcessorElement::Boot(InContext)) { return false; }
 
 	PCGEX_CONTEXT_AND_SETTINGS(PathProcessor)
+
+	PCGEX_FWD(ClosedLoop)
+	Context->ClosedLoop.Init();
 
 	return true;
 }

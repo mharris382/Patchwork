@@ -5,6 +5,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PCGExConstants.h"
 #include "PCGExDetails.h"
 #include "Data/PCGExData.h"
 
@@ -20,59 +21,66 @@ MACRO(FSoftClassPath)
 MACRO(FSoftObjectPath)\
 MACRO(FSoftClassPath)
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Dot Units"))
+UENUM()
+enum class EPCGExIndexMode : uint8
+{
+	Pick   = 0 UMETA(DisplayName = "Pick", ToolTip="Index value represent a specific pick"),
+	Offset = 1 UMETA(DisplayName = "Offset", ToolTip="Index value represent an offset from current point' index"),
+};
+
+UENUM()
 enum class EPCGExDotUnits : uint8
 {
-	Raw UMETA(DisplayName = "Normal (-1::1)", Tooltip="Read the value as a raw dot product result"),
-	Degrees UMETA(DisplayName = "Degrees", Tooltip="Read the value as degrees"),
+	Raw     = 0 UMETA(DisplayName = "Normal (-1::1)", Tooltip="Read the value as a raw dot product result"),
+	Degrees = 1 UMETA(DisplayName = "Degrees", Tooltip="Read the value as degrees"),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Comparison"))
+UENUM()
 enum class EPCGExComparison : uint8
 {
-	StrictlyEqual UMETA(DisplayName = " == ", Tooltip="Operand A Strictly Equal to Operand B"),
-	StrictlyNotEqual UMETA(DisplayName = " != ", Tooltip="Operand A Strictly Not Equal to Operand B"),
-	EqualOrGreater UMETA(DisplayName = " >= ", Tooltip="Operand A Equal or Greater to Operand B"),
-	EqualOrSmaller UMETA(DisplayName = " <= ", Tooltip="Operand A Equal or Smaller to Operand B"),
-	StrictlyGreater UMETA(DisplayName = " > ", Tooltip="Operand A Strictly Greater to Operand B"),
-	StrictlySmaller UMETA(DisplayName = " < ", Tooltip="Operand A Strictly Smaller to Operand B"),
-	NearlyEqual UMETA(DisplayName = " ~= ", Tooltip="Operand A Nearly Equal to Operand B"),
-	NearlyNotEqual UMETA(DisplayName = " !~= ", Tooltip="Operand A Nearly Not Equal to Operand B"),
+	StrictlyEqual    = 0 UMETA(DisplayName = " == ", Tooltip="Operand A Strictly Equal to Operand B"),
+	StrictlyNotEqual = 1 UMETA(DisplayName = " != ", Tooltip="Operand A Strictly Not Equal to Operand B"),
+	EqualOrGreater   = 2 UMETA(DisplayName = " >= ", Tooltip="Operand A Equal or Greater to Operand B"),
+	EqualOrSmaller   = 3 UMETA(DisplayName = " <= ", Tooltip="Operand A Equal or Smaller to Operand B"),
+	StrictlyGreater  = 4 UMETA(DisplayName = " > ", Tooltip="Operand A Strictly Greater to Operand B"),
+	StrictlySmaller  = 5 UMETA(DisplayName = " < ", Tooltip="Operand A Strictly Smaller to Operand B"),
+	NearlyEqual      = 6 UMETA(DisplayName = " ~= ", Tooltip="Operand A Nearly Equal to Operand B"),
+	NearlyNotEqual   = 7 UMETA(DisplayName = " !~= ", Tooltip="Operand A Nearly Not Equal to Operand B"),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Equality"))
+UENUM()
 enum class EPCGExEquality : uint8
 {
-	Equal UMETA(DisplayName = " == ", Tooltip="Operand A Equal to Operand B"),
-	NotEqual UMETA(DisplayName = " != ", Tooltip="Operand A Not Equal to Operand B"),
+	Equal    = 0 UMETA(DisplayName = " == ", Tooltip="Operand A Equal to Operand B"),
+	NotEqual = 1 UMETA(DisplayName = " != ", Tooltip="Operand A Not Equal to Operand B"),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] String Comparison"))
+UENUM()
 enum class EPCGExStringComparison : uint8
 {
-	StrictlyEqual UMETA(DisplayName = " == ", Tooltip="Operand A Strictly Equal to Operand B"),
-	StrictlyNotEqual UMETA(DisplayName = " != ", Tooltip="Operand A Strictly Not Equal to Operand B"),
-	LengthStrictlyEqual UMETA(DisplayName = " == (Length) ", Tooltip="Operand A Strictly Equal to Operand B"),
-	LengthStrictlyUnequal UMETA(DisplayName = " != (Length) ", Tooltip="Operand A Strictly Not Equal to Operand B"),
-	LengthEqualOrGreater UMETA(DisplayName = " >= (Length)", Tooltip="Operand A Equal or Greater to Operand B"),
-	LengthEqualOrSmaller UMETA(DisplayName = " <= (Length)", Tooltip="Operand A Equal or Smaller to Operand B"),
-	StrictlyGreater UMETA(DisplayName = " > (Length)", Tooltip="Operand A Strictly Greater to Operand B"),
-	StrictlySmaller UMETA(DisplayName = " < (Length)", Tooltip="Operand A Strictly Smaller to Operand B"),
-	LocaleStrictlyGreater UMETA(DisplayName = " > (Locale)", Tooltip="Operand A Locale Strictly Greater to Operand B Locale"),
-	LocaleStrictlySmaller UMETA(DisplayName = " < (Locale)", Tooltip="Operand A Locale Strictly Smaller to Operand B Locale"),
-	Contains UMETA(DisplayName = " Contains ", Tooltip="Operand A contains Operand B"),
-	StartsWith UMETA(DisplayName = " Starts With ", Tooltip="Operand A starts with Operand B"),
-	EndsWith UMETA(DisplayName = " Ends With ", Tooltip="Operand A ends with Operand B"),
+	StrictlyEqual         = 0 UMETA(DisplayName = " == ", Tooltip="Operand A Strictly Equal to Operand B"),
+	StrictlyNotEqual      = 1 UMETA(DisplayName = " != ", Tooltip="Operand A Strictly Not Equal to Operand B"),
+	LengthStrictlyEqual   = 2 UMETA(DisplayName = " == (Length) ", Tooltip="Operand A Strictly Equal to Operand B"),
+	LengthStrictlyUnequal = 3 UMETA(DisplayName = " != (Length) ", Tooltip="Operand A Strictly Not Equal to Operand B"),
+	LengthEqualOrGreater  = 4 UMETA(DisplayName = " >= (Length)", Tooltip="Operand A Equal or Greater to Operand B"),
+	LengthEqualOrSmaller  = 5 UMETA(DisplayName = " <= (Length)", Tooltip="Operand A Equal or Smaller to Operand B"),
+	StrictlyGreater       = 6 UMETA(DisplayName = " > (Length)", Tooltip="Operand A Strictly Greater to Operand B"),
+	StrictlySmaller       = 7 UMETA(DisplayName = " < (Length)", Tooltip="Operand A Strictly Smaller to Operand B"),
+	LocaleStrictlyGreater = 8 UMETA(DisplayName = " > (Locale)", Tooltip="Operand A Locale Strictly Greater to Operand B Locale"),
+	LocaleStrictlySmaller = 9 UMETA(DisplayName = " < (Locale)", Tooltip="Operand A Locale Strictly Smaller to Operand B Locale"),
+	Contains              = 10 UMETA(DisplayName = " Contains ", Tooltip="Operand A contains Operand B"),
+	StartsWith            = 11 UMETA(DisplayName = " Starts With ", Tooltip="Operand A starts with Operand B"),
+	EndsWith              = 12 UMETA(DisplayName = " Ends With ", Tooltip="Operand A ends with Operand B"),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Bitflag Comparison"))
+UENUM()
 enum class EPCGExBitflagComparison : uint8
 {
-	MatchPartial UMETA(DisplayName = "Match (any)", Tooltip="Value & Mask != 0 (At least some flags in the mask are set)"),
-	MatchFull UMETA(DisplayName = "Match (all)", Tooltip="Value & Mask == Mask (All the flags in the mask are set)"),
-	MatchStrict UMETA(DisplayName = "Match (strict)", Tooltip="Value == Mask (Flags strictly equals mask)"),
-	NoMatchPartial UMETA(DisplayName = "No match (any)", Tooltip="Value & Mask == 0 (Flags does not contains any from mask)"),
-	NoMatchFull UMETA(DisplayName = "No match (all)", Tooltip="Value & Mask != Mask (Flags does not contains the mask)"),
+	MatchPartial   = 0 UMETA(DisplayName = "Match (any)", Tooltip="Value & Mask != 0 (At least some flags in the mask are set)"),
+	MatchFull      = 1 UMETA(DisplayName = "Match (all)", Tooltip="Value & Mask == Mask (All the flags in the mask are set)"),
+	MatchStrict    = 2 UMETA(DisplayName = "Match (strict)", Tooltip="Value == Mask (Flags strictly equals mask)"),
+	NoMatchPartial = 3 UMETA(DisplayName = "No match (any)", Tooltip="Value & Mask == 0 (Flags does not contains any from mask)"),
+	NoMatchFull    = 4 UMETA(DisplayName = "No match (all)", Tooltip="Value & Mask != Mask (Flags does not contains the mask)"),
 };
 
 namespace PCGExCompare
@@ -120,253 +128,336 @@ namespace PCGExCompare
 		}
 	}
 
+	static FString ToString(const EPCGExStringComparison Comparison)
+	{
+		switch (Comparison)
+		{
+		case EPCGExStringComparison::StrictlyEqual:
+			return " == ";
+		case EPCGExStringComparison::StrictlyNotEqual:
+			return " != ";
+		case EPCGExStringComparison::LengthStrictlyEqual:
+			return " L == L ";
+		case EPCGExStringComparison::LengthStrictlyUnequal:
+			return " L != L ";
+		case EPCGExStringComparison::LengthEqualOrGreater:
+			return " L >= L ";
+		case EPCGExStringComparison::LengthEqualOrSmaller:
+			return " L <= L ";
+		case EPCGExStringComparison::StrictlyGreater:
+			return " L > L ";
+		case EPCGExStringComparison::StrictlySmaller:
+			return " L < L ";
+		case EPCGExStringComparison::LocaleStrictlyGreater:
+			return " > ";
+		case EPCGExStringComparison::LocaleStrictlySmaller:
+			return " < ";
+		case EPCGExStringComparison::Contains:
+			return " contains ";
+		case EPCGExStringComparison::StartsWith:
+			return " starts with ";
+		case EPCGExStringComparison::EndsWith:
+			return " ends with ";
+		default: return " ?? ";
+		}
+	}
 
-#pragma region StrictlyEqual
+	FORCEINLINE static bool Compare(const EPCGExStringComparison Method, const FString& A, const FString& B)
+	{
+		switch (Method)
+		{
+		case EPCGExStringComparison::StrictlyEqual:
+			return A == B;
+		case EPCGExStringComparison::StrictlyNotEqual:
+			return A != B;
+		case EPCGExStringComparison::LengthStrictlyEqual:
+			return A.Len() == B.Len();
+		case EPCGExStringComparison::LengthStrictlyUnequal:
+			return A.Len() != B.Len();
+		case EPCGExStringComparison::LengthEqualOrGreater:
+			return A.Len() >= B.Len();
+		case EPCGExStringComparison::LengthEqualOrSmaller:
+			return A.Len() <= B.Len();
+		case EPCGExStringComparison::StrictlyGreater:
+			return A.Len() > B.Len();
+		case EPCGExStringComparison::StrictlySmaller:
+			return A.Len() < B.Len();
+		case EPCGExStringComparison::LocaleStrictlyGreater:
+			return A > B;
+		case EPCGExStringComparison::LocaleStrictlySmaller:
+			return A < B;
+		case EPCGExStringComparison::Contains:
+			return A.Contains(B);
+		case EPCGExStringComparison::StartsWith:
+			return A.StartsWith(B);
+		case EPCGExStringComparison::EndsWith:
+			return A.EndsWith(B);
+		default:
+			return false;
+		}
+	}
 
-	template <typename T, typename CompilerSafety = void>
+#pragma region Numeric comparisons ops
+
+	template <typename T>
 	FORCEINLINE static bool StrictlyEqual(const T& A, const T& B) { return A == B; }
 
-#pragma endregion
-
-#pragma region StrictlyNotEqual
-
-	template <typename T, typename CompilerSafety = void>
+	template <typename T>
 	FORCEINLINE static bool StrictlyNotEqual(const T& A, const T& B) { return A != B; }
 
-#pragma endregion
-
-#pragma region EqualOrGreater
-
-	template <typename T, typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const T& A, const T& B) { return A >= B; }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const FVector2D& A, const FVector2D& B) { return A.SquaredLength() >= B.SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const FVector& A, const FVector& B) { return A.SquaredLength() >= B.SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const FVector4& A, const FVector4& B) { return FVector(A).SquaredLength() >= FVector(B).SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const FRotator& A, const FRotator& B) { return A.Euler().SquaredLength() >= B.Euler().SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const FQuat& A, const FQuat& B) { return A.Euler().SquaredLength() >= B.Euler().SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const FTransform& A, const FTransform& B)
+	template <typename T>
+	FORCEINLINE static bool EqualOrGreater(const T& A, const T& B)
 	{
-		return (
-			EqualOrGreater(A.GetLocation(), B.GetLocation()) &&
-			EqualOrGreater(A.GetRotation(), B.GetRotation()) &&
-			EqualOrGreater(A.GetScale3D(), B.GetScale3D()));
+		if constexpr (std::is_same_v<T, bool>)
+		{
+			return A == B || A;
+		}
+		else if constexpr (
+			std::is_same_v<T, FVector2D> ||
+			std::is_same_v<T, FVector>)
+		{
+			return A.SquaredLength() >= B.SquaredLength();
+		}
+		else if constexpr (std::is_same_v<T, FVector4>)
+		{
+			return EqualOrGreater(FVector(A), FVector(B));
+		}
+		else if constexpr (
+			std::is_same_v<T, FQuat> ||
+			std::is_same_v<T, FRotator>)
+		{
+			return EqualOrGreater(FVector(A.Euler()), FVector(B.Euler()));
+		}
+		else if constexpr (std::is_same_v<T, FTransform>)
+		{
+			return (
+				EqualOrGreater(A.GetLocation(), B.GetLocation()) &&
+				EqualOrGreater(A.GetRotation(), B.GetRotation()) &&
+				EqualOrGreater(A.GetScale3D(), B.GetScale3D()));
+		}
+		else if constexpr (std::is_same_v<T, FString>)
+		{
+			return A.Len() >= B.Len();
+		}
+		else if constexpr (
+			std::is_same_v<T, FName> ||
+			std::is_same_v<T, FSoftObjectPath> ||
+			std::is_same_v<T, FSoftClassPath>)
+		{
+			return EqualOrGreater(A.ToString(), B.ToString());
+		}
+		else
+		{
+			return A >= B;
+		}
 	}
 
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const FString& A, const FString& B) { return A.Len() >= B.Len(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrGreater(const FName& A, const FName& B) { return EqualOrGreater(A.ToString(), B.ToString()); }
-
-#define PCGEX_UNSUPPORTED_EOG(_TYPE) template <typename CompilerSafety = void> static bool EqualOrGreater(const _TYPE& A, const _TYPE& B) { return false; }
-	PCGEX_UNSUPPORTED_PATH_TYPES(PCGEX_UNSUPPORTED_EOG)
-#undef PCGEX_UNSUPPORTED_EOG
-
-#pragma endregion
-
-#pragma region EqualOrSmaller
-
-	template <typename T, typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const T& A, const T& B) { return A <= B; }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const FVector2D& A, const FVector2D& B) { return A.SquaredLength() <= B.SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const FVector& A, const FVector& B) { return A.SquaredLength() <= B.SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const FVector4& A, const FVector4& B) { return FVector(A).SquaredLength() <= FVector(B).SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const FRotator& A, const FRotator& B) { return A.Euler().SquaredLength() <= B.Euler().SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const FQuat& A, const FQuat& B) { return A.Euler().SquaredLength() <= B.Euler().SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const FTransform& A, const FTransform& B)
+	template <typename T>
+	FORCEINLINE static bool EqualOrSmaller(const T& A, const T& B)
 	{
-		return (
-			EqualOrSmaller(A.GetLocation(), B.GetLocation()) &&
-			EqualOrSmaller(A.GetRotation(), B.GetRotation()) &&
-			EqualOrSmaller(A.GetScale3D(), B.GetScale3D()));
+		if constexpr (std::is_same_v<T, bool>)
+		{
+			return A == B || !A;
+		}
+		else if constexpr (
+			std::is_same_v<T, FVector2D> ||
+			std::is_same_v<T, FVector>)
+		{
+			return A.SquaredLength() <= B.SquaredLength();
+		}
+		else if constexpr (std::is_same_v<T, FVector4>)
+		{
+			return EqualOrSmaller(FVector(A), FVector(B));
+		}
+		else if constexpr (
+			std::is_same_v<T, FQuat> ||
+			std::is_same_v<T, FRotator>)
+		{
+			return EqualOrSmaller(FVector(A.Euler()), FVector(B.Euler()));
+		}
+		else if constexpr (std::is_same_v<T, FTransform>)
+		{
+			return (
+				EqualOrSmaller(A.GetLocation(), B.GetLocation()) &&
+				EqualOrSmaller(A.GetRotation(), B.GetRotation()) &&
+				EqualOrSmaller(A.GetScale3D(), B.GetScale3D()));
+		}
+		else if constexpr (std::is_same_v<T, FString>)
+		{
+			return A.Len() <= B.Len();
+		}
+		else if constexpr (
+			std::is_same_v<T, FName> ||
+			std::is_same_v<T, FSoftObjectPath> ||
+			std::is_same_v<T, FSoftClassPath>)
+		{
+			return EqualOrSmaller(A.ToString(), B.ToString());
+		}
+		else
+		{
+			return A <= B;
+		}
 	}
 
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const FString& A, const FString& B) { return A.Len() <= B.Len(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool EqualOrSmaller(const FName& A, const FName& B) { return EqualOrSmaller(A.ToString(), B.ToString()); }
-
-#define PCGEX_UNSUPPORTED_EOS(_TYPE) template <typename CompilerSafety = void> static bool EqualOrSmaller(const _TYPE& A, const _TYPE& B) { return false; }
-	PCGEX_UNSUPPORTED_PATH_TYPES(PCGEX_UNSUPPORTED_EOS)
-#undef PCGEX_UNSUPPORTED_EOS
-
-#pragma endregion
-
-#pragma region EqualOrSmaller
-
-	template <typename T, typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const T& A, const T& B) { return A > B; }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const FVector2D& A, const FVector2D& B) { return A.SquaredLength() > B.SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const FVector& A, const FVector& B) { return A.SquaredLength() > B.SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const FVector4& A, const FVector4& B) { return FVector(A).SquaredLength() > FVector(B).SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const FRotator& A, const FRotator& B) { return A.Euler().SquaredLength() > B.Euler().SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const FQuat& A, const FQuat& B) { return A.Euler().SquaredLength() > B.Euler().SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const FTransform& A, const FTransform& B)
+	template <typename T>
+	FORCEINLINE static bool StrictlyGreater(const T& A, const T& B)
 	{
-		return (
-			StrictlyGreater(A.GetLocation(), B.GetLocation()) &&
-			StrictlyGreater(A.GetRotation(), B.GetRotation()) &&
-			StrictlyGreater(A.GetScale3D(), B.GetScale3D()));
+		if constexpr (std::is_same_v<T, bool>)
+		{
+			return A && !B;
+		}
+		else if constexpr (
+			std::is_same_v<T, FVector2D> ||
+			std::is_same_v<T, FVector>)
+		{
+			return A.SquaredLength() > B.SquaredLength();
+		}
+		else if constexpr (std::is_same_v<T, FVector4>)
+		{
+			return StrictlyGreater(FVector(A), FVector(B));
+		}
+		else if constexpr (
+			std::is_same_v<T, FQuat> ||
+			std::is_same_v<T, FRotator>)
+		{
+			return StrictlyGreater(FVector(A.Euler()), FVector(B.Euler()));
+		}
+		else if constexpr (std::is_same_v<T, FTransform>)
+		{
+			return (
+				StrictlyGreater(A.GetLocation(), B.GetLocation()) &&
+				StrictlyGreater(A.GetRotation(), B.GetRotation()) &&
+				StrictlyGreater(A.GetScale3D(), B.GetScale3D()));
+		}
+		else if constexpr (std::is_same_v<T, FString>)
+		{
+			return A.Len() > B.Len();
+		}
+		else if constexpr (
+			std::is_same_v<T, FName> ||
+			std::is_same_v<T, FSoftObjectPath> ||
+			std::is_same_v<T, FSoftClassPath>)
+		{
+			return StrictlyGreater(A.ToString(), B.ToString());
+		}
+		else
+		{
+			return A > B;
+		}
 	}
 
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const FString& A, const FString& B) { return A.Len() > B.Len(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlyGreater(const FName& A, const FName& B) { return StrictlyGreater(A.ToString(), B.ToString()); }
-
-#define PCGEX_UNSUPPORTED_SG(_TYPE) template <typename CompilerSafety = void> static bool StrictlyGreater(const _TYPE& A, const _TYPE& B) { return false; }
-	PCGEX_UNSUPPORTED_PATH_TYPES(PCGEX_UNSUPPORTED_SG)
-#undef PCGEX_UNSUPPORTED_SG
-
-#pragma endregion
-
-#pragma region StrictlySmaller
-
-	template <typename T, typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const T& A, const T& B) { return A < B; }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const FVector2D& A, const FVector2D& B) { return A.SquaredLength() < B.SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const FVector& A, const FVector& B) { return A.SquaredLength() < B.SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const FVector4& A, const FVector4& B) { return FVector(A).SquaredLength() < FVector(B).SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const FRotator& A, const FRotator& B) { return A.Euler().SquaredLength() < B.Euler().SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const FQuat& A, const FQuat& B) { return A.Euler().SquaredLength() < B.Euler().SquaredLength(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const FTransform& A, const FTransform& B)
+	template <typename T>
+	FORCEINLINE static bool StrictlySmaller(const T& A, const T& B)
 	{
-		return (
-			StrictlySmaller(A.GetLocation(), B.GetLocation()) &&
-			StrictlySmaller(A.GetRotation(), B.GetRotation()) &&
-			StrictlySmaller(A.GetScale3D(), B.GetScale3D()));
+		if constexpr (std::is_same_v<T, bool>)
+		{
+			return !A && B;
+		}
+		else if constexpr (
+			std::is_same_v<T, FVector2D> ||
+			std::is_same_v<T, FVector>)
+		{
+			return A.SquaredLength() < B.SquaredLength();
+		}
+		else if constexpr (std::is_same_v<T, FVector4>)
+		{
+			return StrictlySmaller(FVector(A), FVector(B));
+		}
+		else if constexpr (
+			std::is_same_v<T, FQuat> ||
+			std::is_same_v<T, FRotator>)
+		{
+			return StrictlySmaller(FVector(A.Euler()), FVector(B.Euler()));
+		}
+		else if constexpr (std::is_same_v<T, FTransform>)
+		{
+			return (
+				StrictlySmaller(A.GetLocation(), B.GetLocation()) &&
+				StrictlySmaller(A.GetRotation(), B.GetRotation()) &&
+				StrictlySmaller(A.GetScale3D(), B.GetScale3D()));
+		}
+		else if constexpr (std::is_same_v<T, FString>)
+		{
+			return A.Len() < B.Len();
+		}
+		else if constexpr (
+			std::is_same_v<T, FName> ||
+			std::is_same_v<T, FSoftObjectPath> ||
+			std::is_same_v<T, FSoftClassPath>)
+		{
+			return StrictlySmaller(A.ToString(), B.ToString());
+		}
+		else
+		{
+			return A < B;
+		}
 	}
 
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const FString& A, const FString& B) { return A.Len() < B.Len(); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool StrictlySmaller(const FName& A, const FName& B) { return EqualOrSmaller(A.ToString(), B.ToString()); }
-
-#define PCGEX_UNSUPPORTED_SS(_TYPE) template <typename CompilerSafety = void> static bool StrictlySmaller(const _TYPE& A, const _TYPE& B) { return false; }
-	PCGEX_UNSUPPORTED_PATH_TYPES(PCGEX_UNSUPPORTED_SS)
-#undef PCGEX_UNSUPPORTED_SS
-
-#pragma endregion
-
-#pragma region NearlyEqual
-
-	template <typename T, typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const T& A, const T& B, const double Tolerance = 0.001) { return FMath::IsNearlyEqual(A, B, Tolerance); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const FVector2D& A, const FVector2D& B, const double Tolerance)
+	template <typename T>
+	FORCEINLINE static bool NearlyEqual(const T& A, const T& B, const double Tolerance = DBL_COMPARE_TOLERANCE)
 	{
-		return (
-			NearlyEqual(A.X, B.X, Tolerance) &&
-			NearlyEqual(A.Y, B.Y, Tolerance));
+		if constexpr (std::is_same_v<T, bool>)
+		{
+			return A == B;
+		}
+		else if constexpr (std::is_same_v<T, FVector2D>)
+		{
+			return
+				NearlyEqual(A.X, B.X, Tolerance) &&
+				NearlyEqual(A.Y, B.Y, Tolerance);
+		}
+		else if constexpr (std::is_same_v<T, FVector2D>)
+		{
+			return
+				NearlyEqual(A.X, B.X, Tolerance) &&
+				NearlyEqual(A.Y, B.Y, Tolerance) &&
+				NearlyEqual(A.Z, B.Z, Tolerance);
+		}
+		else if constexpr (std::is_same_v<T, FVector4>)
+		{
+			return
+				NearlyEqual(A.X, B.X, Tolerance) &&
+				NearlyEqual(A.Y, B.Y, Tolerance) &&
+				NearlyEqual(A.Z, B.Z, Tolerance) &&
+				NearlyEqual(A.W, B.W, Tolerance);
+		}
+		else if constexpr (
+			std::is_same_v<T, FQuat> ||
+			std::is_same_v<T, FRotator>)
+		{
+			return NearlyEqual(FVector(A.Euler()), FVector(B.Euler()), Tolerance);
+		}
+		else if constexpr (std::is_same_v<T, FTransform>)
+		{
+			return
+				NearlyEqual(A.GetLocation(), B.GetLocation(), Tolerance) &&
+				NearlyEqual(A.GetRotation(), B.GetRotation(), Tolerance) &&
+				NearlyEqual(A.GetScale3D(), B.GetScale3D(), Tolerance);
+		}
+		else if constexpr (std::is_same_v<T, FString>)
+		{
+			return FMath::IsNearlyEqual(A.Len(), B.Len(), Tolerance);
+		}
+		else if constexpr (
+			std::is_same_v<T, FName> ||
+			std::is_same_v<T, FSoftObjectPath> ||
+			std::is_same_v<T, FSoftClassPath>)
+		{
+			return NearlyEqual(A.ToString(), B.ToString(), Tolerance);
+		}
+		else
+		{
+			return FMath::IsNearlyEqual(A, B, Tolerance);
+		}
 	}
 
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const FVector& A, const FVector& B, const double Tolerance)
-	{
-		return (
-			NearlyEqual(A.X, B.X, Tolerance) &&
-			NearlyEqual(A.Y, B.Y, Tolerance) &&
-			NearlyEqual(A.Z, B.Z, Tolerance));
-	}
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const FVector4& A, const FVector4& B, const double Tolerance)
-	{
-		return (
-			NearlyEqual(A.X, B.X, Tolerance) &&
-			NearlyEqual(A.Y, B.Y, Tolerance) &&
-			NearlyEqual(A.Z, B.Z, Tolerance) &&
-			NearlyEqual(A.W, B.W, Tolerance));
-	}
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const FRotator& A, const FRotator& B, const double Tolerance) { return NearlyEqual(A.Euler(), B.Euler(), Tolerance); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const FQuat& A, const FQuat& B, const double Tolerance) { return NearlyEqual(A.Euler(), B.Euler(), Tolerance); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const FTransform& A, const FTransform& B, const double Tolerance)
-	{
-		return (
-			NearlyEqual(A.GetLocation(), B.GetLocation(), Tolerance) &&
-			NearlyEqual(A.GetRotation(), B.GetRotation(), Tolerance) &&
-			NearlyEqual(A.GetScale3D(), B.GetScale3D(), Tolerance));
-	}
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const FString& A, const FString& B, const double Tolerance) { return NearlyEqual(A.Len(), B.Len(), Tolerance); }
-
-	template <typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyEqual(const FName& A, const FName& B, const double Tolerance) { return NearlyEqual(A.ToString(), B.ToString(), Tolerance); }
-
-#define PCGEX_UNSUPPORTED_NE(_TYPE) template <typename CompilerSafety = void> static bool NearlyEqual(const _TYPE& A, const _TYPE& B, const double Tolerance) { return false; }
-	PCGEX_UNSUPPORTED_PATH_TYPES(PCGEX_UNSUPPORTED_NE)
-#undef PCGEX_UNSUPPORTED_NE
-
-#pragma endregion
-
-#pragma region NearlyNotEqual
-
-	template <typename T, typename CompilerSafety = void>
-	FORCEINLINE static bool NearlyNotEqual(const T& A, const T& B, const double Tolerance) { return !NearlyEqual(A, B, Tolerance); }
+	template <typename T>
+	FORCEINLINE static bool NearlyNotEqual(const T& A, const T& B, const double Tolerance = DBL_COMPARE_TOLERANCE) { return !NearlyEqual(A, B, Tolerance); }
 
 #pragma endregion
 
 	template <typename T>
-	FORCEINLINE static bool Compare(const EPCGExComparison Method, const T& A, const T& B, const double Tolerance = 0.001)
+	FORCEINLINE static bool Compare(const EPCGExComparison Method, const T& A, const T& B, const double Tolerance = DBL_COMPARE_TOLERANCE)
 	{
 		switch (Method)
 		{
@@ -411,7 +502,7 @@ namespace PCGExCompare
 }
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExComparisonDetails
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExComparisonDetails
 {
 	GENERATED_BODY()
 
@@ -439,20 +530,20 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExComparisonDetails
 
 	/** Comparison Tolerance. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, EditCondition="Comparison==EPCGExComparison::NearlyEqual||Comparison==EPCGExComparison::NearlyNotEqual", EditConditionHides, ClampMin=0.001))
-	double Tolerance = 0.001;
+	double Tolerance = DBL_COMPARE_TOLERANCE;
 };
 
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Direction Check Mode"))
+UENUM()
 enum class EPCGExDirectionCheckMode : uint8
 {
-	Dot UMETA(DisplayName = "Dot (Precise)", Tooltip="Extensive comparison using Dot product"),
-	Hash UMETA(DisplayName = "Hash (Fast)", Tooltip="Simplified check using hash comparison with a destructive tolerance"),
+	Dot  = 0 UMETA(DisplayName = "Dot (Precise)", Tooltip="Extensive comparison using Dot product"),
+	Hash = 1 UMETA(DisplayName = "Hash (Fast)", Tooltip="Simplified check using hash comparison with a destructive tolerance"),
 };
 
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExVectorHashComparisonDetails
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExVectorHashComparisonDetails
 {
 	GENERATED_BODY()
 
@@ -462,24 +553,24 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExVectorHashComparisonDetails
 
 	/** Type of Tolerance value source */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	EPCGExFetchType HashToleranceValue = EPCGExFetchType::Constant;
+	EPCGExInputValueType HashToleranceInput = EPCGExInputValueType::Constant;
 
 	/** Tolerance value use for comparison */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="HashToleranceValue==EPCGExFetchType::Attribute", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Hash Tolerance", EditCondition="HashToleranceInput==EPCGExInputValueType::Attribute", EditConditionHides))
 	FPCGAttributePropertyInputSelector HashToleranceAttribute;
 
 	/** Tolerance value use for comparison */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditConditionHides, ClampMin=0.00001))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Hash Tolerance", EditCondition="HashToleranceInput==EPCGExInputValueType::Constant", EditConditionHides, ClampMin=0.00001))
 	double HashToleranceConstant = 0.001;
 
 	FVector CWTolerance = FVector::ZeroVector;
 
 	bool bUseLocalTolerance = false;
-	PCGExData::FCache<double>* LocalOperand = nullptr;
+	TSharedPtr<PCGExData::TBuffer<double>> LocalOperand;
 
-	bool Init(const FPCGContext* InContext, PCGExData::FFacade* InPrimaryDataFacade)
+	bool Init(const FPCGContext* InContext, const TSharedRef<PCGExData::FFacade>& InPrimaryDataFacade)
 	{
-		bUseLocalTolerance = HashToleranceValue == EPCGExFetchType::Attribute;
+		bUseLocalTolerance = HashToleranceInput == EPCGExInputValueType::Attribute;
 
 		if (bUseLocalTolerance)
 		{
@@ -497,12 +588,12 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExVectorHashComparisonDetails
 
 	FVector GetCWTolerance(const int32 PointIndex) const
 	{
-		return bUseLocalTolerance ? FVector(1 / LocalOperand->Values[PointIndex]) : CWTolerance;
+		return bUseLocalTolerance ? FVector(1 / LocalOperand->Read(PointIndex)) : CWTolerance;
 	}
 };
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExDotComparisonDetails
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExDotComparisonDetails
 {
 	GENERATED_BODY()
 
@@ -524,14 +615,14 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExDotComparisonDetails
 
 	/** Type of Dot value source */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable))
-	EPCGExFetchType DotValue = EPCGExFetchType::Constant;
+	EPCGExInputValueType DotValue = EPCGExInputValueType::Constant;
 
 	/** Dot value use for comparison */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="DotValue==EPCGExFetchType::Attribute", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Dot or Degrees", EditCondition="DotValue==EPCGExInputValueType::Attribute", EditConditionHides))
 	FPCGAttributePropertyInputSelector DotOrDegreesAttribute;
 
 	/** Dot value use for comparison (In raw -1/1 range) */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="DotValue==EPCGExFetchType::Constant && DotUnits==EPCGExDotUnits::Raw", EditConditionHides, ClampMin=-1, ClampMax=1))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Dot", EditCondition="DotValue==EPCGExInputValueType::Constant && DotUnits==EPCGExDotUnits::Raw", EditConditionHides, ClampMin=-1, ClampMax=1))
 	double DotConstant = 1;
 
 	/** Tolerance for dot comparison. */
@@ -539,19 +630,19 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExDotComparisonDetails
 	double DotTolerance = 0.1;
 
 	/** Dot value use for comparison (In degrees) */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="DotValue==EPCGExFetchType::Constant && DotUnits==EPCGExDotUnits::Degrees", EditConditionHides, ClampMin=0, ClampMax=180, Units="Degrees"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Degrees", EditCondition="DotValue==EPCGExInputValueType::Constant && DotUnits==EPCGExDotUnits::Degrees", EditConditionHides, ClampMin=0, ClampMax=180, Units="Degrees"))
 	double DegreesConstant = 0;
 
 	/** Tolerance for dot comparison. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="(Comparison==EPCGExComparison::NearlyEqual || Comparison==EPCGExComparison::NearlyNotEqual) && DotUnits==EPCGExDotUnits::Degrees", EditConditionHides, ClampMin=0, ClampMax=180, Units="Degrees"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="Degrees", EditCondition="(Comparison==EPCGExComparison::NearlyEqual || Comparison==EPCGExComparison::NearlyNotEqual) && DotUnits==EPCGExDotUnits::Degrees", EditConditionHides, ClampMin=0, ClampMax=180, Units="Degrees"))
 	double DegreesTolerance = 0.1;
 
 	bool bUseLocalDot = false;
-	PCGExData::FCache<double>* LocalOperand = nullptr;
+	TSharedPtr<PCGExData::TBuffer<double>> LocalOperand;
 
-	bool Init(const FPCGContext* InContext, PCGExData::FFacade* InPrimaryDataCache)
+	bool Init(const FPCGContext* InContext, const TSharedRef<PCGExData::FFacade>& InPrimaryDataCache)
 	{
-		bUseLocalDot = DotValue == EPCGExFetchType::Attribute;
+		bUseLocalDot = DotValue == EPCGExInputValueType::Attribute;
 
 		if (bUseLocalDot)
 		{
@@ -565,8 +656,8 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExDotComparisonDetails
 
 		if (DotUnits == EPCGExDotUnits::Degrees)
 		{
-			DotTolerance = PCGExMath::DegreesToDot(DegreesTolerance * 0.5);
-			DotConstant = PCGExMath::DegreesToDotForComparison(DegreesConstant * 0.5);
+			DotTolerance = PCGExMath::DegreesToDot(DegreesTolerance);
+			DotConstant = PCGExMath::DegreesToDotForComparison(DegreesConstant);
 		}
 
 		return true;
@@ -580,9 +671,9 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExDotComparisonDetails
 			{
 			default: ;
 			case EPCGExDotUnits::Raw:
-				return LocalOperand->Values[PointIndex];
+				return LocalOperand->Read(PointIndex);
 			case EPCGExDotUnits::Degrees:
-				return PCGExMath::DegreesToDotForComparison(LocalOperand->Values[PointIndex] * 0.5);
+				return PCGExMath::DegreesToDotForComparison(LocalOperand->Read(PointIndex) * 0.5);
 			}
 		}
 		return DotConstant;
@@ -594,22 +685,22 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExDotComparisonDetails
 	}
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Bit Operation"))
+UENUM()
 enum class EPCGExBitOp : uint8
 {
-	Set UMETA(DisplayName = "=", ToolTip="(Flags = Mask) Set the bit with the specified value."),
-	AND UMETA(DisplayName = "AND", ToolTip="(Flags &= Mask) Output true if boths bits == 1, otherwise false."),
-	OR UMETA(DisplayName = "OR", ToolTip="(Flags |= Mask) Output true if any of the bits == 1, otherwise false."),
-	NOT UMETA(DisplayName = "NOT", ToolTip="(Flags &= ~Mask) Like AND, but inverts the masks."),
-	XOR UMETA(DisplayName = "XOR", ToolTip="(Flags ^= Mask) Invert the flag bit where the mask == 1."),
+	Set = 0 UMETA(DisplayName = "=", ToolTip="(Flags = Mask) Set the bit with the specified value."),
+	AND = 1 UMETA(DisplayName = "AND", ToolTip="(Flags &= Mask) Output true if boths bits == 1, otherwise false."),
+	OR  = 2 UMETA(DisplayName = "OR", ToolTip="(Flags |= Mask) Output true if any of the bits == 1, otherwise false."),
+	NOT = 3 UMETA(DisplayName = "NOT", ToolTip="(Flags &= ~Mask) Like AND, but inverts the masks."),
+	XOR = 4 UMETA(DisplayName = "XOR", ToolTip="(Flags ^= Mask) Invert the flag bit where the mask == 1."),
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Bitmask Source"))
+UENUM()
 enum class EPCGExBitmaskMode : uint8
 {
-	Direct UMETA(DisplayName = "Direct", ToolTip="Used for easy override mostly"),
-	Individual UMETA(DisplayName = "Individual", ToolTip="Use an array to manually set the bits"),
-	Composite UMETA(DisplayName = "Composite", ToolTip="Use a ton of dropdown to set the bits"),
+	Direct     = 0 UMETA(DisplayName = "Direct", ToolTip="Used for easy override mostly"),
+	Individual = 1 UMETA(DisplayName = "Individual", ToolTip="Use an array to manually set the bits"),
+	Composite  = 2 UMETA(DisplayName = "Composite", ToolTip="Use a ton of dropdown to set the bits"),
 };
 
 #pragma region Bitmasks
@@ -688,7 +779,7 @@ enum class EPCGExBitflag64 : int64
 ENUM_CLASS_FLAGS(EPCGExBitflag64)
 */
 
-UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 0-8 Bits Range"))
+UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 0-8 Bits Range"))
 enum class EPCGExBitmask8_00_08 : uint8
 {
 	None   = 0,
@@ -705,7 +796,7 @@ enum class EPCGExBitmask8_00_08 : uint8
 ENUM_CLASS_FLAGS(EPCGExBitmask8_00_08)
 using EPCGExBitmask8_00_08Bitmask = TEnumAsByte<EPCGExBitmask8_00_08>;
 
-UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 8-16 Bits Range"))
+UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 8-16 Bits Range"))
 enum class EPCGExBitmask8_08_16 : uint8
 {
 	None    = 0,
@@ -722,7 +813,7 @@ enum class EPCGExBitmask8_08_16 : uint8
 ENUM_CLASS_FLAGS(EPCGExBitmask8_08_16)
 using EPCGExBitmask8_08_16Bitmask = TEnumAsByte<EPCGExBitmask8_08_16>;
 
-UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 16-24 Bits Range"))
+UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 16-24 Bits Range"))
 enum class EPCGExBitmask8_16_24 : uint8
 {
 	None    = 0,
@@ -739,7 +830,7 @@ enum class EPCGExBitmask8_16_24 : uint8
 ENUM_CLASS_FLAGS(EPCGExBitmask8_16_24)
 using EPCGExBitmask8_16_24Bitmask = TEnumAsByte<EPCGExBitmask8_16_24>;
 
-UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 24-32 Bits Range"))
+UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 24-32 Bits Range"))
 enum class EPCGExBitmask8_24_32 : uint8
 {
 	None    = 0,
@@ -756,7 +847,7 @@ enum class EPCGExBitmask8_24_32 : uint8
 ENUM_CLASS_FLAGS(EPCGExBitmask8_24_32)
 using EPCGExBitmask8_24_32Bitmask = TEnumAsByte<EPCGExBitmask8_24_32>;
 
-UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 32-40 Bits Range"))
+UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 32-40 Bits Range"))
 enum class EPCGExBitmask8_32_40 : uint8
 {
 	None    = 0,
@@ -773,7 +864,7 @@ enum class EPCGExBitmask8_32_40 : uint8
 ENUM_CLASS_FLAGS(EPCGExBitmask8_32_40)
 using EPCGExBitmask8_32_40Bitmask = TEnumAsByte<EPCGExBitmask8_32_40>;
 
-UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 40-48 Bits Range"))
+UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 40-48 Bits Range"))
 enum class EPCGExBitmask8_40_48 : uint8
 {
 	None    = 0,
@@ -790,7 +881,7 @@ enum class EPCGExBitmask8_40_48 : uint8
 ENUM_CLASS_FLAGS(EPCGExBitmask8_40_48)
 using EPCGExBitmask8_40_48Bitmask = TEnumAsByte<EPCGExBitmask8_40_48>;
 
-UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 48-56 Bits Range"))
+UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 48-56 Bits Range"))
 enum class EPCGExBitmask8_48_56 : uint8
 {
 	None    = 0,
@@ -807,7 +898,7 @@ enum class EPCGExBitmask8_48_56 : uint8
 ENUM_CLASS_FLAGS(EPCGExBitmask8_48_56)
 using EPCGExBitmask8_48_56Bitmask = TEnumAsByte<EPCGExBitmask8_48_56>;
 
-UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 56-64 Bits Range"))
+UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true", DisplayName="[PCGEx] Bitflag 56-64 Bits Range"))
 enum class EPCGExBitmask8_56_64 : uint8
 {
 	None    = 0,
@@ -827,14 +918,14 @@ using EPCGExBitmask8_56_64Bitmask = TEnumAsByte<EPCGExBitmask8_56_64>;
 #pragma endregion
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FClampedBit
+struct /*PCGEXTENDEDTOOLKIT_API*/ FClampedBit
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = "0", ClampMax = "63"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Settings, meta = (ClampMin = "0", ClampMax = "63"))
 	uint8 BitIndex;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Settings)
 	bool bValue;
 
 	FClampedBit() : BitIndex(0), bValue(false)
@@ -848,17 +939,17 @@ struct PCGEXTENDEDTOOLKIT_API FClampedBit
 };
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FClampedBitOp
+struct /*PCGEXTENDEDTOOLKIT_API*/ FClampedBitOp
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = "0", ClampMax = "63"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Settings, meta = (ClampMin = "0", ClampMax = "63"))
 	uint8 BitIndex;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Settings)
 	EPCGExBitOp Op = EPCGExBitOp::OR;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Settings)
 	bool bValue;
 
 	FClampedBitOp() : BitIndex(0), bValue(true)
@@ -872,7 +963,7 @@ struct PCGEXTENDEDTOOLKIT_API FClampedBitOp
 };
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExBitmask
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBitmask
 {
 	GENERATED_BODY()
 
@@ -938,7 +1029,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExBitmask
 		return Mask;
 	}
 
-	void DoOperation(EPCGExBitOp Op, int64& Flags) const
+	void DoOperation(const EPCGExBitOp Op, int64& Flags) const
 	{
 		const int64 Mask = Get();
 		switch (Op)
@@ -964,7 +1055,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExBitmask
 };
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExBitmaskWithOperation
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBitmaskWithOperation
 {
 	GENERATED_BODY()
 
@@ -981,7 +1072,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExBitmaskWithOperation
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable, EditCondition="Mode==EPCGExBitmaskMode::Individual", TitleProperty="Bit # {BitIndex} = {bValue}", EditConditionHides))
 	TArray<FClampedBitOp> Bits;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(PCG_NotOverridable, EditCondition="Mode!=EPCGExBitmaskMode::Individual", EditConditionHides))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Settings, meta=(PCG_NotOverridable, EditCondition="Mode!=EPCGExBitmaskMode::Individual", EditConditionHides))
 	EPCGExBitOp Op = EPCGExBitOp::OR;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable, Bitmask, BitmaskEnum="/Script/PCGExtendedToolkit.EPCGExBitmask8_00_08", DisplayName="0-8 Bits", EditCondition="Mode==EPCGExBitmaskMode::Composite", EditConditionHides))
@@ -1042,7 +1133,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExBitmaskWithOperation
 		{
 			for (const FClampedBitOp& BitOp : Bits)
 			{
-				int64 Bit = BitOp.Get();
+				const int64 Bit = BitOp.Get();
 				switch (BitOp.Op)
 				{
 				case EPCGExBitOp::Set:

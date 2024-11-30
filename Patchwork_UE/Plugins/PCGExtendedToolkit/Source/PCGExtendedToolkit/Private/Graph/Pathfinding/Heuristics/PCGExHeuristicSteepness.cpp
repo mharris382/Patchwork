@@ -4,15 +4,16 @@
 
 #include "Graph/Pathfinding/Heuristics/PCGExHeuristicSteepness.h"
 
-void UPCGExHeuristicSteepness::PrepareForCluster(const PCGExCluster::FCluster* InCluster)
+
+void UPCGExHeuristicSteepness::PrepareForCluster(const TSharedPtr<const PCGExCluster::FCluster>& InCluster)
 {
 	UpwardVector = UpwardVector.GetSafeNormal();
 	Super::PrepareForCluster(InCluster);
 }
 
-UPCGExHeuristicOperation* UPCGHeuristicsFactorySteepness::CreateOperation() const
+UPCGExHeuristicOperation* UPCGExHeuristicsFactorySteepness::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExHeuristicSteepness, NewOperation)
+	UPCGExHeuristicSteepness* NewOperation = InContext->ManagedObjects->New<UPCGExHeuristicSteepness>();
 	PCGEX_FORWARD_HEURISTIC_CONFIG
 	NewOperation->UpwardVector = Config.UpVector;
 	NewOperation->bAbsoluteSteepness = Config.bAbsoluteSteepness;
@@ -21,7 +22,7 @@ UPCGExHeuristicOperation* UPCGHeuristicsFactorySteepness::CreateOperation() cons
 
 UPCGExParamFactoryBase* UPCGExHeuristicsSteepnessProviderSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const
 {
-	UPCGHeuristicsFactorySteepness* NewFactory = NewObject<UPCGHeuristicsFactorySteepness>();
+	UPCGExHeuristicsFactorySteepness* NewFactory = InContext->ManagedObjects->New<UPCGExHeuristicsFactorySteepness>();
 	PCGEX_FORWARD_HEURISTIC_FACTORY
 	return Super::CreateFactory(InContext, NewFactory);
 }
@@ -29,7 +30,7 @@ UPCGExParamFactoryBase* UPCGExHeuristicsSteepnessProviderSettings::CreateFactory
 #if WITH_EDITOR
 FString UPCGExHeuristicsSteepnessProviderSettings::GetDisplayName() const
 {
-	return GetDefaultNodeName().ToString()
+	return GetDefaultNodeTitle().ToString().Replace(TEXT("PCGEx | Heuristics"), TEXT("HX"))
 		+ TEXT(" @ ")
 		+ FString::Printf(TEXT("%.3f"), (static_cast<int32>(1000 * Config.WeightFactor) / 1000.0));
 }

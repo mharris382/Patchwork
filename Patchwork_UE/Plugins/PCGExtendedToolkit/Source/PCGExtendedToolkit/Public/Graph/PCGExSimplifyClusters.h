@@ -4,14 +4,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PCGExChain.h"
 #include "PCGExCluster.h"
 #include "PCGExClusterMT.h"
 #include "PCGExEdgesProcessor.h"
 
+
 #include "PCGExSimplifyClusters.generated.h"
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Graph")
-class PCGEXTENDEDTOOLKIT_API UPCGExSimplifyClustersSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSimplifyClustersSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -23,19 +25,19 @@ public:
 #endif
 
 protected:
-	virtual TArray<FPCGPinProperties> InputPinProperties() const override;
 	virtual FPCGElementPtr CreateElement() const override;
 	//~End UPCGSettings
 
-	//~Begin UPCGExEdgesProcessorSettings interface
+	//~Begin UPCGExEdgesProcessorSettings interface	
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
+	PCGEX_NODE_POINT_FILTER(PCGExPointFilter::SourceKeepConditionLabel, "Prevents vtx from being pruned by the simplification process", PCGExFactories::PointFilters, false)
 	//~End UPCGExEdgesProcessorSettings interface
 
 	/** If enabled, only check for dead ends. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	bool bOperateOnDeadEndsOnly = false;
+	bool bOperateOnLeavesOnly = false;
 
 	/**  */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, InlineEditConditionToggle))
@@ -51,22 +53,24 @@ public:
 
 	/** If enabled, prune dead ends. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
-	bool bPruneDeadEnds = false;
+	bool bPruneLeaves = false;
+
+	/**  Edge Union Data */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditConditionHides, HideEditConditionToggle))
+	FPCGExEdgeUnionMetadataDetails EdgeUnionData;
 
 	/** Graph & Edges output properties */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, DisplayName="Cluster Output Settings"))
 	FPCGExGraphBuilderDetails GraphBuilderDetails;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExSimplifyClustersContext : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSimplifyClustersContext : FPCGExEdgesProcessorContext
 {
 	friend class UPCGExSimplifyClustersSettings;
 	friend class FPCGExSimplifyClustersElement;
-
-	virtual ~FPCGExSimplifyClustersContext() override;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExSimplifyClustersElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSimplifyClustersElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -81,28 +85,47 @@ protected:
 
 namespace PCGExSimplifyClusters
 {
-	class FProcessor final : public PCGExClusterMT::FClusterProcessor
+	class FProcessor final : public PCGExClusterMT::TProcessor<FPCGExSimplifyClustersContext, UPCGExSimplifyClustersSettings>
 	{
-		TArray<bool> Breakpoints;
+		friend class FBatch;
 
-		TArray<PCGExCluster::FNodeChain*> Chains;
-
-		FPCGExSimplifyClustersContext* LocalTypedContext = nullptr;
-		const UPCGExSimplifyClustersSettings* LocalSettings = nullptr;
+	protected:
+		TSharedPtr<TArray<int8>> Breakpoints;
+		TSharedPtr<PCGExCluster::FNodeChainBuilder> ChainBuilder;
 
 	public:
-		FProcessor(PCGExData::FPointIO* InVtx, PCGExData::FPointIO* InEdges):
-			FClusterProcessor(InVtx, InEdges)
+		FProcessor(const TSharedRef<PCGExData::FFacade>& InVtxDataFacade, const TSharedRef<PCGExData::FFacade>& InEdgeDataFacade):
+			TProcessor(InVtxDataFacade, InEdgeDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void CompleteWork() override;
 
-		virtual void ProcessSingleRangeIteration(const int32 Iteration) override;
+		virtual void ProcessSingleRangeIteration(const int32 Iteration, const int32 LoopIdx, const int32 Count) override;
+	};
 
-		PCGExGraph::FGraphBuilder* GraphBuilder = nullptr;
+	class FBatch final : public PCGExClusterMT::TBatch<FProcessor>
+	{
+		friend class FProcessor;
+
+	protected:
+		PCGExGraph::FGraphMetadataDetails GraphMetadataDetails;
+		TSharedPtr<TArray<int8>> Breakpoints;
+
+	public:
+		FBatch(FPCGExContext* InContext, const TSharedRef<PCGExData::FPointIO>& InVtx, const TArrayView<TSharedRef<PCGExData::FPointIO>> InEdges):
+			TBatch(InContext, InVtx, InEdges)
+		{
+			bAllowVtxDataFacadeScopedGet = true;
+			bRequiresGraphBuilder = true;
+		}
+
+		virtual const PCGExGraph::FGraphMetadataDetails* GetGraphMetadataDetails() override;
+		virtual void RegisterBuffersDependencies(PCGExData::FFacadePreloader& FacadePreloader) override;
+		virtual void Process() override;
+		virtual bool PrepareSingle(const TSharedPtr<FProcessor>& ClusterProcessor) override;
 	};
 }

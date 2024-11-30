@@ -6,12 +6,15 @@
 #include "CoreMinimal.h"
 #include "PCGEx.h"
 #include "PCGExMT.h"
-#include "PCGExDetails.h"
+#include "PCGExFitting.h"
+#include "Curve/CurveUtil.h"
 #include "Data/PCGExData.h"
+
+
 #include "PCGExGeo.generated.h"
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExGeo2DProjectionDetails
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExGeo2DProjectionDetails
 {
 	GENERATED_BODY()
 
@@ -47,11 +50,11 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExGeo2DProjectionDetails
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_NotOverridable, EditCondition="bSupportLocalNormal && bLocalProjectionNormal", EditConditionHides))
 	FPCGAttributePropertyInputSelector LocalNormal;
 
-	PCGExData::FCache<FVector>* NormalGetter = nullptr;
+	TSharedPtr<PCGExData::TBuffer<FVector>> NormalGetter;
 	FQuat ProjectionQuat = FQuat::Identity;
 	FQuat ProjectionInverseQuat = FQuat::Identity;
 
-	bool Init(const FPCGContext* InContext, PCGExData::FFacade* PointDataFacade = nullptr)
+	bool Init(const FPCGContext* InContext, const TSharedPtr<PCGExData::FFacade>& PointDataFacade)
 	{
 		ProjectionNormal = ProjectionNormal.GetSafeNormal(1E-08, FVector::UpVector);
 		ProjectionQuat = FQuat::FindBetweenNormals(ProjectionNormal, FVector::UpVector);
@@ -77,13 +80,13 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExGeo2DProjectionDetails
 
 	FORCEINLINE FQuat GetQuat(const int32 PointIndex) const
 	{
-		return NormalGetter ? FQuat::FindBetweenNormals(NormalGetter->Values[PointIndex].GetSafeNormal(1E-08, FVector::UpVector), FVector::UpVector) :
+		return NormalGetter ? FQuat::FindBetweenNormals(NormalGetter->Read(PointIndex).GetSafeNormal(1E-08, FVector::UpVector), FVector::UpVector) :
 			       ProjectionQuat;
 	}
 
 	FORCEINLINE FVector Project(const FVector& InPosition, const int32 PointIndex) const
 	{
-		return NormalGetter ? FQuat::FindBetweenNormals(NormalGetter->Values[PointIndex].GetSafeNormal(1E-08, FVector::UpVector), FVector::UpVector).RotateVector(InPosition) :
+		return NormalGetter ? FQuat::FindBetweenNormals(NormalGetter->Read(PointIndex).GetSafeNormal(1E-08, FVector::UpVector), FVector::UpVector).RotateVector(InPosition) :
 			       ProjectionQuat.RotateVector(InPosition);
 	}
 
@@ -122,17 +125,37 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExGeo2DProjectionDetails
 		return FTransform(FQuat::FindBetweenNormals(Quat.GetUpVector(), FVector::UpVector) * Quat, Position);
 	}
 
+	template <typename T>
+	void ProjectFlat(const TSharedPtr<PCGExData::FFacade>& InFacade, TArray<T>& OutPositions) const
+	{
+		const TArray<FPCGPoint>& InPoints = InFacade->Source->GetInOut()->GetPoints();
+		const int32 NumVectors = InPoints.Num();
+		PCGEx::InitArray(OutPositions, NumVectors);
+		for (int i = 0; i < NumVectors; i++) { OutPositions[i] = T(ProjectFlat(InPoints[i].Transform.GetLocation(), i)); }
+	}
+
+	template <typename T>
+	void ProjectFlat(const TSharedPtr<PCGExData::FFacade>& InFacade, TArray<T>& OutPositions, const int32 StartIndex, const int32 Count) const
+	{
+		const TArray<FPCGPoint>& InPoints = InFacade->Source->GetInOut()->GetPoints();
+		const int32 NumVectors = InPoints.Num();
+		if (OutPositions.Num() < NumVectors) { PCGEx::InitArray(OutPositions, NumVectors); }
+
+		const int32 MaxIndex = StartIndex + Count;
+		for (int i = StartIndex; i < MaxIndex; i++) { OutPositions[i] = T(ProjectFlat(InPoints[i].Transform.GetLocation(), i)); }
+	}
+
 	void Project(const TArray<FVector>& InPositions, TArray<FVector>& OutPositions) const
 	{
 		const int32 NumVectors = InPositions.Num();
-		PCGEX_SET_NUM_UNINITIALIZED(OutPositions, NumVectors)
+		PCGEx::InitArray(OutPositions, NumVectors);
 
 		if (NormalGetter)
 		{
 			for (int i = 0; i < NumVectors; i++)
 			{
 				OutPositions[i] = FQuat::FindBetweenNormals(
-					NormalGetter->Values[i].GetSafeNormal(1E-08, FVector::UpVector),
+					NormalGetter->Read(i).GetSafeNormal(1E-08, FVector::UpVector),
 					FVector::UpVector).RotateVector(InPositions[i]);
 			}
 		}
@@ -148,14 +171,14 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExGeo2DProjectionDetails
 	void Project(const TArrayView<FVector>& InPositions, TArray<FVector>& OutPositions) const
 	{
 		const int32 NumVectors = InPositions.Num();
-		PCGEX_SET_NUM_UNINITIALIZED(OutPositions, NumVectors)
+		PCGEx::InitArray(OutPositions, NumVectors);
 		for (int i = 0; i < NumVectors; i++) { OutPositions[i] = ProjectionQuat.RotateVector(InPositions[i]); }
 	}
 
 	void Project(const TArray<FVector>& InPositions, TArray<FVector2D>& OutPositions) const
 	{
 		const int32 NumVectors = InPositions.Num();
-		PCGEX_SET_NUM_UNINITIALIZED(OutPositions, NumVectors)
+		PCGEx::InitArray(OutPositions, NumVectors);
 
 		if (NormalGetter)
 		{
@@ -163,7 +186,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExGeo2DProjectionDetails
 			{
 				OutPositions[i] = FVector2D(
 					FQuat::FindBetweenNormals(
-						NormalGetter->Values[i].GetSafeNormal(1E-08, FVector::UpVector),
+						NormalGetter->Read(i).GetSafeNormal(1E-08, FVector::UpVector),
 						FVector::UpVector).RotateVector(InPositions[i]));
 			}
 		}
@@ -179,21 +202,21 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExGeo2DProjectionDetails
 	void Project(const TArrayView<FVector>& InPositions, TArray<FVector2D>& OutPositions) const
 	{
 		const int32 NumVectors = InPositions.Num();
-		PCGEX_SET_NUM_UNINITIALIZED(OutPositions, NumVectors)
+		PCGEx::InitArray(OutPositions, NumVectors);
 		for (int i = 0; i < NumVectors; i++) { OutPositions[i] = FVector2D(ProjectionQuat.RotateVector(InPositions[i])); }
 	}
 
 	void Project(const TArray<FPCGPoint>& InPoints, TArray<FVector>& OutPositions) const
 	{
 		const int32 NumVectors = InPoints.Num();
-		PCGEX_SET_NUM_UNINITIALIZED(OutPositions, NumVectors)
+		PCGEx::InitArray(OutPositions, NumVectors);
 
 		if (NormalGetter)
 		{
 			for (int i = 0; i < NumVectors; i++)
 			{
 				OutPositions[i] = FQuat::FindBetweenNormals(
-					NormalGetter->Values[i].GetSafeNormal(1E-08, FVector::UpVector),
+					NormalGetter->Read(i).GetSafeNormal(1E-08, FVector::UpVector),
 					FVector::UpVector).RotateVector(InPoints[i].Transform.GetLocation());
 			}
 		}
@@ -205,7 +228,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExGeo2DProjectionDetails
 };
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExLloydSettings
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExLloydSettings
 {
 	GENERATED_BODY()
 
@@ -224,24 +247,62 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExLloydSettings
 	FORCEINLINE bool IsValid() const { return Iterations > 0 && Influence > 0; }
 };
 
-UENUM(BlueprintType, meta=(DisplayName="[PCGEx] Cell Center"))
+UENUM()
 enum class EPCGExCellCenter : uint8
 {
-	Balanced UMETA(DisplayName = "Balanced", ToolTip="Pick centroid if circumcenter is out of bounds, otherwise uses circumcenter."),
-	Circumcenter UMETA(DisplayName = "Canon (Circumcenter)", ToolTip="Uses Delaunay cells' circumcenter."),
-	Centroid UMETA(DisplayName = "Centroid", ToolTip="Uses Delaunay cells' averaged vertice positions.")
+	Balanced     = 0 UMETA(DisplayName = "Balanced", ToolTip="Pick centroid if circumcenter is out of bounds, otherwise uses circumcenter."),
+	Circumcenter = 1 UMETA(DisplayName = "Canon (Circumcenter)", ToolTip="Uses Delaunay cells' circumcenter."),
+	Centroid     = 2 UMETA(DisplayName = "Centroid", ToolTip="Uses Delaunay cells' averaged vertice positions.")
 };
 
 namespace PCGExGeo
 {
-	PCGEX_ASYNC_STATE(State_ProcessingHull)
-	PCGEX_ASYNC_STATE(State_ProcessingDelaunayHull)
-	PCGEX_ASYNC_STATE(State_ProcessingDelaunayPreprocess)
-	PCGEX_ASYNC_STATE(State_ProcessingDelaunay)
-	PCGEX_ASYNC_STATE(State_ProcessingVoronoi)
-	PCGEX_ASYNC_STATE(State_PreprocessPositions)
-	PCGEX_ASYNC_STATE(State_ProcessingProjectedPoints)
 	PCGEX_ASYNC_STATE(State_ExtractingMesh)
+
+	FORCEINLINE static bool IsWinded(const EPCGExWinding Winding, const bool bIsInputClockwise)
+	{
+		if (Winding == EPCGExWinding::Clockwise) { return bIsInputClockwise; }
+		return !bIsInputClockwise;
+	}
+
+	FORCEINLINE static bool IsWinded(const EPCGExWindingMutation Winding, const bool bIsInputClockwise)
+	{
+		if (Winding == EPCGExWindingMutation::Clockwise) { return bIsInputClockwise; }
+		return !bIsInputClockwise;
+	}
+	
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FPolygonInfos
+	{
+		double Area = 0;
+		bool bIsClockwise = false;
+		double Perimeter = 0;
+		double Compactness = 0;
+
+		explicit FPolygonInfos(const TArray<FVector2D>& InPolygon)
+		{
+			Area = UE::Geometry::CurveUtil::SignedArea2<double, FVector2D>(InPolygon);
+			Perimeter = UE::Geometry::CurveUtil::ArcLength<double, FVector2D>(InPolygon, true);
+
+			if (Area < 0)
+			{
+				bIsClockwise = true;
+				Area = FMath::Abs(Area);
+			}
+			else
+			{
+				bIsClockwise = false;
+			}
+
+			if (Perimeter == 0.0f) { Compactness = 0; }
+			else { Compactness = (4.0f * PI * Area) / (Perimeter * Perimeter); }
+		}
+
+		FORCEINLINE bool IsWinded(const EPCGExWinding Winding) const { return PCGExGeo::IsWinded(Winding, bIsClockwise); }
+	};
+
+	template <typename T>
+	FORCEINLINE double Det(const T& A, const T& B) { return A.X * B.Y - A.Y * B.X; }
+
 
 	FORCEINLINE static double S_U(
 		const FVector& A, const FVector& B, const FVector& C, const FVector& D,
@@ -376,7 +437,7 @@ namespace PCGExGeo
 
 	FORCEINLINE static void GetLongestEdge(const TArrayView<FVector>& Positions, const int32 (&Vtx)[3], uint64& Edge)
 	{
-		double Dist = TNumericLimits<double>::Min();
+		double Dist = 0;
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = i + 1; j < 3; j++)
@@ -393,7 +454,7 @@ namespace PCGExGeo
 
 	FORCEINLINE static void GetLongestEdge(const TArrayView<FVector>& Positions, const int32 (&Vtx)[4], uint64& Edge)
 	{
-		double Dist = TNumericLimits<double>::Min();
+		double Dist = 0;
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = i + 1; j < 4; j++)
@@ -411,19 +472,204 @@ namespace PCGExGeo
 	FORCEINLINE static void PointsToPositions(const TArray<FPCGPoint>& Points, TArray<FVector>& OutPositions)
 	{
 		const int32 NumPoints = Points.Num();
-		PCGEX_SET_NUM_UNINITIALIZED(OutPositions, NumPoints)
+		PCGEx::InitArray(OutPositions, NumPoints);
 		for (int i = 0; i < NumPoints; i++) { OutPositions[i] = Points[i].Transform.GetLocation(); }
 	}
+
+	FORCEINLINE static FVector GetBarycentricCoordinates(const FVector& Point, const FVector& A, const FVector& B, const FVector& C)
+	{
+		const FVector AB = B - A;
+		const FVector AC = C - A;
+		const FVector AD = Point - A;
+
+		const double d00 = FVector::DotProduct(AB, AB);
+		const double d01 = FVector::DotProduct(AB, AC);
+		const double d11 = FVector::DotProduct(AC, AC);
+		const double d20 = FVector::DotProduct(AD, AB);
+		const double d21 = FVector::DotProduct(AD, AC);
+
+		const double Den = d00 * d11 - d01 * d01;
+		const double V = (d11 * d20 - d01 * d21) / Den;
+		const double W = (d00 * d21 - d01 * d20) / Den;
+		const double U = 1.0f - V - W;
+
+		return FVector(U, V, W);
+	}
+
+	static bool IsPointInTriangle(const FVector& P, const FVector& A, const FVector& B, const FVector& C)
+	{
+		const FVector& D = FVector::CrossProduct(B - A, P - A);
+		return (FVector::DotProduct(D, FVector::CrossProduct(C - B, P - B)) >= 0) &&
+			(FVector::DotProduct(D, FVector::CrossProduct(A - C, P - C)) >= 0);
+	}
+
+	template <typename T>
+	static double AngleCCW(const T& A, const T& B)
+	{
+		double Angle = FMath::Atan2((A[0] * B[1] - A[1] * B[0]), (A[0] * B[0] + A[1] * B[1]));
+		return Angle < 0 ? Angle = TWO_PI + Angle : Angle;
+	}
+
+	/**
+		 *	 Leave <---.Apex-----> Arrive (Direction)
+		 *		   . '   |    '  .  
+		 *		A----Anchor---------B
+		 */
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FApex
+	{
+		FApex()
+		{
+		}
+
+		FApex(const FVector& Start, const FVector& End, const FVector& InApex)
+		{
+			Direction = (Start - End).GetSafeNormal();
+			Anchor = FMath::ClosestPointOnSegment(InApex, Start, End);
+
+			const double DistToStart = FVector::Dist(Start, Anchor);
+			const double DistToEnd = FVector::Dist(End, Anchor);
+			TowardStart = Direction * (DistToStart * -1);
+			TowardEnd = Direction * DistToEnd;
+			Alpha = DistToStart / (DistToStart + DistToEnd);
+		}
+
+		FVector Direction;
+		FVector Anchor;
+		FVector TowardStart;
+		FVector TowardEnd;
+		double Alpha = 0;
+
+		FVector GetAnchorNormal(const FVector& Location) const { return (Anchor - Location).GetSafeNormal(); }
+
+		void Scale(const double InScale)
+		{
+			TowardStart *= InScale;
+			TowardEnd *= InScale;
+		}
+
+		void Extend(const double InSize)
+		{
+			TowardStart += Direction * InSize;
+			TowardEnd += Direction * -InSize;
+		}
+
+		static FApex FromStartOnly(const FVector& Start, const FVector& InApex) { return FApex(Start, InApex, InApex); }
+		static FApex FromEndOnly(const FVector& End, const FVector& InApex) { return FApex(InApex, End, InApex); }
+	};
+
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FExCenterArc
+	{
+		double Radius = 0;
+		double Theta = 0;
+		double SinTheta = 0;
+
+		FVector Center = FVector::ZeroVector;
+		FVector Normal = FVector::ZeroVector;
+		FVector Hand = FVector::ZeroVector;
+		FVector OtherHand = FVector::ZeroVector;
+
+		bool bIsLine = false;
+
+		FExCenterArc()
+		{
+		}
+
+
+		/**
+		 * ExCenter arc from 3 points.
+		 * The arc center will be opposite to B
+		 * @param A 
+		 * @param B 
+		 * @param C 
+		 */
+		FExCenterArc(const FVector& A, const FVector& B, const FVector& C)
+		{
+			const FVector Up = PCGExMath::GetNormal(A, B, C);
+			bool bIntersect = true;
+
+			Center = PCGExMath::SafeLinePlaneIntersection(
+				C, C + PCGExMath::GetNormal(B, C, C + Up),
+				A, (A - B).GetSafeNormal(), bIntersect);
+
+			if (!bIntersect) { Center = FMath::Lerp(A, C, 0.5); } // Parallel lines, place center right in the middle
+
+			Radius = FVector::Dist(C, Center);
+
+			Hand = (A - Center).GetSafeNormal();
+			OtherHand = (C - Center).GetSafeNormal();
+
+			bIsLine = FMath::IsNearlyEqual(FMath::Abs(FVector::DotProduct(Hand, OtherHand)), 1);
+
+			Normal = FVector::CrossProduct(Hand, OtherHand).GetSafeNormal();
+			Theta = FMath::Acos(FVector::DotProduct(Hand, OtherHand));
+			SinTheta = FMath::Sin(Theta);
+		}
+
+		/**
+		 * ExCenter arc from 2 segments.
+		 * The arc center will be opposite to B
+		 * @param A1 
+		 * @param B1 
+		 * @param A2 
+		 * @param B2
+		 * @param MaxLength 
+		 */
+		FExCenterArc(const FVector& A1, const FVector& B1, const FVector& A2, const FVector& B2, const double MaxLength = 100000)
+		{
+			const FVector& N1 = PCGExMath::GetNormal(B1, A1, A1 + PCGExMath::GetNormal(B1, A1, A2));
+			const FVector& N2 = PCGExMath::GetNormal(B2, A2, A2 + PCGExMath::GetNormal(B2, A2, A1));
+
+			if (FMath::IsNearlyZero(FVector::DotProduct(N1, N2)))
+			{
+				Center = FMath::Lerp(B1, B2, 0.5);
+			}
+			else
+			{
+				FVector OutA = FVector::ZeroVector;
+				FVector OutB = FVector::ZeroVector;
+				FMath::SegmentDistToSegment(
+					B1 + N1 * -MaxLength, B1 + N1 * MaxLength,
+					B2 + N2 * -MaxLength, B2 + N2 * MaxLength,
+					OutA, OutB);
+				Center = FMath::Lerp(OutA, OutB, 0.5);
+			}
+
+			Radius = FVector::Dist(A2, Center);
+
+			Hand = (B1 - Center).GetSafeNormal();
+			OtherHand = (B2 - Center).GetSafeNormal();
+
+			Normal = FVector::CrossProduct(Hand, OtherHand).GetSafeNormal();
+			Theta = FMath::Acos(FVector::DotProduct(Hand, OtherHand));
+			SinTheta = FMath::Sin(Theta);
+		}
+
+		FORCEINLINE double GetLength() const { return Radius * Theta; }
+
+		/**
+		 * 
+		 * @param Alpha 0-1 normalized range on the arc
+		 * @return 
+		 */
+		FORCEINLINE FVector GetLocationOnArc(const double Alpha) const
+		{
+			const double W1 = FMath::Sin((1.0 - Alpha) * Theta) / SinTheta;
+			const double W2 = FMath::Sin(Alpha * Theta) / SinTheta;
+
+			const FVector Dir = Hand * W1 + OtherHand * W2;
+			return Center + (Dir * Radius);
+		}
+	};
 }
 
 namespace PCGExGeoTasks
 {
-	class PCGEXTENDEDTOOLKIT_API FTransformPointIO final : public PCGExMT::FPCGExTask
+	class /*PCGEXTENDEDTOOLKIT_API*/ FTransformPointIO final : public PCGExMT::FPCGExTask
 	{
 	public:
 		FTransformPointIO(
-			PCGExData::FPointIO* InPointIO,
-			PCGExData::FPointIO* InToBeTransformedIO,
+			const TSharedPtr<PCGExData::FPointIO>& InPointIO,
+			const TSharedPtr<PCGExData::FPointIO>& InToBeTransformedIO,
 			FPCGExTransformDetails* InTransformDetails) :
 			FPCGExTask(InPointIO),
 			ToBeTransformedIO(InToBeTransformedIO),
@@ -431,31 +677,56 @@ namespace PCGExGeoTasks
 		{
 		}
 
-		PCGExData::FPointIO* ToBeTransformedIO = nullptr;
+		TSharedPtr<PCGExData::FPointIO> ToBeTransformedIO;
 		FPCGExTransformDetails* TransformDetails = nullptr;
 
-		virtual bool ExecuteTask() override
+		virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override
 		{
-			const FPCGPoint& TargetPoint = PointIO->GetInPoint(TaskIndex);
-			TArray<FPCGPoint>& MutableTargets = ToBeTransformedIO->GetOut()->GetMutablePoints();
+			TArray<FPCGPoint>& MutableTargets = ToBeTransformedIO->GetMutablePoints();
 
-			for (FPCGPoint& InPoint : MutableTargets)
+			FTransform TargetTransform = FTransform::Identity;
+			if (TransformDetails->bSupportFitting)
 			{
-				if (TransformDetails->bInheritRotation && TransformDetails->bInheritScale)
-				{
-					InPoint.Transform *= TargetPoint.Transform;
-					continue;
-				}
+				FBox PointBounds = FBox(ForceInit);
+				for (const FPCGPoint& Pt : MutableTargets) { PointBounds += PCGExMath::GetLocalBounds<EPCGExPointBoundsSource::Bounds>(Pt).TransformBy(Pt.Transform); }
+				PointBounds = PointBounds.ExpandBy(1); // Avoid NaN
+				TransformDetails->ComputeTransform(TaskIndex, TargetTransform, PointBounds);
+			}
+			else
+			{
+				TargetTransform = PointIO->GetInPoint(TaskIndex).Transform;
+			}
 
-				InPoint.Transform.SetLocation(TargetPoint.Transform.TransformPosition(InPoint.Transform.GetLocation()));
-
+			if (TransformDetails->bInheritRotation && TransformDetails->bInheritScale)
+			{
+				for (FPCGPoint& InPoint : MutableTargets) { InPoint.Transform *= TargetTransform; }
+			}
+			else
+			{
 				if (TransformDetails->bInheritRotation)
 				{
-					InPoint.Transform.SetRotation(TargetPoint.Transform.TransformRotation(InPoint.Transform.GetRotation()));
+					for (FPCGPoint& InPoint : MutableTargets)
+					{
+						FVector OriginalScale = InPoint.Transform.GetScale3D();
+						InPoint.Transform *= TargetTransform;
+						InPoint.Transform.SetScale3D(OriginalScale);
+					}
 				}
 				else if (TransformDetails->bInheritScale)
 				{
-					InPoint.Transform.SetScale3D(TargetPoint.Transform.GetScale3D() * InPoint.Transform.GetScale3D());
+					for (FPCGPoint& InPoint : MutableTargets)
+					{
+						FQuat OriginalRot = InPoint.Transform.GetRotation();
+						InPoint.Transform *= TargetTransform;
+						InPoint.Transform.SetRotation(OriginalRot);
+					}
+				}
+				else
+				{
+					for (FPCGPoint& InPoint : MutableTargets)
+					{
+						InPoint.Transform.SetLocation(TargetTransform.TransformPosition(InPoint.Transform.GetLocation()));
+					}
 				}
 			}
 

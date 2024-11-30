@@ -4,6 +4,7 @@
 
 #include "Graph/Pathfinding/Search/PCGExSearchOperation.h"
 
+
 void UPCGExSearchOperation::CopySettingsFrom(const UPCGExOperation* Other)
 {
 	Super::CopySettingsFrom(Other);
@@ -14,13 +15,9 @@ void UPCGExSearchOperation::PrepareForCluster(PCGExCluster::FCluster* InCluster)
 	Cluster = InCluster;
 }
 
-bool UPCGExSearchOperation::FindPath(
-	const FVector& SeedPosition,
-	const FPCGExNodeSelectionDetails* SeedSelection,
-	const FVector& GoalPosition,
-	const FPCGExNodeSelectionDetails* GoalSelection,
-	PCGExHeuristics::THeuristicsHandler* Heuristics,
-	TArray<int32>& OutPath, PCGExHeuristics::FLocalFeedbackHandler* LocalFeedback) const
+bool UPCGExSearchOperation::ResolveQuery(
+	const TSharedPtr<PCGExPathfinding::FPathQuery>& InQuery,
+	const TSharedPtr<PCGExHeuristics::FHeuristicsHandler>& Heuristics, const TSharedPtr<PCGExHeuristics::FLocalFeedbackHandler>& LocalFeedback) const
 {
 	return false;
 }

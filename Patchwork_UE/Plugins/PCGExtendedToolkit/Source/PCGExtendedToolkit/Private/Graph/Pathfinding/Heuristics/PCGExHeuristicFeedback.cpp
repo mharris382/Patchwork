@@ -3,32 +3,26 @@
 
 #include "Graph/Pathfinding/Heuristics/PCGExHeuristicFeedback.h"
 
-void UPCGExHeuristicFeedback::PrepareForCluster(const PCGExCluster::FCluster* InCluster)
-{
-	MaxNodeWeight = 0;
-	MaxEdgeWeight = 0;
-	Super::PrepareForCluster(InCluster);
-}
-
 void UPCGExHeuristicFeedback::Cleanup()
 {
-	NodeExtraWeight.Empty();
-	EdgeExtraWeight.Empty();
+	NodeFeedbackNum.Empty();
+	EdgeFeedbackNum.Empty();
 	Super::Cleanup();
 }
 
-UPCGExHeuristicOperation* UPCGHeuristicsFactoryFeedback::CreateOperation() const
+UPCGExHeuristicOperation* UPCGExHeuristicsFactoryFeedback::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExHeuristicFeedback, NewOperation)
+	UPCGExHeuristicFeedback* NewOperation = InContext->ManagedObjects->New<UPCGExHeuristicFeedback>();
 	PCGEX_FORWARD_HEURISTIC_CONFIG
 	NewOperation->NodeScale = Config.VisitedPointsWeightFactor;
 	NewOperation->EdgeScale = Config.VisitedEdgesWeightFactor;
+	NewOperation->bBleed = Config.bAffectAllConnectedEdges;
 	return NewOperation;
 }
 
 UPCGExParamFactoryBase* UPCGExHeuristicFeedbackProviderSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const
 {
-	UPCGHeuristicsFactoryFeedback* NewFactory = NewObject<UPCGHeuristicsFactoryFeedback>();
+	UPCGExHeuristicsFactoryFeedback* NewFactory = InContext->ManagedObjects->New<UPCGExHeuristicsFactoryFeedback>();
 	PCGEX_FORWARD_HEURISTIC_FACTORY
 	return Super::CreateFactory(InContext, NewFactory);
 }
@@ -36,7 +30,7 @@ UPCGExParamFactoryBase* UPCGExHeuristicFeedbackProviderSettings::CreateFactory(F
 #if WITH_EDITOR
 FString UPCGExHeuristicFeedbackProviderSettings::GetDisplayName() const
 {
-	return GetDefaultNodeName().ToString()
+	return GetDefaultNodeTitle().ToString().Replace(TEXT("PCGEx | Heuristics"), TEXT("HX"))
 		+ TEXT(" @ ")
 		+ FString::Printf(TEXT("%.3f"), (static_cast<int32>(1000 * Config.WeightFactor) / 1000.0));
 }

@@ -8,9 +8,8 @@
 #include "UObject/Object.h"
 
 #include "PCGExFactoryProvider.h"
-#include "Graph/PCGExCluster.h"
-#include "Graph/PCGExGraph.h"
 #include "PCGExOperation.h"
+
 
 #include "PCGExConditionalActionAttributes.generated.h"
 
@@ -20,11 +19,13 @@ namespace PCGExConditionalActionAttribute
 	const FName SourceForwardFail = TEXT("MatchFail");
 }
 
+class UPCGExConditionalActionAttributesFactory;
+
 /**
  * 
  */
-UCLASS()
-class PCGEXTENDEDTOOLKIT_API UPCGExConditionalActionAttributesOperation : public UPCGExConditionalActionOperation
+UCLASS(MinimalAPI)
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConditionalActionAttributesOperation : public UPCGExConditionalActionOperation
 {
 	GENERATED_BODY()
 
@@ -33,7 +34,7 @@ public:
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
 
-	virtual bool PrepareForData(const FPCGContext* InContext, PCGExData::FFacade* InPointDataFacade) override;
+	virtual bool PrepareForData(FPCGExContext* InContext, const TSharedPtr<PCGExData::FFacade>& InPointDataFacade) override;
 	virtual void OnMatchSuccess(int32 Index, const FPCGPoint& Point) override;
 	virtual void OnMatchFail(int32 Index, const FPCGPoint& Point) override;
 
@@ -41,20 +42,20 @@ public:
 
 protected:
 	TArray<FPCGMetadataAttributeBase*> SuccessAttributes;
-	TArray<PCGEx::FAAttributeIO*> SuccessWriters;
+	TArray<TSharedPtr<PCGExData::FBufferBase>> SuccessWriters;
 	TArray<FPCGMetadataAttributeBase*> FailAttributes;
-	TArray<PCGEx::FAAttributeIO*> FailWriters;
+	TArray<TSharedPtr<PCGExData::FBufferBase>> FailWriters;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExConditionalActionAttributesFactory : public UPCGExConditionalActionFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConditionalActionAttributesFactory : public UPCGExConditionalActionFactoryBase
 {
 	friend class UPCGExConditionalActionAttributesProviderSettings;
 
 	GENERATED_BODY()
 
 public:
-	virtual UPCGExConditionalActionOperation* CreateOperation() const override;
+	virtual UPCGExConditionalActionOperation* CreateOperation(FPCGExContext* InContext) const override;
 	virtual bool Boot(FPCGContext* InContext) override;
 
 protected:
@@ -62,8 +63,8 @@ protected:
 	FPCGExAttributeGatherDetails FailAttributesFilter;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|ConditionalActionAttributes")
-class PCGEXTENDEDTOOLKIT_API UPCGExConditionalActionAttributesProviderSettings : public UPCGExConditionalActionProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|ConditionalActionAttributes")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExConditionalActionAttributesProviderSettings : public UPCGExConditionalActionProviderSettings
 {
 	GENERATED_BODY()
 

@@ -14,6 +14,7 @@
 #include "PCGExNeighborSampleFactoryProvider.h"
 #include "Data/Blending/PCGExMetadataBlender.h"
 
+
 #include "PCGExNeighborSampleAttribute.generated.h"
 
 ///
@@ -21,36 +22,36 @@
 /**
  * 
  */
-UCLASS()
-class PCGEXTENDEDTOOLKIT_API UPCGExNeighborSampleAttribute : public UPCGExNeighborSampleOperation
+UCLASS(MinimalAPI)
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExNeighborSampleAttribute : public UPCGExNeighborSampleOperation
 {
 	GENERATED_BODY()
 
 public:
-	PCGExDataBlending::FMetadataBlender* Blender = nullptr;
+	TSharedPtr<PCGExDataBlending::FMetadataBlender> Blender;
 
 	TSet<FName> SourceAttributes;
 	EPCGExDataBlendingType Blending = EPCGExDataBlendingType::Average;
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
 
-	virtual void PrepareForCluster(const FPCGContext* InContext, PCGExCluster::FCluster* InCluster, PCGExData::FFacade* InVtxDataFacade, PCGExData::FFacade* InEdgeDataFacade) override;
+	virtual void PrepareForCluster(FPCGExContext* InContext, TSharedRef<PCGExCluster::FCluster> InCluster, TSharedRef<PCGExData::FFacade> InVtxDataFacade, TSharedRef<PCGExData::FFacade> InEdgeDataFacade) override;
 
 	FORCEINLINE virtual void PrepareNode(const PCGExCluster::FNode& TargetNode) const override
 	{
 		Blender->PrepareForBlending(TargetNode.PointIndex);
 	}
 
-	FORCEINLINE virtual void BlendNodePoint(const PCGExCluster::FNode& TargetNode, const PCGExCluster::FExpandedNeighbor& Neighbor, const double Weight) const override
+	FORCEINLINE virtual void BlendNodePoint(const PCGExCluster::FNode& TargetNode, const PCGExGraph::FLink Lk, const double Weight) const override
 	{
 		const int32 PrimaryIndex = TargetNode.PointIndex;
-		Blender->Blend(PrimaryIndex, Neighbor.Node->PointIndex, PrimaryIndex, Weight);
+		Blender->Blend(PrimaryIndex, Cluster->GetNode(Lk)->PointIndex, PrimaryIndex, Weight);
 	}
 
-	FORCEINLINE virtual void BlendNodeEdge(const PCGExCluster::FNode& TargetNode, const PCGExCluster::FExpandedNeighbor& Neighbor, const double Weight) const override
+	FORCEINLINE virtual void BlendNodeEdge(const PCGExCluster::FNode& TargetNode, const PCGExGraph::FLink Lk, const double Weight) const override
 	{
 		const int32 PrimaryIndex = TargetNode.PointIndex;
-		Blender->Blend(PrimaryIndex, Neighbor.Edge->PointIndex, PrimaryIndex, Weight);
+		Blender->Blend(PrimaryIndex, Cluster->GetEdge(Lk)->PointIndex, PrimaryIndex, Weight);
 	}
 
 	FORCEINLINE virtual void FinalizeNode(const PCGExCluster::FNode& TargetNode, const int32 Count, const double TotalWeight) const override
@@ -59,7 +60,7 @@ public:
 		Blender->CompleteBlending(PrimaryIndex, Count, TotalWeight);
 	}
 
-	virtual void FinalizeOperation() override;
+	virtual void CompleteOperation() override;
 
 	virtual void Cleanup() override;
 
@@ -69,7 +70,7 @@ protected:
 
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExAttributeSamplerConfigBase
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExAttributeSamplerConfigBase
 {
 	GENERATED_BODY()
 
@@ -86,18 +87,36 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExAttributeSamplerConfigBase
 	EPCGExDataBlendingType Blending = EPCGExDataBlendingType::Average;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExNeighborSamplerFactoryAttribute : public UPCGExNeighborSamplerFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExNeighborSamplerFactoryAttribute : public UPCGExNeighborSamplerFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExAttributeSamplerConfigBase Config;
-	virtual UPCGExNeighborSampleOperation* CreateOperation() const override;
+	virtual UPCGExNeighborSampleOperation* CreateOperation(FPCGExContext* InContext) const override;
+
+	virtual void RegisterBuffersDependencies(FPCGExContext* InContext, const TSharedRef<PCGExData::FFacade>& InDataFacade, PCGExData::FFacadePreloader& FacadePreloader) const override
+	{
+		if (SamplingConfig.NeighborSource == EPCGExClusterComponentSource::Vtx)
+		{
+			TSharedPtr<PCGEx::FAttributesInfos> Infos = PCGEx::FAttributesInfos::Get(InDataFacade->GetIn()->Metadata);
+			for (FName AttrName : Config.SourceAttributes)
+			{
+				const PCGEx::FAttributeIdentity* Identity = Infos->Find(AttrName);
+				if (!Identity)
+				{
+					PCGE_LOG_C(Error, GraphAndLog, InContext, FText::Format(FTEXT("Missing attribute: \"{0}\"."), FText::FromName(AttrName)));
+					return;
+				}
+				FacadePreloader.Register(InContext, *Identity);
+			}
+		}
+	}
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|NeighborSample")
-class PCGEXTENDEDTOOLKIT_API UPCGExNeighborSampleAttributeSettings : public UPCGExNeighborSampleProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|NeighborSample")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExNeighborSampleAttributeSettings : public UPCGExNeighborSampleProviderSettings
 {
 	GENERATED_BODY()
 
@@ -111,7 +130,6 @@ public:
 #endif
 	//~End UPCGSettings
 
-public:
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const override;
 
 #if WITH_EDITOR

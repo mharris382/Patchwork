@@ -8,8 +8,8 @@
 #define LOCTEXT_NAMESPACE "PCGExPickClosestClusters"
 #define PCGEX_NAMESPACE PickClosestClusters
 
-PCGExData::EInit UPCGExPickClosestClustersSettings::GetEdgeOutputInitMode() const { return FilterActions.Action == EPCGExFilterDataAction::Tag ? PCGExData::EInit::Forward : PCGExData::EInit::NoOutput; }
-PCGExData::EInit UPCGExPickClosestClustersSettings::GetMainOutputInitMode() const { return FilterActions.Action == EPCGExFilterDataAction::Tag ? PCGExData::EInit::Forward : PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExPickClosestClustersSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::None; }
+PCGExData::EIOInit UPCGExPickClosestClustersSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 TArray<FPCGPinProperties> UPCGExPickClosestClustersSettings::InputPinProperties() const
 {
@@ -18,24 +18,62 @@ TArray<FPCGPinProperties> UPCGExPickClosestClustersSettings::InputPinProperties(
 	return PinProperties;
 }
 
-PCGEX_INITIALIZE_ELEMENT(PickClosestClusters)
-
-FPCGExPickClosestClustersContext::~FPCGExPickClosestClustersContext()
+void FPCGExPickClosestClustersContext::ClusterProcessing_InitialProcessingDone()
 {
-	PCGEX_TERMINATE_ASYNC
+	FPCGExEdgesProcessorContext::ClusterProcessing_InitialProcessingDone();
 
-	for (const TPair<int32, TSet<int32>*>& Pair : VtxEdgeMap)
+	TArray<TSharedPtr<PCGExPickClosestClusters::FProcessor>> Processors;
+	GatherClusterProcessors(Processors);
+
+	const int32 NumTargets = TargetDataFacade->Source->GetNum();
+
+	PCGEX_SETTINGS_LOCAL(PickClosestClusters)
+
+	if (Settings->PickMode == EPCGExClusterClosestPickMode::OnlyBest)
 	{
-		Pair.Value->Empty();
-		delete Pair.Value;
+		for (int i = 0; i < NumTargets; i++)
+		{
+			int32 Pick = -1;
+			double Closest = MAX_dbl;
+
+			for (int j = 0; j < Processors.Num(); j++)
+			{
+				const double Dist = Processors[j]->Distances[i];
+				if (Closest > Dist)
+				{
+					Closest = Dist;
+					Pick = j;
+				}
+			}
+
+			if (Pick == -1) { continue; }
+			Processors[Pick]->Picker = i;
+		}
 	}
+	else
+	{
+		for (int i = 0; i < NumTargets; i++)
+		{
+			int32 Pick = -1;
+			double Closest = MAX_dbl;
 
-	VtxEdgeMap.Empty();
-	Selectors.Empty();
+			for (int j = 0; j < Processors.Num(); j++)
+			{
+				const double Dist = Processors[j]->Distances[i];
+				if (Closest > Dist && Processors[j]->Picker == 0)
+				{
+					Closest = Dist;
+					Pick = j;
+				}
+			}
 
-	PCGEX_DELETE(Targets)
+			if (Pick == -1) { continue; }
+			Processors[Pick]->Picker = i;
+		}
+	}
 }
 
+PCGEX_INITIALIZE_ELEMENT(PickClosestClusters)
 
 bool FPCGExPickClosestClustersElement::Boot(FPCGExContext* InContext) const
 {
@@ -43,16 +81,17 @@ bool FPCGExPickClosestClustersElement::Boot(FPCGExContext* InContext) const
 
 	PCGEX_CONTEXT_AND_SETTINGS(PickClosestClusters)
 
-	Context->Targets = PCGExData::TryGetSingleInput(Context, PCGExGraph::SourcePickersLabel, true);
-	if (!Context->Targets) { return false; }
+	Context->TargetDataFacade = PCGExData::TryGetSingleFacade(Context, PCGExGraph::SourcePickersLabel, true);
+	if (!Context->TargetDataFacade) { return false; }
 
-	const TArray<FPCGPoint>& InTargetPoints = Context->Targets->GetIn()->GetPoints();
-	Context->Selectors.SetNumUninitialized(InTargetPoints.Num());
+	PCGEX_FWD(TargetAttributesToTags)
 
-	for (int i = 0; i < InTargetPoints.Num(); i++)
-	{
-		Context->Selectors[i] = PCGExFilterCluster::FPicker(InTargetPoints[i].Transform.GetLocation());
-	}
+	if (!Context->TargetAttributesToTags.Init(Context, Context->TargetDataFacade)) { return false; }
+
+	Context->TargetForwardHandler = Settings->TargetForwarding.GetHandler(Context->TargetDataFacade);
+
+	Context->KeepTag = Settings->KeepTag.ToString();
+	Context->OmitTag = Settings->OmitTag.ToString();
 
 	return true;
 }
@@ -63,143 +102,162 @@ bool FPCGExPickClosestClustersElement::ExecuteInternal(
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExPickClosestClustersElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(PickClosestClusters)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
+		if (!Context->StartProcessingClusters<PCGExPickClosestClusters::FBatch>(
+			[](const TSharedPtr<PCGExData::FPointIOTaggedEntries>& Entries) { return true; },
+			[&](const TSharedPtr<PCGExPickClosestClusters::FBatch>& NewBatch)
+			{
+			}))
+		{
+			return Context->CancelExecution(TEXT("Could not build any clusters."));
+		}
 	}
 
-	if (Context->IsState(PCGExMT::State_ReadyForNextPoints))
-	{
-		while (Context->AdvancePointsIO(false))
-		{
-			if (!Context->TaggedEdges) { continue; }
+	PCGEX_CLUSTER_BATCH_PROCESSING(PCGEx::State_Done)
 
-			Context->CurrentEdgeMap = new TSet<int32>();
-			Context->VtxEdgeMap.Add(Context->CurrentIO->IOIndex, Context->CurrentEdgeMap);
-
-			while (Context->AdvanceEdges(true))
-			{
-				if (!Context->CurrentCluster) { continue; }
-
-				Context->CurrentCluster->RebuildOctree(Settings->SearchMode);
-				Context->CurrentEdgeMap->Add(Context->CurrentEdges->IOIndex);
-
-				for (PCGExFilterCluster::FPicker& Pickers : Context->Selectors)
-				{
-					const int32 ClosestNodeIndex = Context->CurrentCluster->FindClosestNode(Pickers.Position, Settings->SearchMode);
-					if (ClosestNodeIndex == -1) { continue; }
-
-					PCGExCluster::FNode& ClosestNode = (*Context->CurrentCluster->Nodes)[ClosestNodeIndex];
-
-					const double Dist = FVector::DistSquared(Context->CurrentCluster->GetPos(ClosestNode), Pickers.Position);
-					if (Dist > Pickers.ClosestDistance) { continue; }
-
-					Pickers.ClosestDistance = Dist;
-					Pickers.VtxIndex = Context->CurrentIO->IOIndex;
-					Pickers.EdgesIndex = Context->CurrentEdges->IOIndex;
-				}
-			}
-		}
-
-		Context->Done();
-	}
-
-	if (Context->IsDone())
-	{
-		TSet<int32> SelectedVtx;
-		TSet<int32> SelectedEdges;
-
-		for (PCGExFilterCluster::FPicker& Selector : Context->Selectors)
-		{
-			SelectedVtx.Add(Selector.VtxIndex);
-			SelectedEdges.Add(Selector.EdgesIndex);
-		}
-
-		TSet<PCGExData::FPointIO*> KeepList;
-		TSet<PCGExData::FPointIO*> OmitList;
-
-		if (Settings->FilterActions.Action == EPCGExFilterDataAction::Omit)
-		{
-			for (PCGExData::FPointIO* VtxIO : Context->MainPoints->Pairs)
-			{
-				if (SelectedVtx.Contains(VtxIO->IOIndex))
-				{
-					// Ensure at least some edges are kept first
-					TSet<int32>& BoundEdges = **Context->VtxEdgeMap.Find(VtxIO->IOIndex);
-					int32 Num = 0;
-					for (const int32 E : BoundEdges) { if (!SelectedEdges.Contains(E)) { Num++; } }
-
-					if (Num == BoundEdges.Num())
-					{
-						OmitList.Add(VtxIO);
-						continue;
-					} // No edge is being kept
-				}
-				KeepList.Add(VtxIO);
-			}
-
-			for (PCGExData::FPointIO* EdgesIO : Context->MainEdges->Pairs)
-			{
-				if (SelectedEdges.Contains(EdgesIO->IOIndex)) { OmitList.Add(EdgesIO); }
-				else { KeepList.Add(EdgesIO); }
-			}
-		}
-		else
-		{
-			for (PCGExData::FPointIO* VtxIO : Context->MainPoints->Pairs)
-			{
-				if (!SelectedVtx.Contains(VtxIO->IOIndex))
-				{
-					// Ensure all edges are omitted first
-					TSet<int32>** BoundEdgesPtr = Context->VtxEdgeMap.Find(VtxIO->IOIndex);
-					bool bKeep = false;
-
-					if (BoundEdgesPtr)
-					{
-						TSet<int32>& BoundEdges = **BoundEdgesPtr;
-						for (const int32 E : BoundEdges)
-						{
-							if (SelectedEdges.Contains(E))
-							{
-								bKeep = true;
-								break;
-							}
-						}
-					}
-
-					if (!bKeep)
-					{
-						OmitList.Add(VtxIO);
-						continue;
-					}
-				}
-
-				KeepList.Add(VtxIO);
-			}
-
-			for (PCGExData::FPointIO* EdgesIO : Context->MainEdges->Pairs)
-			{
-				if (!SelectedEdges.Contains(EdgesIO->IOIndex)) { OmitList.Add(EdgesIO); }
-				else { KeepList.Add(EdgesIO); }
-			}
-		}
-
-		if (Settings->FilterActions.Action == EPCGExFilterDataAction::Tag)
-		{
-			for (PCGExData::FPointIO* IO : KeepList) { IO->Tags->RawTags.Add(Settings->FilterActions.KeepTag.ToString()); }
-			for (PCGExData::FPointIO* IO : OmitList) { IO->Tags->RawTags.Add(Settings->FilterActions.OmitTag.ToString()); }
-		}
-		else
-		{
-			for (PCGExData::FPointIO* IO : KeepList) { IO->InitializeOutput(PCGExData::EInit::Forward); }
-		}
-
-		Context->OutputPointsAndEdges();
-	}
+	Context->OutputBatches();
+	Context->OutputPointsAndEdges();
 
 	return Context->TryComplete();
+}
+
+
+namespace PCGExPickClosestClusters
+{
+	FProcessor::~FProcessor()
+	{
+	}
+
+	bool FProcessor::Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
+	{
+		if (!FClusterProcessor::Process(InAsyncManager)) { return false; }
+
+
+		Cluster->RebuildOctree(Settings->SearchMode);
+		Search();
+
+		return true;
+	}
+
+	void FProcessor::Search()
+	{
+		const int32 NumTargets = Context->TargetDataFacade->Source->GetNum();
+		PCGEx::InitArray(Distances, NumTargets);
+
+		PCGEX_ASYNC_GROUP_CHKD_VOID(AsyncManager, ProcessTargets)
+
+		if (Settings->SearchMode == EPCGExClusterClosestSearchMode::Edge)
+		{
+			ProcessTargets->OnIterationCallback = [&](const int32 Index, const int32 Count, const int32 LoopIdx)
+			{
+				Distances[Index] = MAX_dbl;
+
+				const FPCGPoint& Point = Context->TargetDataFacade->Source->GetInPoint(Index);
+				const FVector TargetLocation = Point.Transform.GetLocation();
+
+				bool bFound = false;
+				Cluster->EdgeOctree->FindElementsWithBoundsTest(
+					FBoxCenterAndExtent(TargetLocation, Point.GetScaledExtents() + FVector(Settings->TargetBoundsExpansion)), [&](const PCGEx::FIndexedItem& Item)
+					{
+						Distances[Index] = FMath::Min(Distances[Index], FVector::DistSquared(TargetLocation, Cluster->GetClosestPointOnEdge(Item.Index, TargetLocation)));
+						bFound = true;
+					});
+				if (!bFound && Settings->bExpandSearchOutsideTargetBounds)
+				{
+					Cluster->EdgeOctree->FindNearbyElements(
+						TargetLocation, [&](const PCGEx::FIndexedItem& Item)
+						{
+							Distances[Index] = FMath::Min(Distances[Index], FVector::DistSquared(TargetLocation, Cluster->GetPos(Item.Index)));
+							bFound = true;
+						});
+				}
+			};
+		}
+		else
+		{
+			ProcessTargets->OnIterationCallback = [&](const int32 Index, const int32 Count, const int32 LoopIdx)
+			{
+				Distances[Index] = MAX_dbl;
+
+				const FPCGPoint& Point = Context->TargetDataFacade->Source->GetInPoint(Index);
+				const FVector TargetLocation = Point.Transform.GetLocation();
+
+				bool bFound = false;
+				Cluster->NodeOctree->FindElementsWithBoundsTest(
+					FBoxCenterAndExtent(TargetLocation, Point.GetScaledExtents() + FVector(Settings->TargetBoundsExpansion)), [&](const PCGEx::FIndexedItem& Item)
+					{
+						Distances[Index] = FMath::Min(Distances[Index], FVector::DistSquared(TargetLocation, Cluster->GetPos(Item.Index)));
+						bFound = true;
+					});
+
+				if (!bFound && Settings->bExpandSearchOutsideTargetBounds)
+				{
+					Cluster->NodeOctree->FindNearbyElements(
+						TargetLocation, [&](const PCGEx::FIndexedItem& Item)
+						{
+							Distances[Index] = FMath::Min(Distances[Index], FVector::DistSquared(TargetLocation, Cluster->GetPos(Item.Index)));
+							bFound = true;
+						});
+				}
+			};
+		}
+
+		ProcessTargets->StartIterations(NumTargets, 256);
+	}
+
+	void FProcessor::CompleteWork()
+	{
+		if (Settings->Action == EPCGExFilterDataAction::Omit) { if (Picker != -1) { return; } }
+		else if (Settings->Action == EPCGExFilterDataAction::Keep) { if (Picker == -1) { return; } }
+		else
+		{
+			if (Picker == -1)
+			{
+				EdgeDataFacade->Source->Tags->Add(Context->OmitTag);
+				return;
+			}
+
+			EdgeDataFacade->Source->Tags->Add(Context->KeepTag);
+		}
+
+		if (!Settings->TargetForwarding.bEnabled)
+		{
+			EdgeDataFacade->Source->InitializeOutput(PCGExData::EIOInit::Forward);
+			if (!VtxDataFacade->Source->GetOut()) { VtxDataFacade->Source->InitializeOutput(PCGExData::EIOInit::Forward); }
+		}
+		else
+		{
+			EdgeDataFacade->Source->InitializeOutput(PCGExData::EIOInit::Duplicate);
+			if (!VtxDataFacade->Source->GetOut()) { VtxDataFacade->Source->InitializeOutput(PCGExData::EIOInit::Duplicate); }
+
+			Context->TargetForwardHandler->Forward(Picker, EdgeDataFacade);
+			Context->TargetForwardHandler->Forward(Picker, VtxDataFacade);
+		}
+
+		Context->TargetAttributesToTags.Tag(Picker, EdgeDataFacade->Source);
+		Context->TargetAttributesToTags.Tag(Picker, VtxDataFacade->Source);
+	}
+
+	void FBatch::Output()
+	{
+		int32 Picks = 0;
+		const int32 MaxPicks = Processors.Num();
+
+		for (const TSharedRef<FProcessor>& P : Processors) { if (P->Picker != -1) { Picks++; } }
+
+		const UPCGExPickClosestClustersSettings* Stg = Processors[0]->Settings;
+		const FPCGExPickClosestClustersContext* Ctx = Processors[0]->Context;
+
+		if (Stg->Action == EPCGExFilterDataAction::Omit) { if (Picks == MaxPicks) { return; } }
+		else if (Stg->Action == EPCGExFilterDataAction::Keep) { if (Picks == 0) { return; } }
+
+		if (Picks > 0) { VtxDataFacade->Source->Tags->Add(Ctx->KeepTag); }
+		else { VtxDataFacade->Source->Tags->Add(Ctx->OmitTag); }
+
+		TBatch<FProcessor>::Output();
+	}
 }
 
 #undef LOCTEXT_NAMESPACE

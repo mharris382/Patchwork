@@ -5,17 +5,29 @@
 
 #include "PCGExDataMath.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExWritePathPropertiesElement"
 #define PCGEX_NAMESPACE WritePathProperties
 
-PCGExData::EInit UPCGExWritePathPropertiesSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExWritePathPropertiesSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
+
+bool UPCGExWritePathPropertiesSettings::WriteAnyPathData() const
+{
+#define PCGEX_PATH_MARK_TRUE(_NAME, _TYPE, _DEFAULT) if(bWrite##_NAME){return true;}
+	PCGEX_FOREACH_FIELD_PATH_MARKS(PCGEX_PATH_MARK_TRUE)
+#undef PCGEX_PATH_MARK_TRUE
+
+	return false;
+}
+
+TArray<FPCGPinProperties> UPCGExWritePathPropertiesSettings::OutputPinProperties() const
+{
+	TArray<FPCGPinProperties> PinProperties = Super::OutputPinProperties();
+	if (WriteAnyPathData()) { PCGEX_PIN_PARAMS(PCGExWritePathProperties::OutputPathProperties, "...", Required, {}) }
+	return PinProperties;
+}
 
 PCGEX_INITIALIZE_ELEMENT(WritePathProperties)
-
-FPCGExWritePathPropertiesContext::~FPCGExWritePathPropertiesContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExWritePathPropertiesElement::Boot(FPCGExContext* InContext) const
 {
@@ -26,6 +38,13 @@ bool FPCGExWritePathPropertiesElement::Boot(FPCGExContext* InContext) const
 	PCGEX_FOREACH_FIELD_PATH(PCGEX_OUTPUT_VALIDATE_NAME)
 	PCGEX_FOREACH_FIELD_PATH_MARKS(PCGEX_OUTPUT_VALIDATE_NAME)
 
+	if (Settings->PathAttributePackingMode == EPCGExAttributeSetPackingMode::Merged &&
+		Settings->WriteAnyPathData())
+	{
+		Context->PathAttributeSet = Context->ManagedObjects->New<UPCGParamData>();
+		PCGEx::InitArray(Context->MergedAttributeSetKeys, Context->MainPoints->Num());
+	}
+
 	return true;
 }
 
@@ -34,50 +53,76 @@ bool FPCGExWritePathPropertiesElement::ExecuteInternal(FPCGContext* InContext) c
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExWritePathPropertiesElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(WritePathProperties)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
+		PCGEX_ON_INVALILD_INPUTS(FTEXT("Some input have less than 2 points and will be ignored."))
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExWritePathProperties::FProcessor>>(
-			[](PCGExData::FPointIO* Entry) { return Entry->GetNum() >= 2; },
-			[&](PCGExPointsMT::TBatch<PCGExWritePathProperties::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry)
 			{
+				if (Entry->GetNum() < 2)
+				{
+					bHasInvalidInputs = true;
+					return false;
+				}
+				if (Context->PathAttributeSet)
+				{
+					Context->MergedAttributeSetKeys[Entry->IOIndex] = Context->PathAttributeSet->Metadata->AddEntry();
+				}
+
+				return true;
 			},
-			PCGExMT::State_Done))
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExWritePathProperties::FProcessor>>& NewBatch)
+			{
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Could not find any valid path."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not find any valid path."));
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
+	if (Settings->WriteAnyPathData())
+	{
+		if (Context->PathAttributeSet)
+		{
+			Context->StageOutput(PCGExWritePathProperties::OutputPathProperties, Context->PathAttributeSet, {}, false, false);
+		}
+		else
+		{
+			Context->MainBatch->Output();
+		}
+	}
 
 	return Context->TryComplete();
 }
 
 namespace PCGExWritePathProperties
 {
-	FProcessor::~FProcessor()
-	{
-		Positions.Empty();
-	}
-
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExWritePathProperties::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(WritePathProperties)
 
-		bClosedPath = Settings->bClosedPath;
+		// Must be set before process for filters
+		PointDataFacade->bSupportsScopedGet = Context->bScopedAttributeGet;
 
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
-		LocalSettings = Settings;
-		
+		ProjectionDetails = Settings->ProjectionDetails;
+		if (!ProjectionDetails.Init(Context, PointDataFacade)) { return false; }
+
+		const TSharedRef<PCGExData::FPointIO>& PointIO = PointDataFacade->Source;
+
+		bClosedLoop = Context->ClosedLoop.IsClosedLoop(PointIO);
+		Path = PCGExPaths::MakePath(PointDataFacade->GetIn()->GetPoints(), 0, bClosedLoop);
+		Path->IOIndex = PointDataFacade->Source->IOIndex;
+		PathLength = Path->AddExtra<PCGExPaths::FPathEdgeLength>(true); // Force compute length
+		if (Settings->bWritePointNormal || Settings->bWritePointBinormal) { PathBinormal = Path->AddExtra<PCGExPaths::FPathEdgeBinormal>(false, Settings->UpVector); }
+		if (Settings->bWritePointAvgNormal) { PathAvgNormal = Path->AddExtra<PCGExPaths::FPathEdgeAvgNormal>(false, Settings->UpVector); }
+
 		{
-			PCGExData::FFacade* OutputFacade = PointDataFacade;
+			const TSharedRef<PCGExData::FFacade>& OutputFacade = PointDataFacade;
 			PCGEX_FOREACH_FIELD_PATH(PCGEX_OUTPUT_INIT)
 		}
 
@@ -85,143 +130,136 @@ namespace PCGExWritePathProperties
 
 		const TArray<FPCGPoint>& InPoints = PointIO->GetIn()->GetPoints();
 		const int32 NumPoints = InPoints.Num();
-		TArray<FVector> Normals;
 
-		const FVector UpConstant = Settings->UpVector;
-		const PCGExData::FCache<FVector>* UpGetter = Settings->bUseLocalUpVector ? PointDataFacade->GetBroadcaster<FVector>(Settings->LocalUpVector) : nullptr;
-
-		Positions.SetNum(NumPoints);
-		Normals.SetNum(NumPoints);
-
-		bool bIsConvex = true;
-		int32 Sign = 0;
-
-		auto CheckConvex = [&](const int32 A, const int32 B, const int32 C)
-		{
-			if (!Settings->bTagConcave && !Settings->bTagConvex) { return; }
-			PCGExMath::CheckConvex(
-				Positions[A], Positions[B], Positions[C],
-				bIsConvex, Sign);
-		};
-
-		for (int i = 0; i < NumPoints; i++) { Positions[i] = InPoints[i].Transform.GetLocation(); }
-
-		PCGExMath::FPathMetrics Metrics = PCGExMath::FPathMetrics(Positions[0]);
-
-		LastIndex = NumPoints - 1;
-		FVector PathCentroid = FVector::ZeroVector;
-		
-		PCGEX_OUTPUT_VALUE(DirectionToNext, 0, (Positions[0] - Positions[1]).GetSafeNormal());
-		PCGEX_OUTPUT_VALUE(DirectionToPrev, 0, (Positions[1] - Positions[0]).GetSafeNormal());
-		PCGEX_OUTPUT_VALUE(DistanceToStart, 0, 0);
-
-		PCGEX_OUTPUT_VALUE(DistanceToNext, 0, FVector::Dist(Positions[0], Positions[1]));
-		PCGEX_OUTPUT_VALUE(DistanceToPrev, 0, 0);
-
-
-		FVector PathDir = (Positions[0] - Positions[1]);
-
-		for (int i = 1; i < LastIndex; i++)
-		{
-			CheckConvex(i - 1, i, i + 1);
-			const double TraversedDistance = Metrics.Add(Positions[i]);
-			PCGEX_OUTPUT_VALUE(PointNormal, i, PCGExMath::NRM(i - 1, i, i + 1, Positions, UpGetter, UpConstant));
-			PCGEX_OUTPUT_VALUE(DirectionToNext, i, (Positions[i] - Positions[i + 1]).GetSafeNormal());
-			PCGEX_OUTPUT_VALUE(DirectionToPrev, i, (Positions[i - 1] - Positions[i]).GetSafeNormal());
-			PCGEX_OUTPUT_VALUE(DistanceToStart, i, TraversedDistance);
-
-			PCGEX_OUTPUT_VALUE(DistanceToNext, i, FVector::Dist(Positions[i],Positions[i+1]));
-			PCGEX_OUTPUT_VALUE(DistanceToPrev, i, FVector::Dist(Positions[i-1],Positions[i]));
-
-			PathDir += (Positions[i] - Positions[i + 1]);
-		}
-
-		Metrics.Add(Positions[LastIndex]);
-
-		PCGEX_OUTPUT_VALUE(DirectionToNext, LastIndex, (Positions[LastIndex - 1] - Positions[LastIndex]).GetSafeNormal());
-		PCGEX_OUTPUT_VALUE(DirectionToPrev, LastIndex, (Positions[LastIndex] - Positions[LastIndex - 1]).GetSafeNormal());
-		PCGEX_OUTPUT_VALUE(DistanceToStart, LastIndex, Metrics.Length);
-
-		PCGEX_OUTPUT_VALUE(DistanceToNext, LastIndex, 0);
-		PCGEX_OUTPUT_VALUE(DistanceToPrev, LastIndex, FVector::Dist(Positions[LastIndex-1],Positions[LastIndex]));
-
-		if (bClosedPath)
-		{
-			CheckConvex(LastIndex, 0, 1);
-
-			PCGEX_OUTPUT_VALUE(DirectionToPrev, 0, (Positions[0] - Positions[LastIndex]).GetSafeNormal());
-			PCGEX_OUTPUT_VALUE(DirectionToNext, LastIndex, (Positions[LastIndex] - Positions[0]).GetSafeNormal());
-
-			PCGEX_OUTPUT_VALUE(DistanceToNext, LastIndex, FVector::Dist(Positions[LastIndex], Positions[0]));
-			PCGEX_OUTPUT_VALUE(DistanceToPrev, 0, FVector::Dist(Positions[0], Positions[LastIndex]));
-
-			PCGEX_OUTPUT_VALUE(PointNormal, 0, PCGExMath::NRM(LastIndex, 0, 1, Positions, UpGetter, UpConstant));
-			PCGEX_OUTPUT_VALUE(PointNormal, LastIndex, PCGExMath::NRM(NumPoints - 2, LastIndex, 0, Positions, UpGetter, UpConstant));
-		}
-		else
-		{
-			PCGEX_OUTPUT_VALUE(PointNormal, 0, PCGExMath::NRM(0, 0, 1, Positions, UpGetter, UpConstant));
-			PCGEX_OUTPUT_VALUE(PointNormal, LastIndex, PCGExMath::NRM(NumPoints - 2, LastIndex, LastIndex, Positions, UpGetter, UpConstant));
-		}
-
-		PCGExMath::FPathMetrics SecondMetrics = PCGExMath::FPathMetrics(Positions[0]);
+		PCGEx::InitArray(Details, NumPoints);
 
 		for (int i = 0; i < NumPoints; i++)
 		{
-			const double TraversedDistance = SecondMetrics.Add(Positions[i]);
-			PCGEX_OUTPUT_VALUE(PointTime, i, TraversedDistance / Metrics.Length);
-			PCGEX_OUTPUT_VALUE(DistanceToEnd, i, Metrics.Length - TraversedDistance);
-			PathCentroid += Positions[i];
+			Details[i] = {
+				i,
+				FVector::ZeroVector,
+				FVector::ZeroVector,
+				FVector::ZeroVector,
+				FVector::ZeroVector
+			};
 		}
 
-		UPCGMetadata* Meta = PointIO->GetOut()->Metadata;
-
-		if (TypedContext->bWritePathLength) { PCGExData::WriteMark(Meta, Settings->PathLengthAttributeName, Metrics.Length); }
-		if (TypedContext->bWritePathDirection) { PCGExData::WriteMark(Meta, Settings->PathDirectionAttributeName, (PathDir / NumPoints).GetSafeNormal()); }
-		if (TypedContext->bWritePathCentroid) { PCGExData::WriteMark(Meta, Settings->PathCentroidAttributeName, (PathCentroid / NumPoints).GetSafeNormal()); }
-
-		///
-
-		if (Settings->bWriteDot || Settings->bWriteAngle) { StartParallelLoopForPoints(); }
-
-		if (Sign != 0)
-		{
-			if (Settings->bTagConcave && !bIsConvex) { PointIO->Tags->RawTags.Add(Settings->ConcaveTag); }
-			if (Settings->bTagConvex && bIsConvex) { PointIO->Tags->RawTags.Add(Settings->ConvexTag); }
-		}
+		StartParallelLoopForPoints();
 
 		return true;
 	}
 
+	void FProcessor::PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count)
+	{
+		PointDataFacade->Fetch(StartIndex, Count);
+	}
+
 	void FProcessor::ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count)
 	{
-		FVector Loc = Point.Transform.GetLocation();
-		FVector Next;
-		FVector Prev;
+		FPointDetails& Current = Details[Index];
 
-		if (Index == 0)
-		{
-			Prev = bClosedPath ? Positions[LastIndex] : FVector::ZeroVector;
-			Next = Positions[Index + 1];
-		}
-		else if (Index == LastIndex)
-		{
-			Prev = Positions[Index - 1];
-			Next = bClosedPath ? Positions[0] : FVector::ZeroVector;
-		}
-		else
-		{
-			Prev = Positions[Index - 1];
-			Next = Positions[Index + 1];
-		}
+		Current.ToPrev = Path->DirToPrevPoint(Index);
+		Current.ToNext = Path->DirToNextPoint(Index);
 
-		PCGEX_OUTPUT_VALUE(Dot, Index, FVector::DotProduct((Prev - Loc).GetSafeNormal(), (Loc - Next).GetSafeNormal()));		
-		PCGEX_OUTPUT_VALUE(Angle, Index, PCGExSampling::GetAngle(LocalSettings->AngleRange, (Loc - Prev).GetSafeNormal(), (Loc - Next).GetSafeNormal()));
+		int32 ExtraIndex = !bClosedLoop && Index == Path->LastIndex ? Path->LastEdge : Index;
+		Path->ComputeEdgeExtra(ExtraIndex);
+
+		PCGEX_OUTPUT_VALUE(PointNormal, Index, PathBinormal->Normals[ExtraIndex]);
+		PCGEX_OUTPUT_VALUE(PointBinormal, Index, PathBinormal->Get(ExtraIndex));
+		PCGEX_OUTPUT_VALUE(PointAvgNormal, Index, PathAvgNormal->Get(ExtraIndex));
+
+		PCGEX_OUTPUT_VALUE(DirectionToNext, Index, Current.ToNext);
+		PCGEX_OUTPUT_VALUE(DirectionToPrev, Index, Current.ToPrev);
+
+		PCGEX_OUTPUT_VALUE(DistanceToNext, Index, !Path->IsClosedLoop() && Index == Path->LastIndex ? 0 : PathLength->Get(Index))
+		PCGEX_OUTPUT_VALUE(DistanceToPrev, Index, Index == 0 ? Path->IsClosedLoop() ? PathLength->Get(Path->LastEdge) : 0 : PathLength->Get(Index-1))
+
+		PCGEX_OUTPUT_VALUE(Dot, Index, FVector::DotProduct(Current.ToPrev*-1, Current.ToNext));
+		PCGEX_OUTPUT_VALUE(Angle, Index, PCGExSampling::GetAngle(Settings->AngleRange, Current.ToPrev, Current.ToNext));
 	}
 
 	void FProcessor::CompleteWork()
 	{
-		PointDataFacade->Write(AsyncManagerPtr, true);
+		const TSharedRef<PCGExData::FPointIO>& PointIO = PointDataFacade->Source;
+
+		FVector PathCentroid = FVector::ZeroVector;
+		FVector PathDir = Details[0].ToNext;
+
+		// Compute path-wide data
+
+		// Compute path-wide, per-point stuff
+		double TraversedDistance = 0;
+		for (int i = 0; i < Path->NumPoints; i++)
+		{
+			if (Settings->bTagConcave || Settings->bTagConvex) { Path->UpdateConvexity(i); }
+
+			const FPointDetails& Detail = Details[i];
+			PathDir += Detail.ToNext;
+
+			PCGEX_OUTPUT_VALUE(PointTime, i, TraversedDistance / PathLength->TotalLength);
+
+			PCGEX_OUTPUT_VALUE(DistanceToStart, i, TraversedDistance);
+			PCGEX_OUTPUT_VALUE(DistanceToEnd, i, PathLength->TotalLength - TraversedDistance);
+
+			TraversedDistance += !Path->IsClosedLoop() && i == Path->LastIndex ? 0 : PathLength->Get(i);
+			PathCentroid += Path->GetPosUnsafe(i);
+		}
+
+		if (!bClosedLoop)
+		{
+			const FPointDetails& First = Details[0];
+			const FPointDetails& Last = Details[Path->LastIndex];
+
+			PCGEX_OUTPUT_VALUE(Dot, 0, -1);
+			PCGEX_OUTPUT_VALUE(Angle, 0, PCGExSampling::GetAngle(Settings->AngleRange, First.ToNext *-1, First.ToNext));
+
+			PCGEX_OUTPUT_VALUE(Dot, Path->LastIndex, -1);
+			PCGEX_OUTPUT_VALUE(Angle, Path->LastIndex, PCGExSampling::GetAngle(Settings->AngleRange, Last.ToPrev *-1, Last.ToPrev));
+		}
+
+		if (Settings->WriteAnyPathData())
+		{
+			TArray<FVector2D> WindedPoints;
+			ProjectionDetails.ProjectFlat(PointDataFacade, WindedPoints);
+
+			const PCGExGeo::FPolygonInfos PolyInfos = PCGExGeo::FPolygonInfos(WindedPoints);
+
+			PathAttributeSet = Context->PathAttributeSet ? Context->PathAttributeSet.Get() : Context->ManagedObjects->New<UPCGParamData>();
+			const int64 Key = Context->PathAttributeSet ? Context->MergedAttributeSetKeys[PointDataFacade->Source->IOIndex] : PathAttributeSet->Metadata->AddEntry();
+
+#define PCGEX_OUTPUT_PATH_VALUE(_NAME, _TYPE, _VALUE) if(Context->bWrite##_NAME){\
+	if (Settings->bWritePathDataToPoints) { WriteMark(PointIO, Settings->_NAME##AttributeName, _VALUE);}\
+			PathAttributeSet->Metadata->FindOrCreateAttribute<_TYPE>(Settings->_NAME##AttributeName, _VALUE)->SetValue(Key, _VALUE); }
+
+			PCGEX_OUTPUT_PATH_VALUE(PathLength, double, PathLength->TotalLength)
+			PCGEX_OUTPUT_PATH_VALUE(PathDirection, FVector, (PathDir / Path->NumPoints).GetSafeNormal())
+			PCGEX_OUTPUT_PATH_VALUE(PathCentroid, FVector, (PathCentroid / Path->NumPoints).GetSafeNormal())
+			PCGEX_OUTPUT_PATH_VALUE(IsClockwise, bool, PolyInfos.bIsClockwise)
+			PCGEX_OUTPUT_PATH_VALUE(Area, double, PolyInfos.Area * 0.01)
+			PCGEX_OUTPUT_PATH_VALUE(Perimeter, double, PolyInfos.Perimeter)
+			PCGEX_OUTPUT_PATH_VALUE(Compactness, double, PolyInfos.Compactness)
+
+#undef PCGEX_OUTPUT_PATH_VALUE
+		}
+
+		///
+
+		if (Path->ConvexitySign != 0)
+		{
+			if (Settings->bTagConcave && !Path->bIsConvex) { PointIO->Tags->Add(Settings->ConcaveTag); }
+			if (Settings->bTagConvex && Path->bIsConvex) { PointIO->Tags->Add(Settings->ConvexTag); }
+		}
+
+		PointDataFacade->Write(AsyncManager);
+	}
+
+	void FProcessor::Output()
+	{
+		TPointsProcessor<FPCGExWritePathPropertiesContext, UPCGExWritePathPropertiesSettings>::Output();
+		if (PathAttributeSet && !Context->PathAttributeSet)
+		{
+			Context->StageOutput(PCGExWritePathProperties::OutputPathProperties, PathAttributeSet, {}, false, false);
+		}
 	}
 }
 

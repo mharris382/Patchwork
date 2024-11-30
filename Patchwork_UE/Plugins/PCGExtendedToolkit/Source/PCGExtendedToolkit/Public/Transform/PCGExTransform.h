@@ -7,7 +7,7 @@
 #include "PCGExTransform.generated.h"
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExUVW
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExUVW
 {
 	GENERATED_BODY()
 
@@ -15,7 +15,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExUVW
 	{
 	}
 
-	explicit FPCGExUVW(double DefaultW)
+	explicit FPCGExUVW(const double DefaultW)
 		: WConstant(DefaultW)
 	{
 	}
@@ -26,47 +26,47 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExUVW
 
 	/** U Source */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable))
-	EPCGExFetchType USource = EPCGExFetchType::Constant;
+	EPCGExInputValueType UInput = EPCGExInputValueType::Constant;
 
 	/** U Constant */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="USource==EPCGExFetchType::Constant", EditConditionHides, DisplayName="U"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="U", EditCondition="UInput==EPCGExInputValueType::Constant", EditConditionHides, DisplayName="U"))
 	double UConstant = 0;
 
 	/** U Attribute */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="USource==EPCGExFetchType::Attribute", EditConditionHides, DisplayName="U"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="U", EditCondition="UInput==EPCGExInputValueType::Attribute", EditConditionHides, DisplayName="U"))
 	FPCGAttributePropertyInputSelector UAttribute;
 
 	/** V Source */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable))
-	EPCGExFetchType VSource = EPCGExFetchType::Constant;
+	EPCGExInputValueType VInput = EPCGExInputValueType::Constant;
 
 	/** V Constant */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="VSource==EPCGExFetchType::Constant", EditConditionHides, DisplayName="V"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="V", EditCondition="VInput==EPCGExInputValueType::Constant", EditConditionHides, DisplayName="V"))
 	double VConstant = 0;
 
 	/** V Attribute */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="USource==EPCGExFetchType::Attribute", EditConditionHides, DisplayName="V"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="V", EditCondition="VInput==EPCGExInputValueType::Attribute", EditConditionHides, DisplayName="V"))
 	FPCGAttributePropertyInputSelector VAttribute;
 
 	/** W Source */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable))
-	EPCGExFetchType WSource = EPCGExFetchType::Constant;
+	EPCGExInputValueType WInput = EPCGExInputValueType::Constant;
 
 	/** W Constant */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="WSource==EPCGExFetchType::Constant", EditConditionHides, DisplayName="W"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="W", EditCondition="WInput==EPCGExInputValueType::Constant", EditConditionHides, DisplayName="W"))
 	double WConstant = 0;
 
 	/** W Attribute */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, EditCondition="USource==EPCGExFetchType::Attribute", EditConditionHides, DisplayName="W"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, DisplayName="W", EditCondition="WInput==EPCGExInputValueType::Attribute", EditConditionHides, DisplayName="W"))
 	FPCGAttributePropertyInputSelector WAttribute;
 
-	PCGExData::FCache<double>* UGetter = nullptr;
-	PCGExData::FCache<double>* VGetter = nullptr;
-	PCGExData::FCache<double>* WGetter = nullptr;
+	TSharedPtr<PCGExData::TBuffer<double>> UGetter;
+	TSharedPtr<PCGExData::TBuffer<double>> VGetter;
+	TSharedPtr<PCGExData::TBuffer<double>> WGetter;
 
-	bool Init(const FPCGContext* InContext, PCGExData::FFacade* InDataFacade)
+	bool Init(const FPCGContext* InContext, const TSharedRef<PCGExData::FFacade>& InDataFacade)
 	{
-		if (USource == EPCGExFetchType::Attribute)
+		if (UInput == EPCGExInputValueType::Attribute)
 		{
 			UGetter = InDataFacade->GetScopedBroadcaster<double>(UAttribute);
 			if (!UGetter)
@@ -76,7 +76,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExUVW
 			}
 		}
 
-		if (VSource == EPCGExFetchType::Attribute)
+		if (VInput == EPCGExInputValueType::Attribute)
 		{
 			VGetter = InDataFacade->GetScopedBroadcaster<double>(VAttribute);
 			if (!VGetter)
@@ -86,7 +86,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExUVW
 			}
 		}
 
-		if (WSource == EPCGExFetchType::Attribute)
+		if (WInput == EPCGExInputValueType::Attribute)
 		{
 			WGetter = InDataFacade->GetScopedBroadcaster<double>(WAttribute);
 			if (!WGetter)
@@ -104,9 +104,9 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExUVW
 	FVector GetUVW(const int32 PointIndex) const
 	{
 		return FVector(
-			UGetter ? UGetter->Values[PointIndex] : UConstant,
-			VGetter ? VGetter->Values[PointIndex] : VConstant,
-			WGetter ? WGetter->Values[PointIndex] : WConstant);
+			UGetter ? UGetter->Read(PointIndex) : UConstant,
+			VGetter ? VGetter->Read(PointIndex) : VConstant,
+			WGetter ? WGetter->Read(PointIndex) : WConstant);
 	}
 
 	FVector GetPosition(const PCGExData::FPointRef& PointRef) const

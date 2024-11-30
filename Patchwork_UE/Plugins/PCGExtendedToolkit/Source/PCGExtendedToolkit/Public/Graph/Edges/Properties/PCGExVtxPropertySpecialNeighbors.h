@@ -8,13 +8,15 @@
 
 #include "PCGExFactoryProvider.h"
 #include "PCGExVtxPropertyFactoryProvider.h"
+
+
 #include "Graph/PCGExCluster.h"
 #include "Graph/PCGExGraph.h"
 
 #include "PCGExVtxPropertySpecialNeighbors.generated.h"
 
 USTRUCT(BlueprintType)
-struct PCGEXTENDEDTOOLKIT_API FPCGExSpecialNeighborsConfig
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSpecialNeighborsConfig
 {
 	GENERATED_BODY()
 
@@ -30,8 +32,8 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExSpecialNeighborsConfig
 /**
  * ó
  */
-UCLASS()
-class PCGEXTENDEDTOOLKIT_API UPCGExVtxPropertySpecialNeighbors : public UPCGExVtxPropertyOperation
+UCLASS(MinimalAPI)
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExVtxPropertySpecialNeighbors : public UPCGExVtxPropertyOperation
 {
 	GENERATED_BODY()
 
@@ -39,22 +41,32 @@ public:
 	FPCGExSpecialNeighborsConfig Config;
 
 	virtual void CopySettingsFrom(const UPCGExOperation* Other) override;
-	virtual bool PrepareForVtx(const FPCGContext* InContext, PCGExData::FFacade* InVtxDataFacade) override;
-	virtual void ProcessNode(const int32 ClusterIdx, const PCGExCluster::FCluster* Cluster, PCGExCluster::FNode& Node, const TArray<PCGExCluster::FAdjacencyData>& Adjacency) override;
+	virtual bool PrepareForCluster(
+		const FPCGContext* InContext,
+		TSharedPtr<PCGExCluster::FCluster> InCluster,
+		const TSharedPtr<PCGExData::FFacade>& InVtxDataFacade,
+		const TSharedPtr<PCGExData::FFacade>& InEdgeDataFacade) override;
+	virtual void ProcessNode(PCGExCluster::FNode& Node, const TArray<PCGExCluster::FAdjacencyData>& Adjacency) override;
+
+	virtual void Cleanup() override
+	{
+		Config = FPCGExSpecialNeighborsConfig{};
+		Super::Cleanup();
+	}
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
-class PCGEXTENDEDTOOLKIT_API UPCGExVtxPropertySpecialNeighborsFactory : public UPCGExVtxPropertyFactoryBase
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Data")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExVtxPropertySpecialNeighborsFactory : public UPCGExVtxPropertyFactoryBase
 {
 	GENERATED_BODY()
 
 public:
 	FPCGExSpecialNeighborsConfig Config;
-	virtual UPCGExVtxPropertyOperation* CreateOperation() const override;
+	virtual UPCGExVtxPropertyOperation* CreateOperation(FPCGExContext* InContext) const override;
 };
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|VtxProperty")
-class PCGEXTENDEDTOOLKIT_API UPCGExVtxPropertySpecialNeighborsSettings : public UPCGExVtxPropertyProviderSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|VtxProperty")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExVtxPropertySpecialNeighborsSettings : public UPCGExVtxPropertyProviderSettings
 {
 	GENERATED_BODY()
 
@@ -65,7 +77,6 @@ public:
 #endif
 	//~End UPCGSettings
 
-public:
 	virtual UPCGExParamFactoryBase* CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const override;
 
 #if WITH_EDITOR

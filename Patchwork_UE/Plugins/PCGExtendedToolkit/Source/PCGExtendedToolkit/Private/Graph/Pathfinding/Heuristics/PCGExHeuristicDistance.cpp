@@ -4,22 +4,23 @@
 
 #include "Graph/Pathfinding/Heuristics/PCGExHeuristicDistance.h"
 
-void UPCGExHeuristicDistance::PrepareForCluster(const PCGExCluster::FCluster* InCluster)
+
+void UPCGExHeuristicDistance::PrepareForCluster(const TSharedPtr<const PCGExCluster::FCluster>& InCluster)
 {
 	Super::PrepareForCluster(InCluster);
-	MaxDistSquared = FVector::DistSquared(InCluster->Bounds.Min, InCluster->Bounds.Max);
+	BoundsSize = InCluster->Bounds.GetSize().Length();
 }
 
-UPCGExHeuristicOperation* UPCGHeuristicsFactoryShortestDistance::CreateOperation() const
+UPCGExHeuristicOperation* UPCGExHeuristicsFactoryShortestDistance::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExHeuristicDistance, NewOperation)
+	UPCGExHeuristicDistance* NewOperation = InContext->ManagedObjects->New<UPCGExHeuristicDistance>();
 	PCGEX_FORWARD_HEURISTIC_CONFIG
 	return NewOperation;
 }
 
 UPCGExParamFactoryBase* UPCGExHeuristicsShortestDistanceProviderSettings::CreateFactory(FPCGExContext* InContext, UPCGExParamFactoryBase* InFactory) const
 {
-	UPCGHeuristicsFactoryShortestDistance* NewFactory = NewObject<UPCGHeuristicsFactoryShortestDistance>();
+	UPCGExHeuristicsFactoryShortestDistance* NewFactory = InContext->ManagedObjects->New<UPCGExHeuristicsFactoryShortestDistance>();
 	PCGEX_FORWARD_HEURISTIC_FACTORY
 	return Super::CreateFactory(InContext, NewFactory);
 }
@@ -27,7 +28,7 @@ UPCGExParamFactoryBase* UPCGExHeuristicsShortestDistanceProviderSettings::Create
 #if WITH_EDITOR
 FString UPCGExHeuristicsShortestDistanceProviderSettings::GetDisplayName() const
 {
-	return GetDefaultNodeName().ToString()
+	return GetDefaultNodeTitle().ToString().Replace(TEXT("PCGEx | Heuristics"), TEXT("HX"))
 		+ TEXT(" @ ")
 		+ FString::Printf(TEXT("%.3f"), (static_cast<int32>(1000 * Config.WeightFactor) / 1000.0));
 }

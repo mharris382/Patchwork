@@ -5,16 +5,35 @@
 
 #include "CoreMinimal.h"
 #include "PCGExPathfinding.h"
+#include "PCGExPathfindingNavmesh.h"
 #include "PCGExPointsProcessor.h"
+#include "AI/Navigation/NavigationTypes.h"
+
 #include "Paths/SubPoints/DataBlending/PCGExSubPointsBlendInterpolate.h"
+
 #include "PCGExPathfindingPlotNavmesh.generated.h"
+
+namespace PCGExPathfinding
+{
+	struct /*PCGEXTENDEDTOOLKIT_API*/ FPlotPoint
+	{
+		int32 PlotIndex;
+		FVector Position;
+		PCGMetadataEntryKey MetadataEntryKey = -1;
+
+		FPlotPoint(const int32 InPlotIndex, const FVector& InPosition, const PCGMetadataEntryKey InMetadataEntryKey)
+			: PlotIndex(InPlotIndex), Position(InPosition), MetadataEntryKey(InMetadataEntryKey)
+		{
+		}
+	};
+}
 
 /**
  * Use PCGExTransform to manipulate the outgoing attributes instead of handling everything here.
  * This way we can multi-thread the various calculations instead of mixing everything along with async/game thread collision
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExPathfindingPlotNavmeshSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPathfindingPlotNavmeshSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -24,52 +43,50 @@ public:
 	PCGEX_NODE_INFOS(PCGExPathfindingPlotNavmesh, "Pathfinding : Plot Navmesh", "Extract a single paths from navmesh, going through each seed points in order.");
 	virtual FLinearColor GetNodeTitleColor() const override { return GetDefault<UPCGExGlobalSettings>()->NodeColorPathfinding; }
 #endif
-
+	virtual TArray<FPCGPinProperties> InputPinProperties() const override;
 	virtual TArray<FPCGPinProperties> OutputPinProperties() const override;
 
 protected:
 	virtual FPCGElementPtr CreateElement() const override;
 	//~End UPCGSettings
 
+public:
 	//~Begin UObject interface
 #if WITH_EDITOR
 
-public:
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif
 	//~End UObject interface
 
 	//~Begin UPCGExPointsProcessorSettings
-public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 
-	virtual FName GetMainInputLabel() const override { return PCGExGraph::SourcePlotsLabel; }
-	virtual FName GetMainOutputLabel() const override { return PCGExGraph::OutputPathsLabel; }
+	virtual FName GetMainInputPin() const override { return PCGExGraph::SourcePlotsLabel; }
+	virtual FName GetMainOutputPin() const override { return PCGExGraph::OutputPathsLabel; }
 	//~End UPCGExPointsProcessorSettings
 
 
-public:
 	/** Add seed point at the beginning of the path */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bAddSeedToPath = true;
 
 	/** Add goal point at the end of the path */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bAddGoalToPath = true;
 
 	/** Insert plot points inside the path */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bAddPlotPointsToPath = false;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
-	bool bClosedPath = false;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	bool bClosedLoop = false;
 
 	/** Whether the pathfinding requires a naviguable end location. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bRequireNavigableEndLocation = true;
 
 	/** Fuse sub points by distance. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(ClampMin=0.001))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable, ClampMin=0.001))
 	double FuseDistance = 10;
 
 	/** Controls how path points blend from seed to goal. */
@@ -84,17 +101,15 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
 	FNavAgentProperties NavAgentProperties;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
 	bool bOmitCompletePathOnFailedPlot = false;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExPathfindingPlotNavmeshContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathfindingPlotNavmeshContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExPathfindingPlotNavmeshElement;
 
-	virtual ~FPCGExPathfindingPlotNavmeshContext() override;
-
-	PCGExData::FPointIOCollection* OutputPaths = nullptr;
+	TSharedPtr<PCGExData::FPointIOCollection> OutputPaths;
 	UPCGExSubPointsBlendOperation* Blending = nullptr;
 
 	bool bAddSeedToPath = true;
@@ -108,7 +123,7 @@ struct PCGEXTENDEDTOOLKIT_API FPCGExPathfindingPlotNavmeshContext final : public
 	double FuseDistance = 10;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPathfindingPlotNavmeshElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathfindingPlotNavmeshElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -122,14 +137,14 @@ protected:
 };
 
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPlotNavmeshTask final : public PCGExMT::FPCGExTask
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPlotNavmeshTask final : public PCGExMT::FPCGExTask
 {
 public:
-	FPCGExPlotNavmeshTask(
-		PCGExData::FPointIO* InPointIO) :
+	explicit FPCGExPlotNavmeshTask(
+		const TSharedPtr<PCGExData::FPointIO>& InPointIO) :
 		FPCGExTask(InPointIO)
 	{
 	}
 
-	virtual bool ExecuteTask() override;
+	virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override;
 };

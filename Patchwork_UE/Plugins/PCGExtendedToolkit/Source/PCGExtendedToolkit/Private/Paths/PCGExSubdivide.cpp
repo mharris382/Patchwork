@@ -3,19 +3,24 @@
 
 #include "Paths/PCGExSubdivide.h"
 
+#include "PCGExRandom.h"
+
+
 #include "Paths/SubPoints/DataBlending/PCGExSubPointsBlendInterpolate.h"
 
 #define LOCTEXT_NAMESPACE "PCGExSubdivideElement"
 #define PCGEX_NAMESPACE Subdivide
 
-PCGExData::EInit UPCGExSubdivideSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NewOutput; }
+PCGExData::EIOInit UPCGExSubdivideSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::New; }
+
+TArray<FPCGPinProperties> UPCGExSubdivideSettings::InputPinProperties() const
+{
+	TArray<FPCGPinProperties> PinProperties = Super::InputPinProperties();
+	PCGEX_PIN_OPERATION_OVERRIDES(PCGExDataBlending::SourceOverridesBlendingOps)
+	return PinProperties;
+}
 
 PCGEX_INITIALIZE_ELEMENT(Subdivide)
-
-FPCGExSubdivideContext::~FPCGExSubdivideContext()
-{
-	PCGEX_TERMINATE_ASYNC
-}
 
 bool FPCGExSubdivideElement::Boot(FPCGExContext* InContext) const
 {
@@ -23,10 +28,10 @@ bool FPCGExSubdivideElement::Boot(FPCGExContext* InContext) const
 
 	PCGEX_CONTEXT_AND_SETTINGS(Subdivide)
 
-	if (Settings->bFlagSubPoints) { PCGEX_VALIDATE_NAME(Settings->FlagName) }
+	if (Settings->bFlagSubPoints) { PCGEX_VALIDATE_NAME(Settings->SubPointFlagName) }
+	if (Settings->bWriteAlpha) { PCGEX_VALIDATE_NAME(Settings->AlphaAttributeName) }
 
-	PCGEX_OPERATION_BIND(Blending, UPCGExSubPointsBlendInterpolate)
-	Context->Blending->bClosedPath = Settings->bClosedPath;
+	PCGEX_OPERATION_BIND(Blending, UPCGExSubPointsBlendOperation, PCGExDataBlending::SourceOverridesBlendingOps)
 
 	return true;
 }
@@ -37,154 +42,222 @@ bool FPCGExSubdivideElement::ExecuteInternal(FPCGContext* InContext) const
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExSubdivideElement::Execute);
 
 	PCGEX_CONTEXT(Subdivide)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
-		bool bInvalidInputs = false;
+		PCGEX_ON_INVALILD_INPUTS(FTEXT("Some inputs have less than 2 points and won't be processed."))
 
 		if (!Context->StartBatchProcessingPoints<PCGExPointsMT::TBatch<PCGExSubdivide::FProcessor>>(
-			[&](PCGExData::FPointIO* Entry)
+			[&](const TSharedPtr<PCGExData::FPointIO>& Entry)
 			{
 				if (Entry->GetNum() < 2)
 				{
-					bInvalidInputs = true;
-					Entry->InitializeOutput(PCGExData::EInit::Forward);
+					bHasInvalidInputs = true;
+					Entry->InitializeOutput(PCGExData::EIOInit::Forward);
 					return false;
 				}
 				return true;
 			},
-			[&](PCGExPointsMT::TBatch<PCGExSubdivide::FProcessor>* NewBatch)
+			[&](const TSharedPtr<PCGExPointsMT::TBatch<PCGExSubdivide::FProcessor>>& NewBatch)
 			{
 				NewBatch->PrimaryOperation = Context->Blending;
 				NewBatch->bRequiresWriteStep = true;
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Error, GraphAndLog, FTEXT("Could not find any paths to subdivide."));
-			return true;
-		}
-
-		if (bInvalidInputs)
-		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Some inputs have less than 2 points and won't be processed."));
+			return Context->CancelExecution(TEXT("Could not find any paths to subdivide."));
 		}
 	}
 
-	if (!Context->ProcessPointsBatch()) { return false; }
+	PCGEX_POINTS_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->MainPoints->OutputToContext();
+	Context->MainPoints->StageOutputs();
 
 	return Context->TryComplete();
 }
 
 namespace PCGExSubdivide
 {
-	FProcessor::~FProcessor()
-	{
-		Milestones.Empty();
-		MilestonesMetrics.Empty();
-		FlagAttribute = nullptr;
-	}
-
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExSubdivide::Process);
-		if (!FPointsProcessor::Process(AsyncManager)) { return false; }
 
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(Subdivide)
+		// Must be set before process for filters
+		PointDataFacade->bSupportsScopedGet = Context->bScopedAttributeGet;
 
-		PointIO->InitializeOutput(PCGExData::EInit::NewOutput);
+		if (!FPointsProcessor::Process(InAsyncManager)) { return false; }
 
-		if (Settings->bFlagSubPoints)
+
+		bClosedLoop = Context->ClosedLoop.IsClosedLoop(PointDataFacade->Source);
+
+		if (Settings->AmountInput == EPCGExInputValueType::Attribute)
 		{
-			FlagAttribute = PointIO->GetOut()->Metadata->FindOrCreateAttribute(Settings->FlagName, false, false);
+			AmountGetter = PointDataFacade->GetScopedBroadcaster<double>(Settings->SubdivisionAmount);
+			if (!AmountGetter)
+			{
+				PCGE_LOG_C(Error, GraphAndLog, ExecutionContext, FTEXT("Subdivision Amount attribute is invalid."));
+				return false;
+			}
+		}
+		else
+		{
+			ConstantAmount = Settings->SubdivideMethod == EPCGExSubdivideMode::Count ? Settings->Count : Settings->Distance;
 		}
 
+		bUseCount = Settings->SubdivideMethod == EPCGExSubdivideMode::Count;
+
 		Blending = Cast<UPCGExSubPointsBlendOperation>(PrimaryOperation);
+		Blending->bClosedLoop = bClosedLoop;
 
-		const int32 LastIndex = PointIO->GetNum() - 1;
+		PCGEx::InitArray(Subdivisions, PointDataFacade->GetNum());
 
-		for (int i = 0; i < LastIndex; i++) { ProcessPathPoint(i, i + 1); }
-		if (Settings->bClosedPath) { ProcessPathPoint(LastIndex, 0); }
+		StartParallelLoopForPoints(PCGExData::ESource::In);
 
 		return true;
 	}
 
-	void FProcessor::ProcessPathPoint(const int32 FromIndex, const int32 ToIndex)
+	void FProcessor::PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count)
 	{
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(Subdivide)
+		PointDataFacade->Fetch(StartIndex, Count);
+		FilterScope(StartIndex, Count);
+	}
 
-		int32 LastAddIndex;
+	void FProcessor::ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 LoopCount)
+	{
+		const TSharedRef<PCGExData::FPointIO>& PointIO = PointDataFacade->Source;
 
-		const FPCGPoint& StartPoint = PointIO->GetInPoint(FromIndex);
-		const FPCGPoint* EndPtr = PointIO->TryGetInPoint(ToIndex);
-		PointIO->CopyPoint(StartPoint, LastAddIndex);
+		FSubdivision& Sub = Subdivisions[Index];
 
-		Milestones.Add(LastAddIndex);
-		PCGExMath::FPathMetricsSquared& Metrics = MilestonesMetrics.Emplace_GetRef();
+		Sub.NumSubdivisions = 0;
+		Sub.InStart = Index;
+		Sub.InEnd = Index + 1 == PointIO->GetNum() ? 0 : Index + 1;
+		Sub.Start = PointIO->GetInPoint(Index).Transform.GetLocation();
+		Sub.End = PointIO->GetInPoint(Index + 1 == PointIO->GetNum() ? 0 : Index + 1).Transform.GetLocation();
+		Sub.Dist = FVector::Distance(Sub.Start, Sub.End);
 
-		if (!EndPtr) { return; }
+		if (!PointFilterCache[Index]) { return; }
 
-		const FVector StartPos = StartPoint.Transform.GetLocation();
-		const FVector EndPos = EndPtr->Transform.GetLocation();
-		const FVector Dir = (EndPos - StartPos).GetSafeNormal();
+		const double Amount = AmountGetter ? AmountGetter->Read(Index) : ConstantAmount;
 
-		const double Distance = FVector::Distance(StartPos, EndPos);
-		const int32 NumSubdivisions = Settings->SubdivideMethod == EPCGExSubdivideMode::Count ?
-			                              Settings->Count :
-			                              FMath::Floor(FVector::Distance(StartPos, EndPos) / Settings->Distance);
-
-		const double StepSize = Distance / static_cast<double>(NumSubdivisions);
-		const double StartOffset = (Distance - StepSize * NumSubdivisions) * 0.5;
-
-		Metrics.Reset(StartPos);
-		TArray<FPCGPoint>& MutablePoints = PointIO->GetOut()->GetMutablePoints();
-		MutablePoints.Reserve(MutablePoints.Num() + NumSubdivisions);
-
-		for (int i = 0; i < NumSubdivisions; i++)
+		if (bUseCount)
 		{
-			FPCGPoint& NewPoint = PointIO->CopyPoint(StartPoint, LastAddIndex);
-			FVector SubLocation = StartPos + Dir * (StartOffset + i * StepSize);
-			NewPoint.Transform.SetLocation(SubLocation);
-			Metrics.Add(SubLocation);
-
-			if (FlagAttribute) { FlagAttribute->SetValue(NewPoint.MetadataEntry, true); }
+			Sub.NumSubdivisions = FMath::Floor(Amount);
+			Sub.StepSize = Sub.Dist / static_cast<double>(Sub.NumSubdivisions + 1);
+			Sub.StartOffset = Sub.StepSize;
+		}
+		else
+		{
+			Sub.NumSubdivisions = FMath::Floor(Sub.Dist / Amount);
+			Sub.StepSize = Amount;
+			Sub.StartOffset = (Sub.Dist - (Sub.StepSize * (Sub.NumSubdivisions - 1))) * 0.5;
 		}
 
-		Metrics.Add(EndPos);
+		Sub.Dir = (Sub.End - Sub.Start).GetSafeNormal();
 	}
 
 	void FProcessor::ProcessSingleRangeIteration(const int32 Iteration, const int32 LoopIdx, const int32 LoopCount)
 	{
-		if (!Milestones.IsValidIndex(Iteration + 1)) { return; } // Ignore last point
+		const FSubdivision& Sub = Subdivisions[Iteration];
 
-		const int32 StartIndex = Milestones[Iteration];
-		const int32 EndIndex = Milestones[Iteration + 1];
-		const int32 Range = EndIndex - StartIndex;
+		if (FlagWriter) { FlagWriter->GetMutable(Sub.OutStart) = false; }
+		if (AlphaWriter) { AlphaWriter->GetMutable(Sub.OutStart) = Settings->DefaultAlpha; }
 
-		if (Range <= 0) { return; } // No sub points
+		if (Sub.NumSubdivisions == 0) { return; }
 
-		TArray<FPCGPoint>& MutablePoints = PointIO->GetOut()->GetMutablePoints();
-		TArrayView<FPCGPoint> View = MakeArrayView(MutablePoints.GetData() + StartIndex, Range);
+		TArray<FPCGPoint>& MutablePoints = PointDataFacade->GetOut()->GetMutablePoints();
 
-		Blending->ProcessSubPoints(
-			PointIO->GetOutPointRef(StartIndex), PointIO->GetOutPointRef(EndIndex),
-			View, MilestonesMetrics[Iteration]);
+		PCGExPaths::FPathMetrics Metrics = PCGExPaths::FPathMetrics(Sub.Start);
 
-		for (FPCGPoint& Pt : View) { PCGExMath::RandomizeSeed(Pt); }
+		const int32 SubStart = Sub.OutStart + 1;
+		for (int s = 0; s < Sub.NumSubdivisions; s++)
+		{
+			const int32 Index = SubStart + s;
+
+			if (FlagWriter) { FlagWriter->GetMutable(Index) = true; }
+
+			const FVector Position = Sub.Start + Sub.Dir * (Sub.StartOffset + s * Sub.StepSize);
+			MutablePoints[Index].Transform.SetLocation(Position);
+			const double Alpha = Metrics.Add(Position) / Sub.Dist;
+			if (AlphaWriter) { AlphaWriter->GetMutable(SubStart + s) = Alpha; }
+		}
+
+		Metrics.Add(Sub.End);
+
+		const TArrayView<FPCGPoint> View = MakeArrayView(MutablePoints.GetData() + SubStart, Sub.NumSubdivisions);
+		Blending->ProcessSubPoints(PointDataFacade->Source->GetOutPointRef(Sub.OutStart), PointDataFacade->Source->GetOutPointRef(Sub.OutEnd), View, Metrics, SubStart);
+
+		for (FPCGPoint& Pt : View) { Pt.Seed = PCGExRandom::ComputeSeed(Pt); }
 	}
 
 	void FProcessor::CompleteWork()
 	{
-		Blending->PrepareForData(PointDataFacade, PointDataFacade, PCGExData::ESource::Out);
-		StartParallelLoopForRange(Milestones.Num());
+		const TSharedRef<PCGExData::FPointIO>& PointIO = PointDataFacade->Source;
+
+		int32 NumPoints = 0;
+
+		if (!bClosedLoop) { Subdivisions[Subdivisions.Num() - 1].NumSubdivisions = 0; }
+
+		for (FSubdivision& Sub : Subdivisions)
+		{
+			Sub.OutStart = NumPoints++;
+			NumPoints += Sub.NumSubdivisions;
+			Sub.OutEnd = NumPoints;
+		}
+
+		if (bClosedLoop) { Subdivisions[Subdivisions.Num() - 1].OutEnd = 0; }
+		else { Subdivisions[Subdivisions.Num() - 1].NumSubdivisions = 0; }
+
+		if (NumPoints == PointIO->GetNum())
+		{
+			PointIO->InitializeOutput(PCGExData::EIOInit::Duplicate);
+			if (Settings->bFlagSubPoints) { WriteMark(PointIO, Settings->SubPointFlagName, false); }
+			if (Settings->bWriteAlpha) { WriteMark(PointIO, Settings->AlphaAttributeName, Settings->DefaultAlpha); }
+			return;
+		}
+
+		PointIO->InitializeOutput(PCGExData::EIOInit::New);
+		TArray<FPCGPoint>& MutablePoints = PointIO->GetOut()->GetMutablePoints();
+		const TArray<FPCGPoint>& InPoints = PointIO->GetIn()->GetPoints();
+		UPCGMetadata* Metadata = PointIO->GetOut()->Metadata;
+
+		PCGEx::InitArray(MutablePoints, NumPoints);
+
+		for (int i = 0; i < Subdivisions.Num(); i++)
+		{
+			const FSubdivision& Sub = Subdivisions[i];
+			const FPCGPoint& OriginalPoint = InPoints[i];
+			MutablePoints[Sub.OutStart] = OriginalPoint;
+			Metadata->InitializeOnSet(MutablePoints[Sub.OutStart].MetadataEntry);
+
+			if (Sub.NumSubdivisions == 0) { continue; }
+
+			const int32 SubStart = Sub.OutStart + 1;
+
+			for (int s = 0; s < Sub.NumSubdivisions; s++)
+			{
+				(MutablePoints[SubStart + s] = OriginalPoint).MetadataEntry = PCGInvalidEntryKey;
+				Metadata->InitializeOnSet(MutablePoints[SubStart + s].MetadataEntry);
+			}
+		}
+
+		if (Settings->bFlagSubPoints)
+		{
+			FlagWriter = PointDataFacade->GetWritable<bool>(Settings->SubPointFlagName, false, true, PCGExData::EBufferInit::New);
+			ProtectedAttributes.Add(Settings->SubPointFlagName);
+		}
+
+		if (Settings->bWriteAlpha)
+		{
+			AlphaWriter = PointDataFacade->GetWritable<double>(Settings->AlphaAttributeName, Settings->DefaultAlpha, true, PCGExData::EBufferInit::New);
+			ProtectedAttributes.Add(Settings->AlphaAttributeName);
+		}
+
+		Blending->PrepareForData(PointDataFacade, PointDataFacade, PCGExData::ESource::Out, &ProtectedAttributes);
+		StartParallelLoopForRange(Subdivisions.Num());
 	}
 
 	void FProcessor::Write()
 	{
-		PointDataFacade->Write(AsyncManagerPtr, true);
+		PointDataFacade->Write(AsyncManager);
 	}
 }
 

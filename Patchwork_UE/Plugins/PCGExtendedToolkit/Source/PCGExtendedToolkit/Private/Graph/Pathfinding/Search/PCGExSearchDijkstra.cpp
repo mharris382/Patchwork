@@ -4,6 +4,7 @@
 
 #include "Graph/Pathfinding/Search/PCGExSearchDijkstra.h"
 
+
 #include "Graph/PCGExCluster.h"
 #include "Graph/Pathfinding/Heuristics/PCGExHeuristics.h"
 #include "Graph/Pathfinding/Search/PCGExScoredQueue.h"
@@ -13,131 +14,84 @@ void UPCGExSearchDijkstra::CopySettingsFrom(const UPCGExOperation* Other)
 	Super::CopySettingsFrom(Other);
 }
 
-bool UPCGExSearchDijkstra::FindPath(
-	const FVector& SeedPosition,
-	const FPCGExNodeSelectionDetails* SeedSelection,
-	const FVector& GoalPosition,
-	const FPCGExNodeSelectionDetails* GoalSelection,
-	PCGExHeuristics::THeuristicsHandler* Heuristics,
-	TArray<int32>& OutPath, PCGExHeuristics::FLocalFeedbackHandler* LocalFeedback) const
+bool UPCGExSearchDijkstra::ResolveQuery(
+	const TSharedPtr<PCGExPathfinding::FPathQuery>& InQuery,
+	const TSharedPtr<PCGExHeuristics::FHeuristicsHandler>& Heuristics,
+	const TSharedPtr<PCGExHeuristics::FLocalFeedbackHandler>& LocalFeedback) const
 {
 	const TArray<PCGExCluster::FNode>& NodesRef = *Cluster->Nodes;
-	const TArray<PCGExGraph::FIndexedEdge>& EdgesRef = *Cluster->Edges;
+	const TArray<PCGExGraph::FEdge>& EdgesRef = *Cluster->Edges;
 
-	const PCGExCluster::FNode& SeedNode = NodesRef[Cluster->FindClosestNode(SeedPosition, SeedSelection->PickingMethod, 1)];
-	if (!SeedSelection->WithinDistance(Cluster->GetPos(SeedNode), SeedPosition)) { return false; }
-
-	const PCGExCluster::FNode& GoalNode = NodesRef[Cluster->FindClosestNode(GoalPosition, GoalSelection->PickingMethod, 1)];
-	if (!GoalSelection->WithinDistance(Cluster->GetPos(GoalNode), GoalPosition)) { return false; }
-
-	if (SeedNode.NodeIndex == GoalNode.NodeIndex) { return false; }
+	const PCGExCluster::FNode& SeedNode = *InQuery->Seed.Node;
+	const PCGExCluster::FNode& GoalNode = *InQuery->Goal.Node;
 
 	const int32 NumNodes = NodesRef.Num();
 
 	TRACE_CPUPROFILER_EVENT_SCOPE(UPCGExSearchDijkstra::FindPath);
 
-
 	// Basic Dijkstra implementation
 
-	TSet<int32> Visited;
-	TArray<uint64> Previous;
+	TBitArray<> Visited;
+	Visited.Init(false, NumNodes);
 
-	PCGExSearch::TScoredQueue* ScoredQueue = new PCGExSearch::TScoredQueue(
-		NumNodes, SeedNode.NodeIndex, 0);
+	const TSharedPtr<PCGEx::FHashLookup> TravelStack = PCGEx::NewHashLookup<PCGEx::FArrayHashLookup>(PCGEx::NH64(-1, -1), NumNodes);
 
-	Previous.SetNumUninitialized(NumNodes);
-	for (int i = 0; i < NumNodes; i++)
-	{
-		ScoredQueue->Scores[i] = -1;
-		Previous[i] = PCGEx::NH64(-1, -1);
-	}
+	const TUniquePtr<PCGExSearch::FScoredQueue> ScoredQueue = MakeUnique<PCGExSearch::FScoredQueue>(
+		NumNodes, SeedNode.Index, 0);
 
-	ScoredQueue->Scores[SeedNode.NodeIndex] = 0;
+	const PCGExHeuristics::FLocalFeedbackHandler* Feedback = LocalFeedback.Get();
 
+	int32 VisitedNum = 0;
 	int32 CurrentNodeIndex;
 	double CurrentScore;
-	bool bAlreadyVisited;
 	while (ScoredQueue->Dequeue(CurrentNodeIndex, CurrentScore))
 	{
-		if (CurrentNodeIndex == GoalNode.NodeIndex) { break; } // Exit early
+		if (CurrentNodeIndex == GoalNode.Index && bEarlyExit) { break; } // Exit early
 
 		const PCGExCluster::FNode& Current = NodesRef[CurrentNodeIndex];
 
-		Visited.Add(CurrentNodeIndex, &bAlreadyVisited);
-		if (bAlreadyVisited) { continue; }
+		if (Visited[CurrentNodeIndex]) { continue; }
+		Visited[CurrentNodeIndex] = true;
+		VisitedNum++;
 
-		for (const uint64 AdjacencyHash : Current.Adjacency)
+		for (const PCGExGraph::FLink Lk : Current.Links)
 		{
-			uint32 NeighborIndex;
-			uint32 EdgeIndex;
-			PCGEx::H64(AdjacencyHash, NeighborIndex, EdgeIndex);
+			const uint32 NeighborIndex = Lk.Node;
+			const uint32 EdgeIndex = Lk.Edge;
 
-			if (Visited.Contains(NeighborIndex)) { continue; }
+			if (Visited[NeighborIndex]) { continue; }
 
 			const PCGExCluster::FNode& AdjacentNode = NodesRef[NeighborIndex];
-			const PCGExGraph::FIndexedEdge& Edge = EdgesRef[EdgeIndex];
+			const PCGExGraph::FEdge& Edge = EdgesRef[EdgeIndex];
 
-			const double AltScore = CurrentScore + Heuristics->GetEdgeScore(Current, AdjacentNode, Edge, SeedNode, GoalNode, LocalFeedback);
-			const double PreviousScore = ScoredQueue->Scores[NeighborIndex];
-			if (PreviousScore != -1 && AltScore >= PreviousScore) { continue; }
-
-			ScoredQueue->Enqueue(NeighborIndex, AltScore);
-			Previous[NeighborIndex] = PCGEx::NH64(CurrentNodeIndex, EdgeIndex);
+			const double AltScore = CurrentScore + Heuristics->GetEdgeScore(Current, AdjacentNode, Edge, SeedNode, GoalNode, Feedback, TravelStack);
+			if (ScoredQueue->Enqueue(NeighborIndex, AltScore))
+			{
+				TravelStack->Set(NeighborIndex, PCGEx::NH64(CurrentNodeIndex, EdgeIndex));
+			}
 		}
 	}
 
-	TArray<int32> Path;
+	bool bSuccess = false;
 
-	uint64 PathHash = Previous[GoalNode.NodeIndex];
-	int32 PathNodeIndex;
-	int32 PathEdgeIndex;
-	PCGEx::NH64(PathHash, PathNodeIndex, PathEdgeIndex);
+	int32 PathNodeIndex = PCGEx::NH64A(TravelStack->Get(GoalNode.Index));
+	int32 PathEdgeIndex = -1;
 
 	if (PathNodeIndex != -1)
 	{
-		Path.Add(GoalNode.NodeIndex);
-		if (PathNodeIndex != -1)
-		{
-			const PCGExGraph::FIndexedEdge& E = EdgesRef[PathEdgeIndex];
-			Heuristics->FeedbackScore(GoalNode, E);
-			if (LocalFeedback) { Heuristics->FeedbackScore(GoalNode, E); }
-		}
-		else
-		{
-			Heuristics->FeedbackPointScore(GoalNode);
-			if (LocalFeedback) { Heuristics->FeedbackPointScore(GoalNode); }
-		}
-	}
+		bSuccess = true;
+		//InQuery->Reserve(VisitedNum);
 
-	while (PathNodeIndex != -1)
-	{
-		const int32 CurrentIndex = PathNodeIndex;
-		Path.Add(CurrentIndex);
+		InQuery->AddPathNode(GoalNode.Index);
 
-		PathHash = Previous[PathNodeIndex];
-		PCGEx::NH64(PathHash, PathNodeIndex, PathEdgeIndex);
+		while (PathNodeIndex != -1)
+		{
+			const int32 CurrentIndex = PathNodeIndex;
+			PCGEx::NH64(TravelStack->Get(CurrentIndex), PathNodeIndex, PathEdgeIndex);
 
-		const PCGExCluster::FNode& N = NodesRef[CurrentIndex];
-		if (PathNodeIndex != -1)
-		{
-			const PCGExGraph::FIndexedEdge& E = EdgesRef[PathEdgeIndex];
-			Heuristics->FeedbackScore(N, E);
-			if (LocalFeedback) { Heuristics->FeedbackScore(N, E); }
-		}
-		else
-		{
-			Heuristics->FeedbackPointScore(N);
-			if (LocalFeedback) { Heuristics->FeedbackPointScore(N); }
+			InQuery->AddPathNode(CurrentIndex, PathEdgeIndex);
 		}
 	}
 
-
-	Algo::Reverse(Path);
-	OutPath.Append(Path);
-
-	Visited.Empty();
-	Previous.Empty();
-	PCGEX_DELETE(ScoredQueue)
-
-	return true;
+	return bSuccess;
 }

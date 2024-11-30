@@ -3,6 +3,7 @@
 
 #include "Graph/Edges/Properties/PCGExVtxPropertyFactoryProvider.h"
 
+
 #define LOCTEXT_NAMESPACE "PCGExWriteVtxProperties"
 #define PCGEX_NAMESPACE PCGExWriteVtxProperties
 
@@ -15,26 +16,18 @@ void UPCGExVtxPropertyOperation::CopySettingsFrom(const UPCGExOperation* Other)
 	}
 }
 
-bool UPCGExVtxPropertyOperation::PrepareForVtx(const FPCGContext* InContext, PCGExData::FFacade* InVtxDataFacade)
+bool UPCGExVtxPropertyOperation::PrepareForCluster(const FPCGContext* InContext, TSharedPtr<PCGExCluster::FCluster> InCluster, const TSharedPtr<PCGExData::FFacade>& InVtxDataFacade, const TSharedPtr<PCGExData::FFacade>& InEdgeDataFacade)
 {
 	PrimaryDataFacade = InVtxDataFacade;
-	SecondaryDataFacade = nullptr;
-	return true;
-}
-
-void UPCGExVtxPropertyOperation::ClusterReserve(const int32 NumClusters)
-{
-}
-
-void UPCGExVtxPropertyOperation::PrepareForCluster(const FPCGContext* InContext, const int32 ClusterIdx, PCGExCluster::FCluster* Cluster, PCGExData::FFacade* VtxDataFacade, PCGExData::FFacade* EdgeDataFacade)
-{
-	PrimaryDataFacade = VtxDataFacade;
-	SecondaryDataFacade = EdgeDataFacade;
+	SecondaryDataFacade = InEdgeDataFacade;
+	Cluster = InCluster.Get();
+	bIsValidOperation = true;
+	return bIsValidOperation;
 }
 
 bool UPCGExVtxPropertyOperation::IsOperationValid() { return bIsValidOperation; }
 
-void UPCGExVtxPropertyOperation::ProcessNode(const int32 ClusterIdx, const PCGExCluster::FCluster* Cluster, PCGExCluster::FNode& Node, const TArray<PCGExCluster::FAdjacencyData>& Adjacency)
+void UPCGExVtxPropertyOperation::ProcessNode(PCGExCluster::FNode& Node, const TArray<PCGExCluster::FAdjacencyData>& Adjacency)
 {
 }
 
@@ -44,9 +37,9 @@ void UPCGExVtxPropertyOperation::Cleanup() { Super::Cleanup(); }
 FString UPCGExVtxPropertyProviderSettings::GetDisplayName() const { return TEXT(""); }
 #endif
 
-UPCGExVtxPropertyOperation* UPCGExVtxPropertyFactoryBase::CreateOperation() const
+UPCGExVtxPropertyOperation* UPCGExVtxPropertyFactoryBase::CreateOperation(FPCGExContext* InContext) const
 {
-	PCGEX_NEW_TRANSIENT(UPCGExVtxPropertyOperation, NewOperation)
+	UPCGExVtxPropertyOperation* NewOperation = InContext->ManagedObjects->New<UPCGExVtxPropertyOperation>();
 	return NewOperation;
 }
 

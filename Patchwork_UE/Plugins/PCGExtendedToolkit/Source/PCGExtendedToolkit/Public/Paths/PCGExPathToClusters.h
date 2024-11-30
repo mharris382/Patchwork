@@ -5,26 +5,19 @@
 
 #include "CoreMinimal.h"
 #include "PCGExPathProcessor.h"
+
+
+#include "Graph/PCGExUnionHelpers.h"
+
 #include "Graph/PCGExGraph.h"
 #include "Graph/PCGExIntersections.h"
 #include "PCGExPathToClusters.generated.h"
 
-namespace PCGExGraph
-{
-	struct FCompoundProcessor;
-}
-
-namespace PCGExDataBlending
-{
-	class FMetadataBlender;
-	class FCompoundBlender;
-}
-
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
-class PCGEXTENDEDTOOLKIT_API UPCGExPathToClustersSettings : public UPCGExPathProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPathToClustersSettings : public UPCGExPathProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -42,17 +35,12 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
-	virtual FName GetMainOutputLabel() const override { return PCGExGraph::OutputVerticesLabel; }
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	virtual FName GetMainOutputPin() const override { return PCGExGraph::OutputVerticesLabel; }
 	//~End UPCGExPointsProcessorSettings
 
-public:
-	/** Consider paths to be closed -- processing will wrap between first and last points. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	bool bClosedPath = false;
-
 	/** Whether to fuse paths into a single graph or not. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, NoEditInline))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
 	bool bFusePaths = true;
 
 	/** Fuse Settings */
@@ -108,23 +96,21 @@ public:
 	FPCGExGraphBuilderDetails GraphBuilderDetails;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExPathToClustersContext final : public FPCGExPathProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathToClustersContext final : FPCGExPathProcessorContext
 {
 	friend class FPCGExPathToClustersElement;
 
-	virtual ~FPCGExPathToClustersContext() override;
-
-	TArray<PCGExData::FFacade*> PathsFacades;
+	TArray<TSharedRef<PCGExData::FFacade>> PathsFacades;
 
 	FPCGExCarryOverDetails CarryOverDetails;
 
-	PCGExGraph::FCompoundGraph* CompoundGraph = nullptr;
-	PCGExData::FFacade* CompoundFacade = nullptr;
+	TSharedPtr<PCGExGraph::FUnionGraph> UnionGraph;
+	TSharedPtr<PCGExData::FFacade> UnionDataFacade;
 
-	PCGExGraph::FCompoundProcessor* CompoundProcessor = nullptr;
+	TSharedPtr<PCGExGraph::FUnionProcessor> UnionProcessor;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPathToClustersElement final : public FPCGExPathProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPathToClustersElement final : public FPCGExPathProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -141,19 +127,21 @@ namespace PCGExPathToClusters
 {
 #pragma region NonFusing
 
-	class FNonFusingProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FNonFusingProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExPathToClustersContext, UPCGExPathToClustersSettings>
 	{
-	public:
-		PCGExGraph::FGraphBuilder* GraphBuilder = nullptr;
+		bool bClosedLoop = false;
 
-		explicit FNonFusingProcessor(PCGExData::FPointIO* InPoints)
-			: FPointsProcessor(InPoints)
+	public:
+		TSharedPtr<PCGExGraph::FGraphBuilder> GraphBuilder;
+
+		explicit FNonFusingProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade)
+			: TPointsProcessor(InPointDataFacade)
 		{
 		}
 
 		virtual ~FNonFusingProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void CompleteWork() override;
 	};
 
@@ -162,9 +150,9 @@ namespace PCGExPathToClusters
 #pragma region Fusing
 	// Fusing processors
 
-	class FFusingProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FFusingProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExPathToClustersContext, UPCGExPathToClustersSettings>
 	{
-		bool bClosedPath = false;
+		bool bClosedLoop = false;
 
 		int32 IOIndex = 0;
 		int32 LastIndex = 0;
@@ -172,16 +160,16 @@ namespace PCGExPathToClusters
 		const TArray<FPCGPoint>* InPoints = nullptr;
 
 	public:
-		PCGExGraph::FCompoundGraph* CompoundGraph = nullptr;
+		TSharedPtr<PCGExGraph::FUnionGraph> UnionGraph;
 
-		explicit FFusingProcessor(PCGExData::FPointIO* InPoints)
-			: FPointsProcessor(InPoints)
+		explicit FFusingProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade)
+			: TPointsProcessor(InPointDataFacade)
 		{
 		}
 
 		virtual ~FFusingProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 LoopCount) override;
 	};
 

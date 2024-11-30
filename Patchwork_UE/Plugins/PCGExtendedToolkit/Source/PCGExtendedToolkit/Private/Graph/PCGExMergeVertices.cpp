@@ -8,41 +8,33 @@
 
 #pragma region UPCGSettings interface
 
-PCGExData::EInit UPCGExMergeVerticesSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NoOutput; }
-PCGExData::EInit UPCGExMergeVerticesSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExMergeVerticesSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::None; }
+PCGExData::EIOInit UPCGExMergeVerticesSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 #pragma endregion
 
-FPCGExMergeVerticesContext::~FPCGExMergeVerticesContext()
+void FPCGExMergeVerticesContext::ClusterProcessing_InitialProcessingDone()
 {
-	PCGEX_TERMINATE_ASYNC
-
-	PCGEX_DELETE(CompositeIO)
-	PCGEX_DELETE(Merger)
-}
-
-void FPCGExMergeVerticesContext::OnBatchesProcessingDone()
-{
-	Merger = new FPCGExPointIOMerger(CompositeIO);
+	Merger = MakeShared<FPCGExPointIOMerger>(CompositeIODataFacade.ToSharedRef());
 
 	int32 StartOffset = 0;
 
 	for (int i = 0; i < Batches.Num(); i++)
 	{
-		PCGExClusterMT::TBatch<PCGExMergeVertices::FProcessor>* Batch = static_cast<PCGExClusterMT::TBatch<PCGExMergeVertices::FProcessor>*>(Batches[i]);
-		Merger->Append(Batch->VtxIO);
+		PCGExClusterMT::TBatch<PCGExMergeVertices::FProcessor>* Batch = static_cast<PCGExClusterMT::TBatch<PCGExMergeVertices::FProcessor>*>(Batches[i].Get());
+		Merger->Append(Batch->VtxDataFacade->Source);
 
-		for (PCGExMergeVertices::FProcessor* Processor : Batch->Processors) { Processor->StartIndexOffset = StartOffset; }
-		StartOffset += Batch->VtxIO->GetNum();
+		for (const TSharedRef<PCGExMergeVertices::FProcessor>& Processor : Batch->Processors) { Processor->StartIndexOffset = StartOffset; }
+		StartOffset += Batch->VtxDataFacade->GetNum();
 	}
 
 	Merger->Merge(GetAsyncManager(), &CarryOverDetails);
-	PCGExGraph::SetClusterVtx(CompositeIO, OutVtxId); // After merge since it forwards IDs
+	PCGExGraph::SetClusterVtx(CompositeIODataFacade->Source, OutVtxId); // After merge since it forwards IDs
 }
 
-void FPCGExMergeVerticesContext::OnBatchesCompletingWorkDone()
+void FPCGExMergeVerticesContext::ClusterProcessing_WorkComplete()
 {
-	Merger->Write(GetAsyncManager());
+	CompositeIODataFacade->Write(GetAsyncManager());
 }
 
 PCGEX_INITIALIZE_ELEMENT(MergeVertices)
@@ -56,9 +48,9 @@ bool FPCGExMergeVerticesElement::Boot(FPCGExContext* InContext) const
 	PCGEX_FWD(CarryOverDetails)
 	Context->CarryOverDetails.Init();
 
-	Context->CompositeIO = new PCGExData::FPointIO(Context);
-	Context->CompositeIO->SetInfos(0, PCGExGraph::OutputVerticesLabel);
-	Context->CompositeIO->InitializeOutput<UPCGExClusterNodesData>(PCGExData::EInit::NewOutput);
+	TSharedPtr<PCGExData::FPointIO> CompositeIO = PCGExData::NewPointIO(Context, PCGExGraph::OutputVerticesLabel, 0);
+	Context->CompositeIODataFacade = MakeShared<PCGExData::FFacade>(CompositeIO.ToSharedRef());
+	CompositeIO->InitializeOutput<UPCGExClusterNodesData>(PCGExData::EIOInit::New);
 
 	return true;
 }
@@ -68,65 +60,59 @@ bool FPCGExMergeVerticesElement::ExecuteInternal(FPCGContext* InContext) const
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExMergeVerticesElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(MergeVertices)
-
-	if (Context->IsSetup())
+	PCGEX_EXECUTION_CHECK
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context)) { return true; }
-
 		if (!Context->StartProcessingClusters<PCGExClusterMT::TBatch<PCGExMergeVertices::FProcessor>>(
-			[](PCGExData::FPointIOTaggedEntries* Entries) { return true; },
-			[&](PCGExClusterMT::TBatch<PCGExMergeVertices::FProcessor>* NewBatch)
+			[](const TSharedPtr<PCGExData::FPointIOTaggedEntries>& Entries) { return true; },
+			[&](const TSharedPtr<PCGExClusterMT::TBatch<PCGExMergeVertices::FProcessor>>& NewBatch)
 			{
 				NewBatch->bRequiresWriteStep = true;
-			},
-			PCGExMT::State_Done))
+			}))
 		{
-			PCGE_LOG(Warning, GraphAndLog, FTEXT("Could not build any clusters."));
-			return true;
+			return Context->CancelExecution(TEXT("Could not build any clusters."));
 		}
 	}
 
-	if (!Context->ProcessClusters()) { return false; }
+	PCGEX_CLUSTER_BATCH_PROCESSING(PCGEx::State_Done)
 
-	Context->CompositeIO->OutputToContext();
-	Context->MainEdges->OutputToContext();
+	Context->CompositeIODataFacade->Source->StageOutput();
+	Context->MainEdges->StageOutputs();
 
 	return Context->TryComplete();
 }
 
 namespace PCGExMergeVertices
 {
-	PCGExCluster::FCluster* FProcessor::HandleCachedCluster(const PCGExCluster::FCluster* InClusterRef)
+	TSharedPtr<PCGExCluster::FCluster> FProcessor::HandleCachedCluster(const TSharedRef<PCGExCluster::FCluster>& InClusterRef)
 	{
 		// Create a heavy copy we'll update and forward
-		return new PCGExCluster::FCluster(InClusterRef, VtxIO, EdgesIO, true, true, true);
+		return MakeShared<PCGExCluster::FCluster>(
+			InClusterRef, VtxDataFacade->Source, EdgeDataFacade->Source, NodeIndexLookup,
+			true, true, true);
 	}
 
 	FProcessor::~FProcessor()
 	{
 	}
 
-	bool FProcessor::Process(PCGExMT::FTaskManager* AsyncManager)
+	bool FProcessor::Process(TSharedPtr<PCGExMT::FTaskManager> InAsyncManager)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(PCGExMergeVertices::Process);
-		PCGEX_TYPED_CONTEXT_AND_SETTINGS(MergeVertices)
 
-		LocalTypedContext = TypedContext;
-
-		if (!FClusterProcessor::Process(AsyncManager)) { return false; }
+		if (!FClusterProcessor::Process(InAsyncManager)) { return false; }
 
 		Cluster->WillModifyVtxIO();
 
-		bDeleteCluster = false;
 		return true;
 	}
 
-	void FProcessor::ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node)
+	void FProcessor::ProcessSingleNode(const int32 Index, PCGExCluster::FNode& Node, const int32 LoopIdx, const int32 Count)
 	{
 		Node.PointIndex += StartIndexOffset;
 	}
 
-	void FProcessor::ProcessSingleEdge(PCGExGraph::FIndexedEdge& Edge)
+	void FProcessor::ProcessSingleEdge(const int32 EdgeIndex, PCGExGraph::FEdge& Edge, const int32 LoopIdx, const int32 Count)
 	{
 		Edge.Start += StartIndexOffset;
 		Edge.End += StartIndexOffset;
@@ -134,26 +120,19 @@ namespace PCGExMergeVertices
 
 	void FProcessor::CompleteWork()
 	{
-		TMap<int32, int32>* OffsetLookup = new TMap<int32, int32>();
-		OffsetLookup->Reserve(Cluster->NodeIndexLookup->Num());
-		for (const TPair<int32, int32>& Lookup : (*Cluster->NodeIndexLookup)) { OffsetLookup->Add(Lookup.Key + StartIndexOffset, Lookup.Value); }
-
-		PCGEX_DELETE(Cluster->NodeIndexLookup)
-		Cluster->NodeIndexLookup = OffsetLookup;
-
 		StartParallelLoopForNodes();
 		StartParallelLoopForEdges();
 	}
 
 	void FProcessor::Write()
 	{
-		Cluster->VtxIO = LocalTypedContext->CompositeIO;
-		Cluster->NumRawVtx = LocalTypedContext->CompositeIO->GetNum(PCGExData::ESource::Out);
+		Cluster->VtxIO = Context->CompositeIODataFacade->Source;
+		Cluster->NumRawVtx = Context->CompositeIODataFacade->Source->GetNum(PCGExData::ESource::Out);
 
-		EdgesIO->InitializeOutput(PCGExData::EInit::DuplicateInput);
-		PCGExGraph::MarkClusterEdges(EdgesIO, LocalTypedContext->OutVtxId);
+		EdgeDataFacade->Source->InitializeOutput(PCGExData::EIOInit::Duplicate);
+		PCGExGraph::MarkClusterEdges(EdgeDataFacade->Source, Context->OutVtxId);
 
-		ForwardCluster(true);
+		ForwardCluster();
 	}
 }
 

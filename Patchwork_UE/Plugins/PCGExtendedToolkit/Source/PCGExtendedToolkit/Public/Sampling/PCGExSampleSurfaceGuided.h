@@ -4,24 +4,36 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PCGExActorSelector.h"
 #include "PCGExGlobalSettings.h"
 
 #include "PCGExPointsProcessor.h"
 #include "PCGExSampling.h"
 #include "Data/PCGExDataForward.h"
 
+
 #include "PCGExSampleSurfaceGuided.generated.h"
 
+#if PCGEX_ENGINE_VERSION <= 503
 #define PCGEX_FOREACH_FIELD_SURFACEGUIDED(MACRO)\
-MACRO(Success, bool)\
-MACRO(Location, FVector)\
-MACRO(LookAt, FVector)\
-MACRO(Normal, FVector)\
-MACRO(Distance, double)\
-MACRO(IsInside, bool)\
-MACRO(ActorReference, FString)\
-MACRO(PhysMat, FString)
+MACRO(Success, bool, false)\
+MACRO(Location, FVector, FVector::ZeroVector)\
+MACRO(LookAt, FVector, FVector::OneVector)\
+MACRO(Normal, FVector, FVector::OneVector)\
+MACRO(Distance, double, 0)\
+MACRO(IsInside, bool, false)\
+MACRO(ActorReference, FString, TEXT(""))\
+MACRO(PhysMat, FString, TEXT(""))
+#else
+#define PCGEX_FOREACH_FIELD_SURFACEGUIDED(MACRO)\
+MACRO(Success, bool, false)\
+MACRO(Location, FVector, FVector::ZeroVector)\
+MACRO(LookAt, FVector, FVector::OneVector)\
+MACRO(Normal, FVector, FVector::OneVector)\
+MACRO(Distance, double, 0)\
+MACRO(IsInside, bool, false)\
+MACRO(ActorReference, FSoftObjectPath, FSoftObjectPath())\
+MACRO(PhysMat, FSoftObjectPath, FSoftObjectPath())
+#endif
 
 class UPCGExFilterFactoryBase;
 
@@ -29,15 +41,15 @@ class UPCGExFilterFactoryBase;
  * Use PCGExSampling to manipulate the outgoing attributes instead of handling everything here.
  * This way we can multi-thread the various calculations instead of mixing everything along with async/game thread collision
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
-class PCGEXTENDEDTOOLKIT_API UPCGExSampleSurfaceGuidedSettings : public UPCGExPointsProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Misc")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExSampleSurfaceGuidedSettings : public UPCGExPointsProcessorSettings
 {
 	GENERATED_BODY()
 
 public:
 	//~Begin UPCGSettings
 #if WITH_EDITOR
-	PCGEX_NODE_INFOS(SampleSurfaceGuided, "Sample : Guided Trace", "Find the collision point on the nearest collidable surface in a given direction.");
+	PCGEX_NODE_INFOS(SampleSurfaceGuided, "Sample : Line Trace", "Find the collision point on the nearest collidable surface in a given direction.");
 	virtual FLinearColor GetNodeTitleColor() const override { return GetDefault<UPCGExGlobalSettings>()->NodeColorSampler; }
 #endif
 
@@ -48,12 +60,11 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	virtual int32 GetPreferredChunkSize() const override;
-	virtual FName GetPointFilterLabel() const override;
+	PCGEX_NODE_POINT_FILTER(PCGExPointFilter::SourcePointFiltersLabel, "Filters", PCGExFactories::PointFilters, false)
 	//~End UPCGExPointsProcessorSettings
 
-public:
 	/** Surface source */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable))
 	EPCGExSurfaceSource SurfaceSource = EPCGExSurfaceSource::ActorReferences;
@@ -79,51 +90,51 @@ public:
 	FPCGAttributePropertyInputSelector LocalMaxDistance;
 
 	/** Write whether the sampling was sucessful or not to a boolean attribute. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_NotOverridable, InlineEditConditionToggle))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(PCG_NotOverridable, InlineEditConditionToggle))
 	bool bWriteSuccess = false;
 
 	/** Name of the 'boolean' attribute to write sampling success to.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, EditCondition="bWriteSuccess"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(DisplayName="Success", PCG_Overridable, EditCondition="bWriteSuccess"))
 	FName SuccessAttributeName = FName("bSamplingSuccess");
 
 	/** Write the sample location. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, InlineEditConditionToggle))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(PCG_Overridable, InlineEditConditionToggle))
 	bool bWriteLocation = false;
 
 	/** Name of the 'vector' attribute to write sampled Location to.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, EditCondition="bWriteLocation"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(DisplayName="Location", PCG_Overridable, EditCondition="bWriteLocation"))
 	FName LocationAttributeName = FName("TracedLocation");
 
 	/** Write the sample "look at" direction from the point. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, InlineEditConditionToggle))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(PCG_Overridable, InlineEditConditionToggle))
 	bool bWriteLookAt = false;
 
 	/** Name of the 'vector' attribute to write sampled LookAt to.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, EditCondition="bWriteLookAt"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(DisplayName="LookAt", PCG_Overridable, EditCondition="bWriteLookAt"))
 	FName LookAtAttributeName = FName("TracedLookAt");
 
 	/** Write the sampled normal. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, InlineEditConditionToggle))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(PCG_Overridable, InlineEditConditionToggle))
 	bool bWriteNormal = false;
 
 	/** Name of the 'vector' attribute to write sampled Normal to.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, EditCondition="bWriteNormal"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(DisplayName="Normal", PCG_Overridable, EditCondition="bWriteNormal"))
 	FName NormalAttributeName = FName("TracedNormal");
 
 	/** Write the sampled distance. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, InlineEditConditionToggle))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(PCG_Overridable, InlineEditConditionToggle))
 	bool bWriteDistance = false;
 
 	/** Name of the 'double' attribute to write sampled distance to.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, EditCondition="bWriteDistance"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(DisplayName="Distance", PCG_Overridable, EditCondition="bWriteDistance"))
 	FName DistanceAttributeName = FName("TracedDistance");
 
 	/** Write the inside/outside status of the point. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, InlineEditConditionToggle))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(PCG_Overridable, InlineEditConditionToggle))
 	bool bWriteIsInside = false;
 
 	/** Name of the 'bool' attribute to write sampled point inside or outside the collision.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output", meta=(PCG_Overridable, EditCondition="bWriteIsInside"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Outputs", meta=(DisplayName="IsInside", PCG_Overridable, EditCondition="bWriteIsInside"))
 	FName IsInsideAttributeName = FName("IsInside");
 
 	/** Write the actor reference hit. */
@@ -131,7 +142,7 @@ public:
 	bool bWriteActorReference = false;
 
 	/** Name of the 'string' attribute to write actor reference to.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output (Actor Data)", meta=(PCG_Overridable, EditCondition="bWriteActorReference"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output (Actor Data)", meta=(DisplayName="ActorReference", PCG_Overridable, EditCondition="bWriteActorReference"))
 	FName ActorReferenceAttributeName = FName("ActorReference");
 
 	/** Write the actor reference hit. */
@@ -139,60 +150,56 @@ public:
 	bool bWritePhysMat = false;
 
 	/** Name of the 'string' attribute to write actor reference to.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output (Actor Data)", meta=(PCG_Overridable, EditCondition="bWritePhysMat"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output (Actor Data)", meta=(DisplayName="PhysMat", PCG_Overridable, EditCondition="bWritePhysMat"))
 	FName PhysMatAttributeName = FName("PhysMat");
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Collision", meta=(PCG_Overridable))
-	bool bTraceComplex = false;
-
-	/** Maximum distance to check for closest surface.*/
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Collision", meta=(PCG_Overridable))
-	EPCGExCollisionFilterType CollisionType = EPCGExCollisionFilterType::Channel;
-
-	/** Collision channel to check against */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Collision", meta=(PCG_Overridable, EditCondition="CollisionType==EPCGExCollisionFilterType::Channel", EditConditionHides, Bitmask, BitmaskEnum="/Script/Engine.ECollisionChannel"))
-	TEnumAsByte<ECollisionChannel> CollisionChannel = ECC_WorldDynamic;
-
-	/** Collision object type to check against */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Collision", meta=(PCG_Overridable, EditCondition="CollisionType==EPCGExCollisionFilterType::ObjectType", EditConditionHides, Bitmask, BitmaskEnum="/Script/Engine.EObjectTypeQuery"))
-	int32 CollisionObjectType = ObjectTypeQuery1;
-
-	/** Collision profile to check against */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Collision", meta=(PCG_Overridable, EditCondition="CollisionType==EPCGExCollisionFilterType::Profile", EditConditionHides))
-	FName CollisionProfileName = NAME_None;
-
-	/** Ignore this graph' PCG content */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Collision", meta=(PCG_Overridable))
-	bool bIgnoreSelf = true;
-
-	/** Ignore a procedural selection of actors */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Collision", meta=(PCG_Overridable, InlineEditConditionToggle))
-	bool bIgnoreActors = false;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Collision", meta=(PCG_Overridable, EditCondition="bIgnoreActors"))
-	FPCGExActorSelectorSettings IgnoredActorSelector;
-
 	/** Which actor reference points attributes to forward on points. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging & Forwarding", meta=(EditCondition="SurfaceSource==EPCGExSurfaceSource::ActorReferences", EditConditionHides))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Output (Actor Data)", meta=(EditCondition="SurfaceSource==EPCGExSurfaceSource::ActorReferences", EditConditionHides))
 	FPCGExForwardDetails AttributesForwarding;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_Overridable))
+	FPCGExCollisionDetails CollisionSettings;
+
+	//
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, InlineEditConditionToggle))
+	bool bTagIfHasSuccesses = false;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, EditCondition="bTagIfHasSuccesses"))
+	FString HasSuccessesTag = TEXT("HasSuccesses");
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, InlineEditConditionToggle))
+	bool bTagIfHasNoSuccesses = false;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Settings|Tagging", meta=(PCG_Overridable, EditCondition="bTagIfHasNoSuccesses"))
+	FString HasNoSuccessesTag = TEXT("HasNoSuccesses");
+
+	//
+
+	/** If enabled, mark filtered out points as "failed". Otherwise, just skip the processing altogether. Only uncheck this if you want to ensure existing attribute values are preserved. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable), AdvancedDisplay)
+	bool bProcessFilteredOutAsFails = true;
+
+	/** If enabled, points that failed to sample anything will be pruned. */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta=(PCG_NotOverridable), AdvancedDisplay)
+	bool bPruneFailedSamples = false;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExSampleSurfaceGuidedContext final : public FPCGExPointsProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSampleSurfaceGuidedContext final : FPCGExPointsProcessorContext
 {
 	friend class FPCGExSampleSurfaceGuidedElement;
 
-	virtual ~FPCGExSampleSurfaceGuidedContext() override;
-
-	PCGExData::FFacade* ActorReferenceDataFacade = nullptr;
+	TSharedPtr<PCGExData::FFacade> ActorReferenceDataFacade;
 
 	bool bUseInclude = false;
 	TMap<AActor*, int32> IncludedActors;
-	TArray<AActor*> IgnoredActors;
+
+	FPCGExCollisionDetails CollisionSettings;
 
 	PCGEX_FOREACH_FIELD_SURFACEGUIDED(PCGEX_OUTPUT_DECL_TOGGLE)
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExSampleSurfaceGuidedElement final : public FPCGExPointsProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExSampleSurfaceGuidedElement final : public FPCGExPointsProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -207,29 +214,32 @@ protected:
 
 namespace PCGExSampleSurfaceGuided
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExSampleSurfaceGuidedContext, UPCGExSampleSurfaceGuidedSettings>
 	{
-		PCGExData::FDataForwardHandler* SurfacesForward = nullptr;
+		TArray<int8> SampleState;
+		
+		TSharedPtr<PCGExData::FDataForwardHandler> SurfacesForward;
 
-		PCGExData::FCache<double>* MaxDistanceGetter = nullptr;
-		PCGExData::FCache<FVector>* DirectionGetter = nullptr;
-
-		FPCGExSampleSurfaceGuidedContext* LocalTypedContext = nullptr;
-		const UPCGExSampleSurfaceGuidedSettings* LocalSettings = nullptr;
+		TSharedPtr<PCGExData::TBuffer<double>> MaxDistanceGetter;
+		TSharedPtr<PCGExData::TBuffer<FVector>> DirectionGetter;
 
 		PCGEX_FOREACH_FIELD_SURFACEGUIDED(PCGEX_OUTPUT_DECL)
 
+		int8 bAnySuccess = 0;
+		UWorld* World = nullptr;
+
 	public:
-		explicit FProcessor(PCGExData::FPointIO* InPoints):
-			FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade):
+			TPointsProcessor(InPointDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		virtual void PrepareSingleLoopScopeForPoints(const uint32 StartIndex, const int32 Count) override;
 		virtual void ProcessSinglePoint(const int32 Index, FPCGPoint& Point, const int32 LoopIdx, const int32 Count) override;
 		virtual void CompleteWork() override;
+		virtual void Write() override;
 	};
 }

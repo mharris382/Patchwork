@@ -4,11 +4,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+
 #include "Graph/PCGExEdgesProcessor.h"
 #include "PCGExPackClusters.generated.h"
 
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Edges")
-class PCGEXTENDEDTOOLKIT_API UPCGExPackClustersSettings : public UPCGExEdgesProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Clusters")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExPackClustersSettings : public UPCGExEdgesProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -27,10 +29,10 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
 	//~End UPCGExPointsProcessorSettings
 
-	virtual PCGExData::EInit GetEdgeOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetEdgeOutputInitMode() const override;
 
 	/** Meta filter settings. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, DisplayName="Carry Over Settings"))
@@ -40,18 +42,16 @@ private:
 	friend class FPCGExPackClustersElement;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExPackClustersContext final : public FPCGExEdgesProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPackClustersContext final : FPCGExEdgesProcessorContext
 {
 	friend class FPCGExPackClustersElement;
 	friend class FPCGExCreateBridgeTask;
 
-	virtual ~FPCGExPackClustersContext() override;
-
-	PCGExData::FPointIOCollection* PackedClusters = nullptr;
+	TSharedPtr<PCGExData::FPointIOCollection> PackedClusters;
 	FPCGExCarryOverDetails CarryOverDetails;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPackClustersElement final : public FPCGExEdgesProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPackClustersElement final : public FPCGExEdgesProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -64,11 +64,11 @@ protected:
 	virtual bool ExecuteInternal(FPCGContext* InContext) const override;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExPackClusterTask final : public PCGExMT::FPCGExTask
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExPackClusterTask final : public PCGExMT::FPCGExTask
 {
 public:
-	FPCGExPackClusterTask(PCGExData::FPointIO* InPointIO,
-	                      PCGExData::FPointIO* InInEdges,
+	FPCGExPackClusterTask(const TSharedPtr<PCGExData::FPointIO>& InPointIO,
+	                      const TSharedPtr<PCGExData::FPointIO>& InInEdges,
 	                      const TMap<uint32, int32>& InEndpointsLookup) :
 		FPCGExTask(InPointIO),
 		InEdges(InInEdges),
@@ -76,13 +76,8 @@ public:
 	{
 	}
 
-	virtual ~FPCGExPackClusterTask() override
-	{
-		EndpointsLookup.Empty();
-	}
-
-	PCGExData::FPointIO* InEdges = nullptr;
+	TSharedPtr<PCGExData::FPointIO> InEdges;
 	TMap<uint32, int32> EndpointsLookup;
 
-	virtual bool ExecuteTask() override;
+	virtual bool ExecuteTask(const TSharedPtr<PCGExMT::FTaskManager>& AsyncManager) override;
 };

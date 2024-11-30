@@ -15,16 +15,10 @@ TArray<FPCGPinProperties> UPCGExBoundsClustersIntersectionSettings::InputPinProp
 	return PinProperties;
 }
 
-PCGExData::EInit UPCGExBoundsClustersIntersectionSettings::GetMainOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
-PCGExData::EInit UPCGExBoundsClustersIntersectionSettings::GetEdgeOutputInitMode() const { return PCGExData::EInit::DuplicateInput; }
+PCGExData::EIOInit UPCGExBoundsClustersIntersectionSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
+PCGExData::EIOInit UPCGExBoundsClustersIntersectionSettings::GetEdgeOutputInitMode() const { return PCGExData::EIOInit::Duplicate; }
 
 #pragma endregion
-
-FPCGExBoundsClustersIntersectionContext::~FPCGExBoundsClustersIntersectionContext()
-{
-	PCGEX_TERMINATE_ASYNC
-	PCGEX_DELETE_FACADE_AND_SOURCE(BoundsDataFacade)
-}
 
 PCGEX_INITIALIZE_ELEMENT(BoundsClustersIntersection)
 
@@ -34,10 +28,8 @@ bool FPCGExBoundsClustersIntersectionElement::Boot(FPCGExContext* InContext) con
 
 	PCGEX_CONTEXT_AND_SETTINGS(BoundsClustersIntersection)
 
-	PCGExData::FPointIO* BoundsIO = PCGExData::TryGetSingleInput(InContext, PCGEx::SourceBoundsLabel, true);
-	if (!BoundsIO) { return false; }
-
-	Context->BoundsDataFacade = new PCGExData::FFacade(BoundsIO);
+	Context->BoundsDataFacade = PCGExData::TryGetSingleFacade(InContext, PCGEx::SourceBoundsLabel, true);
+	if (!Context->BoundsDataFacade) { return false; }
 
 	return true;
 }
@@ -47,6 +39,7 @@ bool FPCGExBoundsClustersIntersectionElement::ExecuteInternal(FPCGContext* InCon
 	TRACE_CPUPROFILER_EVENT_SCOPE(FPCGExBoundsClustersIntersectionElement::Execute);
 
 	PCGEX_CONTEXT_AND_SETTINGS(BoundsClustersIntersection)
+	PCGEX_EXECUTION_CHECK
 
 	PCGE_LOG(Error, GraphAndLog, FTEXT("NOT IMPLEMENTED YET"));
 	return true;
@@ -55,10 +48,10 @@ bool FPCGExBoundsClustersIntersectionElement::ExecuteInternal(FPCGContext* InCon
 	if (Context->IsSetup())
 	{
 		if (!Boot(Context)) { return true; }
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
+		Context->SetState(PCGEx::State_ReadyForNextPoints);
 	}
 
-	if (Context->IsState(PCGExMT::State_ReadyForNextPoints))
+	if (Context->IsState(PCGEx::State_ReadyForNextPoints))
 	{
 		if (!Context->AdvancePointsIO()) { Context->Done(); }
 		else
@@ -82,7 +75,7 @@ bool FPCGExBoundsClustersIntersectionElement::ExecuteInternal(FPCGContext* InCon
 	{
 		PCGEX_ASYNC_WAIT
 
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
+		Context->SetState(PCGEx::State_ReadyForNextPoints);
 	}
 
 	if (Context->IsDone())

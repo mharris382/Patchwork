@@ -6,12 +6,7 @@
 #define LOCTEXT_NAMESPACE "PCGExDrawAttributes"
 #define PCGEX_NAMESPACE DrawAttributes
 
-PCGExData::EInit UPCGExDrawAttributesSettings::GetMainOutputInitMode() const { return PCGExData::EInit::Forward; }
-
-FPCGExDrawAttributesContext::~FPCGExDrawAttributesContext()
-{
-	DebugList.Empty();
-}
+PCGExData::EIOInit UPCGExDrawAttributesSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::Forward; }
 
 #if WITH_EDITOR
 FString FPCGExAttributeDebugDrawConfig::GetDisplayName() const
@@ -21,30 +16,35 @@ FString FPCGExAttributeDebugDrawConfig::GetDisplayName() const
 }
 #endif
 
-bool FPCGExAttributeDebugDraw::Bind(const PCGExData::FPointIO* PointIO)
+bool FPCGExAttributeDebugDraw::Bind(const TSharedRef<PCGExData::FPointIO>& PointIO)
 {
 	bValid = false;
+
+	VectorGetter.Reset();
+	IndexGetter.Reset();
+	SingleGetter.Reset();
+	SizeGetter.Reset();
+	ColorGetter.Reset();
+	TextGetter.Reset();
 
 	switch (Config->ExpressedAs)
 	{
 	case EPCGExDebugExpression::Direction:
 	case EPCGExDebugExpression::Point:
 	case EPCGExDebugExpression::ConnectionToPosition:
-		VectorGetter.Capture(*Config);
-		bValid = VectorGetter.Grab(PointIO);
+		VectorGetter = MakeShared<PCGEx::TAttributeBroadcaster<FVector>>();
+		bValid = VectorGetter->Prepare(Config->Selector, PointIO);
+		if (bValid) { VectorGetter->Grab(); }
 		break;
 	case EPCGExDebugExpression::ConnectionToIndex:
-		IndexGetter.Capture(*Config);
-		bValid = IndexGetter.Grab(PointIO);
-		break;
-	case EPCGExDebugExpression::Label:
-		//TextGetter.Capture(*Config);
-		//bValid = TextGetter.Grab(PointIO);
-		bValid = false;
+		IndexGetter = MakeShared<PCGEx::TAttributeBroadcaster<int32>>();
+		bValid = IndexGetter->Prepare(Config->Selector, PointIO);
+		if (bValid) { IndexGetter->Grab(); }
 		break;
 	case EPCGExDebugExpression::Boolean:
-		SingleGetter.Capture(*Config);
-		bValid = SingleGetter.Grab(PointIO);
+		SingleGetter = MakeShared<PCGEx::TAttributeBroadcaster<double>>();
+		bValid = SingleGetter->Prepare(Config->Selector, PointIO);
+		if (bValid) { SingleGetter->Grab(); }
 		break;
 	default: ;
 	}
@@ -53,28 +53,17 @@ bool FPCGExAttributeDebugDraw::Bind(const PCGExData::FPointIO* PointIO)
 	{
 		if (Config->bSizeFromAttribute)
 		{
-			SizeGetter.Capture(Config->LocalSizeAttribute);
-			SizeGetter.Grab(PointIO);
-		}
-		else
-		{
-			SizeGetter.bValid = false;
+			SizeGetter = MakeShared<PCGEx::TAttributeBroadcaster<double>>();
+			SizeGetter->Prepare(Config->Selector, PointIO);
+			SizeGetter->Grab();
 		}
 
 		if (Config->bColorFromAttribute)
 		{
-			ColorGetter.Capture(Config->LocalColorAttribute);
-			ColorGetter.Grab(PointIO);
+			ColorGetter = MakeShared<PCGEx::TAttributeBroadcaster<FVector>>();
+			ColorGetter->Prepare(Config->LocalColorAttribute, PointIO);
+			ColorGetter->Grab();
 		}
-		else
-		{
-			ColorGetter.bValid = false;
-		}
-	}
-	else
-	{
-		SizeGetter.bValid = false;
-		ColorGetter.bValid = false;
 	}
 
 	return bValid;
@@ -83,15 +72,15 @@ bool FPCGExAttributeDebugDraw::Bind(const PCGExData::FPointIO* PointIO)
 double FPCGExAttributeDebugDraw::GetSize(const PCGExData::FPointRef& Point) const
 {
 	double Value = Config->Size;
-	if (Config->bSizeFromAttribute && SizeGetter.bValid) { Value = SizeGetter[Point.Index] * Config->Size; }
+	if (Config->bSizeFromAttribute && SizeGetter) { Value = SizeGetter->Values[Point.Index] * Config->Size; }
 	return Value;
 }
 
 FColor FPCGExAttributeDebugDraw::GetColor(const PCGExData::FPointRef& Point) const
 {
-	if (Config->bColorFromAttribute && ColorGetter.bValid)
+	if (ColorGetter)
 	{
-		const FVector Value = ColorGetter[Point.Index];
+		const FVector Value = ColorGetter->Values[Point.Index];
 		return Config->bColorIsLinear ? FColor(Value.X * 255.0f, Value.Y * 255.0f, Value.Z * 255.0f) : FColor(Value.X, Value.Y, Value.Z);
 	}
 	return Config->Color;
@@ -99,12 +88,12 @@ FColor FPCGExAttributeDebugDraw::GetColor(const PCGExData::FPointRef& Point) con
 
 double FPCGExAttributeDebugDraw::GetSingle(const PCGExData::FPointRef& Point) const
 {
-	return SingleGetter[Point.Index];
+	return SingleGetter->Values[Point.Index];
 }
 
 FVector FPCGExAttributeDebugDraw::GetVector(const PCGExData::FPointRef& Point) const
 {
-	FVector OutVector = VectorGetter[Point.Index];
+	FVector OutVector = VectorGetter->Values[Point.Index];
 	if (Config->ExpressedAs == EPCGExDebugExpression::Direction && Config->bNormalizeBeforeSizing) { OutVector.Normalize(); }
 	return OutVector;
 }
@@ -112,7 +101,7 @@ FVector FPCGExAttributeDebugDraw::GetVector(const PCGExData::FPointRef& Point) c
 FVector FPCGExAttributeDebugDraw::GetIndexedPosition(const PCGExData::FPointRef& Point, const UPCGPointData* PointData) const
 {
 	const TArray<FPCGPoint> Points = PointData->GetPoints();
-	const int64 OutIndex = IndexGetter.SafeGet(Point.Index, -1);
+	const int64 OutIndex = IndexGetter->Values[Point.Index];
 	if (OutIndex != -1) { return Points[PCGExMath::Tile<int32>(OutIndex, 0, Points.Num() - 1)].Transform.GetLocation(); }
 	return Point.Point->Transform.GetLocation();
 }
@@ -132,9 +121,6 @@ void FPCGExAttributeDebugDraw::Draw(const UWorld* World, const FVector& Start, c
 		break;
 	case EPCGExDebugExpression::Point:
 		DrawPoint(World, Start, Point);
-		break;
-	case EPCGExDebugExpression::Label:
-		DrawLabel(World, Start, Point);
 		break;
 	case EPCGExDebugExpression::Boolean:
 		DrawSingle(World, Start, Point);
@@ -171,14 +157,6 @@ void FPCGExAttributeDebugDraw::DrawSingle(const UWorld* World, const FVector& St
 #if WITH_EDITOR
 	const double End = GetSingle(Point);
 	DrawDebugPoint(World, Start, GetSize(Point), End <= 0 ? Config->SecondaryColor : GetColor(Point), true, -1, Config->DepthPriority);
-#endif
-}
-
-void FPCGExAttributeDebugDraw::DrawLabel(const UWorld* World, const FVector& Start, const PCGExData::FPointRef& Point) const
-{
-#if WITH_EDITOR
-	const FString Text = TextGetter.SafeGet(Point.Index, ".");
-	DrawDebugString(World, Start, *Text, nullptr, GetColor(Point), 99999.0f, false, GetSize(Point));
 #endif
 }
 
@@ -258,42 +236,37 @@ bool FPCGExDrawAttributesElement::ExecuteInternal(FPCGContext* InContext) const
 
 #if WITH_EDITOR
 
-	if (Context->IsSetup())
+	PCGEX_ON_INITIAL_EXECUTION
 	{
-		if (!Boot(Context))
-		{
-			DisabledPassThroughData(Context);
-			return true;
-		}
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
-		return false;
+		Context->SetState(PCGEx::State_ReadyForNextPoints);
 	}
 
-	if (Context->IsState(PCGExMT::State_ReadyForNextPoints))
+	PCGEX_ON_STATE(PCGEx::State_ReadyForNextPoints)
 	{
 		if (!Context->AdvancePointsIO()) { Context->Done(); }
-		else { Context->SetState(PCGExMT::State_ProcessingPoints); }
+		else { Context->SetState(PCGEx::State_ProcessingPoints); }
 	}
 
-	if (Context->IsState(PCGExMT::State_ProcessingPoints))
+	PCGEX_ON_STATE(PCGEx::State_ProcessingPoints)
 	{
-		Context->CurrentIO->CreateInKeys();
-		for (FPCGExAttributeDebugDraw& DebugInfos : Context->DebugList) { DebugInfos.Bind(Context->CurrentIO); }
+		for (FPCGExAttributeDebugDraw& DebugInfos : Context->DebugList) { DebugInfos.Bind(Context->CurrentIO.ToSharedRef()); }
+
+		const UWorld* World = Context->SourceComponent->GetWorld();
 
 		for (int PointIndex = 0; PointIndex < Context->CurrentIO->GetNum(); PointIndex++)
 		{
 			const PCGExData::FPointRef& Point = Context->CurrentIO->GetInPointRef(PointIndex);
 			const FVector Start = Point.Point->Transform.GetLocation();
-			DrawDebugPoint(Context->World, Start, 1.0f, FColor::White, true);
+			DrawDebugPoint(World, Start, 1.0f, FColor::White, true);
 			for (FPCGExAttributeDebugDraw& Drawer : Context->DebugList)
 			{
 				if (!Drawer.bValid) { continue; }
-				Drawer.Draw(Context->World, Start, Point, Context->CurrentIO->GetIn());
+				Drawer.Draw(World, Start, Point, Context->CurrentIO->GetIn());
 			}
 		}
 
 		Context->CurrentIO->CleanupKeys();
-		Context->SetState(PCGExMT::State_ReadyForNextPoints);
+		Context->SetState(PCGEx::State_ReadyForNextPoints);
 	}
 
 	if (Context->IsDone()) { DisabledPassThroughData(Context); }

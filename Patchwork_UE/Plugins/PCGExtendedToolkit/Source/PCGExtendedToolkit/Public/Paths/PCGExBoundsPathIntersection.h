@@ -4,19 +4,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PCGExDataDetails.h"
 #include "PCGExPathProcessor.h"
 
 #include "PCGExPointsProcessor.h"
-#include "Geometry/PCGExGeo.h"
+
 #include "Graph/PCGExIntersections.h"
 #include "PCGExBoundsPathIntersection.generated.h"
 
 /**
  * 
  */
-UCLASS(BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
-class PCGEXTENDEDTOOLKIT_API UPCGExBoundsPathIntersectionSettings : public UPCGExPathProcessorSettings
+UCLASS(MinimalAPI, BlueprintType, ClassGroup = (Procedural), Category="PCGEx|Path")
+class /*PCGEXTENDEDTOOLKIT_API*/ UPCGExBoundsPathIntersectionSettings : public UPCGExPathProcessorSettings
 {
 	GENERATED_BODY()
 
@@ -33,33 +32,23 @@ protected:
 
 	//~Begin UPCGExPointsProcessorSettings
 public:
-	virtual PCGExData::EInit GetMainOutputInitMode() const override;
+	virtual PCGExData::EIOInit GetMainOutputInitMode() const override;
+	//PCGEX_NODE_POINT_FILTER(PCGExPointFilter::SourcePointFiltersLabel, "Filters", PCGExFactories::PointFilters, false)
 	//~End UPCGExPointsProcessorSettings
-
-public:
-	/** Consider paths to be closed -- processing will wrap between first and last points. */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	bool bClosedPath = false;
-
-	/** . */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable))
-	bool bOmitSinglePointOutputs = true;
 
 	/** */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Settings, meta = (PCG_Overridable, DisplayName="Output"))
 	FPCGExBoxIntersectionDetails OutputSettings;
 };
 
-struct PCGEXTENDEDTOOLKIT_API FPCGExBoundsPathIntersectionContext final : public FPCGExPathProcessorContext
+struct /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBoundsPathIntersectionContext final : FPCGExPathProcessorContext
 {
 	friend class FPCGExBoundsPathIntersectionElement;
 
-	virtual ~FPCGExBoundsPathIntersectionContext() override;
-
-	PCGExData::FFacade* BoundsDataFacade = nullptr;
+	TSharedPtr<PCGExData::FFacade> BoundsDataFacade;
 };
 
-class PCGEXTENDEDTOOLKIT_API FPCGExBoundsPathIntersectionElement final : public FPCGExPathProcessorElement
+class /*PCGEXTENDEDTOOLKIT_API*/ FPCGExBoundsPathIntersectionElement final : public FPCGExPathProcessorElement
 {
 public:
 	virtual FPCGContext* Initialize(
@@ -74,27 +63,24 @@ protected:
 
 namespace PCGExPathIntersections
 {
-	class FProcessor final : public PCGExPointsMT::FPointsProcessor
+	class FProcessor final : public PCGExPointsMT::TPointsProcessor<FPCGExBoundsPathIntersectionContext, UPCGExBoundsPathIntersectionSettings>
 	{
-		bool bClosedPath = false;
+		bool bClosedLoop = false;
 		int32 LastIndex = 0;
-		PCGExGeo::FPointBoxCloud* Cloud = nullptr;
-		PCGExGeo::FSegmentation* Segmentation = nullptr;
+		TSharedPtr<PCGExGeo::FPointBoxCloud> Cloud;
+		TSharedPtr<PCGExGeo::FSegmentation> Segmentation;
 
 		FPCGExBoxIntersectionDetails Details;
 
-		PCGExMT::FTaskGroup* FindIntersectionsTaskGroup = nullptr;
-		PCGExMT::FTaskGroup* InsertionTaskGroup = nullptr;
-
 	public:
-		explicit FProcessor(PCGExData::FPointIO* InPoints)
-			: FPointsProcessor(InPoints)
+		explicit FProcessor(const TSharedRef<PCGExData::FFacade>& InPointDataFacade)
+			: TPointsProcessor(InPointDataFacade)
 		{
 		}
 
 		virtual ~FProcessor() override;
 
-		virtual bool Process(PCGExMT::FTaskManager* AsyncManager) override;
+		virtual bool Process(const TSharedPtr<PCGExMT::FTaskManager> InAsyncManager) override;
 		void FindIntersections(const int32 Index) const;
 		void InsertIntersections(const int32 Index) const;
 		void OnInsertionComplete();
@@ -103,13 +89,13 @@ namespace PCGExPathIntersections
 		{
 			if (Details.InsideForwardHandler)
 			{
-				TArray<PCGExGeo::FPointBox*> Overlaps;
-				const bool bContained = Cloud->ContainsMinusEpsilon(Point.Transform.GetLocation(), Overlaps); // Avoid intersections being captured
+				TArray<TSharedPtr<PCGExGeo::FPointBox>> Overlaps;
+				const bool bContained = Cloud->IsInsideMinusEpsilon(Point.Transform.GetLocation(), Overlaps); // Avoid intersections being captured
 				Details.SetIsInside(Index, bContained, bContained ? Overlaps[0]->Index : -1);
 			}
 			else
 			{
-				Details.SetIsInside(Index, Cloud->ContainsMinusEpsilon(Point.Transform.GetLocation()));
+				Details.SetIsInside(Index, Cloud->IsInsideMinusEpsilon(Point.Transform.GetLocation()));
 			}
 		}
 

@@ -8,7 +8,7 @@
 #define LOCTEXT_NAMESPACE "PCGExMetaFilterElement"
 #define PCGEX_NAMESPACE MetaFilter
 
-PCGExData::EInit UPCGExMetaFilterSettings::GetMainOutputInitMode() const { return PCGExData::EInit::NoOutput; }
+PCGExData::EIOInit UPCGExMetaFilterSettings::GetMainOutputInitMode() const { return PCGExData::EIOInit::None; }
 
 TArray<FPCGPinProperties> UPCGExMetaFilterSettings::OutputPinProperties() const
 {
@@ -20,14 +20,6 @@ TArray<FPCGPinProperties> UPCGExMetaFilterSettings::OutputPinProperties() const
 
 PCGEX_INITIALIZE_ELEMENT(MetaFilter)
 
-FPCGExMetaFilterContext::~FPCGExMetaFilterContext()
-{
-	PCGEX_TERMINATE_ASYNC
-
-	PCGEX_DELETE(Inside)
-	PCGEX_DELETE(Outside)
-}
-
 bool FPCGExMetaFilterElement::Boot(FPCGExContext* InContext) const
 {
 	if (!FPCGExPointsProcessorElement::Boot(InContext)) { return false; }
@@ -37,16 +29,16 @@ bool FPCGExMetaFilterElement::Boot(FPCGExContext* InContext) const
 	PCGEX_FWD(Filters)
 	Context->Filters.Init();
 
-	Context->Inside = new PCGExData::FPointIOCollection(Context);
-	Context->Outside = new PCGExData::FPointIOCollection(Context);
+	Context->Inside = MakeShared<PCGExData::FPointIOCollection>(Context);
+	Context->Outside = MakeShared<PCGExData::FPointIOCollection>(Context);
 
-	Context->Inside->DefaultOutputLabel = PCGExPointFilter::OutputInsideFiltersLabel;
-	Context->Outside->DefaultOutputLabel = PCGExPointFilter::OutputOutsideFiltersLabel;
+	Context->Inside->OutputPin = PCGExPointFilter::OutputInsideFiltersLabel;
+	Context->Outside->OutputPin = PCGExPointFilter::OutputOutsideFiltersLabel;
 
 	if (Settings->bSwap)
 	{
-		Context->Inside->DefaultOutputLabel = PCGExPointFilter::OutputOutsideFiltersLabel;
-		Context->Outside->DefaultOutputLabel = PCGExPointFilter::OutputInsideFiltersLabel;
+		Context->Inside->OutputPin = PCGExPointFilter::OutputOutsideFiltersLabel;
+		Context->Outside->OutputPin = PCGExPointFilter::OutputInsideFiltersLabel;
 	}
 
 	return true;
@@ -64,21 +56,21 @@ bool FPCGExMetaFilterElement::ExecuteInternal(FPCGContext* InContext) const
 	{
 		while (Context->AdvancePointsIO())
 		{
-			PCGExData::FPointIOCollection* Target = Context->Filters.Test(Context->CurrentIO->Tags) ? Context->Inside : Context->Outside;
-			Target->Emplace_GetRef(Context->CurrentIO, PCGExData::EInit::Forward);
+			const TSharedPtr<PCGExData::FPointIOCollection> Target = Context->Filters.Test(Context->CurrentIO->Tags.Get()) ? Context->Inside : Context->Outside;
+			Target->Emplace_GetRef(Context->CurrentIO, PCGExData::EIOInit::Forward);
 		}
 	}
 	else
 	{
 		while (Context->AdvancePointsIO())
 		{
-			PCGExData::FPointIOCollection* Target = Context->Filters.Test(Context->CurrentIO) ? Context->Inside : Context->Outside;
-			Target->Emplace_GetRef(Context->CurrentIO, PCGExData::EInit::Forward);
+			const TSharedPtr<PCGExData::FPointIOCollection> Target = Context->Filters.Test(Context->CurrentIO.Get()) ? Context->Inside : Context->Outside;
+			Target->Emplace_GetRef(Context->CurrentIO, PCGExData::EIOInit::Forward);
 		}
 	}
 
-	Context->Inside->OutputToContext();
-	Context->Outside->OutputToContext();
+	Context->Inside->StageOutputs();
+	Context->Outside->StageOutputs();
 	Context->Done();
 
 	return Context->TryComplete();
