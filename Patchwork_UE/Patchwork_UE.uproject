@@ -59,6 +59,18 @@
 		{
 			"Name": "NaniteDisplacedMesh",
 			"Enabled": true
+		},
+		{
+			"Name": "PCGNiagaraInterop",
+			"Enabled": true
+		},
+		{
+			"Name": "PCGWaterInterop",
+			"Enabled": true
+		},
+		{
+			"Name": "PCGExternalDataInterop",
+			"Enabled": true
 		}
 	]
 }
