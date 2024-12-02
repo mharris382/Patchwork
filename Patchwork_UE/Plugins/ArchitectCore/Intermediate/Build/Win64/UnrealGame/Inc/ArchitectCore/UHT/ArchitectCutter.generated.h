@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ARCHITECTCORE_ArchitectCutter_generated_h
 
-#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_INCLASS_NO_PURE_DECLS \
+#define FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAArchitectCutter(); \
 	friend struct Z_Construct_UClass_AArchitectCutter_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AArchitectCutter)
 
 
-#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_ENHANCED_CONSTRUCTORS \
+#define FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AArchitectCutter(AArchitectCutter&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AArchitectCutter();
 
 
-#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_24_PROLOG
-#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_GENERATED_BODY \
+#define FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_24_PROLOG
+#define FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_INCLASS_NO_PURE_DECLS \
-	FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_ENHANCED_CONSTRUCTORS \
+	FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_INCLASS_NO_PURE_DECLS \
+	FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h_27_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> ARCHITECTCORE_API UClass* StaticClass<class AArchitectCutter>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h
+#define CURRENT_FILE_ID FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_ArchitectCutter_h
 
 
 #define FOREACH_ENUM_EARCHITECTCUTTERMODE(op) \
