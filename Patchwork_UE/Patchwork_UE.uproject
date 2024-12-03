@@ -71,10 +71,6 @@
 		{
 			"Name": "PCGExternalDataInterop",
 			"Enabled": true
-		},
-		{
-			"Name": "Bridge",
-			"Enabled": false
 		}
 	]
 }
