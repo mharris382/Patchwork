@@ -45,34 +45,22 @@ struct Z_Construct_UScriptStruct_FArchitectMaterialOverride_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverrideMaterial_MetaData[] = {
 		{ "Category", "Materials" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "// Single override material, always visible\n" },
-#endif
 		{ "ModuleRelativePath", "Public/PCArchitectBase.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Single override material, always visible" },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bUseMultiple_MetaData[] = {
 		{ "Category", "Materials" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "// Boolean to toggle usage of multiple materials\n" },
-#endif
 		{ "ModuleRelativePath", "Public/PCArchitectBase.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Boolean to toggle usage of multiple materials" },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverrideMaterials_MetaData[] = {
 		{ "Category", "Materials" },
-#if !UE_BUILD_SHIPPING
 		{ "Comment", "// Array of override materials, only visible if bUseMultiple is true\n" },
-#endif
 		{ "EditCondition", "bUseMultiple" },
 		{ "ModuleRelativePath", "Public/PCArchitectBase.h" },
-#if !UE_BUILD_SHIPPING
 		{ "ToolTip", "Array of override materials, only visible if bUseMultiple is true" },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_OverrideMaterial;
@@ -149,37 +137,27 @@ struct Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Priority_MetaData[] = {
 		{ "Category", "Materials" },
 		{ "ModuleRelativePath", "Public/PCArchitectBase.h" },
-#if !UE_BUILD_SHIPPING
 		{ "Tooltip", "Priority of this material override. Higher priority materials override lower priority ones." },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bEnabledOnWalls_MetaData[] = {
 		{ "Category", "Materials" },
 		{ "ModuleRelativePath", "Public/PCArchitectBase.h" },
-#if !UE_BUILD_SHIPPING
 		{ "Tooltip", "Enable material override on walls. When enabled, shared material settings are applied on walls, doors, windows, and corners." },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WallMaterial_MetaData[] = {
 		{ "Category", "Materials" },
 		{ "ModuleRelativePath", "Public/PCArchitectBase.h" },
-#if !UE_BUILD_SHIPPING
 		{ "Tooltip", "Material override settings for walls, doors, windows, and corners." },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bEnabledOnFloors_MetaData[] = {
 		{ "Category", "Materials" },
 		{ "ModuleRelativePath", "Public/PCArchitectBase.h" },
-#if !UE_BUILD_SHIPPING
 		{ "Tooltip", "Enable material override on floors. When enabled, shared material settings are applied on floors and ceilings." },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FloorMaterial_MetaData[] = {
 		{ "Category", "Materials" },
 		{ "ModuleRelativePath", "Public/PCArchitectBase.h" },
-#if !UE_BUILD_SHIPPING
 		{ "Tooltip", "Material override settings for floors and ceilings." },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FIntPropertyParams NewProp_Priority;
@@ -202,13 +180,13 @@ void Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_bEnabl
 	((FArchitectMaterialOptions*)Obj)->bEnabledOnWalls = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_bEnabledOnWalls = { "bEnabledOnWalls", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FArchitectMaterialOptions), &Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_bEnabledOnWalls_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bEnabledOnWalls_MetaData), NewProp_bEnabledOnWalls_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_WallMaterial = { "WallMaterial", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FArchitectMaterialOptions, WallMaterial), Z_Construct_UScriptStruct_FArchitectMaterialOverride, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WallMaterial_MetaData), NewProp_WallMaterial_MetaData) }; // 1475036131
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_WallMaterial = { "WallMaterial", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FArchitectMaterialOptions, WallMaterial), Z_Construct_UScriptStruct_FArchitectMaterialOverride, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WallMaterial_MetaData), NewProp_WallMaterial_MetaData) }; // 1810251484
 void Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_bEnabledOnFloors_SetBit(void* Obj)
 {
 	((FArchitectMaterialOptions*)Obj)->bEnabledOnFloors = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_bEnabledOnFloors = { "bEnabledOnFloors", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FArchitectMaterialOptions), &Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_bEnabledOnFloors_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bEnabledOnFloors_MetaData), NewProp_bEnabledOnFloors_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_FloorMaterial = { "FloorMaterial", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FArchitectMaterialOptions, FloorMaterial), Z_Construct_UScriptStruct_FArchitectMaterialOverride, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FloorMaterial_MetaData), NewProp_FloorMaterial_MetaData) }; // 1475036131
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_FloorMaterial = { "FloorMaterial", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FArchitectMaterialOptions, FloorMaterial), Z_Construct_UScriptStruct_FArchitectMaterialOverride, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FloorMaterial_MetaData), NewProp_FloorMaterial_MetaData) }; // 1810251484
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_Priority,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewProp_bEnabledOnWalls,
@@ -489,23 +467,23 @@ APCArchitectBase::~APCArchitectBase() {}
 // End Class APCArchitectBase
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics
+struct Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ EArchitectOverideModes_StaticEnum, TEXT("EArchitectOverideModes"), &Z_Registration_Info_UEnum_EArchitectOverideModes, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 439101868U) },
 	};
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FArchitectMaterialOverride::StaticStruct, Z_Construct_UScriptStruct_FArchitectMaterialOverride_Statics::NewStructOps, TEXT("ArchitectMaterialOverride"), &Z_Registration_Info_UScriptStruct_ArchitectMaterialOverride, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectMaterialOverride), 1475036131U) },
-		{ FArchitectMaterialOptions::StaticStruct, Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewStructOps, TEXT("ArchitectMaterialOptions"), &Z_Registration_Info_UScriptStruct_ArchitectMaterialOptions, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectMaterialOptions), 2528555655U) },
+		{ FArchitectMaterialOverride::StaticStruct, Z_Construct_UScriptStruct_FArchitectMaterialOverride_Statics::NewStructOps, TEXT("ArchitectMaterialOverride"), &Z_Registration_Info_UScriptStruct_ArchitectMaterialOverride, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectMaterialOverride), 1810251484U) },
+		{ FArchitectMaterialOptions::StaticStruct, Z_Construct_UScriptStruct_FArchitectMaterialOptions_Statics::NewStructOps, TEXT("ArchitectMaterialOptions"), &Z_Registration_Info_UScriptStruct_ArchitectMaterialOptions, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectMaterialOptions), 818440248U) },
 		{ FArchitectOverrides::StaticStruct, Z_Construct_UScriptStruct_FArchitectOverrides_Statics::NewStructOps, TEXT("ArchitectOverrides"), &Z_Registration_Info_UScriptStruct_ArchitectOverrides, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectOverrides), 2334706256U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_APCArchitectBase, APCArchitectBase::StaticClass, TEXT("APCArchitectBase"), &Z_Registration_Info_UClass_APCArchitectBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APCArchitectBase), 3634546230U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_302514145(TEXT("/Script/ArchitectCore"),
-	Z_CompiledInDeferFile_FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::ClassInfo),
-	Z_CompiledInDeferFile_FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::ScriptStructInfo),
-	Z_CompiledInDeferFile_FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patchwork_UE_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::EnumInfo));
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_3790079659(TEXT("/Script/ArchitectCore"),
+	Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::ClassInfo),
+	Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::ScriptStructInfo),
+	Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_PCArchitectBase_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
