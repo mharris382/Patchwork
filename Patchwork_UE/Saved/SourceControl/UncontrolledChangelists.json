@@ -5,6 +5,11 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"D:/DreamMatterLabs/Patchwork_UE/Content/Patchwork/Materials/Decals/Decal_Dirt/Decal_Mud_Dirt_Inst.uasset",
+				"D:/DreamMatterLabs/Patchwork_UE/Content/Patchwork/Materials/Decals/Decal_Dirt/MI_Decal_Mud_Dirt_Piurple.uasset",
+				"D:/DreamMatterLabs/Patchwork_UE/Content/Patchwork/Materials/Decals/Decal_Dirt/MI_Decal_Mud_Dirt_brown.uasset",
+				"D:/DreamMatterLabs/Patchwork_UE/Content/Patchwork/Materials/Decals/Decal_Crack/lambert1.uasset",
+				"D:/DreamMatterLabs/Patchwork_UE/Content/Patchwork/Materials/Decals/Decal_Crack/GrassGrpRA.uasset",
 				"B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/BathHouse/BH_Window_PCG.uasset",
 				"B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/BuildingRecipes/BH_Walls.uasset",
 				"B:/UnrealEngine5_Projects/_repos2/Patchwork/Patchwork_UE/Content/Patchwork/Levels/Maps/Mushroom_Forest/Sublevels/Kits/BathHouse/Kit_Models/BH_Wall_Kit_BH_Wall_01.uasset",
