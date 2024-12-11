@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Welcome.md",
+                "file": "Game Mechanics/Puzzle Design/Puzzles Mechanic Overview.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Welcome"
+              "title": "Puzzles Mechanic Overview"
             }
           },
           {
@@ -47,23 +47,6 @@
               },
               "icon": "lucide-file",
               "title": "Audio Tools"
-            }
-          }
-        ],
-        "currentTab": 2
-      },
-      {
-        "id": "1c11ec26d2613127",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "34c8c1d355770348",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
             }
           }
         ]
@@ -118,8 +101,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -208,11 +190,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d8e8a6c90c7022b3",
+  "active": "77b70c25d7cc694c",
   "lastOpenFiles": [
-    "Unreal Plugins/Unreal Plugins Used.md",
-    "Audio Tools.md",
+    "Untitled.md",
+    "Game Mechanics/Puzzle Design/Puzzles Mechanic Overview.md",
     "Welcome.md",
+    "Game Mechanics/Puzzle Design",
+    "Game Mechanics",
+    "Audio Tools.md",
+    "Unreal Plugins/Unreal Plugins Used.md",
     "Unreal Plugins"
   ]
 }
