@@ -6,6 +6,7 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "ArchitectCore/Public/DataAssets/ArchitectRecipe.h"
+#include "ArchitectCore/Public/PCArchitectBase.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeArchitectRecipe() {}
 
@@ -16,6 +17,7 @@ ARCHITECTCORE_API UEnum* Z_Construct_UEnum_ArchitectCore_EAssetSpawnMode();
 ARCHITECTCORE_API UScriptStruct* Z_Construct_UScriptStruct_FArchitectAsset();
 ARCHITECTCORE_API UScriptStruct* Z_Construct_UScriptStruct_FArchitectAsset_AssemblyOptions();
 ARCHITECTCORE_API UScriptStruct* Z_Construct_UScriptStruct_FArchitectAsset_TransformationOptions();
+ARCHITECTCORE_API UScriptStruct* Z_Construct_UScriptStruct_FArchitectOverrides();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
@@ -287,32 +289,39 @@ struct Z_Construct_UScriptStruct_FArchitectAsset_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StaticMesh_MetaData[] = {
 		{ "Category", "Spawn Options" },
-		{ "EditCondition", "SpawnMode == EAssetSpawnMode::MeshOnly || SpawnMode == EAssetSpawnMode::Combined" },
-		{ "EditConditionHides", "" },
+		{ "EditCondition", "SpawnMode != EAssetSpawnMode::DoNotSpawn" },
 		{ "ModuleRelativePath", "Public/DataAssets/ArchitectRecipe.h" },
-		{ "Tooltip", "Static mesh to use in spawn mode." },
+		{ "Tooltip", "Static mesh to use in static mesh spawn mode." },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Assembly_MetaData[] = {
 		{ "Category", "Spawn Options" },
+		{ "EditCondition", "SpawnMode != EAssetSpawnMode::DoNotSpawn && SpawnMode != EAssetSpawnMode::MeshOnly" },
 		{ "ModuleRelativePath", "Public/DataAssets/ArchitectRecipe.h" },
 		{ "Tooltip", "PCG data asset to use in assembly mode." },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Material_MetaData[] = {
 		{ "Category", "Spawn Options" },
-		{ "EditCondition", "SpawnMode == EAssetSpawnMode::AssemblyOnly || SpawnMode == EAssetSpawnMode::Combined" },
-		{ "EditConditionHides", "" },
+		{ "EditCondition", "SpawnMode != EAssetSpawnMode::DoNotSpawn" },
 		{ "ModuleRelativePath", "Public/DataAssets/ArchitectRecipe.h" },
-		{ "Tooltip", "PCG data asset to use in assembly mode." },
+		{ "Tooltip", "Override Material to apply to slot 1 on static mesh.  It will also be applied to any assembly points tagged with StaticMeshMaterial" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TransformOptions_MetaData[] = {
 		{ "Category", "Spawn Options" },
+		{ "EditCondition", "SpawnMode != EAssetSpawnMode::DoNotSpawn" },
 		{ "ModuleRelativePath", "Public/DataAssets/ArchitectRecipe.h" },
 		{ "Tooltip", "Transformation options for the asset." },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AssemblyOptions_MetaData[] = {
 		{ "Category", "Spawn Options" },
+		{ "EditCondition", "SpawnMode != EAssetSpawnMode::DoNotSpawn && SpawnMode != EAssetSpawnMode::MeshOnly" },
 		{ "ModuleRelativePath", "Public/DataAssets/ArchitectRecipe.h" },
 		{ "Tooltip", "Assembly options for the asset." },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverrideGraphs_MetaData[] = {
+		{ "Category", "Spawn Options" },
+		{ "EditCondition", "SpawnMode != EAssetSpawnMode::DoNotSpawn" },
+		{ "ModuleRelativePath", "Public/DataAssets/ArchitectRecipe.h" },
+		{ "Tooltip", "Override Graphs to override specific spawning behaviors using custom PCG graphs." },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FBytePropertyParams NewProp_SpawnMode;
@@ -321,6 +330,7 @@ struct Z_Construct_UScriptStruct_FArchitectAsset_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Material;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_TransformOptions;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_AssemblyOptions;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_OverrideGraphs;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static void* NewStructOps()
 	{
@@ -334,6 +344,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FArchit
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_Material = { "Material", nullptr, (EPropertyFlags)0x0114000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FArchitectAsset, Material), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Material_MetaData), NewProp_Material_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_TransformOptions = { "TransformOptions", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FArchitectAsset, TransformOptions), Z_Construct_UScriptStruct_FArchitectAsset_TransformationOptions, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TransformOptions_MetaData), NewProp_TransformOptions_MetaData) }; // 3205105741
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_AssemblyOptions = { "AssemblyOptions", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FArchitectAsset, AssemblyOptions), Z_Construct_UScriptStruct_FArchitectAsset_AssemblyOptions, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AssemblyOptions_MetaData), NewProp_AssemblyOptions_MetaData) }; // 2575901120
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_OverrideGraphs = { "OverrideGraphs", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FArchitectAsset, OverrideGraphs), Z_Construct_UScriptStruct_FArchitectOverrides, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OverrideGraphs_MetaData), NewProp_OverrideGraphs_MetaData) }; // 2334706256
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FArchitectAsset_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_SpawnMode,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_StaticMesh,
@@ -341,6 +352,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FA
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_Material,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_TransformOptions,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_AssemblyOptions,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewProp_OverrideGraphs,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FArchitectAsset_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FArchitectAsset_Statics::StructParams = {
@@ -414,14 +426,14 @@ struct Z_Construct_UClass_UArchitectRecipe_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_Wall = { "Wall", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchitectRecipe, Wall), Z_Construct_UScriptStruct_FArchitectAsset, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Wall_MetaData), NewProp_Wall_MetaData) }; // 3870681681
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_Floor = { "Floor", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchitectRecipe, Floor), Z_Construct_UScriptStruct_FArchitectAsset, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Floor_MetaData), NewProp_Floor_MetaData) }; // 3870681681
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_Wall = { "Wall", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchitectRecipe, Wall), Z_Construct_UScriptStruct_FArchitectAsset, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Wall_MetaData), NewProp_Wall_MetaData) }; // 1633489235
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_Floor = { "Floor", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchitectRecipe, Floor), Z_Construct_UScriptStruct_FArchitectAsset, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Floor_MetaData), NewProp_Floor_MetaData) }; // 1633489235
 void Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_UseFloorAsCeiling_SetBit(void* Obj)
 {
 	((UArchitectRecipe*)Obj)->UseFloorAsCeiling = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_UseFloorAsCeiling = { "UseFloorAsCeiling", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UArchitectRecipe), &Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_UseFloorAsCeiling_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UseFloorAsCeiling_MetaData), NewProp_UseFloorAsCeiling_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_Ceiling = { "Ceiling", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchitectRecipe, Ceiling), Z_Construct_UScriptStruct_FArchitectAsset, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Ceiling_MetaData), NewProp_Ceiling_MetaData) }; // 3870681681
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_Ceiling = { "Ceiling", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArchitectRecipe, Ceiling), Z_Construct_UScriptStruct_FArchitectAsset, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Ceiling_MetaData), NewProp_Ceiling_MetaData) }; // 1633489235
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UArchitectRecipe_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_Wall,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArchitectRecipe_Statics::NewProp_Floor,
@@ -475,13 +487,13 @@ struct Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_Archit
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
 		{ FArchitectAsset_AssemblyOptions::StaticStruct, Z_Construct_UScriptStruct_FArchitectAsset_AssemblyOptions_Statics::NewStructOps, TEXT("ArchitectAsset_AssemblyOptions"), &Z_Registration_Info_UScriptStruct_ArchitectAsset_AssemblyOptions, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectAsset_AssemblyOptions), 2575901120U) },
 		{ FArchitectAsset_TransformationOptions::StaticStruct, Z_Construct_UScriptStruct_FArchitectAsset_TransformationOptions_Statics::NewStructOps, TEXT("ArchitectAsset_TransformationOptions"), &Z_Registration_Info_UScriptStruct_ArchitectAsset_TransformationOptions, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectAsset_TransformationOptions), 3205105741U) },
-		{ FArchitectAsset::StaticStruct, Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewStructOps, TEXT("ArchitectAsset"), &Z_Registration_Info_UScriptStruct_ArchitectAsset, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectAsset), 3870681681U) },
+		{ FArchitectAsset::StaticStruct, Z_Construct_UScriptStruct_FArchitectAsset_Statics::NewStructOps, TEXT("ArchitectAsset"), &Z_Registration_Info_UScriptStruct_ArchitectAsset, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FArchitectAsset), 1633489235U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UArchitectRecipe, UArchitectRecipe::StaticClass, TEXT("UArchitectRecipe"), &Z_Registration_Info_UClass_UArchitectRecipe, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArchitectRecipe), 1856143834U) },
+		{ Z_Construct_UClass_UArchitectRecipe, UArchitectRecipe::StaticClass, TEXT("UArchitectRecipe"), &Z_Registration_Info_UClass_UArchitectRecipe, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArchitectRecipe), 94703855U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_47195121(TEXT("/Script/ArchitectCore"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_1128254105(TEXT("/Script/ArchitectCore"),
 	Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_Statics::EnumInfo));

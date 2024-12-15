@@ -127,24 +127,27 @@ struct FArchitectAsset
     TEnumAsByte<EAssetSpawnMode> SpawnMode;
 
     // Static mesh to use in spawn mode.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode == EAssetSpawnMode::MeshOnly || SpawnMode == EAssetSpawnMode::Combined", EditConditionHides, Tooltip = "Static mesh to use in spawn mode."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", Tooltip = "Static mesh to use in static mesh spawn mode."))//EditCondition = "SpawnMode == EAssetSpawnMode::MeshOnly || SpawnMode == EAssetSpawnMode::Combined", Tooltip = "Static mesh to use in spawn mode."))
     TObjectPtr<UStaticMesh> StaticMesh;
 
     // PCG data asset to use in assembly mode.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (Tooltip = "PCG data asset to use in assembly mode."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn && SpawnMode != EAssetSpawnMode::MeshOnly", Tooltip = "PCG data asset to use in assembly mode."))
     TObjectPtr<UPCGDataAsset> Assembly; // Adjust type if it's a specific PCGDataAsset class
 
     // Override material applied based on spawn mode.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode == EAssetSpawnMode::AssemblyOnly || SpawnMode == EAssetSpawnMode::Combined", EditConditionHides, Tooltip = "PCG data asset to use in assembly mode."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", Tooltip = "Override Material to apply to slot 1 on static mesh.  It will also be applied to any assembly points tagged with StaticMeshMaterial"))
     TObjectPtr<UMaterialInterface> Material;
 
     // Transformation options for the asset.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (Tooltip = "Transformation options for the asset."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", Tooltip = "Transformation options for the asset."))
     FArchitectAsset_TransformationOptions TransformOptions;
 
     // Assembly options for the asset.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (Tooltip = "Assembly options for the asset."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn && SpawnMode != EAssetSpawnMode::MeshOnly", Tooltip = "Assembly options for the asset."))
     FArchitectAsset_AssemblyOptions AssemblyOptions;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", Tooltip = "Override Graphs to override specific spawning behaviors using custom PCG graphs."))
+    FArchitectOverrides OverrideGraphs;
 
     // Default constructor
     FArchitectAsset()

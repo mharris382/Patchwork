@@ -35,7 +35,7 @@ template<> ARCHITECTCORE_API UScriptStruct* StaticStruct<struct FArchitectAsset_
 
 template<> ARCHITECTCORE_API UScriptStruct* StaticStruct<struct FArchitectAsset>();
 
-#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_194_INCLASS_NO_PURE_DECLS \
+#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_197_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUArchitectRecipe(); \
 	friend struct Z_Construct_UClass_UArchitectRecipe_Statics; \
@@ -44,7 +44,7 @@ public: \
 	DECLARE_SERIALIZER(UArchitectRecipe)
 
 
-#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_194_ENHANCED_CONSTRUCTORS \
+#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_197_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UArchitectRecipe(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -58,12 +58,12 @@ public: \
 	NO_API virtual ~UArchitectRecipe();
 
 
-#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_191_PROLOG
-#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_194_GENERATED_BODY \
+#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_194_PROLOG
+#define FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_197_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_194_INCLASS_NO_PURE_DECLS \
-	FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_194_ENHANCED_CONSTRUCTORS \
+	FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_197_INCLASS_NO_PURE_DECLS \
+	FID_HostProject_Plugins_ArchitectCore_Source_ArchitectCore_Public_DataAssets_ArchitectRecipe_h_197_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
