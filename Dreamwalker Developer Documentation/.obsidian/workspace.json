@@ -8,101 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "77b70c25d7cc694c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docs/Blueprints/Mechanism Blueprints.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mechanism Blueprints"
-            }
-          },
-          {
             "id": "5f208ee6ad60d355",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Docs/Blueprints/Mechanism Blueprints.md",
+                "file": "Docs/Blueprints/Barrier Blueprints.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Mechanism Blueprints"
-            }
-          },
-          {
-            "id": "c689c9a1350dce38",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docs/Project Materials/Master Materials.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Master Materials"
-            }
-          },
-          {
-            "id": "5a9226013364d164",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docs/Project Materials/Master Materials.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Master Materials"
-            }
-          },
-          {
-            "id": "b7ac0259bb15339e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docs/Project Materials/Master Materials.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Master Materials"
-            }
-          },
-          {
-            "id": "dcb85a6344685078",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docs/Project Materials/Master Materials.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Master Materials"
-            }
-          },
-          {
-            "id": "23f98354f2313c19",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docs/Project Materials/Master Materials.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Master Materials"
+              "title": "Barrier Blueprints"
             }
           },
           {
@@ -132,23 +48,8 @@
               "icon": "lucide-file",
               "title": "Unreal Plugins Used"
             }
-          },
-          {
-            "id": "52f8e29380155559",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Audio Tools.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Audio Tools"
-            }
           }
-        ],
-        "currentTab": 7
+        ]
       }
     ],
     "direction": "vertical"
@@ -289,19 +190,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9adc8779ff366bc1",
+  "active": "5f208ee6ad60d355",
   "lastOpenFiles": [
+    "Docs/Blueprints/Mechanism Blueprints.md",
+    "Docs/Blueprints/Barrier Blueprints.md",
+    "Docs/Blueprints/Procedural Tools.md",
+    "Unreal Plugins/ArchitectCore.md",
+    "Docs/Blueprints/Procedural",
+    "Docs/Project Materials/Master Materials.md",
     "Docs/Project Materials/Lit Masters Tiled/M_MS_Srf_Custom.md",
     "Docs/Project Materials/Lit Masters/M_MS_Default_Custom.md",
-    "Docs/Project Materials/Master Materials.md",
     "Docs/Project Materials/Lit Masters Tiled",
     "Docs/Project Materials/Lit Masters",
     "Docs/Project Materials/Material Functions/PerInstanceRoughness.md",
     "Docs/Project Materials/Material Functions/MF_TrippingDistortion.md",
     "Docs/Project Materials/Material Functions/PerInstanceColor.md",
     "Docs/Project Materials/Material Functions",
-    "Docs/Blueprints/Mechanism Blueprints.md",
-    "Docs/Blueprints/Barrier Blueprints.md",
     "Docs/Blueprints/Pickups/StaticMeshPickup.md",
     "Docs/Blueprints/Mechanisms/Pressure Plate.md",
     "Docs/Blueprints/Pickups",
@@ -316,7 +220,6 @@
     "Untitled.md",
     "Docs/Blueprints",
     "Docs",
-    "Docs/Project Materials",
-    "Game Mechanics/Puzzle Design"
+    "Docs/Project Materials"
   ]
 }
