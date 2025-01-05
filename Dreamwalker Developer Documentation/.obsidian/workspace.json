@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Docs/Blueprints/Barrier Blueprints.md",
+                "file": "AudioSystems/Impact Effect System.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Barrier Blueprints"
+              "title": "Impact Effect System"
             }
           },
           {
@@ -192,8 +192,11 @@
   },
   "active": "5f208ee6ad60d355",
   "lastOpenFiles": [
-    "Docs/Blueprints/Mechanism Blueprints.md",
+    "Audio Tools.md",
+    "AudioSystems/Impact Effect System.md",
+    "AudioSystems",
     "Docs/Blueprints/Barrier Blueprints.md",
+    "Docs/Blueprints/Mechanism Blueprints.md",
     "Docs/Blueprints/Procedural Tools.md",
     "Unreal Plugins/ArchitectCore.md",
     "Docs/Blueprints/Procedural",
@@ -214,12 +217,10 @@
     "Docs/Blueprints/Barriers",
     "Docs/Blueprints/Mechanisms",
     "Welcome.md",
-    "Audio Tools.md",
     "Unreal Plugins/Unreal Plugins Used.md",
     "Game Mechanics/Puzzle Design/Puzzles Mechanic Overview.md",
     "Untitled.md",
     "Docs/Blueprints",
-    "Docs",
-    "Docs/Project Materials"
+    "Docs"
   ]
 }
