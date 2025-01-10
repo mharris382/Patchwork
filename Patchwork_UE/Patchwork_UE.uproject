@@ -79,6 +79,13 @@
 		{
 			"Name": "PCGBiomeCore",
 			"Enabled": true
+		},
+		{
+			"Name": "TextureGraph",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [
+				"Win64"
+			]
 		}
 	]
 }
