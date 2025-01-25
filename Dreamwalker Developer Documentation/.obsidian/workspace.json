@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AudioSystems/Impact Effect System.md",
+                "file": "Audio Tools.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Impact Effect System"
+              "title": "Audio Tools"
+            }
+          },
+          {
+            "id": "e74b6736a7739424",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PuzzleCore.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PuzzleCore"
             }
           },
           {
@@ -49,7 +63,8 @@
               "title": "Unreal Plugins Used"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -190,9 +205,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5f208ee6ad60d355",
+  "active": "e74b6736a7739424",
   "lastOpenFiles": [
     "Audio Tools.md",
+    "PuzzleCore.md",
     "AudioSystems/Impact Effect System.md",
     "AudioSystems",
     "Docs/Blueprints/Barrier Blueprints.md",
@@ -219,7 +235,6 @@
     "Welcome.md",
     "Unreal Plugins/Unreal Plugins Used.md",
     "Game Mechanics/Puzzle Design/Puzzles Mechanic Overview.md",
-    "Untitled.md",
     "Docs/Blueprints",
     "Docs"
   ]
