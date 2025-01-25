@@ -2,6 +2,46 @@
 ![screen3](https://github.com/mharris382/Patchwork/assets/20174390/a6b9f2f5-f726-443c-abff-3a54aced46f8)
 You are the dreamwalker.  3 Dreamers are trapped in prisons of their own mind.  You must journey into each dream and awaken the dreamer from their dream.  Explore 3 mysterious dreamworks. Meet and talk to dreamfolk. Solve puzzles. 
 
+
+## Asset Naming Conventions
+
+### Static Meshes Naming Conventions
+Static Meshes should conform to the format: `SM_[GROUP][ASSET]_[MODIFIER]_[NUMBER]`
+- GROUP: use a group prefix for assets that are visual related. 
+    - example: `SM_TempleBrick`, `SM_TemplePillar`
+- ASSET: what the mesh is (should be a noun).  *Use full names, NOT abbreviations*; it should be reasonable easy to search for the name of the mesh without needing to know it's exact folder location
+- MODIFIER: if there are alternate version of a mesh, modifier to differentiate between them. (should be adjective)
+    - example: `SM_TemplePillar_Damaged`
+- NUMBER: if there are multiple versions of the same thing, number them
+- example: `SM_TemplePillar_Damaged_1`, `SM_TemplePillar_Damaged_2`
+
+Examples: `SM_Pillar_Damaged_1`, `SM_TempleBrick`, `SM_TempleBrick_Large`
+
+### Material Instance Naming Conventions
+Material Instances should conform to the format: `MI_[STYLE]_[ASSET]_[MODIFIER]`
+- Style: used when a mesh has several different skins.  example: Temple of Father vs Temple of The Mother - `MI_ToF_TempleBrick`, `MI_ToM_TempleBrick`
+- Asset: should refer to the specific static mesh (if the MI is specific to a mesh, i.e. not triplanar/tiled)
+- Modifier: if there are multiple versions, for example mossy or non-mossy.  `MI_ToF_TempleBrick_Mossy`
+
+### Texture Naming Conventions
+Textures should conform to the format `MI_[ASSET]_[MODIFIER]_[USEAGE]`
+- ASSET: if this texture is specific to a mesh, the name should match the name of the mesh.  Otherwise it should describe the texture
+- MODIFIER: use if there are alternate versions of a texture
+- USEAGE: what is the material usage of this texture.  i.e.  Color, Normal, ARM, ARD, ARDF, ARMF
+
+
+## Developer Tutorials
+- [Github Setup - Getting Started](https://youtu.be/SSY1GSorOZo): how to get the project on your computer, share (push) your changes, and recieve (pull) other's changes
+
+### PCG/Spline Tutorials
+- [PCG Spline Basics](https://drive.google.com/file/d/1XyUS_TNJkIwBEPGysXkdBDmUEDSMxy2n/view?usp=sharing): how to use unreal splines to drive PCG tools
+- [PCG Spline Generation Panel](https://drive.google.com/file/d/1pSgB_K5Fwsr8T4nWcEIsx20yZmcm-67k/view?usp=drive_link): using the spline generation panel to create geometrically perfect spline shapes like circles, arcs, rectangles, ect.
+
+### Material/Artist Tutorials
+- [Material Instances & Decals](https://drive.google.com/file/d/1EJButo1KU2iEu4rwVy26Y1fW3uFP9FJ5/view?usp=drive_link): how to setup material instances 
+- [Tripping Effect on Material Instances and Decals](https://youtu.be/eXk4doBa2y0): how to customize the tripping spore visual effect on material instances, and how to setup and use decal materials
+
+
 ## Controls
 | Controls | Keyboard | Controller |
 | -----|--------|------|
