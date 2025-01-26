@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeArchitectCore_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x51F24A32,
+				0x4B5F984E,
 				0xD585F2F3,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -25,5 +25,5 @@ void EmptyLinkFunctionForGeneratedCodeArchitectCore_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_ArchitectCore.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_ArchitectCore(Z_Construct_UPackage__Script_ArchitectCore, TEXT("/Script/ArchitectCore"), Z_Registration_Info_UPackage__Script_ArchitectCore, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x51F24A32, 0xD585F2F3));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_ArchitectCore(Z_Construct_UPackage__Script_ArchitectCore, TEXT("/Script/ArchitectCore"), Z_Registration_Info_UPackage__Script_ArchitectCore, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x4B5F984E, 0xD585F2F3));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
