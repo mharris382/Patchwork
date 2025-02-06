@@ -24,7 +24,7 @@ Material Instances should conform to the format: `MI_[STYLE]_[ASSET]_[MODIFIER]`
 - Modifier: if there are multiple versions, for example mossy or non-mossy.  `MI_ToF_TempleBrick_Mossy`
 
 ### Texture Naming Conventions
-Textures should conform to the format `MI_[ASSET]_[MODIFIER]_[USEAGE]`
+Textures should conform to the format `T_[ASSET]_[MODIFIER]_[USEAGE]`
 - ASSET: if this texture is specific to a mesh, the name should match the name of the mesh.  Otherwise it should describe the texture
 - MODIFIER: use if there are alternate versions of a texture
 - USEAGE: what is the material usage of this texture.  i.e.  Color, Normal, ARM, ARD, ARDF, ARMF
