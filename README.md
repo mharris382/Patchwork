@@ -2,6 +2,17 @@
 ![screen3](https://github.com/mharris382/Patchwork/assets/20174390/a6b9f2f5-f726-443c-abff-3a54aced46f8)
 You are the dreamwalker.  3 Dreamers are trapped in prisons of their own mind.  You must journey into each dream and awaken the dreamer from their dream.  Explore 3 mysterious dreamworks. Meet and talk to dreamfolk. Solve puzzles. 
 
+## Gameplay Tags
+most tags work as either component tags or actor tags. 
+
+| Tag | Functionality |
+|----|----------------|
+| No Mush | Prevents Bounce Mushroom from sticking to actor or component |
+| NoGrab | Prevents ledge grabbing | 
+| No Grapple | Prevents grapple from attaching to actor or component |
+| NoFall | Prevents long falls from occuring on specific surfaces |
+| NoSave | Prevents long fall reset from respawning on the actor/component |
+| ConveyorMoveable | Allows rainbow bridge conveyor to move this actor (only on actors) |
 
 ## Asset Naming Conventions
 
