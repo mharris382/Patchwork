@@ -3,3 +3,4 @@
 #include "B:/UnrealEngine5_Projects/_repos5/Patchwork/Patchwork/Patchwork_UE/Plugins/ArchitectCore/Source/ArchitectCore/Private/ArchitectCutter.cpp"
 #include "B:/UnrealEngine5_Projects/_repos5/Patchwork/Patchwork/Patchwork_UE/Plugins/ArchitectCore/Source/ArchitectCore/Private/ArchitectRecipeStructs.cpp"
 #include "B:/UnrealEngine5_Projects/_repos5/Patchwork/Patchwork/Patchwork_UE/Plugins/ArchitectCore/Source/ArchitectCore/Private/DataAssets/ArchitectRecipe.cpp"
+#include "B:/UnrealEngine5_Projects/_repos5/Patchwork/Patchwork/Patchwork_UE/Plugins/ArchitectCore/Source/ArchitectCore/Private/PCArchitectBase.cpp"

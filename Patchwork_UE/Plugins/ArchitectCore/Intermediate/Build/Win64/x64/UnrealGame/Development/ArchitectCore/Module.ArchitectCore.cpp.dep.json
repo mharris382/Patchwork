@@ -59,7 +59,8 @@
             "a:\\epic\\ue\\ue_5.4_linux\\ue_5.5\\engine\\plugins\\pcg\\intermediate\\build\\win64\\unrealgame\\inc\\pcg\\uht\\pcgdataasset.generated.h",
             "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\source\\architectcore\\public\\pcarchitectbase.h",
             "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\unrealgame\\inc\\architectcore\\uht\\pcarchitectbase.generated.h",
-            "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\unrealgame\\inc\\architectcore\\uht\\architectrecipe.generated.h"
+            "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\unrealgame\\inc\\architectcore\\uht\\architectrecipe.generated.h",
+            "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\source\\architectcore\\private\\pcarchitectbase.cpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
