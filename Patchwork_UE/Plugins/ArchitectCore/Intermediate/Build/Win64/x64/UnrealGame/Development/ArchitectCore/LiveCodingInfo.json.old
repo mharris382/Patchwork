@@ -1,0 +1,16 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.ArchitectCore.cpp.obj": [
+			"ArchitectCore.init.gen.cpp.obj",
+			"ArchitectCutter.gen.cpp.obj",
+			"ArchitectRecipe.gen.cpp.obj",
+			"PCArchitectBase.gen.cpp.obj",
+			"ArchitectCore.cpp.obj",
+			"ArchitectCutter.cpp.obj",
+			"ArchitectRecipeStructs.cpp.obj",
+			"ArchitectRecipe.cpp.obj",
+			"PCArchitectBase.cpp.obj"
+		]
+	}
+}
