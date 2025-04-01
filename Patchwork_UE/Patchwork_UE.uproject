@@ -102,6 +102,10 @@
 		{
 			"Name": "GameplayStateTree",
 			"Enabled": true
+		},
+		{
+			"Name": "AssetSearch",
+			"Enabled": true
 		}
 	]
 }
