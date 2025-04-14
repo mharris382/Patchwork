@@ -1,13 +1,13 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\unrealgame\\inc\\architectcore\\uht\\architectcutter.gen.cpp",
+        "Source": "f:\\active projects\\dreamwalker master folder\\patchwork with engine update\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\unrealgame\\inc\\architectcore\\uht\\architectcutter.gen.cpp",
         "ProvidedModule": "",
-        "PCH": "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\intermediate\\build\\win64\\x64\\patchwork_ue\\development\\engine\\sharedpch.engine.project.valapi.cpp20.h.pch",
+        "PCH": "f:\\active projects\\dreamwalker master folder\\patchwork with engine update\\patchwork\\patchwork_ue\\intermediate\\build\\win64\\x64\\patchwork_ue\\development\\engine\\sharedpch.engine.project.valapi.cpp20.h.pch",
         "Includes": [
-            "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\x64\\unrealgame\\development\\architectcore\\definitions.architectcore.h",
-            "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\source\\architectcore\\public\\architectcutter.h",
-            "b:\\unrealengine5_projects\\_repos5\\patchwork\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\unrealgame\\inc\\architectcore\\uht\\architectcutter.generated.h"
+            "f:\\active projects\\dreamwalker master folder\\patchwork with engine update\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\x64\\unrealgame\\development\\architectcore\\definitions.architectcore.h",
+            "f:\\active projects\\dreamwalker master folder\\patchwork with engine update\\patchwork\\patchwork_ue\\plugins\\architectcore\\source\\architectcore\\public\\architectcutter.h",
+            "f:\\active projects\\dreamwalker master folder\\patchwork with engine update\\patchwork\\patchwork_ue\\plugins\\architectcore\\intermediate\\build\\win64\\unrealgame\\inc\\architectcore\\uht\\architectcutter.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

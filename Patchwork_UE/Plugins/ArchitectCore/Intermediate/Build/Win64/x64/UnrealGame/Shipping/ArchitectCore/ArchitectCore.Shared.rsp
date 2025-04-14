@@ -83,8 +83,6 @@
 /I "Runtime\Experimental\Chaos\Public"
 /I "Runtime\Experimental\Voronoi\Public"
 /I "Runtime\GeometryCore\Public"
-/I "..\Intermediate\Build\Win64\UnrealGame\Inc\ChaosVDRuntime\UHT"
-/I "Runtime\Experimental\ChaosVisualDebugger\Public"
 /I "Runtime\SignalProcessing\Public"
 /I "..\Intermediate\Build\Win64\UnrealGame\Inc\AudioExtensions\UHT"
 /I "Runtime\AudioExtensions\Public"
