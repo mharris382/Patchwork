@@ -5,6 +5,9 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"C:/Users/Admin/Documents/UE_Projects/Patchwork/Patchwork_UE/Content/Patchwork/Materials/BaseMaterialInstances/M_VoidFloor.uasset",
+				"C:/Users/Admin/Documents/UE_Projects/Patchwork/Patchwork_UE/Content/BlackVoid.umap",
+				"C:/Users/Admin/Documents/UE_Projects/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/BathHouse/Dead_Tree_qlEtl_Mid.uasset",
 				"B:/UnrealEngine5_Projects/_repos5/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Effects/Anomaly/Test.umap",
 				"B:/UnrealEngine5_Projects/_repos5/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Effects/Anomaly/NS_Anomaly_New.uasset",
 				"B:/UnrealEngine5_Projects/_repos5/Patchwork/Patchwork/Patchwork_UE/Content/Patchwork/Effects/Anomaly/Preview.uasset",
