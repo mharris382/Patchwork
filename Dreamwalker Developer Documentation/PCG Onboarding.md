@@ -1,19 +1,19 @@
 An e
 ## Contents
 - PCG Workflow Overview
-	- Advantages/Disadvantages
-		- Advantages
-		- Warnings/Cautions
-- PCG Workflows
-	- Feature Requesting
-	- UE Splines
-	- Using Erasers
-	- Generation Modes
-	- PCG Architect
-	- Random Transform Settings
-- FAQ: 
-	- Wonky PCG Generation Artifacts
-	- Eraser is not Working 
+	- [Advantages/Disadvantages](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+		- [Advantages](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+		- [Warnings/Cautions](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+- [PCG Workflows](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+	- [Feature Requesting](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+	- [UE Splines](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+	- [Using Erasers](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+	- [Automatic vs Manual Generation Modes](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+	- [PCG Architect](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
+	- [Random Transform Settings](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
+- [FAQ](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers): 
+	- [Wonky PCG Generation Artifacts](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
+	- [Eraser is not Working](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
 
 # PCG Workflow Overview
 [This presentation covers what PCG is and how we strive to use it in our project.](https://docs.google.com/presentation/d/1tFCPGyEeI-ktZKFQNWSu9skRbhBWBtJESf1NlkHOJXE/edit?usp=sharing)
@@ -90,7 +90,7 @@ The majority of our PCG tools work with UE splines.   This video covers the basi
 Spline components operate in open loop or closed loop mode.  Many of our spline tools function in both modes, but there are several that will only work in closed loop mode.  
 
 > NOTE:   In our project we use a base class which specifies whether a spline is in closed loop or open loop mode, so you will be unable to edit that toggle directly on the spline component as you would normally.  Instead use the `Is Closed Loop` toggle in the actor settings under the `00 - Core` category
-![[Pasted image 20250424163206.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424163206.png)
 
 
 
