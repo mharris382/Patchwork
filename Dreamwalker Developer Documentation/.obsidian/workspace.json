@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "7bed7ac99f2b02ef",
+        "id": "e786c00f325eed22",
         "type": "tabs",
         "children": [
           {
-            "id": "5f208ee6ad60d355",
+            "id": "c08a1c8de155ec30",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,51 +20,8 @@
               "icon": "lucide-file",
               "title": "Audio Tools"
             }
-          },
-          {
-            "id": "e74b6736a7739424",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "PuzzleCore.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PuzzleCore"
-            }
-          },
-          {
-            "id": "9adc8779ff366bc1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docs/Project Materials/Master Materials.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Master Materials"
-            }
-          },
-          {
-            "id": "1390cef380d96288",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Unreal Plugins/Unreal Plugins Used.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Unreal Plugins Used"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -206,8 +163,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e74b6736a7739424",
+  "active": "c08a1c8de155ec30",
   "lastOpenFiles": [
+    "Onboarding Document.md",
     "Audio Tools.md",
     "PuzzleCore.md",
     "AudioSystems/Impact Effect System.md",
