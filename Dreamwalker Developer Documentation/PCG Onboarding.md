@@ -146,7 +146,7 @@ I would suggest using automatic mode for the majority of cases.
 ### Manual Generation
 In this mode, we have to trigger the PCG generation process manually.  In our tools there is a button called **Generate** used to trigger generation.
 
-![[Pasted image 20250424170007.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424170007.png)
 
 ### When to Manual Generation
 For most use cases automatic generation is better, however there are certain times that it is preferable to switch to Manual Generation.
@@ -180,11 +180,10 @@ A lot of tools use a standard structure which enables easy transform randomizati
 
 
 Comparison
-![[Pasted image 20250424173624.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424173624.png)
 
 
-
-![[Pasted image 20250424174215.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424174215.png)
 
 - `UseRandomTransformations`: toggle off to disable the randomization
 - `OffsetMin`: minimum offset to apply to each mesh. 
@@ -211,8 +210,7 @@ one weird and annoying bug with PCG is that when you copy a PCG blueprint actor 
 ### Eraser is not Working 
 the most common reason an eraser stops working is because the eraser actor Centrepoint is not overlapping the bounding box of the PCG Actor.   If the cutter does not overlap with the bounds, it will not be applied to that PCG Actor, which can be confusing. 
 
-![[Pasted image 20250424165051.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424165051.png)
 
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424165100.png)
 
-
-**![[Pasted image 20250424165100.png]]**
