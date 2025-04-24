@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Audio Tools.md",
+                "file": "Onboarding Document.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Audio Tools"
+              "title": "Onboarding Document"
+            }
+          },
+          {
+            "id": "ae370a9683762c58",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PCG Onboarding.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PCG Onboarding"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -163,9 +178,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c08a1c8de155ec30",
+  "active": "ae370a9683762c58",
   "lastOpenFiles": [
     "Onboarding Document.md",
+    "PCG Onboarding.md",
     "Audio Tools.md",
     "PuzzleCore.md",
     "AudioSystems/Impact Effect System.md",

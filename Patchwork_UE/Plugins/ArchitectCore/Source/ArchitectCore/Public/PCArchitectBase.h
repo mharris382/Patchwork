@@ -88,9 +88,9 @@ public:
     FArchitectOverrides()
     {
        SSMGraph= LoadObject<UPCGGraphInterface>(nullptr, TEXT("/ArchitectCore/Core/Graphs/Defaults/SSM_Default.SSM_Default"));
-       CAGraph = LoadObject<UPCGGraphInterface>(nullptr, TEXT("/ArchitectCore/Core/Graphs/Defaults/CA_Default.SSM_Default"));
-       FAGraph = LoadObject<UPCGGraphInterface>(nullptr, TEXT("/ArchitectCore/Core/Graphs/Defaults/FA_Default.SSM_Default"));
-       SAGraph = LoadObject<UPCGGraphInterface>(nullptr, TEXT("/ArchitectCore/Core/Graphs/Defaults/SA_Default.SSM_Default"));
+       CAGraph = LoadObject<UPCGGraphInterface>(nullptr, TEXT("/ArchitectCore/Core/Graphs/Defaults/CA_Default.CA_Default"));
+       FAGraph = LoadObject<UPCGGraphInterface>(nullptr, TEXT("/ArchitectCore/Core/Graphs/Defaults/FA_Default.FA_Default"));
+       SAGraph = LoadObject<UPCGGraphInterface>(nullptr, TEXT("/ArchitectCore/Core/Graphs/Defaults/SA_Default.SA_Default"));
     }
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overrides")
