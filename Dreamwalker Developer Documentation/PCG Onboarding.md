@@ -1,19 +1,19 @@
 
 ## Contents
 - [PCG Workflow Overview](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#pcg-workflow-overview)
-	- [Advantages/Disadvantages](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
-		- [Advantages](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
-		- [Warnings/Cautions](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
+	- [Advantages/Disadvantages](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#advantagesdisadvantages)
+		- [Advantages](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#key-advantages-of-pcg)
+		- [Warnings/Cautions](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#warningscautions-when-using-pcg)
 - [PCG Workflows](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#pcg-workflows)
 	- [Feature Requesting](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#feature-requesting)
 	- [UE Splines](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#ue-splines)
-	- [Using Erasers](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
-	- [Automatic vs Manual Generation Modes](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md)
-	- [PCG Architect](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
-	- [Random Transform Settings](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
-- [FAQ](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers): 
-	- [Wonky PCG Generation Artifacts](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
-	- [Eraser is not Working](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
+	- [Using Erasers](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
+	- [Automatic vs Manual Generation Modes](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#automaticmanual-generation)
+	- [PCG Architect](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#pcg-architect-generating-buildings)
+	- [Random Transform Settings](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#random-transform-settings)
+- [FAQ](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#faq)
+	- [Wonky PCG Generation Artifacts](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#wonky-pcg-generation-artifacts)
+	- [Eraser is not Working](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#eraser-is-not-working)
 
 # PCG Workflow Overview
 [This presentation covers what PCG is and how we strive to use it in our project.](https://docs.google.com/presentation/d/1tFCPGyEeI-ktZKFQNWSu9skRbhBWBtJESf1NlkHOJXE/edit?usp=sharing)
@@ -55,6 +55,8 @@ If you don't care about *why* we use PCG and just want to jump into the how, fee
 
 
 At the end of the day we recognize that PCG's benefits far exceed it's downsides and we make liberal use of PCG's rich feature set. 
+
+
 
 
 # PCG Workflows
@@ -198,7 +200,9 @@ Comparison
 
 
 
-## FAQ
+
+
+# FAQ
 Weird PCG Bugs & Fixes
 
 ### Wonky PCG Generation Artifacts
