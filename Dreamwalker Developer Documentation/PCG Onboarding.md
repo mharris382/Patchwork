@@ -1,5 +1,5 @@
 
-## Contents
+# Contents
 - [PCG Workflow Overview](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#pcg-workflow-overview)
 	- [Advantages/Disadvantages](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#advantagesdisadvantages)
 		- [Advantages](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#key-advantages-of-pcg)
@@ -17,8 +17,11 @@
 
 # PCG Workflow Overview
 [This presentation covers what PCG is and how we strive to use it in our project.](https://docs.google.com/presentation/d/1tFCPGyEeI-ktZKFQNWSu9skRbhBWBtJESf1NlkHOJXE/edit?usp=sharing)
+
 ## Advantages/Disadvantages
 If you don't care about *why* we use PCG and just want to jump into the how, feel free to skip this section.   
+
+
 ### Key Advantages of PCG
 - **Non-Destructive Workflow:** 
 	- Allows us retroactively alter the look/feel of anything the designers have built, without requiring any additional
@@ -45,28 +48,26 @@ If you don't care about *why* we use PCG and just want to jump into the how, fee
 	- It is important to let me know if this happens, especially if it happens more than once.
 - **Heavy CPU Workload:** This largely depends on the specific tool as well as the size of the generation.  Typically the more meshes it spawns, the longer it will take to generate.   
 	- If the generation time becomes and issue, I recommend disabling automatic regeneration in editor.  
-	- **TODO: add link to section on automatic/manual generation**
-	- **TODO: add link to designer mode section**
-- **Requires Custom Tooling:** it will happen that the PCG tools currently in your toolchest are insufficient for what you are trying to do.    
+	- [see section on automatic/manual generation](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#automaticmanual-generation)
+	- **Requires Custom Tooling:** it will happen that the PCG tools currently in your toolchest are insufficient for what you are trying to do.    
 	- This may be frustrating at first, since you will be used to having complete control of the level from your past workflows.  
 	- While you are 100% free to supplement tools whenever is necessary, *always ask me first*.   Often times the change you want is trivial to implement and I'll be able to give it to you right away 
-	- See FEATURE REQUEST SECTION
-
-
+	- [See FEATURE REQUESTING](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#feature-requesting)
 
 At the end of the day we recognize that PCG's benefits far exceed it's downsides and we make liberal use of PCG's rich feature set. 
-
-
 
 
 # PCG Workflows
 The following section describes the PCG Workflows that are provided with PCG and Unreal out of the box. 
 
+Our workflow is a hybrid workflow that combines PCG tools with traditional handplaced assets.  We generally use PCG (and landscape tools) for the large scale forms and we suppliment with handplaced static meshes or small scale pcg tools for smaller details and specific unique designs.  This workflow balances the speed and efficiency of PCG with the designer freedom and precise control of traditional workflows. 
+
+Many of our tools utilize Erasers to sculpt the spawned meshes.  The resulting workflow works similar to a voxel workflow, where we generate a big block and then chip away sections of it to sculpt into the shape we want.  [See Using Erasers](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#using-erasers)
 
 ## Feature Requesting
-When working with PCG tools you will inevitably run into this situation.  You want to do something and the PCG tools currently in your toolchest are insufficient for what you are trying to do.     When this happens, you may instinctively revert back to a traditional non-PCG workflow.  
+When working with PCG tools you will inevitably run into this situation.  You want to do something and the PCG tools currently in your toolchest are insufficient.     When this happens, you may instinctively revert back to a traditional non-PCG workflow.  
 
-Instead I you should first ping myself and/or Steph-Generalist in the discord.   Often times the changes you need are quite trivial and I will be able to provide them to you within a few minutes.   
+Instead you should first ping myself and/or Steph-Generalist in the discord.   Often times the changes you need are quite trivial and I will be able to provide them to you within a few minutes.   
 
 I will most often tell you one of the following things: 
 - The feature you want is already there, and tell you how to access it.
@@ -75,8 +76,6 @@ I will most often tell you one of the following things:
 	- *easier features will usually get priority*
 - That feature is a colossally difficult and we'll need to figure out a solution (usually hand placement if that is possible)
 	- *I tend to like these kind of requests tho.  I'm a bit mad like that :P*
-
-
 
 
 ## UE Splines!  
@@ -177,7 +176,6 @@ Additionally a number of our PCG tools, such as erasers and our PCG base classes
 
 
 ## Random Transform Settings
-
 A lot of tools use a standard structure which enables easy transform randomization of PCG generated meshes.   This is a simple option for applying random weirdness to the generation. 
 
 
