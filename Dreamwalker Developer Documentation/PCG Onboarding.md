@@ -97,25 +97,32 @@ Spline components operate in open loop or closed loop mode.  Many of our spline 
 
 ## Using Erasers
 
-95% of our PCG tools are integrated with the Eraser system.  This ensures that designers always have 100% control over the level.  If PCG spawns something undesirable, there is a way to remove it.
+95% of our PCG tools are integrated with the Eraser system.  This ensures that designers always have 100% control over the level.  If PCG spawns something undesirable, there is a way to remove it.   
+
+The Eraser Actor class is technically a **BuildingCutter**.  This tool is part of the PCGArchitect plugin, but has utility graphs that make it extremely easy to integrate and use more broadly across many different PCG tools.   For the most part you don't need to bother with anything of the settings on this tool, unless you are working with PCGArchitect's BuildingSpline tools for generating buildings.  _Occassionally_, I will utilize the Door or Window modes in a custom PCG tool, if designers need degree of control over a particular tool; but generally the eraser mode (default) is the only mode used. 
 
 ### To add an eraser
+
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424172505.png)
 - click the Add Actor button
 - type `Building`
 - select and drag `BuildingCutter`
-**![[Pasted image 20250424172505.png]]**
 
-TODO: add link to FAQ eraser not working
+
+> NOTE: Erasers must overlap with PCG Actor's Bounding Box in order for them to work on that actor. 
+[See FAQ: Eraser not working](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#eraser-is-not-working)
+
 ### Building Cutter Modes
 
-Most of the time you don't need to bother with any other mode besides Eraser, but some tools will use the other cutter modes: **Door, Window.**
+Most of the time you don't need to bother with any other mode besides Eraser, but occassionally some tools will use the other cutter modes: **Door, Window.**  Currently the primary tool that uses all 3 Modes is the BuildingSpline and BuildingSplineGrammar [See PCGArchitect](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md#pcg-architect-generating-buildings)
 
-![[Pasted image 20250424172821.png]]
+![PCG Architect Building Cutter in Door Mode vs Eraser Mode](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424172902.png)
+
 ### Advanced Eraser Settings
 
 The other Cutter Settings are only applicable when using PCG Architect Building Splines 
 
-![[Pasted image 20250424173153.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/Pasted%20image%2020250424173153.png)
 
 - `Mode`: changes the cutter mode
 - `Affect Walls`: allows disabling the eraser from deleting walls
@@ -164,15 +171,11 @@ For most use cases automatic generation is better, however there are certain tim
 
 
 ## PCG Architect: *Generating Buildings*
+PCG Architect is a plugin I developed during this project and intend to eventually publish either as FreeOpenSource or a paid Fab plugin.  
 
-[The (WIP) documentation for PCG Architect can be found here](https://better-faster-tech.gitbook.io/pcg-architect-documentation)
+It was created for generating Buildings using PCG and modular assets.   Additionally a number of our PCG tools use utilities located inside this plugin.  Refer to the documentation for using BuildingSplines and creating BuildingRecipes.  [The (WIP) documentation for PCG Architect can be found here](https://better-faster-tech.gitbook.io/pcg-architect-documentation).  
 
-
-PCG Architect is a plugin I developed during this project and intend to eventually publish either as FreeOpenSource or a paid Fab plugin.  The plugin is called **ArchitectCore**.  
-
-The plugin is made for generating Buildings using PCG. 
-
-Additionally a number of our PCG tools, such as erasers and our PCG base classes, all come from the plugin.  
+> NOTE: The actual name of plugin is **ArchitectCore**.  
 
 
 ## Random Transform Settings
@@ -206,7 +209,7 @@ Weird PCG Bugs & Fixes
 ### Wonky PCG Generation Artifacts
 one weird and annoying bug with PCG is that when you copy a PCG blueprint actor it sometimes leaves a copy of the previous generated ISMs and forgets about them.    
 - **Solution 1**: manually delete the copies, they will be ISM components on the actor and then regenerate
-- **Solution 2 (be careful):** there is a python script in the repository that automatically performs this for every PCG actor in the level.   Be careful when using it, not recommended in large scenes.   The python script folder is located in the folder `[Your repo root]/Python` and called `CleanupPCG.py`
+- **Solution 2 (be careful):** there is a python script in the repository that automatically performs this for every PCG actor in the level.   Be careful when using it, not recommended in large scenes.   The python script folder is located in the folder `[YOUR LOCAL REPOSITORY ROOT]/Python` and called `CleanupPCG.py`.  
 
 
 ### Eraser is not Working 
