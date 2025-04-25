@@ -45,7 +45,6 @@ Finally, while we do make our best effort to be adhere to good organizational pr
 - **Heavy Pickup**:  This pickup cannot be thrown and constrains the player's ability to jump with it.  Only heavy pickups can be used to weigh down pressure plates.
 - **Breakable**: An object that breaks if a strong enough collision occurs on it.  Example: **SporeJar**
 
-> NOTE: the puzzle actor ***IS*** the reset button.  Because they are fundamentally linked, they are not implemented as separate actors.  You cannot have a puzzle without a reset button.
 
 - **Puzzle Mechanism**:  mechanisms are actor/device that is somehow triggered by player action and produces a reaction to it's listeners.  A mechanism may have more than one listener.
 	- *Continuous Mechanism*: Mechanism that operates between a continuous range of 0-1.  Not yet introduced in-game.
@@ -55,6 +54,8 @@ Finally, while we do make our best effort to be adhere to good organizational pr
 
 - **Puzzle**: recent organizational addition.  This is a group of actors that are connected to a specific puzzle.  A puzzle can be completed permanently  (typically by reaching an trigger box), at which point the puzzle elements that are no longer relevant will be removed.  This will help players avoid confusion or having to resolve previously solved puzzles
 - **Reset Button**: All puzzles will have a reset button, which reverts all puzzle elements back to their original state.  This allows player to recover from an incorrect solution, or somehow loosing a key item or pickup. 
+
+> NOTE: the puzzle actor ***IS*** the reset button.  Because they are fundamentally linked, they are not implemented as separate actors.  You cannot have a puzzle without a reset button.
 
 ### Spore Terminology
 
