@@ -67,7 +67,7 @@ Finally, while we do make our best effort to be adhere to good organizational pr
 
 - **DataLayer**:  Use for world streaming.  See Data Layer Documentation (TODO: add link)
 - **PLA**: stands for Packed Level Actor.  This is an efficient way to combine multiple meshes into an actor that can be used for level creation.   More commonly in this project, PLAs are used as inputs for PCG tools, which give us the ability to apply random variations and procedural adjustments to the PLA. 
-![[PLAExample.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/PLAExample.png)
 
 
 ## Prefixes/Suffixes
@@ -86,10 +86,10 @@ Unless otherwise specified, we follow the [Epic Recommended Naming Conventions](
 
 # Levels 
 All levels that we regularly work on can be accessed from the favorites in the content drawer.
-![[LevelFavorites.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/LevelFavorites.png)
 ## Level 1: Mushroom Forest
 Main Level is named `Mushroom_Forest`
-![[MushroomForestLevelLocation.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/MushroomForestLevelLocation.png)
 
 
 # PCG Workflows
@@ -105,11 +105,11 @@ This section details the *custom* plugins in the project.   Plugins are a reliab
 
 ### How to Access Plugins From Content Drawer
 
-![[AccessPlugins.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/AccessPlugins.png)
 
 If you do not see this option in your content drawer, you will have to enable it from the settings in the top right corner of your content drawer.
 
-![[ShowPluginContent.png]]
+![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/ShowPluginContent.png)
 
 
 ## List of Custom Plugins
