@@ -48,9 +48,7 @@ Finally, while we do make our best effort to be adhere to good organizational pr
 > NOTE: the puzzle actor ***IS*** the reset button.  Because they are fundamentally linked, they are not implemented as separate actors.  You cannot have a puzzle without a reset button.
 
 - **Puzzle Mechanism**:  mechanisms are actor/device that is somehow triggered by player action and produces a reaction to it's listeners.  A mechanism may have more than one listener.
-	- *Binary Mechanism*: Mechanism that has only 2 states (on-off)
-	- *Discrete Mechanism*: Mechanism that has a number of discrete states
-	- *Continuous Mechanism*: Mechanism that operates between a continuous range of 0-1
+	- *Continuous Mechanism*: Mechanism that operates between a continuous range of 0-1.  Not yet introduced in-game.
 - **Puzzle Listener**:  something that reacts to a puzzle mechanism. 
 
 > **NOTE**: its worth noting that under the hood, all mechanisms and listeners are implemented as continuous values.  Binary mechanism simply fire 0 and 1 values. 
