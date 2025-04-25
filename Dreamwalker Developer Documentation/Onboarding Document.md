@@ -35,7 +35,11 @@ Finally, while we do make our best effort to be adhere to good organizational pr
 ### Anomaly & Level Progression Terms
 - **Anomaly**: This is the physical representation of the dreamer's trauma.  It becomes the final boss at the end of each level. 
 - **Trauma Image**: The image that represents the source of the Dreamer's trauma (which the player is trying to resolve).  Unlocked as the player completes the level
-- **Fragment**: Player's primary goal is to hunt down all fragments, which reveal parts of the trauma image. 
+- **Fragment**: Player's primary goal is to hunt down all fragments, which reveal parts of the trauma image.
+- **Dream Syncronization**: percentage of overall level completion. At 30%,60%, and 90% the player will earn an ability upgrade. 
+- **Secret Puzzle**: This is a special type of optional side-puzzle that unlocks a dreamer memory.  Contributes to dream syncronization.  See [Secret Puzzle Doc](https://docs.google.com/document/d/1hitr5KhHoZEgqmMMY5NNWPBWQKFHhUWH7s9dKvjZ6dw/edit?usp=sharing) for more info
+- **Collectable**: This is a optional collectable item that has significance to the dreamer. Contributes to dream syncronization.
+- **Ratman Note**: A note left behind by the previous dreamwalker. Last type of optional objective.  
 ### Puzzle Related Terms
 - **Pickup**: A physically simulated actor that the player can pickup and carry around. 
 - **Heavy Pickup**:  This pickup cannot be thrown and constrains the player's ability to jump with it.  Only heavy pickups can be used to weigh down pressure plates.
@@ -87,10 +91,10 @@ Unless otherwise specified, we follow the [Epic Recommended Naming Conventions](
 # Levels 
 All levels that we regularly work on can be accessed from the favorites in the content drawer.
 ![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/LevelFavorites.png)
-## Level 1: Mushroom Forest
-Main Level is named `Mushroom_Forest`
-![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/MushroomForestLevelLocation.png)
 
+> NOTE: in the FeatureTestingRoom folder, the most current testing room is called `PhysicsTestingRoom`.  The original `FeatureTestingRoom` is still available and may be helpful, but it grew very large and chaotic. 
+
+> NOTE: in the NewHub folder, the current version is called `Hub_ONEiRA_Alt`
 
 # PCG Workflows
 PCG, Procedural Content Generation, is a framework for spawning and manipulating meshes from code. We rely heavily on PCG throughout this project. [See PCG Onboarding Document](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/PCG%20Onboarding.md) for more Details
