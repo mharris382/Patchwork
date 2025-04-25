@@ -4,8 +4,8 @@
 
 1. Ensure you have Unreal Engine 5.5 installed 
 2. Clone the repository from GitHub using CLI or your choice of git GUI. [Instructional Video Here](https://youtu.be/SSY1GSorOZo)  *my apologies on the bad audio quality*
-3. Install the required plugins as [shown in this video]([https://youtu.be/mnD6L-tc-IA](https://youtu.be/mnD6L-tc-IA "https://youtu.be/mnD6L-tc-IA")
-	1. [link to the **FREE** required plugin PCGEx]([https://www.fab.com/listings/3f0bea1c-7406-4441-951b-8b2ca155f624](https://www.fab.com/listings/3f0bea1c-7406-4441-951b-8b2ca155f624 "https://www.fab.com/listings/3f0bea1c-7406-4441-951b-8b2ca155f624") 
+3. Install the required plugins as [shown in this video](https://youtu.be/mnD6L-tc-IA](https://youtu.be/mnD6L-tc-IA "https://youtu.be/mnD6L-tc-IA")
+	1. [link to the **FREE** required plugin PCGEx](https://www.fab.com/listings/3f0bea1c-7406-4441-951b-8b2ca155f624](https://www.fab.com/listings/3f0bea1c-7406-4441-951b-8b2ca155f624 "https://www.fab.com/listings/3f0bea1c-7406-4441-951b-8b2ca155f624") 
 	2. NOTE: there are different steps for Mac users
 4. Presto, project should now be ready to be opened and used
 
