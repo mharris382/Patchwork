@@ -206,12 +206,23 @@ Comparison
 # FAQ
 Weird PCG Bugs & Fixes
 
+### Automatic Generation is not working
+
+
 ### Wonky PCG Generation Artifacts
 one weird and annoying bug with PCG is that when you copy a PCG blueprint actor it sometimes leaves a copy of the previous generated ISMs and forgets about them.    
 - **Solution 1**: manually delete the copies, they will be ISM components on the actor and then regenerate
 - **Solution 2 (be careful):** there is a python script in the repository that automatically performs this for every PCG actor in the level.   Be careful when using it, not recommended in large scenes.   The python script folder is located in the folder `[YOUR LOCAL REPOSITORY ROOT]/Python` and called `CleanupPCG.py`.  
 
+> Below shows this situation where PCG creates and forgets about previous spawns.  
+![[Pasted image 20250429165213.png]]
 
+When this happens, what you want to do is 
+- navigate to the details panel and find the components which are prefixed with `ISM_`.    
+- **Select and delete** all of those components 
+![[Pasted image 20250429165308.png]]
+- deselect the actor (click on something else)
+- then reselect the actor and move it slightly to regenerate (provided automatic generation is enabled)
 ### Eraser is not Working 
 the most common reason an eraser stops working is because the eraser actor Centrepoint is not overlapping the bounding box of the PCG Actor.   If the cutter does not overlap with the bounds, it will not be applied to that PCG Actor, which can be confusing. 
 

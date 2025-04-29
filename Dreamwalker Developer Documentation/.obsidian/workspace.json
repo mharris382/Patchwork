@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Onboarding Document.md",
+                "file": "PCG Onboarding.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Onboarding Document"
+              "title": "PCG Onboarding"
             }
           }
         ],
@@ -180,21 +180,22 @@
   },
   "active": "ae370a9683762c58",
   "lastOpenFiles": [
+    "attachments/Pasted image 20250429165308.png",
+    "attachments/Pasted image 20250429165213.png",
+    "PuzzleCore.md",
+    "Onboarding Document.md",
     "attachments/PLAExample.png",
     "attachments/ShowPluginContent.png",
     "attachments/AccessPlugins.png",
     "attachments/Pasted image 20250424174215.png",
-    "Onboarding Document.md",
     "attachments/LevelFavorites.png",
     "attachments/MushroomForestLevelLocation.png",
-    "PuzzleCore.md",
     "PCG Onboarding.md",
     "Untitled 1.md",
     "Untitled.md",
     "attachments/Pasted image 20250424173624.png",
     "attachments/Pasted image 20250424173153.png",
     "attachments/Pasted image 20250424172902.png",
-    "attachments/Pasted image 20250424172821.png",
     "attachments",
     "Audio Tools.md",
     "AudioSystems/Impact Effect System.md",
