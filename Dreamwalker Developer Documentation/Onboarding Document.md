@@ -1,4 +1,21 @@
 
+# Contents
+- [Project Setup](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#project-setup)
+- [Forewarning](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#forewarning)
+- [Important Terms & Naming Conventions](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#important-terms--conventions)
+	- [Gameplay Terms](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#gameplay-terms)
+		- [Anomaly & Level Progression Terms](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#anomaly--level-progression-terms)
+		- [Puzzle/Mechanism Related Terms](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#puzzle-related-terms)
+		- [Spore Mechanic Terms](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#spore-terminology)
+	- [Technical Terms](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#technical-terms)
+	- [Prefixes/Suffixes](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#prefixessuffixes)
+- [Levels](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#levels)
+- [Procedural Content Generation (PCG) Workflows](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#pcg-workflows)
+- [Plugins](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#plugins)
+	- [List of Custom Plugins](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/Onboarding%20Document.md#list-of-custom-plugins)
+
+
+
 
 # Project Setup
 
@@ -18,14 +35,7 @@ We do also evolve our standards over time, and continue to improve.  At the curr
 Finally, while we do make our best effort to be adhere to good organizational practices and consistent conventions, we are not always 100% successful.  
 
 
-# Contents
-- Important Terms & Naming Conventions
-	- Gameplay Terms
-	- Technical Terms
-	- Prefixes/Suffixes
-- Levels
-- Procedural Content Generation (PCG) Workflows
-- Plugins
+
 
 
 # Important Terms & Conventions
@@ -68,8 +78,10 @@ Finally, while we do make our best effort to be adhere to good organizational pr
 
 ## Technical Terms
 
-- **DataLayer**:  Use for world streaming.  See Data Layer Documentation (TODO: add link)
-- **PLA**: stands for Packed Level Actor.  This is an efficient way to combine multiple meshes into an actor that can be used for level creation.   More commonly in this project, PLAs are used as inputs for PCG tools, which give us the ability to apply random variations and procedural adjustments to the PLA. 
+- **DataLayer**:  Use for world streaming.  See Data Layer Documentation **(TODO: add link)**
+- **PLA**: stands for Packed Level Actor.  This is an efficient way to combine multiple meshes into an actor that can be used for level creation.   More commonly in this project, PLAs are used as inputs for PCG tools, which give us the ability to apply random variations and procedural adjustments to the PLA.
+
+> The image below shows an example of a PLA in-action.  The left most column contains the set of PLAs used as input to the PCG tool.  The other columns demonstrate how PCG can be used to procedurally modify the inputs for variation and additional control.
 ![](https://github.com/mharris382/Patchwork/blob/main/Dreamwalker%20Developer%20Documentation/attachments/PLAExample.png)
 
 
