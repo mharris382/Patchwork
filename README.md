@@ -18,6 +18,7 @@ most tags work as either component tags or actor tags.
 | NoFall | Prevents long falls from occuring on specific surfaces |
 | NoSave | Prevents long fall reset from respawning on the actor/component |
 | ConveyorMoveable | Allows rainbow bridge conveyor to move this actor (only on actors) |
+| Not Contagious | might be depricated.  Found in BP_SporeRegion, blocks it from spreading spores |
 
 ## Asset Naming Conventions
 
