@@ -1,0 +1,17 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "PCGKitBuilder",
+	"Description": "KitBuilding Utilies for PCG Grammar (inspired from the Cassini Sample Project)",
+	"Category": "Other",
+	"CreatedBy": "Max Harris",
+	"CreatedByURL": "https://github.com/mharris382",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}
