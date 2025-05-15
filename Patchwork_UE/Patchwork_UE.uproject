@@ -110,6 +110,10 @@
 		{
 			"Name": "PCGExtendedToolkit",
 			"Enabled": true
+		},
+		{
+			"Name": "AudioGameplayVolume",
+			"Enabled": true
 		}
 	]
 }
