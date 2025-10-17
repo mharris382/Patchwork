@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-ArchitectCore.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"B:\UnrealEngine5_Projects\_repos5\Patchwork\Patchwork\Patchwork_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"B:\UnrealEngine5_Projects\_repos5\Patchwork\Patchwork\Patchwork_UE\Plugins\ArchitectCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchitectCore\Module.ArchitectCore.cpp.obj"
+"B:\UnrealEngine5_Projects\_repos5\Patchwork\Patchwork\Patchwork_UE\Plugins\ArchitectCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchitectCore\Default.rc2.res"
+/OUT:"B:\UnrealEngine5_Projects\_repos5\Patchwork\Patchwork\Patchwork_UE\Plugins\ArchitectCore\Intermediate\Build\Win64\x64\UnrealEditor\Development\ArchitectCore\UnrealEditor-ArchitectCore.lib"
