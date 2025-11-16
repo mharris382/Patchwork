@@ -114,6 +114,10 @@
 		{
 			"Name": "AudioGameplayVolume",
 			"Enabled": true
+		},
+		{
+			"Name": "HttpBlueprint",
+			"Enabled": true
 		}
 	]
 }
