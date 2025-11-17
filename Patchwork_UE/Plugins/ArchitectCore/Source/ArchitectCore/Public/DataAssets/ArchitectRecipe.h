@@ -6,16 +6,28 @@
 #include "Engine/DataAsset.h"
 #include "PCGGraph.h"
 #include "PCGDataAsset.h"
+//#include "Collections/PCGExActorCollection.h"
+//#include "Collections/PCGExMeshCollection.h"
 #include "PCArchitectBase.h"
 #include "ArchitectRecipe.generated.h"
 
 UENUM(BlueprintType)
 enum EAssetSpawnMode : uint8
 {
-    MeshOnly,
-    AssemblyOnly,
-    Combined,
-    DoNotSpawn
+    DoNotSpawn = 0,
+    MeshOnly = 1 UMETA(DisplayName = "Mesh"),
+    AssemblyOnly = 2 UMETA(DisplayName = "Assembly"),
+    Combined = 3 UMETA(DisplayName = "Mesh & Assembly"),
+    MeshCollection = 4 UMETA(DisplayName = "Mesh Collection"),
+};
+
+UENUM(BlueprintType)
+enum ECornerSpawnMode: uint8
+{
+    NoCorner = 0 UMETA(DisplayName = "None", ToolTip = "Not Spawned"),
+    EdgeCorner = 1 UMETA(DisplayName = "Edge", ToolTip = "Single Asset is spawned, but walls are not shifted."),
+    FullCorner = 2 UMETA(DisplayName = "Full", ToolTip = "Single Asset is spawned, walls are bounds are shifted"),
+    SplitCorner = 3 UMETA(DisplayName = "Split", ToolTip = "Dual Assets (right and left) are spawned, walls are bounds are shifted")
 };
 
 USTRUCT(BlueprintType)
@@ -127,27 +139,35 @@ struct FArchitectAsset
     TEnumAsByte<EAssetSpawnMode> SpawnMode;
 
     // Static mesh to use in spawn mode.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", Tooltip = "Static mesh to use in static mesh spawn mode."))//EditCondition = "SpawnMode == EAssetSpawnMode::MeshOnly || SpawnMode == EAssetSpawnMode::Combined", Tooltip = "Static mesh to use in spawn mode."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn && SpawnMode != EAssetSpawnMode::MeshCollection", EditConditionHides, Tooltip = "Static mesh to use in static mesh spawn mode."))//EditCondition = "SpawnMode == EAssetSpawnMode::MeshOnly || SpawnMode == EAssetSpawnMode::Combined", Tooltip = "Static mesh to use in spawn mode."))
     TObjectPtr<UStaticMesh> StaticMesh;
 
     // PCG data asset to use in assembly mode.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn && SpawnMode != EAssetSpawnMode::MeshOnly", Tooltip = "PCG data asset to use in assembly mode."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode == EAssetSpawnMode::Combined || SpawnMode == EAssetSpawnMode::AssemblyOnly", EditConditionHides, Tooltip = "PCG data asset to use in assembly mode."))
     TObjectPtr<UPCGDataAsset> Assembly; // Adjust type if it's a specific PCGDataAsset class
 
+    //UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode == EAssetSpawnMode::MeshCollection", EditConditionHides, Tooltip = "PCGEx Mesh Collection."))
+    //TObjectPtr<UPCGExMeshCollection> MeshCollection;
+
     // Override material applied based on spawn mode.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", Tooltip = "Override Material to apply to slot 1 on static mesh.  It will also be applied to any assembly points tagged with StaticMeshMaterial"))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", EditConditionHides, Tooltip = "Override Material to apply to slot 1 on static mesh.  It will also be applied to any assembly points tagged with StaticMeshMaterial"))
     TObjectPtr<UMaterialInterface> Material;
 
-    // Transformation options for the asset.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", Tooltip = "Transformation options for the asset."))
-    FArchitectAsset_TransformationOptions TransformOptions;
+    
+
 
     // Assembly options for the asset.
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn && SpawnMode != EAssetSpawnMode::MeshOnly", Tooltip = "Assembly options for the asset."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn && SpawnMode != EAssetSpawnMode::MeshOnly", EditConditionHides, Tooltip = "Assembly options for the asset."))
     FArchitectAsset_AssemblyOptions AssemblyOptions;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", Tooltip = "Override Graphs to override specific spawning behaviors using custom PCG graphs."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", EditConditionHides, Tooltip = "Override Graphs to override specific spawning behaviors using custom PCG graphs."))
     FArchitectOverrides OverrideGraphs;
+
+
+
+    // Transformation options for the asset.
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn Options", meta = (EditCondition = "SpawnMode != EAssetSpawnMode::DoNotSpawn", EditConditionHides, Tooltip = "Transformation options for the asset."))
+    FArchitectAsset_TransformationOptions TransformOptions;
 
     // Default constructor
     FArchitectAsset()
@@ -158,6 +178,46 @@ struct FArchitectAsset
     {}
 };
 
+
+USTRUCT(BlueprintType)
+struct FArchitectCornerAsset
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners")
+    TEnumAsByte<ECornerSpawnMode> CornerMode = ECornerSpawnMode::EdgeCorner; 
+
+ 
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners", meta = (EditCondition = "!UseRecipes && CornerMode==ECornerSpawnMode::EdgeCorner || CornerMode==ECornerSpawnMode::FullCorner", EditConditionHides))
+    FArchitectAsset Corner;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners", meta = (EditCondition = "!UseRecipes && CornerMode==ECornerSpawnMode::SplitCorner", EditConditionHides))
+    FArchitectAsset CornerRight;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners", meta = (EditCondition = "!UseRecipes && CornerMode==ECornerSpawnMode::SplitCorner", EditConditionHides))
+    FArchitectAsset CornerLeft;
+
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners")
+    bool UseRecipes = false;
+
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners", meta = (EditCondition = "UseRecipes && CornerMode==ECornerSpawnMode::EdgeCorner || CornerMode==ECornerSpawnMode::FullCorner", EditConditionHides))
+    TObjectPtr<UArchitectRecipe> CornerRecipe;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners", meta = (EditCondition = "UseRecipes && CornerMode==ECornerSpawnMode::SplitCorner", EditConditionHides))
+    TObjectPtr<UArchitectRecipe> CornerRightRecipe;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners", meta = (EditCondition = "UseRecipes && CornerMode==ECornerSpawnMode::SplitCorner", EditConditionHides))
+    TObjectPtr<UArchitectRecipe> CornerLeftRecipe;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners", meta = (EditCondition = "!UseRecipes && CornerMode!=ECornerSpawnMode::NoCorner && CornerMode!=ECornerSpawnMode::EdgeCorner", EditConditionHides))
+    bool OverrideRecipeFootprint = false;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners", meta = (EditCondition = "!UseRecipes && CornerMode!=ECornerSpawnMode::NoCorner && CornerMode!=ECornerSpawnMode::EdgeCorner && OverrideRecipeFootprint", EditConditionHides))
+    FVector CornerFootprint = FVector(200, 200, 300);
+};
 //USTRUCT(BlueprintType)
 //struct FArchitectAsset_ActorOptions
 //{
@@ -188,6 +248,9 @@ struct FArchitectAsset
 //
 //
 
+
+
+
 /**
  * 
  */
@@ -196,21 +259,53 @@ class ARCHITECTCORE_API UArchitectRecipe : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 public:
+    
+    UFUNCTION(CallInEditor, Category="Core")
+    void AutoCalculateFootprint();
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Core")
+    FVector Footprint = FVector(200, 200, 300);
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Walls")
     FArchitectAsset Wall;
 
-    //UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Walls")
-    //FArchitectAsset Door;
-    //
-    //UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Walls")
-    //FArchitectAsset Window;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Walls")
+    bool HasDoorSlot = true;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Walls", meta = (EditCondition = "HasDoorSlot", EditConditionHides))
+    FArchitectAsset Door;
+
+
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Walls")
+    bool HasWindowSlot = true;
+    
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Walls", meta = (EditCondition = "HasWindowSlot", EditConditionHides))
+    FArchitectAsset Window;
+
+
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners")
+    FArchitectCornerAsset OutCorner;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Corners")
+    FArchitectCornerAsset InCorner;
+     
+    
+
+
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floors")
     FArchitectAsset Floor;
 
+    
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floors")
     bool UseFloorAsCeiling;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floors")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floors", meta = (EditCondition = "UseFloorAsCeiling==false"))
     FArchitectAsset Ceiling;
+
+    
 };

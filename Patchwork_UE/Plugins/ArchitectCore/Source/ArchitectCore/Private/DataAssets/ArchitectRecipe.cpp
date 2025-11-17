@@ -3,3 +3,11 @@
 
 #include "DataAssets/ArchitectRecipe.h"
 
+void UArchitectRecipe::AutoCalculateFootprint()
+{
+	//if (IsValid(Wall.StaticMesh))
+	//{
+	//	//FVector size = Wall.StaticMesh.Get()->GetBoundingBox().GetSize();
+	//	//Footprint = size;
+	//}
+}
