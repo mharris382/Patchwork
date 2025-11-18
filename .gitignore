@@ -109,7 +109,7 @@ Patchwork_UE/Saved/Logs/Patchwork_UE.log
 Patchwork_UE/Saved/SourceControl/UncontrolledChangelists.json
 Patchwork_UE/Saved/Logs/Patchwork_UE.log
 *.log
-*.ini
+
 Patchwork_UE/Saved/Logs/Patchwork_UE.log
 Patchwork_UE/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini
 
@@ -117,4 +117,4 @@ Patchwork_UE/Plugins/PCGExtendedToolkit/Source/
 
 Patchwork_UE/Plugins/ArchitectCore/Intermediate/
 
-Patchwork_UE/Saved/
+
