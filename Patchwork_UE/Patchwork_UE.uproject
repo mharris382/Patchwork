@@ -82,10 +82,7 @@
 		},
 		{
 			"Name": "TextureGraph",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64"
-			]
+			"Enabled": true
 		},
 		{
 			"Name": "GameplayBehaviors",
