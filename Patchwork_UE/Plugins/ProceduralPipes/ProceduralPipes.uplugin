@@ -1,0 +1,38 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "ProceduralPipes",
+	"Description": "PCG Pipe Spline Tool",
+	"Category": "PCG",
+	"CreatedBy": "Max Harris",
+	"CreatedByURL": "https://github.com/mharris382",
+	"DocsURL": "https://better-faster-tech.gitbook.io/procedural-architect/",
+	"MarketplaceURL": "com.epicgames.launcher://ue/Fab/product/8ac12f8e-3f11-4a5b-9df1-9ff826e7e17d",
+	"SupportURL": "https://better-faster-tech.gitbook.io/procedural-architect/procedural-architect/support",
+	"EngineVersion": "5.7.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "ProceduralPipes",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "PCG",
+			"Enabled": true
+		},
+		{
+			"Name": "PCGGeometryScriptInterop",
+			"Enabled": true
+		}
+	]
+}
