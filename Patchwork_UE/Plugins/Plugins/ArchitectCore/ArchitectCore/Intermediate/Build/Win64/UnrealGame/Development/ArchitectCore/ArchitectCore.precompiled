@@ -1,0 +1,10 @@
+{
+	"OutputFiles": [
+		"..\\..\\..\\x64\\UnrealGame\\Development\\ArchitectCore\\Module.ArchitectCore.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\ArchitectCore\\ArchitectCore.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\ArchitectCore\\ArchitectCutter.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\ArchitectCore\\ArchitectRecipeStructs.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\ArchitectCore\\PCArchitectBase.cpp.obj",
+		"..\\..\\..\\x64\\UnrealGame\\Development\\ArchitectCore\\ArchitectRecipe.cpp.obj"
+	]
+}
