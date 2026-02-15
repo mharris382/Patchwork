@@ -1,0 +1,143 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+#include "UObject/GeneratedCppIncludes.h"
+#include "Graph/Edges/PCGExEdgeOrder.h"
+#include "Graph/PCGExEdgeDirectionSettings.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+static_assert(!UE_WITH_CONSTINIT_UOBJECT, "This generated code can only be compiled with !UE_WITH_CONSTINIT_OBJECT");
+void EmptyLinkFunctionForGeneratedCodePCGExEdgeOrder() {}
+
+// ********** Begin Cross Module References ********************************************************
+PCGEXTENDEDTOOLKIT_API UClass* Z_Construct_UClass_UPCGExEdgeOrderSettings();
+PCGEXTENDEDTOOLKIT_API UClass* Z_Construct_UClass_UPCGExEdgeOrderSettings_NoRegister();
+PCGEXTENDEDTOOLKIT_API UClass* Z_Construct_UClass_UPCGExEdgesProcessorSettings();
+PCGEXTENDEDTOOLKIT_API UScriptStruct* Z_Construct_UScriptStruct_FPCGExEdgeDirectionSettings();
+UPackage* Z_Construct_UPackage__Script_PCGExtendedToolkit();
+// ********** End Cross Module References **********************************************************
+
+// ********** Begin Class UPCGExEdgeOrderSettings **************************************************
+FClassRegistrationInfo Z_Registration_Info_UClass_UPCGExEdgeOrderSettings;
+UClass* UPCGExEdgeOrderSettings::GetPrivateStaticClass()
+{
+	using TClass = UPCGExEdgeOrderSettings;
+	if (!Z_Registration_Info_UClass_UPCGExEdgeOrderSettings.InnerSingleton)
+	{
+		GetPrivateStaticClassBody(
+			TClass::StaticPackage(),
+			TEXT("PCGExEdgeOrderSettings"),
+			Z_Registration_Info_UClass_UPCGExEdgeOrderSettings.InnerSingleton,
+			StaticRegisterNativesUPCGExEdgeOrderSettings,
+			sizeof(TClass),
+			alignof(TClass),
+			TClass::StaticClassFlags,
+			TClass::StaticClassCastFlags(),
+			TClass::StaticConfigName(),
+			(UClass::ClassConstructorType)InternalConstructor<TClass>,
+			(UClass::ClassVTableHelperCtorCallerType)InternalVTableHelperCtorCaller<TClass>,
+			UOBJECT_CPPCLASS_STATICFUNCTIONS_FORCLASS(TClass),
+			&TClass::Super::StaticClass,
+			&TClass::WithinClass::StaticClass
+		);
+	}
+	return Z_Registration_Info_UClass_UPCGExEdgeOrderSettings.InnerSingleton;
+}
+UClass* Z_Construct_UClass_UPCGExEdgeOrderSettings_NoRegister()
+{
+	return UPCGExEdgeOrderSettings::GetPrivateStaticClass();
+}
+struct Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "Category", "PCGEx|Clusters" },
+		{ "ClassGroupNames", "Procedural" },
+		{ "IncludePath", "Graph/Edges/PCGExEdgeOrder.h" },
+		{ "ModuleRelativePath", "Public/Graph/Edges/PCGExEdgeOrder.h" },
+		{ "PCGExNodeLibraryDoc", "clusters/metadata/edge-order" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DirectionSettings_MetaData[] = {
+		{ "Category", "Settings" },
+		{ "Comment", "/** Defines the direction in which points will be ordered to form the final paths. */" },
+		{ "ModuleRelativePath", "Public/Graph/Edges/PCGExEdgeOrder.h" },
+		{ "PCG_Overridable", "" },
+		{ "ShowOnlyInnerProperties", "" },
+		{ "ToolTip", "Defines the direction in which points will be ordered to form the final paths." },
+	};
+#endif // WITH_METADATA
+
+// ********** Begin Class UPCGExEdgeOrderSettings constinit property declarations ******************
+	static const UECodeGen_Private::FStructPropertyParams NewProp_DirectionSettings;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+// ********** End Class UPCGExEdgeOrderSettings constinit property declarations ********************
+	static UObject* (*const DependentSingletons[])();
+	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<UPCGExEdgeOrderSettings>::IsAbstract,
+	};
+	static const UECodeGen_Private::FClassParams ClassParams;
+}; // struct Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics
+
+// ********** Begin Class UPCGExEdgeOrderSettings Property Definitions *****************************
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::NewProp_DirectionSettings = { "DirectionSettings", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPCGExEdgeOrderSettings, DirectionSettings), Z_Construct_UScriptStruct_FPCGExEdgeDirectionSettings, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DirectionSettings_MetaData), NewProp_DirectionSettings_MetaData) }; // 1520832441
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::NewProp_DirectionSettings,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::PropPointers) < 2048);
+// ********** End Class UPCGExEdgeOrderSettings Property Definitions *******************************
+UObject* (*const Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::DependentSingletons[])() = {
+	(UObject* (*)())Z_Construct_UClass_UPCGExEdgesProcessorSettings,
+	(UObject* (*)())Z_Construct_UPackage__Script_PCGExtendedToolkit,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FClassParams Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::ClassParams = {
+	&UPCGExEdgeOrderSettings::StaticClass,
+	nullptr,
+	&StaticCppClassTypeInfo,
+	DependentSingletons,
+	nullptr,
+	Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::PropPointers,
+	nullptr,
+	UE_ARRAY_COUNT(DependentSingletons),
+	0,
+	UE_ARRAY_COUNT(Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::PropPointers),
+	0,
+	0x000800A0u,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::Class_MetaDataParams), Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::Class_MetaDataParams)
+};
+void UPCGExEdgeOrderSettings::StaticRegisterNativesUPCGExEdgeOrderSettings()
+{
+}
+UClass* Z_Construct_UClass_UPCGExEdgeOrderSettings()
+{
+	if (!Z_Registration_Info_UClass_UPCGExEdgeOrderSettings.OuterSingleton)
+	{
+		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UPCGExEdgeOrderSettings.OuterSingleton, Z_Construct_UClass_UPCGExEdgeOrderSettings_Statics::ClassParams);
+	}
+	return Z_Registration_Info_UClass_UPCGExEdgeOrderSettings.OuterSingleton;
+}
+UPCGExEdgeOrderSettings::UPCGExEdgeOrderSettings(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
+DEFINE_VTABLE_PTR_HELPER_CTOR_NS(, UPCGExEdgeOrderSettings);
+UPCGExEdgeOrderSettings::~UPCGExEdgeOrderSettings() {}
+// ********** End Class UPCGExEdgeOrderSettings ****************************************************
+
+// ********** Begin Registration *******************************************************************
+struct Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_Edges_PCGExEdgeOrder_h__Script_PCGExtendedToolkit_Statics
+{
+	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
+		{ Z_Construct_UClass_UPCGExEdgeOrderSettings, UPCGExEdgeOrderSettings::StaticClass, TEXT("UPCGExEdgeOrderSettings"), &Z_Registration_Info_UClass_UPCGExEdgeOrderSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGExEdgeOrderSettings), 3869161618U) },
+	};
+}; // Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_Edges_PCGExEdgeOrder_h__Script_PCGExtendedToolkit_Statics 
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_Edges_PCGExEdgeOrder_h__Script_PCGExtendedToolkit_1399277565{
+	TEXT("/Script/PCGExtendedToolkit"),
+	Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_Edges_PCGExEdgeOrder_h__Script_PCGExtendedToolkit_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_Edges_PCGExEdgeOrder_h__Script_PCGExtendedToolkit_Statics::ClassInfo),
+	nullptr, 0,
+	nullptr, 0,
+};
+// ********** End Registration *********************************************************************
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

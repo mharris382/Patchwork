@@ -1,0 +1,123 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+#include "UObject/GeneratedCppIncludes.h"
+#include "Graph/PCGExMakeClustersUnique.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+static_assert(!UE_WITH_CONSTINIT_UOBJECT, "This generated code can only be compiled with !UE_WITH_CONSTINIT_OBJECT");
+void EmptyLinkFunctionForGeneratedCodePCGExMakeClustersUnique() {}
+
+// ********** Begin Cross Module References ********************************************************
+PCGEXTENDEDTOOLKIT_API UClass* Z_Construct_UClass_UPCGExEdgesProcessorSettings();
+PCGEXTENDEDTOOLKIT_API UClass* Z_Construct_UClass_UPCGExMakeClustersUniqueSettings();
+PCGEXTENDEDTOOLKIT_API UClass* Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_NoRegister();
+UPackage* Z_Construct_UPackage__Script_PCGExtendedToolkit();
+// ********** End Cross Module References **********************************************************
+
+// ********** Begin Class UPCGExMakeClustersUniqueSettings *****************************************
+FClassRegistrationInfo Z_Registration_Info_UClass_UPCGExMakeClustersUniqueSettings;
+UClass* UPCGExMakeClustersUniqueSettings::GetPrivateStaticClass()
+{
+	using TClass = UPCGExMakeClustersUniqueSettings;
+	if (!Z_Registration_Info_UClass_UPCGExMakeClustersUniqueSettings.InnerSingleton)
+	{
+		GetPrivateStaticClassBody(
+			TClass::StaticPackage(),
+			TEXT("PCGExMakeClustersUniqueSettings"),
+			Z_Registration_Info_UClass_UPCGExMakeClustersUniqueSettings.InnerSingleton,
+			StaticRegisterNativesUPCGExMakeClustersUniqueSettings,
+			sizeof(TClass),
+			alignof(TClass),
+			TClass::StaticClassFlags,
+			TClass::StaticClassCastFlags(),
+			TClass::StaticConfigName(),
+			(UClass::ClassConstructorType)InternalConstructor<TClass>,
+			(UClass::ClassVTableHelperCtorCallerType)InternalVTableHelperCtorCaller<TClass>,
+			UOBJECT_CPPCLASS_STATICFUNCTIONS_FORCLASS(TClass),
+			&TClass::Super::StaticClass,
+			&TClass::WithinClass::StaticClass
+		);
+	}
+	return Z_Registration_Info_UClass_UPCGExMakeClustersUniqueSettings.InnerSingleton;
+}
+UClass* Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_NoRegister()
+{
+	return UPCGExMakeClustersUniqueSettings::GetPrivateStaticClass();
+}
+struct Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "Category", "PCGEx|Clusters" },
+		{ "ClassGroupNames", "Procedural" },
+		{ "IncludePath", "Graph/PCGExMakeClustersUnique.h" },
+		{ "ModuleRelativePath", "Public/Graph/PCGExMakeClustersUnique.h" },
+		{ "PCGExNodeLibraryDoc", "clusters/packing/make-unique" },
+	};
+#endif // WITH_METADATA
+
+// ********** Begin Class UPCGExMakeClustersUniqueSettings constinit property declarations *********
+// ********** End Class UPCGExMakeClustersUniqueSettings constinit property declarations ***********
+	static UObject* (*const DependentSingletons[])();
+	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<UPCGExMakeClustersUniqueSettings>::IsAbstract,
+	};
+	static const UECodeGen_Private::FClassParams ClassParams;
+}; // struct Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_Statics
+UObject* (*const Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_Statics::DependentSingletons[])() = {
+	(UObject* (*)())Z_Construct_UClass_UPCGExEdgesProcessorSettings,
+	(UObject* (*)())Z_Construct_UPackage__Script_PCGExtendedToolkit,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FClassParams Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_Statics::ClassParams = {
+	&UPCGExMakeClustersUniqueSettings::StaticClass,
+	nullptr,
+	&StaticCppClassTypeInfo,
+	DependentSingletons,
+	nullptr,
+	nullptr,
+	nullptr,
+	UE_ARRAY_COUNT(DependentSingletons),
+	0,
+	0,
+	0,
+	0x000800A0u,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_Statics::Class_MetaDataParams), Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_Statics::Class_MetaDataParams)
+};
+void UPCGExMakeClustersUniqueSettings::StaticRegisterNativesUPCGExMakeClustersUniqueSettings()
+{
+}
+UClass* Z_Construct_UClass_UPCGExMakeClustersUniqueSettings()
+{
+	if (!Z_Registration_Info_UClass_UPCGExMakeClustersUniqueSettings.OuterSingleton)
+	{
+		UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UPCGExMakeClustersUniqueSettings.OuterSingleton, Z_Construct_UClass_UPCGExMakeClustersUniqueSettings_Statics::ClassParams);
+	}
+	return Z_Registration_Info_UClass_UPCGExMakeClustersUniqueSettings.OuterSingleton;
+}
+UPCGExMakeClustersUniqueSettings::UPCGExMakeClustersUniqueSettings(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
+DEFINE_VTABLE_PTR_HELPER_CTOR_NS(, UPCGExMakeClustersUniqueSettings);
+UPCGExMakeClustersUniqueSettings::~UPCGExMakeClustersUniqueSettings() {}
+// ********** End Class UPCGExMakeClustersUniqueSettings *******************************************
+
+// ********** Begin Registration *******************************************************************
+struct Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExMakeClustersUnique_h__Script_PCGExtendedToolkit_Statics
+{
+	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
+		{ Z_Construct_UClass_UPCGExMakeClustersUniqueSettings, UPCGExMakeClustersUniqueSettings::StaticClass, TEXT("UPCGExMakeClustersUniqueSettings"), &Z_Registration_Info_UClass_UPCGExMakeClustersUniqueSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPCGExMakeClustersUniqueSettings), 3658722415U) },
+	};
+}; // Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExMakeClustersUnique_h__Script_PCGExtendedToolkit_Statics 
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExMakeClustersUnique_h__Script_PCGExtendedToolkit_621692790{
+	TEXT("/Script/PCGExtendedToolkit"),
+	Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExMakeClustersUnique_h__Script_PCGExtendedToolkit_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExMakeClustersUnique_h__Script_PCGExtendedToolkit_Statics::ClassInfo),
+	nullptr, 0,
+	nullptr, 0,
+};
+// ********** End Registration *********************************************************************
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

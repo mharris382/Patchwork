@@ -1,0 +1,74 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// IWYU pragma: private, include "Graph/PCGExCutClusters.h"
+
+#ifdef PCGEXTENDEDTOOLKIT_PCGExCutClusters_generated_h
+#error "PCGExCutClusters.generated.h already included, missing '#pragma once' in PCGExCutClusters.h"
+#endif
+#define PCGEXTENDEDTOOLKIT_PCGExCutClusters_generated_h
+
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+// ********** Begin Class UPCGExCutEdgesSettings ***************************************************
+struct Z_Construct_UClass_UPCGExCutEdgesSettings_Statics;
+PCGEXTENDEDTOOLKIT_API UClass* Z_Construct_UClass_UPCGExCutEdgesSettings_NoRegister();
+
+#define FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExCutClusters_h_32_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPCGExCutEdgesSettings(); \
+	friend struct ::Z_Construct_UClass_UPCGExCutEdgesSettings_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend PCGEXTENDEDTOOLKIT_API UClass* ::Z_Construct_UClass_UPCGExCutEdgesSettings_NoRegister(); \
+public: \
+	DECLARE_CLASS2(UPCGExCutEdgesSettings, UPCGExEdgesProcessorSettings, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/PCGExtendedToolkit"), Z_Construct_UClass_UPCGExCutEdgesSettings_NoRegister) \
+	DECLARE_SERIALIZER(UPCGExCutEdgesSettings)
+
+
+#define FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExCutClusters_h_32_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	PCGEXTENDEDTOOLKIT_API UPCGExCutEdgesSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UPCGExCutEdgesSettings(UPCGExCutEdgesSettings&&) = delete; \
+	UPCGExCutEdgesSettings(const UPCGExCutEdgesSettings&) = delete; \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(PCGEXTENDEDTOOLKIT_API, UPCGExCutEdgesSettings); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPCGExCutEdgesSettings); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPCGExCutEdgesSettings) \
+	PCGEXTENDEDTOOLKIT_API virtual ~UPCGExCutEdgesSettings();
+
+
+#define FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExCutClusters_h_29_PROLOG
+#define FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExCutClusters_h_32_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExCutClusters_h_32_INCLASS_NO_PURE_DECLS \
+	FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExCutClusters_h_32_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+class UPCGExCutEdgesSettings;
+
+// ********** End Class UPCGExCutEdgesSettings *****************************************************
+
+#undef CURRENT_FILE_ID
+#define CURRENT_FILE_ID FID_UnrealEngine5_Projects_PCGArchitect_pACKAGES_5_7_PCGEx_PCGExtendedToolkit_HostProject_Plugins_PCGExtendedToolkit_Source_PCGExtendedToolkit_Public_Graph_PCGExCutClusters_h
+
+// ********** Begin Enum EPCGExCutEdgesMode ********************************************************
+#define FOREACH_ENUM_EPCGEXCUTEDGESMODE(op) \
+	op(EPCGExCutEdgesMode::Nodes) \
+	op(EPCGExCutEdgesMode::Edges) \
+	op(EPCGExCutEdgesMode::NodesAndEdges) 
+
+enum class EPCGExCutEdgesMode : uint8;
+template<> struct TIsUEnumClass<EPCGExCutEdgesMode> { enum { Value = true }; };
+template<> PCGEXTENDEDTOOLKIT_NON_ATTRIBUTED_API UEnum* StaticEnum<EPCGExCutEdgesMode>();
+// ********** End Enum EPCGExCutEdgesMode **********************************************************
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -1,0 +1,7 @@
+{
+	"OutputFiles": [
+		"Module.ProceduralPipes.cpp.obj",
+		"ProceduralPipeActor.cpp.obj",
+		"ProceduralPipes.cpp.obj"
+	]
+}

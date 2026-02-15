@@ -1,0 +1,8 @@
+{
+	"BuildId": "47537391",
+	"Modules": 
+	{
+		"PCGExtendedToolkit": "UnrealEditor-PCGExtendedToolkit.dll",
+		"PCGExtendedToolkitEditor": "UnrealEditor-PCGExtendedToolkitEditor.dll"
+	}
+}
