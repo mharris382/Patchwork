@@ -1709,3 +1709,6 @@ FPackageName: Skipped package /ArchitectCore/Core/Graphs/Utilities/NormalizeAttr
 [2026.02.21-15.10.28:948][403]LogNiagara: Compiling System NiagaraSystem /Game/Patchwork/Effects/NS_WispySmoke.NS_WispySmoke took 4.112080 sec (time since issued).
 [2026.02.21-15.10.28:970][403]LogNiagara: Compiling System NiagaraSystem /Game/Patchwork/Effects/Water/WaterMaterials/Particles/P_Waterfall_Foam_Converted.P_Waterfall_Foam_Converted took 4.680498 sec (time since issued).
 [2026.02.21-15.10.43:059][717]LogSlate: Took 0.000189 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-BoldItalic.ttf' (162K)
+[2026.02.21-15.14.00:424][894]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 335.259064
+[2026.02.21-15.14.01:425][897]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2026.02.21-15.14.01:425][897]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 335.925415, Update Interval: 306.740326
