@@ -7,6 +7,7 @@ Patchwork_UE/Builds/*
 Patchwork_UE/Build/*
 Patchwork_UE/Development/*
 Patchwork_UE/Intermediate/*
+Patchwork_UE/Saved/*
 Patchwork_UE/Binaries/*
 # Visual Studio 2015 user specific files
 .vs/
