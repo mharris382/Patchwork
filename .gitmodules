@@ -1,0 +1,3 @@
+[submodule "Patchwork_UE/Plugins/PCGUtils"]
+	path = Patchwork_UE/Plugins/PCGUtils
+	url = https://github.com/mharris382/PCGUtils.git
