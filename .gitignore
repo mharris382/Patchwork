@@ -5,7 +5,6 @@
 Patchwork/Content/StarterContent/*
 Patchwork_UE/Builds/*
 Patchwork_UE/Build/*
-Patchwork_UE/Saved/* 
 Patchwork_UE/Development/*
 Patchwork_UE/Intermediate/*
 Patchwork_UE/Binaries/*
@@ -102,7 +101,6 @@ Patchwork_UE/Content/Fab/Megascans/3D/Bolete_Mushrooms_qdzrT/High/4K/
 
 Patchwork_UE/Intermediate/
 Patchwork_UE/Saved/Logs/Patchwork_UE.log
-Patchwork_UE/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini
 Patchwork_UE/Saved/SourceControl/UncontrolledChangelists.json
 Patchwork_UE/Saved/Logs/Patchwork_UE.log
 Patchwork_UE/Saved/SourceControl/UncontrolledChangelists.json
