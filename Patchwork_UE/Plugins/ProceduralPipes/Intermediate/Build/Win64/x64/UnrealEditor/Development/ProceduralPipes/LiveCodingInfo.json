@@ -1,0 +1,12 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.ProceduralPipes.cpp.obj": [
+			"ProceduralPipeActor.gen.cpp.obj",
+			"ProceduralPipes.init.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"ProceduralPipeActor.cpp.obj",
+			"ProceduralPipes.cpp.obj"
+		]
+	}
+}
