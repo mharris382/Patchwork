@@ -95,6 +95,7 @@ LogPluginManager: Error: Failed to load Plugin (C:/Users/monic/OneDrive/Desktop/
 >>>>>>> parent of 35c642a6e2 (more attempts at solving mesh baking caves)
 LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
 LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+LogICUInternationalization: ICU TimeZone Detection - Raw Offset: -8:00, Platform Override: ''
 LogInit: Session CrashGUID >====================================================
 <<<<<<< HEAD
 <<<<<<< Updated upstream
@@ -163,14 +164,15 @@ LogConfig: Display: Loading Windows ini files took 0.04 seconds
 LogPluginManager: Looking for build plugins target receipt
 LogPluginManager: Unable to find target receipt in path: ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Binaries/Win64/*.target
 LogAssetRegistry: Display: No AssetDiscovery cache present at ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Intermediate/CachedAssetRegistryDiscovery.bin. AssetRegistry discovery of files will be uncached.
-LogConfig: Display: Loading Mac ini files took 0.04 seconds
-LogConfig: Display: Loading VulkanPC ini files took 0.04 seconds
-LogConfig: Display: Loading Android ini files took 0.04 seconds
-LogConfig: Display: Loading IOS ini files took 0.04 seconds
+LogPluginManager: Unable to find target receipt in path: ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Binaries/Win64/*.target
+LogConfig: Display: Loading VulkanPC ini files took 0.03 seconds
+LogConfig: Display: Loading Windows ini files took 0.04 seconds
 LogConfig: Display: Loading Unix ini files took 0.04 seconds
-LogConfig: Display: Loading Windows ini files took 0.05 seconds
-LogConfig: Display: Loading TVOS ini files took 0.05 seconds
+LogConfig: Display: Loading Mac ini files took 0.04 seconds
+LogConfig: Display: Loading Android ini files took 0.05 seconds
+LogConfig: Display: Loading IOS ini files took 0.05 seconds
 LogConfig: Display: Loading VisionOS ini files took 0.05 seconds
+LogConfig: Display: Loading TVOS ini files took 0.05 seconds
 LogConfig: Display: Loading Linux ini files took 0.05 seconds
 LogPluginManager: Found matching target receipt: ../../../Engine/Binaries/Win64/UnrealEditor.target
 LogPluginManager: Looking for enabled plugins target receipt
@@ -178,10 +180,9 @@ LogPluginManager: Unable to find target receipt in path: ../../../../../../Users
 LogPluginManager: Found matching target receipt: ../../../Engine/Binaries/Win64/UnrealEditor.target
 >>>>>>> parent of 35c642a6e2 (more attempts at solving mesh baking caves)
 LogPluginManager: Mounting Engine plugin AudioGameplay
-LogPluginManager: Mounting Engine plugin AudioGameplayVolume
 LogPluginManager: Mounting Engine plugin AudioInsights
+LogPluginManager: Mounting Engine plugin AudioGameplayVolume
 LogPluginManager: Mounting Engine plugin BaseMaterial
-LogPluginManager: Mounting Engine plugin Bridge
 LogPluginManager: Mounting Engine plugin ChaosCloth
 LogPluginManager: Mounting Engine plugin ChaosClothAsset
 LogPluginManager: Mounting Engine plugin ChaosInsights
@@ -203,8 +204,6 @@ LogPluginManager: Mounting Engine plugin Fab
 LogPluginManager: Mounting Engine plugin IoStoreInsights
 LogPluginManager: Mounting Engine plugin JsonBlueprintUtilities
 LogPluginManager: Mounting Engine plugin MassInsights
-LogPluginManager: Mounting Engine plugin MeshPainting
-LogPluginManager: Mounting Engine plugin PCG
 LogPluginManager: Mounting Engine plugin Mutable
 LogPluginManager: Mounting Engine plugin RenderGraphInsights
 <<<<<<< HEAD
@@ -287,8 +286,14 @@ LogPluginManager: Mounting Engine plugin TraceUtilities
 >>>>>>> parent of bb244f1b61 (WIP on main_local_2)
 LogPluginManager: Mounting Engine plugin UbaController
 LogPluginManager: Mounting Engine plugin WorldMetrics
+LogPluginManager: Mounting Engine plugin UbaController
 LogPluginManager: Mounting Engine plugin XGEController
+LogPluginManager: Mounting Engine plugin GameplayCameras
+LogPluginManager: Mounting Engine plugin CameraShakePreviewer
+LogPluginManager: Mounting Engine plugin CompositeCore
 LogPluginManager: Mounting Engine plugin AnimationSharing
+LogPluginManager: Mounting Engine plugin OpenColorIO
+LogPluginManager: Mounting Engine plugin EngineCameras
 LogPluginManager: Mounting Engine plugin CLionSourceCodeAccess
 LogPluginManager: Mounting Engine plugin CodeLiteSourceCodeAccess
 >>>>>>> parent of 35c642a6e2 (more attempts at solving mesh baking caves)
@@ -319,7 +324,7 @@ LogPluginManager: Mounting Engine plugin NamingTokens
 LogPluginManager: Mounting Engine plugin NullSourceCodeAccess
 LogPluginManager: Mounting Engine plugin NamingTokens
 LogPluginManager: Mounting Engine plugin PerforceSourceControl
-LogPluginManager: Mounting Engine plugin PixWinPlugin
+LogPluginManager: Mounting Engine plugin GitSourceControl
 LogPluginManager: Mounting Engine plugin PlasticSourceControl
 LogPluginManager: Mounting Engine plugin PluginUtils
 LogPluginManager: Mounting Engine plugin ProjectLauncher
@@ -328,8 +333,7 @@ LogPluginManager: Mounting Engine plugin PropertyAccessNode
 =======
 >>>>>>> parent of 35c642a6e2 (more attempts at solving mesh baking caves)
 LogPluginManager: Mounting Engine plugin RenderDocPlugin
-LogPluginManager: Mounting Engine plugin RiderSourceCodeAccess
-LogPluginManager: Mounting Engine plugin PropertyAccessNode
+LogPluginManager: Mounting Engine plugin ProjectLauncher
 LogPluginManager: Mounting Engine plugin SubversionSourceControl
 <<<<<<< HEAD
 >>>>>>> Stashed changes
@@ -515,59 +519,135 @@ LogPluginManager: Mounting Engine plugin InputDebugging
 LogPluginManager: Mounting Engine plugin PluginUtils
 LogPluginManager: Mounting Engine plugin TextureFormatOodle
 LogPluginManager: Mounting Engine plugin UObjectPlugin
-LogPluginManager: Mounting Engine plugin XCodeSourceCodeAccess
-LogPluginManager: Mounting Engine plugin VisualStudioSourceCodeAccess
+LogPluginManager: Mounting Engine plugin RiderSourceCodeAccess
+LogPluginManager: Mounting Engine plugin TextureFormatOodle
 LogPluginManager: Mounting Engine plugin VisualStudioCodeSourceCodeAccess
+LogPluginManager: Mounting Engine plugin PropertyAccessNode
+LogPluginManager: Mounting Engine plugin XCodeSourceCodeAccess
+LogPluginManager: Mounting Engine plugin VariantManagerContent
 LogPluginManager: Mounting Engine plugin DatasmithContent
 LogPluginManager: Mounting Engine plugin GLTFExporter
-LogPluginManager: Mounting Engine plugin VariantManager
-LogPluginManager: Mounting Engine plugin Cascade
-LogPluginManager: Mounting Engine plugin VariantManagerContent
-LogPluginManager: Mounting Engine plugin Niagara
-LogPluginManager: Mounting Engine plugin NiagaraFluids
-LogPluginManager: Mounting Engine plugin NiagaraPreviewContent
 LogPluginManager: Mounting Engine plugin AlembicImporter
-LogPluginManager: Mounting Engine plugin NiagaraSimCaching
-LogPluginManager: Mounting Engine plugin MetaHumanSDK
+LogPluginManager: Mounting Engine plugin VariantManager
+LogPluginManager: Mounting Engine plugin OodleNetwork
+LogPluginManager: Mounting Engine plugin AssetManagerEditor
+LogPluginManager: Mounting Engine plugin ConsoleVariables
+LogPluginManager: Mounting Engine plugin CryptoKeys
+LogPluginManager: Mounting Engine plugin BlueprintHeaderView
+LogPluginManager: Mounting Engine plugin AssetSearch
+LogPluginManager: Mounting Engine plugin ChangelistReview
+LogPluginManager: Mounting Engine plugin CurveEditorTools
+LogPluginManager: Mounting Engine plugin BlueprintMaterialTextureNodes
+LogPluginManager: Mounting Engine plugin EditorDebugTools
+LogPluginManager: Mounting Engine plugin DataValidation
+LogPluginManager: Mounting Engine plugin EngineAssetDefinitions
+LogPluginManager: Mounting Engine plugin GeometryMode
+LogPluginManager: Mounting Engine plugin EditorScriptingUtilities
+LogPluginManager: Mounting Engine plugin GameplayTagsEditor
+LogPluginManager: Mounting Engine plugin LandscapePatch
+LogPluginManager: Mounting Engine plugin FacialAnimation
+LogPluginManager: Mounting Engine plugin MacGraphicsSwitching
+LogPluginManager: Mounting Engine plugin MaterialAnalyzer
+LogPluginManager: Mounting Engine plugin MobileLauncherProfileWizard
+LogPluginManager: Mounting Engine plugin ModelingToolsEditorMode
+LogPluginManager: Mounting Engine plugin MeshLODToolset
+LogPluginManager: Mounting Engine plugin SpeedTreeImporter
+LogPluginManager: Mounting Engine plugin PluginBrowser
+LogPluginManager: Mounting Engine plugin UVEditor
+LogPluginManager: Mounting Engine plugin SequencerAnimTools
+LogPluginManager: Mounting Engine plugin StylusInput
+LogPluginManager: Mounting Engine plugin ProxyLODPlugin
+LogPluginManager: Mounting Engine plugin UMGWidgetPreview
+LogPluginManager: Mounting Engine plugin ColorGrading
+LogPluginManager: Mounting Engine plugin WorldPartitionHLODUtilities
+LogPluginManager: Mounting Engine plugin AutomationUtils
+LogPluginManager: Mounting Engine plugin AdvancedRenamer
+LogPluginManager: Mounting Engine plugin ChaosCaching
+LogPluginManager: Mounting Engine plugin BackChannel
+LogPluginManager: Mounting Engine plugin ChaosEditor
+LogPluginManager: Mounting Engine plugin ChaosUserDataPT
+LogPluginManager: Mounting Engine plugin CharacterAI
+LogPluginManager: Mounting Engine plugin Dataflow
+LogPluginManager: Mounting Engine plugin FullBodyIK
+LogPluginManager: Mounting Engine plugin ChaosNiagara
+LogPluginManager: Mounting Engine plugin GameplayBehaviors
+LogPluginManager: Mounting Engine plugin ChaosSolverPlugin
+LogPluginManager: Mounting Engine plugin EditorDataStorage
+LogPluginManager: Mounting Engine plugin GeometryFlow
+LogPluginManager: Mounting Engine plugin EditorDataStorageFeatures
+LogPluginManager: Mounting Engine plugin GeometryCollectionPlugin
+LogPluginManager: Mounting Engine plugin Fracture
+LogPluginManager: Mounting Engine plugin EditorPerformance
+LogPluginManager: Mounting Engine plugin EditorTelemetry
+LogPluginManager: Mounting Engine plugin Landmass
+LogPluginManager: Mounting Engine plugin TargetingSystem
+LogPluginManager: Mounting Engine plugin GeometryDataflow
+LogPluginManager: Mounting Engine plugin ImpostorBaker
+LogPluginManager: Mounting Engine plugin GlobalConfigurationData
+LogPluginManager: Mounting Engine plugin ImageWidgets
+LogPluginManager: Mounting Engine plugin LowLevelNetTrace
+LogPluginManager: Mounting Engine plugin LocalizableMessage
+LogPluginManager: Mounting Engine plugin MeshModelingToolsetExp
+LogPluginManager: Mounting Engine plugin LevelSequenceNavigatorBridge
+LogPluginManager: Mounting Engine plugin NaniteDisplacedMesh
+LogPluginManager: Mounting Engine plugin PCGBiomeSample
+LogPluginManager: Mounting Engine plugin PlatformCrypto
+LogPluginManager: Mounting Engine plugin NFORDenoise
+LogPluginManager: Mounting Engine plugin PythonScriptPlugin
+LogPluginManager: Mounting Engine plugin PCGBiomeCore
+LogPluginManager: Mounting Engine plugin PlanarCut
+LogPluginManager: Mounting Engine plugin RuntimeTelemetry
+LogPluginManager: Mounting Engine plugin SkeletalReduction
+LogPluginManager: Mounting Engine plugin SequenceNavigator
+LogPluginManager: Mounting Engine plugin Niagara
+LogPluginManager: Mounting Engine plugin Water
+LogPluginManager: Mounting Engine plugin ToolPresets
+LogPluginManager: Mounting Engine plugin NiagaraFluids
+LogPluginManager: Mounting Engine plugin Cascade
 LogPluginManager: Mounting Engine plugin NNEDenoiser
-LogPluginManager: Mounting Engine plugin NNERuntimeORT
-LogPluginManager: Mounting Engine plugin PCGGeometryScriptInterop
+LogPluginManager: Mounting Engine plugin NiagaraSimCaching
+LogPluginManager: Mounting Engine plugin NiagaraPreviewContent
+LogPluginManager: Mounting Engine plugin MetaHumanSDK
 LogPluginManager: Mounting Engine plugin LauncherChunkInstaller
+LogPluginManager: Mounting Engine plugin NNERuntimeORT
 LogPluginManager: Mounting Engine plugin ActorLayerUtilities
-LogPluginManager: Mounting Engine plugin PCGExternalDataInterop
-LogPluginManager: Mounting Engine plugin AndroidDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin AndroidMoviePlayer
 LogPluginManager: Mounting Engine plugin AndroidFileServer
-LogPluginManager: Mounting Engine plugin AndroidPermission
-LogPluginManager: Mounting Engine plugin AppleMoviePlayer
-LogPluginManager: Mounting Engine plugin AppleImageUtils
-LogPluginManager: Mounting Engine plugin AssetTags
 LogPluginManager: Mounting Engine plugin AudioCapture
-LogPluginManager: Mounting Engine plugin CableComponent
-LogPluginManager: Mounting Engine plugin AudioWidgets
+LogPluginManager: Mounting Engine plugin PCGExternalDataInterop
+LogPluginManager: Mounting Engine plugin PCGGeometryScriptInterop
 LogPluginManager: Mounting Engine plugin AudioSynesthesia
-LogPluginManager: Mounting Engine plugin CommonUI
 LogPluginManager: Mounting Engine plugin ComputeFramework
-LogPluginManager: Mounting Engine plugin ChunkDownloader
-LogPluginManager: Mounting Engine plugin ArchVisCharacter
+LogPluginManager: Mounting Engine plugin CommonUI
+LogPluginManager: Mounting Engine plugin AudioWidgets
+LogPluginManager: Mounting Engine plugin AndroidDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin GeometryProcessing
+LogPluginManager: Mounting Engine plugin AppleMoviePlayer
+LogPluginManager: Mounting Engine plugin CableComponent
+LogPluginManager: Mounting Engine plugin HairStrands
+LogPluginManager: Mounting Engine plugin AssetTags
 LogPluginManager: Mounting Engine plugin CustomMeshComponent
-LogPluginManager: Mounting Engine plugin DataRegistry
-LogPluginManager: Mounting Engine plugin ExampleDeviceProfileSelector
 LogPluginManager: Mounting Engine plugin GameplayAbilities
+LogPluginManager: Mounting Engine plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin AppleImageUtils
 LogPluginManager: Mounting Engine plugin GameplayStateTree
 LogPluginManager: Mounting Engine plugin GeometryScripting
+LogPluginManager: Mounting Engine plugin GooglePAD
 LogPluginManager: Mounting Engine plugin GoogleCloudMessaging
 LogPluginManager: Mounting Engine plugin GeometryCache
-LogPluginManager: Mounting Engine plugin GooglePAD
-LogPluginManager: Mounting Engine plugin GameplayBehaviorSmartObjects
-LogPluginManager: Mounting Engine plugin GeometryProcessing
-LogPluginManager: Mounting Engine plugin HairStrands
 LogPluginManager: Mounting Engine plugin InputDebugging
+LogPluginManager: Mounting Engine plugin DataRegistry
+LogPluginManager: Mounting Engine plugin ChunkDownloader
+LogPluginManager: Mounting Engine plugin MeshModelingToolset
+LogPluginManager: Mounting Engine plugin ArchVisCharacter
+LogPluginManager: Mounting Engine plugin GameplayBehaviorSmartObjects
+LogPluginManager: Mounting Engine plugin AndroidPermission
+LogPluginManager: Mounting Engine plugin Metasound
+LogPluginManager: Mounting Engine plugin AndroidMoviePlayer
+LogPluginManager: Mounting Engine plugin MsQuic
 LogPluginManager: Mounting Engine plugin LinuxDeviceProfileSelector
 LogPluginManager: Mounting Engine plugin IOSDeviceProfileSelector
 >>>>>>> parent of 35c642a6e2 (more attempts at solving mesh baking caves)
 LogPluginManager: Mounting Engine plugin LocationServicesBPLibrary
-LogPluginManager: Mounting Engine plugin Metasound
 LogPluginManager: Mounting Engine plugin MobilePatchingUtils
 LogPluginManager: Mounting Engine plugin MsQuic
 <<<<<<< HEAD
@@ -621,38 +701,61 @@ LogPluginManager: Mounting Engine plugin AISupport
 LogPluginManager: Mounting Engine plugin MeshModelingToolset
 LogPluginManager: Mounting Engine plugin ProceduralMeshComponent
 LogPluginManager: Mounting Engine plugin PropertyBindingUtils
-LogPluginManager: Mounting Engine plugin PropertyAccessEditor
+LogPluginManager: Mounting Engine plugin ProceduralMeshComponent
 LogPluginManager: Mounting Engine plugin RigVM
-LogPluginManager: Mounting Engine plugin SkeletalMerging
 LogPluginManager: Mounting Engine plugin ResonanceAudio
-LogPluginManager: Mounting Engine plugin SignificanceManager
-LogPluginManager: Mounting Engine plugin SmartObjects
-LogPluginManager: Mounting Engine plugin Soundscape
-LogPluginManager: Mounting Engine plugin SoundFields
-LogPluginManager: Mounting Engine plugin StateTree
-LogPluginManager: Mounting Engine plugin Synthesis
 LogPluginManager: Mounting Engine plugin WaveTable
-LogPluginManager: Mounting Engine plugin WebMMoviePlayer
-LogPluginManager: Mounting Engine plugin WindowsDeviceProfileSelector
-LogPluginManager: Mounting Engine plugin WindowsMoviePlayer
+LogPluginManager: Mounting Engine plugin SmartObjects
 LogPluginManager: Mounting Engine plugin WorldConditions
-LogPluginManager: Mounting Engine plugin MultiUserTakes
-LogPluginManager: Mounting Engine plugin Takes
-LogPluginManager: Mounting Engine plugin InterchangeAssets
+LogPluginManager: Mounting Engine plugin SignificanceManager
+LogPluginManager: Mounting Engine plugin SkeletalMerging
+LogPluginManager: Mounting Engine plugin Soundscape
+LogPluginManager: Mounting Engine plugin PropertyAccessEditor
+LogPluginManager: Mounting Engine plugin HttpBlueprint
+LogPluginManager: Mounting Engine plugin Paper2D
+LogPluginManager: Mounting Engine plugin SoundFields
+LogPluginManager: Mounting Engine plugin ACLPlugin
+LogPluginManager: Mounting Engine plugin Synthesis
+LogPluginManager: Mounting Engine plugin StateTree
+LogPluginManager: Mounting Engine plugin ControlRig
+LogPluginManager: Mounting Engine plugin WindowsMoviePlayer
+LogPluginManager: Mounting Engine plugin GameplayInsights
+LogPluginManager: Mounting Engine plugin WindowsDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin WebMMoviePlayer
+LogPluginManager: Mounting Engine plugin ControlRigModules
+LogPluginManager: Mounting Engine plugin DeformerGraph
+LogPluginManager: Mounting Engine plugin AISupport
+LogPluginManager: Mounting Engine plugin IKRig
+LogPluginManager: Mounting Engine plugin ControlRigSpline
+LogPluginManager: Mounting Engine plugin AnimationModifierLibrary
+LogPluginManager: Mounting Engine plugin AnimationData
+LogPluginManager: Mounting Engine plugin BlendSpaceMotionAnalysis
+LogPluginManager: Mounting Engine plugin EnvironmentQueryEditor
 LogPluginManager: Mounting Engine plugin InterchangeEditor
+LogPluginManager: Mounting Engine plugin EaseCurveTool
+LogPluginManager: Mounting Engine plugin RigLogic
+LogPluginManager: Mounting Engine plugin TweeningUtils
 LogPluginManager: Mounting Engine plugin Interchange
+LogPluginManager: Mounting Engine plugin AndroidMedia
+LogPluginManager: Mounting Engine plugin InterchangeAssets
 LogPluginManager: Mounting Engine plugin AvfMedia
 LogPluginManager: Mounting Engine plugin ImgMedia
-LogPluginManager: Mounting Engine plugin MediaCompositing
-LogPluginManager: Mounting Engine plugin MediaPlate
-LogPluginManager: Mounting Engine plugin MediaPlayerEditor
-LogPluginManager: Mounting Engine plugin AndroidMedia
+LogPluginManager: Mounting Engine plugin SkeletalMeshModelingTools
 LogPluginManager: Mounting Engine plugin WmfMedia
-LogPluginManager: Mounting Engine plugin TcpMessaging
-LogPluginManager: Mounting Engine plugin UdpMessaging
-LogPluginManager: Mounting Engine plugin EOSShared
+LogPluginManager: Mounting Engine plugin MediaCompositing
+LogPluginManager: Mounting Engine plugin ActorSequence
+LogPluginManager: Mounting Engine plugin MediaPlayerEditor
+LogPluginManager: Mounting Engine plugin MovieRenderPipeline
+LogPluginManager: Mounting Engine plugin SequencerScripting
+LogPluginManager: Mounting Engine plugin MediaPlate
 LogPluginManager: Mounting Engine plugin WebMMedia
 LogPluginManager: Mounting Engine plugin OnlineServices
+LogPluginManager: Mounting Engine plugin TcpMessaging
+LogPluginManager: Mounting Engine plugin UdpMessaging
+LogPluginManager: Mounting Engine plugin TemplateSequence
+LogPluginManager: Mounting Engine plugin OnlineSubsystemUtils
+LogPluginManager: Mounting Engine plugin OnlineBase
+LogPluginManager: Mounting Engine plugin EOSShared
 LogPluginManager: Mounting Engine plugin OnlineSubsystem
 LogPluginManager: Mounting Engine plugin OnlineBase
 LogPluginManager: Mounting Engine plugin OnlineSubsystemNull
@@ -911,45 +1014,44 @@ LogPluginManager: Mounting Engine plugin ActorSequence
 LogPluginManager: Mounting Engine plugin LevelSequenceEditor
 LogPluginManager: Mounting Engine plugin SequencerScripting
 LogPluginManager: Mounting Engine plugin SequenceValidator
-LogPluginManager: Mounting Engine plugin HttpBlueprint
-LogPluginManager: Mounting Engine plugin MovieRenderPipeline
-LogPluginManager: Mounting Engine plugin Water
-LogPluginManager: Mounting Engine plugin TemplateSequence
+LogPluginManager: Mounting Engine plugin OnlineSubsystemNull
+LogPluginManager: Mounting Engine plugin InterchangeTests
+LogPluginManager: Mounting Engine plugin MultiUserTakes
+LogPluginManager: Mounting Engine plugin Takes
 LogPluginManager: Mounting Engine plugin BaseCharacterFXEditor
-LogPluginManager: Mounting Engine plugin SQLiteCore
-LogPluginManager: Mounting Engine plugin PCGWaterInterop
-LogPluginManager: Mounting Engine plugin PCGNiagaraInterop
-LogPluginManager: Mounting Engine plugin ConcertMain
-LogPluginManager: Mounting Engine plugin OnlineSubsystemGooglePlay
-LogPluginManager: Mounting Engine plugin XInputDevice
-LogPluginManager: Mounting Engine plugin ContentBrowserClassDataSource
-LogPluginManager: Mounting Engine plugin ContentBrowserFileDataSource
-LogPluginManager: Mounting Engine plugin OnlineSubsystemIOS
 LogPluginManager: Mounting Engine plugin PortableObjectFileDataSource
 LogPluginManager: Mounting Engine plugin ObjectMixer
+LogPluginManager: Mounting Engine plugin OnlineSubsystemIOS
+LogPluginManager: Mounting Engine plugin ConcertMain
 LogPluginManager: Mounting Engine plugin LightMixer
+LogPluginManager: Mounting Engine plugin SQLiteCore
+LogPluginManager: Mounting Engine plugin OnlineSubsystemGooglePlay
+LogPluginManager: Mounting Engine plugin PCGWaterInterop
+LogPluginManager: Mounting Engine plugin ContentBrowserFileDataSource
 LogPluginManager: Mounting Engine plugin ContentBrowserAssetDataSource
+LogPluginManager: Mounting Engine plugin ContentBrowserClassDataSource
+LogPluginManager: Mounting Engine plugin PCGNiagaraInterop
+LogPluginManager: Mounting Engine plugin XInputDevice
+LogPluginManager: Mounting Engine plugin MultiUserClient
+LogPluginManager: Mounting Engine plugin ConcertReplicationScripting
+LogPluginManager: Mounting Engine plugin ConcertSharedSlate
+LogPluginManager: Mounting Engine plugin ConcertClientSharedSlate
 LogPluginManager: Mounting Engine plugin ConcertSyncCore
 LogPluginManager: Mounting Engine plugin ConcertSyncClient
-LogPluginManager: Mounting Engine plugin ConcertReplicationScripting
-LogPluginManager: Mounting Engine plugin MultiUserClient
-LogPluginManager: Mounting Engine plugin ConcertClientSharedSlate
-LogPluginManager: Mounting Engine plugin ConcertSharedSlate
 LogPluginManager: Mounting Project plugin AIEmotes
-LogPluginManager: Mounting Project plugin DreamSporeEffects
-LogPluginManager: Mounting Project plugin PCGDestruction
 LogPluginManager: Mounting Project plugin AudioTools
+LogPluginManager: Mounting Project plugin DreamSporeEffects
+LogPluginManager: Mounting Project plugin ArchitectCore
+LogPluginManager: Mounting Project plugin PCGDestruction
+LogPluginManager: Mounting Project plugin LaserLightningVFX
+LogPluginManager: Mounting Project plugin PCGExtendedToolkit
 LogPluginManager: Mounting Project plugin PCGKitBuilder
 LogPluginManager: Mounting Project plugin PCGNatureGen
-LogPluginManager: Mounting Project plugin LaserLightningVFX
-LogPluginManager: Mounting Project plugin MeshBaker
-LogPluginManager: Mounting Project plugin PCGUtils
-LogPluginManager: Mounting Project plugin PuzzleCore
-LogPluginManager: Mounting Project plugin WaterCore
 LogPluginManager: Mounting Project plugin PCGMaterialMap
-LogPluginManager: Mounting Project plugin ArchitectCore
-LogPluginManager: Mounting Project plugin ProceduralPipes
-LogPluginManager: Mounting Project plugin PCGExtendedToolkit
+LogPluginManager: Mounting Project plugin MeshBaker
+LogPluginManager: Mounting Project plugin WaterCore
+LogPluginManager: Mounting Project plugin PuzzleCore
+LogPluginManager: Mounting Project plugin PCGUtils
 SourceControl: Revision control is disabled
 SourceControl: Revision control is disabled
 SourceControl: Revision control is disabled
@@ -6258,538 +6360,68 @@ FPackageName: Skipped package /Game/ThirdPersonPackage/LevelPrototyping/Material
 [2026.02.14-22.57.58:806][  0]LogPython: Display: Running start-up script C:/Program Files/Epic Games/UE_5.7/Engine/Plugins/Animation/ControlRig/Content/Python/init_unreal.py... started...
 [2026.02.14-22.57.58:917][  0]LogPython: registering <class 'ControlRigWorkflows.workflow_deformation_rig_preset.provider'>
 
-[2026.02.14-22.57.58:927][  0]LogPython: Display: Running start-up script C:/Program Files/Epic Games/UE_5.7/Engine/Plugins/Animation/ControlRig/Content/Python/init_unreal.py... took 122.081 ms (total: 305.478 ms)
-[2026.02.14-22.57.59:161][  1]LogFileCache: Retrieving MD5 hashes for directory 'C:/Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/' took 1.33s
-[2026.02.14-22.57.59:774][  2]LogSlate: Took 0.005849 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
-[2026.02.14-22.57.59:791][  2]LogEOSSDK: LogEOS: SDK Config Platform Update Request Successful, Time: 7.162324
-[2026.02.14-22.57.59:792][  2]LogEOSSDK: LogEOSAnalytics: EOS SDK Analytics disabled for route [1].
-[2026.02.14-22.57.59:793][  2]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 7.454580
-[2026.02.14-22.58.00:123][ 10]LogEOSSDK: LogEOSAnalytics: Start Session (User: ...)
-[2026.02.14-22.58.00:254][ 24]LogEOSSDK: LogEOS: SDK Config Product Update Request Successful, Time: 7.907863
-[2026.02.14-22.58.00:256][ 24]LogEOSSDK: LogEOS: SDK Config Data - Watermark: -287380011
-[2026.02.14-22.58.00:256][ 24]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 7.907863, Update Interval: 301.281769
-[2026.02.14-22.58.01:156][124]LogAssetRegistry: Warning: Package is unloadable: C:/Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/1/SZ/ORW20JFW86YZ1N2B1HEAZJ.uasset. Reason: Name table count 82 in package of size 612 at name offset 612
-[2026.02.14-22.58.30:568][641]LogAssetRegistry: AssetRegistryGather time 45.5983s: AssetDataDiscovery 0.6161s, AssetDataGather 44.1462s, StoreResults 0.8361s. Wall time 44.2140s.
-	NumCachedDirectories 0. NumUncachedDirectories 40610. NumCachedFiles 0. NumUncachedFiles 60070.
-	BackgroundTickInterruptions 2.
-[2026.02.14-22.58.30:602][641]LogAssetRegistry: Display: Starting OnFilesLoaded.Broadcast
-[2026.02.14-22.58.30:610][641]LogStreaming: Display: FlushAsyncLoading(352): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-22.58.30:614][641]LogPlacementMode: Display: The Asset Registry is done with its initial scan, the list of placeable classes has been updated.
-[2026.02.14-22.58.30:632][641]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000000 seconds (updated 0 objects)
-[2026.02.14-22.58.30:632][641]LogAssetRegistry: Display: Completed OnFilesLoaded.Broadcast: -0.439s
-[2026.02.14-22.58.30:636][641]LogSourceControl: Uncontrolled asset discovery started...
-[2026.02.14-22.58.31:922][646]LogAssetRegistry: Display: Asset registry cache written as 233.3 MiB to ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Intermediate/CachedAssetRegistry_*.bin
-[2026.02.14-22.58.32:015][646]LogSourceControl: Uncontrolled asset discovery finished in 1.378414 seconds (Found 59992 uncontrolled assets)
-[2026.02.14-22.59.35:553][836]LogStaticMesh: Display: Building static mesh s_cube_1cm_flippednormals (Required Memory Estimate: 0.026362 MB)...
-[2026.02.14-22.59.35:569][836]LogStaticMesh: Built static mesh [0.02s] /Engine/EngineMeshes/s_cube_1cm_flippednormals.s_cube_1cm_flippednormals
-[2026.02.14-22.59.36:890][840]LogDerivedDataCache: C:/Users/monic/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:00.000 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 0 files in 1 folders with total size 0 MiB.
-[2026.02.14-22.59.37:221][841]LogTexture: Display: Building textures: /Niagara/DefaultAssets/Templates/CascadeConversion/CompletelyEmpty.CompletelyEmpty:Texture2D_0 (TFO_DXT1, 512x512 x1x1x1) (Required Memory Estimate: 30.83325 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.42:888][858]LogTexture: Display: Building textures: /NiagaraFluids/Modules/Grid3D/Grid3D_Gas_InitializeMaterialControls.Grid3D_Gas_InitializeMaterialControls:NiagaraScriptSource_0.NiagaraGraph_0.NiagaraNodeInput_2.Temperature Opacity Curve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.42:888][858]LogTexture: Display: Building textures: /NiagaraFluids/Modules/Grid3D/Grid3D_Gas_InitializeMaterialControls.Grid3D_Gas_InitializeMaterialControls:NiagaraScriptSource_1.NiagaraGraph_0.NiagaraNodeInput_0.Density Curve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.42:888][858]LogTexture: Display: Building textures: /NiagaraFluids/Modules/Grid3D/Grid3D_Gas_InitializeMaterialControls.Grid3D_Gas_InitializeMaterialControls:NiagaraScriptSource_1.NiagaraGraph_0.NiagaraNodeInput_1.Temperature Curve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.42:888][858]LogTexture: Display: Building textures: /NiagaraFluids/Modules/Grid3D/Grid3D_Gas_InitializeMaterialControls.Grid3D_Gas_InitializeMaterialControls:NiagaraScriptSource_1.NiagaraGraph_0.NiagaraNodeInput_2.Temperature Opacity Curve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.42:888][858]LogTexture: Display: Building textures: /NiagaraFluids/Modules/Grid3D/Grid3D_Gas_InitializeMaterialControls.Grid3D_Gas_InitializeMaterialControls:NiagaraScriptSource_0.NiagaraGraph_0.NiagaraNodeInput_0.Density Curve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.42:888][858]LogTexture: Display: Building textures: /NiagaraFluids/Modules/Grid3D/Grid3D_Gas_InitializeMaterialControls.Grid3D_Gas_InitializeMaterialControls:NiagaraScriptSource_0.NiagaraGraph_0.NiagaraNodeInput_1.Temperature Curve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.52:397][912]LogStaticMesh: Display: Building static mesh S_Gnomon (Required Memory Estimate: 0.513503 MB)...
-[2026.02.14-22.59.52:400][912]LogStaticMesh: Built static mesh [0.00s] /Niagara/DefaultAssets/S_Gnomon.S_Gnomon
-[2026.02.14-22.59.52:408][913]LogTexture: Display: Building textures: /Game/Patchwork/Effects/M5VFXVOL2/Textures/CandleFire/CandleFire_S.CandleFire_S (TFO_AutoDXT, 128x256 x1x1x1) (Required Memory Estimate: 6.16659 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.52:854][947]LogTexture: Display: Building textures: /Game/Patchwork/Effects/M5VFXVOL2/Textures/Flow/disort_test.disort_test (TFO_AutoDXT, 512x512 x1x1x1) (Required Memory Estimate: 30.83325 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.53:935][ 17]LogNiagaraEditor: Niagara graph NiagaraGraph /NiagaraFluids/Modules/Grid3D/Grid3D_ComputeBoundary.Grid3D_ComputeBoundary:NiagaraScriptSource_0.NiagaraGraph_0: The default value declaration for the variable 'Module.VelocityScale' is not consistent between the graph and the metadata.
+[2026.02.26-19.29.25:734][  0]LogPython: Display: Running start-up script C:/Program Files/Epic Games/UE_5.7/Engine/Plugins/Animation/ControlRig/Content/Python/init_unreal.py... took 102.080 ms (total: 246.412 ms)
+[2026.02.26-19.29.25:969][  1]LogFileCache: Retrieving MD5 hashes for directory 'C:/Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/' took 1.17s
+[2026.02.26-19.29.26:284][  2]LogSlate: Took 0.004797 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2026.02.26-19.29.26:305][  2]LogEOSSDK: LogEOS: SDK Config Platform Update Request Successful, Time: 6.462767
+[2026.02.26-19.29.26:306][  2]LogEOSSDK: LogEOSAnalytics: EOS SDK Analytics disabled for route [1].
+[2026.02.26-19.29.26:307][  2]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 6.702443
+[2026.02.26-19.29.26:407][  3]LogAssetRegistry: Warning: Package is unloadable: C:/Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/__ExternalActors__/Patchwork/Levels/Maps/Mushroom_Forest/Mushroom_Forest/1/SZ/ORW20JFW86YZ1N2B1HEAZJ.uasset. Reason: Name table count 82 in package of size 612 at name offset 612
+[2026.02.26-19.29.26:617][  7]LogEOSSDK: LogEOSAnalytics: Start Session (User: ...)
+[2026.02.26-19.29.26:802][ 25]LogEOSSDK: LogEOS: SDK Config Product Update Request Successful, Time: 7.191968
+[2026.02.26-19.29.26:804][ 25]LogEOSSDK: LogEOS: SDK Config Data - Watermark: -287380011
+[2026.02.26-19.29.26:804][ 25]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 7.191968, Update Interval: 301.655334
+[2026.02.26-19.29.45:227][986]LogAssetRegistry: AssetRegistryGather time 32.6654s: AssetDataDiscovery 0.5070s, AssetDataGather 31.4928s, StoreResults 0.6656s. Wall time 31.5930s.
+	NumCachedDirectories 0. NumUncachedDirectories 40840. NumCachedFiles 0. NumUncachedFiles 60270.
+	BackgroundTickInterruptions 1.
+[2026.02.26-19.29.45:262][986]LogAssetRegistry: Display: Starting OnFilesLoaded.Broadcast
+[2026.02.26-19.29.45:269][986]LogStreaming: Display: FlushAsyncLoading(352): 1 QueuedPackages, 0 AsyncPackages
+[2026.02.26-19.29.45:276][986]LogPlacementMode: Display: The Asset Registry is done with its initial scan, the list of placeable classes has been updated.
+[2026.02.26-19.29.45:293][986]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000000 seconds (updated 0 objects)
+[2026.02.26-19.29.45:293][986]LogAssetRegistry: Display: Completed OnFilesLoaded.Broadcast: 0.726s
+[2026.02.26-19.29.45:299][986]LogSourceControl: Uncontrolled asset discovery started...
+[2026.02.26-19.29.46:657][ 69]LogAssetRegistry: Display: Asset registry cache written as 233.5 MiB to ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Intermediate/CachedAssetRegistry_*.bin
+[2026.02.26-19.29.46:794][ 78]LogSourceControl: Uncontrolled asset discovery finished in 1.495277 seconds (Found 60192 uncontrolled assets)
+[2026.02.26-19.29.49:765][265]LogNiagaraEditor: Niagara graph NiagaraGraph /NiagaraFluids/Modules/Grid3D/Grid3D_ComputeBoundary.Grid3D_ComputeBoundary:NiagaraScriptSource_0.NiagaraGraph_0: The default value declaration for the variable 'Module.VelocityScale' is not consistent between the graph and the metadata.
   Either change the default mode to 'custom' or check the input pins in the parameter map get node in the graph.
-[2026.02.14-22.59.53:942][ 18]LogNiagaraEditor: Niagara graph NiagaraGraph /NiagaraFluids/Modules/Grid3D/Grid3D_ComputeBoundary.Grid3D_ComputeBoundary:NiagaraScriptSource_1.NiagaraGraph_0: The default value declaration for the variable 'Module.VelocityScale' is not consistent between the graph and the metadata.
+[2026.02.26-19.29.49:773][266]LogNiagaraEditor: Niagara graph NiagaraGraph /NiagaraFluids/Modules/Grid3D/Grid3D_ComputeBoundary.Grid3D_ComputeBoundary:NiagaraScriptSource_1.NiagaraGraph_0: The default value declaration for the variable 'Module.VelocityScale' is not consistent between the graph and the metadata.
   Either change the default mode to 'custom' or check the input pins in the parameter map get node in the graph.
-[2026.02.14-22.59.54:144][ 23]LogTexture: Display: Building textures: /NiagaraFluids/Templates/Gas/3D/Emitters/Grid3D_Gas_Master_Emitter.Grid3D_Gas_Master_Emitter:NiagaraScriptSource_6_1.NiagaraGraph_0.NiagaraNodeInput_35.Grid3D_Gas_MaterialControls_DensityCurve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.54:144][ 23]LogTexture: Display: Building textures: /NiagaraFluids/Templates/Gas/3D/Emitters/Grid3D_Gas_Master_Emitter.Grid3D_Gas_Master_Emitter:NiagaraScriptSource_5_1.NiagaraGraph_0.NiagaraNodeInput_35.Grid3D_Gas_MaterialControls_DensityCurve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.54:144][ 23]LogTexture: Display: Building textures: /NiagaraFluids/Templates/Gas/3D/Emitters/Grid3D_Gas_Master_Emitter.Grid3D_Gas_Master_Emitter:NiagaraScriptSource_7_1.NiagaraGraph_0.NiagaraNodeInput_35.Grid3D_Gas_MaterialControls_DensityCurve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.54:145][ 23]LogTexture: Display: Building textures: /NiagaraFluids/Templates/Gas/3D/Emitters/Grid3D_Gas_Master_Emitter.Grid3D_Gas_Master_Emitter:NiagaraScriptSource_8_1.NiagaraGraph_0.NiagaraNodeInput_35.Grid3D_Gas_MaterialControls_DensityCurve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.54:145][ 23]LogTexture: Display: Building textures: /NiagaraFluids/Templates/Gas/3D/Emitters/Grid3D_Gas_Master_Emitter.Grid3D_Gas_Master_Emitter:NiagaraScriptSource_9_1.NiagaraGraph_0.NiagaraNodeInput_35.Grid3D_Gas_MaterialControls_DensityCurve.Texture2D_0 (RGBA16F, 256x1 x1x1x1) (Required Memory Estimate: 1.011059 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.54:145][ 23]LogTexture: Display: Building textures: /NiagaraFluids/Templates/Gas/3D/Emitters/Grid3D_Gas_Master_Emitter.Grid3D_Gas_Master_Emitter:ThumbnailTexture (TFO_DXT1, 512x512 x1x1x1) (Required Memory Estimate: 30.83325 MB), EncodeSpeed: Fast
-[2026.02.14-22.59.54:156][ 24]LogStreaming: Display: FlushAsyncLoading(370): 1 QueuedPackages, 1 AsyncPackages
-[2026.02.14-23.03.01:880][229]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 309.543396
-[2026.02.14-23.03.02:881][232]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
-[2026.02.14-23.03.02:881][232]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 310.209900, Update Interval: 314.828339
-[2026.02.14-23.08.19:921][183]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 627.584045
-[2026.02.14-23.08.20:920][186]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
-[2026.02.14-23.08.20:921][186]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 628.250977, Update Interval: 341.500305
-[2026.02.14-23.13.30:473][172]LogStreaming: Display: FlushAsyncLoading(371): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.13.30:529][172]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench_Broken_LowPoly.fbx]
-[2026.02.14-23.13.30:561][172]LogInterchangeImport: Translation (FBXSDK) of Bench_Broken_LowPoly.fbx in [0 min 0.030 s]
-[2026.02.14-23.13.34:960][172]LogSlate: Window 'Import Content' being destroyed
-[2026.02.14-23.13.34:987][172]LogInterchangeEngine: [Pending] Importing
-[2026.02.14-23.13.35:072][173]LogStreaming: Display: FlushAsyncLoading(380): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.13.35:166][174]LogStreaming: Display: FlushAsyncLoading(382): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.13.35:356][176]LogStaticMesh: Display: Building static mesh Bench_Broken_LowPoly (Required Memory Estimate: 0.337992 MB)...
-[2026.02.14-23.13.35:360][176]LogStaticMesh: Adjacency [0.00s], tris: 188, UVs 1
-[2026.02.14-23.13.35:362][176]LogStaticMesh: Clustering [0.00s]. Ratio: 1.000000
-[2026.02.14-23.13.35:362][176]LogStaticMesh: Leaves [0.00s]
-[2026.02.14-23.13.35:364][176]LogStaticMesh: Reduce [0.00s]
-[2026.02.14-23.13.35:365][176]LogStaticMesh: Fallback [0.00s], num tris: 188
-[2026.02.14-23.13.35:365][176]LogStaticMesh: ConstrainClusters:
-[2026.02.14-23.13.35:365][176]LogStaticMesh:   Input: 3 Clusters, 314 Triangles and 537 Vertices
-[2026.02.14-23.13.35:365][176]LogStaticMesh:   Output without splits: 3 Clusters, 314 Triangles and 537 Vertices
-[2026.02.14-23.13.35:365][176]LogStaticMesh:   Output with splits: 3 Clusters, 314 Triangles and 537 Vertices
-[2026.02.14-23.13.35:365][176]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 3, Slow Path Clusters: 0, 1 Material: 3, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
-[2026.02.14-23.13.35:366][176]LogStaticMesh: WritePages:
-[2026.02.14-23.13.35:366][176]LogStaticMesh:   Root: GPU size: 6248 bytes. 1 Pages. 6248.000 bytes per page (19.067% utilization).
-[2026.02.14-23.13.35:366][176]LogStaticMesh:   Streaming: 0 bytes.
-[2026.02.14-23.13.35:366][176]LogStaticMesh:   Page data disk size: 5408 bytes. Fixup data size: 88 bytes.
-[2026.02.14-23.13.35:366][176]LogStaticMesh:   Total GPU size: 6248 bytes, Total disk size: 5496 bytes.
-[2026.02.14-23.13.35:366][176]LogStaticMesh: Encode [0.00s]
-[2026.02.14-23.13.35:366][176]LogStaticMesh: NaniteBuild [0.01s]
-[2026.02.14-23.13.35:367][176]LogStaticMesh: Built static mesh [0.01s] /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly.Bench_Broken_LowPoly
-[2026.02.14-23.13.35:550][177]LogInterchangeImport: Imported (FBXSDK) of Bench_Broken_LowPoly.fbx in [0 min 5.019 s]
-[2026.02.14-23.13.35:550][177]LogInterchangeImport: MeshPayload (FBXSDK) of Bench_Broken_LowPoly.fbx, [1 188 112], in [0 min 0.001 s]
-[2026.02.14-23.13.35:554][177]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench_Broken_LowPoly.fbx]
-[2026.02.14-23.13.35:554][177]LogInterchangeEngine: Warning: [D:/ONEiRA/UV's/Bench_Broken_LowPoly.fbx : 'Bench_Broken_LowPoly', StaticMesh] No smoothing group information was found for this mesh 'Mesh' in the FBX file. Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter before exporting the file.
-[2026.02.14-23.13.35:554][177]LogInterchangeEngine: [Pending] Importing - Importing (2)
-[2026.02.14-23.13.35:554][177]LogInterchangeEngine: [Pending] Importing - Importing (2)
-[2026.02.14-23.13.35:554][177]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench_Broken2_LowPoly.fbx]
-[2026.02.14-23.13.35:625][180]LogInterchangeImport: Translation (FBXSDK) of Bench_Broken2_LowPoly.fbx in [0 min 0.015 s]
-[2026.02.14-23.13.35:642][182]LogStreaming: Display: FlushAsyncLoading(383): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.13.35:692][188]LogStaticMesh: Display: Building static mesh Bench_Broken2_LowPoly (Required Memory Estimate: 0.633846 MB)...
-[2026.02.14-23.13.35:693][188]LogStaticMesh: Adjacency [0.00s], tris: 360, UVs 1
-[2026.02.14-23.13.35:693][188]LogStaticMesh: Clustering [0.00s]. Ratio: 1.000000
-[2026.02.14-23.13.35:693][188]LogStaticMesh: Leaves [0.00s]
-[2026.02.14-23.13.35:701][189]LogStaticMesh: Reduce [0.01s]
-[2026.02.14-23.13.35:702][189]LogStaticMesh: Fallback [0.00s], num tris: 324
-[2026.02.14-23.13.35:704][189]LogStaticMesh: ConstrainClusters:
-[2026.02.14-23.13.35:704][189]LogStaticMesh:   Input: 6 Clusters, 738 Triangles and 1043 Vertices
-[2026.02.14-23.13.35:704][189]LogStaticMesh:   Output without splits: 6 Clusters, 738 Triangles and 1043 Vertices
-[2026.02.14-23.13.35:704][189]LogStaticMesh:   Output with splits: 6 Clusters, 738 Triangles and 1043 Vertices
-[2026.02.14-23.13.35:704][189]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 6, Slow Path Clusters: 0, 1 Material: 6, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
-[2026.02.14-23.13.35:704][189]LogStaticMesh: WritePages:
-[2026.02.14-23.13.35:704][189]LogStaticMesh:   Root: GPU size: 12224 bytes. 1 Pages. 12224.000 bytes per page (37.305% utilization).
-[2026.02.14-23.13.35:704][189]LogStaticMesh:   Streaming: 0 bytes.
-[2026.02.14-23.13.35:704][189]LogStaticMesh:   Page data disk size: 9760 bytes. Fixup data size: 120 bytes.
-[2026.02.14-23.13.35:704][189]LogStaticMesh:   Total GPU size: 12224 bytes, Total disk size: 9880 bytes.
-[2026.02.14-23.13.35:704][189]LogStaticMesh: Encode [0.00s]
-[2026.02.14-23.13.35:704][189]LogStaticMesh: NaniteBuild [0.01s]
-[2026.02.14-23.13.35:706][189]LogStaticMesh: Built static mesh [0.01s] /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly.Bench_Broken2_LowPoly
-[2026.02.14-23.13.35:792][191]LogInterchangeImport: Imported (FBXSDK) of Bench_Broken2_LowPoly.fbx in [0 min 0.182 s]
-[2026.02.14-23.13.35:792][191]LogInterchangeImport: MeshPayload (FBXSDK) of Bench_Broken2_LowPoly.fbx, [1 360 194], in [0 min 0.001 s]
-[2026.02.14-23.13.35:794][191]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench_Broken2_LowPoly.fbx]
-[2026.02.14-23.13.35:794][191]LogInterchangeEngine: Warning: [D:/ONEiRA/UV's/Bench_Broken2_LowPoly.fbx : 'Bench_Broken2_LowPoly', StaticMesh] No smoothing group information was found for this mesh 'Mesh' in the FBX file. Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter before exporting the file.
-[2026.02.14-23.13.35:794][191]LogInterchangeEngine: [Pending] Importing - Importing (1)
-[2026.02.14-23.13.35:794][191]LogInterchangeEngine: [Pending] Importing - Importing (1)
-[2026.02.14-23.13.35:794][191]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench_LowPoly.fbx]
-[2026.02.14-23.13.35:834][193]LogInterchangeImport: Translation (FBXSDK) of Bench_LowPoly.fbx in [0 min 0.010 s]
-[2026.02.14-23.13.35:897][195]LogStreaming: Display: FlushAsyncLoading(384): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.13.36:120][197]LogStaticMesh: Display: Building static mesh Bench_LowPoly (Required Memory Estimate: 0.398026 MB)...
-[2026.02.14-23.13.36:121][197]LogStaticMesh: Adjacency [0.00s], tris: 230, UVs 1
-[2026.02.14-23.13.36:121][197]LogStaticMesh: Clustering [0.00s]. Ratio: 1.000000
-[2026.02.14-23.13.36:121][197]LogStaticMesh: Leaves [0.00s]
-[2026.02.14-23.13.36:124][198]LogStaticMesh: Reduce [0.00s]
-[2026.02.14-23.13.36:124][198]LogStaticMesh: Fallback [0.00s], num tris: 230
-[2026.02.14-23.13.36:124][198]LogStaticMesh: ConstrainClusters:
-[2026.02.14-23.13.36:124][198]LogStaticMesh:   Input: 3 Clusters, 356 Triangles and 585 Vertices
-[2026.02.14-23.13.36:124][198]LogStaticMesh:   Output without splits: 3 Clusters, 356 Triangles and 585 Vertices
-[2026.02.14-23.13.36:124][198]LogStaticMesh:   Output with splits: 3 Clusters, 356 Triangles and 585 Vertices
-[2026.02.14-23.13.36:124][198]LogStaticMesh: Material Stats - Unique Materials: 1, Fast Path Clusters: 3, Slow Path Clusters: 0, 1 Material: 3, 2 Materials: 0, 3 Materials: 0, At Least 4 Materials: 0
-[2026.02.14-23.13.36:124][198]LogStaticMesh: WritePages:
-[2026.02.14-23.13.36:124][198]LogStaticMesh:   Root: GPU size: 6724 bytes. 1 Pages. 6724.000 bytes per page (20.520% utilization).
-[2026.02.14-23.13.36:124][198]LogStaticMesh:   Streaming: 0 bytes.
-[2026.02.14-23.13.36:124][198]LogStaticMesh:   Page data disk size: 6016 bytes. Fixup data size: 88 bytes.
-[2026.02.14-23.13.36:124][198]LogStaticMesh:   Total GPU size: 6724 bytes, Total disk size: 6104 bytes.
-[2026.02.14-23.13.36:124][198]LogStaticMesh: Encode [0.00s]
-[2026.02.14-23.13.36:124][198]LogStaticMesh: NaniteBuild [0.00s]
-[2026.02.14-23.13.36:126][198]LogStaticMesh: Built static mesh [0.01s] /Game/Patchwork/Models/Forest/Bench_LowPoly.Bench_LowPoly
-[2026.02.14-23.13.36:212][200]LogInterchangeImport: Imported (FBXSDK) of Bench_LowPoly.fbx in [0 min 0.388 s]
-[2026.02.14-23.13.36:212][200]LogInterchangeImport: MeshPayload (FBXSDK) of Bench_LowPoly.fbx, [1 230 136], in [0 min 0.001 s]
-[2026.02.14-23.13.36:214][200]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench_LowPoly.fbx]
-[2026.02.14-23.13.36:257][200]LogInterchangeEngine: Warning: [D:/ONEiRA/UV's/Bench_LowPoly.fbx : 'Bench_LowPoly', StaticMesh] No smoothing group information was found for this mesh 'Mesh' in the FBX file. Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter before exporting the file.
-[2026.02.14-23.13.36:257][200]LogInterchangeEngine: Display: Import Done in 1.266247 seconds.
-[2026.02.14-23.13.36:257][200]LogInterchangeEngine: [Pending] Importing - Operation Completed.
-[2026.02.14-23.13.36:257][200]LogInterchangeEngine: [Success] Import Done
-[2026.02.14-23.13.40:025][535]LogFileHelpers: InternalPromptForCheckoutAndSave started...
-[2026.02.14-23.13.40:080][535]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly
-[2026.02.14-23.13.40:081][535]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.13.40:089][535]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly.Bench_Broken2_LowPoly]
-[2026.02.14-23.13.40:089][535]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly]
-[2026.02.14-23.13.40:107][535]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly
-[2026.02.14-23.13.40:107][535]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_Broken2_LowPoly07101064466F971C5918B69DA292C335.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Bench_Broken2_LowPoly.uasset'
-[2026.02.14-23.13.40:111][535]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly
-[2026.02.14-23.13.40:111][535]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_Broken_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.13.40:117][535]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly.Bench_Broken_LowPoly]
-[2026.02.14-23.13.40:117][535]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_Broken_LowPoly]
-[2026.02.14-23.13.40:128][535]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly
-[2026.02.14-23.13.40:128][535]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_Broken_LowPolyB393ECAE46101E4BCA7434A5E40C0C6F.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Bench_Broken_LowPoly.uasset'
-[2026.02.14-23.13.40:129][535]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Bench_LowPoly
-[2026.02.14-23.13.40:129][535]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.13.40:134][535]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/Bench_LowPoly.Bench_LowPoly]
-[2026.02.14-23.13.40:134][535]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_LowPoly]
-[2026.02.14-23.13.40:143][535]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Bench_LowPoly
-[2026.02.14-23.13.40:143][535]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_LowPoly6BDD67B24F67BB1F1E104D97EDF8C52F.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Bench_LowPoly.uasset'
-[2026.02.14-23.13.40:145][535]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/blinn3
-[2026.02.14-23.13.40:145][535]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/blinn3] ([1] browsable assets)...
-[2026.02.14-23.13.40:150][535]OBJ SavePackage:     Rendered thumbnail for [MaterialInstanceConstant /Game/Patchwork/Models/Forest/blinn3.blinn3]
-[2026.02.14-23.13.40:150][535]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/blinn3]
-[2026.02.14-23.13.40:157][535]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/blinn3
-[2026.02.14-23.13.40:157][535]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/blinn38B2292BD4C6B0F071D6012BD98DED72F.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/blinn3.uasset'
-[2026.02.14-23.13.40:169][535]LogFileHelpers: InternalPromptForCheckoutAndSave took 144.569 ms
-[2026.02.14-23.13.40:229][535]LogContentValidation: Enabled validators:
-[2026.02.14-23.13.40:230][535]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
-[2026.02.14-23.13.40:230][535]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
-[2026.02.14-23.13.40:230][535]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
-[2026.02.14-23.13.40:230][535]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
-[2026.02.14-23.13.40:230][535]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
-[2026.02.14-23.13.40:230][535]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
-[2026.02.14-23.13.40:230][535]LogContentValidation: 	/Script/MutableValidation.AssetValidator_CustomizableObjects
-[2026.02.14-23.13.40:230][535]LogContentValidation: 	/Script/MutableValidation.AssetValidator_ReferencedCustomizableObjects
-[2026.02.14-23.13.40:230][535]LogContentValidation: Display: Starting to validate 4 assets (0 associated objects such as actors)
-[2026.02.14-23.13.40:230][535]LogContentValidation: Additional assets added for validation by 0 validators:
-[2026.02.14-23.13.40:232][535]AssetCheck: /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly Validating asset
-[2026.02.14-23.13.40:232][535]AssetCheck: /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly Validating asset
-[2026.02.14-23.13.40:232][535]AssetCheck: /Game/Patchwork/Models/Forest/Bench_LowPoly Validating asset
-[2026.02.14-23.13.40:232][535]AssetCheck: /Game/Patchwork/Models/Forest/blinn3 Validating asset
-[2026.02.14-23.13.40:232][535]LogContentValidation: Validated asset counts for 1 validators:
-[2026.02.14-23.13.40:232][535]LogContentValidation:   /Script/DataValidation.EditorValidator_Localization : 4
-[2026.02.14-23.13.40:337][535]LogSourceControl: Display: Uncontrolled Changelist persistency file saved ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/SourceControl/UncontrolledChangelists.json
-[2026.02.14-23.13.42:653][754]LogUObjectHash: Compacting FUObjectHashTables data took   1.42ms
-[2026.02.14-23.13.42:989][754]LogSlate: Last resort fallback font was requested. Font: '<unknown>', Character: '<unknown>'
-[2026.02.14-23.13.42:998][754]LogSlate: Took 0.008769 seconds to synchronously load lazily loaded font '../../../Engine/Content/SlateDebug/Fonts/LastResort.ttf' (5269K)
-[2026.02.14-23.13.50:018][754]LogSlate: Window 'Delete Assets' being destroyed
-[2026.02.14-23.13.50:053][754]LogUObjectGlobals: Force Deleting 1 Package(s):
-	Asset Name: /Game/Patchwork/Models/Forest/blinn3.blinn3
+[2026.02.26-19.29.49:983][271]LogStreaming: Display: FlushAsyncLoading(370): 1 QueuedPackages, 1 AsyncPackages
+[2026.02.26-19.31.05:407][437]LogDerivedDataCache: C:/Users/monic/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:00.009 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 0 files in 1 folders with total size 0 MiB.
+[2026.02.26-19.34.28:956][187]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 309.354126
+[2026.02.26-19.34.29:957][190]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2026.02.26-19.34.29:957][190]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 310.021912, Update Interval: 349.007843
+[2026.02.26-19.40.22:732][248]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 663.131104
+[2026.02.26-19.40.23:732][251]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2026.02.26-19.40.23:732][252]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 663.797119, Update Interval: 349.597473
+[2026.02.26-19.42.01:253][428]LogStreaming: Display: FlushAsyncLoading(371): 1 QueuedPackages, 0 AsyncPackages
+[2026.02.26-19.42.01:318][428]LogInterchangeEngine: Display: Interchange start importing source [C:/Users/monic/OneDrive/Desktop/Maya/ONEiRA/UV's/Lantern/Lantern_LowPoly_2.fbx]
+[2026.02.26-19.42.01:348][428]LogInterchangeImport: Translation (FBXSDK) of Lantern_LowPoly_2.fbx in [0 min 0.028 s]
+[2026.02.26-19.42.04:017][428]LogSlate: Window 'Import Content' being destroyed
+[2026.02.26-19.42.04:059][428]LogInterchangeEngine: [Pending] Importing
+[2026.02.26-19.42.04:197][429]LogStreaming: Display: FlushAsyncLoading(378): 1 QueuedPackages, 0 AsyncPackages
+[2026.02.26-19.42.04:348][430]LogStreaming: Display: FlushAsyncLoading(381): 1 QueuedPackages, 0 AsyncPackages
+[2026.02.26-19.42.04:585][433]LogInterchangeImport: Imported (FBXSDK) of Lantern_LowPoly_2.fbx in [0 min 3.265 s]
+[2026.02.26-19.42.04:585][433]LogInterchangeImport: MeshPayload (FBXSDK) of Lantern_LowPoly_2.fbx, [1 324 169], in [0 min 0.004 s]
+[2026.02.26-19.42.04:589][433]LogInterchangeEngine: Display: Interchange import completed [C:/Users/monic/OneDr.../ONEiRA/UV's/Lantern/Lantern_LowPoly_2.fbx]
+[2026.02.26-19.42.04:635][433]LogInterchangeEngine: Warning: [C:/Users/monic/OneDrive/Desktop/Maya/ONEiRA/UV's/Lantern/Lantern_LowPoly_2.fbx : 'Lantern_LowPoly_2', StaticMesh] No smoothing group information was found for this mesh 'Mesh' in the FBX file. Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter before exporting the file.
+[2026.02.26-19.42.04:635][433]LogInterchangeEngine: Display: Import Done in 0.587176 seconds.
+[2026.02.26-19.42.04:635][433]LogInterchangeEngine: [Pending] Importing - Operation Completed.
+[2026.02.26-19.42.04:635][433]LogInterchangeEngine: [Success] Import Done
+[2026.02.26-19.42.12:898][149]LogUObjectHash: Compacting FUObjectHashTables data took   1.31ms
+[2026.02.26-19.42.13:235][149]LogSlate: Last resort fallback font was requested. Font: '<unknown>', Character: '<unknown>'
+[2026.02.26-19.42.13:245][149]LogSlate: Took 0.008804 seconds to synchronously load lazily loaded font '../../../Engine/Content/SlateDebug/Fonts/LastResort.ttf' (5269K)
+[2026.02.26-19.42.14:738][149]LogSlate: Window 'Delete Assets' being destroyed
+[2026.02.26-19.42.14:792][149]LogUObjectGlobals: Force Deleting 1 Package(s):
+	Asset Name: /Game/Patchwork/Models/Forest/openPBR_shader1.openPBR_shader1
 	Asset Type: MaterialInstanceConstant
-[2026.02.14-23.13.50:394][754]LogUObjectHash: Compacting FUObjectHashTables data took   0.51ms
-[2026.02.14-23.13.50:424][754]LogUObjectHash: Compacting FUObjectHashTables data took   0.90ms
-[2026.02.14-23.13.50:455][754]LogUObjectHash: Compacting FUObjectHashTables data took   0.32ms
-[2026.02.14-23.14.07:565][196]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 975.229431
-[2026.02.14-23.14.07:759][217]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
-[2026.02.14-23.14.07:759][217]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 975.406189, Update Interval: 348.081299
-[2026.02.14-23.14.12:421][596]LogContentBrowser: Deferred new asset folder creation: NewFolder
-[2026.02.14-23.14.12:445][596]LogContentBrowser: Creating deferred item: NewFolder
-[2026.02.14-23.14.12:454][597]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
-[2026.02.14-23.14.16:327][ 48]LogContentBrowser: Attempting asset rename: NewFolder -> Bench
-[2026.02.14-23.14.16:329][ 48]LogContentBrowser: End creating deferred item NewFolder
-[2026.02.14-23.14.37:811][662]LogStreaming: Display: FlushAsyncLoading(385): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.14.38:172][662]LogInterchangeEngine: [Pending] Importing
-[2026.02.14-23.14.38:172][662]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_BaseColor.png]
-[2026.02.14-23.14.38:173][662]LogInterchangeEngine: [Pending] Importing - Importing (2)
-[2026.02.14-23.14.38:173][662]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_Normal.png]
-[2026.02.14-23.14.38:174][662]LogInterchangeEngine: [Pending] Importing - Importing (3)
-[2026.02.14-23.14.38:174][662]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.png]
-[2026.02.14-23.14.38:595][664]LogStreaming: Display: FlushAsyncLoading(422): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.14.38:906][665]LogInterchangePipeline: Display: Auto-detected normal map
-[2026.02.14-23.14.38:912][666]LogTexture: Display: Building textures: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_Normal.Benches_LowPoly_blinn3_Normal (TFO_BC5, 2048x2048 x1x1x1) (Required Memory Estimate: 483.749988 MB), EncodeSpeed: Fast
-[2026.02.14-23.14.38:913][666]LogTexture: Display: Building textures: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.Benches_LowPoly_blinn3_OcclusionRoughnessMetallic (TFO_AutoDXT, 2048x2048 x1x1x1) (Required Memory Estimate: 338.208323 MB), EncodeSpeed: Fast
-[2026.02.14-23.14.39:265][666]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_Normal.png]
-[2026.02.14-23.14.39:265][666]LogInterchangeEngine: [Pending] Importing - Importing (2)
-[2026.02.14-23.14.39:265][666]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.png]
-[2026.02.14-23.14.39:265][666]LogInterchangeEngine: [Pending] Importing - Importing (1)
-[2026.02.14-23.14.39:270][667]LogTexture: Display: Building textures: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_BaseColor.Benches_LowPoly_blinn3_BaseColor (TFO_AutoDXT, 2048x2048 x1x1x1) (Required Memory Estimate: 338.208323 MB), EncodeSpeed: Fast
-[2026.02.14-23.14.39:611][667]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_BaseColor.png]
-[2026.02.14-23.14.39:634][667]LogInterchangeEngine: Display: Import Done in 1.472531 seconds.
-[2026.02.14-23.14.39:634][667]LogInterchangeEngine: [Pending] Importing - Operation Completed.
-[2026.02.14-23.14.39:634][667]LogInterchangeEngine: [Success] Import Done
-[2026.02.14-23.14.41:946][737]LogAssetEditorSubsystem: Opening Asset editor for Texture2D /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.Benches_LowPoly_blinn3_OcclusionRoughnessMetallic
-[2026.02.14-23.14.42:399][737]LogDeviceProfileManager: Display: Deviceprofile Android_ASTC not found.
-[2026.02.14-23.14.42:400][737]LogDeviceProfileManager: Display: Deviceprofile Android_DXT not found.
-[2026.02.14-23.14.42:400][737]LogDeviceProfileManager: Display: Deviceprofile Android_ETC2 not found.
-[2026.02.14-23.14.42:400][737]LogDeviceProfileManager: Display: Deviceprofile Android_Multi not found.
-[2026.02.14-23.14.44:828][935]LogTexture: Display: Building textures: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.Benches_LowPoly_blinn3_OcclusionRoughnessMetallic (TFO_AutoDXT, 2048x2048 x1x1x1) (Required Memory Estimate: 338.208323 MB), EncodeSpeed: Final
-[2026.02.14-23.14.46:144][ 69]LogFileHelpers: InternalPromptForCheckoutAndSave started...
-[2026.02.14-23.14.46:199][ 69]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic
-[2026.02.14-23.14.46:199][ 69]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic] ([1] browsable assets)...
-[2026.02.14-23.14.46:202][ 69]OBJ SavePackage:     Rendered thumbnail for [Texture2D /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.Benches_LowPoly_blinn3_OcclusionRoughnessMetallic]
-[2026.02.14-23.14.46:202][ 69]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic]
-[2026.02.14-23.14.46:242][ 69]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic
-[2026.02.14-23.14.46:243][ 69]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Benches_LowPoly_blinn3_Occlusion15420B9942C948F9E08FBE8AEC173678.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.uasset'
-[2026.02.14-23.14.46:254][ 69]LogFileHelpers: InternalPromptForCheckoutAndSave took 109.461 ms (total: 254.030 ms)
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: Enabled validators:
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: 	/Script/MutableValidation.AssetValidator_CustomizableObjects
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: 	/Script/MutableValidation.AssetValidator_ReferencedCustomizableObjects
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: Display: Starting to validate 1 assets (0 associated objects such as actors)
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: Additional assets added for validation by 0 validators:
-[2026.02.14-23.14.46:317][ 69]AssetCheck: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic Validating asset
-[2026.02.14-23.14.46:317][ 69]LogContentValidation: Validated asset counts for 1 validators:
-[2026.02.14-23.14.46:317][ 69]LogContentValidation:   /Script/DataValidation.EditorValidator_Localization : 1
-[2026.02.14-23.14.46:389][ 69]LogSourceControl: Display: Uncontrolled Changelist persistency file saved ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/SourceControl/UncontrolledChangelists.json
-[2026.02.14-23.14.47:947][191]LogSlate: Window 'Benches_LowPoly_blinn3_OcclusionRoughnessMetallic' being destroyed
-[2026.02.14-23.14.47:998][191]LogSlate: Window 'Benches_LowPoly_blinn3_OcclusionRoughnessMetallic' being destroyed
-[2026.02.14-23.14.50:290][380]LogFileHelpers: InternalPromptForCheckoutAndSave started...
-[2026.02.14-23.14.50:353][380]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_Normal
-[2026.02.14-23.14.50:353][380]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_Normal] ([1] browsable assets)...
-[2026.02.14-23.14.50:355][380]OBJ SavePackage:     Rendered thumbnail for [Texture2D /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_Normal.Benches_LowPoly_blinn3_Normal]
-[2026.02.14-23.14.50:355][380]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_Normal]
-[2026.02.14-23.14.50:386][380]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_Normal
-[2026.02.14-23.14.50:386][380]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Benches_LowPoly_blinn3_Normal998E4E4540147CC91846F2AA1F048E76.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_Normal.uasset'
-[2026.02.14-23.14.50:399][380]LogFileHelpers: InternalPromptForCheckoutAndSave took 108.489 ms (total: 362.519 ms)
-[2026.02.14-23.14.50:435][380]LogContentValidation: Enabled validators:
-[2026.02.14-23.14.50:435][380]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
-[2026.02.14-23.14.50:435][380]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
-[2026.02.14-23.14.50:435][380]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
-[2026.02.14-23.14.50:435][380]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
-[2026.02.14-23.14.50:435][380]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
-[2026.02.14-23.14.50:435][380]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
-[2026.02.14-23.14.50:435][380]LogContentValidation: 	/Script/MutableValidation.AssetValidator_CustomizableObjects
-[2026.02.14-23.14.50:435][380]LogContentValidation: 	/Script/MutableValidation.AssetValidator_ReferencedCustomizableObjects
-[2026.02.14-23.14.50:435][380]LogContentValidation: Display: Starting to validate 1 assets (0 associated objects such as actors)
-[2026.02.14-23.14.50:435][380]LogContentValidation: Additional assets added for validation by 0 validators:
-[2026.02.14-23.14.50:435][380]AssetCheck: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_Normal Validating asset
-[2026.02.14-23.14.50:435][380]LogContentValidation: Validated asset counts for 1 validators:
-[2026.02.14-23.14.50:435][380]LogContentValidation:   /Script/DataValidation.EditorValidator_Localization : 1
-[2026.02.14-23.14.50:505][380]LogSourceControl: Display: Uncontrolled Changelist persistency file saved ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/SourceControl/UncontrolledChangelists.json
-[2026.02.14-23.14.51:429][441]LogFileHelpers: InternalPromptForCheckoutAndSave started...
-[2026.02.14-23.14.51:515][441]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_BaseColor
-[2026.02.14-23.14.51:515][441]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_BaseColor] ([1] browsable assets)...
-[2026.02.14-23.14.51:517][441]OBJ SavePackage:     Rendered thumbnail for [Texture2D /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_BaseColor.Benches_LowPoly_blinn3_BaseColor]
-[2026.02.14-23.14.51:517][441]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_BaseColor]
-[2026.02.14-23.14.51:551][441]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_BaseColor
-[2026.02.14-23.14.51:551][441]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Benches_LowPoly_blinn3_BaseColor949A06664B6054CBF56C9E9AB400D256.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_BaseColor.uasset'
-[2026.02.14-23.14.51:571][441]LogFileHelpers: InternalPromptForCheckoutAndSave took 141.340 ms (total: 503.860 ms)
-[2026.02.14-23.14.51:633][441]LogContentValidation: Enabled validators:
-[2026.02.14-23.14.51:633][441]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
-[2026.02.14-23.14.51:633][441]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
-[2026.02.14-23.14.51:633][441]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
-[2026.02.14-23.14.51:633][441]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
-[2026.02.14-23.14.51:633][441]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
-[2026.02.14-23.14.51:633][441]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
-[2026.02.14-23.14.51:633][441]LogContentValidation: 	/Script/MutableValidation.AssetValidator_CustomizableObjects
-[2026.02.14-23.14.51:633][441]LogContentValidation: 	/Script/MutableValidation.AssetValidator_ReferencedCustomizableObjects
-[2026.02.14-23.14.51:633][441]LogContentValidation: Display: Starting to validate 1 assets (0 associated objects such as actors)
-[2026.02.14-23.14.51:633][441]LogContentValidation: Additional assets added for validation by 0 validators:
-[2026.02.14-23.14.51:633][441]AssetCheck: /Game/Patchwork/Models/Forest/Art_Redesign/Bench/Benches_LowPoly_blinn3_BaseColor Validating asset
-[2026.02.14-23.14.51:633][441]LogContentValidation: Validated asset counts for 1 validators:
-[2026.02.14-23.14.51:633][441]LogContentValidation:   /Script/DataValidation.EditorValidator_Localization : 1
-[2026.02.14-23.14.51:707][441]LogSourceControl: Display: Uncontrolled Changelist persistency file saved ../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/SourceControl/UncontrolledChangelists.json
-[2026.02.14-23.15.13:681][770]LogUObjectHash: Compacting FUObjectHashTables data took   0.57ms
-[2026.02.14-23.15.14:856][770]LogSlate: Window 'Delete Assets' being destroyed
-[2026.02.14-23.15.14:905][770]LogUObjectHash: Compacting FUObjectHashTables data took   0.60ms
-[2026.02.14-23.15.14:937][770]LogUObjectHash: Compacting FUObjectHashTables data took   0.47ms
-[2026.02.14-23.15.14:966][770]LogUObjectHash: Compacting FUObjectHashTables data took   0.44ms
-[2026.02.14-23.15.26:435][138]LogStreaming: Display: FlushAsyncLoading(425): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.15.26:435][138]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench_Broken2_LowPoly.fbx]
-[2026.02.14-23.15.26:445][138]LogInterchangeImport: Translation (FBXSDK) of Bench_Broken2_LowPoly.fbx in [0 min 0.010 s]
-[2026.02.14-23.15.40:713][138]LogSlate: Window 'Import Content' being destroyed
-[2026.02.14-23.15.40:726][138]LogInterchangeEngine: [Pending] Importing
-[2026.02.14-23.15.40:776][138]LogAssetTools: Warning: Failed to import 'D:\ONEiRA\UV's\Bench/Moss.sbs'. Unknown extension 'sbs'.
-[2026.02.14-23.15.40:776][138]LogPackageName: Warning: TryConvertFilenameToLongPackageName was passed an ObjectPath (/Game/Patchwork/Models/Forest/Bench/.autosave) rather than a PackageName or FilePath; it will be converted to the PackageName. Accepting ObjectPaths is deprecated behavior and will be removed in a future release; TryConvertFilenameToLongPackageName will fail on ObjectPaths.
-[2026.02.14-23.15.45:302][138]LogSlate: Window 'Message' being destroyed
-[2026.02.14-23.15.45:309][138]Message dialog closed, result: Ok, title: Message, text: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_0.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.45:309][138]LogAssetTools: Warning: FilenameToLongPackageName failed to convert '/Game/Patchwork/Models/Forest/Bench/.autosave'. The Result would be indistinguishable from using '/Game/Patchwork/Models/Forest/Bench/' as the InFilename.
-[2026.02.14-23.15.45:309][138]LogAssetTools: Warning: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_0.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.45:309][138]LogPackageName: Warning: TryConvertFilenameToLongPackageName was passed an ObjectPath (/Game/Patchwork/Models/Forest/Bench/.autosave) rather than a PackageName or FilePath; it will be converted to the PackageName. Accepting ObjectPaths is deprecated behavior and will be removed in a future release; TryConvertFilenameToLongPackageName will fail on ObjectPaths.
-[2026.02.14-23.15.46:601][138]LogSlate: Window 'Message' being destroyed
-[2026.02.14-23.15.46:607][138]Message dialog closed, result: Ok, title: Message, text: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_1.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.46:607][138]LogAssetTools: Warning: FilenameToLongPackageName failed to convert '/Game/Patchwork/Models/Forest/Bench/.autosave'. The Result would be indistinguishable from using '/Game/Patchwork/Models/Forest/Bench/' as the InFilename.
-[2026.02.14-23.15.46:607][138]LogAssetTools: Warning: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_1.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.46:607][138]LogPackageName: Warning: TryConvertFilenameToLongPackageName was passed an ObjectPath (/Game/Patchwork/Models/Forest/Bench/.autosave) rather than a PackageName or FilePath; it will be converted to the PackageName. Accepting ObjectPaths is deprecated behavior and will be removed in a future release; TryConvertFilenameToLongPackageName will fail on ObjectPaths.
-[2026.02.14-23.15.47:409][138]LogSlate: Window 'Message' being destroyed
-[2026.02.14-23.15.47:416][138]Message dialog closed, result: Ok, title: Message, text: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_2.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.47:416][138]LogAssetTools: Warning: FilenameToLongPackageName failed to convert '/Game/Patchwork/Models/Forest/Bench/.autosave'. The Result would be indistinguishable from using '/Game/Patchwork/Models/Forest/Bench/' as the InFilename.
-[2026.02.14-23.15.47:416][138]LogAssetTools: Warning: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_2.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.47:416][138]LogPackageName: Warning: TryConvertFilenameToLongPackageName was passed an ObjectPath (/Game/Patchwork/Models/Forest/Bench/.autosave) rather than a PackageName or FilePath; it will be converted to the PackageName. Accepting ObjectPaths is deprecated behavior and will be removed in a future release; TryConvertFilenameToLongPackageName will fail on ObjectPaths.
-[2026.02.14-23.15.48:275][138]LogSlate: Window 'Message' being destroyed
-[2026.02.14-23.15.48:281][138]Message dialog closed, result: Cancel, title: Message, text: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_3.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.48:281][138]LogAssetTools: Warning: FilenameToLongPackageName failed to convert '/Game/Patchwork/Models/Forest/Bench/.autosave'. The Result would be indistinguishable from using '/Game/Patchwork/Models/Forest/Bench/' as the InFilename.
-[2026.02.14-23.15.48:281][138]LogAssetTools: Warning: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_3.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.48:281][138]LogPackageName: Warning: TryConvertFilenameToLongPackageName was passed an ObjectPath (/Game/Patchwork/Models/Forest/Bench/.autosave) rather than a PackageName or FilePath; it will be converted to the PackageName. Accepting ObjectPaths is deprecated behavior and will be removed in a future release; TryConvertFilenameToLongPackageName will fail on ObjectPaths.
-[2026.02.14-23.15.49:180][138]LogSlate: Window 'Message' being destroyed
-[2026.02.14-23.15.49:187][138]Message dialog closed, result: Cancel, title: Message, text: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.49:187][138]LogAssetTools: Warning: FilenameToLongPackageName failed to convert '/Game/Patchwork/Models/Forest/Bench/.autosave'. The Result would be indistinguishable from using '/Game/Patchwork/Models/Forest/Bench/' as the InFilename.
-[2026.02.14-23.15.49:187][138]LogAssetTools: Warning: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.49:187][138]LogPackageName: Warning: TryConvertFilenameToLongPackageName was passed an ObjectPath (/Game/Patchwork/Models/Forest/Bench/.autosave) rather than a PackageName or FilePath; it will be converted to the PackageName. Accepting ObjectPaths is deprecated behavior and will be removed in a future release; TryConvertFilenameToLongPackageName will fail on ObjectPaths.
-[2026.02.14-23.15.52:125][138]LogSlate: Window 'Message' being destroyed
-[2026.02.14-23.15.52:132][138]Message dialog closed, result: Ok, title: Message, text: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_4.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.52:132][138]LogAssetTools: Warning: FilenameToLongPackageName failed to convert '/Game/Patchwork/Models/Forest/Bench/.autosave'. The Result would be indistinguishable from using '/Game/Patchwork/Models/Forest/Bench/' as the InFilename.
-[2026.02.14-23.15.52:132][138]LogAssetTools: Warning: Can't import the file 'D:\ONEiRA\UV's\Bench/.autosave/Moss_4.sbs' because the destination path '' cannot be converted to a package path.
-[2026.02.14-23.15.52:144][138]LogAssetTools: Warning: Failed to import 'D:\ONEiRA\UV's\Bench/Moss.sbsar'. Unknown extension 'sbsar'.
-[2026.02.14-23.15.52:160][138]LogAssetTools: Warning: Failed to import 'D:\ONEiRA\UV's\Bench/Bench_autosave_0.spp'. Unknown extension 'spp'.
-[2026.02.14-23.15.52:177][138]LogAssetTools: Warning: Failed to import 'D:\ONEiRA\UV's\Bench/Bench_autosave_1.spp'. Unknown extension 'spp'.
-[2026.02.14-23.15.52:177][138]LogInterchangeEngine: [Pending] Importing - Importing (3)
-[2026.02.14-23.15.52:177][138]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.png]
-[2026.02.14-23.15.52:178][138]LogInterchangeEngine: [Pending] Importing - Importing (4)
-[2026.02.14-23.15.52:178][138]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_Normal.png]
-[2026.02.14-23.15.52:178][138]LogInterchangeEngine: [Pending] Importing - Importing (5)
-[2026.02.14-23.15.52:179][138]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_BaseColor.png]
-[2026.02.14-23.15.52:192][138]LogAssetTools: Warning: Failed to import 'D:\ONEiRA\UV's\Bench/Bench.spp'. Unknown extension 'spp'.
-[2026.02.14-23.15.53:242][139]LogStreaming: Display: FlushAsyncLoading(431): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.15.53:273][140]LogStreaming: Display: FlushAsyncLoading(432): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.15.53:351][143]LogInterchangeImport: Imported (FBXSDK) of Bench_Broken2_LowPoly.fbx in [0 min 26.916 s]
-[2026.02.14-23.15.53:351][143]LogInterchangeImport: MeshPayload (FBXSDK) of Bench_Broken2_LowPoly.fbx, [1 360 194], in [0 min 0.001 s]
-[2026.02.14-23.15.53:354][143]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench_Broken2_LowPoly.fbx]
-[2026.02.14-23.15.53:354][143]LogInterchangeEngine: Warning: [D:/ONEiRA/UV's/Bench_Broken2_LowPoly.fbx : 'Bench_Broken2_LowPoly', StaticMesh] No smoothing group information was found for this mesh 'Mesh' in the FBX file. Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter before exporting the file.
-[2026.02.14-23.15.53:354][143]LogInterchangeEngine: [Pending] Importing - Importing (5)
-[2026.02.14-23.15.53:354][143]LogInterchangeEngine: [Pending] Importing - Importing (5)
-[2026.02.14-23.15.53:354][143]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench_LowPoly.fbx]
-[2026.02.14-23.15.53:354][143]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.png]
-[2026.02.14-23.15.53:354][143]LogInterchangeEngine: [Pending] Importing - Importing (4)
-[2026.02.14-23.15.53:360][143]LogInterchangePipeline: Display: Auto-detected normal map
-[2026.02.14-23.15.53:361][143]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_BaseColor.png]
-[2026.02.14-23.15.53:361][143]LogInterchangeEngine: [Pending] Importing - Importing (3)
-[2026.02.14-23.15.53:418][144]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench/Benches_LowPoly_blinn3_Normal.png]
-[2026.02.14-23.15.53:418][144]LogInterchangeEngine: [Pending] Importing - Importing (2)
-[2026.02.14-23.15.53:427][145]LogInterchangeImport: Translation (FBXSDK) of Bench_LowPoly.fbx in [0 min 0.009 s]
-[2026.02.14-23.15.53:579][147]LogStreaming: Display: FlushAsyncLoading(436): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.15.53:782][149]LogInterchangeImport: Imported (FBXSDK) of Bench_LowPoly.fbx in [0 min 0.366 s]
-[2026.02.14-23.15.53:784][149]LogInterchangeImport: MeshPayload (FBXSDK) of Bench_LowPoly.fbx, [1 230 136], in [0 min 0.001 s]
-[2026.02.14-23.15.53:785][149]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench_LowPoly.fbx]
-[2026.02.14-23.15.53:785][149]LogInterchangeEngine: Warning: [D:/ONEiRA/UV's/Bench_LowPoly.fbx : 'Bench_LowPoly', StaticMesh] No smoothing group information was found for this mesh 'Mesh' in the FBX file. Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter before exporting the file.
-[2026.02.14-23.15.53:785][149]LogInterchangeEngine: [Pending] Importing - Importing (1)
-[2026.02.14-23.15.53:785][149]LogInterchangeEngine: [Pending] Importing - Importing (1)
-[2026.02.14-23.15.53:785][149]LogInterchangeEngine: Display: Interchange start importing source [D:/ONEiRA/UV's/Bench_Broken_LowPoly.fbx]
-[2026.02.14-23.15.53:877][151]LogInterchangeImport: Translation (FBXSDK) of Bench_Broken_LowPoly.fbx in [0 min 0.010 s]
-[2026.02.14-23.15.54:017][153]LogStreaming: Display: FlushAsyncLoading(437): 1 QueuedPackages, 0 AsyncPackages
-[2026.02.14-23.15.54:049][155]LogInterchangeImport: Imported (FBXSDK) of Bench_Broken_LowPoly.fbx in [0 min 0.182 s]
-[2026.02.14-23.15.54:049][155]LogInterchangeImport: MeshPayload (FBXSDK) of Bench_Broken_LowPoly.fbx, [1 188 112], in [0 min 0.000 s]
-[2026.02.14-23.15.54:051][155]LogInterchangeEngine: Display: Interchange import completed [D:/ONEiRA/UV's/Bench_Broken_LowPoly.fbx]
-[2026.02.14-23.15.54:051][155]LogInterchangeEngine: Warning: [D:/ONEiRA/UV's/Bench_Broken_LowPoly.fbx : 'Bench_Broken_LowPoly', StaticMesh] No smoothing group information was found for this mesh 'Mesh' in the FBX file. Please make sure to enable the 'Export Smoothing Groups' option in the FBX Exporter before exporting the file.
-[2026.02.14-23.15.54:051][155]LogInterchangeEngine: Display: Import Done in 1.856149 seconds.
-[2026.02.14-23.15.54:051][155]LogInterchangeEngine: [Pending] Importing - Operation Completed.
-[2026.02.14-23.15.54:051][155]LogInterchangeEngine: [Success] Import Done
-[2026.02.14-23.15.57:137][387]LogUObjectHash: Compacting FUObjectHashTables data took   0.80ms
-[2026.02.14-23.15.57:143][387]LogFileHelpers: Editor autosave (incl. external actors) for '/Temp/Untitled_0' took 0.036
-[2026.02.14-23.15.57:152][387]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/blinn3] ([1] browsable assets)...
-[2026.02.14-23.15.57:179][387]OBJ SavePackage:     Rendered thumbnail for [MaterialInstanceConstant /Game/Patchwork/Models/Forest/blinn3.blinn3]
-[2026.02.14-23.15.57:179][387]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/blinn3]
-[2026.02.14-23.15.57:188][387]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Models/Forest/blinn3_Auto1
-[2026.02.14-23.15.57:188][387]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/blinn3_Auto163A2D2ED4D6B2A00655EB7AEC4191AD2.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Models/Forest/blinn3_Auto1.uasset'
-[2026.02.14-23.15.57:189][387]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.15.57:196][387]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly.Bench_Broken2_LowPoly]
-[2026.02.14-23.15.57:196][387]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly]
-[2026.02.14-23.15.57:205][387]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly_Auto1
-[2026.02.14-23.15.57:205][387]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_Broken2_LowPoly_Auto1373736724FD72EAE180E77BEF6FE8F9D.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly_Auto1.uasset'
-[2026.02.14-23.15.57:206][387]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic] ([1] browsable assets)...
-[2026.02.14-23.15.57:207][387]OBJ SavePackage:     Rendered thumbnail for [Texture2D /Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic.Benches_LowPoly_blinn3_OcclusionRoughnessMetallic]
-[2026.02.14-23.15.57:207][387]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic]
-[2026.02.14-23.15.57:223][387]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic_Auto1
-[2026.02.14-23.15.57:223][387]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Benches_LowPoly_blinn3_OcclusionCFBA1D98415030A491771DB4FFB4636C.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_OcclusionRoughnessMetallic_Auto1.uasset'
-[2026.02.14-23.15.57:224][387]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_Normal] ([1] browsable assets)...
-[2026.02.14-23.15.57:226][387]OBJ SavePackage:     Rendered thumbnail for [Texture2D /Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_Normal.Benches_LowPoly_blinn3_Normal]
-[2026.02.14-23.15.57:226][387]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_Normal]
-[2026.02.14-23.15.57:241][387]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_Normal_Auto1
-[2026.02.14-23.15.57:241][387]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Benches_LowPoly_blinn3_Normal_Au66B8F384438FF47599EE308CE767DCEC.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_Normal_Auto1.uasset'
-[2026.02.14-23.15.57:242][387]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_BaseColor] ([1] browsable assets)...
-[2026.02.14-23.15.57:243][387]OBJ SavePackage:     Rendered thumbnail for [Texture2D /Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_BaseColor.Benches_LowPoly_blinn3_BaseColor]
-[2026.02.14-23.15.57:243][387]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_BaseColor]
-[2026.02.14-23.15.57:259][387]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_BaseColor_Auto1
-[2026.02.14-23.15.57:259][387]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Benches_LowPoly_blinn3_BaseColor72D67D77422B44FB66FFE19BA6C6419C.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Models/Forest/Bench/Benches_LowPoly_blinn3_BaseColor_Auto1.uasset'
-[2026.02.14-23.15.57:260][387]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.15.57:266][387]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/Bench_LowPoly.Bench_LowPoly]
-[2026.02.14-23.15.57:266][387]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_LowPoly]
-[2026.02.14-23.15.57:275][387]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Models/Forest/Bench_LowPoly_Auto1
-[2026.02.14-23.15.57:275][387]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_LowPoly_Auto10DA8F6934E574E7851B80BAEC39F4ABA.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Models/Forest/Bench_LowPoly_Auto1.uasset'
-[2026.02.14-23.15.57:277][387]OBJ SavePackage: Generating thumbnails for [1] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_Broken_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.15.57:282][387]OBJ SavePackage:     Rendered thumbnail for [StaticMesh /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly.Bench_Broken_LowPoly]
-[2026.02.14-23.15.57:282][387]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_Broken_LowPoly]
-[2026.02.14-23.15.57:291][387]LogSavePackage: Moving output files for package: /Temp/Autosaves/Game/Patchwork/Models/Forest/Bench_Broken_LowPoly_Auto1
-[2026.02.14-23.15.57:291][387]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_Broken_LowPoly_Auto138D16999480B8B8EA8915399736394FB.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Autosaves/Game/Patchwork/Models/Forest/Bench_Broken_LowPoly_Auto1.uasset'
-[2026.02.14-23.15.57:292][387]LogFileHelpers: Auto-saving content packages took 0.140
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: ================================================
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: === FShaderJobCache stats ===
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Total job queries 178, among them cache hits 42 (23.60%), DDC hits 122 (68.54%), Duplicates 4 (2.25%)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Tracking 132 distinct input hashes that result in 69 distinct outputs (52.27%)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: RAM used: 588.23 KiB of 3.20 GiB budget. Usage: 0.02%
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: === Shader Compilation stats ===
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Shaders Compiled: 10
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Jobs assigned 10, completed 10 (100%)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Average time worker was idle: 0.97 s
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Time job spent in pending queue: average 0.09 s, longest 0.11 s
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Job execution time: average 0.32 s, max 0.45 s
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Job life time (pending + execution): average 0.41 s, max 0.55
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Shader code size: total 115.469 KiB, numShaders 10, average 11.547 KiB, min 5.727 KiB, max 26.914 KiB
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 1.36 s
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Mutex wait stall in FShaderJobCache::SubmitJobs:  0.04%
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Jobs were issued in 10 batches (only local compilation was used), average 1.00 jobs/batch
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Average processing rate: 7.33 jobs/sec
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Total thread time: 1.589 s
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Total thread preprocess time: 1.374 s
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Percentage time preprocessing: 86.49%
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Effective parallelization: 1.17 (times faster than compiling all shaders on one thread). Compare with number of workers: 12 - 0.097084
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                 TBasePassCSFNoLightMapPolicy (compiled    1 times, average 0.40 sec, max 0.40 sec, min 0.40 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                                 FLumenCardCS (compiled    1 times, average 0.40 sec, max 0.40 sec, min 0.40 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy (compiled    2 times, average 0.13 sec, max 0.14 sec, min 0.12 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                                 FLumenCardPS (compiled    2 times, average 0.09 sec, max 0.10 sec, min 0.08 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                 TBasePassVSFNoLightMapPolicy (compiled    2 times, average 0.09 sec, max 0.10 sec, min 0.08 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Top 5 shader types by total compile time:
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                 TBasePassCSFNoLightMapPolicy - 25.10% of total time (compiled    1 times, average 0.40 sec, max 0.40 sec, min 0.40 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                                 FLumenCardCS - 24.88% of total time (compiled    1 times, average 0.40 sec, max 0.40 sec, min 0.40 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 16.31% of total time (compiled    2 times, average 0.13 sec, max 0.14 sec, min 0.12 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                                 FLumenCardPS - 11.33% of total time (compiled    2 times, average 0.09 sec, max 0.10 sec, min 0.08 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display:                                 TBasePassVSFNoLightMapPolicy - 11.29% of total time (compiled    2 times, average 0.09 sec, max 0.10 sec, min 0.08 sec)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: === Material stats ===
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Materials Cooked:        0
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Materials Translated:    152
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Material Total Translate Time: 0.10 s
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Material Translation Only: 0.03 s (34%)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Material DDC Serialization Only: 0.00 s (0%)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: Material Cache Hits: 6 (4%)
-[2026.02.14-23.15.57:960][436]LogShaderCompilers: Display: ================================================
-[2026.02.14-23.16.48:356][397]LogFileHelpers: InternalPromptForCheckoutAndSave started...
-[2026.02.14-23.16.48:408][397]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly
-[2026.02.14-23.16.48:408][397]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.16.48:408][397]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly]
-[2026.02.14-23.16.48:420][397]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly
-[2026.02.14-23.16.48:421][397]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_Broken2_LowPoly542EF56E4C409C4A6397E4B2BC3E4321.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Bench_Broken2_LowPoly.uasset'
-[2026.02.14-23.16.48:431][397]LogFileHelpers: InternalPromptForCheckoutAndSave took 74.980 ms (total: 578.841 ms)
-[2026.02.14-23.16.48:492][397]LogContentValidation: Enabled validators:
-[2026.02.14-23.16.48:492][397]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
-[2026.02.14-23.16.48:492][397]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
-[2026.02.14-23.16.48:492][397]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
-[2026.02.14-23.16.48:492][397]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
-[2026.02.14-23.16.48:492][397]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
-[2026.02.14-23.16.48:492][397]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
-[2026.02.14-23.16.48:492][397]LogContentValidation: 	/Script/MutableValidation.AssetValidator_CustomizableObjects
-[2026.02.14-23.16.48:492][397]LogContentValidation: 	/Script/MutableValidation.AssetValidator_ReferencedCustomizableObjects
-[2026.02.14-23.16.48:492][397]LogContentValidation: Display: Starting to validate 1 assets (0 associated objects such as actors)
-[2026.02.14-23.16.48:492][397]LogContentValidation: Additional assets added for validation by 0 validators:
-[2026.02.14-23.16.48:493][397]AssetCheck: /Game/Patchwork/Models/Forest/Bench_Broken2_LowPoly Validating asset
-[2026.02.14-23.16.48:493][397]LogContentValidation: Validated asset counts for 1 validators:
-[2026.02.14-23.16.48:493][397]LogContentValidation:   /Script/DataValidation.EditorValidator_Localization : 1
-[2026.02.14-23.16.49:505][490]LogFileHelpers: InternalPromptForCheckoutAndSave started...
-[2026.02.14-23.16.49:571][490]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly
-[2026.02.14-23.16.49:571][490]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_Broken_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.16.49:571][490]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_Broken_LowPoly]
-[2026.02.14-23.16.49:582][490]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly
-[2026.02.14-23.16.49:582][490]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_Broken_LowPoly2673EC134B5433199B12F19BA2D9FB81.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Bench_Broken_LowPoly.uasset'
-[2026.02.14-23.16.49:592][490]LogFileHelpers: InternalPromptForCheckoutAndSave took 87.001 ms (total: 665.843 ms)
-[2026.02.14-23.16.49:655][490]LogContentValidation: Enabled validators:
-[2026.02.14-23.16.49:656][490]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
-[2026.02.14-23.16.49:656][490]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
-[2026.02.14-23.16.49:656][490]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
-[2026.02.14-23.16.49:656][490]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
-[2026.02.14-23.16.49:656][490]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
-[2026.02.14-23.16.49:656][490]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
-[2026.02.14-23.16.49:656][490]LogContentValidation: 	/Script/MutableValidation.AssetValidator_CustomizableObjects
-[2026.02.14-23.16.49:656][490]LogContentValidation: 	/Script/MutableValidation.AssetValidator_ReferencedCustomizableObjects
-[2026.02.14-23.16.49:656][490]LogContentValidation: Display: Starting to validate 1 assets (0 associated objects such as actors)
-[2026.02.14-23.16.49:656][490]LogContentValidation: Additional assets added for validation by 0 validators:
-[2026.02.14-23.16.49:656][490]AssetCheck: /Game/Patchwork/Models/Forest/Bench_Broken_LowPoly Validating asset
-[2026.02.14-23.16.49:656][490]LogContentValidation: Validated asset counts for 1 validators:
-[2026.02.14-23.16.49:656][490]LogContentValidation:   /Script/DataValidation.EditorValidator_Localization : 1
-[2026.02.14-23.16.50:549][568]LogFileHelpers: InternalPromptForCheckoutAndSave started...
-[2026.02.14-23.16.50:599][568]LogFileHelpers: Saving Package: /Game/Patchwork/Models/Forest/Bench_LowPoly
-[2026.02.14-23.16.50:599][568]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Patchwork/Models/Forest/Bench_LowPoly] ([1] browsable assets)...
-[2026.02.14-23.16.50:599][568]OBJ SavePackage: Finished generating thumbnails for package [/Game/Patchwork/Models/Forest/Bench_LowPoly]
-[2026.02.14-23.16.50:611][568]LogSavePackage: Moving output files for package: /Game/Patchwork/Models/Forest/Bench_LowPoly
-[2026.02.14-23.16.50:611][568]LogSavePackage: Moving '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Saved/Bench_LowPolyE0BA7F834319179EBA3B16810D186CBA.tmp' to '../../../../../../Users/monic/OneDrive/Desktop/ONEiRA/Patchwork/Patchwork_UE/Content/Patchwork/Models/Forest/Bench_LowPoly.uasset'
-[2026.02.14-23.16.50:621][568]LogFileHelpers: InternalPromptForCheckoutAndSave took 71.578 ms (total: 737.421 ms)
-[2026.02.14-23.16.50:681][568]LogContentValidation: Enabled validators:
-[2026.02.14-23.16.50:681][568]LogContentValidation: 	/Script/DataValidation.DirtyFilesChangelistValidator
-[2026.02.14-23.16.50:681][568]LogContentValidation: 	/Script/DataValidation.EditorValidator_Localization
-[2026.02.14-23.16.50:681][568]LogContentValidation: 	/Script/DataValidation.EditorValidator_Material
-[2026.02.14-23.16.50:681][568]LogContentValidation: 	/Script/DataValidation.PackageFileValidator
-[2026.02.14-23.16.50:681][568]LogContentValidation: 	/Script/DataValidation.WorldPartitionChangelistValidator
-[2026.02.14-23.16.50:681][568]LogContentValidation: 	/Script/InputBlueprintNodes.EnhancedInputUserWidgetValidator
-[2026.02.14-23.16.50:681][568]LogContentValidation: 	/Script/MutableValidation.AssetValidator_CustomizableObjects
-[2026.02.14-23.16.50:681][568]LogContentValidation: 	/Script/MutableValidation.AssetValidator_ReferencedCustomizableObjects
-[2026.02.14-23.16.50:681][568]LogContentValidation: Display: Starting to validate 1 assets (0 associated objects such as actors)
-[2026.02.14-23.16.50:681][568]LogContentValidation: Additional assets added for validation by 0 validators:
-[2026.02.14-23.16.50:681][568]AssetCheck: /Game/Patchwork/Models/Forest/Bench_LowPoly Validating asset
-[2026.02.14-23.16.50:681][568]LogContentValidation: Validated asset counts for 1 validators:
-[2026.02.14-23.16.50:681][568]LogContentValidation:   /Script/DataValidation.EditorValidator_Localization : 1
-[2026.02.14-23.16.52:048][693]LogUObjectHash: Compacting FUObjectHashTables data took   0.34ms
-[2026.02.14-23.16.53:568][693]LogSlate: Window 'Delete Assets' being destroyed
-[2026.02.14-23.16.53:604][693]LogUObjectGlobals: Force Deleting 1 Package(s):
-	Asset Name: /Game/Patchwork/Models/Forest/blinn3.blinn3
+[2026.02.26-19.42.15:106][149]LogUObjectHash: Compacting FUObjectHashTables data took   0.59ms
+[2026.02.26-19.42.15:137][149]LogUObjectHash: Compacting FUObjectHashTables data took   0.90ms
+[2026.02.26-19.42.15:168][149]LogUObjectHash: Compacting FUObjectHashTables data took   0.32ms
+[2026.02.26-19.42.18:026][422]LogUObjectHash: Compacting FUObjectHashTables data took   0.33ms
+[2026.02.26-19.42.19:397][422]LogSlate: Window 'Delete Assets' being destroyed
+[2026.02.26-19.42.19:439][422]LogUObjectGlobals: Force Deleting 1 Package(s):
+	Asset Name: /Game/Patchwork/Models/Forest/lambert2.lambert2
 	Asset Type: MaterialInstanceConstant
 [2026.02.14-23.16.53:879][693]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
 [2026.02.14-23.16.53:910][693]LogUObjectHash: Compacting FUObjectHashTables data took   0.46ms

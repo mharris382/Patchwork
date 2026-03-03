@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-ProceduralPipes.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"B:/UnrealEngine5_Projects/_repos6/ONEiRA/Patchwork/Patchwork_UE/Intermediate/Build/Win64/x64/UnrealEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h.obj"
+"B:/UnrealEngine5_Projects/_repos6/ONEiRA/Patchwork/Patchwork_UE/Plugins/ProceduralPipes/Intermediate/Build/Win64/x64/UnrealEditor/Development/ProceduralPipes/Module.ProceduralPipes.cpp.obj"
+"B:/UnrealEngine5_Projects/_repos6/ONEiRA/Patchwork/Patchwork_UE/Plugins/ProceduralPipes/Intermediate/Build/Win64/x64/UnrealEditor/Development/ProceduralPipes/Default.rc2.res"
+/OUT:"B:/UnrealEngine5_Projects/_repos6/ONEiRA/Patchwork/Patchwork_UE/Plugins/ProceduralPipes/Intermediate/Build/Win64/x64/UnrealEditor/Development/ProceduralPipes/UnrealEditor-ProceduralPipes.lib"

@@ -1,0 +1,12 @@
+
+Binaries/*
+Build/*
+Intermediate/*
+Plugins/*/Intermediate/*
+
+# Cache files for the editor to use
+DerivedDataCache/*
+
+# Ignore MacOS finder attribute file
+.DS_Store
+
